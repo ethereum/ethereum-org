@@ -1,11 +1,78 @@
-.blue-bg {
-	background: url('../images/bg.png') top center #161c30;
-	background-size: 100% auto;
-	padding: 20px 0px;
-	color: #fff;
+body {
+	-webkit-font-smoothing: antialiased;
 }
 
-img.logo {
+h1, h2, h3, h4, h5, h6 {
+	margin: 10px 0;
+	font-weight: 700;
+	letter-spacing: -1px;
+}
+
+h1 {
+	font-size: 36px;
+	font-weight: 700;
+}
+
+h2 {
+	padding-bottom: 10px;
+	font-size: 32px;
+	background: url('../images/bg_hr.png') repeat-x bottom;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+h4 {
+	font-size: 21px;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+h6 {
+	font-size: 16px;
+}
+
+p {
+	margin: 10px 0 15px 0;
+}
+
+header {
+	background: url('../images/bg.png') top center #161c30;
+	background-size: 1920px auto;
+	padding: 20px 0px;
+	color: #8A92B2;
+	color: #fafafa;
+}
+
+header .logo {
 	width: 200px;
 	height: auto;
+}
+
+header h1 {
+	margin: 20px 0 0 0;
+	color: #fff;
+	font-size: 42px;
+	font-weight: 700;
+	text-shadow: #111 0px 0px 10px;
+}
+
+header h2 {
+	font-size: 24px;
+	font-weight: 300;
+	background: none;
+	margin: 10px 0;
+	padding-bottom: 10px;
+	text-shadow: #111 0px 0px 10px;
+}
+
+.main-content {
+	padding-top: 40px;
+}
+
+pre {
+	background: #fff;
 }
