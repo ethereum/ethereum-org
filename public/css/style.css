@@ -56,7 +56,8 @@ header h1 {
 	margin: 20px 0 0 0;
 	color: #fff;
 	font-size: 42px;
-	font-weight: 700;
+	font-weight: 300;
+	text-transform: lowercase;
 	text-shadow: #111 0px 0px 10px;
 }
 
