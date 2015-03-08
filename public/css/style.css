@@ -1,0 +1,11 @@
+.blue-bg {
+	background: url('../images/bg.png') top center #161c30;
+	background-size: 100% auto;
+	padding: 20px 0px;
+	color: #fff;
+}
+
+img.logo {
+	width: 200px;
+	height: auto;
+}
