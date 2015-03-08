@@ -43,7 +43,7 @@ p {
 	max-width: 970px;
 }
 
-header {
+header, footer {
 	background: url('../images/bg.png') top center #161c30;
 	background-size: 1920px auto;
 	padding: 20px 0px;
@@ -80,4 +80,8 @@ header h2 {
 
 pre, code {
 	background: #fff;
+}
+
+footer {
+	font-size: 14px;
 }
