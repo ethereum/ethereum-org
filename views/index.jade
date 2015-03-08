@@ -9,15 +9,29 @@ block content
         pre ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Ethereum/install/master/install)"
 
       div.col-md-6 Paste that at a Terminal prompt.
-      div.col-md-6 ...
+      div.col-md-6.text-right ...
 
       div.clearfix
         br
+
+    div.clearfix
+      br
 
     div.row
       div.col-md-12
         h2 What does this script do
         p This script will detect your OS and install go-ethereum CLI.
+
+    div.clearfix
+      br
+
+    div.row
+      div.col-md-12
+        h2 Supported platforms
+        p We currently support Mac OS X and Linux. For more information about installing ethereum on other platforms please visit our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum(Go)") wiki page] about how to build go-ethereum on other platforms.
+
+    div.clearfix
+      br
 
     div.row
       div.col-md-12
@@ -26,9 +40,31 @@ block content
 
         pre ethereum
 
-        p For more information about command line options please visit out #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki") wiki].
+        p Run #[code ethereum -help] for more information about command line options or check our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki") documentation].
+
+    div.clearfix
+      br
 
     div.row
       div.col-md-12
-        h2 Supported platforms
-        p We currently support OS X and Ubuntu. For more information about installing ethereum on other platforms please visit our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki") wiki].
+        h2 Troubleshooting
+        p If something went wrong first read our Troubleshooting checklist. If you still didn't find your answer please #[a(href="") open an issue on GitHub] or contact our #[a(href="#") help desk].
+
+    div.clearfix
+      br
+
+    div.row
+      div.col-md-12
+        h2 Secuity
+        p Please report security issues to #[a(href="") security@ethereum.org].
+
+    div.clearfix
+      br
+
+    div.row
+      div.col-md-12
+        h2 License
+        p Code is under the #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/blob/develop/LICENSE") GNU Lesser General Public License].
+
+    div.clearfix
+      br

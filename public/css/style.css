@@ -39,6 +39,10 @@ p {
 	margin: 10px 0 15px 0;
 }
 
+.container {
+	max-width: 970px;
+}
+
 header {
 	background: url('../images/bg.png') top center #161c30;
 	background-size: 1920px auto;
@@ -74,6 +78,6 @@ header h2 {
 	padding-top: 40px;
 }
 
-pre {
+pre, code {
 	background: #fff;
 }
