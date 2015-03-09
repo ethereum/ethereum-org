@@ -15,7 +15,7 @@ h1 {
 
 h2 {
 	padding-bottom: 10px;
-	font-size: 32px;
+	font-size: 28px;
 	background: url('../images/bg_hr.png') repeat-x bottom;
 }
 
@@ -51,6 +51,10 @@ header, footer {
 	color: #fafafa;
 }
 
+header {
+	border-bottom: 3px solid #007edf;
+}
+
 header .logo {
 	width: 200px;
 	height: auto;
@@ -84,4 +88,5 @@ pre, code {
 
 footer {
 	font-size: 14px;
+	border-top: 3px solid #eb453e;
 }
