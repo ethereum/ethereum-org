@@ -22,6 +22,16 @@ block content
         h2 What does this script do
         p This script will detect your OS and install go-ethereum CLI. If you'd like to run each command yourself take a look at the source below.
 
+        a#show-source.btn.btn-info
+          i.fa.fa-code
+          | #[nbsp] view source
+
+        div#shell-source.hidden
+          p Paste this at a terminal prompt to install ethereum CLI.
+
+          pre
+            include ./../bin/install.sh
+
     div.clearfix
       br
 
