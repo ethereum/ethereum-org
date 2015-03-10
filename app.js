@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var approvedBlock = {
-	number: 0,
-	hash: "0x",
+	number: 146118,
+	hash: "0xdea5342d507a30c49e6298b10d44dc5e047a27260a284dc78f6c96781c6f6e58",
 	timestamp: 0
 };
 
@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/', function(req, res) {
-	res.render('index', { title: 'Ethereum Frontier' });
+	res.render('index', { title: 'Ethereum Frontier', block: approvedBlock });
 });
 
 app.get('/getBlock', function(req, res) {
