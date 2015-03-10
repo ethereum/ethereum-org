@@ -27,11 +27,15 @@ block content
           | #[nbsp] view source
 
         div#shell-source.hidden
-          p Paste this at a terminal prompt to install ethereum CLI.
-
           pre
             code(class="bash")
               include ./../bin/install.sh
+
+          p Paste this at a terminal prompt to install ethereum CLI.
+
+          a#hide-source.btn.btn-info
+            i.fa.fa-code
+            | #[nbsp] hide source
 
     div.clearfix
       br
