@@ -3,9 +3,10 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+	font-family: 'Coustard', serif;
 	margin: 10px 0;
-	font-weight: 700;
-	letter-spacing: -1px;
+	font-weight: 400;
+	/*letter-spacing: -1px;*/
 }
 
 h1 {
@@ -52,30 +53,61 @@ header, footer {
 }
 
 header {
-	border-bottom: 3px solid #007edf;
+	border-bottom: 3px solid #eb453e;
 }
 
 header .logo {
-	width: 200px;
+	width: 300px;
 	height: auto;
+	margin-top: -30px;
+	margin-bottom: -30px;
 }
 
 header h1 {
+	font-family: 'Coustard', serif;
 	margin: 20px 0 0 0;
 	color: #fff;
 	font-size: 42px;
 	font-weight: 300;
-	text-transform: lowercase;
+	/*text-transform: lowercase;*/
 	text-shadow: #111 0px 0px 10px;
 }
 
 header h2 {
+	font-family: 'Coustard', serif;
 	font-size: 24px;
 	font-weight: 300;
 	background: none;
 	margin: 10px 0;
 	padding-bottom: 10px;
 	text-shadow: #111 0px 0px 10px;
+}
+
+#block-content {
+	background: #0e0e0e;
+	background: #161c30;
+	padding-top: 10px;
+	padding-bottom: 15px;
+	border-bottom: 3px solid #8A92B2;
+	color: #007edf;
+}
+
+#block-content h6 {
+	font-size: 13px;
+	font-weight: 900;
+	text-transform: uppercase;
+	color: #fefefe;
+	margin-bottom: 0px;
+}
+
+#block-content span {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 18px;
+	/*color: #fff;*/
+	color: #8A92B2;
+	font-smooth: auto;
+	-webkit-font-smoothing: subpixel-antialiased;
+	-moz-font-smoothing: subpixel-antialiased;
 }
 
 .main-content {
