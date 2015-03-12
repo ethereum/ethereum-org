@@ -4,19 +4,11 @@ block content
   div.container.main-content
     div.row
       div.col-md-12
-        h2 Install Ethereum
+        h2 Install ethereum frontier release
 
         pre ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Ethereum/install/master/install)"
 
-        p Paste that at a Terminal prompt.
-
-    div.clearfix
-      br
-
-    div.row
-      div.col-md-12
-        h2 What does this script do
-        p This script will detect your OS and install go-ethereum CLI.#[br] If you'd like to run each command yourself take a look at the source below.
+        p Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. Please click the button below if you'd like to see a step by step description of the installer script.
 
         a#show-source.btn.btn-info
           i.fa.fa-code
@@ -27,7 +19,7 @@ block content
             code(class="bash")
               include ./../bin/install.sh
 
-          p Paste this at a terminal prompt to install ethereum CLI.
+          //- p Paste this at a terminal prompt to install ethereum CLI.
 
           a#hide-source.btn.btn-info
             i.fa.fa-code

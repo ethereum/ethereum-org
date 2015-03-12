@@ -65,11 +65,13 @@ header .logo {
 
 header h1 {
 	font-family: 'Coustard', serif;
+	font-family: 'Holtwood One SC', serif;
 	margin: 20px 0 0 0;
 	color: #fff;
 	font-size: 42px;
 	font-weight: 300;
 	/*text-transform: lowercase;*/
+	text-transform: uppercase;
 	text-shadow: #111 0px 0px 10px;
 }
 
@@ -121,6 +123,7 @@ pre, code {
 footer {
 	font-size: 14px;
 	border-top: 3px solid #eb453e;
+	color: #8A92B2;
 }
 
 /*footer img {
