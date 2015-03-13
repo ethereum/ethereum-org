@@ -57,6 +57,13 @@ header {
 }
 
 header .logo {
+	height: 30px;
+	width: auto;
+	margin-top: 30px;
+	margin-left: 10px;
+}
+
+header .logo-tall {
 	width: 300px;
 	height: auto;
 	margin-top: -30px;
@@ -114,6 +121,7 @@ header h2 {
 
 .main-content {
 	padding-top: 40px;
+	/*background: #dfd0af;*/
 }
 
 pre, code {
