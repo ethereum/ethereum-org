@@ -131,9 +131,17 @@ header h2 {
 	/*background: #dfd0af;*/
 }
 
+ul {
+	padding-left: 20px;
+}
+
 .terms-checkbox {
 	margin-right: 30px;
 	margin-top: 6px;
+}
+
+.terms-checkbox input {
+	margin-right: 10px;
 }
 
 pre, code {

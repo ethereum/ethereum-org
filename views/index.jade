@@ -4,12 +4,10 @@ block content
   div.container.main-content
     div.row
       div.col-md-12
-        h2 Install ethereum frontier release
-
         div#install-terms
-          p Before installing ethereum you must agree the following terms:
+          h2 Before installing ethereum
           ul
-            li Frontier is a curated testnet, it is not the 'main release' of Ethereum, but rather an initial beta prerelease
+            li #[b Frontier] is a curated #[b.text-danger testnet], it is not the 'main release' of Ethereum, but rather an #[b.text-danger initial beta prerelease]
             li We fully expect instability and consensus flaws in the client, some of which may be exploitable
             li As curators, we fully reserve the right to ignore blocks at our discretion
             li As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block
@@ -17,13 +15,15 @@ block content
           div.terms-checkbox.pull-left
             label(for="understand")
               input#understand(type="checkbox", value="true")
-              | &nbsp; I understand
+              | I understand, let me proceed to install
 
           a#show-install.pull-left.btn.btn-danger.disabled
             //- i.fa.fa-code
-            | #[nbsp] show install script
+            | #[nbsp] show install instructions
 
         div#install-info.hidden
+          h2 Install ethereum frontier release
+
           pre ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Ethereum/install/master/install)"
 
           p Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. Please click the button below if you'd like to see a step by step description of the installer script.
