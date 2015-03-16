@@ -44,6 +44,13 @@ p {
 	max-width: 970px;
 }
 
+.btn {
+	text-transform: uppercase;
+	font-family: 'Holtwood One SC', serif;
+	font-size: 13px;
+	letter-spacing: -1px;
+}
+
 header, footer {
 	background: url('../images/bg.png') top center #161c30;
 	background-size: 1920px auto;
@@ -122,6 +129,11 @@ header h2 {
 .main-content {
 	padding-top: 40px;
 	/*background: #dfd0af;*/
+}
+
+.terms-checkbox {
+	margin-right: 30px;
+	margin-top: 6px;
 }
 
 pre, code {
