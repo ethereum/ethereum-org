@@ -4,6 +4,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Coustard', serif;
+	font-family: 'Wicked-Grit', serif;
+	letter-spacing: -1px;
 	margin: 10px 0;
 	font-weight: 400;
 	/*letter-spacing: -1px;*/
@@ -17,11 +19,12 @@ h1 {
 h2 {
 	/*font-family: 'Holtwood One SC', serif;*/
 	/*font-family: 'Western Grit Regular', serif;*/
-	/*text-transform: uppercase;*/
+	text-transform: uppercase;
 	/*letter-spacing: -1px;*/
 	padding-bottom: 10px;
 	font-size: 28px;
-	background: url('../images/bg_hr.png') repeat-x bottom;
+	color: #b9a360;
+	background: url('../images/bg_hr-1.png') repeat-x bottom;
 }
 
 h3 {
@@ -64,7 +67,7 @@ header, footer {
 }
 
 header {
-	border-bottom: 3px solid #eb453e;
+	/*border-bottom: 3px solid #eb453e;*/
 	height: 1000px;
 	background: url('../images/header.jpg') top center no-repeat;
 	background-size: 1920px auto;
@@ -87,12 +90,10 @@ header .logo-tall {
 header h1 {
 	/*font-family: 'Coustard', serif;*/
 	font-family: 'Holtwood One SC', serif;
-	/*font-family: 'Western Grit Regular', serif;*/
 	margin: 20px 0 0 0;
 	color: #fff;
 	font-size: 42px;
 	font-weight: 300;
-	/*text-transform: lowercase;*/
 	text-transform: uppercase;
 	text-shadow: #111 0px 0px 10px;
 }
@@ -113,23 +114,27 @@ header h2 {
 	background: #1f0c05;
 	padding-top: 10px;
 	padding-bottom: 15px;
-	border-bottom: 3px solid #8A92B2;
+	/*border-bottom: 3px solid #8A92B2;*/
 	color: #007edf;
 }
 
 #block-content h6 {
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 900;
 	text-transform: uppercase;
-	color: #fefefe;
+	letter-spacing: 0px;
+	color: #b9a360;
 	margin-bottom: 0px;
 }
 
 #block-content span {
 	font-family: 'Source Sans Pro', sans-serif;
+	/*font-family: 'Wicked-Grit', serif;*/
 	font-size: 18px;
 	/*color: #fff;*/
 	color: #8A92B2;
+	color: #84683a;
+	color: #F6E6CC;
 	font-smooth: auto;
 	-webkit-font-smoothing: subpixel-antialiased;
 	-moz-font-smoothing: subpixel-antialiased;
@@ -137,7 +142,9 @@ header h2 {
 
 .main-content {
 	padding-top: 40px;
+	color: #F6E6CC;
 	/*background: #dfd0af;*/
+	background: #1f0c05;
 }
 
 ul {

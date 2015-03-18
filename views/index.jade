@@ -1,91 +1,93 @@
 extends layout
 
 block content
-  div.container.main-content
-    div.row
-      div.col-md-12
-        div#install-terms
-          h2 Before installing ethereum
-          ul
-            li #[b Frontier] is a curated #[b.text-danger testnet], it is not the 'main release' of Ethereum, but rather an #[b.text-danger initial beta prerelease]
-            li We fully expect instability and consensus flaws in the client, some of which may be exploitable
-            li As curators, we fully reserve the right to ignore blocks at our discretion
-            li As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block
+  div.main-content
+    div.container
+      div.row
+        div.col-md-12
+          div#install-terms
+            h2 Before installing ethereum
+            ul
+              li #[b Frontier] is a curated #[b.text-danger testnet], it is not the 'main release' of Ethereum, but rather an #[b.text-danger initial beta prerelease]
+              li We fully expect instability and consensus flaws in the client, some of which may be exploitable
+              li As curators, we fully reserve the right to ignore blocks at our discretion
+              li As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block
 
-          div.terms-checkbox.pull-left
-            label(for="understand")
-              input#understand(type="checkbox", value="true")
-              | I understand, let me proceed to install
+            div.terms-checkbox.pull-left
+              label(for="understand")
+                input#understand(type="checkbox", value="true")
+                | I understand, let me proceed to install
 
-          a#show-install.pull-left.btn.btn-danger.disabled
-            //- i.fa.fa-code
-            | #[nbsp] show install instructions
-
-        div#install-info.hidden
-          h2 Install ethereum frontier release
-
-          pre ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Ethereum/install/master/install)"
-
-          p Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. Please click the button below if you'd like to see a step by step description of the installer script.
-
-          a#show-source.btn.btn-info
-            //- i.fa.fa-code
-            | #[nbsp] view source
-
-          div#shell-source.hidden
-            pre
-              code(class="bash")
-                include ./../bin/install.sh
-
-            //- p Paste this at a terminal prompt to install ethereum CLI.
-
-            a#hide-source.btn.btn-info
+            a#show-install.pull-left.btn.btn-danger.disabled
               //- i.fa.fa-code
-              | #[nbsp] hide source
+              | #[nbsp] show install instructions
 
-    div.clearfix
-      br
+          div#install-info.hidden
+            h2 Install ethereum frontier release
 
-    div.row
-      div.col-md-12
-        h2 Supported platforms
-        p We currently support Mac OS X and Linux. For more information about installing and building go-ethereum on other platforms please visit our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum(Go)") wiki page].
+            pre ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Ethereum/install/master/install)"
 
-    div.clearfix
-      br
+            p Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. Please click the button below if you'd like to see a step by step description of the installer script.
 
-    div.row
-      div.col-md-12
-        h2 Next steps
-        p If the install was successful you can now run ethereum using the following command line in the Terminal prompt:
+            a#show-source.btn.btn-info
+              //- i.fa.fa-code
+              | #[nbsp] view source
 
-        pre ethereum
+            div#shell-source.hidden
+              pre
+                code(class="bash")
+                  include ./../bin/install.sh
 
-        p Run #[code ethereum -help] for more information about command line options or check our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki") documentation].
+              //- p Paste this at a terminal prompt to install ethereum CLI.
 
-    div.clearfix
-      br
+              a#hide-source.btn.btn-info
+                //- i.fa.fa-code
+                | #[nbsp] hide source
 
-    div.row
-      div.col-md-12
-        h2 Troubleshooting
-        p If something went wrong first read our Troubleshooting checklist. If you still didn't find your answer please #[a(href="") open an issue on GitHub] or contact our #[a(href="#") help desk].
+      div.clearfix
+        br
+        br
 
-    div.clearfix
-      br
+      div.row
+        div.col-md-12
+          h2 Supported platforms
+          p We currently support Mac OS X and Linux. For more information about installing and building go-ethereum on other platforms please visit our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum(Go)") wiki page].
 
-    div.row
-      div.col-md-12
-        h2 Security
-        p Please report security issues to #[a(href="mailto:security@ethereum.org") security@ethereum.org].
+      div.clearfix
+        br
 
-    div.clearfix
-      br
+      div.row
+        div.col-md-12
+          h2 Next steps
+          p If the install was successful you can now run ethereum using the following command line in the Terminal prompt:
 
-    div.row
-      div.col-md-12
-        h2 License
-        p Ethereum Core Protocol licensed under the #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/blob/develop/LICENSE") GNU Lesser General Public License]. #[br]Ethereum client licensed under the GPL.
+          pre ethereum
 
-    div.clearfix
-      br
+          p Run #[code ethereum -help] for more information about command line options or check our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki") documentation].
+
+      div.clearfix
+        br
+
+      div.row
+        div.col-md-12
+          h2 Troubleshooting
+          p If something went wrong first read our Troubleshooting checklist. If you still didn't find your answer please #[a(href="") open an issue on GitHub] or contact our #[a(href="#") help desk].
+
+      div.clearfix
+        br
+
+      div.row
+        div.col-md-12
+          h2 Security
+          p Please report security issues to #[a(href="mailto:security@ethereum.org") security@ethereum.org].
+
+      div.clearfix
+        br
+
+      div.row
+        div.col-md-12
+          h2 License
+          p Ethereum Core Protocol licensed under the #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/blob/develop/LICENSE") GNU Lesser General Public License]. #[br]Ethereum client licensed under the GPL.
+
+      div.clearfix
+        br
