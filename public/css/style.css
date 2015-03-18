@@ -65,6 +65,9 @@ header, footer {
 
 header {
 	border-bottom: 3px solid #eb453e;
+	height: 1000px;
+	background: url('../images/header.jpg') top center no-repeat;
+	background-size: 1920px auto;
 }
 
 header .logo {
@@ -107,6 +110,7 @@ header h2 {
 #block-content {
 	background: #0e0e0e;
 	background: #161c30;
+	background: #1f0c05;
 	padding-top: 10px;
 	padding-bottom: 15px;
 	border-bottom: 3px solid #8A92B2;
