@@ -1,0 +1,8 @@
+@font-face {
+	font-family: 'Western Grit Regular';
+	src: url('../fonts/WesternGrit-Regular.eot');
+	src: local('☺'), url('../fonts/WesternGrit-Regular.woff') format('woff'), url('../fonts/WesternGrit-Regular.ttf') format('truetype'), url('../fonts/WesternGrit-Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+

@@ -15,6 +15,10 @@ h1 {
 }
 
 h2 {
+	/*font-family: 'Holtwood One SC', serif;*/
+	/*font-family: 'Western Grit Regular', serif;*/
+	/*text-transform: uppercase;*/
+	/*letter-spacing: -1px;*/
 	padding-bottom: 10px;
 	font-size: 28px;
 	background: url('../images/bg_hr.png') repeat-x bottom;
@@ -78,8 +82,9 @@ header .logo-tall {
 }
 
 header h1 {
-	font-family: 'Coustard', serif;
+	/*font-family: 'Coustard', serif;*/
 	font-family: 'Holtwood One SC', serif;
+	/*font-family: 'Western Grit Regular', serif;*/
 	margin: 20px 0 0 0;
 	color: #fff;
 	font-size: 42px;
