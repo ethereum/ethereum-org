@@ -47,6 +47,15 @@ p {
 	margin: 10px 0 15px 0;
 }
 
+a {
+	color: #d19020;
+}
+
+a:hover {
+	color: #b5670b;
+	cursor: pointer;
+}
+
 .container {
 	max-width: 970px;
 }
