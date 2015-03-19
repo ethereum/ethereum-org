@@ -113,39 +113,26 @@ header .title {
 	}
 }
 
-/*header .logo {
-	height: 30px;
-	width: auto;
-	margin-top: 30px;
-	margin-left: 10px;
-*/}
-
-header .logo-tall {
-	width: 300px;
-	height: auto;
-	margin-top: -30px;
-	margin-bottom: -30px;
+.status-bar {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: flex;
 }
 
-header h1 {
-	/*font-family: 'Coustard', serif;*/
-	font-family: 'Holtwood One SC', serif;
-	margin: 20px 0 0 0;
-	color: #fff;
-	font-size: 42px;
-	font-weight: 300;
-	text-transform: uppercase;
-	text-shadow: #111 0px 0px 10px;
+.status-bar > div {
+	overflow: hidden;
+	min-width: 100px;
 }
 
-header h2 {
-	font-family: 'Coustard', serif;
-	font-size: 24px;
-	font-weight: 300;
-	background: none;
-	margin: 10px 0;
-	padding-bottom: 10px;
-	text-shadow: #111 0px 0px 10px;
+#block-content .status-bar span.block-hash {
+	color: #eb453e;
+}
+
+#block-content .status-bar span {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: block;
 }
 
 #block-content {
