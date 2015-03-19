@@ -3,12 +3,10 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Coustard', serif;
 	font-family: 'Wicked-Grit', serif;
 	letter-spacing: -1px;
 	margin: 10px 0;
 	font-weight: 400;
-	/*letter-spacing: -1px;*/
 }
 
 h1 {
@@ -17,14 +15,11 @@ h1 {
 }
 
 h2 {
-	/*font-family: 'Holtwood One SC', serif;*/
-	/*font-family: 'Western Grit Regular', serif;*/
-	text-transform: uppercase;
-	/*letter-spacing: -1px;*/
-	padding-bottom: 10px;
-	font-size: 28px;
-	color: #b9a360;
 	background: url('../images/bg_hr-1.png') repeat-x bottom;
+	font-size: 28px;
+	text-transform: uppercase;
+	color: #b9a360;
+	padding-bottom: 10px;
 }
 
 h3 {
@@ -68,15 +63,12 @@ a:hover {
 }
 
 header, footer {
-	background: url('../images/bg.png') top center #161c30;
-	background-size: 1920px auto;
 	padding: 20px 0px;
 	color: #8A92B2;
 	color: #fafafa;
 }
 
 header {
-	/*border-bottom: 3px solid #eb453e;*/
 	height: 1000px;
 	background: url('../images/header.jpg') top center no-repeat;
 	background-size: 1920px auto;
@@ -97,7 +89,6 @@ header .logo-tall {
 }
 
 header h1 {
-	/*font-family: 'Coustard', serif;*/
 	font-family: 'Holtwood One SC', serif;
 	margin: 20px 0 0 0;
 	color: #fff;
@@ -118,12 +109,9 @@ header h2 {
 }
 
 #block-content {
-	background: #0e0e0e;
-	background: #161c30;
 	background: #1f0c05;
 	padding-top: 10px;
 	padding-bottom: 15px;
-	/*border-bottom: 3px solid #8A92B2;*/
 	color: #007edf;
 }
 
@@ -138,11 +126,7 @@ header h2 {
 
 #block-content span {
 	font-family: 'Source Sans Pro', sans-serif;
-	/*font-family: 'Wicked-Grit', serif;*/
 	font-size: 18px;
-	/*color: #fff;*/
-	color: #8A92B2;
-	color: #84683a;
 	color: #F6E6CC;
 	font-smooth: auto;
 	-webkit-font-smoothing: subpixel-antialiased;
@@ -152,7 +136,6 @@ header h2 {
 .main-content {
 	padding-top: 40px;
 	color: #F6E6CC;
-	/*background: #dfd0af;*/
 	background: #1f0c05;
 }
 
@@ -174,11 +157,9 @@ pre, code {
 }
 
 footer {
+	background: url('../images/bg-3.png') top center #161c30;
+	background-size: 1920px auto;
 	font-size: 14px;
 	border-top: 3px solid #eb453e;
-	color: #8A92B2;
+	color: #F6E6CC;
 }
-
-/*footer img {
-	height: 40px;
-}*/
