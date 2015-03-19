@@ -78,7 +78,6 @@ header {
 	background: #1f0c05;
 	padding-top: 10px;
 	padding-bottom: 15px;
-	color: #007edf;
 }
 
 #block-content h6 {
@@ -119,7 +118,7 @@ ul {
 }
 
 pre, code {
-	background: #fff;
+	background: #F6E6CC;
 }
 
 footer {
