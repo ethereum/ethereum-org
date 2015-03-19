@@ -105,11 +105,11 @@ header .title {
 	margin-top: -140px;
 }
 
-#block-content .status-bar span.block-hash {
+#block-content span.block-hash {
 	color: #eb453e;
 }
 
-#block-content .status-bar span {
+#block-content span {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -141,9 +141,15 @@ header .title {
 }
 
 .main-content {
-	padding-top: 40px;
 	color: #F6E6CC;
 	background: #1f0c05;
+	padding-top: 40px;
+	margin-bottom: -45px;
+}
+
+.main-content .col-md-6,
+.main-content .col-md-12 {
+	margin-bottom: 45px;
 }
 
 ul {
