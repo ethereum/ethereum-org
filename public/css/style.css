@@ -77,17 +77,36 @@ header, footer {
 
 header {
 	/*border-bottom: 3px solid #eb453e;*/
-	height: 1000px;
-	background: url('../images/header.jpg') top center no-repeat;
-	background-size: 1920px auto;
+	height: 70vh;
+	min-height: 440px;
+	background: url('../images/Frontier-Background@2x.jpg') center center no-repeat;
+	background-size: cover;
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+	-webkit-align-items: center;
 }
 
-header .logo {
+header:after {
+	content: " ";
+	background: linear-gradient(transparent, black);
+}
+
+header .title {
+	background: url('../images/Title+Logo@2x.png') top center no-repeat;
+	background-size: 250px 323px;
+	width: 0;
+	padding-left: 250px;
+	height: 450px;
+	overflow: hidden;
+	-webkit-flex-shrink: 1;
+}
+
+/*header .logo {
 	height: 30px;
 	width: auto;
 	margin-top: 30px;
 	margin-left: 10px;
-}
+*/}
 
 header .logo-tall {
 	width: 300px;
