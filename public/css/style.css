@@ -69,9 +69,83 @@ header, footer {
 }
 
 header {
-	height: 1000px;
-	background: url('../images/header.jpg') top center no-repeat;
-	background-size: 1920px auto;
+	height: 70vh;
+	min-height: 440px;
+	background: url('../images/Frontier-Background.jpg') center center no-repeat;
+	background-size: cover;
+	
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+	-webkit-align-items: center;
+
+	display: -moz-flex;
+	-moz-justify-content: center;
+	-moz-align-items: center;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+header:after {
+	content: " ";
+	background: linear-gradient(transparent, black);
+}
+
+header .title {
+	background: url('../images/Title+Logo.png') top center no-repeat;
+	background-size: 250px 323px;
+	width: 0;
+	padding-left: 250px;
+	height: 450px;
+	overflow: hidden;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+	header .title {
+		background-image: url('../images/Title+Logo@2x.png');
+	}	
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
+	header {
+		background-image: url('../images/Frontier-Background@2x.jpg');
+	}
+}
+
+/*header .logo {
+	height: 30px;
+	width: auto;
+	margin-top: 30px;
+	margin-left: 10px;
+*/}
+
+header .logo-tall {
+	width: 300px;
+	height: auto;
+	margin-top: -30px;
+	margin-bottom: -30px;
+}
+
+header h1 {
+	/*font-family: 'Coustard', serif;*/
+	font-family: 'Holtwood One SC', serif;
+	margin: 20px 0 0 0;
+	color: #fff;
+	font-size: 42px;
+	font-weight: 300;
+	text-transform: uppercase;
+	text-shadow: #111 0px 0px 10px;
+}
+
+header h2 {
+	font-family: 'Coustard', serif;
+	font-size: 24px;
+	font-weight: 300;
+	background: none;
+	margin: 10px 0;
+	padding-bottom: 10px;
+	text-shadow: #111 0px 0px 10px;
 }
 
 #block-content {
