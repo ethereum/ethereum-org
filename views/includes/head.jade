@@ -1,18 +1,16 @@
 header
-  div.container
-    div.row
-      div.col-md-12.text-center
+  div.title Ethereum Frontier 0.1 Release 
 
 #block-content
   div.container
-    div.row
+    div.row.status-bar
       div.col-md-2
         h6 Block number
         span ##{block.number}
 
       div.col-md-8.text-center
         h6 Block hash
-        span(style="color: #eb453e;")= block.hash
+        span.block-hash= block.hash
 
       div.col-md-2.text-right
         h6 Block time
