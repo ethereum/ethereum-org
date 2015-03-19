@@ -64,14 +64,12 @@ a:hover {
 
 header, footer {
 	padding: 20px 0px;
-	color: #8A92B2;
-	color: #fafafa;
 }
 
 header {
 	position: relative;
 	height: 70vh;
-	min-height: 440px;
+	min-height: 600px;
 	background: url('../images/Frontier-Background.jpg') center center no-repeat;
 	background-size: cover;
 
@@ -94,40 +92,17 @@ header:after {
 	bottom: 0px;
 	left: 0px;
 	width: 100%;
-	height: 100px;
+	height: 150px;
 	background: linear-gradient(transparent, #1f0c05);
 }
 
 header .title {
-	background: url('../images/Title+Logo.png') top center no-repeat;
-	background-size: 250px 323px;
-	width: 0;
-	padding-left: 250px;
+	background: url('../images/logo.png') top center no-repeat;
+	background-size: 100% auto;
+	width: 383px;
 	height: 450px;
 	overflow: hidden;
-}
-
-@media (-webkit-min-device-pixel-ratio: 2) {
-	header .title {
-		background-image: url('../images/Title+Logo@2x.png');
-	}
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
-	header {
-		background-image: url('../images/Frontier-Background@2x.jpg');
-	}
-}
-
-.status-bar {
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: flex;
-}
-
-.status-bar > div {
-	overflow: hidden;
-	min-width: 100px;
+	margin-top: -140px;
 }
 
 #block-content .status-bar span.block-hash {
@@ -194,4 +169,21 @@ footer {
 	font-size: 14px;
 	border-top: 3px solid #eb453e;
 	color: #F6E6CC;
+}
+
+@media only screen and (max-width: 1280px) {
+	header .title {
+		width: 300px;
+		margin-top: -40px;
+	}
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+	header {
+		background-image: url('../images/Frontier-Background@2x.jpg');
+	}
+
+	header .title {
+		background-image: url('../images/logo@2x.png');
+	}
 }
