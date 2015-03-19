@@ -70,7 +70,7 @@ header {
 	position: relative;
 	height: 70vh;
 	min-height: 600px;
-	background: url('../images/Frontier-Background.jpg') center center no-repeat;
+	background: url('../images/bg.jpg') center center no-repeat;
 	background-size: cover;
 
 	display: -webkit-flex;
@@ -180,7 +180,7 @@ footer {
 
 @media (-webkit-min-device-pixel-ratio: 2) {
 	header {
-		background-image: url('../images/Frontier-Background@2x.jpg');
+		background-image: url('../images/bg@2x.jpg');
 	}
 
 	header .title {
