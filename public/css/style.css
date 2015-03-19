@@ -79,11 +79,20 @@ header {
 	/*border-bottom: 3px solid #eb453e;*/
 	height: 70vh;
 	min-height: 440px;
-	background: url('../images/Frontier-Background@2x.jpg') center center no-repeat;
+	background: url('../images/Frontier-Background.jpg') center center no-repeat;
 	background-size: cover;
+	
 	display: -webkit-flex;
 	-webkit-justify-content: center;
 	-webkit-align-items: center;
+
+	display: -moz-flex;
+	-moz-justify-content: center;
+	-moz-align-items: center;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 header:after {
@@ -92,13 +101,24 @@ header:after {
 }
 
 header .title {
-	background: url('../images/Title+Logo@2x.png') top center no-repeat;
+	background: url('../images/Title+Logo.png') top center no-repeat;
 	background-size: 250px 323px;
 	width: 0;
 	padding-left: 250px;
 	height: 450px;
 	overflow: hidden;
-	-webkit-flex-shrink: 1;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+	header .title {
+		background-image: url('../images/Title+Logo@2x.png');
+	}	
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
+	header {
+		background-image: url('../images/Frontier-Background@2x.jpg');
+	}
 }
 
 /*header .logo {
