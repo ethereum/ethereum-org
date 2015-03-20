@@ -1,9 +1,43 @@
 #!/usr/bin/env node
+
+'use strict';
+
 var debug = require('debug')('frontier.ethereum.org');
+var ssl_options = require('../config/config').ssl_options;
+var http = require('http');
+var https = require('https');
 var app = require('../app');
+var fs = require('fs');
+var ssl_options;
+
+function fileExists(filePath) {
+	try {
+		fs.statSync(filePath);
+	} catch(err) {
+		if(err.code == 'ENOENT') return false;
+	}
+	return true;
+};
+
+if(fileExists('./keys/cert.key')) {
+	ssl_options = {
+		key: fs.readFileSync('./keys/cert.key'),
+		cert: fs.readFileSync('./keys/cert.crt'),
+		requestCert: false
+	};
+}
 
 app.set('port', process.env.PORT || 3000);
+app.set('httpsPort', process.env.SSL_PORT || 3443);
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+var server = http.createServer(app);
+server.listen(app.get('port'), function() {
+	debug('Express server listening on port ' + server.address().port);
 });
+
+if(ssl_options.key !== undefined) {
+	var secureServer = https.createServer(ssl_options, app);
+	secureServer.listen(app.get('httpsPort'), function() {
+		debug('Express secure server listening on port ' + secureServer.address().port);
+	});
+}
