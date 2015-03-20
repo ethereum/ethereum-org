@@ -89,7 +89,7 @@ if linux?
 	sudo "apt-get", "update"
 
 	puts "Installing ethereum"
-	sudo "apt-get", "install", "-y", "go-ethereum"
+	sudo "apt-get", "install", "-y", "ethereum"
 elsif mac?
 	abort <<-EOABORT if Dir["/usr/local/.git/*"].empty?
 #{Tty.red}==> Error:#{Tty.reset}
@@ -104,7 +104,7 @@ EOABORT
 	sudo "brew", "tap", "ethereum/ethereum"
 
 	puts "Installing ethereum"
-	sudo "brew", "install", "go-ethereum"
+	sudo "brew", "install", "ethereum"
 else
 	warn "OS not supported."
 	puts "For more information please visit http://frontier.ethdev.com/"
