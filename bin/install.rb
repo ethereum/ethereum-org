@@ -77,16 +77,19 @@ puts RUBY_PLATFORM
 puts
 
 if linux?
-	puts "Linux detected"
+	puts "Installing common"
+	sudo "apt-get", "install", "-y", "software-properties-common"
 
-	puts "Adding ethereum repository"
-	sudo "add-apt-repository", "ppa:ethereum/ethereum"
+	puts "Adding ethereum repositories"
+	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum-qt"
+	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum"
+	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum-dev"
 
 	puts "Updating repository"
 	sudo "apt-get", "update"
 
 	puts "Installing ethereum"
-	sudo "apt-get", "install", "go-ethereum"
+	sudo "apt-get", "install", "-y", "go-ethereum"
 elsif mac?
 	abort <<-EOABORT if Dir["/usr/local/.git/*"].empty?
 #{Tty.red}==> Error:#{Tty.reset}
@@ -96,12 +99,14 @@ To install Homebrew run the following command:
 EOABORT
 	puts "Found brew"
 
+	puts
 	puts "Adding ethereum repository"
 	sudo "brew", "tap", "ethereum/ethereum"
 
 	puts "Installing ethereum"
 	sudo "brew", "install", "go-ethereum"
 else
-	warn "OS not supported"
+	warn "OS not supported."
+	puts "For more information please visit http://frontier.ethdev.com/"
 	abort
 end
