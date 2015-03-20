@@ -10,6 +10,8 @@ var app = require('../app');
 var fs = require('fs');
 var ssl_options;
 
+var useSSL = fileExists('./keys/cert.key');
+
 function fileExists(filePath) {
 	try {
 		fs.statSync(filePath);
@@ -19,7 +21,7 @@ function fileExists(filePath) {
 	return true;
 };
 
-if(fileExists('./keys/cert.key')) {
+if(useSSL) {
 	ssl_options = {
 		key: fs.readFileSync('./keys/cert.key'),
 		cert: fs.readFileSync('./keys/cert.crt'),
@@ -35,7 +37,7 @@ server.listen(app.get('port'), function() {
 	debug('Express server listening on port ' + server.address().port);
 });
 
-if(ssl_options.key !== undefined) {
+if(useSSL) {
 	var secureServer = https.createServer(ssl_options, app);
 	secureServer.listen(app.get('httpsPort'), function() {
 		debug('Express secure server listening on port ' + secureServer.address().port);
