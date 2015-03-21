@@ -25,7 +25,8 @@ build/Release
 node_modules
 
 # Certificates
-keys/*
+keys/ssl/*
+keys/pgp/*.secret.*
 
 # Users Environment Variables
 .lock-wscript

@@ -4,27 +4,17 @@
 
 var debug = require('debug')('frontier.ethereum.org');
 var ssl_options = require('../config/config').ssl_options;
+var utils = require('../lib/utils');
 var http = require('http');
 var https = require('https');
 var app = require('../app');
-var fs = require('fs');
-var ssl_options;
 
-var useSSL = fileExists('./keys/cert.key');
-
-function fileExists(filePath) {
-	try {
-		fs.statSync(filePath);
-	} catch(err) {
-		if(err.code == 'ENOENT') return false;
-	}
-	return true;
-};
+var useSSL = utils.isFile('./keys/ssl/cert.key');
 
 if(useSSL) {
-	ssl_options = {
-		key: fs.readFileSync('./keys/cert.key'),
-		cert: fs.readFileSync('./keys/cert.crt'),
+	var ssl_options = {
+		key: utils.getFile('./keys/ssl/cert.key'),
+		cert: utils.getFile('./keys/ssl/cert.crt'),
 		requestCert: false
 	};
 }

@@ -16,7 +16,7 @@
     "express": "^4.11.2",
     "express-force-ssl": "^0.2.11",
     "jade": "^1.9.2",
-    "lodash": "^3.3.1",
+    "lodash": "^3.5.0",
     "openpgp": "^1.0.0",
     "serve-favicon": "^2.2.0"
   },
