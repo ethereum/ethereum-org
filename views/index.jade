@@ -18,9 +18,7 @@ block content
                 input#understand(type="checkbox", value="true")
                 | I understand, let me proceed to install
 
-            a#show-install.pull-left.btn.btn-danger.disabled
-              //- i.fa.fa-code
-              | #[nbsp] show install instructions
+            a#show-install.pull-left.btn.btn-danger.disabled show install instructions
 
             div.clearfix
 
@@ -31,21 +29,16 @@ block content
 
             p Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. Please click the button below if you'd like to see a step by step description of the installer script.
 
-            a#show-source.btn.btn-warning
-              | #[nbsp] view source
-
-            a.btn.btn-success(href="#", target="_blank", style="margin-left: 15px;")
-              | #[nbsp] view on GitHub
-
-            div.clearfix
-
             div#shell-source.hidden
               pre
                 code(class="bash")
                   include ./../bin/install.rb
 
-              a#hide-source.btn.btn-warning
-                | #[nbsp] hide source
+            a#show-source.btn.btn-warning view source
+
+            a#hide-source.hidden.btn.btn-warning hide source
+
+            a.btn.btn-success(href="#", target="_blank", style="margin-left: 15px;") view on GitHub
 
       div.clearfix
 
