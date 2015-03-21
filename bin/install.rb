@@ -110,3 +110,6 @@ else
 	puts "For more information please visit http://frontier.ethdev.com/"
 	abort
 end
+
+puts
+ohai "Installation successfull!"
