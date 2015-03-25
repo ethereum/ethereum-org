@@ -6,12 +6,15 @@ block content
       div.row
         div.col-md-12
           div#install-terms
-            h2 Before installing ethereum
+            h2 Before installing the frontier release
             ul
-              li #[b Frontier] is a curated #[b.text-danger testnet], it is not the 'main release' of Ethereum, but rather an #[b.text-danger initial beta prerelease]
+              //- li #[b Frontier] is a curated #[b.text-danger testnet], it is not the 'main release' of Ethereum, but rather an #[b.text-danger initial beta prerelease]
+              li #[b Frontier] is a #[b.text-danger live testnet]. It is here to help us prepare for the main release. You'd be mad to use this for anything approaching "important" or "valuable". Expect dragons. If you're in any doubt, stand back and enjoy the show.
+                | It's so unstable, even Chuck Norris would run away and hide from it.
               li We fully expect instability and consensus flaws in the client, some of which may be exploitable
               li As curators, we fully reserve the right to ignore blocks at our discretion
-              li As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block
+              li
+                b As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block
 
             div.terms-checkbox.pull-left
               label(for="understand")
