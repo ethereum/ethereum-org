@@ -43,6 +43,11 @@ def sudo *args
   system "/usr/bin/sudo", *args
 end
 
+def brew *args
+  ohai "brew", *args
+  system "/usr/local/bin/brew", *args
+end
+
 def getc  # NOTE only tested on OS X
   system "/bin/stty raw -echo"
   if STDIN.respond_to?(:getbyte)
@@ -101,10 +106,10 @@ EOABORT
 
 	puts
 	puts "Adding ethereum repository"
-	sudo "brew", "tap", "ethereum/ethereum"
+	brew "tap", "ethereum/ethereum"
 
 	puts "Installing ethereum"
-	sudo "brew", "install", "ethereum"
+	brew "install", "ethereum"
 else
 	warn "OS not supported."
 	puts "For more information please visit http://frontier.ethdev.com/"
