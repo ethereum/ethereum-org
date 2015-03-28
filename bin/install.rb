@@ -61,13 +61,13 @@ end
 
 def wait_for_user
   puts
-  puts "I understand, I want to install ethereum (y/n)"
+  puts "I understand, I want to install Geth (ethereum CLI) (y/n)"
   c = getc
   abort unless c == 89 or c == 121
 end
 
 puts
-ohai "Before installing ethereum read this:"
+ohai "Before installing Geth (ethereum CLI) read this:"
 puts "Frontier is a curated #{Tty.red}testnet#{Tty.reset}, it is not the 'main release' of Ethereum, but rather an #{Tty.red}initial beta prerelease#{Tty.reset}"
 puts "We fully expect #{Tty.red}instability and consensus flaws#{Tty.reset} in the client, some of which may be exploitable"
 puts "As curators, we fully reserve the right to ignore blocks at our discretion"
@@ -85,15 +85,14 @@ if linux?
 	puts "Installing common"
 	sudo "apt-get", "install", "-y", "software-properties-common"
 
-	puts "Adding ethereum repositories"
-	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum-qt"
+	puts "Adding geth repositories"
 	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum"
 	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum-dev"
 
 	puts "Updating repository"
 	sudo "apt-get", "update"
 
-	puts "Installing ethereum"
+	puts "Installing Geth (ethereum CLI)"
 	sudo "apt-get", "install", "-y", "ethereum"
 elsif mac?
 	abort <<-EOABORT if Dir["/usr/local/.git/*"].empty?
@@ -105,10 +104,10 @@ EOABORT
 	puts "Found brew"
 
 	puts
-	puts "Adding ethereum repository"
+	puts "Adding geth repository"
 	brew "tap", "ethereum/ethereum"
 
-	puts "Installing ethereum"
+	puts "Installing Geth (ethereum CLI)"
 	brew "install", "ethereum"
 else
 	warn "OS not supported."
