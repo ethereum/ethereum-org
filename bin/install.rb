@@ -85,7 +85,7 @@ if linux?
 	puts "Installing common"
 	sudo "apt-get", "install", "-y", "software-properties-common"
 
-	puts "Adding geth repositories"
+	puts "Adding ethereum repositories"
 	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum"
 	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum-dev"
 
@@ -93,7 +93,7 @@ if linux?
 	sudo "apt-get", "update"
 
 	puts "Installing Geth (ethereum CLI)"
-	sudo "apt-get", "install", "-y", "geth"
+	sudo "apt-get", "install", "-y", "ethereum"
 elsif mac?
 	abort <<-EOABORT if Dir["/usr/local/.git/*"].empty?
 #{Tty.red}==> Error:#{Tty.reset}
@@ -108,7 +108,7 @@ EOABORT
 	brew "tap", "ethereum/ethereum"
 
 	puts "Installing Geth (ethereum CLI)"
-	brew "install", "geth"
+	brew "install", "ethereum"
 else
 	warn "OS not supported."
 	puts "For more information please visit http://frontier.ethdev.com/"
