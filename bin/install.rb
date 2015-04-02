@@ -93,7 +93,7 @@ if linux?
 	sudo "apt-get", "update"
 
 	puts "Installing Geth (ethereum CLI)"
-	sudo "apt-get", "install", "-y", "ethereum"
+	sudo "apt-get", "install", "-y", "geth"
 elsif mac?
 	abort <<-EOABORT if Dir["/usr/local/.git/*"].empty?
 #{Tty.red}==> Error:#{Tty.reset}
@@ -108,7 +108,7 @@ EOABORT
 	brew "tap", "ethereum/ethereum"
 
 	puts "Installing Geth (ethereum CLI)"
-	brew "install", "ethereum"
+	brew "install", "geth"
 else
 	warn "OS not supported."
 	puts "For more information please visit http://frontier.ethdev.com/"
