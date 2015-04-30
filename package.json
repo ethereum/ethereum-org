@@ -1,5 +1,5 @@
 {
-  "name": "frontier.ethereum.org",
+  "name": "frontier-release",
   "description": "Ethereum Frontier website",
   "version": "0.0.1",
   "private": true,
@@ -22,11 +22,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cubedro/frontier.ethereum.org.git"
+    "url": "https://github.com/ethereum/frontier-release.git"
   },
-  "homepage": "https://github.com/cubedro/frontier.ethereum.org",
+  "homepage": "https://github.com/ethereum/frontier-release",
   "bugs": {
-    "url": "https://github.com/cubedro/frontier.ethereum.org/issues"
+    "url": "https://github.com/ethereum/frontier-release/issues"
   },
   "authors": [
     {
