@@ -1,19 +1,33 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# init constants
+####################################################################### init vars
+
 HOMEBREW_PREFIX=/usr/local
-OSX_REQUIERED_VERSION="10.6.0"
+HOMEBREW_CACHE=/Library/Caches/Homebrew
+HOMEBREW_REPO=https://github.com/Homebrew/homebrew
+OSX_REQUIERED_VERSION="10.7.0"
 
-# init vars
-declare -a DEPENDENCIES
 
-OSX_VERSION=""
-os=""
+declare OS_TYPE
+declare OSX_VERSION
+declare GIT_PATH
+declare RUBY_PATH
+declare BREW_PATH
+declare INSTALL_FILES=""
 
-isBrew=false
+errorMessages=""
 isOsVersion=false
+isGit=false
+isRuby=false
+isBrew=false
+canContinue=true
+depCount=0
+depFound=0
 
-# setup colors
+
+
+####################################################################### setup colors
+
 red=`tput setaf 1`
 green=`tput setaf 2`
 yellow=`tput setaf 3`
@@ -36,181 +50,386 @@ reset=`tput sgr0`
 
 function heading()
 {
-	echo "${blue}==>${reset}${b} $1${reset}"
+	echo -e "${blue}${b}==>${white} $1${reset}"
 }
 
 function info()
 {
-  echo "${blue}==>${reset} $1"
-}
-
-function success()
-{
-	echo "${green}==> $1${reset}"
-}
-
-function check()
-{
-  echo "${green}${bold}     ✓${reset} $1${reset}"
-}
-
-function uncheck()
-{
-  echo "${red}${bold}     ✘${reset} $1${reset}"
-}
-
-function smallSuccess()
-{
-  echo "${green}==>${reset} $1"
+	echo -e "${blue}${b}==>${reset} $1"
 }
 
 function successHeading()
 {
-  echo "${green}==> ${b}$1${reset}"
+	echo -e "${green}${b}==> $1${reset}"
 }
 
-function error()
+function success()
 {
-	echo "${red} ❗ ${b} $1${reset}"
+	echo -e "${green}${b}==>${reset}${green} $1${reset}"
 }
 
-function smallError()
+function smallSuccess()
 {
-  echo "${red}==>${reset} $1"
+	echo -e "${green}${b}==>${reset} $1"
 }
 
 function green()
 {
-  echo "${green}$1${reset}"
+	echo -e "${green}$1${reset}"
 }
 
-function cyan()
+function errorHeading()
 {
-  echo "${cyan}$1${reset}"
+	echo -e "${red}==> ${b}$1❗${reset}"
+}
+
+function error()
+{
+	echo -e "${red}==> ${b}$1❗${reset}"
+}
+
+function smallError()
+{
+	echo -e "${red}==>${reset} $1"
 }
 
 function red()
 {
-  echo "${red}$1${reset}"
+	echo -e "${red}$1${reset}"
 }
 
-function exe() {
-  echo "\$ $@"; "$@"
-}
-
-function brew()
+function check()
 {
-  exe $HOMEBREW_PREFIX/bin/brew $@
+	echo -e "${green}${bold} ✓${reset}  $1${reset}"
 }
+
+function uncheck()
+{
+	echo -e "${red}${bold} ✘${reset}  $1${reset}"
+}
+
+
+
+####################################################################### setup methods
+
+function wait_for_user()
+{
+	while :
+	do
+		read -p "${blue}==>${reset} $1 (Y/n) " imp
+		case $imp in
+			[yY] ) echo; break ;;
+			* ) abortInstall "${red}==>${reset} Process stopped by user. To resume the install run the one-liner command again." ;;
+		esac
+	done
+}
+
+
+
+function exe()
+{
+	echo "\$ $@"; "$@"
+}
+
+
+function call_brew()
+{
+	exe brew $@
+}
+
+
 
 function detectOS()
 {
-  if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    os="linux"
-    run_linux_install
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    os="osx"
-    run_osx_install
-  else
-    os="win"
-    error "Error: OS not supported."
-    abortInstall
-  fi
+	if [[ "$OSTYPE" == "linux-gnu" ]]
+	then
+		OS_TYPE="linux"
+		get_linux_dependencies
+	elif [[ "$OSTYPE" == "darwin"* ]]
+	then
+		OS_TYPE="osx"
+		get_osx_dependencies
+	else
+		OS_TYPE="win"
+		abortInstall "${red}==>${reset} ${b}OS not supported:${reset} geth one-liner currently support OS X, Ubuntu and Debian.\nFor instructions on installing ethereum on other platforms please visit ${u}${blue}http://frontier.ethereum.org/${reset}"
+	fi
+
+	echo
+
+	if [[ $depCount == $depFound ]]
+	then
+		green "Found all dependencies ($depFound/$depCount)"
+	else
+		if [[ $canContinue == true ]]
+		then
+			red "Some dependencies are missing ($depFound/$depCount)"
+		elif [[ $canContinue == false && $depFound == 0 ]]
+		then
+			red "All dependencies are missing and cannot be auto-installed ($depFound/$depCount)"
+			abortInstall "$errorMessages";
+		elif [[ $canContinue == false ]]
+		then
+			red "Some dependencies which cannot be auto-installed are missing ($depFound/$depCount)"
+			abortInstall "$errorMessages";
+		fi
+	fi
 }
 
-function ask_about_brew()
+function get_osx_dependencies()
 {
-  error "In order to install ethereum you need Homebrew."
-  smallError "To find out more about Homebrew visit ${blue}http://brew.sh/${reset}"
-  echo
+	macos_version
+	find_git
+	find_ruby
+	find_brew
 
-  while :
-  do
-      read -p "${blue}==>${reset} Do you want to install Homebrew? (y/n) " imp
-      case $imp in
-          [yY] ) echo ""; break ;;
-          * ) echo; smallError "To install Homebrew run the following command:"; echo; red '    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'; echo; abortInstall ;;
-      esac
-  done
-}
-
-function run_osx_install()
-{
-  macos_version
-
-  heading "Checking dependencies"
-
-  find_brew
-
-  if [[ $isBrew == "true" ]];
-    then :
-  else
-    ask_about_brew
-  fi
-
-  heading "Adding ethereum repository"
-  brew tap ethereum/ethereum
-
-  heading "Updating brew"
-  # brew update
-
-  heading "Installing geth"
-  # brew install ethereum/ethereum/ethereum --devel --successful
-
-  finish
+	INSTALL_FILES+="${blue}${dim}==> Ethereum:${reset}\n"
+	INSTALL_FILES+=" ${blue}${dim}➜${reset}  $GOPATH/src/github.com/ethereum/go-ethereum\n"
+	INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_PREFIX/Cellar/ethereum\n"
+	INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_CACHE/ethereum--git\n"
 }
 
 function macos_version()
 {
-  declare reqVersion -a
-  declare localVersion -a
+	declare -a reqVersion
+	declare -a localVersion
 
-  OSX_VERSION=`/usr/bin/sw_vers -productVersion`
-  IFS='.' read -a localVersion <<< "$OSX_VERSION"
-  IFS='.' read -a reqVersion <<< "$OSX_REQUIERED_VERSION"
+	depCount=$((depCount+1))
+	OSX_VERSION=`/usr/bin/sw_vers -productVersion 2>/dev/null`
 
-  if (( ${reqVersion[0]} <= ${localVersion[0]} )) && (( ${reqVersion[1]} <= ${localVersion[1]} ))
-  then
-    success "OS X Version ok"
-  else
-    error "OS X version not supported"
-  fi
+	if [ -z "$OSX_VERSION" ]
+	then
+		uncheck "OS X version not supported 🔥"
+		isOsVersion=false
+		canContinue=false
+	else
+		IFS='.' read -a localVersion <<< "$OSX_VERSION"
+		IFS='.' read -a reqVersion <<< "$OSX_REQUIERED_VERSION"
+
+		if (( ${reqVersion[0]} <= ${localVersion[0]} )) && (( ${reqVersion[1]} <= ${localVersion[1]} ))
+		then
+			check "OS X Version ${OSX_VERSION}"
+			isOsVersion=true
+			depFound=$((depFound+1))
+			return
+		else
+			uncheck "OS X version not supported"
+			isOsVersion=false
+			canContinue=false
+		fi
+	fi
+
+	errorMessages+="${red}==>${reset} ${b}Mac OS version too old:${reset} geth requires OS X version ${red}$OSX_REQUIERED_VERSION${reset} at least in order to run.\n"
+	errorMessages+="    Please update the OS and reload the install process.\n"
+}
+
+function find_geth()
+{
+	GETH_PATH=`which geth 2>/dev/null`
+
+	if [[ -f $GETH_PATH ]]
+	then
+		check "Found geth: $GETH_PATH"
+		echo "$($GETH_PATH version)"
+		isGeth=true
+	else
+		uncheck "Geth is missing"
+		isGeth=false
+	fi
+}
+
+function find_git()
+{
+	depCount=$((depCount+1))
+
+	GIT_PATH=`which git 2>/dev/null`
+
+	if [[ -f $GIT_PATH ]]
+	then
+		check "$($GIT_PATH version)"
+		isGit=true
+		depFound=$((depFound+1))
+	else
+		uncheck "Git is missing"
+		isGit=false
+	fi
+}
+
+function find_ruby()
+{
+	depCount=$((depCount+1))
+
+	RUBY_PATH=`which ruby 2>/dev/null`
+
+	if [[ -f $RUBY_PATH ]]
+	then
+		RUBY_VERSION=`ruby -e "print RUBY_VERSION"`
+		check "Ruby ${RUBY_VERSION}"
+		isRuby=true
+		depFound=$((depFound+1))
+	else
+		uncheck "Ruby is missing 🔥"
+		isRuby=false
+		canContinue=false
+		errorMessages+="${red}==>${reset} ${b}Couldn't find Ruby:${reset} Brew requires Ruby which could not be found.\n"
+		errorMessages+="    Please install Ruby using these instructions ${u}${blue}https://www.ruby-lang.org/en/documentation/installation/${reset}.\n"
+	fi
 }
 
 function find_brew()
 {
-  if [[ -f /usr/local/bin/brew ]];
-  # if [[ ! -f /usr/local/bin/brew ]];
-  then
-    check "Homebrew"
-    isBrew=true
-  else
-    uncheck "Homebrew"
-    isBrew=false
-  fi
+	BREW_PATH=`which brew 2>/dev/null`
+
+	if [[ -f $BREW_PATH ]]
+	then
+		check "$($BREW_PATH -v)"
+		isBrew=true
+		depFound=$((depFound+1))
+	else
+		uncheck "Homebrew is missing"
+		isBrew=false
+
+		INSTALL_FILES+="${blue}${dim}==> Homebrew:${reset}\n"
+		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_PREFIX/bin/brew\n"
+		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_PREFIX/Library\n"
+		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_PREFIX/share/man/man1/brew.1\n"
+	fi
+
+	depCount=$((depCount+1))
+}
+
+function install_brew()
+{
+	if [[ $isBrew == false ]]
+	then
+		heading "Installing Homebrew"
+
+		if [[ $isRuby == true ]]
+		then
+			ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		else
+			cd /usr
+
+			if [[ ! -d $HOMEBREW_PREFIX ]]
+			then
+				sudo mkdir $HOMEBREW_PREFIX
+				sudo chmod g+rwx $HOMEBREW_PREFIX
+			fi
+
+			if [[ ! -d $HOMEBREW_CACHE ]]
+			then
+				sudo mkdir $HOMEBREW_CACHE
+				sudo chmod g+rwx $HOMEBREW_CACHE
+			fi
+
+			DEVELOPER_DIR=`/usr/bin/xcode-select -print-path 2>/dev/null`;
+
+			if [[ ! $(ls -A $DEVELOPER_DIR) || ! -f $DEVELOPER_DIR/usr/bin/git ]]
+			then
+				info "Installing the Command Line Tools (expect a GUI popup):"
+				sudo /usr/bin/xcode-select --install
+
+				echo "Press any key when the installation has completed";
+			fi
+
+			cd $HOMEBREW_PREFIX
+
+			bash -o pipefail -c "curl -fsSL ${HOMEBREW_REPO}/tarball/master | tar xz -m --strip 1"
+		fi
+
+		find_brew
+		echo
+
+		if [[ $isBrew == false ]]
+		then
+			abortInstall "Couldn't install brew"
+		fi
+	fi
+}
+
+function osx_installer()
+{
+	osx_dependency_installer
+
+	echo
+	heading "Installing ethereum"
+
+	info "Adding ethereum repository"
+	call_brew tap ethereum/ethereum
+	echo
+
+	info "Updating brew"
+	call_brew update
+	echo
+
+	info "Installing geth"
+	call_brew install ethereum/ethereum/ethereum --devel --successful
+	echo
+
+	info "Verifying installation"
+	find_geth
+
+	if [[ $isGeth == true ]]
+	then
+		finish
+	else
+		abortInstall
+	fi
+}
+
+function osx_dependency_installer()
+{
+	if [[ $isGit == false ]];
+	then
+		echo "Installing Git"
+	fi
+
+	if [[ $isRuby == false ]];
+	then
+		echo "Installing Ruby"
+	fi
+
+	if [[ $isBrew == false ]];
+	then
+		install_brew
+	fi
+}
+
+function install()
+{
+	if [[ $OS_TYPE == "osx" ]]
+	then
+		osx_installer
+	elif [[ $OS_TYPE == "linux" ]]
+	then
+		linux_dependency_installer
+	fi
 }
 
 function abortInstall()
 {
-  error "Aborting install"
-  echo
-  exit 0
+	echo
+	error "Installation failed"
+	echo -e "$1"
+	echo
+	exit 0
 }
 
 function finish()
 {
-  echo
-  successHeading "Installation successful!"
-  heading "Next steps"
-  info "Run ${cyan}\`geth help\`${reset} to get started.${reset}"
-  echo
-  exit 0
+	echo
+	successHeading "Installation successful!"
+	heading "Next steps"
+	info "Run ${cyan}\`geth help\`${reset} to get started.${reset}"
+	echo
+exit 0
 }
 
-tput clear
+####################################################################### run the script
 
+tput clear
 echo
-echo "    ${b}${green}WELCOME TO THE FRONTIER${reset}"
+echo
+echo "   ${blue}∷ ${b}${green} WELCOME TO THE FRONTIER ${reset} ${blue}∷${reset}"
 echo
 echo
 heading "Before installing Geth (ethereum CLI) read this:"
@@ -220,15 +439,13 @@ echo "As curators, we fully reserve the right to ignore blocks at our discretion
 echo "As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block"
 echo ""
 
-while :
-do
-    read -p "I understand, I want to install Geth (ethereum CLI) (y/n) " imp
-    case $imp in
-        [yY] ) echo ""; break ;;
-        * ) abortInstall ;;
-    esac
-done
+heading "Checking dependencies"
+detectOS
 
-heading "Preparing installer"
+echo
+heading "This script will install:"
+echo -e "$INSTALL_FILES"
 
-detectOS;
+wait_for_user "I understand, I want to install Geth (ethereum CLI)"
+
+install
