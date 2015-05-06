@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-####################################################################### init vars
+################################### init vars ####################################
 
 HOMEBREW_PREFIX=/usr/local
 HOMEBREW_CACHE=/Library/Caches/Homebrew
@@ -26,7 +26,7 @@ depFound=0
 
 
 
-####################################################################### setup colors
+################################### setup colors ####################################
 
 red=`tput setaf 1`
 green=`tput setaf 2`
@@ -85,7 +85,7 @@ function errorHeading()
 
 function error()
 {
-	echo -e "${red}==> ${b}$1❗${reset}"
+	echo -e "${red}==> ${u}${b}${red}$1${reset}"
 }
 
 function smallError()
@@ -110,7 +110,7 @@ function uncheck()
 
 
 
-####################################################################### setup methods
+################################### setup methods ####################################
 
 function wait_for_user()
 {
@@ -245,7 +245,7 @@ function find_git()
 
 	if [[ -f $GIT_PATH ]]
 	then
-		check "$($GIT_PATH version)"
+		check "$($GIT_PATH --version)"
 		isGit=true
 		depFound=$((depFound+1))
 	else
@@ -321,14 +321,14 @@ function install_brew()
 				sudo chmod g+rwx $HOMEBREW_CACHE
 			fi
 
-			DEVELOPER_DIR=`/usr/bin/xcode-select -print-path 2>/dev/null`;
+			DEVELOPER_DIR=`/usr/bin/xcode-select -print-path 2>/dev/null`
 
 			if [[ ! $(ls -A $DEVELOPER_DIR) || ! -f $DEVELOPER_DIR/usr/bin/git ]]
 			then
 				info "Installing the Command Line Tools (expect a GUI popup):"
 				sudo /usr/bin/xcode-select --install
 
-				echo "Press any key when the installation has completed";
+				echo "Press any key when the installation has completed"
 			fi
 
 			cd $HOMEBREW_PREFIX
@@ -383,6 +383,7 @@ function osx_dependency_installer()
 		echo "Installing Git"
 	fi
 
+
 	if [[ $isRuby == false ]];
 	then
 		echo "Installing Ruby"
@@ -394,6 +395,19 @@ function osx_dependency_installer()
 	fi
 }
 
+function linux_installer()
+{
+	sudo apt-get install -y software-properties-common
+
+	# add ethereum repos
+	sudo add-apt-repository -y ppa:ethereum/ethereum
+	sudo add-apt-repository -y ppa:ethereum/ethereum-dev
+	sudo apt-get update -y
+
+	# install ethereum & install dependencies
+	sudo apt-get install -y get
+}
+
 function install()
 {
 	if [[ $OS_TYPE == "osx" ]]
@@ -401,7 +415,7 @@ function install()
 		osx_installer
 	elif [[ $OS_TYPE == "linux" ]]
 	then
-		linux_dependency_installer
+		linux_installer
 	fi
 }
 
@@ -424,20 +438,14 @@ function finish()
 exit 0
 }
 
-####################################################################### run the script
+################################### run the script ####################################
 
 tput clear
 echo
 echo
-echo "   ${blue}∷ ${b}${green} WELCOME TO THE FRONTIER ${reset} ${blue}∷${reset}"
+echo " ${blue}∷ ${b}${green} WELCOME TO THE FRONTIER ${reset} ${blue}∷${reset}"
 echo
 echo
-heading "Before installing Geth (ethereum CLI) read this:"
-echo "Frontier is a curated ${red}testnet${reset}, it is not the 'main release' of Ethereum, but rather an ${red}initial beta prerelease${reset}"
-echo "We fully expect ${red}instability and consensus flaws${reset} in the client, some of which may be exploitable"
-echo "As curators, we fully reserve the right to ignore blocks at our discretion"
-echo "As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block"
-echo ""
 
 heading "Checking dependencies"
 detectOS
@@ -446,6 +454,19 @@ echo
 heading "This script will install:"
 echo -e "$INSTALL_FILES"
 
-wait_for_user "I understand, I want to install Geth (ethereum CLI)"
+echo
+error "${u}${red}${b}Before installing Geth (ethereum CLI) read this:"
+echo
+echo "${b}${cyan}Frontier${reset} is a ${red}live testnet${reset}, it is not the 'main release' of Ethereum, but rather an ${red}initial beta prerelease;${reset}"
+echo "You'd be ${b}mad${reset} to use this for anything approaching ${u}${red}${b}"important" or "valuable"${reset}. ${red}Expect dragons;${reset}"
+echo "If you're in any doubt, stand back and enjoy the show. It's so ${red}unstable${reset}, even Chuck Norris would run away and hide from it;"
+echo "We fully expect ${red}instability and consensus flaws${reset} in the client, some of which may be exploitable;"
+echo "As curators, we fully reserve the right to ignore blocks at our discretion;"
+echo "As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less)"
+echo "account balances ${b}${red}above the value of 1 ETH${reset} into the Homestead Genesis block."
+echo
+
+
+wait_for_user "${b}I understand,${reset} I want to install Geth (ethereum CLI)"
 
 install
