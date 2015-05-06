@@ -364,16 +364,6 @@ function osx_installer()
 	info "Installing geth"
 	call_brew install ethereum/ethereum/ethereum --devel --successful
 	echo
-
-	info "Verifying installation"
-	find_geth
-
-	if [[ $isGeth == true ]]
-	then
-		finish
-	else
-		abortInstall
-	fi
 }
 
 function osx_dependency_installer()
@@ -397,15 +387,25 @@ function osx_dependency_installer()
 
 function linux_installer()
 {
-	sudo apt-get install -y software-properties-common
+	echo
+	heading "Installing ethereum"
 
-	# add ethereum repos
-	sudo add-apt-repository -y ppa:ethereum/ethereum
-	sudo add-apt-repository -y ppa:ethereum/ethereum-dev
-	sudo apt-get update -y
+	info "Installing common software properties"
+	sudo apt-get install -q -y software-properties-common
+	echo
 
-	# install ethereum & install dependencies
-	sudo apt-get install -y get
+	info "Adding ethereum repository"
+	sudo add-apt-repository -q -y ppa:ethereum/ethereum
+	sudo add-apt-repository -q -y ppa:ethereum/ethereum-dev
+	echo
+
+	info "Updating packages"
+	sudo apt-get update -q -y
+	echo
+
+	info "Installing geth"
+	sudo apt-get install -q -y geth
+	echo
 }
 
 function install()
@@ -416,6 +416,19 @@ function install()
 	elif [[ $OS_TYPE == "linux" ]]
 	then
 		linux_installer
+	fi
+}
+
+function verify_installation()
+{
+	info "Verifying installation"
+	find_geth
+
+	if [[ $isGeth == true ]]
+	then
+		finish
+	else
+		abortInstall
 	fi
 }
 
@@ -470,3 +483,5 @@ echo
 wait_for_user "${b}I understand,${reset} I want to install Geth (ethereum CLI)"
 
 install
+
+verify_installation
