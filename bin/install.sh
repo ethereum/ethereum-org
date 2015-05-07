@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-################################### init vars ####################################
+####### Init vars
 
 HOMEBREW_PREFIX=/usr/local
 HOMEBREW_CACHE=/Library/Caches/Homebrew
@@ -26,7 +26,7 @@ depFound=0
 
 
 
-################################### setup colors ####################################
+####### Setup colors
 
 red=`tput setaf 1`
 green=`tput setaf 2`
@@ -35,8 +35,6 @@ blue=`tput setaf 4`
 magenta=`tput setaf 5`
 cyan=`tput setaf 6`
 white=`tput setaf 7`
-lime=`tput setaf 190`
-pblue=`tput setaf 153`
 b=`tput bold`
 u=`tput sgr 0 1`
 ul=`tput smul`
@@ -48,69 +46,49 @@ reverse=`tput rev`
 reset=`tput sgr0`
 
 
-function heading()
-{
+function head() {
 	echo -e "${blue}${b}==>${white} $1${reset}"
 }
 
-function info()
-{
+function info() {
 	echo -e "${blue}${b}==>${reset} $1"
 }
 
-function successHeading()
-{
+function successHeading() {
 	echo -e "${green}${b}==> $1${reset}"
 }
 
-function success()
-{
+function success() {
 	echo -e "${green}${b}==>${reset}${green} $1${reset}"
 }
 
-function smallSuccess()
-{
-	echo -e "${green}${b}==>${reset} $1"
-}
-
-function green()
-{
-	echo -e "${green}$1${reset}"
-}
-
-function errorHeading()
-{
-	echo -e "${red}==> ${b}$1❗${reset}"
-}
-
-function error()
-{
+function error() {
 	echo -e "${red}==> ${u}${b}${red}$1${reset}"
 }
 
-function smallError()
-{
+function smallError() {
 	echo -e "${red}==>${reset} $1"
 }
 
-function red()
-{
+function green() {
+	echo -e "${green}$1${reset}"
+}
+
+function red() {
 	echo -e "${red}$1${reset}"
 }
 
-function check()
-{
+function check() {
 	echo -e "${green}${bold} ✓${reset}  $1${reset}"
 }
 
-function uncheck()
-{
+function uncheck() {
 	echo -e "${red}${bold} ✘${reset}  $1${reset}"
 }
 
 
 
-################################### setup methods ####################################
+####### Setup methods
 
 function wait_for_user()
 {
@@ -301,7 +279,7 @@ function install_brew()
 {
 	if [[ $isBrew == false ]]
 	then
-		heading "Installing Homebrew"
+		head "Installing Homebrew"
 
 		if [[ $isRuby == true ]]
 		then
@@ -351,7 +329,7 @@ function osx_installer()
 	osx_dependency_installer
 
 	echo
-	heading "Installing ethereum"
+	head "Installing ethereum"
 
 	info "Adding ethereum repository"
 	call_brew tap ethereum/ethereum
@@ -385,10 +363,34 @@ function osx_dependency_installer()
 	fi
 }
 
+
+function get_linux_dependencies()
+{
+	find_apt
+
+	INSTALL_FILES+="${blue}${dim}==> Ethereum:${reset}\n"
+	INSTALL_FILES+=" ${blue}${dim}➜${reset}  /usr/bin/geth\n"
+}
+
+function find_apt()
+{
+	APT_PATH=`which apt-get 2>/dev/null`
+
+	if [[ -f $APT_PATH ]]
+	then
+		check "apt-get"
+		echo "$($GETH_PATH version)"
+		isApt=true
+	else
+		uncheck "apt-get is missing"
+		isApt=false
+	fi
+}
+
 function linux_installer()
 {
 	echo
-	heading "Installing ethereum"
+	head "Installing ethereum"
 
 	info "Installing common software properties"
 	sudo apt-get install -q -y software-properties-common
@@ -424,10 +426,8 @@ function verify_installation()
 	info "Verifying installation"
 	find_geth
 
-	if [[ $isGeth == true ]]
+	if [[ $isGeth == false ]]
 	then
-		finish
-	else
 		abortInstall
 	fi
 }
@@ -445,13 +445,13 @@ function finish()
 {
 	echo
 	successHeading "Installation successful!"
-	heading "Next steps"
+	head "Next steps"
 	info "Run ${cyan}\`geth help\`${reset} to get started.${reset}"
 	echo
-exit 0
+	exit 0
 }
 
-################################### run the script ####################################
+####### Run the script
 
 tput clear
 echo
@@ -460,28 +460,35 @@ echo " ${blue}∷ ${b}${green} WELCOME TO THE FRONTIER ${reset} ${blue}∷${rese
 echo
 echo
 
-heading "Checking dependencies"
+# Check dependencies
+head "Checking dependencies"
 detectOS
 
 echo
-heading "This script will install:"
+head "This script will install:"
 echo -e "$INSTALL_FILES"
-
-echo
-error "${u}${red}${b}Before installing Geth (ethereum CLI) read this:"
-echo
-echo "${b}${cyan}Frontier${reset} is a ${red}live testnet${reset}, it is not the 'main release' of Ethereum, but rather an ${red}initial beta prerelease;${reset}"
-echo "You'd be ${b}mad${reset} to use this for anything approaching ${u}${red}${b}"important" or "valuable"${reset}. ${red}Expect dragons;${reset}"
-echo "If you're in any doubt, stand back and enjoy the show. It's so ${red}unstable${reset}, even Chuck Norris would run away and hide from it;"
-echo "We fully expect ${red}instability and consensus flaws${reset} in the client, some of which may be exploitable;"
-echo "As curators, we fully reserve the right to ignore blocks at our discretion;"
-echo "As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less)"
-echo "account balances ${b}${red}above the value of 1 ETH${reset} into the Homestead Genesis block."
 echo
 
+# Display disclaimer
+error "Before installing Geth (ethereum CLI) read this:"
+echo
+echo " ${red}${dim}➜${reset}  ${b}${cyan}Frontier${reset} is a ${red}live testnet${reset}, it is not the 'main release' of Ethereum, but rather an ${red}initial beta prerelease;${reset}"
+echo " ${red}${dim}➜${reset}  You'd be ${b}mad${reset} to use this for anything approaching ${u}${red}${b}"important" or "valuable"${reset}. ${red}Expect dragons;${reset}"
+echo " ${red}${dim}➜${reset}  If you're in any doubt, stand back and enjoy the show. It's so ${red}unstable${reset}, even Chuck Norris would run away and hide from it;"
+echo " ${red}${dim}➜${reset}  We fully expect ${red}instability and consensus flaws${reset} in the client, some of which may be exploitable;"
+echo " ${red}${dim}➜${reset}  As curators, we fully reserve the right to ignore blocks at our discretion;"
+echo " ${red}${dim}➜${reset}  As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less)"
+echo "     account balances ${b}${red}above the value of 1 ETH${reset} into the Homestead Genesis block."
+echo
 
+# Prompt user to continue or abort
 wait_for_user "${b}I understand,${reset} I want to install Geth (ethereum CLI)"
 
+# Install dependencies and geth
 install
 
+# Check installation
 verify_installation
+
+# Display goodby message
+finish
