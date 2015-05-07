@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-################################### init vars ####################################
+####### Init vars
 
 HOMEBREW_PREFIX=/usr/local
 HOMEBREW_CACHE=/Library/Caches/Homebrew
@@ -26,7 +26,7 @@ depFound=0
 
 
 
-################################### setup colors ####################################
+####### Setup colors
 
 red=`tput setaf 1`
 green=`tput setaf 2`
@@ -35,8 +35,6 @@ blue=`tput setaf 4`
 magenta=`tput setaf 5`
 cyan=`tput setaf 6`
 white=`tput setaf 7`
-lime=`tput setaf 190`
-pblue=`tput setaf 153`
 b=`tput bold`
 u=`tput sgr 0 1`
 ul=`tput smul`
@@ -90,7 +88,7 @@ function uncheck() {
 
 
 
-################################### setup methods ####################################
+####### Setup methods
 
 function wait_for_user()
 {
@@ -365,6 +363,30 @@ function osx_dependency_installer()
 	fi
 }
 
+
+function get_linux_dependencies()
+{
+	find_apt
+
+	INSTALL_FILES+="${blue}${dim}==> Ethereum:${reset}\n"
+	INSTALL_FILES+=" ${blue}${dim}➜${reset}  /usr/bin/geth\n"
+}
+
+function find_apt()
+{
+	APT_PATH=`which apt-get 2>/dev/null`
+
+	if [[ -f $APT_PATH ]]
+	then
+		check "apt-get"
+		echo "$($GETH_PATH version)"
+		isApt=true
+	else
+		uncheck "apt-get is missing"
+		isApt=false
+	fi
+}
+
 function linux_installer()
 {
 	echo
@@ -404,10 +426,8 @@ function verify_installation()
 	info "Verifying installation"
 	find_geth
 
-	if [[ $isGeth == true ]]
+	if [[ $isGeth == false ]]
 	then
-		finish
-	else
 		abortInstall
 	fi
 }
@@ -431,7 +451,7 @@ function finish()
 	exit 0
 }
 
-################################### run the script ####################################
+####### Run the script
 
 tput clear
 echo
@@ -440,15 +460,17 @@ echo " ${blue}∷ ${b}${green} WELCOME TO THE FRONTIER ${reset} ${blue}∷${rese
 echo
 echo
 
+# Check dependencies
 head "Checking dependencies"
 detectOS
 
 echo
 head "This script will install:"
 echo -e "$INSTALL_FILES"
-
 echo
-error "${u}${red}${b}Before installing Geth (ethereum CLI) read this:"
+
+# Display disclaimer
+error "Before installing Geth (ethereum CLI) read this:"
 echo
 echo " ${red}${dim}➜${reset}  ${b}${cyan}Frontier${reset} is a ${red}live testnet${reset}, it is not the 'main release' of Ethereum, but rather an ${red}initial beta prerelease;${reset}"
 echo " ${red}${dim}➜${reset}  You'd be ${b}mad${reset} to use this for anything approaching ${u}${red}${b}"important" or "valuable"${reset}. ${red}Expect dragons;${reset}"
@@ -459,9 +481,14 @@ echo " ${red}${dim}➜${reset}  As curators, from a final block that we solely d
 echo "     account balances ${b}${red}above the value of 1 ETH${reset} into the Homestead Genesis block."
 echo
 
-
+# Prompt user to continue or abort
 wait_for_user "${b}I understand,${reset} I want to install Geth (ethereum CLI)"
 
+# Install dependencies and geth
 install
 
+# Check installation
 verify_installation
+
+# Display goodby message
+finish
