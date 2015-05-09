@@ -90,8 +90,7 @@ function uncheck() {
 
 ####### Setup methods
 
-function wait_for_user()
-{
+function wait_for_user() {
 	while :
 	do
 		read -p "${blue}==>${reset} $1 (Y/n) " imp
@@ -104,21 +103,18 @@ function wait_for_user()
 
 
 
-function exe()
-{
+function exe() {
 	echo "\$ $@"; "$@"
 }
 
 
-function call_brew()
-{
+function call_brew() {
 	exe brew $@
 }
 
 
 
-function detectOS()
-{
+function detectOS() {
 	if [[ "$OSTYPE" == "linux-gnu" ]]
 	then
 		OS_TYPE="linux"
@@ -379,7 +375,7 @@ function find_apt()
 	if [[ -f $APT_PATH ]]
 	then
 		check "apt-get"
-		echo "$($GETH_PATH version)"
+		echo "$($APT_PATH -v)"
 		isApt=true
 	else
 		uncheck "apt-get is missing"
