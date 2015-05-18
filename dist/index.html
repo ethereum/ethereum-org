@@ -1,0 +1,120 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title></title><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Holtwood+One+SC|Source+Sans+Pro:200"><link rel="stylesheet" href="/css/wicked-grit.css"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/styles/github.css"><link rel="stylesheet" href="/css/style.css"></head><body><header><div class="title"></div></header><div id="block-content"><div class="container"><div class="row status-bar"><div class="col-md-8 col-md-push-2 col-xs-12 text-center"><h6>Block hash</h6><span class="block-hash"></span></div><div class="col-md-2 col-md-pull-8 col-xs-6"><h6>Block number</h6><span>#</span></div><div class="col-md-2 col-xs-6 text-right"><h6>Block time</h6><span></span></div></div></div></div><div class="main-content"><div class="container"><div class="row"><div class="col-md-12"><div id="install-terms"><h2>Before installing the frontier release</h2><ul><li><b>Frontier</b> is a <b class="text-danger">live testnet</b>. It is here to help us prepare for the main release. You'd be mad to use this for anything approaching "important" or "valuable". Expect dragons. If you're in any doubt, stand back and enjoy the show.<nbsp></nbsp> It's so unstable, even Chuck Norris would run away and hide from it.</li><li>We fully expect instability and consensus flaws in the client, some of which may be exploitable</li><li>As curators, we fully reserve the right to ignore blocks at our discretion</li><li><b>As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block</b></li></ul><div class="terms-checkbox pull-left"><label for="understand"><input id="understand" type="checkbox" value="true">I understand, let me proceed to install</label></div><a id="show-install" class="pull-left btn btn-danger disabled">show install instructions</a><div class="clearfix"></div></div><div id="install-info" class="hidden"><h2>Install ethereum frontier release</h2><pre>ruby -e "$(curl -fsSL https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install.rb)"</pre><p>Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. Please click the button below if you'd like to see a step by step description of the installer script.</p><div id="shell-source" class="hidden"><pre><code class="bash">#!/usr/bin/env ruby
+
+def mac?
+  /darwin/i === RUBY_PLATFORM
+end
+
+def linux?
+  /linux/i === RUBY_PLATFORM
+end
+
+module Tty extend self
+  def blue; bold 34; end
+  def white; bold 39; end
+  def red; underline 31; end
+  def reset; escape 0; end
+  def bold n; escape "1;#{n}" end
+  def underline n; escape "4;#{n}" end
+  def escape n; "\033[#{n}m" if STDOUT.tty? end
+end
+
+class Array
+  def shell_s
+    cp = dup
+    first = cp.shift
+    cp.map{ |arg| arg.gsub " ", "\\ " }.unshift(first) * " "
+  end
+end
+
+def ohai *args
+  puts "#{Tty.blue}==>#{Tty.white} #{args.shell_s}#{Tty.reset}"
+end
+
+def warn warning
+  puts "#{Tty.red}Warning#{Tty.reset}: #{warning.chomp}"
+end
+
+def system *args
+  abort "Failed during: #{args.shell_s}" unless Kernel.system(*args)
+end
+
+def sudo *args
+  ohai "/usr/bin/sudo", *args
+  system "/usr/bin/sudo", *args
+end
+
+def brew *args
+  ohai "brew", *args
+  system "/usr/local/bin/brew", *args
+end
+
+def getc  # NOTE only tested on OS X
+  system "/bin/stty raw -echo"
+  if STDIN.respond_to?(:getbyte)
+    STDIN.getbyte
+  else
+    STDIN.getc
+  end
+ensure
+  system "/bin/stty -raw echo"
+end
+
+def wait_for_user
+  puts
+  puts "I understand, I want to install Geth (ethereum CLI) (y/n)"
+  c = getc
+  abort unless c == 89 or c == 121
+end
+
+puts
+ohai "Before installing Geth (ethereum CLI) read this:"
+puts "Frontier is a curated #{Tty.red}testnet#{Tty.reset}, it is not the 'main release' of Ethereum, but rather an #{Tty.red}initial beta prerelease#{Tty.reset}"
+puts "We fully expect #{Tty.red}instability and consensus flaws#{Tty.reset} in the client, some of which may be exploitable"
+puts "As curators, we fully reserve the right to ignore blocks at our discretion"
+puts "As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block"
+
+wait_for_user if STDIN.tty?
+
+puts
+ohai "Installing ethereum"
+puts "Detecting os..."
+puts RUBY_PLATFORM
+puts
+
+if linux?
+	puts "Installing common"
+	sudo "apt-get", "install", "-y", "software-properties-common"
+
+	puts "Adding ethereum repositories"
+	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum"
+	sudo "add-apt-repository", "-y", "ppa:ethereum/ethereum-dev"
+
+	puts "Updating repository"
+	sudo "apt-get", "update"
+
+	puts "Installing Geth (ethereum CLI)"
+	sudo "apt-get", "install", "-y", "geth"
+elsif mac?
+	abort <<-EOABORT if Dir["/usr/local/.git/*"].empty?
+#{Tty.red}==> Error:#{Tty.reset}
+In order to install ethereum you need Homebrew.
+To install Homebrew run the following command:
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+EOABORT
+	puts "Found brew"
+
+	puts
+	puts "Adding geth repository"
+	brew "tap", "ethereum/ethereum"
+
+	puts "Installing Geth (ethereum CLI)"
+	brew "install", "ethereum"
+else
+	warn "OS not supported."
+	puts "For more information please visit http://frontier.ethdev.com/"
+	abort
+end
+
+puts
+ohai "Installation successfull!"
+</code></pre></div><a id="show-source" class="btn btn-warning">view source</a><a id="hide-source" class="hidden btn btn-warning">hide source</a><a href="https://github.com/ethereum/frontier-release/blob/master/bin/install.rb" target="_blank" style="margin-left: 15px;" class="btn btn-success">view on GitHub</a></div></div></div><div class="clearfix"></div><div class="row"><div class="col-md-12"><h2>Next steps</h2><p>If the install was successful you can now run ethereum using the following command line in the Terminal prompt:</p><pre>geth</pre><p>Run <code>geth help</code> for more information about command line options or check our <a target="_blank" href="https://github.com/ethereum/go-ethereum/wiki">documentation</a>.</p></div></div><div class="clearfix"></div><div class="row"><div class="col-md-6"><h2>Supported platforms</h2><p>We currently support Mac OS X and Linux. For more information about installing and building go-ethereum on other platforms please visit our <a target="_blank" href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum">wiki page</a>.</p></div><div class="col-md-6"><h2>Troubleshooting</h2><p>If something went wrong first read our Troubleshooting checklist. If you still didn't find your answer please <a href="https://github.com/ethereum/frontier-release/issues">open an issue on GitHub</a> or contact our <a href="#">help desk</a>.</p></div></div><div class="clearfix"></div><div class="row"><div class="col-md-6"><h2>Security</h2><p>Please report security issues to <a href="mailto:security@ethereum.org">security@ethereum.org</a>.</p></div><div class="col-md-6"><h2>License</h2><p>Ethereum Core Protocol licensed under the <a target="_blank" href="https://github.com/ethereum/go-ethereum/blob/develop/LICENSE">GNU Lesser General Public License</a>. Ethereum client licensed under the GPL.</p></div></div><div class="clearfix"><br><br></div></div></div><footer><div class="container"><div class="row"><div class="col-md-2 col-sm-3 col-xs-4"><p><img src="images/ethereum-logo-navbar.png" class="img-responsive"></p></div><div class="col-md-10 col-sm-9 col-xs-12"><p>Ethereum Switzerland GmbH, EDV-Beratungsunternehmen und Softwarehäuser, Grienbachstrasse 55, 6340 Baar, Switzerland <br>Copyright © 2015 Ethereum. All Rights Reserved.</p></div></div></div></footer><script src="/js/jquery-1.11.2.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/highlight.pack.js"></script><script src="/js/script.js"></script></body></html>

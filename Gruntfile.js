@@ -32,7 +32,10 @@ module.exports = function(grunt) {
 				options: {
 					data: {
 						debug: false,
-						pretty: true
+						pretty: false,
+						block: {
+							hash: '<%= pkg.hash %>'
+						}
 					}
 				},
 				files: {
