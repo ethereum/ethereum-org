@@ -90,8 +90,7 @@ function uncheck() {
 
 ####### Setup methods
 
-function wait_for_user()
-{
+function wait_for_user() {
 	while :
 	do
 		read -p "${blue}==>${reset} $1 (Y/n) " imp
@@ -104,21 +103,29 @@ function wait_for_user()
 
 
 
-function exe()
-{
+function exe() {
 	echo "\$ $@"; "$@"
 }
 
 
-function call_brew()
-{
+function call_brew() {
 	exe brew $@
 }
 
 
 
-function detectOS()
-{
+function detectGeth() {
+	find_geth
+	echo ""
+
+	if [[ $isGeth == true ]]
+	then
+		wait_for_user "Do you want to update geth?"
+	fi
+}
+
+
+function detectOS() {
 	if [[ "$OSTYPE" == "linux-gnu" ]]
 	then
 		OS_TYPE="linux"
@@ -340,7 +347,12 @@ function osx_installer()
 	echo
 
 	info "Installing geth"
-	call_brew install ethereum/ethereum/ethereum --devel --successful
+	if [[ $isGeth == true ]]
+	then
+		call_brew reinstall ethereum/ethereum/ethereum --devel --successful
+	else
+		call_brew install ethereum/ethereum/ethereum --devel --successful
+	fi
 	echo
 }
 
@@ -379,7 +391,7 @@ function find_apt()
 	if [[ -f $APT_PATH ]]
 	then
 		check "apt-get"
-		echo "$($GETH_PATH version)"
+		echo "$($APT_PATH -v)"
 		isApt=true
 	else
 		uncheck "apt-get is missing"
@@ -395,6 +407,13 @@ function linux_installer()
 	info "Installing common software properties"
 	sudo apt-get install -q -y software-properties-common
 	echo
+
+	if [[ $isGeth == true ]]
+	then
+		info "Uninstalling previous geth version"
+		sudo apt-get remove -y
+		sudo apt-get clean
+	fi
 
 	info "Adding ethereum repository"
 	sudo add-apt-repository -q -y ppa:ethereum/ethereum
@@ -459,6 +478,10 @@ echo
 echo " ${blue}∷ ${b}${green} WELCOME TO THE FRONTIER ${reset} ${blue}∷${reset}"
 echo
 echo
+
+# Check dependencies
+head "Looking for geth"
+detectGeth
 
 # Check dependencies
 head "Checking dependencies"
