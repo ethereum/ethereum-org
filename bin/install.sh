@@ -107,13 +107,6 @@ function exe() {
 	echo "\$ $@"; "$@"
 }
 
-
-function call_brew() {
-	exe brew $@
-}
-
-
-
 function detectGeth() {
 	find_geth
 	echo ""
@@ -123,7 +116,6 @@ function detectGeth() {
 		wait_for_user "Do you want to update geth?"
 	fi
 }
-
 
 function detectOS() {
 	if [[ "$OSTYPE" == "linux-gnu" ]]
@@ -339,19 +331,19 @@ function osx_installer()
 	head "Installing ethereum"
 
 	info "Adding ethereum repository"
-	call_brew tap ethereum/ethereum
+	exe brew tap ethereum/ethereum
 	echo
 
 	info "Updating brew"
-	call_brew update
+	exe brew update
 	echo
 
 	info "Installing geth"
 	if [[ $isGeth == true ]]
 	then
-		call_brew reinstall ethereum/ethereum/ethereum --devel --successful
+		exe brew reinstall ethereum/ethereum/ethereum --devel --successful
 	else
-		call_brew install ethereum/ethereum/ethereum --devel --successful
+		exe brew install ethereum/ethereum/ethereum --devel --successful
 	fi
 	echo
 }
@@ -405,27 +397,27 @@ function linux_installer()
 	head "Installing ethereum"
 
 	info "Installing common software properties"
-	sudo apt-get install -q -y software-properties-common
+	exe sudo apt-get install -q -y software-properties-common
 	echo
 
 	if [[ $isGeth == true ]]
 	then
 		info "Uninstalling previous geth version"
-		sudo apt-get remove -y
-		sudo apt-get clean
+		exe sudo apt-get remove -y
+		exe sudo apt-get clean
 	fi
 
 	info "Adding ethereum repository"
-	sudo add-apt-repository -q -y ppa:ethereum/ethereum
-	sudo add-apt-repository -q -y ppa:ethereum/ethereum-dev
+	exe sudo add-apt-repository -q -y ppa:ethereum/ethereum
+	exe sudo add-apt-repository -q -y ppa:ethereum/ethereum-dev
 	echo
 
 	info "Updating packages"
-	sudo apt-get update -q -y
+	exe sudo apt-get update -q -y
 	echo
 
 	info "Installing geth"
-	sudo apt-get install -q -y geth
+	exe sudo apt-get install -q -y geth
 	echo
 }
 
