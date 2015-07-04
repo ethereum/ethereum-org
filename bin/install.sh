@@ -343,9 +343,9 @@ function run_installer()
 		info "Installing geth"
 		if [[ $isGeth == true ]]
 		then
-			exe brew reinstall ethereum/ethereum/ethereum --devel --successful
+			exe brew reinstall ethereum --devel
 		else
-			exe brew install ethereum/ethereum/ethereum --devel --successful
+			exe brew install ethereum --devel
 		fi
 		echo
 	}
