@@ -45,6 +45,6 @@ function onVisibilityChange (el, callback) {
 				$("ul#toc > li:nth-child("+(i+1)+") ul").hide(200);
 			}        	
         }
-    }
+    };
 }
 
