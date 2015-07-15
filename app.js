@@ -57,6 +57,10 @@ app.get('/agreement', function(req, res) {
 	res.render('agreement', { title: 'Legal agreement' });
 });
 
+app.get('/press-kit', function(req, res) {
+	res.render('press-kit', { title: 'Press Kit' });
+});
+
 
 app.get('/getBlock', function(req, res) {
 	res.json(approvedBlock);
