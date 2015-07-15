@@ -14,7 +14,14 @@ block content
 
 
   div.main-tutorial.inner-page.foundation-page
-    div.container  
+    div.container
+      div.row
+        div.col-md-12
+          h3 Your Ether balance:
+          form#ether-checker
+            input(type="text" name="address" placeholder="Ether address")
+            input(class="btn btn-blue" type="submit" value="Check")
+
       div.row
         div.col-md-12
           include:md content/sale.md        
