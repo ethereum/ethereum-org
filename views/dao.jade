@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  include mixins/recipes.jade
+  include warning.jade
+  div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
+    a(href="/").index Ethereum Frontier 
+    strong »  Start a democratic organization
+    a(href="/crowdsale").previous Previous 
+
+  div#tutorial-start.main-tutorial.inner-tutorial.even
+    div.container
+      div.row
+        div.col-md-12.tutorial.scrollme
+      
+          +daoFigure
+
+          h2.animateme(data-when="span", data-from="0.6", data-to="0.3", data-opacity="0", data-translatey="200") Democratic Autonomous Organization
+
+          h3.center.animateme(data-when="span", data-from="0.7", data-to="0.5", data-opacity="0", data-translatey="200") Build a better democracy
+
+          a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
+
+  div.main-tutorial.hidden.inner-tutorial
+    div.container  
+      div.row
+        div.col-md-12
+          include:md content/dao.md        
+
+  div.main-tutorial.ethereum-projects.even
+    div.container   
+      div.row
+        div.col-md-12
+          +futureRecipe("What's next?")

@@ -1,0 +1,165 @@
+extends layout
+
+block content
+  div#warning.warning
+    div.container
+      div.row
+        div.col-md-12.scrollme
+          figure.bad-robot.animateme(data-when="span", data-from="1", data-to="0", data-translatey="80")
+          h2 ATTENTION
+          h3 Frontier is an early access to the Ethereum network. Bugs and security issues might be present.
+
+          ul.animateme(data-when="span", data-from="0.2", data-to="0", data-opacity="0") 
+            li Contracts data might be deleted at the end of the Frontier network. If you create any contract that holds funds, make sure to move them to a normal user account before the next stage
+            li You are responsible for your own computer security. If your machine is compromised you will lose your ether and access to any contracts
+            li You are responsible for your own actions. Be aware of your local regulations including but not limited to: cryptography, data management, privacy, crypto assets, pornography, user content, online harassement, speech and any other laws that might apply to you
+            li You are responsible for your own karma. Don't be a jerk and respect everyone.
+            li This software is licensed under a GPL/MIT license.
+
+          a#agreement.button I understand this, let me proceed
+          a(href="#tutorial-start").hidden.continue Continue...
+
+          
+
+
+      div.clearfix
+        br
+        br
+  
+  div#tutorial-start.main-tutorial.hiddenz.inner-tutorial
+    div.container
+      div.row
+        div.col-md-12.tutorial.scrollme
+          div.breadcrumb.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
+            a(href="/") Ethereum Frontier 
+            | » 
+            strong Installing Geth 
+
+          figure.geth.scrollme
+            div.geth-background.animateme(data-when="span", data-from="0.5", data-to="0", data-opacity="0", data-translatey="-100")
+            div.geth-logo.animateme(data-when="span", data-from="0.7", data-to="0.5", data-opacity="0")
+
+          h2.animateme(data-when="span", data-from="0.6", data-to="0.3", data-opacity="0", data-translatey="200") Installing Geth
+
+          h3.center.animateme(data-when="span", data-from="0.7", data-to="0.5", data-opacity="0", data-translatey="200") The command line tool for Ethereum Frontier
+
+          a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
+
+  div.main-tutorial.hidden.inner-tutorial.even
+    div.container  
+      div.row
+        div.col-md-12
+
+          h2 Gething started
+
+          p Geth is the main tool of the Frontier release. You can use it to test the network, send ether (the network’s internal currency),  execute contracts, unlock your pre-sale ether or make your computer into a supporting node to earn ether (ie. “mining”).
+
+          p The Frontier is the first live release of the Ethereum network. As such you are entering uncharted territory and you are invited to test the grounds and explore. There is a lot of danger, there may still be undiscovered traps, there may be ravaging bands of pirates waiting to attack you, but there also is vast room for opportunities.
+
+          p In order to navigate the Frontier, you’ll need to use the command line. If you are not comfortable using it, we strongly advise you to step back, watch from a distance for a while and wait until more user friendly tools are made available. Remember, there are no safety nets and for everything you do here, you are mostly on your own.
+
+          div.recipe
+            h5 Learn more at the 
+              strong Frontier Guide
+            h4 Initial Set up              
+            ul
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") What is Ethereum?
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") Safety Caveats
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors        
+
+
+
+          h3 Hitching up your wagon.
+
+
+          p The Frontier tool is called Geth (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). In order to get it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) and paste the command below. 
+
+          code.js ruby -e "$(curl -fsSL https://raw.githubusercontent.com/cubedro/frontier.ethereum.org/master/bin/install.rb)"
+          p Or, alternatively
+
+          code.js ruby -e "$(curl -fsSL https://raw.githubusercontent.com/cubedro/frontier.ethereum.org/master/bin/install.rb)"
+
+          p Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. Please click the button below if you'd like to see a step by step description of the installer script.
+
+          p Geth is a multipurpose command line tool that runs a full Ethereum node implemented in Go. It offers three interfaces: the command line subcommands and options [link], a JSON-RPC server and an interactive console. For the purposes of this guide, we will focus on the Console, a javascript environment that contains all the main features you probably want. Type the code below on your terminal
+
+          code.js geth console 2>>geth.log
+
+          p You are ready to start. The 2>>geth.log creates a text file with the output of your console. On a linux machine or Mac OS you can run one terminal with the geth console and a second one with the logging output by opening a new terminal and typing: tty
+          p The output will be something like: /dev/pts/13 (or on Mac /dev/tty002). Then in your main terminal type: geth console 2>> /dev/pts/13  This will allow you to monitor your node without cluttering your console.
+           
+          p The geth console has history that persists between sessions. You can navigate your command history by using the up and down arrow keys.
+
+          p Tip: sometimes you might not need to connect to the live public network, you can instead choose to create your own private testnet. This is very useful if you don't need to test external contracts and want just to test the technology, because you won't have to compete with other miners and will easily generate a lot of test ether to play around (replace 12345 with any number
+
+          code.js geth —networkid 12345 console
+
+          p If you use a private testnet, it may be a good idea to start with a 'fresh' blockchain, and not the real blockchain. Otherwise, in order to successfully mine a block, you'll need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. This is done via the `--datadir` parameter: 
+
+          code.js geth --networkid=-123 --datadir=~/.ethereum_experiment console`
+
+          div.recipe
+            h5 Learn more at the 
+              strong Frontier Guide
+            h4 Installation
+            ul
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/getting_a_client.html") Frontier Guide to Installation              
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") Safety Caveats
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors        
+
+
+            
+
+          h3 Starting down the trail.
+
+
+          p In order to do most actions in Ethereum you need ether, and to get it, you will need to generate an address (see here for detailed documentation on managing your accounts). Type: 
+
+          code.js admin.newAccount()
+
+          p You’ll be asked for a passphrase. Choose one wisely and you will be prompted to type it twice. Do NOT forget this passphrase, otherwise it will not be possible to recover any funds you may have on your account. You’ve been warned!
+
+          p Tip: Typing “admin” by itself will bring up a list of sub commands used to administer your geth installation.
+
+          p The Following command generates an address and associates it with your local machine. You can create multiple accounts by executing the same command again. Go on, try it:
+
+          code.js admin.newAccount()
+
+          p By convention we call the first account you create your primary account. You can see all your accounts with the command:
+
+          code.js eth.accounts
+
+          p Notice that it outputs a Javascript array. It’s because all commands on the console are actually in javascript, so you can create variables and daisychain functions. You can also write any “eth” function as “web3.eth” since it’s actually part of the main “web3” object.
+
+          p Try this for example:
+
+          code.js var primaryAccount = eth.accounts[0]
+
+          You now have a variable called primaryAccount that you can use in other calls, like this:
+
+          code.js eth.getBalance(primaryAccount)
+
+
+          div.recipe
+            h5 Learn more at the 
+              strong Frontier Guide
+            h4 Initial Set up            
+            ul
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/getting_a_client.html") Frontier Guide to Installation              
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") Safety Caveats
+              li 
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors        
+
+
+
+
+          
+

@@ -1,0 +1,271 @@
+include figures.jade
+
+mixin gethRecipe(header)
+  +gethFigure()
+
+  if header != ""
+    h2 #{header}
+  h3 
+    div.number 1 
+    | Run and Setup 
+    strong Geth
+    | , the Command Line Interface
+
+  p Geth is the main tool of the Frontier release. You can use it to test the network, send ether (the network’s internal currency),  execute contracts, unlock your presale ether or make your computer into a supporting node to earn ether (ie. “mining”).
+
+  a(href="geth").button Install Geth
+
+  div.recipe
+    h4 You'll need:
+    ul
+      li 
+        input(type="checkbox") 
+        | Know how to use a command-line interface 
+      li 
+        input(type="checkbox") 
+        |  500 Mb free space (for the blockchain) 
+      li 
+        input(type="checkbox") 
+        |  Not be afraid of basic coding
+
+
+mixin etherRecipe(header)
+  +etherFigure
+
+  if header != ""
+    h2 #{header}
+  h3
+    div.number 2
+    | Get Ether, the crypto-fuel of the Ethereum network
+  
+  p Ether is the internal currency of the system. All programs running on Ethereum need to pay the network for the consumed resources in ether, and <strong>anyone can setup a computer executing those programs to earn ether ("mining")</strong>. If you participated in the presale to fund Ethereum development or in one of our bug bounty programs, you should have a wallet file (.json) that will allow you to unlock your ether.
+  
+  p Otherwise you can get some from a friend; exchange bitcoin for it; or from one of the sites that give away free ether.
+  
+  a(href="../ether").button Get Ether
+  
+  div.recipe
+    h4 You'll need:
+    ul
+      li 
+        input(type="checkbox") 
+        a(href="#install-geth") Geth 
+      li 
+        input(type="checkbox") 
+        |  One of these:
+        ul
+          li 
+            input(type="checkbox") 
+            |  Computer with a modern GPU
+          li 
+            input(type="checkbox") 
+            |  Generous friend with ether
+          li 
+            input(type="checkbox") 
+            |  Bitcoins to exchange for
+          li 
+            input(type="checkbox") 
+            |  Ether presale wallet
+
+
+mixin greeterRecipe(header)
+  +greeterFigure
+
+  if header != ""
+    h2 #{header}
+  h3 
+    div.number 3 
+    | Create the Greeter, your first live contract
+
+  p The greeter is a very simple contract that greets “Hello” when you poke it. It includes a very simple upgrade that turns it into a contract that will charge for telling jokes.
+
+  a(href="greeter").button Summon the Greeter 
+
+  div.recipe
+    h4 You'll need:
+    ul
+      li 
+        input(type="checkbox") 
+        a(href="#install-geth") Geth 
+      li 
+        input(type="checkbox") 
+        |  Desire to learn new things  
+      li 
+        input(type="checkbox") 
+        |  0.001 
+        a(href="#get-ether") ether 
+        | (approximatelly)
+      li 
+        input(type="checkbox") 
+        |  1 "knock knock" joke (optional)
+
+
+mixin tokenRecipe(header)
+  +tokenFigure
+
+  if header != ""
+    h2 #{header}
+  h3 
+    div.number 4 
+    | Design and issue your own cryptocurrency
+
+  p Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, proof of membership or anything you want. These tokens use a standard coin API, so it will be automatically compatible with any wallet, contract or exchange that also uses the same standard. The total amount of tokens in circulation can be controlled by anything you can program into it, or simply set to a fixed constant amount.
+
+  a(href="token").button Issue your token 
+
+  div.recipe
+    h4 You'll need:
+    ul
+      li 
+        input(type="checkbox") 
+        a(href="#install-geth") Geth 
+      li 
+        input(type="checkbox") 
+        |  Very basic programming skills 
+      li 
+        input(type="checkbox") 
+        |  0.002  
+        a(href="#get-ether") ether 
+        | (approximatelly)
+      li 
+        input(type="checkbox") 
+        |  1 cool coin name (optional)
+
+
+mixin crowdsaleRecipe(header)
+  +crowdsaleFigure
+
+  if header != ""
+    h2 #{header}
+  h3 
+    div.number 5 
+    | Kickstart a project with a trustless crowdsale
+
+  p Are you already full of ideas to develop things in Ethereum? Maybe now you need some help and some funds to do that, but who would give money to someone they don’t trust?
+
+  p Using Ethereum you can create a contract that will hold contributors money until either a specific date or a given amount is reached. Depending on the outcome, the money is moved either to the project, or back to the contributors. All without requiring a central service provider, a clearing house or having to trust anyone. 
+
+  p You can even use the token you just created to keep track of ownership of prizes.
+
+  a(href="crowdsale").button Kickstart your project 
+
+  div.recipe
+    h4 You'll need:
+    ul
+      li 
+        input(type="checkbox") 
+        a(href="#install-geth") Geth 
+      li 
+        input(type="checkbox") 
+        | Basic programming skills 
+      li 
+        input(type="checkbox") 
+        | 0.004  
+        a(href="#get-ether") ether 
+        | (approximatelly)
+      li 
+        input(type="checkbox") 
+        | Ethereum-based
+        a(href="#crypto-currency") digital token 
+        | (track rewards)
+      li 
+        input(type="checkbox") 
+        | 1 good idea that needs funding
+
+mixin daoRecipe(header)
+  +daoFigure
+
+  if header != ""
+    h2 #{header}
+  h3 
+    div.number 6 
+    | Create a democratic autonomous organization
+
+  p Now you have an idea, the funds and a lot of backers, what’s next? You now have to hire managers, find a trustable CFO to handle the funds, do board meetings and a bunch of paperwork. Or you can simply leave that to an Ethereum contract. It will accept proposals by any of your contributors and then put them all to a transparent vote.
+
+  p One of the advantadges of having a robot run your organization is that it is immune to any outside influence and it’s guaranteed to execute only what it is programmed to do. Your organization will never go offline or disappear and will always be available as long as the network exists.
+
+  a(href="dao").button Start your organization 
+
+  div.recipe
+    h4 You'll need:
+    ul
+      li 
+        input(type="checkbox") 
+        a(href="#install-geth") Geth 
+      li 
+        input(type="checkbox") 
+        | Basic programming skills 
+      li 
+        input(type="checkbox") 
+        | 0.008  
+        a(href="#get-ether") ether 
+        | (approximatelly) to create the contract 
+      li 
+        input(type="checkbox") 
+        | Ethereum-based
+        a(href="#crypto-currency") digital token  
+        | (voting right)
+      li 
+        input(type="checkbox") 
+        a(href="#crowdsale") Any amount of funds
+      li 
+        input(type="checkbox") 
+        | Bunch of ideas on where to spend your funds
+      li 
+        input(type="checkbox") 
+        | Friends to vote on these ideas (optional)
+
+
+mixin futureRecipe(header)
+  +futureFigure
+
+  if header != ""
+    h2 #{header}
+  h3 
+    div.number 7 
+    | Build a new kind of decentralized application
+
+  p Now it's your turn: start building what you want to create in Ethereum! Could your business be enhanced by existing in a cryptographically secure, decentralized, tamper proof network?
+
+  p There are many great projects being built right now, you should check them out. And since you are among the very few people in the world that can program a decentralized app, maybe some of them might need your help!
+
+  h4 Some projects using Ethereum
+
+  ul
+    li
+      a(href='http://augur.net') Augur 
+      | Decentralized prediction market built on Ethereum
+    li 
+      a(href='https://etherex.org/') Etherex 
+      | Ethereum based opensource exchange
+    li
+      a(href='https://www.theprotocol.tv/adept-demo-ibm-samsung') IBM 
+      | IBM/Samsung Internet of Things project
+    li 
+      a(href='http://ether.fund') Ether.fund              
+      | Ethereum blockchain services
+    li 
+      a(href='http://ethergit.com') Ether Git 
+      | Ethereum blockchain explorer
+    li 
+      a(href='http://airlock.me/') Airlock             
+      | Next generation keyless access protocol for smart property
+    li 
+      a(href='https://www.provenance.org') Provenance            
+      | Social business founded to open up the world of how things are made
+    li 
+      a(href='https://dgx.io/') DigiGlobal           
+      | the first Smart Asset company built on Ethereum
+    li 
+      a(href='http://weifund.io/') Wei.fund             
+      | A non-profit, decentralized crowdfunding platform built on Ethereum
+    li 
+      a(href='http://www.lazooz.net/')  Lazzoz            
+      | Decentralized Collaborative Transportation Web
+    li 
+      a(href='http://slock.it') Slock.it 
+      | "If you can lock it, we will let you rent, sell or share&nbsp;it."
+    li 
+      a(href='http://main.cubespawn.com') Cubespawn 
+      | Open source project to build cost sensitive, high quality, modular manufacturing machines

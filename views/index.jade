@@ -1,81 +1,48 @@
 extends layout
 
 block content
+  div.main-tutorial.scrollme.intro
+    div.scrollme.row.introduction.animateme(data-when="span", data-from="0", data-to="1", data-opacity="0.2", data-translatey="300", data-easing="linear")
+      div.animateme(data-when="span", data-from="0", data-to="1", data-translatey="300", data-easing="linear")
+        h1 Welcome to the frontier
+
   div.main-content
     div.container
       div.row
-        div.col-md-12
-          div#install-terms
-            h2 Before installing the frontier release
-            ul
-              //- li #[b Frontier] is a curated #[b.text-danger testnet], it is not the 'main release' of Ethereum, but rather an #[b.text-danger initial beta prerelease]
-              li #[b Frontier] is a #[b.text-danger live testnet]. It is here to help us prepare for the main release. You'd be mad to use this for anything approaching "important" or "valuable". Expect dragons. If you're in any doubt, stand back and enjoy the show.
-                | #[nbsp] It's so unstable, even Chuck Norris would run away and hide from it.
-              li We fully expect instability and consensus flaws in the client, some of which may be exploitable
-              li As curators, we fully reserve the right to ignore blocks at our discretion
-              li
-                b As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block
+        div.col-md-12.whatis.scrollme
+          figure.ethereum-network(data-when="enter", data-from="1", data-to="0", data-opacity="0", data-translatey="300").float-right.animateme
+          //- img(src="images/ethereum-network.png", data-when="enter", data-from="1", data-to="0", data-opacity="0", data-translatey="300").float-right.animateme
+          h2 What is Ethereum?
+          p Ethereum is a decentralized platform that runs smart contracts: applications that can be trusted to always run exactly as programmed without any possibility of censorship, fraud or third party meddling. 
 
-            div.terms-checkbox.pull-left
-              label(for="understand")
-                input#understand(type="checkbox", value="true")
-                | I understand, let me proceed to install
+          p Ethereum is how the internet was supposed to run. 
 
-            a#show-install.pull-left.btn.btn-danger.disabled show install instructions
+          p Ethereum was funded by fans all around the world during a crowdfunding event in August 2014. It continues to be developed by great minds across the globe. 
 
-            div.clearfix
+          
+          div.clear 
+          figure(data-when="span", data-from="0.8", data-to="0", data-opacity="0", data-translatey="300").geth-console.float-left.animateme
+          h2 What is the Frontier Release?
 
-          div#install-info.hidden
-            h2 Install ethereum frontier release
+          p Frontier is the first released tool of the Ethereum ecosystem, tailored for developers. It’s a command line only interface with a Javascript environment that allows building, testing, deploying and using decentralized apps and sites on the ethereum blockchain.
 
-            pre ruby -e "$(curl -fsSL https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install.rb)"
+          p Exploring the frontier is exciting but it’s also rough, dangerous and not for everyone. Be Warned.
 
-            p Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. Please click the button below if you'd like to see a step by step description of the installer script.
-
-            div#shell-source.hidden
-              pre
-                code(class="bash")
-                  include ./../bin/install.rb
-
-            a#show-source.btn.btn-warning view source
-
-            a#hide-source.hidden.btn.btn-warning hide source
-
-            a.btn.btn-success(href="https://github.com/ethereum/frontier-release/blob/master/bin/install.rb", target="_blank", style="margin-left: 15px;") view on GitHub
-
-      div.clearfix
-
-      div.row
-        div.col-md-12
-          h2 Next steps
-          p If the install was successful you can now run ethereum using the following command line in the Terminal prompt:
-
-          pre geth
-
-          p Run #[code geth help] for more information about command line options or check our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki") documentation].
-
-      div.clearfix
-
-      div.row
-        div.col-md-6
-          h2 Supported platforms
-          p We currently support Mac OS X and Linux. For more information about installing and building go-ethereum on other platforms please visit our #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum") wiki page].
-
-        div.col-md-6
-          h2 Troubleshooting
-          p If something went wrong first read our Troubleshooting checklist. If you still didn't find your answer please #[a(href="https://github.com/ethereum/frontier-release/issues") open an issue on GitHub] or contact our #[a(href="#") help desk].
-
-      div.clearfix
-
-      div.row
-        div.col-md-6
-          h2 Security
-          p Please report security issues to #[a(href="mailto:security@ethereum.org") security@ethereum.org].
-
-        div.col-md-6
-          h2 License
-          p Ethereum Core Protocol licensed under the #[a(target="_blank", href="https://github.com/ethereum/go-ethereum/blob/develop/LICENSE") GNU Lesser General Public License]. Ethereum client licensed under the GPL.
 
       div.clearfix
         br
         br
+        
+  div.col-md-12.tutorial.scrollme
+    div.breadcrumb.index.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
+      strong Ethereum Frontier
+      a(href="#developer-resources") Developers 
+      a(href="#about-us") About us 
+      a(href="#community") Community 
+      a(href="#press") Press 
+            
+
+  include ./includes/recipes.jade 
+
+
+
