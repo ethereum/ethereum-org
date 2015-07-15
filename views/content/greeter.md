@@ -13,6 +13,7 @@ So let's start now.
 
 [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
 
+
 ## Your first citizen: the greeter
 
 

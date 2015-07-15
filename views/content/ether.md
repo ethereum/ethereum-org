@@ -13,7 +13,7 @@ Feeling comfortable? Time to get some ether!
 
 ### 1. Earn it by helping run the network
 
-The ethereum network kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given for the computer who was able to create the latest block on the chain. Every 12 seconds, in average, a new block is added to the blockchain with the latest transactions and the computer that was generated it will be given 5 ether. Due to the nature of the algorithm for block generating, this process is guaranteed to be random and rewards are given in proportion to the computational power of each machine. 
+The Ethereum network kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given for the computer who was able to create the latest block on the chain. Every 12 seconds, in average, a new block is added to the blockchain with the latest transactions and the computer that was generated it will be given 5 ether. Due to the nature of the algorithm for block generating, this process is guaranteed to be random and rewards are given in proportion to the computational power of each machine. 
 
 This process is usually called **_mining_** in the crypto-currency lingo.
 
@@ -33,7 +33,7 @@ Before you can find any blocks however, your computer needs to go through a proc
 
 If you have successfully mined a block you will see a message like this among the logs:
   
-    🔨 Mined block #12345
+    🔨 Mined block #123456
  
 To check your earnings, you can display your balance with:
  
