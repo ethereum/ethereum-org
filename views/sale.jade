@@ -15,17 +15,19 @@ block content
 
   div.main-tutorial.inner-page.foundation-page
     div.container
-      div.row
-        div.col-md-12
-          h3 Your Ether balance:
-          form#ether-checker
-            input(type="text" name="address" placeholder="Ether address")
-            input(class="btn btn-blue" type="submit" value="Check")
-
+      
       div.row
         div.col-md-12
           include:md content/sale.md        
-
+  div.main-tutorial.ether-checker.even
+    div.container
+      div.row
+        div.col-md-12
+          h2 Did you buy ether during the presale?
+          h3 Check your ether presale balance safely here:
+          form#ether-checker
+            input(type="text" name="address" placeholder="Ether address")
+            input(class="button btn btn-blue" type="submit" value="Check your balance")
 
 
 

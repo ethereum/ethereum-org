@@ -8,27 +8,21 @@ The sale lasted 42 days, starting on July 22nd and ending at 23:59 Zug time Sept
 
 For further statistical information on the Ether sale, please reference Vitalik Buterin’s blogpost: Ether Sale: A Statistical Overview
 
-
-
-
 ### What is ether?
 
 Ether is a necessary element -- a fuel -- for operating the distributed application software platform we are building: Ethereum. Without the requirement of payment of ether for every computational step and storage operation within the system, infinite loops or excessive storage demands could bog down Ethereum and effectively destroy it.
 
+### How do I get ether?
 
-### Looking to purchase ether?
+There are several ways to get ether. If you just want to test the technology, you might not even need real ether, as you can produce test ether on your own. We've written a complete guide on [all the ways to get ether](../ether).
 
-We’ve been approached by several Exchanges that are looking to list Ether from the release of the genesis block. We are now actively working with them to ensure Ether will be available to purchase at launch in the form of the Ethereum Exchange Working Group which aims to establish a trading standard for Ethereum, which should improve overall user experience and exchange interoperability. If you are an exchange that wishes to list Ether, please contact info@ethereum.org
-
-A list of exchanges listing Ether will be available on this page at the genesis block launch.
-
+## Documents
 
 ### Development documents
 
 * [White paper](https://github.com/ethereum/wiki/wiki/White-Paper)
 
 * [Yellow paper](http://gavwood.com/Paper.pdf)
-
 
 ### Ether sale documents
  

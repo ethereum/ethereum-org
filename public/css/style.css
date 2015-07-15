@@ -87,7 +87,7 @@ header {
 }
 
 header {
-	height: 70vh;
+	height: 60vh;
 	min-height: 440px;
 	background: url('../images/Frontier-Background.jpg') center center no-repeat;
 	background-size: cover;
@@ -122,12 +122,19 @@ div.scrollme.row.introduction {
 }
 
 .introduction h1 {
-	background: url('../images/Title+Logo.png') top center no-repeat;
-	background-size: 250px 323px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 250px;
 	height: 0;
 	padding-top: 323px;
+	margin-top: -225px;
+	margin-left: -125px;
+	background: url('../images/Title+Logo.png') top center no-repeat;
+	background-size: 250px 323px;
 	overflow: hidden;
 }
+
 
 header:after {
 	content: " ";
@@ -158,15 +165,6 @@ header .title {
 	height: 475px;
 	overflow: hidden;
 }
-
-div.whatis {
-	padding: 100px 0;
-}
-
-
-
-
-
 
 .status-bar {
 	display: -webkit-flex;
@@ -398,6 +396,7 @@ h3 strong {
 	margin-right: 10px;
 }
 
+.inner-page h4  ,
 .inner-tutorial h4  {
 	color: #682615;
 	padding: 20px 20px 0;
@@ -449,6 +448,7 @@ h3 strong {
 	background-position: center;
 }
 
+input.button,
 button,
 a.button {
 	display: block;
@@ -464,18 +464,24 @@ a.button {
 	font-weight: 600;
 	border-radius: 3px;
 	border: none;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;	
 	text-align: center;
 	text-decoration: none;
 	font-weight: 600;
 	-webkit-appearance: none;
 }
 
+input.button, 
 button:hover,
 a.button:hover {
 	border-bottom: solid 3px #AB3C19;
 	top: -3px;
 	text-shadow: rgba(0,0,0,0.2) 0 -1px 0;
 	box-shadow: rgba(0,0,0,0.1) 0 4px 1px;
+}
+
+input.button:hover {
+	color: #FFF;
 }
 
 .breadcrumb {
@@ -1104,6 +1110,9 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 
 .ethereum-projects  ul {
 	padding-left: 0;
+	display: -webkit-flex;
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: center;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -1181,6 +1190,32 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 	background-image: url('../images/icons/logo_schwarz.png');
 }
 
+
+.ether-checker,
+.ether-checker input,
+.main-tutorial.ether-checker h3 {
+	margin: 0 auto;
+	text-align: center;
+	max-width: none;
+}
+
+.main-tutorial.ether-checker h2 ,
+.main-tutorial.ether-checker h3 ,
+.ether-checker input {
+	display: block;
+	margin: 10px auto;
+	min-width: 300px;
+	width: 100%;
+	max-width: 400px;
+	float: none;
+}
+
+.main-tutorial.ether-checker h2 {
+	padding: 0;
+}
+
+
+
 @media (-webkit-min-device-pixel-ratio: 2) {
 	.introduction h1 , header .title {
 		background-image: url('../images/Title+Logo@2x.png');
@@ -1222,13 +1257,6 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 	.breadcrumb.index a {
 		display: none;
 	}
-	/*figure.ethereum-network{
-		height: 150px !important;
-	}
-	img.geth-console{
-		height: 150px !important;
-	}*/	
-
 }
 
 @media only screen and (max-width: 800px ) {
@@ -1270,6 +1298,26 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 }
 
 
+@media only screen and (min-width: 1000px){
+	.introduction h1 {
+		width: 300px;
+		padding-top: 388px;
+		margin-top: -255px;
+		margin-left: -150px;
+		background-size: 300px 388px;
+		background-image: url('../images/Title+Logo@3x.png');
+	}
+}
+
+@media only screen and (min-width: 1500px){
+	.introduction h1 {
+		width: 360px;
+		padding-top: 465px;
+		margin-top: -300px;
+		margin-left: -180px;
+		background-size: 360px 465px;
+	}
+}
 
 @media only screen and (-webkit-min-device-pixel-ratio:2){
 	img[src="images/ethereum-network.png"] {
