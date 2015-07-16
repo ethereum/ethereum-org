@@ -42,7 +42,6 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         }
     }
 
-<<<<<<< HEAD
 You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
 
 The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
@@ -61,7 +60,7 @@ If you have it installed, it should output something like this:
 
 If instead the command returns an error, then you need to install it. Press control+c to exit the console and go back to the command line.
 
-#### Install SolC in Linux
+#### Install SolC on Linux
 
 Open the terminal and execute these commands:
 
@@ -70,30 +69,20 @@ Open the terminal and execute these commands:
     sudo add-apt-repository ppa:ethereum/ethereum-dev
     sudo apt-get update
     sudo apt-get install
-    cd cpp-ethereum
-    cmake ..
-    make -j8 
-    make install
-    which solC
 
 Take note of the address given by the last line, you'll need it soon.
 
-#### Install SolC in Mac OSX
+#### Install SolC on Mac OSX
 
 You need [brew](http://brew.sh) in order to install on your mac
 
     brew tap ethereum/ethereum
     brew install cpp-ethereum
     brew linkapps cpp-ethereum
-    cd cpp-ethereum
-    cmake ..
-    make -j8 
-    make install
-    which solC
 
 Take note of the address given by the last line, you'll need it soon.
 
-#### Install SolC in Mac OSX
+#### Install SolC on Windows
 
 You need [chocolatey](http://chocolatey.org) in order to install on your mac
 
@@ -102,6 +91,15 @@ You need [chocolatey](http://chocolatey.org) in order to install on your mac
 Windows is more complicated than that, you'll need to wait a bit more.
 
 If you have the SolC Solidity Compiler installed,  you need now reformat by removing spaces so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
+
+#### Compile from source
+
+    git clone git@github.com/ethereum/cpp-ethereum.git
+    cd cpp-ethereum
+    cmake ..
+    make -j8 
+    make install
+    which solC
 
 #### Linking your compiler in Geth
 
