@@ -127,14 +127,13 @@ div.scrollme.row.introduction {
 	left: 50%;
 	width: 250px;
 	height: 0;
-	padding-top: 323px;
-	margin-top: -225px;
+	padding-top: 290px;
+	margin-top: -200px;
 	margin-left: -125px;
 	background: url('../images/Title+Logo.png') top center no-repeat;
-	background-size: 250px 323px;
+	background-size: 250px 290px;
 	overflow: hidden;
 }
-
 
 header:after {
 	content: " ";
@@ -154,16 +153,6 @@ header:after {
 	top: -100px;
 	left: 0;
 	right: 0;
-}
-
-
-header .title {
-	background: url('../images/Title+Logo.png') top center no-repeat;
-	background-size: 250px 323px;
-	width: 0;
-	padding-left: 250px;
-	height: 475px;
-	overflow: hidden;
 }
 
 .status-bar {
@@ -1228,7 +1217,7 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 
 
 @media (-webkit-min-device-pixel-ratio: 2) {
-	.introduction h1 , header .title {
+	.introduction h1 {
 		background-image: url('../images/Title+Logo@2x.png');
 	}	
 }
@@ -1300,11 +1289,8 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 }
 
 @media only screen and (min-height:900px) {
-	header .title {
+	.introduction h1 {
 		background-image: url('../images/Title+Logo@2x.png');
-		background-size: 375px 484px;
-		height: 700px;
-		padding-left: 484px;	
 	}
 }
 
@@ -1312,10 +1298,10 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 @media only screen and (min-width: 1000px){
 	.introduction h1 {
 		width: 300px;
-		padding-top: 388px;
-		margin-top: -255px;
+		padding-top: 348px;
+		margin-top: -230px;
 		margin-left: -150px;
-		background-size: 300px 388px;
+		background-size: 300px 348px;
 		background-image: url('../images/Title+Logo@3x.png');
 	}
 }
@@ -1323,10 +1309,10 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 @media only screen and (min-width: 1500px){
 	.introduction h1 {
 		width: 360px;
-		padding-top: 465px;
-		margin-top: -300px;
+		padding-top: 417px;
+		margin-top: -270px;
 		margin-left: -180px;
-		background-size: 360px 465px;
+		background-size: 360px 417px;
 	}
 }
 
