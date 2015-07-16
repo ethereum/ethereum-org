@@ -1,10 +1,6 @@
 Now that you mastered the basics on how to get started and how to send ether, it's time to get your hands dirty in what really makes ethereum stand out of the crowd: smart contracts. Smart contracts are pieces of code that live on the blockchain and execute commands exactly how they were told to. They can read other contracts, take decisions, send ether and execute other contracts. Contracts will exist and run as long as the whole network exists, and will only stop if they run out of gas or if they were programmed to self destruct.
 
-What can you do with contracts? You can do almost anything really, but for this guide let's do something simple: you will start your new country.
-
-Your country won't be very powerful compared to most: it will hold no land, have no military and hold no assets other than those that exist on the blockchain. All its citizens will be voluntary and it is unable to coerce other people by force. 
-
-But what it can do is to gather support around a united cause. You will get funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
+What can you do with contracts? You can do almost anything really, but for this guide let's do some simple things: You will get funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
 
 So let's start now.
 
@@ -21,6 +17,7 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
 
 
     contract mortal {
+        /* Define variable owner of the type address*/
         address owner;
 
         /* this function is executed at initialization and sets the owner of the contract */
@@ -31,6 +28,7 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
     }
 
     contract greeter is mortal {
+        /* define variable greeting of the type string */
         string greeting;
         
         /* this runs when the contract is executed */
@@ -44,11 +42,12 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         }
     }
 
+<<<<<<< HEAD
 You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
 
-_"Mortal"_ and _"owned" simply means that the greeter contract can be killed by its owner in order to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
+The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
 
-### Compiling your contract
+### Installing a compiler
 
 Before you are able to upload it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a sort of reference template that defines how to interact with the contract.
 
@@ -60,11 +59,69 @@ If you have it installed, it should output something like this:
 
     ['Solidity' ]
 
-If instead the command returns an error, then read the documentation on how to install a compiler, use Aleth zero or use the  [online solidity compiler](https://chriseth.github.io/cpp-ethereum/). 
+If instead the command returns an error, then you need to install it. Press control+c to exit the console and go back to the command line.
+
+#### Install SolC in Linux
+
+Open the terminal and execute these commands:
+
+    sudo add-apt-repository ppa:ethereum/ethereum-qt
+    sudo add-apt-repository ppa:ethereum/ethereum
+    sudo add-apt-repository ppa:ethereum/ethereum-dev
+    sudo apt-get update
+    sudo apt-get install
+    cd cpp-ethereum
+    cmake ..
+    make -j8 
+    make install
+    which solC
+
+Take note of the address given by the last line, you'll need it soon.
+
+#### Install SolC in Mac OSX
+
+You need [brew](http://brew.sh) in order to install on your mac
+
+    brew tap ethereum/ethereum
+    brew install cpp-ethereum
+    brew linkapps cpp-ethereum
+    cd cpp-ethereum
+    cmake ..
+    make -j8 
+    make install
+    which solC
+
+Take note of the address given by the last line, you'll need it soon.
+
+#### Install SolC in Mac OSX
+
+You need [chocolatey](http://chocolatey.org) in order to install on your mac
+
+    cinst -pre solC-stable
+
+Windows is more complicated than that, you'll need to wait a bit more.
 
 If you have the SolC Solidity Compiler installed,  you need now reformat by removing spaces so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
 
-    var greeterSource = 'contract mortal { address owner; /* this function is executed at initialization and sets the owner of the contract */ function mortal() { owner = msg.sender; } /* Function to recover the funds on the contract */ function kill() { if (msg.sender == owner) suicide(owner); } } contract greeter is mortal { string greeting; /* this runs when the contract is executed */ function greeter(string _greeting) public { greeting = _greeting; } /* main function */ function greet() constant returns (string) { return greeting; } }'
+#### Linking your compiler in Geth
+
+Now [go back to the console](../geth) and type this command to install solC, replacing _path/to/solc_ to the path that you got on the last command you did:
+
+    admin.setSolc(path/to/solc)
+
+Now type again:
+
+    eth.getCompilers()
+
+If you now have solC installed, then congratulations, you can keep reading. If you don't, then go to our [forums](http://forum.ethereum.org) or [subreddit](http://www.reddit.com/r/ethereum) and berate us on failing to make the process easier.
+
+
+### Compiling your contract
+
+
+If you have the compiler installed,  you need now reformat by removing spaces so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
+
+    var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) suicide(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
 
     var greeterCompiled = web3.eth.compile.solidity(greeterSource)
 
@@ -122,7 +179,6 @@ Replace _greeterAddress_ with your contract's address.
 **Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing `greeterCompiled.greeter.info.abiDefinition`  with the abi from your compiler.**
 
 
-
 ### Cleaning up after yourself: 
 
 You must be very excited to have your first contract live, but this excitement wears off sometimes, when the owners go on to write further contracts, leading to the unpleasant sight of abandoned contracts on the blockchain. In the future, blockchain rent might be implemented in order to increase the scalability of the blockchain but for now, be a good citizen and humanely put down your abandoned bots. 
@@ -138,8 +194,6 @@ You can verify that the deed is done simply seeing if this returns 0:
 Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 
 If you don't add any kill clause it could potentially live forever (or at least until the frontier contracts are all wiped) independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on the civil rights of sentient digital beings. Treat your bots humanely.
-
-
 
 
 

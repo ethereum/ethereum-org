@@ -76,8 +76,6 @@ Take a moment to dream about the revolutionary possibilities this would allow, a
                 p.active = true;
                 ProposalAdded(proposalID, _recipient, _amount, _data, _description);
                 numProposals = proposalID+1;
-            } else {
-                return 0;
             }
         }
         
@@ -86,13 +84,9 @@ Take a moment to dream about the revolutionary possibilities this would allow, a
                 Proposal p = proposals[_proposalID];
                 if (p.voted[msg.sender] == true) return;
                 voteID = p.votes.length++;
-                Vote v = p.votes[voteID];
-                v.position = _position;
-                v.voter = msg.sender;   
+                p.votes[voteID] = Vote({position: _position, voter: msg.sender});
                 p.voted[msg.sender] = true;
                 Voted(_proposalID,  _position, msg.sender);
-            } else {
-                return 0;
             }
         }
         
@@ -157,7 +151,7 @@ Choose these parameters with care.
       })
 
 
-Wait a minute until the miners pick it up. It will cost you about 850k Gas. Once it's picked up it's time to instantiate it and set it up, by pointing it to the correct address of the token contract you created previously. 
+Wait a minute until the miners pick it up. It will cost you about 850k Gas. Once thats picked up it's time to instantiate it and set it up, by pointing it to the correct address of the token contract you created previously. 
 
 If everything worked out, you can take a look at the whole organization by executing this string:
 

@@ -37,7 +37,7 @@ If you have successfully mined a block you will see a message like this among th
  
 To check your earnings, you can display your balance with:
  
-    web3.fromWei(eth.getBalance(eth.coinbase), "ether")
+    web3.fromWei(eth.getBalance(eth.accounts[0]), "ether")
 
 #### GPU MINING
 
@@ -120,7 +120,8 @@ Before you execute your first ether transfer you need a friend to send your ethe
 
 The first two lines set local variables with account numbers for easier access later. Change the sender and recipient addresses to whatever you like. If you are adding a friend's account address instead, put it in between quotes like ‘0xffd25e388bf07765e6d7a00d6ae83fa750460c7e'. The third line converts the chosen amount to the network's base unit (wei).
 
-Although there are many names for ether denominations, we will use only two: “ether” and “wei”. Wei is the atomic unit of ether, and is the one used on the system level. Most day-to-day transactions will be done with ether, which is equivalent to one quintillion wei, or a 1 followed by 18 zeros. So before sending any transactions, it’s very important to convert the amount to wei, and for that, you can use the _web3.toWei_ function. If you are dealing with very small amounts of ether, it might be useful to use “finney”, which is a shorthand for a thousandth of an ether (1 followed by 15 zeros in wei), but usually ether will suffice.
+<<<<<<< HEAD
+Although there are many names for ether denominations, we will use only two: “ether” and “wei”. Wei is the atomic unit of ether, and is the one used on the system level. Most day-to-day transactions will be done with ether, which is equivalent to one quintillion wei, or a 1 followed by 18 zeros. So before sending any transactions, it’s very important to convert the amount to wei, and for that, you can use the _web3.toWei_ function.
 
 After having set the variables above, send the transaction with:
 
@@ -135,42 +136,10 @@ Waiting a few seconds, the transaction should be complete. To check the balance 
 
 Anytime you create a transaction in Ethereum, the string that is returned is the **Transaction Hash**. You can use those to keep track of a transaction in progress, or the amount of gas spent in a past transaction using _eth.getTransaction()_ and _eth.getTransactionReceipt_. Here's how to use it:
 
-    var tx =  eth.sendTransaction({from: eth.accounts[1], to: eth.accounts[0], value: amount});
+    var tx =  eth.sendTransaction({from: eth.accounts[0], to: eth.accounts[1], value: amount});
     eth.getTransaction(tx);
 
-And if the transaction has been picked up already, you can check it's receipt with this:
+And if the transaction has been picked up already, you can check its receipt with this:
 
     eth.getTransactionReceipt(tx);
 
-
-## Easier addresses: the Name Registrar
-
-All accounts are referenced in the network by their public address. But addresses are long, difficult to write down, hard to memorize and immutable. The last one is especially important if you want to generate fresh accounts in your name or upgrade the code of your contract. In order to solve this, there is a default name registrar contract which is used to associate the long addresses with short, human-friendly names.
-
-Names have to use only alphanumeric characters and cannot contain blank spaces. In future releases the name registrar will likely implement a bidding process to prevent name squatting, but for now it works on a first come first served basis: as long as no one else registered the name, you can claim it.
-
-First, select your name:
- 
-    var myName = "bob"
-
-Then, check the availability of your name:
- 
-    registrar.addr(myName)
-
-If that function returns "0x00..", you can claim it to yourself:
- 
-    registrar.reserve.sendTransaction(myName, {from: eth.accounts[0]})
-
-Wait up to thirty seconds for the previous transaction to be picked up, then try:
- 
-    registrar.owner(myName)
-
-If it returns your address, it means you own that name can set it to any address you want:
- 
-    registrar.setAddress.sendTransaction(myName, eth.accounts[1], true,{from: eth.accounts[0]})
-
-You can send a transaction to anyone by name instead of account simply by typing 
- 
-    eth.sendTransaction({from: eth.accounts[0], to: registrar.addr("bob"), value: web3.toWei(1, "ether")})
-
-*Note: Don't mistake registrar.addr for registrar.owner. The first is to which address that name is pointed at: anyone can point a name to anywhere else, just like anyone can forward a link to google.com, but only the owner of the name can change and update the link. You can set both to be the same address.*

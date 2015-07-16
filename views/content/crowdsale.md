@@ -9,8 +9,6 @@ In a crowdfunding prizes are usually given. This would require you to get everyo
 ### The code
 
 The way this particular crowdsale contract works is that you set an exchange rate for your token and then the donors will immediately get a proportional amount of tokens in exchange of their ether. You will also choose a funding goal and a deadline: once that deadline is over you can ping the contract and if the goal was reached it will send the ether raised to you, otherwise it goes back to the donors. Donors keep their tokens even if the project doesn't reach its goal, as a proof that they helped.
-
-    
     
     
     contract token { mapping (address => uint) public coinBalanceOf; function token() {}  function sendCoin(address receiver, uint amount) returns(bool sufficient) {  } }
@@ -40,12 +38,11 @@ The way this particular crowdsale contract works is that you set an exchange rat
         
         /* The function without name is the default function that is called whenever anyone sends funds to a contract */
         function () {
-            Funder f = funders[++funders.length];
-            f.addr = msg.sender;
-            f.amount = msg.value;
-            amountRaised += f.amount;
-            tokenReward.sendCoin(msg.sender, f.amount/price);
-            FundTransfer(f.addr, f.amount, true);
+            uint amount = msg.value;
+            funders[funders.length++] = Funder({addr: msg.sender, amount: amount});
+            amountRaised += amount;
+            tokenReward.sendCoin(msg.sender, amount / price);
+            FundTransfer(f.addr, amount, true);
         }
             
         modifier afterDeadline() { if (now >= deadline) _ }
