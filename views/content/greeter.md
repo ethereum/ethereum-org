@@ -103,6 +103,7 @@ Since this contract changes nothing on the blockchain, then it returns instantly
 
     'Hello World!'
 
+
 ### Getting other people to interact with your code
 
 In order to other people to run your contract they need two things: the address where the contract is located and the ABI (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them. In order to get each of them run these commands.
@@ -144,38 +145,6 @@ If you don't add any kill clause it could potentially live forever (or at least 
 
 
 
-### Easier addresses: the Name Registrar
 
-All accounts are referenced in the network by their public address. But addresses are long, difficult to write down, hard to memorize and immutable. The last one is specially important if you want to be able to generate fresh accounts in your name, or upgrade the code of your contract. In order to solve this, there is a default name registrar contract which is used to associate the long addresses with short, human-friendly names.
-
-Names have to use only alphanumeric characters and, cannot contain blank spaces. In future releases the name registrar will likely implement a bidding process to prevent name squatting but for now, it's a first come first served based. So as long as no one else registered the name, you can claim it.
-
-First, select your name:
-
-    var myName = "alice"
-
-Then, check the availability of your name:
-
-    registrar.addr(myName)
-
-If that function returns "0x00..", you can claim it to yourself:
-
-    registrar.reserve.sendTransaction(myName, {from: eth.accounts[0]});
-
-Wait for the previous transaction to be picked up. Wait up to thirty seconds and then try:
-
-    registrar.owner(myName)
-
- If it returns your address, it means you own that name and are able to set your chosen name to any address you want:
-
-    registrar.setAddress.sendTransaction(myName, eth.accounts[1], true,{from: eth.accounts[0]});
-
-_You can replace **eth.accounts[1]** for **greeterAddress** or any other address you want Bob to be._
-
-You can send a transaction to anyone by name instead of account simply by typing 
-
-    eth.sendTransaction({from: eth.accounts[0], to: registrar.addr("alice"), value: web3.toWei(1, "ether")})
-
-**Tip: don't mix registrar.addr for registrar.owner. The first is to which address that name is pointed at: anyone can point a name to anywhere else, just like anyone can forward a link to google.com, but only the owner of the name can change and update the link. You can set both to be the same address.**
 
 

@@ -66,7 +66,7 @@ You can check wether is has been deployed by doing this:
 
 If everything worked correctly, you should be able to check your own balance with:
 
-    tokenInstance.coinBalanceOf.call(eth.accounts[0]) + " tokens"
+    tokenInstance.coinBalanceOf(eth.accounts[0]) + " tokens"
 
 It should have all the 10 000 tokens that were created once the contract was published. Since there is not any other defined way for new coins to be issued, those are all that will ever exist. 
 
@@ -88,7 +88,7 @@ If a friend has registered a name on the registrar you can send it without knowi
     tokenInstance.sendCoin.sendTransaction(registrar.addr("Alice"), 2000, {from: eth.accounts[0]})
 
 
-The reason that the first command was .call() and the second is a .sendTransaction() is that the former is just a read operation and the latter is using gas to change the state of the blockchain, and as such, it needs to be set who is it coming from. Now, wait a minute and check both accounts balances:
+The reason that the first could be just be called instantly and the second needs a .sendTransaction() is that the former is just a read operation and the latter is using gas to change the state of the blockchain, and as such, it needs to be set who is it coming from. Now, wait a minute and check both accounts balances:
 
     tokenInstance.coinBalanceOf.call(eth.accounts[0])/100 + "% of all tokens"
     tokenInstance.coinBalanceOf.call(eth.accounts[1])/100 + "% of all tokens"
@@ -120,18 +120,43 @@ There are two ways. Let's start with the quick and dirty, providing your friends
 
 Just replace the address at the end for your own token address, then anyone that uses this snippet will immediately be able to use your contract. Of course this will work only for this specific contract so let's analyze step by step and see how to improve this code so you'll be able to use it anywhere.
 
-First, if you register a name, then you won't need the hard coded address in the end. Select a nice coin name for you and try to reserve for yourself.
+All accounts are referenced in the network by their public address. But addresses are long, difficult to write down, hard to memorize and immutable. The last one is specially important if you want to be able to generate fresh accounts in your name, or upgrade the code of your contract. In order to solve this, there is a default name registrar contract which is used to associate the long addresses with short, human-friendly names.
+
+Names have to use only alphanumeric characters and, cannot contain blank spaces. In future releases the name registrar will likely implement a bidding process to prevent name squatting but for now, it's a first come first served based. So as long as no one else registered the name, you can claim it.
+
+
+First, if you register a name, then you won't need the hard coded address in the end. Select a nice coin name for you and try to reserve for yourself. First, select your name:
 
     var tokenName = "MyFirstCoin"
+
+Then, check the availability of your name:
+
+    registrar.addr(tokenName)
+
+If that function returns "0x00..", you can claim it to yourself:
+
     registrar.reserve.sendTransaction(tokenName, {from: eth.accounts[0]});
 
-Wait for the previous transaction to be picked up and then set that name to point to your coin address:
+
+Wait for the previous transaction to be picked up. Wait up to thirty seconds and then try:
+
+    registrar.owner(myName)
+
+If it returns your address, it means you own that name and are able to set your chosen name to any address you want:
 
     registrar.setAddress.sendTransaction(tokenName, tokenInstance.address, true,{from: eth.accounts[0]});
+
+_You can replace **tokenInstance.address** for **eth.accounts[0]** if you want to use it as a personal nickname._
 
 Wait a little bit for that transaction to be picked up too and test it:
 
     registrar.addr("MyFirstCoin")
+
+You can send a transaction to anyone or any contract by name instead of account simply by typing 
+
+    eth.sendTransaction({from: eth.accounts[0], to: registrar.addr("MyFirstCoin"), value: web3.toWei(1, "ether")})
+
+**Tip: don't mix registrar.addr for registrar.owner. The first is to which address that name is pointed at: anyone can point a name to anywhere else, just like anyone can forward a link to google.com, but only the owner of the name can change and update the link. You can set both to be the same address.**
 
 This should now return your token address, meaning that now the previous code to instantiate could use a name instead of an address.
 
@@ -140,6 +165,7 @@ This should now return your token address, meaning that now the previous code to
 This also means that the owner of the coin can update the coin by pointing the registrar to the new contract. This would, of course, require the coin holders trust the owner set at  registrar.owner("MyFirstCoin")
 
 Of course this is a rather unpleasant big chunk of code just to allow others to interact with a contract. There are some avenues being investigated to upload the contract ABI to the network, so that all the user will need is the contract name. You can [read about these approaches](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions#natspec) but they are very experimental and will certainly change in the future.
+
 
 ### Learn More 
 
