@@ -647,9 +647,10 @@ input.button:hover {
 	content: " ";
 	left: 0;
 	right: 0;
-	bottom: 80px;
-	height: 80px;
+	bottom: 0;
+	height: 200px;
 	background: linear-gradient(transparent, #1f0c05);
+	z-index: 100;
 }
 
 .press li {
@@ -681,6 +682,8 @@ input.button:hover {
 
 
 .press > a {
+	position: relative;
+	z-index: 110;
 	text-align: center;
 	background: #290F03;
 	border-radius: 4px;
@@ -1093,11 +1096,18 @@ footer {
 	margin: 0 0 40px 40px;
 }
 
+.press-kit img {
+	width: 250px;
+	padding-right: 20px;
+}
+
 img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 	width: 229px;
 	float: right;
 	margin: 0 0 40px 40px;
 }
+
+
 
 
 
@@ -1204,6 +1214,7 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 .ether-checker input {
 	display: block;
 	margin: 10px auto;
+	padding: 10px;
 	min-width: 300px;
 	width: 100%;
 	max-width: 400px;
