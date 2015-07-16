@@ -222,8 +222,8 @@ header .title {
 
 
 .main-tutorial {
-	/*background: #FFFAEE url("../images/bg.png");*/
 	background: #FFF url("../images/bg.png");
+	overflow: hidden;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-size: 18px;
 	color: #443A37;
