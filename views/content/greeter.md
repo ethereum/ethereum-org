@@ -2,7 +2,7 @@ Now that you mastered the basics on how to get started and how to send ether, it
 
 What can you do with contracts? You can do almost anything really, but for this guide let's do something simple: you will start your new country.
 
-Your country won't be very powerful compared to most: it will hold no land, have no military and hold no assets other than those that exist on the blockchain. All it's citizens will be voluntary and it is unable to coerce other people by force. 
+Your country won't be very powerful compared to most: it will hold no land, have no military and hold no assets other than those that exist on the blockchain. All its citizens will be voluntary and it is unable to coerce other people by force. 
 
 But what it can do is to gather support around a united cause. You will get funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
 
@@ -20,7 +20,7 @@ So let's start now.
 
 Now that you’ve mastered the basics of Ethereum, let’s move into your first serious contract. It’s a big open territory and sometimes you might feel lonely, so our first order of business will be to create a little automatic companion to greet you whenever you feel lonely. We’ll call him the “Greeter”.
 
-The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is it's code:
+The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
 
     contract mortal {
@@ -49,7 +49,7 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
 
 You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because in Solidity has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
 
-_"Mortal"_ and _"owned" simply means that the greeter contract can be killed by it's owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
+_"Mortal"_ and _"owned" simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
 
 ### Compiling your contract
 
@@ -138,7 +138,7 @@ You can verify that the deed is done simply seeing if this returns 0:
 
     eth.getCode(greeterInstance.contractAddress)
 
-Notice that every contract has to implement it's own kill clause. In this particular case only the account that created the contract can kill it. 
+Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 
 If you don't add any kill clause it could potentially live forever (or at least until the frontier contracts are all wiped) independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on civil rights of sentient digital beings. Treat your bots humanely.
 

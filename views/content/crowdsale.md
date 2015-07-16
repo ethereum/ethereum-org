@@ -10,7 +10,7 @@ In a crowdfunding prizes are usually given. This would require you to get everyo
 
 ### The code
 
-The way this particular crowdsale contract works is that you set an exchange rate for your token and then the donors will immediatly get a proportional amount of tokens in exchange of their ether. You will also choose a funding goal and a deadline: once that deadline is over you can ping the contract and if the goal was reached it will send the ether raised to you, otherwise it goes back to the donors. Donors keep their tokens even if the project doesnt reach it's goal, as a proof that they helped.
+The way this particular crowdsale contract works is that you set an exchange rate for your token and then the donors will immediatly get a proportional amount of tokens in exchange of their ether. You will also choose a funding goal and a deadline: once that deadline is over you can ping the contract and if the goal was reached it will send the ether raised to you, otherwise it goes back to the donors. Donors keep their tokens even if the project doesnt reach its goal, as a proof that they helped.
 
     
     

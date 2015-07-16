@@ -6,7 +6,7 @@
 
 So far you created a tradeable token and you successfully distributed it among all those who were willing to help fundraise a 100 ethers. That's all very interesting but what exactly are those tokens for?  Why would anyone want to own or trade it for anything else valuable? If you can convince your new token is the next big money maybe others will want it, but so far your token offers no value per se. We are going to change that, by creating your first decentralized autonomous organization, or DAO.
 
-Think of the DAO as the constitution of a country, the executive branch of a government or maybe like a  robotic manager for an organization. The DAO receives the money that your organization raises, keeps it safe and uses it to fund whatever its members want. The robot is incorruptible, will never defraud the bank, never create secret plans, never use the money for anything other than what it's constituents voted on. The DAO will never disappear, never run away and cannot be controlled by anyone other than it's own citizens.
+Think of the DAO as the constitution of a country, the executive branch of a government or maybe like a  robotic manager for an organization. The DAO receives the money that your organization raises, keeps it safe and uses it to fund whatever its members want. The robot is incorruptible, will never defraud the bank, never create secret plans, never use the money for anything other than what its constituents voted on. The DAO will never disappear, never run away and cannot be controlled by anyone other than its own citizens.
 
 The token we created using the crowdsale is the only citizen document needed. Anyone who holds any token is able to create and vote on proposals. Similar to being a shareholder in a company, the token can be traded on the open market and the vote is proportional to amounts of tokens the voter holds.  
 
@@ -157,7 +157,7 @@ Choose these parameters with care..
       })
 
 
-Wait a minute until the miners pick it up. It will cost you about 850k Gas. Once it's picked up it's time to instantiate it and set it up, by pointing it to the correct address of the token contract you created previously. 
+Wait a minute until the miners pick it up. It will cost you about 850k Gas. Once thats picked up it's time to instantiate it and set it up, by pointing it to the correct address of the token contract you created previously. 
 
 If everything worked out, you can take a look at the whole organization by executing this string:
 
@@ -293,7 +293,7 @@ For the sake of simplicity, we only used the democratic organization you created
 
 * The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further develop the first contract and grow the organization.
 
-* Your DAO could own it's own name on the name registrar, and then change where it's redirecting in order to update itself if the token holders approved.
+* Your DAO could own its own name on the name registrar, and then change where it's redirecting in order to update itself if the token holders approved.
 
 * The organization could hold not only ethers, but any kind of other coin created on ethereum, including assets whose value are tied to the bitcoin or dollar. 
 

@@ -47,7 +47,7 @@ If you are serious about mining on the live ethereum network and get real ether 
 
 Mining, for the time being, is best left to Linux. We will likely be releasing Windows releases to provide the best support that we can... however we cannot guarantee it. If you must use Windows, using a workaround such as Virtualbox or Vmware is probably recommended for the time being, but this will not be an appropriate mining setup.
 
-Frontier does not make use of Scrypt or Sha256, but instead, it leverages of [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and it's design on the [Frontier gitBook, mining chapter](http://ethereum.gitbooks.io/frontier-guide/content/mining.html).
+Frontier does not make use of Scrypt or Sha256, but instead, it leverages of [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design on the [Frontier gitBook, mining chapter](http://ethereum.gitbooks.io/frontier-guide/content/mining.html).
 
 For the Serenity (a future version of Ethereum) release we are planning to switch to PoS.
 
@@ -137,7 +137,7 @@ Anytime you create a transaction in Ethereum, the string that is returned is the
     var tx =  eth.sendTransaction({from: eth.accounts[1], to: eth.accounts[0], value: amount});
     eth.getTransaction(tx);
 
-And if the transaction has been picked up already, you can check it's receipt with this:
+And if the transaction has been picked up already, you can check its receipt with this:
 
     eth.getTransactionReceipt(tx);
 
