@@ -1,9 +1,9 @@
 
 ## The Coin 
 
-What is a coin? Coins are much more interesting and useful than they seem, they are in essence just a tradeable token, but can become much more, depending on how you use them. It's value depends what you do with it: a token can be used to control access (**an entrance ticket**), can be used for voting rights in an organization (**a share**), can be placeholders for an asset held by a third party (**a certificate of ownership**) or even be simply used as an exchange of value within a community (**a currency**). 
+What is a coin? Coins are much more interesting and useful than they seem, they are in essence just a tradeable token, but can become much more, depending on how you use them. Its value depends on what you do with it: a token can be used to control access (**an entrance ticket**), can be used for voting rights in an organization (**a share**), can be placeholders for an asset held by a third party (**a certificate of ownership**) or even be simply used as an exchange of value within a community (**a currency**). 
 
-You could do all those things by creating a centralized server, but using an Ethereum token contract comes with some free functionalities: for one, it's a decentralized service and tokens can be still exchanged even if the original service goes down for any reason. The code guarantees that no tokens will ever be created other than the ones set in the original code. Finally, by having each user hold it's own token, this eliminates the scenarios where one single server break in can result in the loss of funds from thousands of clients.
+You could do all those things by creating a centralised server, but using an Ethereum token contract comes with some free functionalities: for one, it's a decentralised service and tokens can be still exchanged even if the original service goes down for any reason. The code guarantees that no tokens will ever be created other than the ones set in the original code. Finally, by having each user hold their own token, this eliminates the scenarios where one single server break-in can result in the loss of funds from thousands of clients.
 
 You could create your own token on a different blockchain, but creating on ethereum is easier—so you can focus your energy on the innovation that will make your coin stand out—, and it's more secure, as your security is provided by all the miners who are supporting the ethereum network. Finally, by creating your token in Ethereum, your coin will be compatible with any other contract that works in ethereum.
 
@@ -30,9 +30,9 @@ This is the code for the contract we're building:
         }
     }
 
-If you have ever programmed, you won't find it hard to understand what it does: it is a contract that generates 10 thousand tokens to the creator of the contract, and then allows anyone with enough balance to send it to others. These tokens are the minimum tradeable unit and cannot be subdivided, but for the final users could be presented as a 100 units subdividable by 100 subunits, so owning a single token would represent having 0.01% of the total. If your application needs more fine grain atomic divisibility, then just increase the initial issuance amount.
+If you have ever programmed, you won't find it hard to understand what it does: it is a contract that generates 10 thousand tokens to the creator of the contract, and then allows anyone with enough balance to send it to others. These tokens are the minimum tradeable unit and cannot be subdivided, but for the final users could be presented as a 100 units subdividable by 100 subunits, so owning a single token would represent having 0.01% of the total. If your application needs more fine grained atomic divisibility, then just increase the initial issuance amount.
 
-In this example we declared the variable "coinBalanceOf" to be public, this will automatically create a function that checks any accounts balance.
+In this example we declared the variable "coinBalanceOf" to be public, this will automatically create a function that checks any account's balance.
 
 ### Compile and Deploy
 
@@ -42,7 +42,7 @@ In this example we declared the variable "coinBalanceOf" to be public, this will
 
     var tokenCompiled = eth.compile.solidity(tokenSource)
 
-Now let’s set up the contract, just like we did in the previous section. Change the "initial Supply" to the amount of non divisible tokens you want to create. If you want to have divisable units, you should do that on the user frontend but keep them represented in the minimun unit of account. 
+Now let’s set up the contract, just like we did in the previous section. Change the "initial Supply" to the amount of non divisible tokens you want to create. If you want to have divisible units, you should do that on the user frontend but keep them represented in the minimun unit of account. 
 
     var initialSupply = 10000;
     var tokenContract = web3.eth.contract(tokenCompiled.token.info.abiDefinition);
@@ -57,7 +57,7 @@ Now let’s set up the contract, just like we did in the previous section. Chang
        console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
     })
 
-You can check wether is has been deployed by doing this:
+You can check whether it has been deployed by doing this:
 
     eth.getCode(tokenInstance.address)
 
@@ -70,7 +70,7 @@ If everything worked correctly, you should be able to check your own balance wit
 
 It should have all the 10 000 tokens that were created once the contract was published. Since there is not any other defined way for new coins to be issued, those are all that will ever exist. 
 
-You can set up a **Watcher** to keep a look whenever anyone sends a coin using your contract. Here's how you do it:
+You can set up a **Watcher** to react whenever anyone sends a coin using your contract. Here's how you do it:
 
     var event = tokenInstance.CoinTransfer({}, '', function(error, result){
       if (!error)
@@ -88,7 +88,7 @@ If a friend has registered a name on the registrar you can send it without knowi
     tokenInstance.sendCoin.sendTransaction(registrar.addr("Alice"), 2000, {from: eth.accounts[0]})
 
 
-The reason that the first could be just be called instantly and the second needs a .sendTransaction() is that the former is just a read operation and the latter is using gas to change the state of the blockchain, and as such, it needs to be set who is it coming from. Now, wait a minute and check both accounts balances:
+Note that our first function `coinBalanceOf` was simply called directly on the contract instance and returned a value. This was possible since this was a simple read operation that incurs no state change and which executes locally and synchronously. Our second function `sendCoin` needs a `.sendTransaction()` call. Since this function is meant to change the state (write operation), it is sent as a transaction to the network to be picked up by miners and included in the canonical blockchain. As a result the consensus state of all participant nodes will adequately reflect the state changes resulting from executing the transaction. Sender address needs to be sent as part of the transaction to fund the fuel needed to run the transaction. Now, wait a minute and check both accounts balances:
 
     tokenInstance.coinBalanceOf.call(eth.accounts[0])/100 + "% of all tokens"
     tokenInstance.coinBalanceOf.call(eth.accounts[1])/100 + "% of all tokens"
@@ -107,7 +107,7 @@ Right now this cryptocurrency is quite limited as there will only ever be 10,000
       }
     }
 
-You could modify this to anything else: maybe reward someone who finds a solution for a new puzzle, wins a game of chess, install a solar panel—as long as that can be somehow translated to a contract. Or maybe you want to create a central bank for your personal country, so you can keep track of hours worked, favors owed or control of property. In that case you might want to add a function to allow the bank to remotely freeze funds and destroy tokens if needed. 
+You could modify this to anything else: maybe reward someone who finds a solution for a new puzzle, wins a game of chess, install a solar panel—as long as that can be somehow translated to a contract. Or maybe you want to create a central bank for your personal country, so you can keep track of hours worked, favours owed or control of property. In that case you might want to add a function to allow the bank to remotely freeze funds and destroy tokens if needed. 
 
 
 ### Register a name for your coin
@@ -122,10 +122,10 @@ Just replace the address at the end for your own token address, then anyone that
 
 All accounts are referenced in the network by their public address. But addresses are long, difficult to write down, hard to memorize and immutable. The last one is specially important if you want to be able to generate fresh accounts in your name, or upgrade the code of your contract. In order to solve this, there is a default name registrar contract which is used to associate the long addresses with short, human-friendly names.
 
-Names have to use only alphanumeric characters and, cannot contain blank spaces. In future releases the name registrar will likely implement a bidding process to prevent name squatting but for now, it's a first come first served based. So as long as no one else registered the name, you can claim it.
+Names have to use only alphanumeric characters and, cannot contain blank spaces. In future releases the name registrar will likely implement a bidding process to prevent name squatting but for now, it works on a first come first served basis: as long as no one else registered the name, you can claim it.
 
 
-First, if you register a name, then you won't need the hard coded address in the end. Select a nice coin name for you and try to reserve for yourself. First, select your name:
+First, if you register a name, then you won't need the hardcoded address in the end. Select a nice coin name and try to reserve it for yourself. First, select your name:
 
     var tokenName = "MyFirstCoin"
 

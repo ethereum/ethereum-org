@@ -2,14 +2,11 @@ Now that you mastered the basics on how to get started and how to send ether, it
 
 What can you do with contracts? You can do almost anything really, but for this guide let's do something simple: you will start your new country.
 
-Your country won't be very powerful compared to most: it will hold no land, have no military and hold no assets other than those that exist on the blockchain. All it's citizens will be voluntary and it is unable to coerce other people by force. 
+Your country won't be very powerful compared to most: it will hold no land, have no military and hold no assets other than those that exist on the blockchain. All its citizens will be voluntary and it is unable to coerce other people by force. 
 
 But what it can do is to gather support around a united cause. You will get funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
 
 So let's start now.
-
-
-**Important: Frontier is considered a test network. All contracts might be wiped when the project transitions to the next phase, and all ether they contain will be lost. Only send small amounts of funds to contracts, unless are okay losing them.**
 
 [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
 
@@ -20,7 +17,7 @@ So let's start now.
 
 Now that you’ve mastered the basics of Ethereum, let’s move into your first serious contract. It’s a big open territory and sometimes you might feel lonely, so our first order of business will be to create a little automatic companion to greet you whenever you feel lonely. We’ll call him the “Greeter”.
 
-The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is it's code:
+The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
 
     contract mortal {
@@ -47,13 +44,13 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         }
     }
 
-You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because in Solidity has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
+You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
 
-_"Mortal"_ and _"owned" simply means that the greeter contract can be killed by it's owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
+_"Mortal"_ and _"owned" simply means that the greeter contract can be killed by its owner in order to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
 
 ### Compiling your contract
 
-Before you are able to upload it thou, you'll need two things: the compiled code, and the Application Binary Interface, which is a sort of user guide on how to interact with the contract.
+Before you are able to upload it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a sort of reference template that defines how to interact with the contract.
 
 The first you can get by using a compiler. You should have a solidity compiler built in on your geth console. To test it, use this command:
 
@@ -65,7 +62,7 @@ If you have it installed, it should output something like this:
 
 If instead the command returns an error, then read the documentation on how to install a compiler, use Aleth zero or use the  [online solidity compiler](https://chriseth.github.io/cpp-ethereum/). 
 
-If you have Geth Solidity Compiler installed,  you need now reformat by removing spaces so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
+If you have the SolC Solidity Compiler installed,  you need now reformat by removing spaces so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
 
     var greeterSource = 'contract mortal { address owner; /* this function is executed at initialization and sets the owner of the contract */ function mortal() { owner = msg.sender; } /* Function to recover the funds on the contract */ function kill() { if (msg.sender == owner) suicide(owner); } } contract greeter is mortal { string greeting; /* this runs when the contract is executed */ function greeter(string _greeting) public { greeting = _greeting; } /* main function */ function greet() constant returns (string) { return greeting; } }'
 
@@ -81,7 +78,7 @@ You have now compiled your code. Now you need to get it ready for uploading, and
        console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
     })
 
-You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload \(according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/)\), at the moment of this writing gas on the test net is costing 1 to 10 microethers (nicknamed "szabo"). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
+You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload \(according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/)\), at the time of writing, gas on the test net is costing 1 to 10 microethers (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
 
 **Notice that that cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, people who are running computers who keep the network running. Gas is set by market prices based on the current supply and demand of computation.**
 
@@ -99,7 +96,7 @@ In order to call your bot, just type the following command in your terminal:
 
     greeterInstance.greet();
 
-Since this contract changes nothing on the blockchain, then it returns instantly and without any gas cost. You should see it return:
+Since this contract changes nothing on the blockchain, it returns instantly and without any gas cost. You should see it return:
 
     'Hello World!'
 
@@ -122,7 +119,7 @@ This particular example can be instantiated by anyone by simply calling:
 Replace _greeterAddress_ with your contract's address.
 
 
-**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler . To do so, use the code below carefully replacing greeterCompiled.greeter.info.abiDefinition  with the abi from your compiler.**
+**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing `greeterCompiled.greeter.info.abiDefinition`  with the abi from your compiler.**
 
 
 
@@ -138,9 +135,9 @@ You can verify that the deed is done simply seeing if this returns 0:
 
     eth.getCode(greeterInstance.contractAddress)
 
-Notice that every contract has to implement it's own kill clause. In this particular case only the account that created the contract can kill it. 
+Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 
-If you don't add any kill clause it could potentially live forever (or at least until the frontier contracts are all wiped) independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on civil rights of sentient digital beings. Treat your bots humanely.
+If you don't add any kill clause it could potentially live forever (or at least until the frontier contracts are all wiped) independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on the civil rights of sentient digital beings. Treat your bots humanely.
 
 
 

@@ -12,7 +12,7 @@ In order to navigate the Frontier, you’ll need to use the command line. If you
 
 ### Install: Mac and Linux
 
-The Frontier tool is called Geth (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). In order to get it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) and paste the command below. 
+The Frontier tool is called Geth (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). In order to geth it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) and paste the command below. 
 
     bash <(curl https://install-geth.ethereum.org)  
 
@@ -39,14 +39,14 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
     geth console
 
-Tip: Typing **web3** will list all the available packages, fields and functions provided by Geth. The most commonly used you should be aware of are the packages: **admin** (administering your node), **pesonal** (managing your accounts), **miner** (handling mining operations) and **eth** (interacting with the blockchain).
+Tip: Typing **web3** will list all the available packages, fields and functions provided by Geth. The most commonly used you should be aware of are the packages: **admin** (administering your node), **personal** (managing your accounts), **miner** (handling mining operations) and **eth** (interacting with the blockchain).
 
 **ATTENTION: If you just want to test the technology and play around, DON'T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.**
 
 
 ### Connecting to a private test net
 
-Sometimes you might not want to connect to the live public network. Instead, you can choose to create your own private testnet. This is very useful if you don't need to test public contracts and want just to try- or develop on the technology. Since you would be only one mining, you can easily get a lot of ether to test your code. 
+Sometimes you might not want to connect to the live public network. Instead, you can choose to create your own private testnet. This is very useful if you don't need to test public contracts and want just to try- or develop on the technology. Since you would be only one mining, you can easily get a lot of ether to test your code as well as have the ability to flexibly control the inclusion of transactions in the blockchain.
 
     geth --networkid 12345 --genesisnonce 678 --datadir ~/.ethereum_experiment console
 
@@ -65,17 +65,17 @@ You don't need to add all clients to every other, once connected, they will shar
 
 ### Logs 
 
-You'll notice that there are many log entries popping up on your console, sometimes while you type. This is because all the warnings and progress information are logged live by a running node. If you want to save the logs to a file you can see later, use this command:
+You'll notice that there are many log entries popping up on your console, sometimes while you type. This is because all the warnings and progress information are logged live by a running node. If you want to save the logs to a file you can view later, use this command:
 
     geth console 2>>geth.log
 
-An better solution however, is to run multiple terminal windows with the logs in one and your current task in another. This can be done by attaching a new console to an already running Geth process. This will give you the exact same functionality as the original console, but in a fresh and clean environment.
+Another solution is to run multiple terminal windows with the logs in one and your current task in another. This can be done by attaching a new console to an already running Geth process. This will give you the exact same functionality as the original console, but in a fresh and clean environment.
 
     geth attach
 
 The console has history that persists between sessions. You can navigate your command history by using the up and down arrow keys.
 
-#### Learn More on Running
+#### Learn More on Running a node
 
 * [Backup and restore](http://ethereum.gitbooks.io/frontier-guide/content/backup_restore.html)
 * [Connecting to the network](http://ethereum.gitbooks.io/frontier-guide/content/connecting.html)
@@ -97,6 +97,7 @@ You may create as many or as few accounts as you like. By convention we call the
  
     eth.accounts
 
+The order of accounts reflect the time of creation. Keyfiles are stored under DATADIR/keystore and are transferrable between geth nodes simply by copying. Note, however, if you transfer individual key files, the order of accounts presented may change and you may not end up the same account on the same position. So be aware that relying on account index is sound only as long as you do not copy external keyfiles to your keystore.
 
 ### Get the balance of any account
 

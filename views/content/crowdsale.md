@@ -4,13 +4,11 @@
 
 Sometimes a good idea takes a lot of funds and collective effort. You could ask for donations, but donors prefer to give to projects they are more certain that will get traction and proper funding. This is an example where a crowdfunding would be ideal: you set up a goal and a deadline for reaching it. If you miss your goal, the donations are returned, therefore reducing the risk for donors. Since the code is open and auditable, there is no need for a centralized trusted platform and therefore the only fees everyone will pay are just the gas fees.
 
-In a crowdfunding prizes are usually given. This would require you to get everyones contact information and keep track of who owns what. But since you just created your own token, why not use that to keep track of the prizes? This allows donors to immediatly own something after they donated. They can store it safely, but they can also sell or trade it if they realize they don't want the prize anymore. If your idea is something physical, all you have to do after the project is completed is to give the product to everyone who sends you back a token. If the project is digital the token itself can be immediatly be used for users to participate or get entry on your project.
-
-**Attention: All contracts could be wiped out at the end of Frontier. While balances on normal addresses will be transported to Homestead, balances in contracts, as well as addresses with less than 1 ether, will not. So use this crowdfunding contract for testing purposes and don't put any significant funds unless you know what you are doing.**
+In a crowdfunding prizes are usually given. This would require you to get everyone's contact information and keep track of who owns what. But since you just created your own token, why not use that to keep track of the prizes? This allows donors to immediately own something after they donated. They can store it safely, but they can also sell or trade it if they realize they don't want the prize anymore. If your idea is something physical, all you have to do after the project is completed is to give the product to everyone who sends you back a token. If the project is digital the token itself can immediately be used for users to participate or get entry on your project.
 
 ### The code
 
-The way this particular crowdsale contract works is that you set an exchange rate for your token and then the donors will immediatly get a proportional amount of tokens in exchange of their ether. You will also choose a funding goal and a deadline: once that deadline is over you can ping the contract and if the goal was reached it will send the ether raised to you, otherwise it goes back to the donors. Donors keep their tokens even if the project doesnt reach it's goal, as a proof that they helped.
+The way this particular crowdsale contract works is that you set an exchange rate for your token and then the donors will immediately get a proportional amount of tokens in exchange of their ether. You will also choose a funding goal and a deadline: once that deadline is over you can ping the contract and if the goal was reached it will send the ether raised to you, otherwise it goes back to the donors. Donors keep their tokens even if the project doesn't reach its goal, as a proof that they helped.
 
     
     
@@ -81,7 +79,7 @@ You know the drill. [Remove line breaks](http://www.textfixer.com/tools/remove-l
 
 On Beneficiary put the new address that will receive the raised funds. The funding goal is the amount of ether to be raised. Deadline is measured in blocktimes which average 12 seconds, so the default is about 4 weeks. The price is tricky: but just change the number 2 for the amount of tokens the contributors will receive for each ether donated. Finally reward should be the address of the token contract you created in the last section.
 
-In this example you are sending to the crowdsale fund 50% of all the tokens that ever existed, in exchange for 100 ether. Decide those parameters very carefully as they will play a very important role on the next part of our guide.
+In this example you are sending to the crowdsale fund 50% of all the tokens that ever existed, in exchange for 100 ether. Decide those parameters very carefully as they will play a very important role in the next part of our guide.
 
 
     var crowdsaleContract = web3.eth.contract(crowdsaleCompiled.CrowdSale.info.abiDefinition);
@@ -160,7 +158,7 @@ Wait for the previous transaction to be picked up and then:
 
 ### Contribute to the crowdsale
 
-Contributing to the crowdsale is very simple, it doesn't even require instantiating the contract. This is because the crowdsale responds to simple ether deposits, so anyone that sends ether to the crowdsale will automatically receive a rewar
+Contributing to the crowdsale is very simple, it doesn't even require instantiating the contract. This is because the crowdsale responds to simple ether deposits, so anyone that sends ether to the crowdsale will automatically receive a reward.
 Anyone can contribute to it by simply executing this command: 
 
     var amount = web3.toWei(5, "ether") // decide how much to contribute
@@ -197,7 +195,7 @@ The crowdsale instance is setup to self destruct once it has done its job, so if
 
     eth.getCode(crowdsaleInstance.address)
 
-So you raised a 100 ethers and sucessfully distributed your original coin among the crowdsale donors. What could you do next with those things?
+So you raised a 100 ethers and successfully distributed your original coin among the crowdsale donors. What could you do next with those things?
 
 
 

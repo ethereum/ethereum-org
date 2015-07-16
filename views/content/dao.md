@@ -6,7 +6,7 @@
 
 So far you created a tradeable token and you successfully distributed it among all those who were willing to help fundraise a 100 ethers. That's all very interesting but what exactly are those tokens for?  Why would anyone want to own or trade it for anything else valuable? If you can convince your new token is the next big money maybe others will want it, but so far your token offers no value per se. We are going to change that, by creating your first decentralized autonomous organization, or DAO.
 
-Think of the DAO as the constitution of a country, the executive branch of a government or maybe like a  robotic manager for an organization. The DAO receives the money that your organization raises, keeps it safe and uses it to fund whatever its members want. The robot is incorruptible, will never defraud the bank, never create secret plans, never use the money for anything other than what it's constituents voted on. The DAO will never disappear, never run away and cannot be controlled by anyone other than it's own citizens.
+Think of the DAO as the constitution of a country, the executive branch of a government or maybe like a  robotic manager for an organization. The DAO receives the money that your organization raises, keeps it safe and uses it to fund whatever its members want. The robot is incorruptible, will never defraud the bank, never create secret plans, never use the money for anything other than what its constituents voted on. The DAO will never disappear, never run away and cannot be controlled by anyone other than its own citizens.
 
 The token we created using the crowdsale is the only citizen document needed. Anyone who holds any token is able to create and vote on proposals. Similar to being a shareholder in a company, the token can be traded on the open market and the vote is proportional to amounts of tokens the voter holds.  
 
@@ -124,7 +124,7 @@ Take a moment to dream about the revolutionary possibilities this would allow, a
 
 
 
-There's a lot of going on but it's simpler than it looks. The rules of your organization are very simple: anyone with at least one token can create proposals to send funds from the country's account. After a week of debate and votes, if it has received votes totally at least 100 tokens and has more approvals than rejections, the funds will be sent. If the quorum hasn't been met or it ends on a tie, then voting is kept until it's resolved. Otherwise, the proposal is locked and kept for historical purposes.
+There's a lot of going on but it's simpler than it looks. The rules of your organization are very simple: anyone with at least one token can create proposals to send funds from the country's account. After a week of debate and votes, if it has received votes worth a total of 100 tokens or more and has more approvals than rejections, the funds will be sent. If the quorum hasn't been met or it ends on a tie, then voting is kept until it's resolved. Otherwise, the proposal is locked and kept for historical purposes.
 
 So let's recap what this means: in the last two sections you created 10,000 tokens, sent 1,000 of those to another account you control, 2,000 to a friend named Alice and distributed 5,000 of them via a crowdsale.  This means that you no longer control over 50% of the votes in the DAO, and if Alice and the community bands together, they can outvote any spending decision on the 100 ethers raised so far. This is exactly how a democracy should work. If you don't want to be a part of your country anymore the only thing you can do is sell your own tokens on a decentralized exchange and opt out, but you cannot prevent the others from doing so.
 
@@ -139,7 +139,7 @@ So open your console and let's get ready to finally put your country online:
     var minimunQuorum = 10; // Minimun amount of voter tokens the proposal needs to pass
     var debatingPeriod = 5; // debating period, in minutes;
 
-Choose these parameters with care..
+Choose these parameters with care.
 
     var daoContract = web3.eth.contract(daoCompiled.Democracy.info.abiDefinition);
     
@@ -219,7 +219,7 @@ After you are satisfied with what you want, it's time to get all that ether you 
 
     eth.sendTransaction({from: eth.accounts[1], to: daoInstance.address, value: web3.toWei(100, "ether")})
 
-This should take only a minute and your country is ready for business! Now, as a first priority, your organization needs a nice logo, but unless you are a designer, you have no idea how to do that. For the sake of argument let's say you find that your friend Bob is a great designer who's willing to do it for only 10 ethers, so you want to propose to hire him. 
+This should take only a minute and your country is ready for business! Now, as a first priority, your organisation needs a nice logo, but unless you are a designer, you have no idea how to do that. For the sake of argument let's say you find that your friend Bob is a great designer who's willing to do it for only 10 ethers, so you want to propose to hire him. 
 
     recipient = registrar.addr("bob");
     amount =  web3.toWei(10, "ether");
@@ -266,7 +266,7 @@ Then anyone who owns any of your tokens can vote on the proposals by doing this:
     daoInstance.vote.sendTransaction(proposalID, position, {from: eth.accounts[0], gas: 1000000});
 
 
-Unless you changed the basic parameters in the code, any proposal will have to be debated for at least a week until it can be executed. After that anyone—even a non-citizen—can demand the votes to be counted and the proposal to be executed. The votes are tallied and weighted at that moment and if the proposal is accepted then the ether is sent immediately and the proposal. If the votes end in a tie or the minimum quorum hasn’t been reached, the voting is kept open until the stalemate is resolved. If it loses, then it's archived and cannot be voted again.
+Unless you changed the basic parameters in the code, any proposal will have to be debated for at least a week until it can be executed. After that anyone—even a non-citizen—can demand the votes to be counted and the proposal to be executed. The votes are tallied and weighted at that moment and if the proposal is accepted then the ether is sent immediately and the proposal is archived. If the votes end in a tie or the minimum quorum hasn’t been reached, the voting is kept open until the stalemate is resolved. If it loses, then it's archived and cannot be voted again.
 
     var proposalID = 1;
     daoInstance.executeProposal.sendTransaction(proposalID, {from: eth.accounts[0], gas: 1000000});
@@ -293,16 +293,16 @@ For the sake of simplicity, we only used the democratic organization you created
 
 * The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further develop the first contract and grow the organization.
 
-* Your DAO could own it's own name on the name registrar, and then change where it's redirecting in order to update itself if the token holders approved.
+* Your DAO could own its own name on the name registrar, and then change where it's redirecting in order to update itself if the token holders approved.
 
 * The organization could hold not only ethers, but any kind of other coin created on ethereum, including assets whose value are tied to the bitcoin or dollar. 
 
 * The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future. 
-It could also own shares of other DAO's, meaning it could vote on larger organization or be a part of a federation of DAO's
+It could also own shares of other DAO's, meaning it could vote on larger organization or be a part of a federation of DAO's.
 
-* The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders, linking therefore the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address
+* The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.
 
-This all means that this tiny society you created could grow, get funding from third parties, pay recurrent salaries, own any kind of cryptoassets and even use crowdsales to fund its activities. All with full transparency, complete accountability and complete immunity from any human interference. While the network lives the contracts will execute exactly the code they were created to execute, without any exception, forever.
+This all means that this tiny society you created could grow, get funding from third parties, pay recurrent salaries, own any kind of crypto-assets and even use crowdsales to fund its activities. All with full transparency, complete accountability and complete immunity from any human interference. While the network lives the contracts will execute exactly the code they were created to execute, without any exception, forever.
 
 So what will your contract be? Will it be a country, a company, a non-profit group? What will your code do? 
 
