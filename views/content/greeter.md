@@ -187,7 +187,7 @@ This particular example can be instantiated by anyone by simply calling:
 Replace _greeterAddress_ with your contract's address.
 
 
-**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing `greeterCompiled.greeter.info.abiDefinition`  with the abi from your compiler.**
+**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing _greeterCompiled.greeter.info.abiDefinition_  with the abi from your compiler.**
 
 
 ### Cleaning up after yourself: 

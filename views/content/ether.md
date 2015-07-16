@@ -83,7 +83,11 @@ There are many ways in which you can use Bitcoins within the Ethereum ecosystem:
 
 Before you decide to import your presale ether wallet, please remember that Frontier is a public, live test network. **It is dangerous, potentially full of bugs and is prone to instability. If you understand the risks and still want to go forward, then importing your presale wallet is very easy.
 
-If you are still on the console, then quit it by typing `exit` or pressing _control+C_, then execute this:
+If you are still on the console, then quit it by pressing _control+C_ or typing:
+
+    exit
+
+Then execute this:
 
     geth wallet import /path/to/my/presale.wallet 
 
@@ -120,7 +124,6 @@ Before you execute your first ether transfer you need a friend to send your ethe
 
 The first two lines set local variables with account numbers for easier access later. Change the sender and recipient addresses to whatever you like. If you are adding a friend's account address instead, put it in between quotes like ‘0xffd25e388bf07765e6d7a00d6ae83fa750460c7e'. The third line converts the chosen amount to the network's base unit (wei).
 
-<<<<<<< HEAD
 Although there are many names for ether denominations, we will use only two: “ether” and “wei”. Wei is the atomic unit of ether, and is the one used on the system level. Most day-to-day transactions will be done with ether, which is equivalent to one quintillion wei, or a 1 followed by 18 zeros. So before sending any transactions, it’s very important to convert the amount to wei, and for that, you can use the _web3.toWei_ function.
 
 After having set the variables above, send the transaction with:
