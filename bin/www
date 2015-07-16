@@ -1,35 +1,9 @@
 #!/usr/bin/env node
-
-'use strict';
-
 var debug = require('debug')('frontier.ethereum.org');
-var ssl_options = require('../config/config').ssl_options;
-var utils = require('../lib/utils');
-var http = require('http');
-var https = require('https');
 var app = require('../app');
 
-var useSSL = utils.isFile('./keys/ssl/cert.key');
-
-if(useSSL) {
-	var ssl_options = {
-		key: utils.getFile('./keys/ssl/cert.key'),
-		cert: utils.getFile('./keys/ssl/cert.crt'),
-		requestCert: false
-	};
-}
-
 app.set('port', process.env.PORT || 3000);
-app.set('httpsPort', process.env.SSL_PORT || 3443);
 
-var server = http.createServer(app);
-server.listen(app.get('port'), function() {
-	debug('Express server listening on port ' + server.address().port);
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
 });
-
-if(useSSL) {
-	var secureServer = https.createServer(ssl_options, app);
-	secureServer.listen(app.get('httpsPort'), function() {
-		debug('Express secure server listening on port ' + secureServer.address().port);
-	});
-}

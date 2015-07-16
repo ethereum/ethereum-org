@@ -1,0 +1,53 @@
+extends layout
+
+block content
+
+  div.inner-header.scrollme
+    div.breadcrumb.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
+      a(href="/").index Ethereum Frontier 
+      | »  
+      strong Press Kit 
+
+    figure.ethereum-logo.animateme(data-when="exit", data-from="0", data-to="1", data-translatey="120", data-opacity="0.5", data-scale="0.6", data-easing="linear")
+
+    h3.center.animateme(data-when="exit", data-from="0", data-to="0.5", data-translatey="30", data-opacity="0", data-scale="0.7", data-easing="linear")  Press Kit
+
+
+  div.main-tutorial.inner-page.press-kit
+    div.container  
+      div.row
+        div.col-md-12
+          include:md content/press-kit.md        
+
+  div.main-tutorial.inner-page.press-kit.even
+    div.container  
+      div.row
+        div.col-md-12
+          h2 Download Assets
+
+          p
+            img(alt="Ethereum Light Background", src="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_HOR-HIGH-small.png") 
+            |  Ethereum Light background: 
+            a(href="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_HOR-HIGH.png") PNG 
+            | or 
+            a(href="images/logos/ETHEREUM_LOGO_AND_TYPEFACE_HOR.ai") AI
+
+          p
+            img(alt="Ethereum Dark Background", src="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_HOR_INV_TRANS-small.png") 
+            |  Ethereum Dark background: 
+            a(href="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_HOR_INV_TRANS.png") PNG 
+            | or 
+            a(href="images/logos/ETHEREUM _LOGO AND TYPEFACE_HOR_INV.ai") AI
+
+          p
+            img(alt="Ethereum Horizontal", src="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_LAN-small.png") 
+            |  Ethereum Logo Horizontal 
+            a(href="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_LAN.png") PNG 
+            | or 
+            a(href="images/logos/ETHEREUM _LOGO AND TYPEFACE_LAN.ai") AI
+
+
+
+
+          
+

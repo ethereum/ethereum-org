@@ -1,9 +1,12 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic);
+
+
 body {
 	-webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Wicked-Grit', serif;
+	font-family: 'Wicked-Grit', Arial, sans-serif serif;
 	letter-spacing: -1px;
 	margin: 10px 0;
 	font-weight: 400;
@@ -15,11 +18,10 @@ h1 {
 }
 
 h2 {
-	background: url('../images/bg_hr.png') repeat-x bottom;
-	font-size: 28px;
+	font-size: 30px;
 	text-transform: uppercase;
-	color: #b9a360;
-	padding-bottom: 10px;
+	color: #F9D774;
+	padding-bottom: 30px;
 }
 
 h3 {
@@ -43,7 +45,7 @@ p {
 }
 
 a {
-	color: #d19020;
+	color: #D13C15;
 }
 
 a:hover {
@@ -51,28 +53,46 @@ a:hover {
 	cursor: pointer;
 }
 
+.float-right {
+	float:right;
+	margin-left: 30px;
+	padding-bottom: 30px;
+	/*clear: both;*/	
+}
+
+.float-left {
+	float: left;
+	margin-right: 30px;
+	padding-bottom: 30px;	
+}
+
+.center { 
+	text-align: center;
+	max-width: none !important;
+}
+
+.clear {
+	margin-bottom: 120px;
+}
+
 .container {
 	max-width: 970px;
-}
-
-.btn {
-	text-transform: uppercase;
-	font-family: 'Holtwood One SC', serif;
-	font-size: 13px;
-	letter-spacing: -1px;
-}
-
-header, footer {
-	padding: 20px 0px;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
+	font-weight: 600;
 }
 
 header {
-	position: relative;
-	height: 70vh;
-	min-height: 600px;
-	background: url('../images/bg.jpg') center center no-repeat;
-	background-size: cover;
+	padding: 20px 0px;
+	color: #fafafa;
+}
 
+header {
+	height: 60vh;
+	min-height: 440px;
+	background: url('../images/Frontier-Background.jpg') center center no-repeat;
+	background-size: cover;
+	position: relative;
+	
 	display: -webkit-flex;
 	-webkit-justify-content: center;
 	-webkit-align-items: center;
@@ -86,30 +106,71 @@ header {
 	align-items: center;
 }
 
+div.scrollme.intro {
+	background: #1f0c05;
+	overflow: hidden;
+	position: relative;
+	z-index: 40;
+}
+
+div.scrollme.row.introduction {
+	height: 70vh;
+	min-height: 440px;
+	background: url('../images/Frontier-Background.jpg') center center no-repeat;
+	background-size: cover;	
+	padding-top: 50px;
+}
+
+.introduction h1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 250px;
+	height: 0;
+	padding-top: 290px;
+	margin-top: -200px;
+	margin-left: -125px;
+	background: url('../images/Title+Logo.png') top center no-repeat;
+	background-size: 250px 290px;
+	overflow: hidden;
+}
+
 header:after {
 	content: " ";
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	width: 100%;
-	height: 150px;
 	background: linear-gradient(transparent, #1f0c05);
+	height: 100px;
+	position: absolute;	
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
-header .title {
-	background: url('../images/logo.png') top center no-repeat;
-	background-size: 100% auto;
-	width: 383px;
-	height: 450px;
+.main-content:before {
+	content: " ";
+	background: linear-gradient(transparent, #1f0c05);
+	height: 100px;
+	position: absolute;	
+	top: -100px;
+	left: 0;
+	right: 0;
+}
+
+.status-bar {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: flex;
+}
+
+.status-bar > div {
 	overflow: hidden;
-	margin-top: -140px;
+	min-width: 100px;
 }
 
-#block-content span.block-hash {
+#block-content .status-bar span.block-hash {
 	color: #eb453e;
 }
 
-#block-content span {
+#block-content .status-bar span {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -132,7 +193,7 @@ header .title {
 }
 
 #block-content span {
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-size: 18px;
 	color: #F6E6CC;
 	font-smooth: auto;
@@ -141,55 +202,1344 @@ header .title {
 }
 
 .main-content {
+	padding-top: 40px;
 	color: #F6E6CC;
 	background: #1f0c05;
-	padding-top: 40px;
-	margin-bottom: -45px;
+	position: relative;
+	z-index: 50;
 }
 
-.main-content .col-md-6,
-.main-content .col-md-12 {
-	margin-bottom: 45px;
+
+.main-tutorial {
+	background: #FFF url("../images/bg.png");
+	overflow: hidden;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
+	font-size: 18px;
+	color: #443A37;
+	position: relative;
+	display: none;
+	-webkit-background-blend-mode: multiply;
+	background-blend-mode: multiply;
+	min-width: 300px;
 }
 
-ul {
-	padding-left: 20px;
+.main-tutorial.even {
+	/*background: #FFF5DE url("../images/bg.png");*/
+	background: #FFFAEE url("../images/bg.png");
+
 }
 
-.terms-checkbox {
-	margin-right: 30px;
-	margin-top: 6px;
+
+
+/*
+.main-tutorial.part2 {
+	background: #FFB51A;
 }
 
-.terms-checkbox input {
+.main-tutorial.part3 {
+	background: #D54839;
+}
+
+.main-tutorial.part4 {
+	background: #EFE6C4;
+}*/
+
+.main-tutorial p {
+	padding: 0 20px 0;
+}
+
+.center-align {
+	text-align: center;
+}
+
+
+.inner-tutorial h1 {
+	color: #D13C15;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 40px;
+}
+
+#tutorial-start h2 {
+	padding-bottom: 0;
+}
+
+.main-tutorial h2 {
+	/*font-family: "Roboto Slab";*/
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: 900;
+	color: #682615;
+	background: transparent;
+	padding: 80px 20px 20px;
+	text-align: center;
+}
+
+.main-tutorial h3 {
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
+	font-size: 26px;
+	font-weight: 600;
+	color: #D13C15;
+	background: transparent;
+	max-width: 400px;
+	padding: 60px 20px 30px 70px;
+	position: relative;
+}
+
+
+
+.tutorial-end h3 {
+	padding: 30px 20px;
+	max-width: none;
+	text-align: center;
+}
+/*
+h3 strong {
+	color: #6D3122
+}
+*/
+.inner-tutorial h1 + h2 {
+	padding-top: 0;
+	margin-top: -40px;
+}
+
+.main-tutorial h2 + h3 {
+	padding-top: 0;
+}
+
+.main-tutorial h2 + h3 .number {
+	top: 0;
+}
+
+.main-tutorial h3 + h2 {
+	padding-top: 0;
+	margin-top: -50px
+}
+
+.main-tutorial .row {
+	padding: 80px 0;
+}
+
+.number {
+	display: inline-block;
+	background: #682615;
+	width: 56px;
+	height: 56px;
+	border-radius: 28px;
+	color: #FFFAEE;
+	text-align: center;
+	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-size: 40px;
+	padding-top: 5px;
+	margin-right: 10px;
+	position: absolute;
+	top: 60px;
+	left: 0;
+}
+
+/*.inner-tutorial ul,*/
+.recipe {
+	background: #FFF url("../images/recipe-bg.png");
+	background-repeat: repeat-y;
+	background-position: 20px;
+	display: block;
+	float: left;
+	width: 500px;
+	padding: 20px 40px;
+	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
+}
+/*
+.inner-tutorial ul {
+	padding-left: 60px;
+}*/
+
+/*.inner-tutorial h4 {
+	text-align: center;
+}*/
+
+.recipe h4 {
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
+	text-transform: uppercase;	
+	color: #D13C15;
+	font-weight: 600;
+	text-align: center;
+	font-size: 20px;
+}
+
+.recipe ul {
+	list-style-type: none;
+	font-weight: 600;
+	padding-left: 0;
+}
+
+.recipe li {
+	padding-left: 0;
+}
+
+.recipe ul ul {
+	padding-left: 30px;
+	font-weight: 400;
+}
+
+.recipe input[type='checkbox'] {
 	margin-right: 10px;
 }
 
-pre, code {
+.inner-page h4  ,
+.inner-tutorial h4  {
+	color: #682615;
+	padding: 20px 20px 0;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
+	text-transform: uppercase;
+	font-weight: 800;
+}
+
+.inner-tutorial h5 {
+	color: rgba(255,255,255,0.6);
+	text-align: center;
+	font-size: 80%;
+	padding-top: 0;
+	background: #eb453e;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -10px;
+	padding: 5px;
+}
+
+.inner-tutorial h5 strong {
+	color: #FFF;
+}
+
+#tutorial-start {
+	display: none;
+}
+
+#tutorial-start:target {
+	display: block;
+}
+
+.main-tutorial figure {
+	float: right;
+	margin: 60px 0 30px 30px;	
+	position: relative;
+	width: 100%;
+}
+
+.main-tutorial figure div {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+input.button,
+button,
+a.button {
+	display: block;
+	position: relative;
+	width: 400px;
+	padding: 10px;
+	float: right;
+	clear: right;
+	margin-top: 60px;
+	margin-bottom: 30px;
+	background: #F15625;
+	color: #FFFAEE;
+	font-weight: 600;
+	border-radius: 3px;
+	border: none;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;	
+	text-align: center;
+	text-decoration: none;
+	font-weight: 600;
+	-webkit-appearance: none;
+}
+
+input.button, 
+button:hover,
+a.button:hover {
+	border-bottom: solid 3px #AB3C19;
+	top: -3px;
+	text-shadow: rgba(0,0,0,0.2) 0 -1px 0;
+	box-shadow: rgba(0,0,0,0.1) 0 4px 1px;
+}
+
+input.button:hover {
+	color: #FFF;
+}
+
+.breadcrumb {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	text-align: left;
+	position: fixed;
+	z-index: 99;
+	left: 0;
+	right: 0;
+	top: 0;
+	color: #F6E6CC;
+	background: #1f0c05;  
+	padding: 10px 40px;
+	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-size: 14px;
+	z-index: 10;
+	background-image: url("../images/diamond-icon.png");
+	background-size: 19px 30px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.breadcrumb strong {
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+.breadcrumb a {
+	padding: 0 5px;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
+	text-transform: uppercase;
+}	
+
+.breadcrumb a.index {
+	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	}
+
+.warning .short-terms a {
+	color: #FFF;
+}
+
+.warning a.button {
+	background-color: #FFFAEE;
+	color: #F15625;
+	margin: 30px auto;
+	float: none;
+}
+
+.terms,
+.cannot-continue  {
+	color: #FFFAEE;
+	text-align: center;
+	font-weight: 600;
+	display: block;
+	padding-top: 60px;
+}
+
+.warning a.back {
+	color: #FFFAEE;
+	font-size: 80%;
+	padding-top: 15px;
+}
+
+.warning a.back,
+.terms:hover {
+	color: #FFF;
+}
+
+.cannot-continue {
+	color: #eb453e;
+}
+
+/* FOOTER */
+
+.footer h2 {
+	padding-top: 20px;
+	padding-bottom: 0;
+}
+
+.copyright {
+	font-size: 80%;
+	text-align: center;
+	opacity: 0.5;
+}
+
+.copyright:hover {
+	opacity: 1;
+}
+
+.developers ul {
+	padding-left: 10px;
+	color: #F6E6CC;
+}
+
+
+.community ul {
+	padding-left: 0;
+	list-style: none;
+}
+
+.community ul li a {
+	background-size: 40px 40px;
+	padding: 10px 40px;
+	display: block;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+.community ul li a[href='http://blog.ethereum.org'] {
+	background-image: url("../images/icons/icon-blog.png");
+}
+.community ul li a[href='http://forum.ethereum.org'] {
+	background-image: url("../images/icons/icon-forum.png");
+}
+.community ul li a.reddit {
+	background-image: url("../images/icons/icon-reddit.png");
+}
+.community ul li a.youtube {
+	background-image: url("../images/icons/icon-youtube.png");
+}
+.community ul li a.twitter {
+	background-image: url("../images/icons/icon-twitter.png");
+}
+.community ul li a.facebook {
+	background-image: url("../images/icons/icon-facebook.png");
+}
+.community ul li a.meetups {
+	background-image: url("../images/icons/icon-meetup.png");
+}
+
+.community li.canary {
+	background-image: url("../images/icons/canary.svg");	
+	background-size: 30px 30px;
+	background-position: left top;
+	background-repeat: no-repeat;	
+	min-height: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.community li.canary p {
+	/*visibility: hidden;*/
+	opacity: 0;
+	font-size: 80%;
+	transition: opacity 2s ease-out;
+}
+
+.community li.canary:hover p {
+	/*visibility: visible;*/
+	opacity: 1;
+	transition: opacity 0.25s ease-out;	
+}
+
+.press ul {
+	list-style: none;
+	padding-left: 140px;
+	position: relative;
+	max-height: 320px;
+	overflow: auto;
+}
+
+.press:after {
+	position: absolute;
+	content: " ";
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 200px;
+	background: linear-gradient(transparent, #1f0c05);
+	z-index: 100;
+}
+
+.press li {
+	height: 50px;
+	overflow: hidden;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.press li:last-child {
+	margin-bottom: 100px;
+}
+
+.press li span {
+	display: block;
+	position: absolute;
+	left: 0px;
+	overflow: hidden;
+	padding-left: 120px;
+	height: 50px;
+	width: 0;
+	background-size: -webkit-contain;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+
+.press > a {
+	position: relative;
+	z-index: 110;
+	text-align: center;
+	background: #290F03;
+	border-radius: 4px;
+	display: block;
+	padding: 10px;
+	margin: 20px 0;
+}
+
+.press > a:hover {
+	text-decoration: none;
+	background: #501A04;
+}
+
+.press li span.press-recode {
+	background-image: url("../images/icons/recode_large@2x.png");
+}
+
+.press li span.press-fast-company {
+	background-image: url("../images/icons/fast-company.png");
+}
+.press li span.press-reason {
+	background-image: url("../images/icons/reason.png");
+}
+.press li span.press-forbes {
+	background-image: url("../images/icons/forbes.png");
+}
+.press li span.press-telegraph {
+	background-image: url("../images/icons/the-telegraph.png");
+}
+.press li span.press-wired {
+	background-image: url("../images/icons/wired.png");
+}
+.press li span.press-wsj {
+	background-image: url("../images/icons/wall-street-journal.png");
+}
+.press li span.press-aljazeera {
+	background-image: url("../images/icons/al-jazeera.png");
+}
+.press li span.press-bloomberg {
+	background-image: url("../images/icons/bloomberg.png");
+}
+.press li span.press-new-scientist {
+	background-image: url("../images/icons/new-scientist.png");
+}
+
+
+/* FIGURES */
+
+figure.ethereum-network {
+	display: block;
+	width: 100%;
+	max-width: 488px;
+	height: 336px;
+	background-image: url("../images/ethereum-network.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+
+figure.geth-console {
+	display: block;
+	width: 100%;
+	max-width: 589px;
+	height: 281px;
+	background-image: url("../images/console.gif");
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-bottom: 50px;
+}
+
+
+figure.geth {
+	max-width: 380px;
+	height: 280px;
+}
+
+figure.geth .geth-background {
+	background-image: url("../images/geth.png");
+}
+
+figure.geth .geth-logo {
+	background-image: url("../images/geth-foreground.png");
+}
+/*
+figure.get-ether {
+	max-width: 194px;
+	height: 195px;
+}
+
+figure.geth-ether .get-ether-brick-0 {
+	background-image: url("../images/get-ether-brick-0.png");
+}
+
+figure.geth-ether .get-ether-brick-1 {
+	background-image: url("../images/get-ether-brick-1.png");
+}
+
+figure.geth-ether .get-ether-brick-2 {
+	background-image: url("../images/get-ether-brick-2.png");
+}
+
+figure.geth-ether .get-ether-brick-3 {
+	background-image: url("../images/get-ether-brick-3.png");
+}
+
+figure.geth-ether .get-ether-brick-4 {
+	background-image: url("../images/get-ether-brick-4.png");
+}
+
+figure.geth-ether .get-ether-brick-5 {
+	background-image: url("../images/get-ether-brick-5.png");
+}
+
+figure.geth-ether .get-ether-coin {
+	background-image: url("../images/get-ether-coin.png");
+}*/
+
+
+figure.ether {
+	max-width: 375px;
+	height: 388px;
+}
+
+figure.ether .ether-screen {
+	background-image: url("../images/ether-screen.gif");
+}
+figure.ether .ether-pacman {
+	background-image: url("../images/ether-pacman.gif");
+}
+figure.ether .ether-coin {
+	background-image: url("../images/ether-coin.png");
+}
+figure.ether .ether-arcade-front {
+	background-image: url("../images/ether-arcade-front.png");
+}
+figure.ether .ether-arcade-back {
+	background-image: url("../images/ether-arcade-back.png");
+}
+
+
+
+figure.greeter {
+	max-width: 317px;
+	height: 274px;
+}
+
+figure.greeter .greeter-human {
+	background-image: url("../images/greeter-human.png");
+}
+
+figure.greeter .greeter-robot {
+	background-image: url("../images/greeter-robot.png");
+}
+
+figure.greeter .greeter-question {
+	background-image: url("../images/greeter-question.png");
+}
+
+figure.greeter .greeter-answer {
+	background-image: url("../images/greeter-answer.png");
+}
+
+figure.coin {
+	max-width: 384px;
+	height: 342px;
+}
+
+figure.coin .coin-connection {
+	background-image: url("../images/token-connection.png");
+}
+figure.coin .coin-users {
+	background-image: url("../images/token-users.png");
+}
+figure.coin .coin-coins {
+	background-image: url("../images/token-coins.png");
+}
+figure.coin .coin-send {
+	background-image: url("../images/token-send.png");
+}
+
+
+figure.crowdsale {
+	max-width: 407px;
+	height: 384px;
+}
+
+figure.crowdsale .crowdsale-logic {
+	background-image: url("../images/crowdsale-logic.png");
+}
+
+figure.crowdsale .crowdsale-robot {
+	background-image: url("../images/crowdsale-robot.png");
+}
+figure.crowdsale .crowdsale-money {
+	background-image: url("../images/crowdsale-money.png");
+}
+figure.crowdsale .crowdsale-contributions {
+	background-image: url("../images/crowdsale-contributions.png");
+}
+figure.crowdsale .crowdsale-crowd {
+	background-image: url("../images/crowdsale-crowd.png");
+}
+
+figure.dao {
+	max-width: 420px;
+	height: 424px;
+}
+
+figure.dao .dao-robot {
+	background-image: url("../images/dao-robot.png");
+}
+
+figure.dao .dao-money {
+	background-image: url("../images/dao-money.png");
+}
+
+figure.dao .dao-arrows {
+	background-image: url("../images/dao-arrows.png");
+}
+
+figure.dao .dao-ideas {
+	background-image: url("../images/dao-ideas.png");
+}
+
+figure.dao .dao-crowd {
+	background-image: url("../images/dao-crowd.png");
+}
+
+
+figure.moon {
+	max-width: 420px;
+	height: 424px;
+}
+
+figure.moon .moon-stars {
+	background-image: url("../images/moon-stars.png");
+}
+
+figure.moon .moon-moon {
+	background-image: url("../images/moon-moon.png");
+}
+
+figure.moon .moon-rocket {
+	background-image: url("../images/moon-rocket.png");
+	top: 150px;
+	bottom: -150px;
+}
+
+
+figure.ethereum-logo {
+	display: block;
+	background-image: url("../images/ethereum-logo.png");
+	width: 301px;
+	height: 287px;
+	background-size: contain;
+	margin: 0 auto;
+}
+
+
+.start-menu {
+	-webkit-perspective: 2000;
+	-moz-perspective: 2000;
+	perspective: 2000;
+}
+
+.start-menu strong {
+	display: block;
+}
+
+.start-menu p {
+	padding: 0;
+	font-size: 80%;
+}
+
+.start-menu p strong {
+	font-size: 125%;
+}
+
+.main-tutorial .row.start-menu {
+	padding-top: 0;
+}
+
+.main-tutorial .note {
+	font-weight: 600;
+}
+
+.main-tutorial code {
+	display: block;
+	font-family: "Source Code pro", "Courier New", monospace;
+	white-space: pre;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 20px;
+	overflow: auto;
+	width: 10000px;
+	background: #FFF;	
+}
+
+.main-tutorial code:after {
+	content: " ";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100px;
+	background: linear-gradient(to right, rgba(255,255,255,0), #fff);
+}
+
+code {
 	background: #F6E6CC;
 }
 
-footer {
-	background: url('../images/bg-footer.png') top center #161c30;
+pre {
+	background: transparent;
+	overflow: hidden;
+	border: solid 4px #FCF5E3;
+	padding:0;
+	margin: 20px 0;
+	position: relative;
+}
+/*footer {
+	background: #E4D0B7 url("../images/bg-footer.png");
+	-webkit-background-blend-mode: multiply;
+	background-blend-mode: multiply;
 	background-size: 1920px auto;
 	font-size: 14px;
 	border-top: 3px solid #eb453e;
 	color: #F6E6CC;
+}*/
+
+footer {
+	background: #FFFAEE url("../images/bg.png");
+	background-blend-mode: multiply;	
+	position: relative;
+  	z-index: 100;
 }
 
-@media only screen and (max-width: 1280px) {
-	header .title {
-		width: 300px;
-		margin-top: -40px;
-	}
+.footer {
+	background: #1f0c05;
+	padding-top: 100px;
 }
+
+.footer p {
+	color: #F6E6CC;
+}
+
+.warning {
+	background: #eb453e;
+	color: #F6E6CC;	
+	font-size: 150%;
+	font-weight: 500;
+	z-index: 100;
+	position: relative;
+}
+
+.warning h2 {
+	background-image: url('../images/warning@2x.png');
+	background-repeat: no-repeat;
+	background-size: 59px 59px;
+	background-position: left top;
+	padding-left: 80px;
+	padding-top: 5px;
+	font-size: 40px;
+}
+
+.warning figure.bad-robot {
+	background-image: url('../images/bad-robot@2x.png');
+	background-size: contain;
+	width: 113px;
+	height: 103px;
+	display: block;
+	margin: 100px auto;
+}
+
+.inner-tutorial figure {
+	float: none;
+	margin: 50px auto;
+} 
+
+.inner-tutorial h3 {
+	padding-left: 20px;
+	max-width: none;
+}
+
+.inner-header {
+	padding: 100px;
+	text-align: center;
+	background: #1f0c05;
+}
+
+.inner-header h3 {
+	padding-top: 20px;
+	text-transform:  uppercase;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
+	font-weight: 200;
+	font-size: 200%;
+	color: #eb453e;
+}
+
+
+.foundation-page h3 {
+	padding: 20px 20px 10px;
+	clear: both;
+}
+
+.foundation-page img[alt*="Portrait"] {
+	width: 200px;
+	height: 200px;
+	float: right;
+	margin: 0 0 40px 40px;
+}
+
+.press-kit img {
+	width: 250px;
+	padding-right: 20px;
+}
+
+.ether-tutorial img {
+	width: 229px;
+	float: right;
+	margin: 0 0 40px 40px;
+}
+
+.ethereum-projects h4  {
+	text-align: center;
+	clear: both;
+	padding: 60px 0 10px;
+	color: #eb453e;
+}
+
+.ethereum-projects  ul {
+	padding-left: 0;
+	display: -webkit-flex;
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+}
+
+
+.ethereum-projects li {
+	display: inline-block;
+	max-width: 200px;
+	padding: 20px;
+	text-align: center;
+	font-size: 80%;
+}
+
+
+.ethereum-projects a {
+	display: block;
+	width: 100%;
+	text-indent: -500px;	
+	overflow: hidden;
+	height: 40px;
+	margin-bottom: 20px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.ethereum-projects a[href='http://augur.net'] {
+	background-image: url('../images/icons/AUGUR.png');
+}
+
+.ethereum-projects a[href='https://etherex.org/'] {
+	background-image: url('../images/icons/EX.png');
+}
+
+
+.ethereum-projects a[href='https://www.theprotocol.tv/adept-demo-ibm-samsung'] {
+	background-image: url('../images/icons/ibm_white.png');
+}
+
+.ethereum-projects a[href='http://ether.fund'] {
+	background-image: url('../images/icons/ETHERFUND.png');
+}
+
+.ethereum-projects a[href='http://ethergit.com'] {
+	background-image: url('../images/icons/ETHERGIT_WHITE.png');
+}
+
+.ethereum-projects a[href='http://airlock.me/'] {
+	background-image: url('../images/icons/airlock.png');
+}
+
+.ethereum-projects a[href='https://www.provenance.org'] {
+	background-image: url('../images/icons/Provenancve-Logo-&-Logotype-White.png');
+}
+
+.ethereum-projects a[href='https://dgx.io/'] {
+	background-image: url('../images/icons/digixglobal_logo_dark.png');
+}
+
+.ethereum-projects a[href='http://weifund.io/'] {
+	background-image: url('../images/icons/weifundalpha.png');
+}
+
+.ethereum-projects a[href='http://www.lazooz.net/'] {
+	background-image: url('../images/icons/new-logo.png');
+}
+
+.ethereum-projects a[href='http://main.cubespawn.com'] {
+	background-image: url('../images/icons/CUBESPAWN_2.png');
+}
+
+.ethereum-projects a[href='http://slock.it'] {
+	background-image: url('../images/icons/logo_schwarz.png');
+}
+
+
+.ether-checker,
+.ether-checker input,
+.main-tutorial.ether-checker h3 {
+	margin: 0 auto;
+	text-align: center;
+	max-width: none;
+}
+
+.main-tutorial.ether-checker h2 ,
+.main-tutorial.ether-checker h3 ,
+.ether-checker input {
+	display: block;
+	margin: 10px auto;
+	padding: 10px;
+	min-width: 300px;
+	width: 100%;
+	max-width: 400px;
+	float: none;
+}
+
+.main-tutorial.ether-checker h2 {
+	padding: 0;
+}
+
+
 
 @media (-webkit-min-device-pixel-ratio: 2) {
+	.introduction h1 {
+		background-image: url('../images/Title+Logo@2x.png');
+	}	
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
 	header {
-		background-image: url('../images/bg@2x.jpg');
+		background-image: url('../images/Frontier-Background@2x.jpg');
+	}
+}
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1 ) and (min-width: 1300px ) {
+	header {
+		background-image: url('../images/Frontier-Background@2x.jpg');
+	}
+}
+
+@media only screen and (max-width: 600px ) {
+	.row {
+		text-align: center;
 	}
 
-	header .title {
-		background-image: url('../images/logo@2x.png');
+	.row .recipe , code {
+		text-align: left;
 	}
+
+	figure {
+		height: 300px;
+		margin: 0 auto;
+	}
+
+	.main-tutorial a.button ,
+	.recipe {
+		width: 100%;
+	}
+
+	.breadcrumb.index a {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 800px ) {
+	.main-tutorial h3 {
+		padding-top: 0;
+	}
+
+	.main-tutorial h3 .number {
+		top: 0;
+	}
+
+	.row img, 
+	.recipe,
+	.main-tutorial a.button ,
+	.ethereum-network,
+	.main-tutorial figure {
+		float: none;
+		margin: 30px auto;
+	}
+}
+
+@media only screen and (max-width: 1000px ) {
+	.geth-console,
+	.main-tutorial a.button {
+		float: none;
+	}
+	.geth-console {
+		margin: 30px auto;
+	}
+}
+
+@media only screen and (min-height:900px) {
+	.introduction h1 {
+		background-image: url('../images/Title+Logo@2x.png');
+	}
+}
+
+
+@media only screen and (min-width: 1000px){
+	.introduction h1 {
+		width: 300px;
+		padding-top: 348px;
+		margin-top: -230px;
+		margin-left: -150px;
+		background-size: 300px 348px;
+		background-image: url('../images/Title+Logo@3x.png');
+	}
+}
+
+@media only screen and (min-width: 1500px){
+	.introduction h1 {
+		width: 360px;
+		padding-top: 417px;
+		margin-top: -270px;
+		margin-left: -180px;
+		background-size: 360px 417px;
+	}
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:2){	
+
+	.breadcrumb {
+		background-image: url("../images/diamond-icon@2x.png");
+	}
+
+	.main-tutorial {
+		background-image: url("../images/bg@2x.png");
+		background-size: 324px 326px !important;
+	}
+
+	.main-tutorial {
+		background: #FFF url("../images/bg@2x.png");
+	}
+	
+	.recipe {
+		background-image: url("../images/recipe-bg@2x.png");
+		background-size: 8px 12px;
+	}
+
+
+
+	figure.ethereum-network {
+		background-image: url("../images/ethereum-network@2x.png");
+	}
+
+
+	figure.geth-console {
+		background-image: url("../images/console@2x.gif");
+	}
+
+
+	figure.geth .geth-background {
+		background-image: url("../images/geth@2x.png");
+	}
+
+
+	figure.geth .geth-logo {
+		background-image: url("../images/geth-foreground@2x.gif");
+	}	
+
+/*
+	figure.geth-ether .get-ether-brick-0 {
+		background-image: url("../images/get-ether-brick-0@2x.png");
+	}
+
+	figure.geth-ether .get-ether-brick-1 {
+		background-image: url("../images/get-ether-brick-1@2x.png");
+	}
+
+	figure.geth-ether .get-ether-brick-2 {
+		background-image: url("../images/get-ether-brick-2@2x.png");
+	}
+
+	figure.geth-ether .get-ether-brick-3 {
+		background-image: url("../images/get-ether-brick-3@2x.png");
+	}
+
+	figure.geth-ether .get-ether-brick-4 {
+		background-image: url("../images/get-ether-brick-4@2x.png");
+	}
+
+	figure.geth-ether .get-ether-brick-5 {
+		background-image: url("../images/get-ether-brick-5@2x.png");
+	}
+
+	figure.geth-ether .get-ether-coin {
+		background-image: url("../images/get-ether-coin@2x.png");
+	}
+*/
+
+	figure.ether .ether-screen {
+		background-image: url("../images/ether-screen@2x.gif");
+	}
+	figure.ether .ether-pacman {
+		background-image: url("../images/ether-pacman@2x.gif");
+	}
+	figure.ether .ether-coin {
+		background-image: url("../images/ether-coin@2x.png");
+	}
+	figure.ether .ether-arcade-front {
+		background-image: url("../images/ether-arcade-front@2x.png");
+	}
+	figure.ether .ether-arcade-back {
+		background-image: url("../images/ether-arcade-back@2x.png");
+	}
+
+
+	figure.greeter .greeter-human {
+		background-image: url("../images/greeter-human@2x.png");
+	}
+
+	figure.greeter .greeter-robot {
+		background-image: url("../images/greeter-robot@2x.png");
+	}
+
+	figure.greeter .greeter-question {
+		background-image: url("../images/greeter-question@2x.png");
+	}
+
+	figure.greeter .greeter-answer {
+		background-image: url("../images/greeter-answer@2x.png");
+	}
+
+
+
+	figure.coin .coin-connection {
+		background-image: url("../images/token-connection@2x.png");
+	}
+	figure.coin .coin-users {
+		background-image: url("../images/token-users@2x.png");
+	}
+	figure.coin .coin-coins {
+		background-image: url("../images/token-coins@2x.png");
+	}
+	figure.coin .coin-send {
+		background-image: url("../images/token-send@2x.png");
+	}
+
+	figure.crowdsale .crowdsale-logic {
+		background-image: url("../images/crowdsale-logic@2x.png");
+	}
+
+	figure.crowdsale .crowdsale-robot {
+		background-image: url("../images/crowdsale-robot@2x.png");
+	}
+	figure.crowdsale .crowdsale-money {
+		background-image: url("../images/crowdsale-money@2x.png");
+	}
+	figure.crowdsale .crowdsale-contributions {
+		background-image: url("../images/crowdsale-contributions@2x.png");
+	}
+	figure.crowdsale .crowdsale-crowd {
+		background-image: url("../images/crowdsale-crowd@2x.png");
+	}
+
+	figure.dao .dao-robot {
+		background-image: url("../images/dao-robot@2x.png");
+	}
+
+	figure.dao .dao-money {
+		background-image: url("../images/dao-money@2x.png");
+	}
+
+	figure.dao .dao-arrows {
+		background-image: url("../images/dao-arrows@2x.png");
+	}
+
+	figure.dao .dao-ideas {
+		background-image: url("../images/dao-ideas@2x.png");
+	}
+
+	figure.dao .dao-crowd {
+		background-image: url("../images/dao-crowd@2x.png");
+	}
+	
+	figure.moon .moon-stars {
+		background-image: url("../images/moon-stars@2x.png");
+	}
+
+	figure.moon .moon-moon {
+		background-image: url("../images/moon-moon@2x.png");
+	}
+
+	figure.moon .moon-rocket {
+		background-image: url("../images/moon-rocket@2x.png");
+	}
+
+
+	figure.ethereum-logo {
+
+	}
+
+	.community ul li a[href='http://blog.ethereum.org'] {
+		background-image: url("../images/icons/icon-blog@2x.png");
+	}
+	.community ul li a[href='http://forum.ethereum.org'] {
+		background-image: url("../images/icons/icon-forum@2x.png");
+	}
+	.community ul li a.reddit {
+		background-image: url("../images/icons/icon-reddit@2x.png");
+	}
+	.community ul li a.youtube {
+		background-image: url("../images/icons/icon-youtube@2x.png");
+	}
+	.community ul li a.twitter {
+		background-image: url("../images/icons/icon-twitter@2x.png");
+	}
+	.community ul li a.facebook {
+		background-image: url("../images/icons/icon-facebook@2x.png");
+	}
+	.community ul li a.meetups {
+		background-image: url("../images/icons/icon-meetup@2x.png");
+	}
+
+
+	.press li span.press-fast-company {
+		background-image: url("../images/icons/fast-company@2x.png");
+	}	
+	.press li span.press-reason {
+		background-image: url("../images/icons/reason@2x.png");
+	}
+	.press li span.press-forbes {
+		background-image: url("../images/icons/forbes@2x.png");
+	}
+	.press li span.press-telegraph {
+		background-image: url("../images/icons/the-telegraph@2x.png");
+	}
+	.press li span.press-wired {
+		background-image: url("../images/icons/wired@2x.png");
+	}
+	.press li span.press-wsj {
+		background-image: url("../images/icons/wall-street-journal@2x.png");
+	}
+	.press li span.press-aljazeera {
+		background-image: url("../images/icons/al-jazeera@2x.png");
+	}
+	.press li span.press-bloomberg {
+		background-image: url("../images/icons/bloomberg@2x.png");
+	}
+	.press li span.press-new-scientist {
+		background-image: url("../images/icons/new-scientist@2x.png");
+	}
+
+
+
 }

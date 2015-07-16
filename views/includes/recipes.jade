@@ -1,0 +1,51 @@
+include ../mixins/recipes.jade
+
+div.main-tutorial
+  div.container
+    div.row
+      div.col-md-12.tutorial.scrollme
+        h2.animateme(data-when="enter", data-from="0.7", data-to="0", data-opacity="0", data-translatey="200") WHAT CAN I DO WITH ETHEREUM FRONTIER RELEASE?
+
+        h3.center.animateme(data-when="enter", data-from="0.8", data-to="0.2", data-opacity="0", data-translatey="200") Well it depends on what you want. Here are some recipe ideas:
+
+div.main-tutorial.even#install-geth
+  div.container   
+    div.row
+      div.col-md-12
+        +gethRecipe
+
+div.main-tutorial#get-ether
+  div.container   
+    div.row
+      div.col-md-12
+        +etherRecipe
+
+div.main-tutorial.even
+  div.container   
+    div.row
+      div.col-md-12.tutorial
+        +greeterRecipe
+
+div.main-tutorial#crypto-currency
+  div.container   
+    div.row
+      div.col-md-12
+        +tokenRecipe
+
+div.main-tutorial.even#crowdsale
+  div.container   
+    div.row
+      div.col-md-12.tutorial
+        +crowdsaleRecipe
+
+div.main-tutorial
+  div.container   
+    div.row
+      div.col-md-12
+        +daoRecipe
+
+div.main-tutorial.even.ethereum-projects 
+  div.container   
+    div.row
+      div.col-md-12
+        +futureRecipe
