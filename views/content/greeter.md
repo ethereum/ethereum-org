@@ -20,6 +20,7 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
 
 
     contract mortal {
+        /* Define variable owner of the type address*/
         address owner;
 
         /* this function is executed at initialization and sets the owner of the contract */
@@ -30,6 +31,7 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
     }
 
     contract greeter is mortal {
+        /* define variable greeting of the type string */
         string greeting;
         
         /* this runs when the contract is executed */
@@ -45,9 +47,9 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
 
 You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
 
-_"mortal"_ and _"owned"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
+The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
 
-### Compiling your contract
+### Installing a compiler
 
 Before you are able to upload it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a sort of user guide on how to interact with the contract.
 
@@ -59,11 +61,68 @@ If you have it installed, it should output something like this:
 
     ['Solidity' ]
 
-If instead the command returns an error, then read the documentation on how to install a compiler, use Aleth zero or use the  [online solidity compiler](https://chriseth.github.io/cpp-ethereum/). 
+If instead the command returns an error, then you need to install it. Press control+c to exit the console and go back to the command line.
 
-If you have Geth Solidity Compiler installed,  you need now reformat by removing spaces so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
+#### Install SolC in Linux
 
-    var greeterSource = 'contract mortal { address owner; /* this function is executed at initialization and sets the owner of the contract */ function mortal() { owner = msg.sender; } /* Function to recover the funds on the contract */ function kill() { if (msg.sender == owner) suicide(owner); } } contract greeter is mortal { string greeting; /* this runs when the contract is executed */ function greeter(string _greeting) public { greeting = _greeting; } /* main function */ function greet() constant returns (string) { return greeting; } }'
+Open the terminal and execute these commands:
+
+    sudo add-apt-repository ppa:ethereum/ethereum-qt
+    sudo add-apt-repository ppa:ethereum/ethereum
+    sudo add-apt-repository ppa:ethereum/ethereum-dev
+    sudo apt-get update
+    sudo apt-get install
+    cd cpp-ethereum
+    cmake ..
+    make -j8 
+    make install
+    which solC
+
+Take note of the address given by the last line, you'll need it soon.
+
+#### Install SolC in Mac OSX
+
+You need [brew](http://brew.sh) in order to install on your mac
+
+    brew tap ethereum/ethereum
+    brew install cpp-ethereum
+    brew linkapps cpp-ethereum
+    cd cpp-ethereum
+    cmake ..
+    make -j8 
+    make install
+    which solC
+
+Take note of the address given by the last line, you'll need it soon.
+
+#### Install SolC in Mac OSX
+
+You need [chocolatey](http://chocolatey.org) in order to install on your mac
+
+    cinst -pre solC-stable
+
+Windows is more complicated than that, you'll need to wait a bit more.
+
+
+#### Linking your compiler in Geth
+
+Now [go back to the console](../geth) and type this command to install solC, replacing _path/to/solc_ to the path that you got on the last command you did:
+
+    admin.setSolc(path/to/solc)
+
+Now type again:
+
+    eth.getCompilers()
+
+If you now have solC installed, then congratulations, you can keep reading. If you don't, then go to our [forums](http://forum.ethereum.org) or [subreddit](http://www.reddit.com/r/ethereum) and berate us on failing to make the process easier.
+
+
+### Compiling your contract
+
+
+If you have the compiler installed,  you need now reformat by removing spaces so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
+
+    var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) suicide(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
 
     var greeterCompiled = web3.eth.compile.solidity(greeterSource)
 
@@ -137,8 +196,6 @@ You can verify that the deed is done simply seeing if this returns 0:
 Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 
 If you don't add any kill clause it could potentially live forever (or at least until the frontier contracts are all wiped) independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on civil rights of sentient digital beings. Treat your bots humanely.
-
-
 
 
 
