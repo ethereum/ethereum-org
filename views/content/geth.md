@@ -129,3 +129,10 @@ Geth is a javascript environment, that means you can create functions just like 
 Once you executed the line above, all you need to check your whole balance is:
 
     checkAllBalances() 
+
+
+**Tip: if you have many small handy scripts like this you use frequently, you can save them to a file and then load them ll at once using _loadScript_:**
+
+    loadScript('/some/script/here.js')
+
+

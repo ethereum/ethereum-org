@@ -9,8 +9,6 @@ So let's start now.
 
 ## Your first citizen: the greeter
 
-
-
 Now that you’ve mastered the basics of Ethereum, let’s move into your first serious contract. It’s a big open territory and sometimes you might feel lonely, so our first order of business will be to create a little automatic companion to greet you whenever you feel lonely. We’ll call him the “Greeter”.
 
 The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
@@ -69,6 +67,13 @@ Open the terminal and execute these commands:
     sudo add-apt-repository ppa:ethereum/ethereum-dev
     sudo apt-get update
     sudo apt-get install
+    cd cpp-ethereum
+    mkdir build
+    cd build
+    cmake ..
+    make -j8 
+    make install
+    which solC
 
 Take note of the address given by the last line, you'll need it soon.
 
@@ -79,6 +84,13 @@ You need [brew](http://brew.sh) in order to install on your mac
     brew tap ethereum/ethereum
     brew install cpp-ethereum
     brew linkapps cpp-ethereum
+    cd cpp-ethereum
+    mkdir build
+    cd build
+    cmake ..
+    make -j8 
+    make install
+    which solC
 
 Take note of the address given by the last line, you'll need it soon.
 
@@ -133,9 +145,10 @@ You have now compiled your code. Now you need to get it ready for uploading, and
        console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
     })
 
-You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload \(according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/)\), at the time of writing, gas on the test net is costing 1 to 10 microethers (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
+You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload—according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), at the time of writing, gas on the test net is costing 1 to 10 microethers (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
 
-**Notice that that cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, people who are running computers who keep the network running. Gas is set by market prices based on the current supply and demand of computation.**
+
+**Notice that that cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, people who are running computers who keep the network running. Gas is set by market prices based on the current supply and demand of computation. If the gas prices are too high, you can be a miner and lower your asking price.**
 
 
 After less than a minute, the you should have a log with the contract address, this means you've sucessfully deployed it. You can verify the deployed code (compiled) by using this command:
