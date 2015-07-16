@@ -64,7 +64,22 @@ There are currently two options for GPU miners available.
 * **C++ Etherminer**. This is a version for the pro miners. To install it, follow the guide to [install the whole C++ ethereum code](https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients). 
 
 
-### 2. Importing from the presale wallet
+### 2. Use Bitcoins
+
+![bitcoin and ethereum](images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png)
+
+Ethereum would never be possible without bitcoin—both the technology and the currency—and we see ourseves not as a competiting currency but as complementary to the digital ecossystem. Ether is to be treated as "crypto-fuel", a token whose purpose is to pay for computation, and is not intended to be used as or considered a currency, asset, share or anything else.
+
+There are many ways in which you can use Bitcoins within the Ethereum ecossystem:
+
+* **Trade BTC for ETH:** we are working with multiple exchanges to make the exchanging of ether and bitcoins as easy and seamless as possible. If so desired one could trade a bitcoins for ether with the purpose of executing contracts and trade it back immediately in order to keep their value pegged and secured by the bitcoin network. As those exchanges go live, we will list them here.
+
+* **Use a pegged derivative:** Ethereum is a great tool for creating complex trading between multiple parties. If you have a source for the price of Bitcoin that all parties trust, then it's possible to create an [ethereum based currency](../token) whose value is pegged to the market value of Bitcoin. This means that you could trade a btc to a token that is guaranteed to always trade back to the same amount of bitcoins while still being fully compatible with other ethereum contracts. There are multiple ways of doing that and as some of these projects go live and are tested by the community, we will list them here.
+
+* **Use a Bitcoin relay to convert a 2 way peg**: [the bitcoin relay](https://github.com/ethereum/btcrelay/) is a piece of code that allows you to sidechain a bitcoin into ethereum. This means that you can use bitcoin native limited scripting capability to lock a bitcoin into a contract that is directly connected to an ethereum contract, which can then issue an ethereum based token that is guaranteed to be backed by bitcoin. The relay is under development and as implementations are tested and proved to be secure, we will list them here.
+
+
+### 3. Importing from the presale wallet
 
 Before you decide to import your presale ether wallet, please remember that Frontier is a public, live test network. **It is dangerous, potentially full of bugs and is prone to instability.** While all account balances above 1 ether will be moved over to Homestead when it launches, the ether in contracts will not. There are many potential mishaps, ether can be lost, stolen or locked into a broken contract. We strongly advise you to only move funds that you are willing to risk. If you understand the risks and still want to go forward, then importing your presale wallet is very easy.
 
@@ -74,23 +89,9 @@ If you are still on the console, then quit it by pressing _control+C_, then exec
 
 This will prompt for your password and imports your ether presale account. It can be used non-interactively with the _--password_ option taking a password file as argument containing the wallet password in cleartext.
 
-If this does not work, please do not hesitate in contacting us on our [foruns](http://forum.ethereum.org), [reddit](http://reddit.com/r/ethereum) or at **info (at) ethereum.org**.
+If this does not work, please do not hesitate in contacting us on our [forums](http://forum.ethereum.org), [reddit](http://reddit.com/r/ethereum) or at **info (at) ethereum.org**.
 
-
-
-### 3. Use Bitcoins
-
-![bitcoin and ethereum](images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png)
-
-Ethereum would never be possible without bitcoin—both the technology and the currency—and it sees itself not as a competiting currency but as complementary to the digital ecossystem. Ether is to be treated as "crypto-fuel", a token whose purpose is to pay for computation, and is not intended to be used as or considered a currency, asset, share or anything else.
-
-There are many ways in which you can use Bitcoins within the Ethereum ecossystem:
-
-* **Trade BTC for ETH:** we are working with multiple exchanges to make the exchanging of ether and bitcoins as easy and seamless as possible. If so desired one could trade a bitcoins for ether with the purpose of executing contracts and trade it back immediately in order to keep their value pegged and secured by the butcoin network. As those exchanges go live, we will list them here.
-
-* **Use a pegged derivative:** Ethereum is a great tool for creating complex trading between multiple parties. If you have a source for the price of Bitcoin that all parties trust, then it's possible to create an [ethereum based currency](../token) whose value is pegged to the market value of Bitcoin. This means that you could trade a btc to a token that is guaranteed to always trade back to the same amount of bitcoins while still being fully compatible with other ethereum contracts. There are multiple ways of doing that and as some of these projects go live and are tested by the community, we will list them here.
-
-* **Use a Bitcoin relay to convert a 2 way peg**: [the bitcoin relay](https://github.com/ethereum/btcrelay/) is a piece of code that allows you to sidechain a bitcoin into ethereum. This means that you can use bitcoin native limited scripting capability to lock a bitcoin into a contract that is directly connected to an ethereum contract, which can then issue an ethereum based token that is guaranteed to be backed by bitcoin. The relay is under development and as implementations are tested and proved to be secure, we will list them here.
+If you don't feel confortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our [online balance checker](../sale#balance)
 
 
 ### 4. Get ether from a friend

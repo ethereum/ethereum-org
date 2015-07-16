@@ -511,6 +511,10 @@ input.button:hover {
 	font-family: 'Wicked-Grit', Arial, sans-serif serif;
 	}
 
+.warning .short-terms a {
+	color: #FFF;
+}
+
 .warning a.button {
 	background-color: #FFFAEE;
 	color: #F15625;
@@ -1090,15 +1094,11 @@ footer {
 	padding-right: 20px;
 }
 
-img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
+.ether-tutorial img {
 	width: 229px;
 	float: right;
 	margin: 0 0 40px 40px;
 }
-
-
-
-
 
 .ethereum-projects h4  {
 	text-align: center;
@@ -1316,29 +1316,7 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 	}
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio:2){
-	img[src="images/ethereum-network.png"] {
-		background: url("../images/ethereum-network@2x.png");
-		background-size: contain;
-		background-position: center;
-		background-repeat: no-repeat;
-		max-width: 497px;
-		width: 100%;
-		height: 345px;
-		padding-right: 497px;
-		overflow: hidden;
-	}
-	img[src="images/console.gif"] {
-		background: url("../images/console@2x.gif");
-		background-size: contain;
-		background-position: center;
-		background-repeat: no-repeat;
-		max-width: 589px;
-		width: 100%;
-		height: 281px;
-		padding-right: 589px;
-		overflow: hidden;
-	}	
+@media only screen and (-webkit-min-device-pixel-ratio:2){	
 
 	.breadcrumb {
 		background-image: url("../images/diamond-icon@2x.png");
@@ -1350,7 +1328,6 @@ img[src="images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"] {
 	}
 
 	.main-tutorial {
-		/*background: #FFFAEE url("../images/bg@2x.png");*/
 		background: #FFF url("../images/bg@2x.png");
 	}
 	
