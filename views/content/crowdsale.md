@@ -42,12 +42,11 @@ The way this particular crowdsale contract works is that you set an exchange rat
         
         /* The function without name is the default function that is called whenever anyone sends funds to a contract */
         function () {
-            Funder f = funders[++funders.length];
-            f.addr = msg.sender;
-            f.amount = msg.value;
-            amountRaised += f.amount;
-            tokenReward.sendCoin(msg.sender, f.amount/price);
-            FundTransfer(f.addr, f.amount, true);
+            uint amount = msg.value;
+            funders[funders.length++] = Funder({addr: msg.sender, amount: amount});
+            amountRaised += amount;
+            tokenReward.sendCoin(msg.sender, amount / price);
+            FundTransfer(f.addr, amount, true);
         }
             
         modifier afterDeadline() { if (now >= deadline) _ }
