@@ -73,6 +73,8 @@ Open the terminal and execute these commands:
     sudo apt-get update
     sudo apt-get install
     cd cpp-ethereum
+    mkdir build
+    cd build
     cmake ..
     make -j8 
     make install
@@ -88,6 +90,8 @@ You need [brew](http://brew.sh) in order to install on your mac
     brew install cpp-ethereum
     brew linkapps cpp-ethereum
     cd cpp-ethereum
+    mkdir build
+    cd build
     cmake ..
     make -j8 
     make install
@@ -136,9 +140,9 @@ You have now compiled your code. Now you need to get it ready for uploading, and
        console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
     })
 
-You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload \(according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/) \), at the moment of this writing, gas on the test net is costing 1 to 10 microethers (nicknamed "szabo"). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms.
+You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload–according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), at the moment of this writing, gas on the test net is costing 1 to 10 microethers (nicknamed "szabo"). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms.
 
-**Notice that that cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, people who are running computers who keep the network running. Gas is set by market prices based on the current supply and demand of computation.**
+**Notice that that cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, people who are running computers who keep the network running. Gas is set by market prices based on the current supply and demand of computation. If the gas prices are too high, you can be a miner and lower your asking price.**
 
 
 After less than a minute, the you should have a log with the contract address, this means you've sucessfully deployed it. You can verify the deployed code (compiled) by using this command:
