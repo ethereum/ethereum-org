@@ -4,15 +4,10 @@ What can you do with contracts? You can do almost anything really, but for this 
 
 So let's start now.
 
-
-**Important: Frontier is considered a test network. All contracts might be wiped when the project transitions to the next phase, and all ether they contain will be lost. Only send small amounts of funds to contracts, unless are okay losing them.**
-
 [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
 
 
 ## Your first citizen: the greeter
-
-
 
 Now that you’ve mastered the basics of Ethereum, let’s move into your first serious contract. It’s a big open territory and sometimes you might feel lonely, so our first order of business will be to create a little automatic companion to greet you whenever you feel lonely. We’ll call him the “Greeter”.
 
@@ -45,13 +40,13 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         }
     }
 
-You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
+You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
 
 The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
 
 ### Installing a compiler
 
-Before you are able to upload it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a sort of user guide on how to interact with the contract.
+Before you are able to upload it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a sort of reference template that defines how to interact with the contract.
 
 The first you can get by using a compiler. You should have a solidity compiler built in on your geth console. To test it, use this command:
 
@@ -63,7 +58,7 @@ If you have it installed, it should output something like this:
 
 If instead the command returns an error, then you need to install it. Press control+c to exit the console and go back to the command line.
 
-#### Install SolC in Linux
+#### Install SolC on Linux
 
 Open the terminal and execute these commands:
 
@@ -82,7 +77,7 @@ Open the terminal and execute these commands:
 
 Take note of the address given by the last line, you'll need it soon.
 
-#### Install SolC in Mac OSX
+#### Install SolC on Mac OSX
 
 You need [brew](http://brew.sh) in order to install on your mac
 
@@ -99,7 +94,7 @@ You need [brew](http://brew.sh) in order to install on your mac
 
 Take note of the address given by the last line, you'll need it soon.
 
-#### Install SolC in Mac OSX
+#### Install SolC on Windows
 
 You need [chocolatey](http://chocolatey.org) in order to install on your mac
 
@@ -107,6 +102,16 @@ You need [chocolatey](http://chocolatey.org) in order to install on your mac
 
 Windows is more complicated than that, you'll need to wait a bit more.
 
+If you have the SolC Solidity Compiler installed,  you need now reformat by removing spaces so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
+
+#### Compile from source
+
+    git clone git@github.com/ethereum/cpp-ethereum.git
+    cd cpp-ethereum
+    cmake ..
+    make -j8 
+    make install
+    which solC
 
 #### Linking your compiler in Geth
 
@@ -140,7 +145,8 @@ You have now compiled your code. Now you need to get it ready for uploading, and
        console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
     })
 
-You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload–according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), at the moment of this writing, gas on the test net is costing 1 to 10 microethers (nicknamed "szabo"). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms.
+You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload—according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), at the time of writing, gas on the test net is costing 1 to 10 microethers (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
+
 
 **Notice that that cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, people who are running computers who keep the network running. Gas is set by market prices based on the current supply and demand of computation. If the gas prices are too high, you can be a miner and lower your asking price.**
 
@@ -158,7 +164,7 @@ In order to call your bot, just type the following command in your terminal:
 
     greeterInstance.greet();
 
-Since this contract changes nothing on the blockchain, then it returns instantly and without any gas cost. You should see it return:
+Since this contract changes nothing on the blockchain, it returns instantly and without any gas cost. You should see it return:
 
     'Hello World!'
 
@@ -181,8 +187,7 @@ This particular example can be instantiated by anyone by simply calling:
 Replace _greeterAddress_ with your contract's address.
 
 
-**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing greeterCompiled.greeter.info.abiDefinition  with the abi from your compiler.**
-
+**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing _greeterCompiled.greeter.info.abiDefinition_  with the abi from your compiler.**
 
 
 ### Cleaning up after yourself: 
@@ -199,7 +204,7 @@ You can verify that the deed is done simply seeing if this returns 0:
 
 Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 
-If you don't add any kill clause it could potentially live forever (or at least until the frontier contracts are all wiped) independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on civil rights of sentient digital beings. Treat your bots humanely.
+If you don't add any kill clause it could potentially live forever (or at least until the frontier contracts are all wiped) independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on the civil rights of sentient digital beings. Treat your bots humanely.
 
 
 
