@@ -1,10 +1,6 @@
 Now that you mastered the basics on how to get started and how to send ether, it's time to get your hands dirty in what really makes ethereum stand out of the crowd: smart contracts. Smart contracts are pieces of code that live on the blockchain and execute commands exactly how they were told to. They can read other contracts, take decisions, send ether and execute other contracts. Contracts will exist and run as long as the whole network exists, and will only stop if they run out of gas or if they were programmed to self destruct.
 
-What can you do with contracts? You can do almost anything really, but for this guide let's do something simple: you will start your new country.
-
-Your country won't be very powerful compared to most: it will hold no land, have no military and hold no assets other than those that exist on the blockchain. All its citizens will be voluntary and it is unable to coerce other people by force. 
-
-But what it can do is to gather support around a united cause. You will get funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
+What can you do with contracts? You can do almost anything really, but for this guide let's do some simple things: You will get funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
 
 So let's start now.
 
@@ -47,13 +43,13 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         }
     }
 
-You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because in Solidity has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
+You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity has *inheritance*, meaning that one contract can inherit charateristics of another. This is very useful to simplify coding because some common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter simple and easy to read.
 
-_"Mortal"_ and _"owned" simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
+_"mortal"_ and _"owned"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before uploading.
 
 ### Compiling your contract
 
-Before you are able to upload it thou, you'll need two things: the compiled code, and the Application Binary Interface, which is a sort of user guide on how to interact with the contract.
+Before you are able to upload it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a sort of user guide on how to interact with the contract.
 
 The first you can get by using a compiler. You should have a solidity compiler built in on your geth console. To test it, use this command:
 
@@ -81,7 +77,7 @@ You have now compiled your code. Now you need to get it ready for uploading, and
        console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
     })
 
-You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload \(according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/)\), at the moment of this writing gas on the test net is costing 1 to 10 microethers (nicknamed "szabo"). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
+You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to uploading your contract. This contract is estimated to cost 172 thousand gas to upload \(according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/) \), at the moment of this writing, gas on the test net is costing 1 to 10 microethers (nicknamed "szabo"). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms.
 
 **Notice that that cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, people who are running computers who keep the network running. Gas is set by market prices based on the current supply and demand of computation.**
 
@@ -122,7 +118,7 @@ This particular example can be instantiated by anyone by simply calling:
 Replace _greeterAddress_ with your contract's address.
 
 
-**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler . To do so, use the code below carefully replacing greeterCompiled.greeter.info.abiDefinition  with the abi from your compiler.**
+**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing greeterCompiled.greeter.info.abiDefinition  with the abi from your compiler.**
 
 
 
