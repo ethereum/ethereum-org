@@ -62,17 +62,7 @@ If instead the command returns an error, then you need to install it. Press cont
 
 Open the terminal and execute these commands:
 
-    sudo add-apt-repository ppa:ethereum/ethereum-qt
-    sudo add-apt-repository ppa:ethereum/ethereum
-    sudo add-apt-repository ppa:ethereum/ethereum-dev
-    sudo apt-get update
-    sudo apt-get install
-    cd cpp-ethereum
-    mkdir build
-    cd build
-    cmake ..
-    make -j8 
-    make install
+    sudo apt-get install cpp-ethereum
     which solC
 
 Take note of the address given by the last line, you'll need it soon.
@@ -81,15 +71,8 @@ Take note of the address given by the last line, you'll need it soon.
 
 You need [brew](http://brew.sh) in order to install on your mac
 
-    brew tap ethereum/ethereum
     brew install cpp-ethereum
     brew linkapps cpp-ethereum
-    cd cpp-ethereum
-    mkdir build
-    cd build
-    cmake ..
-    make -j8 
-    make install
     which solC
 
 Take note of the address given by the last line, you'll need it soon.
