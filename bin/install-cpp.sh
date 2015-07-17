@@ -109,13 +109,13 @@ function run_installer()
 		echo "\$ $@"; "$@"
 	}
 
-	function detectGeth() {
-		find_geth
+	function detectEth() {
+		find_eth
 		echo ""
 
-		if [[ $isGeth == true ]]
+		if [[ $isEth == true ]]
 		then
-			wait_for_user "Do you want to update geth?"
+			wait_for_user "Do you want to update eth?"
 		fi
 	}
 
@@ -130,7 +130,7 @@ function run_installer()
 			get_osx_dependencies
 		else
 			OS_TYPE="win"
-			abortInstall "${red}==>${reset} ${b}OS not supported:${reset} geth one-liner currently support OS X, Ubuntu and Debian.\nFor instructions on installing ethereum on other platforms please visit ${u}${blue}http://ethereum.org/${reset}"
+			abortInstall "${red}==>${reset} ${b}OS not supported:${reset} eth one-liner currently support OS X, Ubuntu and Debian.\nFor instructions on installing ethereum on other platforms please visit ${u}${blue}http://ethereum.org/${reset}"
 		fi
 
 		echo
@@ -162,9 +162,8 @@ function run_installer()
 		find_brew
 
 		INSTALL_FILES+="${blue}${dim}==> Ethereum:${reset}\n"
-		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $GOPATH/src/github.com/ethereum/go-ethereum\n"
-		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_PREFIX/Cellar/ethereum\n"
-		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_CACHE/ethereum--git\n"
+		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_PREFIX/Cellar/cpp-ethereum\n"
+		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_CACHE/cpp-ethereum--git\n"
 	}
 
 	function macos_version()
@@ -197,22 +196,22 @@ function run_installer()
 			fi
 		fi
 
-		errorMessages+="${red}==>${reset} ${b}Mac OS version too old:${reset} geth requires OS X version ${red}$OSX_REQUIERED_VERSION${reset} at least in order to run.\n"
+		errorMessages+="${red}==>${reset} ${b}Mac OS version too old:${reset} eth requires OS X version ${red}$OSX_REQUIERED_VERSION${reset} at least in order to run.\n"
 		errorMessages+="    Please update the OS and reload the install process.\n"
 	}
 
-	function find_geth()
+	function find_eth()
 	{
-		GETH_PATH=`which geth 2>/dev/null`
+		GETH_PATH=`which eth 2>/dev/null`
 
 		if [[ -f $GETH_PATH ]]
 		then
-			check "Found geth: $GETH_PATH"
-			echo "$($GETH_PATH version)"
-			isGeth=true
+			check "Found eth: $GETH_PATH"
+			echo "$($GETH_PATH -V)"
+			isEth=true
 		else
-			uncheck "Geth is missing"
-			isGeth=false
+			uncheck "Eth is missing"
+			isEth=false
 		fi
 	}
 
@@ -340,12 +339,12 @@ function run_installer()
 		exe brew update
 		echo
 
-		info "Installing geth"
-		if [[ $isGeth == true ]]
+		info "Installing eth"
+		if [[ $isEth == true ]]
 		then
-			exe brew reinstall ethereum --devel
+			exe brew reinstall cpp-ethereum --devel
 		else
-			exe brew install ethereum --devel
+			exe brew install cpp-ethereum --devel
 		fi
 		echo
 	}
@@ -375,7 +374,7 @@ function run_installer()
 		find_apt
 
 		INSTALL_FILES+="${blue}${dim}==> Ethereum:${reset}\n"
-		INSTALL_FILES+=" ${blue}${dim}➜${reset}  /usr/bin/geth\n"
+		INSTALL_FILES+=" ${blue}${dim}➜${reset}  /usr/bin/eth\n"
 	}
 
 	function find_apt()
@@ -402,9 +401,9 @@ function run_installer()
 		exe sudo apt-get install -q -y software-properties-common
 		echo
 
-		if [[ $isGeth == true ]]
+		if [[ $isEth == true ]]
 		then
-			info "Uninstalling previous geth version"
+			info "Uninstalling previous eth version"
 			exe sudo apt-get remove -y
 			exe sudo apt-get clean
 		fi
@@ -418,8 +417,8 @@ function run_installer()
 		exe sudo apt-get update -q -y
 		echo
 
-		info "Installing geth"
-		exe sudo apt-get install -q -y geth
+		info "Installing eth"
+		exe sudo apt-get install -q -y eth
 		echo
 	}
 
@@ -437,9 +436,9 @@ function run_installer()
 	function verify_installation()
 	{
 		info "Verifying installation"
-		find_geth
+		find_eth
 
-		if [[ $isGeth == false ]]
+		if [[ $isEth == false ]]
 		then
 			abortInstall
 		fi
@@ -459,7 +458,7 @@ function run_installer()
 		echo
 		successHeading "Installation successful!"
 		head "Next steps"
-		info "Run ${cyan}\`geth help\`${reset} to get started.${reset}"
+		info "Run ${cyan}\`eth help\`${reset} to get started.${reset}"
 		echo
 		exit 0
 	}
@@ -473,8 +472,8 @@ function run_installer()
 	echo
 
 	# Check dependencies
-	head "Looking for geth"
-	detectGeth
+	head "Looking for eth"
+	detectEth
 
 	# Check dependencies
 	head "Checking dependencies"
@@ -486,7 +485,7 @@ function run_installer()
 	echo
 
 	# Display disclaimer
-	error "Before installing Geth (ethereum CLI) read this:"
+	error "Before installing Eth (ethereum CLI) read this:"
 	echo
 	echo " ${red}${dim}➜${reset}  ${b}${cyan}Frontier${reset} is a ${red}live testnet${reset}, it is not the 'main release' of Ethereum, but rather an ${red}initial beta prerelease;${reset}"
 	echo " ${red}${dim}➜${reset}  You'd be ${b}mad${reset} to use this for anything approaching ${u}${red}${b}"important" or "valuable"${reset}. ${red}Expect dragons;${reset}"
@@ -498,9 +497,9 @@ function run_installer()
 	echo
 
 	# Prompt user to continue or abort
-	wait_for_user "${b}I understand,${reset} I want to install Geth (ethereum CLI)"
+	wait_for_user "${b}I understand,${reset} I want to install Eth (ethereum CLI)"
 
-	# Install dependencies and geth
+	# Install dependencies and eth
 	install
 
 	# Check installation
