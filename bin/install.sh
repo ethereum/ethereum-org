@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # First we detect the os
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
