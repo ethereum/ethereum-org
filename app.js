@@ -1,10 +1,7 @@
-'use strict';
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
-var forceSSL = require('express-force-ssl');
 var approvedBlock = require('./config/config');
 
 // Init the app
@@ -18,16 +15,57 @@ app.use(favicon(path.join(__dirname, '/public/images/favicon.png')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(forceSSL);
 
 // Routes
 app.get('/', function(req, res) {
-	res.render('index', { title: 'Ethereum Frontier', block: approvedBlock });
+	res.render('index', { title: 'Ethereum Frontier' });
 });
+
+app.get('/geth', function(req, res) {
+	res.render('geth', { title: 'Install Geth' });
+});
+
+app.get('/ether', function(req, res) {
+	res.render('ether', { title: 'Get Ether' });
+});
+
+app.get('/greeter', function(req, res) {
+	res.render('greeter', { title: 'Create a Hello World Contract in ethereum' });
+});
+
+app.get('/token', function(req, res) {
+	res.render('token', { title: 'Create a cryptocurrency contract in Ethereum' });
+});
+
+app.get('/crowdsale', function(req, res) {
+	res.render('crowdsale', { title: 'Create a crowdsale contract in Ethereum' });
+});
+
+app.get('/dao', function(req, res) {
+	res.render('dao', { title: 'Create a Democracy contract in Ethereum' });
+});
+
+app.get('/sale', function(req, res) {
+	res.render('sale', { title: '2014 ether presale' });
+});
+
+app.get('/foundation', function(req, res) {
+	res.render('foundation', { title: 'Ethereum Foundation' });
+});
+
+app.get('/agreement', function(req, res) {
+	res.render('agreement', { title: 'Legal agreement' });
+});
+
+app.get('/press-kit', function(req, res) {
+	res.render('press-kit', { title: 'Press Kit' });
+});
+
 
 app.get('/getBlock', function(req, res) {
 	res.json(approvedBlock);
 });
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
