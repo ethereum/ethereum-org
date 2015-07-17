@@ -130,7 +130,7 @@ function run_installer()
 			get_osx_dependencies
 		else
 			OS_TYPE="win"
-			abortInstall "${red}==>${reset} ${b}OS not supported:${reset} eth one-liner currently support OS X, Ubuntu and Debian.\nFor instructions on installing ethereum on other platforms please visit ${u}${blue}http://frontier.ethereum.org/${reset}"
+			abortInstall "${red}==>${reset} ${b}OS not supported:${reset} eth one-liner currently support OS X, Ubuntu and Debian.\nFor instructions on installing ethereum on other platforms please visit ${u}${blue}http://ethereum.org/${reset}"
 		fi
 
 		echo
@@ -162,9 +162,8 @@ function run_installer()
 		find_brew
 
 		INSTALL_FILES+="${blue}${dim}==> Ethereum:${reset}\n"
-		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $GOPATH/src/github.com/ethereum/go-ethereum\n"
-		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_PREFIX/Cellar/ethereum\n"
-		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_CACHE/ethereum--git\n"
+		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_PREFIX/Cellar/cpp-ethereum\n"
+		INSTALL_FILES+=" ${blue}${dim}➜${reset}  $HOMEBREW_CACHE/cpp-ethereum--git\n"
 	}
 
 	function macos_version()

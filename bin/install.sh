@@ -130,7 +130,7 @@ function run_installer()
 			get_osx_dependencies
 		else
 			OS_TYPE="win"
-			abortInstall "${red}==>${reset} ${b}OS not supported:${reset} geth one-liner currently support OS X, Ubuntu and Debian.\nFor instructions on installing ethereum on other platforms please visit ${u}${blue}http://frontier.ethereum.org/${reset}"
+			abortInstall "${red}==>${reset} ${b}OS not supported:${reset} geth one-liner currently support OS X, Ubuntu and Debian.\nFor instructions on installing ethereum on other platforms please visit ${u}${blue}http://ethereum.org/${reset}"
 		fi
 
 		echo
