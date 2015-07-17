@@ -9,7 +9,7 @@ So let's start now.
 
 ## Your first citizen: the greeter
 
-Now that you’ve mastered the basics of Ethereum, let’s move into your first serious contract. Your country is a big open territory and sometimes you might feel lonely, so our first order of business will be to create a little automatic companion to greet you whenever you feel lonely. We’ll call him the “Greeter”.
+Now that you’ve mastered the basics of Ethereum, let’s move into your first serious contract. The Frontier is a big open territory and sometimes you might feel lonely, so our first order of business will be to create a little automatic companion to greet you whenever you feel lonely. We’ll call him the “Greeter”.
 
 The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
@@ -76,7 +76,6 @@ You need [brew](http://brew.sh) in order to install on your mac
     which solC
 
 Take note of the address given by the last line, you'll need it soon.
->>>>>>> f2e77a082dbd04ac068f36dd623ce55a749e61a7
 
 #### Install SolC on Windows
 
