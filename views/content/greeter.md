@@ -58,14 +58,16 @@ If you have it installed, it should output something like this:
 
 If instead the command returns an error, then you need to install it. Press control+c to exit the console and go back to the command line.
 
-#### Install SolC on Linux
+#### Install SolC on Ubuntu
 
 Open the terminal and execute these commands:
 
-    sudo apt-get install cpp-ethereum
-    which solC
+    sudo add-apt-repository ppa:ethereum/ethereum
+    sudo apt-get update
+    sudo apt-get install solc
+    which solc
 
-Take note of the address given by the last line, you'll need it soon.
+Take note of the path given by the last line, you'll need it soon.
 
 #### Install SolC on Mac OSX
 
@@ -73,13 +75,13 @@ You need [brew](http://brew.sh) in order to install on your mac
 
     brew install cpp-ethereum
     brew linkapps cpp-ethereum
-    which solC
+    which solc
 
-Take note of the address given by the last line, you'll need it soon.
+Take note of the path given by the last line, you'll need it soon.
 
 #### Install SolC on Windows
 
-You need [chocolatey](http://chocolatey.org) in order to install on your mac
+You need [chocolatey](http://chocolatey.org) in order to install solc.
 
     cinst -pre solC-stable
 
@@ -89,18 +91,19 @@ If you have the SolC Solidity Compiler installed,  you need now reformat by remo
 
 #### Compile from source
 
-    git clone git@github.com/ethereum/cpp-ethereum.git
-    cd cpp-ethereum
-    cmake ..
-    make -j8 
+    git clone https://github.com/ethereum/cpp-ethereum.git
+    mkdir cpp-ethereum/build
+    cd cpp-ethereum/build
+    cmake -DJSONRPC=OFF -DMINER=OFF -DETHKEY=OFF -DSERPENT=OFF -DGUI=OFF -DTESTS=OFF -DJSCONSOLE=OFF ..
+    make -j4 
     make install
-    which solC
+    which solc
 
 #### Linking your compiler in Geth
 
 Now [go back to the console](../geth) and type this command to install solC, replacing _path/to/solc_ to the path that you got on the last command you did:
 
-    admin.setSolc(path/to/solc)
+    admin.setSolc("path/to/solc")
 
 Now type again:
 
