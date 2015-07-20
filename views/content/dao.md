@@ -18,12 +18,6 @@ Take a moment to dream about the revolutionary possibilities this would allow, a
     
 
 
-     
-
-
-     
-
-
     contract token { mapping (address => uint) public coinBalanceOf;   function token() { }   function sendCoin(address receiver, uint amount) returns(bool sufficient) {  } }
 
 
