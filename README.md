@@ -4,7 +4,7 @@
 
 This repository contains the Frontier Release website.
 
-![Screenshot](https://raw.githubusercontent.com/ethereum/frontier-release/master/public/images/screenshot.jpg "Screenshot")
+![Screenshot](https://raw.githubusercontent.com/alexvandesande/frontier-release/master/public/images/screenshot.png "Screenshot")
 
 ## Prerequisite
 * node
