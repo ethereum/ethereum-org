@@ -13,13 +13,13 @@ Feeling comfortable? Time to get some ether!
 
 ### 1. Earn it by helping run the network
 
-The Ethereum network kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given for the computer who was able to create the latest block on the chain. Every 12 seconds, in average, a new block is added to the blockchain with the latest transactions and the computer that was generated it will be given 5 ether. Due to the nature of the algorithm for block generating, this process (generating a proof of work) is guaranteed to be random and rewards are given in proportion to the computational power of each machine. 
+The Ethereum network is kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given to the computer that was able to create the latest block on the chain. Every 12 seconds, on average, a new block is added to the blockchain with the latest transactions processed by the network and the computer that generated this block will be awarded 5 ether. Due to the nature of the algorithm for block generation, this process (generating a proof of work) is guaranteed to be random and rewards are given in proportion to the computational power of each machine. 
 
 This process is usually called **_mining_** in the crypto-currency lingo.
 
 #### CPU MINING
 
-If you are on a [private network](../geth) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated). This is a the best choice for small scale network or testing privately, as it's less resource intensive. On the real network, however, a normal desktop (or laptop) computer might prove very impractical. 
+If you are on a [private network](../geth) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is a the best choice for small scale network or testing privately, as it's less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to succesfully mine a block and receive ether.
 
 Before you do any mining, you need to set which address will receive your earnings (called "etherbase").
 

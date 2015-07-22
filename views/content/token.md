@@ -3,9 +3,9 @@
 
 What is a coin? Coins are much more interesting and useful than they seem, they are in essence just a tradeable token, but can become much more, depending on how you use them. Its value depends on what you do with it: a token can be used to control access (**an entrance ticket**), can be used for voting rights in an organization (**a share**), can be placeholders for an asset held by a third party (**a certificate of ownership**) or even be simply used as an exchange of value within a community (**a currency**). 
 
-You could do all those things by creating a centralised server, but using an Ethereum token contract comes with some free functionalities: for one, it's a decentralised service and tokens can be still exchanged even if the original service goes down for any reason. The code guarantees that no tokens will ever be created other than the ones set in the original code. Finally, by having each user hold their own token, this eliminates the scenarios where one single server break-in can result in the loss of funds from thousands of clients.
+You could do all those things by creating a centralised server, but using an Ethereum token contract comes with some free functionalities: for one, it's a decentralised service and tokens can be still exchanged even if the original service goes down for any reason. The code can guarantee that no tokens will ever be created other than the ones set in the original code. Finally, by having each user hold their own token, this eliminates the scenarios where one single server break-in can result in the loss of funds from thousands of clients.
 
-You could create your own token on a different blockchain, but creating on ethereum is easier—so you can focus your energy on the innovation that will make your coin stand out—, and it's more secure, as your security is provided by all the miners who are supporting the ethereum network. Finally, by creating your token in Ethereum, your coin will be compatible with any other contract that works in ethereum.
+You could create your own token on a different blockchain, but creating on ethereum is easier — so you can focus your energy on the innovation that will make your coin stand out - and it's more secure, as your security is provided by all the miners who are supporting the ethereum network. Finally, by creating your token in Ethereum, your coin will be compatible with any other contract running on ethereum.
 
 ### The Code
 
@@ -68,7 +68,7 @@ If everything worked correctly, you should be able to check your own balance wit
 
     tokenInstance.coinBalanceOf(eth.accounts[0]) + " tokens"
 
-It should have all the 10 000 tokens that were created once the contract was published. Since there is not any other defined way for new coins to be issued, those are all that will ever exist. 
+It should have all the 10 000 tokens that were created once the contract was published. Since there is not any other defined way for new coins to be issued, these are all that will ever exist. 
 
 You can set up a **Watcher** to react whenever anyone sends a coin using your contract. Here's how you do it:
 
@@ -112,7 +112,7 @@ You could modify this to anything else: maybe reward someone who finds a solutio
 
 ### Register a name for your coin
 
-The commands mentioned only work because you have tokenInstance instantiated on your local machine. If you send tokens to someone they won't be able to move them forward because they don't have the same object. In fact if you restart your console these objects will be deleted and the contracts you've been working on will be lost forever. So how do you instantiate the contract on a clean machine? 
+The commands mentioned only work because you have tokenInstance javascript object instantiated on your local machine. If you send tokens to someone they won't be able to move them forward because they don't have the same object and wont know where to look for your contract or call its functions. In fact if you restart your console these objects will be deleted and the contracts you've been working on will be lost forever. So how do you instantiate the contract on a clean machine? 
 
 There are two ways. Let's start with the quick and dirty, providing your friends with a reference to your contract’s ABI:
 

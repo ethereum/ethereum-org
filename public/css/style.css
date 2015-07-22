@@ -1214,6 +1214,18 @@ footer {
 	padding: 0;
 }
 
+.thawing {
+	background: #223767; 
+	padding: 20px 40px 40px;
+	color: #FFF;
+	border-radius: 6px;
+}
+
+.thawing img {
+	width: 49px;
+	float: left;
+	margin-right: 40px;
+}
 
 
 @media (-webkit-min-device-pixel-ratio: 2) {
