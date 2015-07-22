@@ -103,8 +103,6 @@ function run_installer()
 		done
 	}
 
-
-
 	function exe() {
 		echo "\$ $@"; "$@"
 	}
@@ -390,6 +388,7 @@ function run_installer()
 		else
 			uncheck "apt-get is missing"
 			isApt=false
+			abortInstall "${red}==>${reset} ${b}OS not supported:${reset} geth one-liner currently support OS X, Ubuntu and Debian.\nFor instructions on installing ethereum on other platforms please visit ${u}${blue}http://ethereum.org/${reset}"
 		fi
 	}
 
@@ -449,7 +448,7 @@ function run_installer()
 	{
 		echo
 		error "Installation failed"
-		echo "$1"
+		echo -e "$1"
 		echo
 		exit 0
 	}
