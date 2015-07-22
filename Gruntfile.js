@@ -2,20 +2,25 @@ var src = 'public/';
 var dest = 'dist/';
 
 var scripts = [
+	'public/js/ether-checker.js',
 	'public/js/script.js'
 ];
 
 var vendor = [
 	'public/js/jquery-1.11.2.min.js',
 	'public/js/bootstrap.min.js',
-	'public/js/highlight.pack.js'
+	'public/js/jquery.scrollme.min.js',
+	'public/js/bitcoinjs-min.js',
+	'public/js/underscore-min.js',
+	'public/js/numeral.js',
+	'public/js/jquery.tableofcontents.min.js'
 ];
 
 var styles = [
 	'bootstrap.min.css',
 	'font-awesome.css',
 	'wicked-grit.css',
-	'solarized_light.css',
+	'github.css',
 	'style.css'
 ];
 
@@ -77,6 +82,10 @@ module.exports = function(grunt) {
 					{
 						src: 'public/js/jquery-1.11.2.min.map',
 						dest: 'dist/js/jquery-1.11.2.min.map'
+					},
+					{
+						src: 'public/js/underscore-min.map',
+						dest: 'dist/js/underscore-min.map'
 					}
 				]
 			}
