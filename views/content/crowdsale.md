@@ -13,7 +13,7 @@ The way this particular crowdsale contract works is that you set an exchange rat
     
     contract token { mapping (address => uint) public coinBalanceOf; function token() {}  function sendCoin(address receiver, uint amount) returns(bool sufficient) {  } }
     
-    contract CrowdSale {
+    contract Crowdsale {
         
         address public beneficiary;
         uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
@@ -28,7 +28,7 @@ The way this particular crowdsale contract works is that you set an exchange rat
         }
         
         /*  at initialization, setup the owner */
-        function CrowdSale(address _beneficiary, uint _fundingGoal, uint _duration, uint _price, token _reward) {
+        function Crowdsale(address _beneficiary, uint _fundingGoal, uint _duration, uint _price, token _reward) {
             beneficiary = _beneficiary;
             fundingGoal = _fundingGoal;
             deadline = now + _duration * 1 minutes;
@@ -42,7 +42,7 @@ The way this particular crowdsale contract works is that you set an exchange rat
             funders[funders.length++] = Funder({addr: msg.sender, amount: amount});
             amountRaised += amount;
             tokenReward.sendCoin(msg.sender, amount / price);
-            FundTransfer(f.addr, amount, true);
+            FundTransfer(msg.sender, amount, true);
         }
             
         modifier afterDeadline() { if (now >= deadline) _ }
@@ -63,49 +63,60 @@ The way this particular crowdsale contract works is that you set an exchange rat
         }
     }
 
-You know the drill. [Remove line breaks](http://www.textfixer.com/tools/remove-line-breaks.php) and copy the following commands on the terminal:
+### Set the parameters
 
+Before we go further, let's start by setting the parameters of the crowdsale:
 
-    var crowdsaleCompiled = eth.compile.solidity(' contract token { mapping (address => uint) public coinBalanceOf; function token() {} function sendCoin(address receiver, uint amount) returns(bool sufficient) { } } contract CrowdSale { address public beneficiary; uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price; token public tokenReward; Funder[] public funders; event FundTransfer(address backer, uint amount, bool isContribution); /* data structure to hold information about campaign contributors */ struct Funder { address addr; uint amount; } /* at initialization, setup the owner */ function CrowdSale(address _beneficiary, uint _fundingGoal, uint _duration, uint _price, token _reward) { beneficiary = _beneficiary; fundingGoal = _fundingGoal; deadline = now + _duration * 1 minutes; price = _price; tokenReward = token(_reward); } /* The function without name is the default function that is called whenever anyone sends funds to a contract */ function () { Funder f = funders[++funders.length]; f.addr = msg.sender; f.amount = msg.value; amountRaised += f.amount; tokenReward.sendCoin(msg.sender, f.amount/price); FundTransfer(f.addr, f.amount, true); } modifier afterDeadline() { if (now >= deadline) _ } /* checks if the goal or time limit has been reached and ends the campaign */ function checkGoalReached() afterDeadline { if (amountRaised >= fundingGoal){ beneficiary.send(amountRaised); FundTransfer(beneficiary, amountRaised, false); } else { FundTransfer(0, 11, false); for (uint i = 0; i < funders.length; ++i) { funders[i].addr.send(funders[i].amount); FundTransfer(funders[i].addr, funders[i].amount, false); } } suicide(beneficiary); } }');
-
-    var beneficiary = eth.accounts[1];    // create an account for this
-    var fundingGoal = web3.toWei(100, "ether"); // raises 100 ether
-    var duration = 30;     // number of minutes the campaign will last
-    var price = web3.toWei(0.02, "ether"); // the price of the tokens, in ether
-    var reward = tokenInstance.address;   // the token contract address.
+    var _beneficiary = eth.accounts[1];    // create an account for this
+    var _fundingGoal = web3.toWei(100, "ether"); // raises 100 ether
+    var _duration = 30;     // number of minutes the campaign will last
+    var _price = web3.toWei(0.02, "ether"); // the price of the tokens, in ether
+    var _reward = token.address;   // the token contract address.
 
 On Beneficiary put the new address that will receive the raised funds. The funding goal is the amount of ether to be raised. Deadline is measured in blocktimes which average 12 seconds, so the default is about 4 weeks. The price is tricky: but just change the number 2 for the amount of tokens the contributors will receive for each ether donated. Finally reward should be the address of the token contract you created in the last section.
 
-In this example you are sending to the crowdsale fund 50% of all the tokens that ever existed, in exchange for 100 ether. Decide those parameters very carefully as they will play a very important role in the next part of our guide.
+In this example you are selling on the crowdsale half of all the tokens that ever existed, in exchange for 100 ether. Decide those parameters very carefully as they will play a very important role in the next part of our guide.
+
+### Deploy
+
+You know the drill: if you are using the solC compiler,[remove line breaks](http://www.textfixer.com/tools/remove-line-breaks.php) and copy the following commands on the terminal:
 
 
-    var crowdsaleContract = web3.eth.contract(crowdsaleCompiled.CrowdSale.info.abiDefinition);
-    var crowdsaleInstance = crowdsaleContract.new(
-      beneficiary, 
-      fundingGoal, 
-      duration, 
-      price, 
-      reward,
+    var crowdsaleCompiled = eth.compile.solidity(' contract token { mapping (address => uint) public coinBalanceOf; function token() {} function sendCoin(address receiver, uint amount) returns(bool sufficient) { } } contract Crowdsale { address public beneficiary; uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price; token public tokenReward; Funder[] public funders; event FundTransfer(address backer, uint amount, bool isContribution); /* data structure to hold information about campaign contributors */ struct Funder { address addr; uint amount; } /* at initialization, setup the owner */ function Crowdsale(address _beneficiary, uint _fundingGoal, uint _duration, uint _price, token _reward) { beneficiary = _beneficiary; fundingGoal = _fundingGoal; deadline = now + _duration * 1 minutes; price = _price; tokenReward = token(_reward); } /* The function without name is the default function that is called whenever anyone sends funds to a contract */ function () { Funder f = funders[++funders.length]; f.addr = msg.sender; f.amount = msg.value; amountRaised += f.amount; tokenReward.sendCoin(msg.sender, f.amount/price); FundTransfer(f.addr, f.amount, true); } modifier afterDeadline() { if (now >= deadline) _ } /* checks if the goal or time limit has been reached and ends the campaign */ function checkGoalReached() afterDeadline { if (amountRaised >= fundingGoal){ beneficiary.send(amountRaised); FundTransfer(beneficiary, amountRaised, false); } else { FundTransfer(0, 11, false); for (uint i = 0; i < funders.length; ++i) { funders[i].addr.send(funders[i].amount); FundTransfer(funders[i].addr, funders[i].amount, false); } } suicide(beneficiary); } }');
+
+    var crowdsaleContract = web3.eth.contract(crowdsaleCompiled.Crowdsale.info.abiDefinition);
+    var crowdsale = crowdsaleContract.new(
+      _beneficiary, 
+      _fundingGoal, 
+      _duration, 
+      _price, 
+      _reward,
       {
         from:web3.eth.accounts[0], 
-        data:crowdsaleCompiled.CrowdSale.code, 
+        data:crowdsaleCompiled.Crowdsale.code, 
         gas: 1000000
       }, function(e, contract){
        console.log(e, contract);
        console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
     })
 
-If you received an alert then your code should be online. You can always double check by doing this:
+**If you are using the _online compiler_ Copy the contract code to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), and then grab the content of the box labeled **Geth Deploy**. Since you have already set the parameters, you don't need to change anything to that text, simply paste the resulting text on your geth window.**
 
-    eth.getCode(crowdsaleInstance.address)
+Wait up to thirty seconds and you'll see a message like this:
+
+    Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e 
+
+If you received that alert then your code should be online. You can always double check by doing this:
+
+    eth.getCode(crowdsale.address)
 
 Now fund your newly created contract with the necessary tokens so it can automatically distribute rewards to the contributors!
 
-    tokenInstance.sendCoin.sendTransaction(crowdsaleInstance.address, 5000,{from: eth.accounts[0]})
+    token.sendCoin.sendTransaction(crowdsale.address, 5000,{from: eth.accounts[0]})
 
 After the transaction is picked, you can check the amount of tokens the crowdsale address has, and all other variables this way:
 
-    "Current crowdsale must raise " + web3.fromWei(crowdsaleInstance.fundingGoal.call(), "ether") + " ether in order to send it to " + crowdsaleInstance.beneficiary.call() + "."
+    "Current crowdsale must raise " + web3.fromWei(crowdsale.fundingGoal.call(), "ether") + " ether in order to send it to " + crowdsale.beneficiary.call() + "."
 
 
 
@@ -113,15 +124,15 @@ After the transaction is picked, you can check the amount of tokens the crowdsal
 
 You want to be alerted whenever your crowdsale receives new funds, so paste this code:
 
-    var event = crowdsaleInstance.FundTransfer({}, '', function(error, result){
+    var event = crowdsale.FundTransfer({}, '', function(error, result){
       if (!error)
         
         if (result.args.isContribution) {
             console.log("\n New backer! Received " + web3.fromWei(result.args.amount, "ether") + " ether from " + result.args.backer  )
 
-            console.log( "\n The current funding at " +( 100 *  crowdsaleInstance.amountRaised.call() / crowdsaleInstance.fundingGoal.call()) + "% of its goals. Funders have contributed a total of " + web3.fromWei(crowdsaleInstance.amountRaised.call(), "ether") + " ether.");
+            console.log( "\n The current funding at " +( 100 *  crowdsale.amountRaised.call() / crowdsale.fundingGoal.call()) + "% of its goals. Funders have contributed a total of " + web3.fromWei(crowdsale.amountRaised.call(), "ether") + " ether.");
                   
-            var timeleft = Math.floor(Date.now() / 1000)-crowdsaleInstance.deadline();
+            var timeleft = Math.floor(Date.now() / 1000)-crowdsale.deadline();
             if (timeleft>3600) {  console.log("Deadline has passed, " + Math.floor(timeleft/3600) + " hours ago")
             } else if (timeleft>0) {  console.log("Deadline has passed, " + Math.floor(timeleft/60) + " minutes ago")
             } else if (timeleft>-3600) {  console.log(Math.floor(-1*timeleft/60) + " minutes until deadline")
@@ -150,7 +161,7 @@ Check if that's available and register:
  
 Wait for the previous transaction to be picked up and then:
 
-    registrar.setAddress.sendTransaction(name, crowdsaleInstance.address, true,{from: eth.accounts[0]});
+    registrar.setAddress.sendTransaction(name, crowdsale.address, true,{from: eth.accounts[0]});
 
 
 ### Contribute to the crowdsale
@@ -160,7 +171,7 @@ Anyone can contribute to it by simply executing this command:
 
     var amount = web3.toWei(5, "ether") // decide how much to contribute
 
-    eth.sendTransaction({from: eth.accounts[0], to: crowdsaleInstance.address, value: amount, gas: 1000000})
+    eth.sendTransaction({from: eth.accounts[0], to: crowdsale.address, value: amount, gas: 1000000})
 
 
 Alternatively, if you want someone else to send it, they can even use the name registrar to contribute:
@@ -170,27 +181,27 @@ Alternatively, if you want someone else to send it, they can even use the name r
 
 Now wait a minute for the blocks to pickup and you can check if the contract received the ether by doing any of these commands: 
 
-    web3.fromWei(crowdsaleInstance.amountRaised.call(), "ether") + " ether"
-    tokenInstance.coinBalanceOf.call(eth.accounts[0]) + " tokens"
-    tokenInstance.coinBalanceOf.call(crowdsaleInstance.address) + " tokens"
+    web3.fromWei(crowdsale.amountRaised.call(), "ether") + " ether"
+    token.coinBalanceOf.call(eth.accounts[0]) + " tokens"
+    token.coinBalanceOf.call(crowdsale.address) + " tokens"
 
 
 ### Recover funds
 
 Once the deadline is passed someone has to wake up the contract to have the funds sent to either the beneficiary or back to the funders (if it failed). This happens because there is no such thing as an active loop or timer on ethereum so any future transactions must be pinged by someone.
 
-    crowdsaleInstance.checkGoalReached.sendTransaction({from:eth.accounts[0], gas: 2000000})
+    crowdsale.checkGoalReached.sendTransaction({from:eth.accounts[0], gas: 2000000})
 
 You can check your accounts with these lines of code:
 
     web3.fromWei(eth.getBalance(eth.accounts[0]), "ether") + " ether"
     web3.fromWei(eth.getBalance(eth.accounts[1]), "ether") + " ether"
-    tokenInstance.coinBalanceOf.call(eth.accounts[0]) + " tokens"
-    tokenInstance.coinBalanceOf.call(eth.accounts[1]) + " tokens"
+    token.coinBalanceOf.call(eth.accounts[0]) + " tokens"
+    token.coinBalanceOf.call(eth.accounts[1]) + " tokens"
 
 The crowdsale instance is setup to self destruct once it has done its job, so if the deadline is over and everyone got their prizes the contract is no more, as you can see by running this:
 
-    eth.getCode(crowdsaleInstance.address)
+    eth.getCode(crowdsale.address)
 
 So you raised a 100 ethers and successfully distributed your original coin among the crowdsale donors. What could you do next with those things?
 

@@ -79,7 +79,7 @@ mixin greeterRecipe(header)
     div.number 3 
     | Create the Greeter, your first live contract
 
-  p The greeter is a very simple contract that greets “Hello” when poked. With a very simple upgrade you can turn it into a smart contract that will charge for telling jokes.
+  p The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start.
 
   a(href="greeter").button Summon the Greeter 
 
@@ -97,10 +97,6 @@ mixin greeterRecipe(header)
         |  0.001 
         a(href="#get-ether") ether 
         | (approximately)
-      li 
-        input(type="checkbox") 
-        |  1 "knock knock" joke (optional)
-
 
 mixin tokenRecipe(header)
   +tokenFigure
@@ -231,12 +227,12 @@ mixin futureRecipe(header)
   p Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper proof network?
 
   p There are 
-  a(href="http://dapps.ethercasts.com/") many great projects
-  | being built right now. And since you are amongst the first developers in the world able to program decentralized applications, maybe some of them might even need your help!
+    a(href="http://dapps.ethercasts.com/") many great projects 
+    | being built right now. And since you are amongst the first developers in the world able to program decentralized applications, maybe some of them might even need your help!
 
   h4 Some projects using Ethereum
 
-  ul
+  ul.project-list
     li
       a(href='http://augur.net') Augur 
       | Decentralized prediction market built on Ethereum
@@ -268,8 +264,8 @@ mixin futureRecipe(header)
       a(href='http://weifund.io/') Wei.fund             
       | A non-profit, decentralized crowdfunding platform built on Ethereum
     li 
-      a(href='http://www.lazooz.net/')  Lazzoz            
-      | Decentralized Collaborative Transportation Web
+      a(href='http://etherchain.org')  etherchain            
+      | An Ethereum Blockchain Explorer 
     li 
       a(href='http://main.cubespawn.com') Cubespawn 
       | Open source project to build cost sensitive, high quality, modular manufacturing machines
