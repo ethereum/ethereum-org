@@ -111,6 +111,8 @@ Ether sent to your account should show up almost immediately, transactions being
 
 ## Sending your first transaction
 
+**ATTENTION: Ethereum addresses don't have, yet, built-in checks on them. That means that if you mistype an address, your ether will be lost forever, without a secondary confirmation window. If you are moving a significang amount, start with smaller quantities that you can afford to lose, until you feel confortable enough.**
+
 There are two types of accounts in Ethereum: *normal accounts*, holding ether that can only be moved with a private key and *contracts*, which hold ether only controlled by their own internal code. In this section we focus on the former. The remainder of this guide will be dedicated to the latter.
 
 Similarly, your transactions are also of two types: those sent to normal accounts are *ether transfers*, while the rest are *communication* with smart contracts.

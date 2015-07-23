@@ -112,7 +112,7 @@ Now type again:
 If you now have solC installed, then congratulations, you can keep reading. If you don't, then go to our [forums](http://forum.ethereum.org) or [subreddit](http://www.reddit.com/r/ethereum) and berate us on failing to make the process easier.
 
 
-### Compiling your contract
+### Compiling your contract 
 
 
 If you have the compiler installed, you need now reformat your contract by removing line-breaks so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
@@ -123,23 +123,33 @@ If you have the compiler installed, you need now reformat your contract by remov
 
 You have now compiled your code. Now you need to get it ready for deployment, this includes setting some variables up, like what is your greeting. Edit the first line below to something more interesting than 'Hello World!" and execute these commands:
 
-    var myGreeting = "Hello World!"
+    var _greeting = "Hello World!"
     var greeterContract = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition);
 
-    var greeterInstance = greeterContract.new(myGreeting,{from:web3.eth.accounts[0], data: greeterCompiled.greeter.code, gas: 1000000}, function(e, contract){
-       console.log(e, contract);
-       console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
+    var greeter = greeterContract.new(_greeting,{from:web3.eth.accounts[0], data: greeterCompiled.greeter.code, gas: 1000000}, function(e, contract){
+        if (typeof contract.address != 'undefined') {
+            console.log("Contract mined! \naddress: " + contract.address);
+        }
     })
 
-You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract. This contract is estimated to need 172 thousand gas to deploy (according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/)), at the time of writing, gas on the test net is priced at 1 to 10 microethers per unit of gas (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
+#### Using the online compiler
 
+If you don't have solC installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/) and then your compiled code should appear on the left pane. Copy the code on the box labeled **Geth deploy** to a text file. Now change the first line to your greeting:
+
+    var _greeting = "Hello World!"
+ 
+Now you can paste the resulting text on your geth window. Wait up to thirty seconds and you'll see a message like this:
+
+    Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e 
+
+You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract. This contract is estimated to need 172 thousand gas to deploy (according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/)), at the time of writing, gas on the test net is priced at 1 to 10 microethers per unit of gas (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
 
 **Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, people who are running computers who keep the network running. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can be a miner and lower your asking price.**
 
 
 After less than a minute, you should have a log with the contract address, this means you've sucessfully deployed your contract. You can verify the deployed code (compiled) by using this command:
 
-    eth.getCode(greeterInstance.contractAddress)
+    eth.getCode(greeter.address)
 
 If it returns anything other than "0x" then congratulations! Your little Greeter is live! If the contract is created again (by performing another eth.sendTransaction), it will be published to a new address. 
 
@@ -148,7 +158,7 @@ If it returns anything other than "0x" then congratulations! Your little Greeter
 
 In order to call your bot, just type the following command in your terminal:
 
-    greeterInstance.greet();
+    greeter.greet();
 
 Since this call changes nothing on the blockchain, it returns instantly and without any gas cost. You should see it return your greeting:
 
@@ -160,15 +170,15 @@ Since this call changes nothing on the blockchain, it returns instantly and with
 In order to other people to run your contract they need two things: the address where the contract is located and the ABI (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them. In order to get each of them run these commands:
 
     greeterCompiled.greeter.info.abiDefinition;
-    greeterInstance.address;
+    greeter.address;
 
 Then you can instantiate a javascript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' and 'address' to create a contract object in javascript:
 
-    var greeterInstance = eth.contract(ABI).at(Address);
+    var greeter = eth.contract(ABI).at(Address);
 
 This particular example can be instantiated by anyone by simply calling:
 
-    var greeterInstance2 = eth.contract([{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]).at('greeterAddress');
+    var greeter2 = eth.contract([{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]).at('greeterAddress');
 
 Replace _greeterAddress_ with your contract's address.
 
@@ -182,11 +192,11 @@ You must be very excited to have your first contract live, but this excitement w
 
 Unlike last time we will not be making a call as we wish to change something on the blockchain. This requires a transaction be sent to the network and a fee to be paid for the changes made. The suicide is subsidized by the network so it will cost much less than a usual transaction.
 
-    greeterInstance.kill.sendTransaction({from:eth.accounts[0]})
+    greeter.kill.sendTransaction({from:eth.accounts[0]})
 
 You can verify that the deed is done simply seeing if this returns 0:
 
-    eth.getCode(greeterInstance.contractAddress)
+    eth.getCode(greeter.contractAddress)
 
 Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 
