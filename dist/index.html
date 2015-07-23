@@ -70,8 +70,14 @@ puts
 ohai "Before installing Geth (ethereum CLI) read this:"
 puts "Frontier is a curated #{Tty.red}testnet#{Tty.reset}, it is not the 'main release' of Ethereum, but rather an #{Tty.red}initial beta prerelease#{Tty.reset}"
 puts "We fully expect #{Tty.red}instability and consensus flaws#{Tty.reset} in the client, some of which may be exploitable"
-puts "As curators, we fully reserve the right to ignore blocks at our discretion"
-puts "As curators, from a final block that we solely determine, we will preserve all non-contract (i.e. code-less) account balances above the value of 1 ETH into the Homestead Genesis block"
+puts "You are responsible for your own computer security. If your machine is compromised you will lose your ether, access to any contracts and maybe more."
+puts "You are responsible for your own actions. If you mess something up or break any laws while using this software, it's your fault, and your fault only."
+puts "You are responsible for your own karma. Don't be a jerk and respect others."
+puts "The user expressly knows and agrees that the user is using the Ethereum platform at the user’s sole risk. 
+puts "The user represents that the user has an adequate understanding of the risks, usage and intricacies of cryptographic tokens and blockchain-based open source software, eth platform and eth."  
+puts "The user acknowledges and agrees that, to the fullest extent permitted by any applicable law, the disclaimers of liability contained herein apply to any and all damages or injury whatsoever caused by or related to risks of, use of, or inability to use, eth or the Ethereum platform under any cause or action whatsoever of any kind in any jurisdiction, including, without limitation, actions for breach of warranty, breach of contract or tort (including negligence) and that neither Stiftung Ethereum nor etherum team shall be liable for any indirect, incidental, special, exemplary or consequential damages, including for loss of profits, goodwill or data." 
+puts "Some jurisdictions do not allow the exclusion of certain warranties or the limitation or exclusion of liability for certain types of damages. Therefore, some of the above limitations in this section may not apply to a user. In particular, nothing in these terms shall affect the statutory rights of any user or exclude injury arising from any willful misconduct or fraud of Stiftung Ethereum."
+puts "Read the full agreement at #{Tty.blue}http://www.ethereum.org/agreement#{Tty.reset}"
 
 wait_for_user if STDIN.tty?
 
