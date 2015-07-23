@@ -132,13 +132,13 @@ With these default parameters anyone with any tokens can make a proposal on how 
     var democracyContract = web3.eth.contract(daoCompiled.Democracy.info.abiDefinition);
     
     var democracy = democracyContract.new(
-        votingTokenAddress, 
-        minimunQuorum, 
-        debatingPeriod, 
+        _voterShareAddress, 
+        _minimumQuorum, 
+        _debatingPeriod, 
         {
           from:web3.eth.accounts[0], 
           data:daoCompiled.Democracy.code, 
-          gas: 2000000
+          gas: 3000000
         }, function(e, contract){
          console.log(e, contract);
          console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);

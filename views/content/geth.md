@@ -22,6 +22,12 @@ The Frontier tool is called Geth (the old english third person singular conjugat
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
 
+### Windows
+
+Install [Chocolatey](https://chocolatey.org) and then run: 
+
+    choco install geth-stable
+
 #### Other platforms and install options:
 
 * [Linux (using PPA, build from source)](http://ethereum.gitbooks.io/frontier-guide/content/installing_linux.html)

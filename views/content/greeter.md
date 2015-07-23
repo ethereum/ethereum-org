@@ -149,7 +149,7 @@ You will probably be asked for the password you picked in the beginning, because
 
 After less than a minute, you should have a log with the contract address, this means you've sucessfully deployed your contract. You can verify the deployed code (compiled) by using this command:
 
-    eth.getCode(greeter.contractAddress)
+    eth.getCode(greeter.address)
 
 If it returns anything other than "0x" then congratulations! Your little Greeter is live! If the contract is created again (by performing another eth.sendTransaction), it will be published to a new address. 
 
