@@ -220,7 +220,6 @@ header:after {
 	font-size: 18px;
 	color: #443A37;
 	position: relative;
-	display: none;
 	-webkit-background-blend-mode: multiply;
 	background-blend-mode: multiply;
 	min-width: 300px;
@@ -412,14 +411,6 @@ h3 strong {
 
 .inner-tutorial h5 strong {
 	color: #FFF;
-}
-
-#tutorial-start {
-	display: none;
-}
-
-#tutorial-start:target {
-	display: block;
 }
 
 .main-tutorial figure {
