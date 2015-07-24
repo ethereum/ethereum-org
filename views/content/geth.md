@@ -57,6 +57,8 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
     geth console
 
+The first time you start geth you will be presented with a license. Before you can use geth you must accept this license, please read it careful.
+
 Tip: Typing **web3** will list all the available packages, fields and functions provided by Geth. The most commonly used you should be aware of are the packages: **admin** (administering your node), **personal** (managing your accounts), **miner** (handling mining operations) and **eth** (interacting with the blockchain).
 
 If you have sucessfully downloaded the genesis block then launch the real network by doing this:
