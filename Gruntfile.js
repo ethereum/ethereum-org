@@ -43,9 +43,44 @@ module.exports = function(grunt) {
 						}
 					}
 				},
-				files: {
-					'dist/index.html': 'views/index.jade'
-				}
+				files: [
+					{
+						'dist/index.html': 'views/index.jade'
+					},
+					{
+						'dist/agreement.html': 'views/agreement.jade'
+					},
+					{
+						'dist/crowdsale.html': 'views/crowdsale.jade'
+					},
+					{
+						'dist/dao.html': 'views/dao.jade'
+					},
+					{
+						'dist/ether.html': 'views/ether.jade'
+					},
+					{
+						'dist/foundation.html': 'views/foundation.jade'
+					},
+					{
+						'dist/geth.html': 'views/geth.jade'
+					},
+					{
+						'dist/greeter.html': 'views/greeter.jade'
+					},
+					{
+						'dist/press-kit.html': 'views/press-kit.jade'
+					},
+					{
+						'dist/sale.html': 'views/sale.jade'
+					},
+					{
+						'dist/token.html': 'views/token.jade'
+					},
+					{
+						'dist/tutorial.html': 'views/tutorial.jade'
+					}
+				]
 			}
 		},
 		copy: {
