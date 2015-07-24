@@ -22,6 +22,12 @@ The Frontier tool is called Geth (the old english third person singular conjugat
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
 
+### Windows
+
+Install [Chocolatey](https://chocolatey.org) and then run: 
+
+    choco install geth-stable
+
 #### Other platforms and install options:
 
 * [Linux (using PPA, build from source)](http://ethereum.gitbooks.io/frontier-guide/content/installing_linux.html)
@@ -30,6 +36,18 @@ Paste the above one-liner in your terminal for an automated install script. This
 * [Docker](http://ethereum.gitbooks.io/frontier-guide/content/using_docker.html)
 * [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
 
+### Create the genesis block
+
+If you are trying to run Frontier during the first few days, you will have to make an extra step, which is to create the genesis block yourself. The reason that we can't provide one for you is for the simple fact that one doesn't exist, yet, because it will be created by the community. So during the beggining of frontier, we can't be sure what will be the canonical genesis block.
+
+If you trust us to create a fair genesis block, we can provide you a script to generate one for yourself, which we were able to write while our lawyer was distracted, so he won't mind.
+
+    sudo easy_install pip
+    sudo pip install bitcoin
+    curl -o genesis_block_generator.py https://raw.githubusercontent.com/ethereum/pyethsaletool/master/genesis_block_generator.py
+    python genesis_block_generator.py > genesis_block.json
+    
+If you don't want to go this process, we will try to provide a downloadable file as soon as one is available. 
 
 ### Run it
 
@@ -39,7 +57,13 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
     geth console
 
+The first time you start geth you will be presented with a license. Before you can use geth you must accept this license, please read it careful.
+
 Tip: Typing **web3** will list all the available packages, fields and functions provided by Geth. The most commonly used you should be aware of are the packages: **admin** (administering your node), **personal** (managing your accounts), **miner** (handling mining operations) and **eth** (interacting with the blockchain).
+
+If you have sucessfully downloaded the genesis block then launch the real network by doing this:
+
+    geth  --genesis path/to/genesis.json  console 
 
 **ATTENTION: If you just want to test the technology and play around, DON'T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.**
 
@@ -48,9 +72,9 @@ Tip: Typing **web3** will list all the available packages, fields and functions 
 
 Sometimes you might not want to connect to the live public network. Instead, you can choose to create your own private testnet. This is very useful if you don't need to test public contracts and want just to try- or develop on the technology. Since you would be only one mining, you can easily get a lot of ether to test your code as well as have the ability to flexibly control the inclusion of transactions in the blockchain.
 
-    geth --networkid 12345 --genesisnonce 678 --datadir ~/.ethereum_experiment console
+    geth --networkid 12345 --genesis ~/dev/genesis.json --datadir ~/.ethereum_experiment console
 
-Replace 12345 with any random number you want to use as the network ID. Changing the genesis nonce is optional but it's important because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
+Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
 
 This will prevent anyone who doesn't know your chosen — secret — nonce and network id, from connecting to you or providing you with unwanted data. If you *want* to connect to other peers and create a small private network of multiple computers, you have to help each node find the others. To do that, first you need your Node URL:
 
@@ -73,7 +97,7 @@ Another solution is to run multiple terminal windows with the logs in one and yo
 
     geth attach
 
-The console has history that persists between sessions. You can navigate your command history by using the up and down arrow keys.
+The console has auto completion and history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.
 
 #### Learn More on Running a node
 

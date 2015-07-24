@@ -409,8 +409,8 @@ function run_installer()
 		fi
 
 		info "Adding ethereum repository"
-		exe sudo add-apt-repository -q -y ppa:ethereum/ethereum
-		exe sudo add-apt-repository -q -y ppa:ethereum/ethereum-dev
+		exe sudo add-apt-repository -y ppa:ethereum/ethereum
+		exe sudo add-apt-repository -y ppa:ethereum/ethereum-dev
 		echo
 
 		info "Updating packages"

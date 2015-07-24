@@ -45,7 +45,7 @@ This is a summary,  but you can read the [full mining guide here](https://forum.
 
 If you are serious about mining on the live ethereum network and get real ether rewards, then you should use a dedicated computer with very powerful graphic cards in order to run the network. 
 
-Mining, for the time being, is best left to Linux. We will likely be releasing Windows releases to provide the best support that we can... however we cannot guarantee it. If you must use Windows, using a workaround such as Virtualbox or Vmware is probably recommended for the time being, but this will not be an appropriate mining setup.
+Mining, for the time being, is best left to Linux. We will likely be releasing Windows releases to provide the best support that we can... however we cannot guarantee it. If you must use Windows, using a workaround such as VirtualBox or VMware is probably recommended for the time being, but this will not be an appropriate mining setup.
 
 Frontier's proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the [Frontier gitBook, mining chapter](http://ethereum.gitbooks.io/frontier-guide/content/mining.html). Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).
 
@@ -110,6 +110,8 @@ Ether sent to your account should show up almost immediately, transactions being
 
 
 ## Sending your first transaction
+
+**ATTENTION: Ethereum addresses don't have, yet, built-in checks on them. That means that if you mistype an address, your ether will be lost forever, without a secondary confirmation window. If you are moving a significang amount, start with smaller quantities that you can afford to lose, until you feel confortable enough.**
 
 There are two types of accounts in Ethereum: *normal accounts*, holding ether that can only be moved with a private key and *contracts*, which hold ether only controlled by their own internal code. In this section we focus on the former. The remainder of this guide will be dedicated to the latter.
 
