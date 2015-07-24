@@ -97,7 +97,7 @@ Another solution is to run multiple terminal windows with the logs in one and yo
 
     geth attach
 
-The console has history that persists between sessions. You can navigate your command history by using the up and down arrow keys.
+The console has auto completion and history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.
 
 #### Learn More on Running a node
 
