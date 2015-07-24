@@ -4,7 +4,7 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
     meta(http-equiv="X-UA-Compatible",content="chrome=1")
     title= title
-    
+
 
     meta(name="description", content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference.")
 
@@ -23,13 +23,7 @@ html
 
 
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Holtwood+One+SC|Source+Sans+Pro:200')
-    link(rel='stylesheet', href='/css/wicked-grit.css')
-    link(rel='stylesheet', href='/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/css/font-awesome.min.css')
-    //- link(rel='stylesheet', href='/css/styles/solarized_light.css')
-
-    link(rel='stylesheet', href='/css/styles/github.css')
-    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/frontier.min.css')
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css')
   body
     include ./includes/head.jade
@@ -38,26 +32,18 @@ html
 
     include ./includes/footer.jade
 
-    script(src="/js/jquery-1.11.2.min.js")
-    script(src="/js/bootstrap.min.js")
-    script(src="/js/jquery.scrollme.min.js")
-    script(src="/js/bitcoinjs-min.js")
-    script(src="/js/script.js")
-    script(src="/js/ether-checker.js")
-    script(src="/js/underscore-min.js")
-    script(src="/js/numeral.js")
-    script(src="/js/jquery.tableofcontents.min.js")
+    script(src="/js/frontier.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js")
 
     script
-        | $(document).ready(function(){ 
+        | $(document).ready(function(){
         |     $("#toc").tableOfContents(
         |       $(".main-tutorial"),      // Scoped to div#wrapper
         |       {
         |         startLevel: 2,    // H2 and up
         |         depth:      3    // H2 through H4,
         |       }
-        |     ); 
+        |     );
         |   });
 
     script
