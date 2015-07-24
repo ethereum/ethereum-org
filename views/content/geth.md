@@ -57,6 +57,8 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
     geth console
 
+The first time you start geth you will be presented with a license. Before you can use geth you must accept this license, please read it careful.
+
 Tip: Typing **web3** will list all the available packages, fields and functions provided by Geth. The most commonly used you should be aware of are the packages: **admin** (administering your node), **personal** (managing your accounts), **miner** (handling mining operations) and **eth** (interacting with the blockchain).
 
 If you have sucessfully downloaded the genesis block then launch the real network by doing this:
@@ -95,7 +97,7 @@ Another solution is to run multiple terminal windows with the logs in one and yo
 
     geth attach
 
-The console has history that persists between sessions. You can navigate your command history by using the up and down arrow keys.
+The console has auto completion and history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.
 
 #### Learn More on Running a node
 
