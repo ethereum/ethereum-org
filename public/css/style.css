@@ -1186,6 +1186,9 @@ footer {
 .project-list a[href='http://slock.it'] {
 	background-image: url('../images/icons/logo_schwarz.png');
 }
+.project-list a[href='http://boardroom.to'] {
+	background-image: url('../images/icons/boardroom.png');
+}
 
 
 .ether-checker,
