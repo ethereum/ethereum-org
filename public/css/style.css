@@ -535,6 +535,18 @@ input.button:hover {
 	padding-top: 15px;
 }
 
+.inner-header a.back {
+	color: #FFFAEE;
+	float: left;
+	position: absolute;
+	top: 10px;
+	left: 60px;
+	opacity: 0.5;
+}
+.inner-header a.back:hover {
+	opacity: 1;
+}
+
 .warning a.back,
 .terms:hover {
 	color: #FFF;
@@ -1074,8 +1086,7 @@ footer {
 	color: #eb453e;
 }
 
-
-.foundation-page h3 {
+.inner-page h3 {
 	padding: 20px 20px 10px;
 	clear: both;
 }
