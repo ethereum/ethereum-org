@@ -111,7 +111,7 @@ In order to do anything on an Ethereum network you need ether, and to get it, yo
 
     personal.newAccount("Write here a good, randomly generated, passphrase!")
 
-**Note: Pick up a good passphrase and write it down. If you lose the passphrase you used to encrypt your account, you will not be able to access that account. Repeat: There are no safety nets. It is NOT possible to access your account without a valid passphrase and there is no "forgot my password" option here. See: https://xkcd.com/936/ for details**
+**Note: Pick up a good passphrase and write it down. If you lose the passphrase you used to encrypt your account, you will not be able to access that account. Repeat: There are no safety nets. It is NOT possible to access your account without a valid passphrase and there is no "forgot my password" option here. See [this XKCD](https://xkcd.com/936/) for details**
 
 **DO NOT FORGET YOUR PASSPHRASE! **
 
