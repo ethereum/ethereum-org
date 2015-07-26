@@ -1096,6 +1096,7 @@ footer {
 	height: 250px;
 	float: right;
 	margin: 0 0 40px 40px;
+	clear: both;
 }
 
 .press-kit img {
