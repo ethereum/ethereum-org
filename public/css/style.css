@@ -8,6 +8,10 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+hr {
+	border-color: #f8ead1;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Wicked-Grit', Arial, sans-serif serif;
 	letter-spacing: -1px;
@@ -1077,8 +1081,8 @@ footer {
 }
 
 .foundation-page img[alt*="Portrait"] {
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 	float: right;
 	margin: 0 0 40px 40px;
 }
