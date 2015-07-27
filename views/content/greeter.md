@@ -56,7 +56,7 @@ If you have it installed, it should output something like this:
 
     ['Solidity' ]
 
-If instead the command returns an error, then you need to install it. Press control+c to exit the console and go back to the command line.
+If you do not get Solidity above, then you need to install it. Press control+c to exit the console and go back to the command line.
 
 #### Install SolC on Ubuntu
 
