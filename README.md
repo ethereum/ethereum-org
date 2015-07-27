@@ -19,6 +19,13 @@ Clone the repository and install the dependencies
 git clone https://github.com/ethereum/frontier-release
 cd frontier-release
 npm install
+npm install -g grunt
+```
+
+##Build static resources
+
+```bash
+grunt
 ```
 
 ##Run
