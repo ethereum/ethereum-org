@@ -190,7 +190,7 @@ Replace _greeterAddress_ with your contract's address.
 
 You must be very excited to have your first contract live, but this excitement wears off sometimes, when the owners go on to write further contracts, leading to the unpleasant sight of abandoned contracts on the blockchain. In the future, blockchain rent might be implemented in order to increase the scalability of the blockchain but for now, be a good citizen and humanely put down your abandoned bots. 
 
-Unlike last time we will not be making a call as we wish to change something on the blockchain. This requires a transaction be sent to the network and a fee to be paid for the changes made. The suicide is subsidized by the network so it will cost much less than a usual transaction.
+A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is ran. The suicide is subsidized by the network so it will cost much less than a usual transaction.
 
     greeter.kill.sendTransaction({from:eth.accounts[0]})
 
