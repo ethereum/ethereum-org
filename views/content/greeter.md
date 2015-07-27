@@ -56,7 +56,7 @@ If you have it installed, it should output something like this:
 
     ['Solidity' ]
 
-If instead the command returns an error, then you need to install it. Press control+c to exit the console and go back to the command line.
+If you do not get Solidity above, then you need to install it. Press control+c to exit the console and go back to the command line.
 
 #### Install SolC on Ubuntu
 
@@ -190,7 +190,7 @@ Replace _greeterAddress_ with your contract's address.
 
 You must be very excited to have your first contract live, but this excitement wears off sometimes, when the owners go on to write further contracts, leading to the unpleasant sight of abandoned contracts on the blockchain. In the future, blockchain rent might be implemented in order to increase the scalability of the blockchain but for now, be a good citizen and humanely put down your abandoned bots. 
 
-Unlike last time we will not be making a call as we wish to change something on the blockchain. This requires a transaction be sent to the network and a fee to be paid for the changes made. The suicide is subsidized by the network so it will cost much less than a usual transaction.
+A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is ran. The suicide is subsidized by the network so it will cost much less than a usual transaction.
 
     greeter.kill.sendTransaction({from:eth.accounts[0]})
 
@@ -200,7 +200,7 @@ You can verify that the deed is done simply seeing if this returns 0:
 
 Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 
-If you don't add any kill clause it could potentially live forever (or at least until the frontier contracts are all wiped) independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on the civil rights of sentient digital beings. Treat your bots humanely.
+If you don't add any kill clause it could potentially live forever independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on the civil rights of sentient digital beings. Treat your bots humanely.
 
 
 
