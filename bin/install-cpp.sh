@@ -409,8 +409,8 @@ function run_installer()
 		fi
 
 		info "Adding ethereum repository"
-		exe sudo add-apt-repository -q -y ppa:ethereum/ethereum
-		exe sudo add-apt-repository -q -y ppa:ethereum/ethereum-dev
+		exe sudo add-apt-repository -y ppa:ethereum/ethereum
+		exe sudo add-apt-repository -y ppa:ethereum/ethereum-dev
 		echo
 
 		info "Updating packages"
@@ -448,7 +448,7 @@ function run_installer()
 	{
 		echo
 		error "Installation failed"
-		echo "$1"
+		echo -e "$1"
 		echo
 		exit 0
 	}
