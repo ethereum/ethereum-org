@@ -132,17 +132,26 @@ With these default parameters anyone with any tokens can make a proposal on how 
     var democracyContract = web3.eth.contract(daoCompiled.Democracy.info.abiDefinition);
     
     var democracy = democracyContract.new(
-        _voterShareAddress, 
-        _minimumQuorum, 
-        _debatingPeriod, 
-        {
-          from:web3.eth.accounts[0], 
-          data:daoCompiled.Democracy.code, 
-          gas: 3000000
-        }, function(e, contract){
-         console.log(e, contract);
-         console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
-      })
+      _voterShareAddress, 
+      _minimumQuorum, 
+      _debatingPeriod, 
+      {
+        from:web3.eth.accounts[0], 
+        data:daoCompiled.Democracy.code, 
+        gas: 3000000
+      }, function(e, contract){
+        if(!e) {
+
+          if(!contract.address) {
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash " waiting to be mined...");
+
+          } else {
+            console.log("Contract mined! Address: " + contract.address);
+            console.log(contract);
+          }
+
+        }
+    });
 
 **If you are using the _online compiler_ Copy the contract code to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), and then grab the content of the box labeled **Geth Deploy**. Since you have already set the parameters, you don't need to change anything to that text, simply paste the resulting text on your geth window.**
 

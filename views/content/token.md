@@ -53,8 +53,17 @@ Now let’s set up the contract, just like we did in the previous section. Chang
         data:tokenCompiled.token.code, 
         gas: 1000000
       }, function(e, contract){
-       console.log(e, contract);
-       console.log("Contract mined! \naddress: " + contract.address + "\ntransactionHash: " + contract.transactionHash);
+        if(!e) {
+
+          if(!contract.address) {
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash " waiting to be mined...");
+
+          } else {
+            console.log("Contract mined! Address: " + contract.address);
+            console.log(contract);
+          }
+
+        }
     })
 
 #### Online Compiler
