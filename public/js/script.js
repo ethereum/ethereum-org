@@ -1,6 +1,9 @@
 $(document).ready(function() {
   $('code').each(function(i, block) {
     hljs.highlightBlock(block);
+    $(block).click(function(){
+      selectElementContents(block);
+    })
   });
 
   if(!localStorage.getItem("agreedUpon")){
@@ -15,11 +18,21 @@ $(document).ready(function() {
         $(".hidden").removeClass("hidden");
         $('#agreement, .cannot-continue, .short-terms').hide();
   }
-
-
 });
 
-
+function selectElementContents(el) {
+    if (window.getSelection && document.createRange) {
+        var sel = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else if (document.selection && document.body.createTextRange) {
+        var textRange = document.body.createTextRange();
+        textRange.moveToElementText(el);
+        textRange.select();
+    }
+}
 
 function isElementInViewport (el) {
 

@@ -18,18 +18,18 @@ If you are building a business that needs to have always on connections to the e
 
 ## Geth
 
-The go implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and is interested in building frontend for html dapps, you should experiment Geth.
+The **Go** implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and is interested in building frontend for html dapps, you should experiment with Geth.
 
 ### Install: Mac and Linux
 
 In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth. 
 
 
-    bash <(curl https://install-geth.ethereum.org)  
+    $ bash <(curl https://install-geth.ethereum.org)  
 
 (old script - remove this when the above is tested)
     
-    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install.sh)
+    $ bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install.sh)
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
 
@@ -37,31 +37,34 @@ Paste the above one-liner in your terminal for an automated install script. This
 
 Install [Chocolatey](https://chocolatey.org) and then run: 
 
-    choco install geth-stable
+    $ choco install geth-stable
 
 ## Eth
 
-The Go implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and is interested in using ethereum as the backend for projects that involve internet of things and backend servers, then the Eth client, the C++ client, is for you. 
+The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and is interested in using ethereum as the backend for projects that involve internet of things and backend servers, then the Eth client, the C++ client, is for you. 
 
 ### Install: Mac and Linux
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
 
-    bash <(curl https://install-eth.ethereum.org)  
+    $ bash <(curl https://install-eth.ethereum.org)  
 
 (old script - remove this when the above is tested)
     
-    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install-cpp.sh)
+    $ bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install-cpp.sh)
 
 ### Windows
 
-Install [Chocolatey](https://chocolatey.org) and then run: 
+Run this command: 
 
-    choco install geth-stable
+    $ ???
 
 
+## Others
 
-#### Other platforms and install options:
+We also have a **Python** implementation is called Pyethereum. It is a very solid implementation and it's often one of our most resilient clients. But this client was built mostly for academic and security purposes and we don't recommend it for end users. If you are interested in learning the cryptographical and academic aspects of Ethereum, we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethereum).
+
+### More install options:
 
 * [Linux (using PPA, build from source)](http://ethereum.gitbooks.io/frontier-guide/content/installing_linux.html)
 * [Mac (Homebrew or build from source)](http://ethereum.gitbooks.io/frontier-guide/content/installing_mac.html)
@@ -71,32 +74,28 @@ Install [Chocolatey](https://chocolatey.org) and then run:
 
 ### Create the genesis block
 
-Currently Geth will not initialise unless you have created and loaded a 'genesis block'. This is the first block in what will eventually be the canonical Ethereum blockchain. It contains the pre-loaded account balances of everyone who participated in the ether pre-sale and most importantly a piece of secret information whose release will trigger the creation of ethereum. If you are trying to run Frontier during the first few days, you will have to take an extra step, which is to create the genesis block yourself. 
+Frontier users will need to first generate, then load the Genesis block into their Ethereum client. The Genesis block is pretty much a database file: it contains all the transactions from the Ether sale, and when a user inputs it into the client, it represents their decision to join the network under its terms: it is the first step to consensus.
 
-If you dont trust us to create a fair genesis block, we can provide you a script to generate one for yourself, which we were able to write while our lawyer was distracted, so he won't mind.
+Because the ether pre-sale took place entirely on the bitcoin blockchain, its contents are public, and anyone can generate and verify the Genesis block. In the interest of decentralization and transparency, Ethereum does not provide the Genesis block as a download, but instead has created an open source script that anyone can use to generate the file, a link to which can be found later on in this article. 
 
-    sudo easy_install pip
-    sudo pip install bitcoin
-    curl -o genesis_block_generator.py https://raw.githubusercontent.com/ethereum/pyethsaletool/master/genesis_block_generator.py
-    python genesis_block_generator.py > genesis_block.json
-    
-If you don't want to go through this process, and are happy not being a part of the network right at the beginning we will try to provide a downloadable file as soon as one is available.
+[Read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). This is probably a temporary step: once the network is healthy enough and reached a higlhy secured consensus on the genesis, then this step will become unnecessary. If you don't want to go through this process, and are happy not being a part of the network right at the beginning then just sit tight and wait for upcoming releases.
 
 ### Run it
 
-Geth is a multipurpose command line tool that runs a full Ethereum node implemented in Go. It offers three interfaces: the [command line](http://ethereum.gitbooks.io/frontier-guide/content/cli.html) subcommands and options, a [JSON-RPC server](http://ethereum.gitbooks.io/frontier-guide/content/rpc.html) and an [interactive console](http://ethereum.gitbooks.io/frontier-guide/content/jsre.html).
+Geth and Eth are multipurpose command line tools that runs a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](http://ethereum.gitbooks.io/frontier-guide/content/cli.html) subcommands and options, a [JSON-RPC server](http://ethereum.gitbooks.io/frontier-guide/content/rpc.html) and an [interactive console](http://ethereum.gitbooks.io/frontier-guide/content/jsre.html).
 
-For the purposes of this guide, we will focus on the Console, a JavaScript environment that contains all the main features you probably want. To start it, simply type:
+For the purposes of this guide, we will focus on the Console, a JavaScript environment that contains all the main features you probably want. Depending on your client, paste either of these commands:
 
-    geth console
+**Instructions for Geth:**
+
+    $ geth --genesis path/to/genesis.json console
+
+**Instructions for Eth:** 
+
+    $ eth --genesis path/to/genesis.json interactive
+
 
 The first time you start geth you will be presented with a license. Before you can use geth you must accept this license, please read it careful.
-
-Tip: Typing **web3** will list all the available packages, fields and functions provided by Geth. The most commonly used you should be aware of are the packages: **admin** (administering your node), **personal** (managing your accounts), **miner** (handling mining operations) and **eth** (interacting with the blockchain).
-
-If you have sucessfully built (or downloaded) the genesis block then launch the real network by doing this:
-
-    geth  --genesis path/to/genesis.json  console 
 
 **ATTENTION: If you just want to test the technology and play around, DON'T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.**
 
@@ -105,7 +104,13 @@ If you have sucessfully built (or downloaded) the genesis block then launch the 
 
 Sometimes you might not want to connect to the live public network; Instead you can choose to create your own private testnet. This is very useful if you don't need to test public contracts and want just to try- or develop on the technology. Since you are the only member of your private network you are responsible for finding all blocks, validating all transactions and executing all smart contracts. This makes development cheaper and easier as you have the ability to flexibly control the inclusion of transactions in your own personal blockchain.
 
+**Geth:**
+
     geth --networkid 12345 --genesis ~/dev/genesis.json --datadir ~/.ethereum_experiment console
+
+**Eth:**
+
+    eth --networkid 12345 --genesis ~/dev/genesis.json --datadir ~/.ethereum_experiment interactive
 
 Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
 
@@ -122,7 +127,7 @@ You don't need to add every client to one another, as once connected, they will 
 
 ### Logs 
 
-You'll notice that there are many log entries popping up on your console - sometimes while you type. This is because all warnings and progress information are logged live into your terminal by the client. If you want to save the logs to a file you can view later, use this command:
+If you are running Geth you'll notice that there are many log entries popping up on your console - sometimes while you type. This is because all warnings and progress information are logged live into your terminal by the client. If you want to save the logs to a file you can view later, use this command:
 
     geth console 2>>geth.log
 
