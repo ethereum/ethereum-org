@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: 'public/fonts/',
-						src: ['minimal-*.*'],
+						src: ['*.*'],
 						dest: 'dist/fonts/',
 						filter: 'isFile'
 					},
@@ -106,7 +106,7 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: 'public/images/',
-						src: ['*.*'],
+						src: ['**/*.*'],
 						dest: 'dist/images/',
 						filter: 'isFile'
 					},
