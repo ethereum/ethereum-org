@@ -8,7 +8,8 @@ $(document).ready(function() {
         $(".hidden").removeClass("hidden");
         $('#agreement, .cannot-continue').hide();
         localStorage.setItem("agreedUpon",true);
-        window.scrollBy(0,750);
+        $(window).scrollTop(1315);
+
       });    
   } else {
         $(".hidden").removeClass("hidden");
