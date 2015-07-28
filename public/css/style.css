@@ -508,11 +508,12 @@ input.button:hover {
 	padding: 0 5px;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
+	color: #ffe9ae;
 }	
 
 .breadcrumb a.index {
 	font-family: 'Wicked-Grit', Arial, sans-serif serif;
-	}
+}
 
 .warning .short-terms a {
 	color: #FFF;
@@ -617,6 +618,9 @@ input.button:hover {
 }
 .community ul li a.meetups {
 	background-image: url("../images/icons/icon-meetup.png");
+}
+.community ul li a.email {
+	background-image: url("../images/icons/icon-email.png");
 }
 
 .community li.canary {
@@ -990,23 +994,13 @@ figure.ethereum-logo {
 	background: #FFF;	
 }
 
-.main-tutorial code:after {
-	content: " ";
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	width: 100px;
-	background: linear-gradient(to right, rgba(255,255,255,0), #fff);
-}
-
 code {
 	background: #F6E6CC;
 }
 
 pre {
 	background: transparent;
-	overflow: hidden;
+	overflow: auto;
 	border: solid 4px #FCF5E3;
 	padding:0;
 	margin: 20px 0;
@@ -1210,7 +1204,9 @@ footer {
 .project-list a[href='http://boardroom.to'] {
 	background-image: url('../images/icons/boardroom.png');
 }
-
+.project-list a[href='http://makerdao.com'] {
+	background-image: url('../images/icons/maker.png');
+}
 
 .ether-checker,
 .ether-checker input,
@@ -1488,11 +1484,6 @@ footer {
 		background-image: url("../images/moon-rocket@2x.png");
 	}
 
-
-	figure.ethereum-logo {
-
-	}
-
 	.community ul li a[href='http://blog.ethereum.org'] {
 		background-image: url("../images/icons/icon-blog@2x.png");
 	}
@@ -1513,6 +1504,9 @@ footer {
 	}
 	.community ul li a.meetups {
 		background-image: url("../images/icons/icon-meetup@2x.png");
+	}	
+	.community ul li a.email {
+		background-image: url("../images/icons/icon-email@2x.png");
 	}
 
 

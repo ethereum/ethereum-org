@@ -65,6 +65,16 @@ app.get('/branding', function(req, res) {
 	res.render('branding', { title: 'Branding Guidelines' });
 });
 
+
+app.get('/powered-by', function(req, res) {
+	res.render('powered-by', { title: 'Powered By' });
+});
+
+
+app.get('/create-meetup', function(req, res) {
+	res.render('create-meetup', { title: 'Create your meetup' });
+});
+
 app.get('/getBlock', function(req, res) {
 	res.json(approvedBlock);
 });

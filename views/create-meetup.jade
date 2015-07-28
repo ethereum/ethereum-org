@@ -2,13 +2,17 @@ extends layout
 
 block content
   include mixins/recipes.jade
-  +inner-header("Error")
+  +inner-header("Create your meetup!")
 
   div.main-tutorial.inner-page
     div.container  
       div.row
         div.col-md-12
-            h2 An error has occured.
-            h3= message
-            h4= error.status
-            pre #{error.stack}
+          include:md content/create-meetup.md        
+
+
+
+
+
+          
+
