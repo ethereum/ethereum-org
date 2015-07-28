@@ -79,6 +79,9 @@ module.exports = function(grunt) {
 					},
 					{
 						'dist/tutorial.html': 'views/tutorial.jade'
+					},
+					{
+						'dist/branding.html': 'views/branding.jade'
 					}
 				]
 			}
