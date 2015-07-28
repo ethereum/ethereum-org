@@ -9,9 +9,6 @@ SECURITY WARNINGS
 
 * **You are responsible for your own karma.** Don't be a jerk and respect others.
 
-* This software is open source under a [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl-3.0.en.html) license.
-
-
 
 LEGAL WARNING
 -------------
