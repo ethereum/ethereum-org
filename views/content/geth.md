@@ -10,9 +10,20 @@ In order to navigate the Frontier, you’ll need to use the command line. If you
   * [License and Contributors](http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html)
   
 
+# Clients
+
+For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-development-process/) three indenpendent implementations were created for Ethereum. The clients have almost identical functionality so which one you pick is left to personal choice on platform, language and what are your planned use for the network. 
+
+If you are building a business that needs to have always on connections to the ethereum network, we recommend you run at least one instance of both clients, to ensure reliability.
+
+## Geth
+
+The go implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and is interested in building frontend for html dapps, you should experiment Geth.
+
 ### Install: Mac and Linux
 
-The Frontier tool is called Geth (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) and paste the command below: 
+In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth. 
+
 
     bash <(curl https://install-geth.ethereum.org)  
 
@@ -27,6 +38,28 @@ Paste the above one-liner in your terminal for an automated install script. This
 Install [Chocolatey](https://chocolatey.org) and then run: 
 
     choco install geth-stable
+
+## Eth
+
+The Go implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and is interested in using ethereum as the backend for projects that involve internet of things and backend servers, then the Eth client, the C++ client, is for you. 
+
+### Install: Mac and Linux
+
+Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
+
+    bash <(curl https://install-eth.ethereum.org)  
+
+(old script - remove this when the above is tested)
+    
+    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install-cpp.sh)
+
+### Windows
+
+Install [Chocolatey](https://chocolatey.org) and then run: 
+
+    choco install geth-stable
+
+
 
 #### Other platforms and install options:
 
