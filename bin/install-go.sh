@@ -342,10 +342,9 @@ function run_installer()
 		if [[ $isGeth == true ]]
 		then
 			exe brew reinstall ethereum
-			exe brew unlink ethereum && brew link ethereum
 		else
 			exe brew install ethereum
-			exe brew link ethereum
+			exe brew linkapps ethereum
 		fi
 		echo
 	}
