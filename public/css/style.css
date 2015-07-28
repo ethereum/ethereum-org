@@ -292,6 +292,10 @@ header:after {
 	padding: 60px 20px 30px 70px;
 	position: relative;
 }
+/* The heading under the dessert */
+.main-tutorial .scrollme h2.animateme + h3 {
+	padding: 80px 20px;
+}
 
 
 
