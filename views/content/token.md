@@ -1,11 +1,11 @@
 
 ## The Coin 
 
-What is a coin? Coins are much more interesting and useful than they seem, they are in essence just a tradeable token, but can become much more, depending on how you use them. Its value depends on what you do with it: a token can be used to control access (**an entrance ticket**), can be used for voting rights in an organization (**a share**), can be placeholders for an asset held by a third party (**a certificate of ownership**) or even be simply used as an exchange of value within a community (**a currency**). 
+What is a coin? Coins are much more interesting and useful than they seem, they are in essence just a tradeable token, but can become much more, depending on how you use them. Its value depends on what you do with it: a token can be used to control access (**an entrance ticket**), can be used to represent debt owed by an organization (**a bond**), can be placeholders for an asset held by a third party (**a certificate of ownership**) or even simply be used as an exchange of value within a community (**a currency**).
 
-You could do all those things by creating a centralized server, but using an Ethereum token contract comes with some free functionalities: for one, it's a decentralized service and tokens can be still exchanged even if the original service goes down for any reason. The code can guarantee that no tokens will ever be created other than the ones set in the original code. Finally, by having each user hold their own token, this eliminates the scenarios where one single server break-in can result in the loss of funds from thousands of clients.
+You could do all those things by creating a centralized server, but using an Ethereum token contract comes with some free functionalities: for one, it's a decentralized service and tokens can be still exchanged even if the original service goes down for any reason. The code can guarantee that no tokens will ever be created other than the ones set in the original code. Finally, by having each user hold their own token, this eliminates the scenarios where one single server break-in can result in the loss of funds from thousands of clients. This makes the service ethereum offers effectively censorship proof.
 
-You could create your own token on a different blockchain, but creating on ethereum is easier — so you can focus your energy on the innovation that will make your coin stand out - and it's more secure, as your security is provided by all the miners who are supporting the ethereum network. Finally, by creating your token in Ethereum, your coin will be compatible with any other contract running on ethereum.
+You could create your own token on a different blockchain, but creating on ethereum is easier and, as you'll see in the next few tutorials, more flexible. This means you can focus your energy on the innovation that will make your coin stand out - and it's more secure, as your security is provided by all the miners who are supporting the ethereum network. Finally, by creating your token in Ethereum, your coin will be compatible with any other contract running on ethereum.
 
 ### The Code
 
@@ -32,7 +32,7 @@ This is the code for the contract we're building:
 
 If you have ever programmed, you won't find it hard to understand what it does: it is a contract that generates 10 thousand tokens to the creator of the contract, and then allows anyone with enough balance to send it to others. These tokens are the minimum tradeable unit and cannot be subdivided, but for the final users could be presented as a 100 units subdividable by 100 subunits, so owning a single token would represent having 0.01% of the total. If your application needs more fine grained atomic divisibility, then just increase the initial issuance amount.
 
-In this example we declared the variable "coinBalanceOf" to be public, this will automatically create a function that checks any account's balance.
+In this example we declared the mapping "coinBalanceOf" to be public, this will automatically create a 'get' function that returns any account's balance.
 
 ### Compile and Deploy
 
@@ -63,10 +63,11 @@ Now let’s set up the contract, just like we did in the previous section. Chang
 
     var supply = 10000;
 
-Now you can paste the resulting text on your geth window. Wait up to thirty seconds and you'll see a message like this:
+Now you can paste the resulting text in your geth window. Wait up to thirty seconds and you'll see a message like this:
 
     Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e 
 
+This has deployed the contract, and it is ready to be interacted with.
 
 ### Check balance watching coin transfers
 
@@ -94,7 +95,7 @@ If a friend has registered a name on the registrar you can send it without knowi
     token.sendCoin.sendTransaction(registrar.addr("Alice"), 2000, {from: eth.accounts[0]})
 
 
-Note that our first function **coinBalanceOf** was simply called directly on the contract instance and returned a value. This was possible since this was a simple read operation that incurs no state change and which executes locally and synchronously. Our second function **sendCoin** needs a **.sendTransaction()** call. Since this function is meant to change the state (write operation), it is sent as a transaction to the network to be picked up by miners and included in the canonical blockchain. As a result the consensus state of all participant nodes will adequately reflect the state changes resulting from executing the transaction. Sender address needs to be sent as part of the transaction to fund the fuel needed to run the transaction. Now, wait a minute and check both accounts balances:
+Note that our first function **coinBalanceOf** was simply called directly on the contract instance and returned a value. This was possible since this was a simple read operation that incurs no state change and which executes locally and synchronously. Our second function **sendCoin** needs a **.sendTransaction()** call. Since this function is meant to change the state (write operation), it is sent as a transaction to the network to be picked up by miners and included in the canonical blockchain. As a result the consensus state of all participant nodes will adequately reflect the state changes resulting from executing the transaction. Sender address needs to be sent as part of the transaction to fund the fuel needed to run the transaction. Now, wait until the transaction is included in a block and check both accounts balances:
 
     token.coinBalanceOf.call(eth.accounts[0])/100 + "% of all tokens"
     token.coinBalanceOf.call(eth.accounts[1])/100 + "% of all tokens"
@@ -103,7 +104,7 @@ Note that our first function **coinBalanceOf** was simply called directly on the
 
 ### Improvement suggestions
 
-Right now this cryptocurrency is quite limited as there will only ever be 10,000 coins and all are controlled by the coin creator, but you can change that. You could for example reward ethereum miners, by creating a transaction that will reward who found the current block:
+Right now this "cryptocurrency" is quite limited as there will only ever be 10,000 coins and all are controlled by the coin creator, but you can change that. You could for example reward ethereum miners, by creating a transaction that will reward who found the current block:
 
     mapping (uint => address) miningReward;
     function claimMiningReward() {
