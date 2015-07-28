@@ -345,6 +345,7 @@ function run_installer()
 			exe brew reinstall cpp-ethereum
 		else
 			exe brew install cpp-ethereum
+			exe brew linkapps cpp-ethereum
 		fi
 		echo
 	}
