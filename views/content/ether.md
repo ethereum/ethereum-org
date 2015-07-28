@@ -47,7 +47,7 @@ If you are serious about mining on the live ethereum network and get real ether 
 
 Mining, for the time being, is best left to Linux. We will likely be releasing Windows releases to provide the best support that we can... however we cannot guarantee it. If you must use Windows, using a workaround such as VirtualBox or VMware is probably recommended for the time being, but this will not be an appropriate mining setup.
 
-Frontier's proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the [Frontier gitBook, mining chapter](http://ethereum.gitbooks.io/frontier-guide/content/mining.html). Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).
+Frontier's proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the [Frontier gitBook, mining chapter](http://guide.ethereum.org/mining.html). Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).
 
 The Ethash proof of work algorithm is memory hard, you'll need at least 1+GB of RAM on each GPU. I say 1+ because the DAG, which is the set of data that's being pushed in and out of the GPU to make parallelisation costly, will start at 1GB and will continue growing indefinitely. 2GB should be a good approximation of what's needed to continue mining throughout the year.
 
@@ -61,7 +61,7 @@ There are currently two options for GPU miners available.
 
 * **C++ Etherminer**. This is a version for the pro miners. To install it, follow the guide to [install the whole C++ ethereum code](https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients). 
 
-Both setups are explain in further detail in the [Frontier reference](http://ethereum.gitbooks.io/frontier-guide/content/mining.html)
+Both setups are explain in further detail in the [Frontier reference](http://guide.ethereum.org/mining.html)
 
 
 ### 2. Use Bitcoins
@@ -97,7 +97,7 @@ If this does not work, please do not hesitate in contacting us on our [forums](h
 
 If you don't feel comfortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our [online balance checker](../sale#balance)
 
-Read [more about accounts](http://ethereum.gitbooks.io/frontier-guide/content/managing_accounts.html).
+Read [more about accounts](http://guide.ethereum.org/managing_accounts.html).
 
 ### 4. Get ether from a friend
 

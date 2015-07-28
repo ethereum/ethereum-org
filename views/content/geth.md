@@ -5,9 +5,9 @@ The Frontier is the first live release of the Ethereum network. As such you are 
 In order to navigate the Frontier, you’ll need to use the command line. If you are not comfortable using it, we strongly advise you to step back, watch from a distance for a while and wait until more user friendly tools are made available. Remember, there are no safety nets and for everything you do here, you are mostly on your own.
 
 * **Learn More**
-  * [What is Ethereum?](http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html)
-  * [Safety Caveats](http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html)
-  * [License and Contributors](http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html)
+  * [What is Ethereum?](http://guide.ethereum.org/ethereum.html)
+  * [Frontier Release](http://guide.ethereum.org/frontier.html)
+  * [License and Contributors](http://guide.ethereum.org/contributors.html)
   
 
 # Clients
@@ -66,10 +66,10 @@ We also have a **Python** implementation is called Pyethereum. It is a very soli
 
 ### More install options:
 
-* [Linux (using PPA, build from source)](http://ethereum.gitbooks.io/frontier-guide/content/installing_linux.html)
-* [Mac (Homebrew or build from source)](http://ethereum.gitbooks.io/frontier-guide/content/installing_mac.html)
-* [Windows (Chocolatey or build from source)](http://ethereum.gitbooks.io/frontier-guide/content/installing_windows.html)
-* [Docker](http://ethereum.gitbooks.io/frontier-guide/content/using_docker.html)
+* [Linux (using PPA, build from source)](http://guide.ethereum.org/installing_linux.html)
+* [Mac (Homebrew or build from source)](http://guide.ethereum.org/installing_mac.html)
+* [Windows (Chocolatey or build from source)](http://guide.ethereum.org/installing_windows.html)
+* [Docker](http://guide.ethereum.org/using_docker.html)
 * [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
 
 ### Create the genesis block
@@ -82,7 +82,7 @@ Because the ether pre-sale took place entirely on the bitcoin blockchain, its co
 
 ### Run it
 
-Geth and Eth are multipurpose command line tools that runs a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](http://ethereum.gitbooks.io/frontier-guide/content/cli.html) subcommands and options, a [JSON-RPC server](http://ethereum.gitbooks.io/frontier-guide/content/rpc.html) and an [interactive console](http://ethereum.gitbooks.io/frontier-guide/content/jsre.html).
+Geth and Eth are multipurpose command line tools that runs a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](http://guide.ethereum.org/cli.html) subcommands and options, a [JSON-RPC server](http://guide.ethereum.org/rpc.html) and an [interactive console](http://guide.ethereum.org/jsre.html).
 
 For the purposes of this guide, we will focus on the Console, a JavaScript environment that contains all the main features you probably want. Depending on your client, paste either of these commands:
 
@@ -106,11 +106,11 @@ Sometimes you might not want to connect to the live public network; Instead you 
 
 **Geth:**
 
-    geth --networkid 12345 --genesis ~/dev/genesis.json --datadir ~/.ethereum_experiment console
+    geth --networkid 12345 --genesis ~/test/genesis.json --datadir ~/.ethereum_experiment console
 
 **Eth:**
 
-    eth --networkid 12345 --genesis ~/dev/genesis.json --datadir ~/.ethereum_experiment interactive
+    eth --networkid 12345 --genesis ~/test/genesis.json --datadir ~/.ethereum_experiment interactive
 
 Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
 
@@ -139,15 +139,15 @@ The console has auto completion and history support that persists between sessio
 
 #### Learn More on Running a node
 
-* [Backup and restore](http://ethereum.gitbooks.io/frontier-guide/content/backup_restore.html)
-* [Connecting to the network](http://ethereum.gitbooks.io/frontier-guide/content/connecting.html)
-* [Monitoring your nodes](http://ethereum.gitbooks.io/frontier-guide/content/netstats.html)
-* [Setting up a cluster](http://ethereum.gitbooks.io/frontier-guide/content/cluster.html)
+* [Backup and restore](http://guide.ethereum.org/backup_restore.html)
+* [Connecting to the network](http://guide.ethereum.org/connecting.html)
+* [Monitoring your nodes](http://guide.ethereum.org/netstats.html)
+* [Setting up a cluster](http://guide.ethereum.org/cluster.html)
 
 
 ### Creating accounts
 
-In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://ethereum.gitbooks.io/frontier-guide/content/managing_accounts.html), but the simplest one is through the Geth console:
+In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://guide.ethereum.org/managing_accounts.html), but the simplest one is through the Geth console:
 
     personal.newAccount("Write here a good, randomly generated, passphrase!")
 
