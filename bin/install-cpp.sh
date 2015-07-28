@@ -458,7 +458,7 @@ function run_installer()
 		echo
 		successHeading "Installation successful!"
 		head "Next steps"
-		info "Run ${cyan}\`eth help\`${reset} to get started.${reset}"
+		info "Run ${cyan}\`eth --help\`${reset} to get started.${reset}"
 		echo
 		exit 0
 	}
