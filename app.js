@@ -61,6 +61,9 @@ app.get('/press-kit', function(req, res) {
 	res.render('press-kit', { title: 'Press Kit' });
 });
 
+app.get('/branding', function(req, res) {
+	res.render('branding', { title: 'Branding Guidelines' });
+});
 
 app.get('/getBlock', function(req, res) {
 	res.json(approvedBlock);

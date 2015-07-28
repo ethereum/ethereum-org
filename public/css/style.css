@@ -8,6 +8,11 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+hr {
+	border-color: #f8ead1;
+	clear: both;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Wicked-Grit', Arial, sans-serif serif;
 	letter-spacing: -1px;
@@ -529,6 +534,18 @@ input.button:hover {
 	color: #FFFAEE;
 	font-size: 80%;
 	padding-top: 15px;
+}
+
+.inner-header a.back {
+	color: #FFFAEE;
+	float: left;
+	position: absolute;
+	top: 10px;
+	left: 60px;
+	opacity: 0.5;
+}
+.inner-header a.back:hover {
+	opacity: 1;
 }
 
 .warning a.back,
@@ -1070,17 +1087,17 @@ footer {
 	color: #eb453e;
 }
 
-
-.foundation-page h3 {
+.inner-page h3 {
 	padding: 20px 20px 10px;
 	clear: both;
 }
 
 .foundation-page img[alt*="Portrait"] {
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 	float: right;
 	margin: 0 0 40px 40px;
+	clear: both;
 }
 
 .press-kit img {
@@ -1185,6 +1202,9 @@ footer {
 
 .project-list a[href='http://slock.it'] {
 	background-image: url('../images/icons/logo_schwarz.png');
+}
+.project-list a[href='http://boardroom.to'] {
+	background-image: url('../images/icons/boardroom.png');
 }
 
 
