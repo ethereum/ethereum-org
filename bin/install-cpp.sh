@@ -343,9 +343,10 @@ function run_installer()
 		if [[ $isEth == true ]]
 		then
 			exe brew reinstall cpp-ethereum
+			exe brew unlink cpp-ethereum && brew link cpp-ethereum
 		else
 			exe brew install cpp-ethereum
-			exe brew linkapps cpp-ethereum
+			exe brew link cpp-ethereum
 		fi
 		echo
 	}
