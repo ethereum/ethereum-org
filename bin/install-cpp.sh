@@ -202,12 +202,12 @@ function run_installer()
 
 	function find_eth()
 	{
-		GETH_PATH=`which eth 2>/dev/null`
+		ETH_PATH=`which eth 2>/dev/null`
 
-		if [[ -f $GETH_PATH ]]
+		if [[ -f $ETH_PATH ]]
 		then
-			check "Found eth: $GETH_PATH"
-			echo "$($GETH_PATH -V)"
+			check "Found eth: $ETH_PATH"
+			echo "$($ETH_PATH -V)"
 			isEth=true
 		else
 			uncheck "Eth is missing"
@@ -342,9 +342,9 @@ function run_installer()
 		info "Installing eth"
 		if [[ $isEth == true ]]
 		then
-			exe brew reinstall cpp-ethereum --devel
+			exe brew reinstall cpp-ethereum
 		else
-			exe brew install cpp-ethereum --devel
+			exe brew install cpp-ethereum
 		fi
 		echo
 	}
@@ -410,7 +410,6 @@ function run_installer()
 
 		info "Adding ethereum repository"
 		exe sudo add-apt-repository -y ppa:ethereum/ethereum
-		exe sudo add-apt-repository -y ppa:ethereum/ethereum-dev
 		echo
 
 		info "Updating packages"

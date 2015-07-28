@@ -341,9 +341,9 @@ function run_installer()
 		info "Installing geth"
 		if [[ $isGeth == true ]]
 		then
-			exe brew reinstall ethereum --devel
+			exe brew reinstall ethereum
 		else
-			exe brew install ethereum --devel
+			exe brew install ethereum
 		fi
 		echo
 	}
@@ -410,7 +410,6 @@ function run_installer()
 
 		info "Adding ethereum repository"
 		exe sudo add-apt-repository -y ppa:ethereum/ethereum
-		exe sudo add-apt-repository -y ppa:ethereum/ethereum-dev
 		echo
 
 		info "Updating packages"
