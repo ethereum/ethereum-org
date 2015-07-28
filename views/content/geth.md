@@ -62,7 +62,7 @@ Run this command:
 
 ## Others
 
-We also have a **Python** implementation is called Pyethereum. It is a very solid implementation and it's often one of our most resilient clients. But this client was built mostly for academic and security purposes and we don't recommend it for end users. If you are interested in learning the cryptographical and academic aspects of Ethereum, we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethereum).
+We also have a **Python** implementation is called Pyethereum. It is a very solid implementation and it's often one of our most resilient clients. But this client was built mostly for academic and security purposes and we don't recommend it for end users. If you are interested in learning the cryptographical and academic aspects of Ethereum, we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethereum).  If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
 
 ### More install options:
 
