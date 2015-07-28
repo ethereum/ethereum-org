@@ -990,6 +990,15 @@ figure.ethereum-logo {
 	background: #FFF;	
 }
 
+.main-tutorial pre:before {
+	content: " ";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100px;
+	background: linear-gradient(to right, rgba(255,255,255,0), #fff);
+}
 
 code {
 	background: #F6E6CC;
