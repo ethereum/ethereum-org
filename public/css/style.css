@@ -990,7 +990,7 @@ figure.ethereum-logo {
 	background: #FFF;	
 }
 
-.main-tutorial pre:before {
+.main-tutorial pre:after {
 	content: " ";
 	position: absolute;
 	top: 0;
