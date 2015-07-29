@@ -695,13 +695,15 @@ input.button:hover {
 
 .press > a {
 	position: relative;
+	width: 45%;
+	float: left;
 	z-index: 110;
 	text-align: center;
 	background: #290F03;
 	border-radius: 4px;
 	display: block;
 	padding: 10px;
-	margin: 20px 0;
+	margin: 20px 5% 20px 0;
 }
 
 .press > a:hover {
