@@ -131,6 +131,10 @@ Which will return your node url - make a note of it and then on the other client
 
 You don't need to add every client to one another, as once connected, they will share information about any other peers they are connected to.
 
+If you are using **Eth** then simply [figure out your IP](https://www.google.com/search?&q=my+ip) and execute this command:
+
+    web3.admin.net.connect("YOURIP:30303")
+
 
 ### Logs 
 
@@ -156,15 +160,24 @@ The console has auto completion and history support that persists between sessio
 
 In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://guide.ethereum.org/managing_accounts.html), but the simplest one is through the Geth console:
 
+**GETH**:
+
     personal.newAccount("Write here a good, randomly generated, passphrase!")
 
+**ETH**:
+
+    web3.admin.eth.newAccount({name:"account01",password:"Write here a good, randomly generated, passphrase!", passwordHint:"my hint"})
+
 **Note: Pick up a good passphrase and write it down. If you lose the passphrase you used to encrypt your account, you will not be able to access that account. Repeat: There are no safety nets. It is NOT possible to access your account without a valid passphrase and there is no "forgot my password" option here. See [this XKCD](https://xkcd.com/936/) for details**
+
+Password hint is optional. You can pick any name you want, it isn't very important.
+
 
 **DO NOT FORGET YOUR PASSPHRASE! **
 
 You may create as many or as few accounts as you like. By convention we call the first account you create your primary account. You can see all your accounts with the command:
  
-    eth.accounts
+    web3.eth.accounts
 
 The ordering of the accounts reflects the time of their creation. Keyfiles are stored under DATADIR/keystore and can be transferred between clients by copying the files contained within. The files are encrypted with your passphrase and should be backed up if they contain any amount of ether. Note, however, if you transfer individual key files, the order of accounts presented may change and you may not end up the same account on the same position. So be aware that relying on account index is sound only as long as you do not copy external keyfiles to your keystore.
 
@@ -174,11 +187,11 @@ All commands on the console are actually in JavaScript, so you can create variab
 
 Try this for example:
 
-    var primaryAccount = eth.accounts[0]
+    var primaryAccount = web3.eth.accounts[0]
 
 You now have a variable called primaryAccount that you can use in other calls. To get the balance of any account, use the function _eth.getBalance_, like this:
 
-    eth.getBalance(primaryAccount)
+    web3.eth.getBalance(primaryAccount)
 
  Your balance should return 0, since you just created it. In order to do the next steps you need to have some ether in your account so you can pay the gas costs. In the next section you'll learn what gas is, and how you can interact with the network.
 
@@ -189,8 +202,8 @@ Geth is a JavaScript environment, that means you can create functions just like 
  
     function checkAllBalances() { 
       var i = 0; 
-      eth.accounts.forEach(function(id) {
-        console.log("eth.accounts["+i+"]: " + id + "\tbalance: " + web3.fromWei(eth.getBalance(id), "ether") + " ether"); 
+      web3.eth.accounts.forEach(function(id) {
+        console.log("web3.eth.accounts["+i+"]: " + id + "\tbalance: " + web3.fromWei(web3.eth.getBalance(id), "ether") + " ether"); 
         i++;
       })
     }; 

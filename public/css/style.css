@@ -741,6 +741,11 @@ input.button:hover {
 	background-image: url("../images/icons/new-scientist.png");
 }
 
+.press li span.press-ibtimes {
+	background-image: url("../images/icons/ibtimes.png");
+}
+
+
 
 /* FIGURES */
 
