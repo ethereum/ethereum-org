@@ -100,7 +100,7 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
 **Instructions for Eth:** 
 
-    eth --frontier -b --genesis path/to/genesis.json    
+    eth --frontier -b --genesis path/to/genesis.json -i  
 
 The first time you start geth you will be presented with a license. Before you can use geth you must accept this license, please read it careful.
 
@@ -117,7 +117,7 @@ Sometimes you might not want to connect to the live public network; Instead you 
 
 **Eth:**
 
-    eth --private mychain --genesis-json ~/dev/genesis.json --db-path ~/.ethereum_experiment -i
+    eth --private 12345 --genesis-json ~/test/genesis.json --db-path ~/.ethereum_experiment -i
 
 Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
 
