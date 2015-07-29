@@ -40,7 +40,7 @@ Paste the above one-liner in your terminal for an automated install script. This
 
 Install [Chocolatey](https://chocolatey.org) and then run: 
 
-    choco install geth-stable
+    choco install geth-stable -version 1.0.0.0
 
 
 ## Eth
