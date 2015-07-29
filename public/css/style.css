@@ -1120,6 +1120,18 @@ footer {
 	margin: 30px auto;
 }
 
+.press-kit .asset-download {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	align-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.press-kit .asset-download a {
+	display: block;
+}
 .ether-tutorial img {
 	width: 229px;
 	float: right;
