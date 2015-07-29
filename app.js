@@ -44,10 +44,6 @@ app.get('/dao', function(req, res) {
 	res.render('dao', { title: 'Create a Democracy contract in Ethereum' });
 });
 
-app.get('/foundation', function(req, res) {
-	res.render('foundation', { title: 'Ethereum Foundation' });
-});
-
 app.get('/agreement', function(req, res) {
 	res.render('agreement', { title: 'Legal agreement' });
 });

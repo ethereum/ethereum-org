@@ -27,18 +27,13 @@ The **Go** implementation is called **Geth** (the old english third person singu
 
 In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth. 
 
-
-    bash <(curl https://install-geth.ethereum.org)  
-
-(old script - remove this when the above is tested)
-    
-    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install.sh)
+    bash <(curl https://install-geth.ethereum.org -L)
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
 
 ### Windows
 
-Install [Chocolatey](https://chocolatey.org) and then run: 
+Install [Chocolatey](https://chocolatey.org) and then run this on the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window): 
 
     choco install geth-stable -version 1.0.0.0
 
@@ -52,18 +47,14 @@ The **C++** implementation is simply called **Eth**. It performs slightly faster
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
 
-    bash <(curl https://install-eth.ethereum.org)  
+    bash <(curl https://install-eth.ethereum.org -L)
 
-(old script - remove this when the above is tested)
-    
-    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install-cpp.sh)
 
 ### Windows
 
 Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
 
     bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
-
 
 
 ## Python
