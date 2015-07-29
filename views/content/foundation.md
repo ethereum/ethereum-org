@@ -58,9 +58,9 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ![Portrait of Vitalik Buterin](/images/portraits/vitalik-buterin.jpg)
 
-**Vitalik is one of the inventors of Ethereum.** Vitalik first discovered Bitcoin in 2011, and the combination of math, economics and an immediate feeling that it represented the way that money "should be" attracted him immediately to the scene. In September 2011 he became the cofounder and original head writer for Bitcoin Magazine. Following this, Vitalik founded Ethereum, a blockchain-based arbitrary-state Turing-complete scripting platform useful for smart contracts, computational resource marketplaces, financial experimentation, decentralized governance and many other use cases that we have not even thought of. 
+**Vitalik is one of the inventors of Ethereum.** Vitalik first discovered Bitcoin in 2011, and the combination of math, economics and an immediate feeling that it represented the way that money "should be" attracted him immediately to the scene. In September 2011 he became the cofounder and original head writer for Bitcoin Magazine. Following this, Vitalik founded Ethereum, a blockchain-based arbitrary-state Turing-complete scripting platform useful for smart contracts, computational resource marketplaces, financial experimentation, decentralized governance and many other use cases that we have not even thought of yet. 
 
-[LinkeIn](https://www.linkedin.com/pub/vitalik-buterin/50/a74/267), [Twitter](https://twitter.com/vitalikbuterin)
+[LinkedIn](https://www.linkedin.com/pub/vitalik-buterin/50/a74/267), [Twitter](https://twitter.com/vitalikbuterin)
 
 ------
 
