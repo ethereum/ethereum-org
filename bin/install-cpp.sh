@@ -95,10 +95,12 @@ function run_installer()
 	function wait_for_user() {
 		while :
 		do
-			read -p "${blue}==>${reset} $1 (Y/n) " imp
+			read -p "${blue}==>${reset} $1 [Y/n] " imp
 			case $imp in
 				[yY] ) echo; break ;;
-				* ) abortInstall "${red}==>${reset} Process stopped by user. To resume the install run the one-liner command again." ;;
+				'' ) echo; break ;;
+				[nN] ) abortInstall "${red}==>${reset} Process stopped by user. To resume the install run the one-liner command again." ;;
+				* ) echo "Unrecognized option provided. Please provide either 'Y' or 'N'";
 			esac
 		done
 	}
