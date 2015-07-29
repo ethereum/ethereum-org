@@ -100,7 +100,7 @@ function run_installer()
 				[yY] ) echo; break ;;
 				'' ) echo; break ;;
 				[nN] ) abortInstall "${red}==>${reset} Process stopped by user. To resume the install run the one-liner command again." ;;
-				* ) abortInstall "${red}==>${reset} Process stopped by user. To resume the install run the one-liner command again." ;;
+				* ) echo "Unrecognized option provided. Please provide either 'Y' or 'N'";
 			esac
 		done
 	}
