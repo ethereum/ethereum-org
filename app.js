@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 	res.render('index', { title: 'Ethereum Frontier' });
 });
 
-app.get('/geth', function(req, res) {
+app.get('/cli', function(req, res) {
 	res.render('geth', { title: 'Install Geth' });
 });
 

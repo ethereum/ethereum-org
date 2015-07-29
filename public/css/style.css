@@ -1098,6 +1098,15 @@ footer {
 	clear: both;
 }
 
+
+.main-tutorial img[alt*="Logo"] {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin: 20px 40px 40px 0;
+	clear: both;
+}
+
 .press-kit img {
 	width: 250px;
 	padding-right: 20px;

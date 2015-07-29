@@ -18,18 +18,21 @@ If you are building a business that needs to have always on connections to the e
 
 ## Geth
 
+![Logo for C++](/images/icons/gopher.png)
+
 The **Go** implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and is interested in building frontend for html dapps, you should experiment with Geth.
+
 
 ### Install: Mac and Linux
 
 In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth. 
 
 
-    $ bash <(curl https://install-geth.ethereum.org)  
+    bash <(curl https://install-geth.ethereum.org)  
 
 (old script - remove this when the above is tested)
     
-    $ bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install.sh)
+    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install.sh)
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
 
@@ -37,40 +40,46 @@ Paste the above one-liner in your terminal for an automated install script. This
 
 Install [Chocolatey](https://chocolatey.org) and then run: 
 
-    $ choco install geth-stable
+    choco install geth-stable
+
 
 ## Eth
 
-The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and is interested in using ethereum as the backend for projects that involve internet of things and backend servers, then the Eth client, the C++ client, is for you. 
+![Logo for C++](/images/icons/cpp.png)
+
+The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and is interested in using ethereum as the backend for projects that involve internet of things, then the Eth client, the C++ client, is for you. 
 
 ### Install: Mac and Linux
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
 
-    $ bash <(curl https://install-eth.ethereum.org)  
+    bash <(curl https://install-eth.ethereum.org)  
 
 (old script - remove this when the above is tested)
     
-    $ bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install-cpp.sh)
+    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install-cpp.sh)
 
 ### Windows
 
-Run this command: 
+Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
 
-    $ ???
+    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
 
 
-## Others
 
-We also have a **Python** implementation is called Pyethereum. It is a very solid implementation and it's often one of our most resilient clients. But this client was built mostly for academic and security purposes and we don't recommend it for end users. If you are interested in learning the cryptographical and academic aspects of Ethereum, we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethereum).  If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
+## Python
 
-### More install options:
+![Logo for C++](/images/icons/python.png)
 
-* [Linux (using PPA, build from source)](http://guide.ethereum.org/installing_linux.html)
-* [Mac (Homebrew or build from source)](http://guide.ethereum.org/installing_mac.html)
-* [Windows (Chocolatey or build from source)](http://guide.ethereum.org/installing_windows.html)
-* [Docker](http://guide.ethereum.org/using_docker.html)
-* [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
+The **Python** implementation is called Pyethapp. If you are interested in understanding how ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or you are interested in Ethereum for research, or an academic purpose, this is a great client: we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethapp).  
+
+## Other Options
+
+* If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
+* If you want to create a small hardware project, look into the implementation for the [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
+* If you want to install geth for non-ubuntu linux then we recommend you look into [building from source using PPA](http://guide.ethereum.org/installing_linux.html)
+* If you want more flexibility on the Mac, try [Homebrew](http://guide.ethereum.org/installing_mac.html)
+* Also available: [Docker](http://guide.ethereum.org/using_docker.html)
 
 ### Create the genesis block
 
@@ -88,12 +97,11 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
 **Instructions for Geth:**
 
-    $ geth --genesis path/to/genesis.json console
+    geth --genesis path/to/genesis.json console
 
 **Instructions for Eth:** 
 
-    $ eth --genesis path/to/genesis.json interactive
-
+    eth --frontier -b --genesis path/to/genesis.json    
 
 The first time you start geth you will be presented with a license. Before you can use geth you must accept this license, please read it careful.
 
@@ -110,7 +118,7 @@ Sometimes you might not want to connect to the live public network; Instead you 
 
 **Eth:**
 
-    eth --networkid 12345 --genesis ~/test/genesis.json --datadir ~/.ethereum_experiment interactive
+    eth --private mychain --genesis-json ~/dev/genesis.json --db-path ~/.ethereum_experiment -i
 
 Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
 
