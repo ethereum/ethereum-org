@@ -42,7 +42,6 @@ Install [Chocolatey](https://chocolatey.org) and then run:
 
     choco install geth-stable -version 1.0.0.0
 
-
 ## Eth
 
 ![Logo for C++](/images/icons/cpp.png)
@@ -69,7 +68,7 @@ Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-
 
 ## Python
 
-![Logo for C++](/images/icons/python.png)
+![Logo for Python](/images/icons/python.png)
 
 The **Python** implementation is called Pyethapp. If you are interested in understanding how ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or you are interested in Ethereum for research, or an academic purpose, this is a great client: we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethapp).  
 
