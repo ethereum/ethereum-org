@@ -7,13 +7,12 @@ mixin gethRecipe(header)
     h2 #{header}
   h3 
     div.number 1 
-    | Install and run 
-    strong Geth
-    | , the Command Line Interface
+    | Install and run the 
+    strong Command Line Interface
 
-  p Geth is the main tool of the Frontier release. You can use it to send ether (the network’s internal fuel) to someone else, load and execute contracts, import your pre-sale wallet or make your computer into a supporting node and earn ether.
+  p Frontier is focused on command line tools. You can use them to send ether (the network’s internal fuel) to someone else, load and execute contracts, import your pre-sale wallet or make your computer into a supporting node and earn ether.
 
-  a(href="geth").button Install Geth
+  a(href="cli").button Install the Command line tools
 
   div.recipe
     h4 You'll need:
@@ -252,9 +251,6 @@ mixin futureRecipe(header)
       a(href='http://airlock.me/') Airlock             
       | Next generation keyless access protocol for smart property
     li 
-      a(href='https://etherex.org/') Etherex 
-      | Ethereum based opensource exchange
-    li 
       a(href='https://www.provenance.org') Provenance            
       | Social business founded to open up the world of how things are made
     li 
@@ -274,7 +270,10 @@ mixin futureRecipe(header)
       | Ethereum blockchain explorer
     li 
       a(href='http://etherchain.org')  etherchain            
-      | An Ethereum Blockchain Explorer 
+      | An Ethereum Blockchain Explorer     
+    li 
+      a(href='http://makerdao.com')  Maker Dao            
+      | Self stabilizing assets on Ethereum 
 
 
 
@@ -282,5 +281,16 @@ mixin thawing()
   div.thawing
     img(src='images/thawing@2x.png', width="49px")
     h6 The main network is thawing
-    p For the first days, while the network defreezes, it is not possible to execute or send transactions, only mining blocks. Please be patient...
+    p For the first days, while the network defreezes, it is not possible to execute or send transactions, only mine blocks. When the network is secure a new version will be provided. Please be patient...
     
+
+mixin inner-header(title)
+  div.inner-header.scrollme
+    div.breadcrumb.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
+      a(href="/").index Ethereum Frontier 
+      | »  
+      strong #{title} 
+    a(href="/").back « Main page
+    figure.ethereum-logo.animateme(data-when="exit", data-from="0", data-to="1", data-translatey="120", data-opacity="0.5", data-scale="0.6", data-easing="linear")
+
+    h3.center.animateme(data-when="exit", data-from="0", data-to="0.5", data-translatey="30", data-opacity="0", data-scale="0.7", data-easing="linear")  #{title} 

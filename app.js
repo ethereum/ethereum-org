@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 	res.render('index', { title: 'Ethereum Frontier' });
 });
 
-app.get('/geth', function(req, res) {
+app.get('/cli', function(req, res) {
 	res.render('geth', { title: 'Install Geth' });
 });
 
@@ -63,6 +63,16 @@ app.get('/press-kit', function(req, res) {
 
 app.get('/branding', function(req, res) {
 	res.render('branding', { title: 'Branding Guidelines' });
+});
+
+
+app.get('/powered-by', function(req, res) {
+	res.render('powered-by', { title: 'Powered By' });
+});
+
+
+app.get('/create-meetup', function(req, res) {
+	res.render('create-meetup', { title: 'Create your meetup' });
 });
 
 app.get('/getBlock', function(req, res) {
