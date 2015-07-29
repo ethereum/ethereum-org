@@ -95,7 +95,7 @@ This will prompt for your password and imports your ether presale account. It ca
 
 If this does not work, please do not hesitate in contacting us on our [forums](http://forum.ethereum.org), [reddit](http://reddit.com/r/ethereum) or at **info (at) ethereum.org**.
 
-If you don't feel comfortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our [online balance checker](../sale#balance)
+If you don't feel comfortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our [online balance checker](#balance)
 
 Read [more about accounts](http://guide.ethereum.org/managing_accounts.html).
 

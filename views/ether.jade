@@ -30,8 +30,25 @@ block content
           +thawing
           include:md content/ether.md        
 
-  div.main-tutorial.hidden.even
+  div.main-tutorial.ether-checker.even#balance
+    div.container
+      div.row
+        div.col-md-12
+          h2 Did you buy ether during the presale?
+          h3 Check your ether presale balance safely here:
+          form#ether-checker
+            input(type="text" name="address" placeholder="Ether address")
+            input(class="button btn btn-blue" type="submit" value="Check your balance")
+
+  div.main-tutorial.hidden
     div.container   
       div.row
         div.col-md-12.tutorial
             +greeterRecipe("What's next?")
+
+
+
+
+          
+
+          
