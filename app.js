@@ -48,11 +48,11 @@ app.get('/agreement', function(req, res) {
 	res.render('agreement', { title: 'Legal agreement' });
 });
 
-app.get('/press-kit', function(req, res) {
-	res.render('press-kit', { title: 'Press Kit' });
+app.get('/assets', function(req, res) {
+	res.render('press-kit', { title: 'Asset downloads' });
 });
 
-app.get('/branding', function(req, res) {
+app.get('/brand', function(req, res) {
 	res.render('branding', { title: 'Branding Guidelines' });
 });
 

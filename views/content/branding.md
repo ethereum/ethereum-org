@@ -4,8 +4,7 @@ Guidelines for Third Parties Using Ethereum Trademarks
 
 These guidelines are for non-Ethereum entities, organizations, developers, projects, individuals, regional meeting organizations, and other parties wishing to use Ethereum’s official trademarks, service marks or images in promotional, advertising, instructional, or reference materials, or on their web sites, products, labels, signage, business cards or packaging.
 
-Ethereum’s trademarks, service marks and trade names are valuable assets. In following these guidelines, you help us protect our valuable trademark rights and strengthen our corporate and brand identities. By using an Ethereum trademark, in whole or in part, you are acknowledging that Ethereum is the sole owner of the trademark and promising that you will not interfere with Ethereum’s rights in the trademark, including challenging Ethereum’s use, registration of, or application to register such trademark, alone or in combination with other words, anywhere in the world, and that you will not harm, misuse, or bring into disrepute any Ethereum trademark. The goodwill derived from using any part of an Ethereum trademark exclusively inures to the benefit of and belongs to Ethereum. Except for the limited right to use as expressly permitted under these Guidelines, no other rights of any kind are granted hereunder, by implication or otherwise. If you have any questions regarding these guidelines, please email us at 
-a(href='mailtobrand@ethereum.org')brand@ethereum.org
+Ethereum’s trademarks, service marks and trade names are valuable assets. In following these guidelines, you help us protect our valuable trademark rights and strengthen our corporate and brand identities. By using an Ethereum trademark, in whole or in part, you are acknowledging that Ethereum is the sole owner of the trademark and promising that you will not interfere with Ethereum’s rights in the trademark, including challenging Ethereum’s use, registration of, or application to register such trademark, alone or in combination with other words, anywhere in the world, and that you will not harm, misuse, or bring into disrepute any Ethereum trademark. The goodwill derived from using any part of an Ethereum trademark exclusively inures to the benefit of and belongs to Ethereum. Except for the limited right to use as expressly permitted under these Guidelines, no other rights of any kind are granted hereunder, by implication or otherwise. If you have any questions regarding these guidelines, please email us at [brand@ethereum.org](brand@ethereum.org)
 
 
 ## Introduction
@@ -25,8 +24,7 @@ Any developer, startup, project, meetup or other type of organization or individ
 The Ethereum primary Service Mark is the diamond-shape octahedron, as depicted below. It is exclusively used by Ethereum entities. Non-Ethereum entities are prohibited from using the Ethereum logo in any of their communications. If you wish to use the Ethereum logo on promotional material (e.g. T-shirts, mugs, pens, etc.), please contact brand@ethereum.org with the details of your intended usage, and we will consider your request on a case by case basis.
 
 
-[insert the Ethereum logo]
-
+![Ethereum Octahedron](/images/Ethereum-Icon-small.png)
 
 
 #### Ethereum Ecosystem Signatures
@@ -41,25 +39,19 @@ It’s important to note that neither the word Ethereum nor its logo can be used
 
 #### Powered by Ethereum
 
-This affiliation is strictly reserved to Ethereum Dapps, Apps or technologies that are primarily developed on Ethereum, and where Ethereum is an integral, majority or key dependency part of the solution offering or operation, and where there is a dependency on the single core Ethereum global consensus network. You must be approved by Ethereum to be on that list, and you must hyperlink the signature logo to 
-a(href='http://www.ethereum.org')www.ethereum.org 
-where we will maintain the official list of organizations and projects that are approved to use such logo.
+This affiliation is strictly reserved to Ethereum Dapps, Apps or technologies that are primarily developed on Ethereum, and where Ethereum is an integral, majority or key dependency part of the solution offering or operation, and where there is a dependency on the single core Ethereum global consensus network. You must be approved by Ethereum to be on that list, and you must hyperlink the signature logo to [www.ethereum.org](http://www.ethereum.org)  where we will maintain the official list of organizations and projects that are approved to use such logo.
 
 
-[provide the signature here]
+![Powered By](/images/Powered-by-Ethereum-small.png)
 
 
 
 #### Global Ethereum Meetups
 
-The regional Meetup groups that are approved and on the 
-a(href='http://forum.ethereum.org/discussion/797/list-of-ethereum-specific-meetups-live-updates')Global Ethereum Meetups list 
-may either use the 
-a(href='http://forum.ethereum.org/discussion/171/how-to-start-an-ethereum-meetup-faq') generic Meetup assets 
-provided by Ethereum, or modify the Ethereum tetrahedron colour scheme to reflect a geographical (i.e. french tricolor) or cultural (i.e. rainbow pride) connection. Note that we will not approve more than one Meetup per city (typically, the first one that is formed is the official one). Example of valid meetup logos include:
+The regional Meetup groups that are approved and on the [Ethereum Meetups list](http://forum.ethereum.org/discussion/797/list-of-ethereum-specific-meetups-live-updates) may either use the [generic Meetup assets](http://forum.ethereum.org/discussion/171/how-to-start-an-ethereum-meetup-faq) provided by Ethereum, or modify the Ethereum tetrahedron colour scheme to reflect a geographical (i.e. french tricolor) or cultural (i.e. rainbow pride) connection. Note that we will not approve more than one Meetup per city (typically, the first one that is formed is the official one). Example of valid meetup logos include:
 
 
-[insert an example with the colors or country flag]
+![Global meetup](/images/sample-meetup-logos.png)
 
 
 
@@ -78,9 +70,11 @@ use our logo or signature to, or in connection with, content that disparages us 
 
 
 ### Specific Ethereum Referencing
-When describing or referencing Ethereum in your documentation, presentation, signage or other publicly visible communications, the following are permitted choices.
-Ethereum is a platform to build decentralized applications. 
-Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third party interference.
+When describing or referencing Ethereum in your documentation, presentation, signage or other publicly visible communications, the following are permitted choices:
+
+**Ethereum is a platform to build decentralized applications.**
+
+**Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third party interference.**
 
 
 ### Violations of these Guidelines
@@ -88,10 +82,11 @@ We will enforce compliance with these guidelines. Anyone found in violation may 
 
 
 ### Officially Approved Organizations
+
 Ethereum will maintain an official list of organizations that are allowed to use the Powered by Ethereum signature logo. In the case of any dispute, the official Ethereum list represents the more accurate
 
 
 ### Contact Information
 If you have any questions or clarifications pertaining to these guidelines, please email us at 
-a(href='mailtobrand@ethereum.org')brand@ethereum.org
+[brand@ethereum.org](mailto:brand@ethereum.org)
 

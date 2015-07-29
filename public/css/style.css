@@ -1112,9 +1112,10 @@ footer {
 	clear: both;
 }
 
-.press-kit img {
-	width: 250px;
-	padding-right: 20px;
+.brand img {
+	display: block;
+	height: 150px;
+	margin: 30px auto;
 }
 
 .ether-tutorial img {
