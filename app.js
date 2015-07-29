@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
-var approvedBlock = require('./config/config');
 
 // Init the app
 var app = express();
@@ -73,10 +72,6 @@ app.get('/powered-by', function(req, res) {
 
 app.get('/create-meetup', function(req, res) {
 	res.render('create-meetup', { title: 'Create your meetup' });
-});
-
-app.get('/getBlock', function(req, res) {
-	res.json(approvedBlock);
 });
 
 
