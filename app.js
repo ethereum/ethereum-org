@@ -29,31 +29,31 @@ app.get('/ether', function(req, res) {
 });
 
 app.get('/greeter', function(req, res) {
-	res.render('greeter', { title: 'Create a Hello World Contract in ethereum' });
+	res.render('greeter');
 });
 
 app.get('/token', function(req, res) {
-	res.render('token', { title: 'Create a cryptocurrency contract in Ethereum' });
+	res.render('token');
 });
 
 app.get('/crowdsale', function(req, res) {
-	res.render('crowdsale', { title: 'Create a crowdsale contract in Ethereum' });
+	res.render('crowdsale');
 });
 
 app.get('/dao', function(req, res) {
-	res.render('dao', { title: 'Create a Democracy contract in Ethereum' });
+	res.render('dao');
 });
 
 app.get('/agreement', function(req, res) {
-	res.render('agreement', { title: 'Legal agreement' });
+	res.render('agreement');
 });
 
 app.get('/assets', function(req, res) {
-	res.render('assets', { title: 'Asset downloads' });
+	res.render('assets');
 });
 
 app.get('/brand', function(req, res) {
-	res.render('brand', { title: 'Branding Guidelines' });
+	res.render('brand');
 });
 
 // catch 404 and forward to error handler
