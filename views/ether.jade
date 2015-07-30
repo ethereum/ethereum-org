@@ -1,14 +1,17 @@
 extends layout
 
+block vars
+  - var title='Get Ether'
+
 block content
   include mixins/recipes.jade
   include warning.jade
 
-  div.breadcrumb.animateme(data-when="span", data-from="0.9", data-to="0.2", data-opacity="0", data-translatey="-20") 
-    a(href="/").index Ethereum Frontier 
-    strong »  Get Ether  
-    a(href="/geth").previous Previous 
-    a(href="/greeter").next Next 
+  div.breadcrumb.animateme(data-when="span", data-from="0.9", data-to="0.2", data-opacity="0", data-translatey="-20")
+    a(href="/").index Ethereum Frontier
+    strong »  Get Ether
+    a(href="/geth").previous Previous
+    a(href="/greeter").next Next
 
 
   div#tutorial-start.main-tutorial.hidden.inner-tutorial.even
@@ -24,11 +27,11 @@ block content
           a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
 
   div.main-tutorial.hidden.inner-tutorial.ether-tutorial
-    div.container  
+    div.container
       div.row
         div.col-md-12
           +thawing
-          include:md content/ether.md        
+          include:md content/ether.md
 
   div.main-tutorial.ether-checker.even#balance
     div.container
@@ -41,7 +44,7 @@ block content
             input(class="button btn btn-blue" type="submit" value="Check your balance")
 
   div.main-tutorial.hidden
-    div.container   
+    div.container
       div.row
         div.col-md-12.tutorial
             +greeterRecipe("What's next?")
@@ -49,6 +52,6 @@ block content
 
 
 
-          
 
-          
+
+

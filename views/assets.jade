@@ -1,54 +1,57 @@
 extends layout
 
+block vars
+  - var title='Asset downloads'
+
 block content
   include mixins/recipes.jade
   +inner-header("Assets for Download")
 
   div.main-tutorial.inner-page.press-kit
-    div.container  
+    div.container
       div.row
         div.col-md-12
-          include:md content/press-kit.md        
+          include:md content/press-kit.md
 
   div.main-tutorial.inner-page.press-kit.even
-    div.container  
+    div.container
       div.row
         div.col-md-12
           h2 Download Assets
 
           h3.center Logos
-          div.asset-download 
-            a(href="images/logos/ETHEREUM-ICON_Black.png") 
+          div.asset-download
+            a(href="images/logos/ETHEREUM-ICON_Black.png")
               img(alt="Ethereum Octaedron", src="images/logos/ETHEREUM-ICON_Black_small.png", width="250")
 
-            a(href="images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png") 
-              img(alt="Ethereum Landscape", src="images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png", width="250") 
+            a(href="images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png")
+              img(alt="Ethereum Landscape", src="images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png", width="250")
 
-            a(href="images/logos/ETHEREUM-LOGO_LANDSCAPE_Black.png") 
-              img(alt="Ethereum Portrait", src="images/logos/ETHEREUM-LOGO_LANDSCAPE_Black_small.png", width="250") 
+            a(href="images/logos/ETHEREUM-LOGO_LANDSCAPE_Black.png")
+              img(alt="Ethereum Portrait", src="images/logos/ETHEREUM-LOGO_LANDSCAPE_Black_small.png", width="250")
 
           h3.center Background
 
-          p.center 
+          p.center
             a(href="images/wallpaper.png")
-              img(alt="Ethereum Frontier Landscape", src="images/wallpaper-small.png", width="400") 
+              img(alt="Ethereum Frontier Landscape", src="images/wallpaper-small.png", width="400")
 
 
 
   div.main-tutorial.inner-page.press-kit
-    div.container  
+    div.container
       div.row
         div.col-md-12.center
           h2 Read this before downloading
 
-          p If you are not writing an article about Ethereum and want to use our logo for other purposes, please read carefully our 
-            a(href='./brand') branding guidelines and legal framework 
-            | before proceeding. Also please follow the 
+          p If you are not writing an article about Ethereum and want to use our logo for other purposes, please read carefully our
+            a(href='./brand') branding guidelines and legal framework
+            | before proceeding. Also please follow the
             a(href='/images/logos/Ethereum_Visual_Identity_1.0.0.pdf') Ethereum Visual Identity Guide
             |.
 
 
 
 
-          
+
 

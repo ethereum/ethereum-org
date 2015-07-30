@@ -1,15 +1,18 @@
 extends layout
 
+block vars
+  - var title='Branding Guidelines'
+
 block content
   include mixins/recipes.jade
   +inner-header("Branding Guidelines")
 
   div.main-tutorial.inner-page.brand
-    div.container  
+    div.container
       div.row
         div.col-md-12
-          include:md content/branding.md        
+          include:md content/branding.md
 
 
-          
+
 
