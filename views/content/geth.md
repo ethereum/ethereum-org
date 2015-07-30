@@ -93,7 +93,7 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
     eth --frontier -b --genesis path/to/genesis.json -i  
 
-The first time you start geth you will be presented with a license. Before you can use geth you must accept this license, please read it careful.
+The first time you start the command line you will be presented with a license. Before you can use them, you **must** accept this license, please read it careful.
 
 **ATTENTION: If you just want to test the technology and play around, DON'T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.**
 
@@ -189,7 +189,9 @@ You now have a variable called primaryAccount that you can use in other calls. T
 
 ### Check All Balances at once
 
-Geth is a JavaScript environment, that means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet. It will iterate over each of your accounts and print their balance in ether:
+The command line tools are JavaScript environments, which means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet. 
+
+It will iterate over each of your accounts and print their balance in ether, you can use the following code on **Geth** (this will not work in **Eth**):
  
     function checkAllBalances() { 
       var i = 0; 
