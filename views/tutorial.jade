@@ -1,5 +1,8 @@
 extends layout
 
+block vars
+  - var title='Tutorials'
+
 block content
   div#warning.warning
     div.container
@@ -9,7 +12,7 @@ block content
           h2 ATTENTION
           h3 Frontier is an early access to the Ethereum network. Bugs and security issues might be present.
 
-          ul.animateme(data-when="span", data-from="0.2", data-to="0", data-opacity="0") 
+          ul.animateme(data-when="span", data-from="0.2", data-to="0", data-opacity="0")
             li Contracts data might be deleted at the end of the Frontier network. If you create any contract that holds funds, make sure to move them to a normal user account before the next stage
             li You are responsible for your own computer security. If your machine is compromised you will lose your ether and access to any contracts
             li You are responsible for your own actions. Be aware of your local regulations including but not limited to: cryptography, data management, privacy, crypto assets, pornography, user content, online harassement, speech and any other laws that might apply to you
@@ -19,20 +22,20 @@ block content
           a#agreement.button I understand this, let me proceed
           a(href="#tutorial-start").hidden.continue Continue...
 
-          
+
 
 
       div.clearfix
         br
         br
-  
+
   div#tutorial-start.main-tutorial.hiddenz.inner-tutorial
     div.container
       div.row
         div.col-md-12.tutorial.scrollme
-          div.breadcrumb.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
-            a(href="/") Ethereum Frontier 
-            | » 
+          div.breadcrumb.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
+            a(href="/") Ethereum Frontier
+            | »
             strong Geth Installation
 
           figure.geth.scrollme
@@ -46,7 +49,7 @@ block content
           a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
 
   div.main-tutorial.hidden.inner-tutorial.even
-    div.container  
+    div.container
       div.row
         div.col-md-12
 
@@ -59,23 +62,23 @@ block content
           p In order to navigate the Frontier, you’ll need to use the command line. If you are not comfortable using it, we strongly advise you to step back, watch from a distance for a while and wait until more user friendly tools are made available. Remember, there are no safety nets and for everything you do here, you are mostly on your own.
 
           div.recipe
-            h5 Learn more at the 
+            h5 Learn more at the
               strong Frontier Guide
-            h4 Initial Set up              
+            h4 Initial Set up
             ul
-              li 
+              li
                 a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") What is Ethereum?
-              li 
+              li
                 a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") Safety Caveats
-              li 
-                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors        
+              li
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors
 
 
 
           h3 Hitching up your wagon.
 
 
-          p The Frontier tool is called Geth (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). In order to get it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) and paste the command below. 
+          p The Frontier tool is called Geth (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). In order to get it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) and paste the command below.
 
           code.js ruby -e "$(curl -fsSL https://raw.githubusercontent.com/cubedro/frontier.ethereum.org/master/bin/install.rb)"
           p Or, alternatively
@@ -90,36 +93,36 @@ block content
 
           p You are ready to start. The 2>>geth.log creates a text file with the output of your console. On a linux machine or Mac OS you can run one terminal with the geth console and a second one with the logging output by opening a new terminal and typing: tty
           p The output will be something like: /dev/pts/13 (or on Mac /dev/tty002). Then in your main terminal type: geth console 2>> /dev/pts/13  This will allow you to monitor your node without cluttering your console.
-           
+
           p The geth console has history that persists between sessions. You can navigate your command history by using the up and down arrow keys.
 
           p Tip: sometimes you might not need to connect to the live public network, you can instead choose to create your own private testnet. This is very useful if you don't need to test external contracts and want just to test the technology, because you won't have to compete with other miners and will easily generate a lot of test ether to play around (replace 12345 with any number
 
           code.js geth —networkid 12345 console
 
-          p If you use a private testnet, it may be a good idea to start with a 'fresh' blockchain, and not the real blockchain. Otherwise, in order to successfully mine a block, you'll need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. This is done via the `--datadir` parameter: 
+          p If you use a private testnet, it may be a good idea to start with a 'fresh' blockchain, and not the real blockchain. Otherwise, in order to successfully mine a block, you'll need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. This is done via the `--datadir` parameter:
 
           code.js geth --networkid=-123 --datadir=~/.ethereum_experiment console`
 
           div.recipe
-            h5 Learn more at the 
+            h5 Learn more at the
               strong Frontier Guide
             h4 Installation
             ul
-              li 
-                a(href="http://ethereum.gitbooks.io/frontier-guide/content/getting_a_client.html") Frontier Guide to Installation              
-              li 
+              li
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/getting_a_client.html") Frontier Guide to Installation
+              li
                 a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") Safety Caveats
-              li 
-                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors        
+              li
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors
 
 
-            
+
 
           h3 Starting down the trail.
 
 
-          p In order to do most actions in Ethereum you need ether, and to get it, you will need to generate an address (see here for detailed documentation on managing your accounts). Type: 
+          p In order to do most actions in Ethereum you need ether, and to get it, you will need to generate an address (see here for detailed documentation on managing your accounts). Type:
 
           code.js admin.newAccount()
 
@@ -147,19 +150,19 @@ block content
 
 
           div.recipe
-            h5 Learn more at the 
+            h5 Learn more at the
               strong Frontier Guide
-            h4 Initial Set up            
+            h4 Initial Set up
             ul
-              li 
-                a(href="http://ethereum.gitbooks.io/frontier-guide/content/getting_a_client.html") Frontier Guide to Installation              
-              li 
+              li
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/getting_a_client.html") Frontier Guide to Installation
+              li
                 a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") Safety Caveats
-              li 
-                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors        
+              li
+                a(href="http://ethereum.gitbooks.io/frontier-guide/content/ethereum.html") License and Contributors
 
 
 
 
-          
+
 

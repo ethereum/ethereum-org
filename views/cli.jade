@@ -1,19 +1,22 @@
 extends layout
 
+block vars
+  - var title='Install the Command Line Tools'
+
 block content
   include mixins/recipes.jade
   include warning.jade
 
-  div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
-    a(href="/").index Ethereum Frontier 
+  div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
+    a(href="/").index Ethereum Frontier
     strong » Geth Installation
-    a(href="/ether").next Next  
+    a(href="/ether").next Next
 
   div#tutorial-start.main-tutorial.inner-tutorial.even
     div.container
       div.row
         div.col-md-12.tutorial.scrollme
- 
+
 
           +gethFigure(true)
 
@@ -24,14 +27,14 @@ block content
           a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
 
   div.main-tutorial.hidden.inner-tutorial
-    div.container  
+    div.container
       div.row
         div.col-md-12
           +thawing
-          include:md content/geth.md        
+          include:md content/geth.md
 
   div.main-tutorial.hidden.even
-    div.container   
+    div.container
       div.row
         div.col-md-12.tutorial
           +etherRecipe("What's next?")

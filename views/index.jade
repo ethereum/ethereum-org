@@ -1,5 +1,8 @@
 extends layout
 
+block vars
+  - var title='Ethereum Frontier'
+
 block content
   div.main-tutorial.scrollme.intro
     div.scrollme.row.introduction.animateme(data-when="span", data-from="0", data-to="1", data-opacity="0.2", data-translatey="300", data-easing="linear")
@@ -11,36 +14,36 @@ block content
         div.col-md-12.whatis.scrollme
           figure.ethereum-network(data-when="enter", data-from="1", data-to="0", data-opacity="0", data-translatey="300").float-right.animateme
           h2 What is Ethereum?
-          p Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third party interference. 
+          p Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third party interference.
 
-          p Ethereum is how the Internet was supposed to work. 
+          p Ethereum is how the Internet was supposed to work.
 
-          p Ethereum was crowdfunded during August 2014 by fans all around the world. It is developed by ETH/DEV with contributions from great minds across the globe.
+          p Ethereum was crowdfunded during August 2014 by fans all around the world. It is developed by ETHDEV with contributions from great minds across the globe.
 
-          
-          div.clear 
+
+          div.clear
           figure(data-when="span", data-from="0.8", data-to="0", data-opacity="0", data-translatey="300").geth-console.float-left.animateme
           h2 What is the Frontier Release?
 
           p Frontier is the first release of the Ethereum project, tailored specifically for developers. It’s a command line only interface with a Javascript environment that allows building, testing, deploying and using decentralized applications on the Ethereum blockchain.
 
-          p Exploring the Frontier presents vast opportunities, but also many dangers, and is not for everyone. 
+          p Exploring the Frontier presents vast opportunities, but also many dangers, and is not for everyone.
 
 
       div.clearfix
         br
         br
-        
+
   div.col-md-12.tutorial.scrollme
     div.breadcrumb.index.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
-      strong Ethereum Frontier 
-      a(href="#developer-resources") Developers 
+      strong Ethereum Frontier
+      a(href="#developer-resources") Developers
       a(href="#about-us") Foundation
-      a(href="#community") Community 
-      a(href="#press") Press 
-            
+      a(href="#community") Community
+      a(href="#press") Press
 
-  include ./includes/recipes.jade 
+
+  include ./includes/recipes.jade
 
 
 
