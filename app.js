@@ -17,15 +17,15 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Routes
 app.get('/', function(req, res) {
-	res.render('index', { title: 'Ethereum Frontier' });
+	res.render('index');
 });
 
 app.get('/cli', function(req, res) {
-	res.render('cli', { title: 'Install Command Line Tools' });
+	res.render('cli');
 });
 
 app.get('/ether', function(req, res) {
-	res.render('ether', { title: 'Get Ether' });
+	res.render('ether');
 });
 
 app.get('/greeter', function(req, res) {
