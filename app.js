@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/cli', function(req, res) {
-	res.render('geth', { title: 'Install Geth' });
+	res.render('cli', { title: 'Install Geth' });
 });
 
 app.get('/ether', function(req, res) {
@@ -44,36 +44,17 @@ app.get('/dao', function(req, res) {
 	res.render('dao', { title: 'Create a Democracy contract in Ethereum' });
 });
 
-app.get('/sale', function(req, res) {
-	res.render('sale', { title: '2014 ether presale' });
-});
-
-app.get('/foundation', function(req, res) {
-	res.render('foundation', { title: 'Ethereum Foundation' });
-});
-
 app.get('/agreement', function(req, res) {
 	res.render('agreement', { title: 'Legal agreement' });
 });
 
-app.get('/press-kit', function(req, res) {
-	res.render('press-kit', { title: 'Press Kit' });
+app.get('/assets', function(req, res) {
+	res.render('assets', { title: 'Asset downloads' });
 });
 
-app.get('/branding', function(req, res) {
-	res.render('branding', { title: 'Branding Guidelines' });
+app.get('/brand', function(req, res) {
+	res.render('brand', { title: 'Branding Guidelines' });
 });
-
-
-app.get('/powered-by', function(req, res) {
-	res.render('powered-by', { title: 'Powered By' });
-});
-
-
-app.get('/create-meetup', function(req, res) {
-	res.render('create-meetup', { title: 'Create your meetup' });
-});
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

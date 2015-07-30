@@ -695,13 +695,15 @@ input.button:hover {
 
 .press > a {
 	position: relative;
+	width: 45%;
+	float: left;
 	z-index: 110;
 	text-align: center;
 	background: #290F03;
 	border-radius: 4px;
 	display: block;
 	padding: 10px;
-	margin: 20px 0;
+	margin: 20px 5% 20px 0;
 }
 
 .press > a:hover {
@@ -740,6 +742,11 @@ input.button:hover {
 .press li span.press-new-scientist {
 	background-image: url("../images/icons/new-scientist.png");
 }
+
+.press li span.press-ibtimes {
+	background-image: url("../images/icons/ibtimes.png");
+}
+
 
 
 /* FIGURES */
@@ -1107,11 +1114,24 @@ footer {
 	clear: both;
 }
 
-.press-kit img {
-	width: 250px;
-	padding-right: 20px;
+.brand img {
+	display: block;
+	height: 150px;
+	margin: 30px auto;
 }
 
+.press-kit .asset-download {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	align-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.press-kit .asset-download a {
+	display: block;
+}
 .ether-tutorial img {
 	width: 229px;
 	float: right;

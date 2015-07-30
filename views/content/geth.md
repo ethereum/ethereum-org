@@ -27,18 +27,13 @@ The **Go** implementation is called **Geth** (the old english third person singu
 
 In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth. 
 
-
-    bash <(curl https://install-geth.ethereum.org)  
-
-(old script - remove this when the above is tested)
-    
-    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install.sh)
+    bash <(curl https://install-geth.ethereum.org -L)
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
 
 ### Windows
 
-Install [Chocolatey](https://chocolatey.org) and then run: 
+Install [Chocolatey](https://chocolatey.org) and then run this on the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window): 
 
     choco install geth-stable -version 1.0.0.0
 
@@ -52,18 +47,14 @@ The **C++** implementation is simply called **Eth**. It performs slightly faster
 
 Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
 
-    bash <(curl https://install-eth.ethereum.org)  
+    bash <(curl https://install-eth.ethereum.org -L)
 
-(old script - remove this when the above is tested)
-    
-    bash <(curl https://raw.githubusercontent.com/ethereum/frontier-release/master/bin/install-cpp.sh)
 
 ### Windows
 
 Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
 
     bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
-
 
 
 ## Python
@@ -100,9 +91,9 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
 **Instructions for Eth:** 
 
-    eth --frontier -b --genesis path/to/genesis.json    
+    eth --frontier -b --genesis path/to/genesis.json -i  
 
-The first time you start geth you will be presented with a license. Before you can use geth you must accept this license, please read it careful.
+The first time you start the command line you will be presented with a license. Before you can use them, you **must** accept this license, please read it careful.
 
 **ATTENTION: If you just want to test the technology and play around, DON'T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.**
 
@@ -117,7 +108,7 @@ Sometimes you might not want to connect to the live public network; Instead you 
 
 **Eth:**
 
-    eth --private mychain --genesis-json ~/dev/genesis.json --db-path ~/.ethereum_experiment -i
+    eth --private 12345 --genesis-json ~/test/genesis.json --db-path ~/.ethereum_experiment -i
 
 Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
 
@@ -130,6 +121,10 @@ Which will return your node url - make a note of it and then on the other client
     admin.addPeer("YOURNODEURL")
 
 You don't need to add every client to one another, as once connected, they will share information about any other peers they are connected to.
+
+If you are using **Eth** then simply [figure out your IP](https://www.google.com/search?&q=my+ip) and execute this command:
+
+    web3.admin.net.connect("YOURIP:30303")
 
 
 ### Logs 
@@ -154,17 +149,26 @@ The console has auto completion and history support that persists between sessio
 
 ### Creating accounts
 
-In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://guide.ethereum.org/managing_accounts.html), but the simplest one is through the Geth console:
+In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://guide.ethereum.org/managing_accounts.html), but the simplest one is through the console. 
+
+**GETH**:
 
     personal.newAccount("Write here a good, randomly generated, passphrase!")
 
+**ETH**:
+
+    web3.admin.eth.newAccount({name:"account01",password:"Write here a good, randomly generated, passphrase!", passwordHint:"my hint"})
+
 **Note: Pick up a good passphrase and write it down. If you lose the passphrase you used to encrypt your account, you will not be able to access that account. Repeat: There are no safety nets. It is NOT possible to access your account without a valid passphrase and there is no "forgot my password" option here. See [this XKCD](https://xkcd.com/936/) for details**
+
+Password hint is optional. You can pick any name you want, it isn't very important.
+
 
 **DO NOT FORGET YOUR PASSPHRASE! **
 
 You may create as many or as few accounts as you like. By convention we call the first account you create your primary account. You can see all your accounts with the command:
  
-    eth.accounts
+    web3.eth.accounts
 
 The ordering of the accounts reflects the time of their creation. Keyfiles are stored under DATADIR/keystore and can be transferred between clients by copying the files contained within. The files are encrypted with your passphrase and should be backed up if they contain any amount of ether. Note, however, if you transfer individual key files, the order of accounts presented may change and you may not end up the same account on the same position. So be aware that relying on account index is sound only as long as you do not copy external keyfiles to your keystore.
 
@@ -174,23 +178,25 @@ All commands on the console are actually in JavaScript, so you can create variab
 
 Try this for example:
 
-    var primaryAccount = eth.accounts[0]
+    var primaryAccount = web3.eth.accounts[0]
 
 You now have a variable called primaryAccount that you can use in other calls. To get the balance of any account, use the function _eth.getBalance_, like this:
 
-    eth.getBalance(primaryAccount)
+    web3.eth.getBalance(primaryAccount)
 
  Your balance should return 0, since you just created it. In order to do the next steps you need to have some ether in your account so you can pay the gas costs. In the next section you'll learn what gas is, and how you can interact with the network.
 
 
 ### Check All Balances at once
 
-Geth is a JavaScript environment, that means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet. It will iterate over each of your accounts and print their balance in ether:
+The command line tools are JavaScript environments, which means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet. 
+
+It will iterate over each of your accounts and print their balance in ether, you can use the following code on **Geth** (this will not work in **Eth**):
  
     function checkAllBalances() { 
       var i = 0; 
-      eth.accounts.forEach(function(id) {
-        console.log("eth.accounts["+i+"]: " + id + "\tbalance: " + web3.fromWei(eth.getBalance(id), "ether") + " ether"); 
+      web3.eth.accounts.forEach(function(id) {
+        console.log("web3.eth.accounts["+i+"]: " + id + "\tbalance: " + web3.fromWei(web3.eth.getBalance(id), "ether") + " ether"); 
         i++;
       })
     }; 
