@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/cli', function(req, res) {
-	res.render('geth', { title: 'Install Geth' });
+	res.render('cli', { title: 'Install Geth' });
 });
 
 app.get('/ether', function(req, res) {
@@ -49,11 +49,11 @@ app.get('/agreement', function(req, res) {
 });
 
 app.get('/assets', function(req, res) {
-	res.render('press-kit', { title: 'Asset downloads' });
+	res.render('assets', { title: 'Asset downloads' });
 });
 
 app.get('/brand', function(req, res) {
-	res.render('branding', { title: 'Branding Guidelines' });
+	res.render('brand', { title: 'Branding Guidelines' });
 });
 
 // catch 404 and forward to error handler
