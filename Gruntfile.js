@@ -63,13 +63,13 @@ module.exports = function(grunt) {
 						'dist/foundation.html': 'views/foundation.jade'
 					},
 					{
-						'dist/geth.html': 'views/geth.jade'
+						'dist/cli.html': 'views/cli.jade'
 					},
 					{
 						'dist/greeter.html': 'views/greeter.jade'
 					},
 					{
-						'dist/press-kit.html': 'views/press-kit.jade'
+						'dist/assets.html': 'views/assets.jade'
 					},
 					{
 						'dist/sale.html': 'views/sale.jade'
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
 						'dist/tutorial.html': 'views/tutorial.jade'
 					},
 					{
-						'dist/branding.html': 'views/branding.jade'
+						'dist/brand.html': 'views/brand.jade'
 					}
 				]
 			}

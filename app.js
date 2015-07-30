@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/cli', function(req, res) {
-	res.render('geth', { title: 'Install Geth' });
+	res.render('cli', { title: 'Install Geth' });
 });
 
 app.get('/ether', function(req, res) {
@@ -49,23 +49,12 @@ app.get('/agreement', function(req, res) {
 });
 
 app.get('/assets', function(req, res) {
-	res.render('press-kit', { title: 'Asset downloads' });
+	res.render('assets', { title: 'Asset downloads' });
 });
 
 app.get('/brand', function(req, res) {
-	res.render('branding', { title: 'Branding Guidelines' });
+	res.render('brand', { title: 'Branding Guidelines' });
 });
-
-
-app.get('/powered-by', function(req, res) {
-	res.render('powered-by', { title: 'Powered By' });
-});
-
-
-app.get('/create-meetup', function(req, res) {
-	res.render('create-meetup', { title: 'Create your meetup' });
-});
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

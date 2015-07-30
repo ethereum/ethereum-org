@@ -24,7 +24,7 @@ Any developer, startup, project, meetup or other type of organization or individ
 The Ethereum primary Service Mark is the diamond-shape octahedron, as depicted below. It is exclusively used by Ethereum entities. Non-Ethereum entities are prohibited from using the Ethereum logo in any of their communications. If you wish to use the Ethereum logo on promotional material (e.g. T-shirts, mugs, pens, etc.), please contact brand@ethereum.org with the details of your intended usage, and we will consider your request on a case by case basis.
 
 
-![Ethereum Octahedron](/images/Ethereum-Icon-small.png)
+![Ethereum Octahedron](/images/logos/Ethereum-Icon-small.png)
 
 
 #### Ethereum Ecosystem Signatures
