@@ -91,7 +91,7 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
 **Instructions for Eth:** 
 
-    eth --frontier -b --genesis path/to/genesis.json -i  
+    eth --frontier --network-id 1 -b --genesis-json path/to/genesis.json -i  
 
 The first time you start the command line you will be presented with a license. Before you can use them, you **must** accept this license, please read it careful.
 
@@ -150,6 +150,8 @@ The console has auto completion and history support that persists between sessio
 ### Creating accounts
 
 In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://guide.ethereum.org/managing_accounts.html), but the simplest one is through the console. 
+
+**ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontire release clients.
 
 **GETH**:
 

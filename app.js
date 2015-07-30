@@ -17,15 +17,15 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Routes
 app.get('/', function(req, res) {
-	res.render('index', { title: 'Ethereum Frontier' });
+	res.render('index');
 });
 
 app.get('/cli', function(req, res) {
-	res.render('cli', { title: 'Install Geth' });
+	res.render('cli');
 });
 
 app.get('/ether', function(req, res) {
-	res.render('ether', { title: 'Get Ether' });
+	res.render('ether');
 });
 
 app.get('/greeter', function(req, res) {
@@ -54,6 +54,10 @@ app.get('/assets', function(req, res) {
 
 app.get('/brand', function(req, res) {
 	res.render('brand');
+});
+
+app.get('/foundation', function(req, res) {
+	res.render('foundation');
 });
 
 // catch 404 and forward to error handler

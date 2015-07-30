@@ -1,7 +1,4 @@
+The Ethereum primary Service Mark is the diamond-shape octahedron, as depicted below. It is exclusively used by Ethereum entities. Non-Ethereum entities are prohibited from using the Ethereum logo in any of their communications. If you wish to use the Ethereum logo on promotional material (e.g. T-shirts, mugs, pens, etc.), please contact [brand@ethereum.org](brand@ethereum.org) with the details of your intended usage, and we will consider your request on a case by case basis.  
 
-The Ethereum® logo, trademark, and service marks are symbols of the ideals behind the Ethereum foundation mission. To ensure that use of registered marks will not lead to confusion, we own the exclusive right to control it in association with software and related services by other companies.
+If your application is powered by Ethereum, please use the 'Powered by Ethereum' affiliation, which is strictly reserved to Ethereum Dapps, Apps or technologies that are primarily developed on Ethereum. You must be approved by Ethereum to be on that list, and you must hyperlink the signature logo to [ethereum.org](http://www.ethereum.org) where we will maintain the official list of organizations and projects that are approved to use such logo. Please click here for more information on Powered by Ethereum program as well as our brand guidelines."
 
-You are allowed to use our logo to indicate that your technology is compatible and connects to the ethereum blockchain.
-
-Our marks must not be used to disparage the Ethereum Foundation, our projects, members, sponsors, or communities, **nor be used in any way to imply, without explicit written consent, ownership, endorsement, or sponsorship of any ethereum-related project or initiative of any kind by the Ethereum Foundation**.
-        

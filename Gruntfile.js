@@ -60,9 +60,6 @@ module.exports = function(grunt) {
 						'dist/ether.html': 'views/ether.jade'
 					},
 					{
-						'dist/foundation.html': 'views/foundation.jade'
-					},
-					{
 						'dist/cli.html': 'views/cli.jade'
 					},
 					{
@@ -82,6 +79,9 @@ module.exports = function(grunt) {
 					},
 					{
 						'dist/brand.html': 'views/brand.jade'
+					},
+					{
+						'dist/foundation.html': 'views/foundation.jade'
 					}
 				]
 			}
