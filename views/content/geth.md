@@ -91,7 +91,7 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
 **Instructions for Eth:** 
 
-    eth --frontier -b --genesis path/to/genesis.json -i  
+    eth --frontier —network-id 1 -b --genesis-json path/to/genesis.json -i  
 
 The first time you start the command line you will be presented with a license. Before you can use them, you **must** accept this license, please read it careful.
 
