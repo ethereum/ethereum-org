@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/cli', function(req, res) {
-	res.render('cli', { title: 'Install Geth' });
+	res.render('cli', { title: 'Install Command Line Tools' });
 });
 
 app.get('/ether', function(req, res) {
