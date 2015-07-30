@@ -13,7 +13,7 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ![Portrait of Ming Chan](/images/portraits/ming-chan.jpg)
 
-**An alumni of Massachusetts Institute of Technology, where she studied Computer Science, Media Arts & Sciences**, Ming is a Swiss-born-on-skis Chinese American who has a lifelong love of tech innovation and problem solving. Her decades long career includes leading and completing complex enterprise IT and management consulting projects, founding and growing business ventures, and working with top educators, scientists, and inventors to bring inspiring and often life-changing research to life. She enjoys interacting in international business environments where she supplements her language skills with healthy amounts of mime. 
+**An alumni of Massachusetts Institute of Technology, where she studied Computer Science, Media Arts & Sciences**, Ming is a Swiss-born Chinese American who has spent decades leading and completing complex IT and management consulting projects, founding and growing business ventures, and working with top educators, scientists, and inventors to bring inspiring research innovation to life. She has followed Ethereum since 2013 and has a sound understanding of the legal and regulatory issues relevant to blockchain technology.
 
 
 [LinkedIn](https://www.linkedin.com/profile/view?id=8637167&authType=NAME_SEARCH&authToken=sYBX&locale=en_US&srchid=179133991437916802748&srchindex=1&srchtotal=1&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A179133991437916802748%2CVSRPtargetId%3A8637167%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH), [Twitter](https://twitter.com/mingchan88)
@@ -58,9 +58,9 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ![Portrait of Vitalik Buterin](/images/portraits/vitalik-buterin.jpg)
 
-**Vitalik is one of the inventors of Ethereum.** Vitalik first discovered Bitcoin in 2011, and the combination of math, economics and an immediate feeling that it represented the way that money "should be" attracted him immediately to the scene. In September 2011 he became the cofounder and original head writer for Bitcoin Magazine. Following this, Vitalik founded Ethereum, a blockchain-based arbitrary-state Turing-complete scripting platform useful for smart contracts, computational resource marketplaces, financial experimentation, decentralized governance and many other use cases that we have not even thought of. 
+**Vitalik is one of the inventors of Ethereum.** Vitalik first discovered Bitcoin in 2011, and the combination of math, economics and an immediate feeling that it represented the way that money "should be" attracted him immediately to the scene. In September 2011 he became the cofounder and original head writer for Bitcoin Magazine. Following this, Vitalik founded Ethereum, a blockchain-based arbitrary-state Turing-complete scripting platform useful for smart contracts, computational resource marketplaces, financial experimentation, decentralized governance and many other use cases that we have not even thought of yet. 
 
-[LinkeIn](https://www.linkedin.com/pub/vitalik-buterin/50/a74/267), [Twitter](https://twitter.com/vitalikbuterin)
+[LinkedIn](https://www.linkedin.com/pub/vitalik-buterin/50/a74/267), [Twitter](https://twitter.com/vitalikbuterin)
 
 ------
 

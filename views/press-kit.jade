@@ -2,7 +2,7 @@ extends layout
 
 block content
   include mixins/recipes.jade
-  +inner-header("Press Kit")
+  +inner-header("Assets for Download")
 
   div.main-tutorial.inner-page.press-kit
     div.container  
@@ -16,31 +16,36 @@ block content
         div.col-md-12
           h2 Download Assets
 
-          p
-            img(alt="Ethereum Light Background", src="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_HOR-HIGH-small.png") 
-            |  Ethereum Light background: 
-            a(href="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_HOR-HIGH.png") PNG 
-            | or 
-            a(href="images/logos/ETHEREUM_LOGO_AND_TYPEFACE_HOR.ai") AI
+          h3.center Logos
+          div.asset-download 
+            a(href="images/logos/ETHEREUM-ICON_Black.png") 
+              img(alt="Ethereum Octaedron", src="images/logos/ETHEREUM-ICON_Black_small.png", width="250")
 
-          p
-            img(alt="Ethereum Dark Background", src="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_HOR_INV_TRANS-small.png") 
-            |  Ethereum Dark background: 
-            a(href="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_HOR_INV_TRANS.png") PNG 
-            | or 
-            a(href="images/logos/ETHEREUM _LOGO AND TYPEFACE_HOR_INV.ai") AI
+            a(href="images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png") 
+              img(alt="Ethereum Landscape", src="images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png", width="250") 
 
-          p
-            img(alt="Ethereum Horizontal", src="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_LAN-small.png") 
-            |  Ethereum Logo Horizontal 
-            a(href="images/logos/ETHEREUM-_LOGO-AND-TYPEFACE_LAN.png") PNG 
-            | or 
-            a(href="images/logos/ETHEREUM _LOGO AND TYPEFACE_LAN.ai") AI
+            a(href="images/logos/ETHEREUM-LOGO_LANDSCAPE_Black.png") 
+              img(alt="Ethereum Portrait", src="images/logos/ETHEREUM-LOGO_LANDSCAPE_Black_small.png", width="250") 
 
-          hr 
+          h3.center Background
+
+          p.center 
+            a(href="images/wallpaper.png")
+              img(alt="Ethereum Frontier Landscape", src="images/wallpaper-small.png", width="400") 
+
+
+
+  div.main-tutorial.inner-page.press-kit
+    div.container  
+      div.row
+        div.col-md-12.center
+          h2 Read this before downloading
+
           p If you are not writing an article about Ethereum and want to use our logo for other purposes, please read carefully our 
-            a(href='./branding') branding guidelines and legal framework 
-            | before proceeding.
+            a(href='./brand') branding guidelines and legal framework 
+            | before proceeding. Also please follow the 
+            a(href='/images/logos/Ethereum_Visual_Identity_1.0.0.pdf') External brand usage guidelines
+            |.
 
 
 
