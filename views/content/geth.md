@@ -12,7 +12,7 @@ In order to navigate the Frontier, you’ll need to use the command line. If you
 
 # Clients
 
-For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-development-process/) three indenpendent implementations were created for Ethereum. The clients have almost identical functionality so which one you pick is left to personal choice on platform, language and what are your planned use for the network. 
+For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-development-process/) three independent implementations were created for Ethereum. The clients have almost identical functionality so which one you pick is left to personal choice on platform, language and what are your planned use for the network. 
 
 If you are building a business that needs to have always on connections to the ethereum network, we recommend you run at least one instance of both clients, to ensure reliability.
 
