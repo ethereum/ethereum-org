@@ -77,7 +77,7 @@ Frontier users will need to first generate, then load the Genesis block into the
 
 Because the ether pre-sale took place entirely on the bitcoin blockchain, its contents are public, and anyone can generate and verify the Genesis block. In the interest of decentralization and transparency, Ethereum does not provide the Genesis block as a download, but instead has created an open source script that anyone can use to generate the file, a link to which can be found later on in this article. 
 
-[Read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). This is probably a temporary step: once the network is healthy enough and reached a higlhy secured consensus on the genesis, then this step will become unnecessary. If you don't want to go through this process, and are happy not being a part of the network right at the beginning then just sit tight and wait for upcoming releases.
+[Read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). This is probably a temporary step: once the network is healthy enough and reached a highly secured consensus on the genesis, then this step will become unnecessary. If you don't want to go through this process, and are happy not being a part of the network right at the beginning then just sit tight and wait for upcoming releases.
 
 ### Run it
 
