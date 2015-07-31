@@ -41,7 +41,7 @@ Install [Chocolatey](https://chocolatey.org) and then run this on the [command p
 
 ![Logo for C++](/images/icons/cpp.png)
 
-The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and is interested in using ethereum as the backend for projects that involve internet of things, then the Eth client, the C++ client, is for you. 
+The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the Eth client, the C++ client, is for you. 
 
 ### Install: Mac and Linux
 
