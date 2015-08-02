@@ -1,5 +1,9 @@
 extends layout
 
+block vars
+  - var title='About the Ethereum Foundation'
+  - var url='foundation'
+
 block content
   include mixins/recipes.jade
   +inner-header("About the Ethereum Foundation")
