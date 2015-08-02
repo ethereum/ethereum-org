@@ -131,7 +131,7 @@ You have now compiled your code. Now you need to get it ready for deployment, th
         if(!e) {
 
           if(!contract.address) {
-            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash " waiting to be mined...");
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
 
           } else {
             console.log("Contract mined! Address: " + contract.address);
