@@ -55,7 +55,7 @@ If you are serious about mining on the live ethereum network and get real ether 
 
 If you are using **Eth** then GPU mining comes out of the box. Simply quit the console (press control+C multiple times and then enter) and then start it with the --GPU option turned on:
 
-    eth --frontier -b --genesis path/to/genesis.json -i -m on --G
+    eth --frontier -b --genesis path/to/genesis.json -i -m on -G
 
 Once you started, just follow the same instructions as normal CPU mining.
 
