@@ -143,7 +143,7 @@ With these default parameters anyone with any tokens can make a proposal on how 
         if(!e) {
 
           if(!contract.address) {
-            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash " waiting to be mined...");
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
 
           } else {
             console.log("Contract mined! Address: " + contract.address);
