@@ -652,17 +652,6 @@ input.button:hover {
 	overflow: auto;
 }
 
-.press:after {
-	position: absolute;
-	content: " ";
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 50px;
-	background: linear-gradient(rgba(31,12,6,0.1), #1f0c05);
-	z-index: 100;
-}
-
 .press li {
 	height: 50px;
 	overflow: hidden;
@@ -688,8 +677,6 @@ input.button:hover {
 	background-position: center;
 	background-repeat: no-repeat;
 }
-
-
 
 .press > a {
 	position: relative;
@@ -743,6 +730,10 @@ input.button:hover {
 
 .press li span.press-ibtimes {
 	background-image: url("../images/icons/ibtimes.png");
+}
+
+.press li span.press-techcrunch {
+	background-image: url("../images/icons/techcrunch.png");
 }
 
 
