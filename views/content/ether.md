@@ -6,7 +6,7 @@ Ether is a necessary element -- a fuel -- for operating the distributed applicat
 
 Feeling comfortable? Time to get some ether!
 
-**If you just want to test the technology, you probably don't need real ether. [Just deploy a private test net](../geth/) and you will be able get free test ether by mining**.
+**If you just want to test the technology, you probably don't need real ether. [Just deploy a private test net](../cli/) and you will be able get free test ether by mining**.
 
 
 ## Get Ether
