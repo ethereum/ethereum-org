@@ -99,7 +99,7 @@ You know the drill: if you are using the solC compiler,[remove line breaks](http
         if(!e) {
 
           if(!contract.address) {
-            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash " waiting to be mined...");
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
 
           } else {
             console.log("Contract mined! Address: " + contract.address);

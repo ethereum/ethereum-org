@@ -12,7 +12,7 @@ In order to navigate the Frontier, you’ll need to use the command line. If you
 
 # Clients
 
-For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-development-process/) three indenpendent implementations were created for Ethereum. The clients have almost identical functionality so which one you pick is left to personal choice on platform, language and what are your planned use for the network. 
+For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-development-process/) three independent implementations were created for Ethereum. The clients have almost identical functionality so which one you pick is left to personal choice on platform, language and what are your planned use for the network. 
 
 If you are building a business that needs to have always on connections to the ethereum network, we recommend you run at least one instance of both clients, to ensure reliability.
 
@@ -20,7 +20,7 @@ If you are building a business that needs to have always on connections to the e
 
 ![Logo for C++](/images/icons/gopher.png)
 
-The **Go** implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and is interested in building frontend for html dapps, you should experiment with Geth.
+The **Go** implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
 
 
 ### Install: Mac and Linux
@@ -41,7 +41,7 @@ Install [Chocolatey](https://chocolatey.org) and then run this on the [command p
 
 ![Logo for C++](/images/icons/cpp.png)
 
-The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and is interested in using ethereum as the backend for projects that involve internet of things, then the Eth client, the C++ client, is for you. 
+The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the Eth client, the C++ client, is for you. 
 
 ### Install: Mac and Linux
 
@@ -77,7 +77,7 @@ Frontier users will need to first generate, then load the Genesis block into the
 
 Because the ether pre-sale took place entirely on the bitcoin blockchain, its contents are public, and anyone can generate and verify the Genesis block. In the interest of decentralization and transparency, Ethereum does not provide the Genesis block as a download, but instead has created an open source script that anyone can use to generate the file, a link to which can be found later on in this article. 
 
-[Read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). This is probably a temporary step: once the network is healthy enough and reached a higlhy secured consensus on the genesis, then this step will become unnecessary. If you don't want to go through this process, and are happy not being a part of the network right at the beginning then just sit tight and wait for upcoming releases.
+[Read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). This is probably a temporary step: once the network is healthy enough and reached a highly secured consensus on the genesis, then this step will become unnecessary. If you don't want to go through this process, and are happy not being a part of the network right at the beginning then just sit tight and wait for upcoming releases.
 
 ### Run it
 

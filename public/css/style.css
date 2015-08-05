@@ -1228,6 +1228,10 @@ footer {
 	background-image: url('../images/icons/maker.png');
 }
 
+.project-list a[href='http://etherparty.io'] {
+        background-image: url('../images/icons/etherparty.png');
+}
+
 .ether-checker,
 .ether-checker input,
 .main-tutorial.ether-checker h3 {
