@@ -2,6 +2,8 @@ extends layout
 
 block vars
   - var title='Install the Command Line Tools'
+  - var url='cli'
+  - var image='cli'
 
 block content
   include mixins/recipes.jade
@@ -30,7 +32,6 @@ block content
     div.container
       div.row
         div.col-md-12
-          +thawing
           include:md content/geth.md
 
   div.main-tutorial.hidden.even

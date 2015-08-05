@@ -128,6 +128,8 @@ You could modify this to anything else: maybe reward someone who finds a solutio
 
 ### Register a name for your coin
 
+**The name registrar contract has changed in Frontier and the following section is only valid for the Olympic test net. Please wait while we update it.**
+
 The commands mentioned only work because you have token javascript object instantiated on your local machine. If you send tokens to someone they won't be able to move them forward because they don't have the same object and wont know where to look for your contract or call its functions. In fact if you restart your console these objects will be deleted and the contracts you've been working on will be lost forever. So how do you instantiate the contract on a clean machine? 
 
 There are two ways. Let's start with the quick and dirty, providing your friends with a reference to your contract’s ABI:
