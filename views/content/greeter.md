@@ -205,7 +205,7 @@ A transaction will need to be sent to the network and a fee to be paid for the c
 
 This can only be triggered by a transaction sent from the contracts owner. You can verify that the deed is done simply seeing if this returns 0:
 
-    eth.getCode(greeter.contractAddress)
+    eth.getCode(greeter.address)
 
 Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 
