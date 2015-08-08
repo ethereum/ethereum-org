@@ -158,7 +158,7 @@ If that function returns "0x00..", you can claim it to yourself:
 
 Wait for the previous transaction to be picked up. Wait up to thirty seconds and then try:
 
-    registrar.owner(myName)
+    registrar.owner(tokenName)
 
 If it returns your address, it means you own that name and are able to set your chosen name to any address you want:
 
