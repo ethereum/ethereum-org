@@ -6,7 +6,7 @@ Ether is a necessary element -- a fuel -- for operating the distributed applicat
 
 Feeling comfortable? Time to get some ether!
 
-**If you just want to test the technology, you probably don't need real ether. [Just deploy a private test net](../cli/) and you will be able get free test ether by mining**.
+**If you just want to test the technology, you probably don't need real ether. [Just deploy a private test net](../cli) and you will be able get free test ether by mining**.
 
 
 ## Get Ether
@@ -19,7 +19,7 @@ This process is usually called **_mining_** in the crypto-currency lingo.
 
 #### CPU MINING
 
-If you are on a [private network](../geth) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is a the best choice for small scale network or testing privately, as it's less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to succesfully mine a block and receive ether.
+If you are on a [private network](../cli) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is a the best choice for small scale network or testing privately, as it's less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to succesfully mine a block and receive ether.
 
 Before you do any mining, you need to set which address will receive your earnings (called "etherbase"). You only need to this once. Here's how to set your etherbase and then start mining:
 
@@ -67,7 +67,7 @@ There are currently two options for GPU mining in Geth available. You can read a
 
 * **C++ Etherminer**. This is a version for the pro miners. To install it, follow the guide to [install the whole C++ ethereum code](https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients). 
 
-* **Go experimental GPU branch**. It's experimental so you need to build go from source to get it. This version is focused for hobbyists and developers. To install it, [clone geth from source](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu) and then switch to the [GPU Miner branch](https://github.com/ethereum/go-ethereum/tree/gpuminer)
+* **Go experimental GPU branch**. It's experimental so you need to build go from source to get it. This version is focused for hobbyists and developers. To install it, [clone geth from source](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu) and then switch to the [GPU Miner branch](https://github.com/ethereum/go-ethereum/tree/gpu_miner)
 
 
 Both setups are explain in further detail in the [Frontier reference](http://guide.ethereum.org/mining.html)
@@ -75,7 +75,7 @@ Both setups are explain in further detail in the [Frontier reference](http://gui
 #### More information on Mining
 
 * Frontier's proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the [Frontier gitBook, mining chapter](http://guide.ethereum.org/mining.html). Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).
-
+geth
 * The Ethash proof of work algorithm is memory hard, you'll need at least 1+GB of RAM on each GPU. I say 1+ because the DAG, which is the set of data that's being pushed in and out of the GPU to make parallelisation costly, will start at 1GB and will continue growing indefinitely. 2GB should be a good approximation of what's needed to continue mining throughout the year.
 
 * Mining prowess roughly scales proportionally to [memory bandwidth](https://en.wikipedia.org/wiki/AMD_Radeon_Rx_200_series#Chipset_table). As our implementation is written in OpenCL, AMD GPUs will be 'faster' than similarly priced NVIDIA GPUs. Empirical evidence has already confirmed this, with R9 290x regularly topping benchmarks. 

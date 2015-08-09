@@ -109,7 +109,7 @@ You know the drill: if you are using the solC compiler,[remove line breaks](http
         }
     });
 
-**If you are using the _online compiler_ Copy the contract code to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), and then grab the content of the box labeled **Geth Deploy**. Since you have already set the parameters, you don't need to change anything to that text, simply paste the resulting text on your geth window.**
+**If you are using the _online compiler_ Copy the contract code to the [online solidity compiler](https://chriseth.github.io/browser-solidity/), and then grab the content of the box labeled **Geth Deploy**. Since you have already set the parameters, you don't need to change anything to that text, simply paste the resulting text on your geth window.**
 
 Wait up to thirty seconds and you'll see a message like this:
 

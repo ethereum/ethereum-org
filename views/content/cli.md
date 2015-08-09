@@ -18,7 +18,7 @@ If you are building a business that needs to have always on connections to the e
 
 ## Geth
 
-![Logo for C++](/images/icons/gopher.png)
+![Logo for Go](/images/icons/gopher.png)
 
 The **Go** implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
 
