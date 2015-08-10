@@ -6,7 +6,7 @@ Ether is a necessary element -- a fuel -- for operating the distributed applicat
 
 Feeling comfortable? Time to get some ether!
 
-**If you just want to test the technology, you probably don't need real ether. [Just deploy a private test net](../cli/) and you will be able get free test ether by mining**.
+**If you just want to test the technology, you probably don't need real ether. [Just deploy a private test net](../cli) and you will be able get free test ether by mining**.
 
 
 ## Get Ether
@@ -19,7 +19,7 @@ This process is usually called **_mining_** in the crypto-currency lingo.
 
 #### CPU MINING
 
-If you are on a [private network](../geth) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is a the best choice for small scale network or testing privately, as it's less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to succesfully mine a block and receive ether.
+If you are on a [private network](../cli) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is a the best choice for small scale network or testing privately, as it's less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to succesfully mine a block and receive ether.
 
 Before you do any mining, you need to set which address will receive your earnings (called "etherbase"). You only need to this once. Here's how to set your etherbase and then start mining:
 
@@ -67,7 +67,7 @@ There are currently two options for GPU mining in Geth available. You can read a
 
 * **C++ Etherminer**. This is a version for the pro miners. To install it, follow the guide to [install the whole C++ ethereum code](https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients). 
 
-* **Go experimental GPU branch**. It's experimental so you need to build go from source to get it. This version is focused for hobbyists and developers. To install it, [clone geth from source](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu) and then switch to the [GPU Miner branch](https://github.com/ethereum/go-ethereum/tree/gpuminer)
+* **Go experimental GPU branch**. It's experimental so you need to build go from source to get it. This version is focused for hobbyists and developers. To install it, [clone geth from source](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu) and then switch to the [GPU Miner branch](https://github.com/ethereum/go-ethereum/tree/gpu_miner)
 
 
 Both setups are explain in further detail in the [Frontier reference](http://guide.ethereum.org/mining.html)
