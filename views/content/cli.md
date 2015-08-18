@@ -35,7 +35,7 @@ Paste the above one-liner in your terminal for an automated install script. This
 
 Install [Chocolatey](https://chocolatey.org) and then run this on the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window): 
 
-    choco install geth-stable -version 1.0.0.0
+    choco install geth-stable -version 1.0.1.1
 
 ## Eth
 
