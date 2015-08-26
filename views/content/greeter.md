@@ -102,7 +102,7 @@ If you have the SolC Solidity Compiler installed,  you need now reformat by remo
 
 #### Linking your compiler in Geth
 
-Now [go back to the console](../geth) and type this command to install solC, replacing _path/to/solc_ to the path that you got on the last command you did:
+Now [go back to the console](../cli) and type this command to install solC, replacing _path/to/solc_ to the path that you got on the last command you did:
 
     admin.setSolc("path/to/solc")
 
@@ -127,11 +127,11 @@ You have now compiled your code. Now you need to get it ready for deployment, th
     var _greeting = "Hello World!"
     var greeterContract = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition);
 
-    var greeter = greeterContract.new(_greeting,{from:web3.eth.accounts[0], data: greeterCompiled.greeter.code, gas: 1000000}, function(e, contract){
+    var greeter = greeterContract.new(_greeting,{from:web3.eth.accounts[0], data: greeterCompiled.greeter.code, gas: 300000}, function(e, contract){
         if(!e) {
 
           if(!contract.address) {
-            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash " waiting to be mined...");
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
 
           } else {
             console.log("Contract mined! Address: " + contract.address);
@@ -143,7 +143,7 @@ You have now compiled your code. Now you need to get it ready for deployment, th
 
 #### Using the online compiler
 
-If you don't have solC installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/) and then your compiled code should appear on the left pane. Copy the code on the box labeled **Geth deploy** to a text file. Now change the first line to your greeting:
+If you don't have solC installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://chriseth.github.io/browser-solidity/) and then your compiled code should appear on the left pane. Copy the code on the box labeled **Geth deploy** to a text file. Now change the first line to your greeting:
 
     var _greeting = "Hello World!"
  
@@ -151,7 +151,7 @@ Now you can paste the resulting text on your geth window. Wait up to thirty seco
 
     Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e 
 
-You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract. This contract is estimated to need 172 thousand gas to deploy (according to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/)), at the time of writing, gas on the test net is priced at 1 to 10 microethers per unit of gas (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
+You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract. This contract is estimated to need 172 thousand gas to deploy (according to the [online solidity compiler](https://chriseth.github.io/browser-solidity/)), at the time of writing, gas on the test net is priced at 1 to 10 microethers per unit of gas (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
 
 **Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
 
@@ -205,7 +205,7 @@ A transaction will need to be sent to the network and a fee to be paid for the c
 
 This can only be triggered by a transaction sent from the contracts owner. You can verify that the deed is done simply seeing if this returns 0:
 
-    eth.getCode(greeter.contractAddress)
+    eth.getCode(greeter.address)
 
 Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. 
 

@@ -2,6 +2,8 @@ extends layout
 
 block vars
   - var title='Create a Hello World Contract in ethereum'
+  - var url='greeter'
+  - var image='greeter'
 
 block content
   include mixins/recipes.jade
@@ -30,7 +32,6 @@ block content
     div.container
       div.row
         div.col-md-12
-          +thawing
           include:md content/greeter.md
 
   div.main-tutorial.hidden.even

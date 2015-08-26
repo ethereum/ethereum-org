@@ -12,7 +12,7 @@ mixin gethRecipe(header)
 
   p Frontier is focused on command line tools. You can use them to send ether (the network’s internal fuel) to someone else, load and execute contracts, import your pre-sale wallet or make your computer into a supporting node and earn ether.
 
-  a(href="cli").button Install the Command line tools
+  a(href="/cli").button Install the Command line tools
 
   div.recipe
     h4 You'll need:
@@ -45,7 +45,7 @@ mixin etherRecipe(header)
   
   p You can also get some from a friend or purchase it online.
   
-  a(href="../ether").button Get Ether
+  a(href="/ether").button Get Ether
   
   div.recipe
     h4 You'll need:
@@ -53,7 +53,7 @@ mixin etherRecipe(header)
       li 
         input(type="checkbox") 
         | Any of the 
-        a(href="#install-geth") Command Line Tools  
+        a(href="/#install-geth") Command Line Tools  
       li 
         input(type="checkbox") 
         |  One of these:
@@ -83,21 +83,21 @@ mixin greeterRecipe(header)
 
   p The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start.
 
-  a(href="greeter").button Summon the Greeter 
+  a(href="/greeter").button Summon the Greeter 
 
   div.recipe
     h4 You'll need:
     ul
       li 
         input(type="checkbox") 
-        a(href="#install-geth") Geth 
+        a(href="/#install-geth") Geth 
       li 
         input(type="checkbox") 
         |  Desire to learn new things  
       li 
         input(type="checkbox") 
         |  0.001 
-        a(href="#get-ether") ether 
+        a(href="/#get-ether") ether 
         | (approximately)
 
 mixin tokenRecipe(header)
@@ -113,22 +113,22 @@ mixin tokenRecipe(header)
 
   p The total amount of tokens in circulation can be set to a simple fixed amount, or fluctuate based on any programmed ruleset.
 
-  a(href="token").button Issue your token 
+  a(href="/token").button Issue your token 
 
   div.recipe
     h4 You'll need:
     ul
       li 
         input(type="checkbox") 
-        a(href="#install-geth") Geth 
+        a(href="/#install-geth") Geth 
       li 
         input(type="checkbox") 
         |  Very basic programming skills 
       li 
         input(type="checkbox") 
         |  0.002  
-        a(href="#get-ether") ether 
-        | (approximatelly)
+        a(href="/#get-ether") ether 
+        | (approximately)
       li 
         input(type="checkbox") 
         |  1 cool token name (optional)
@@ -149,26 +149,26 @@ mixin crowdsaleRecipe(header)
 
   p You can even use the token you created earlier to keep track of the distribution of rewards.
 
-  a(href="crowdsale").button Kickstart your project 
+  a(href="/crowdsale").button Kickstart your project 
 
   div.recipe
     h4 You'll need:
     ul
       li 
         input(type="checkbox") 
-        a(href="#install-geth") Geth 
+        a(href="/#install-geth") Geth 
       li 
         input(type="checkbox") 
         | Basic programming skills 
       li 
         input(type="checkbox") 
         | 0.004  
-        a(href="#get-ether") ether 
-        | (approximatelly)
+        a(href="/#get-ether") ether 
+        | (approximately)
       li 
         input(type="checkbox") 
         | An Ethereum-based 
-        a(href="#crypto-currency") digital token 
+        a(href="/#crypto-currency") digital token 
         | (to track rewards)
       li 
         input(type="checkbox") 
@@ -189,30 +189,30 @@ mixin daoRecipe(header)
 
   p One of the many advantages of having a robot run your organization, is that it is immune to any outside influence as it’s guaranteed to execute only what it was programmed to. And because the Ethereum network is decentralized, you'll be able to provide services with an 100% uptime guarantee. 
 
-  a(href="dao").button Start your organization 
+  a(href="/dao").button Start your organization 
 
   div.recipe
     h4 You'll need:
     ul
       li 
         input(type="checkbox") 
-        a(href="#install-geth") Geth 
+        a(href="/#install-geth") Geth 
       li 
         input(type="checkbox") 
         | Basic programming skills 
       li 
         input(type="checkbox") 
         | 0.008  
-        a(href="#get-ether") ether 
-        | (approximatelly) to create the contract 
+        a(href="/#get-ether") ether 
+        | (approximately) to create the contract 
       li 
         input(type="checkbox") 
         | Ethereum-based 
-        a(href="#crypto-currency") digital token  
+        a(href="/#crypto-currency") digital token  
         | (voting right)
       li 
         input(type="checkbox") 
-        a(href="#crowdsale") Any amount of funds
+        a(href="/#crowdsale") Any amount of funds
       li 
         input(type="checkbox") 
         | Ideas on where to invest these funds
@@ -267,15 +267,14 @@ mixin futureRecipe(header)
       a(href='http://weifund.io/') Wei.fund             
       | A non-profit, decentralized crowdfunding platform built on Ethereum
     li 
-      a(href='http://ethergit.com') Ether Git 
-      | Ethereum blockchain explorer
-    li 
       a(href='http://etherchain.org')  etherchain            
       | An Ethereum Blockchain Explorer     
     li 
       a(href='http://makerdao.com')  Maker Dao            
       | Autonomous bank & market maker
-
+    li 
+      a(href='http://etherparty.io')  Etherparty
+      | Smart contract deployment tools
 
 
 mixin thawing()

@@ -2,6 +2,8 @@ extends layout
 
 block vars
   - var title='Create a crowdsale contract in Ethereum'
+  - var url='crowdsale'
+  - var image='crowdsale'
 
 block content
   include mixins/recipes.jade
@@ -29,7 +31,6 @@ block content
     div.container
       div.row
         div.col-md-12
-          +thawing
           include:md content/crowdsale.md
 
   div.main-tutorial.hidden.even
