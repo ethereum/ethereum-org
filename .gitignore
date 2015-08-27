@@ -24,3 +24,5 @@ keys/pgp/*.secret.*
 
 # Users Environment Variables
 .lock-wscript
+
+.DS_Store
