@@ -1229,7 +1229,18 @@ footer {
 }
 
 .project-list a[href='http://etherparty.io'] {
-        background-image: url('../images/icons/etherparty.png');
+  background-image: url('../images/icons/etherparty.png');
+}
+
+.project-list a[href='http://www.hitfin.com']{
+  background-image: url('../images/icons/hitfin.png');
+}
+
+.project-list a[href='http://frontier.ether.camp']{
+  background-image: url('../images/icons/ethercamp.png');
+  height: 60px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 .ether-checker,
