@@ -42,7 +42,7 @@ In this example we declared the mapping "coinBalanceOf" to be public, this will 
 
     var tokenCompiled = eth.compile.solidity(tokenSource)
 
-Now let’s set up the contract, just like we did in the previous section. Change the "initial Supply" to the amount of non divisible tokens you want to create. If you want to have divisible units, you should do that on the user frontend but keep them represented in the minimun unit of account. 
+Now let’s set up the contract, just like we did in the previous section. Change the "initial Supply" to the amount of non divisible tokens you want to create. If you want to have divisible units, you should do that on the user frontend but keep them represented in the minimum unit of account. 
 
     var supply = 10000;
     var tokenContract = web3.eth.contract(tokenCompiled.token.info.abiDefinition);
