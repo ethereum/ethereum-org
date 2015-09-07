@@ -16,6 +16,26 @@ For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-developmen
 
 If you are building a business that needs to have always on connections to the ethereum network, we recommend you run at least one instance of both clients, to ensure reliability.
 
+## Eth
+
+![Logo for C++](/images/icons/cpp.png)
+
+The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analysis tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the C++ "Eth" client, is for you. 
+
+### Install: Mac and Linux
+
+Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
+
+    bash <(curl https://install-eth.ethereum.org -L)
+
+
+### Windows
+
+Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
+
+    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
+
+
 ## Geth
 
 ![Logo for Go](/images/icons/gopher.png)
@@ -36,25 +56,6 @@ Paste the above one-liner in your terminal for an automated install script. This
 Install [Chocolatey](https://chocolatey.org) and then run this on the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window): 
 
     choco install geth-stable -version 1.1.1.0
-
-## Eth
-
-![Logo for C++](/images/icons/cpp.png)
-
-The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the Eth client, the C++ client, is for you. 
-
-### Install: Mac and Linux
-
-Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
-
-    bash <(curl https://install-eth.ethereum.org -L)
-
-
-### Windows
-
-Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
-
-    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
 
 
 ## Python
