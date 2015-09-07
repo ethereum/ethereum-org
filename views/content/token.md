@@ -68,7 +68,7 @@ Now let’s set up the contract, just like we did in the previous section. Chang
 
 #### Online Compiler
 
-**If you don't have solC installed, you can simply use the online compiler.** Copy the contract code to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), if there are no errors on the contract you should see a text box labeled **Geth Deploy**. Copy the content to a text file so you can change the first line to set the initial supply, like this:  
+**If you don't have solC installed, you can simply use the online compiler.** Copy the contract code to the [online solidity compiler](https://chriseth.github.io/browser-solidity/), if there are no errors on the contract you should see a text box labeled **Geth Deploy**. Copy the content to a text file so you can change the first line to set the initial supply, like this:  
 
     var supply = 10000;
 
@@ -158,7 +158,7 @@ If that function returns "0x00..", you can claim it to yourself:
 
 Wait for the previous transaction to be picked up. Wait up to thirty seconds and then try:
 
-    registrar.owner(myName)
+    registrar.owner(tokenName)
 
 If it returns your address, it means you own that name and are able to set your chosen name to any address you want:
 
