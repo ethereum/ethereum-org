@@ -1232,6 +1232,10 @@ footer {
   background-image: url('../images/icons/etherparty.png');
 }
 
+.project-list a[href='http://etherscan.io'] {
+  background-image: url('../images/icons/etherscan.png');
+}
+
 .project-list a[href='http://www.hitfin.com']{
   background-image: url('../images/icons/hitfin.png');
 }
