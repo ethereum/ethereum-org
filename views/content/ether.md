@@ -43,7 +43,7 @@ If you have successfully mined a block you will see a message like this among th
  
 To check your earnings, you can display your balance with:
  
-    web3.fromWei(eth.getBalance(web3.eth.accounts[0]), "ether")
+    web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]), "ether")
 
 #### GPU MINING
 
