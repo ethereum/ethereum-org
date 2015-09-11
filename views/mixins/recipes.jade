@@ -10,7 +10,7 @@ mixin gethRecipe(header)
     | Install and run the 
     strong Command Line Interface
 
-  p Frontier is focused on command line tools. You can use them to send ether (the network’s internal fuel) to someone else, load and execute contracts, import your pre-sale wallet or make your computer into a supporting node and earn ether.
+  p Frontier is focused on command line tools. You can use them to send the network’s internal fuel, ether, to someone else, to load and execute contracts, to import your pre-sale wallet if you have one, or to make your computer into a supporting node and earn ether.
 
   a(href="/cli").button Install the Command line tools
 
@@ -19,13 +19,13 @@ mixin gethRecipe(header)
     ul
       li 
         input(type="checkbox") 
-        | To know how to use a command-line interface 
+        | Basic command line skills 
       li 
         input(type="checkbox") 
-        |  1-2Gb free space (for the blockchain) 
+        |  Basic coding skills
       li 
         input(type="checkbox") 
-        |  Not be afraid to do basic coding
+        |  1-2Gb free space for the blockchain 
 
 
 mixin etherRecipe(header)
@@ -172,7 +172,7 @@ mixin crowdsaleRecipe(header)
         | (to track rewards)
       li 
         input(type="checkbox") 
-        | 1 good idea that needs funding
+        | One good idea that needs funding
 
 mixin daoRecipe(header)
   +daoFigure
@@ -242,9 +242,6 @@ mixin futureRecipe(header)
     li
       a(href='http://augur.net') Augur 
       | Decentralized prediction market built on Ethereum
-    li
-      a(href='https://www.theprotocol.tv/adept-demo-ibm-samsung') IBM 
-      | IBM/Samsung Internet of Things project
     li 
       a(href='http://boardroom.to') BoardRoom 
       | Blockchain Governance Dapp 
@@ -261,14 +258,8 @@ mixin futureRecipe(header)
       a(href='https://dgx.io/') DigiGlobal           
       | the first Smart Asset company built on Ethereum
     li 
-      a(href='http://ether.fund') Ether.fund              
-      | Ethereum blockchain services
-    li 
       a(href='http://weifund.io/') Wei.fund             
       | A non-profit, decentralized crowdfunding platform built on Ethereum
-    li 
-      a(href='http://etherchain.org')  etherchain            
-      | An Ethereum Blockchain Explorer     
     li 
       a(href='http://makerdao.com')  Maker Dao            
       | Autonomous bank & market maker
@@ -278,9 +269,24 @@ mixin futureRecipe(header)
     li
       a(href='http://www.hitfin.com') HitFin
       | Financial derivatives trading and settlement
+    
+
+  h4 Ethereum Blockchain Explorers
+
+  ul.project-list
+    li 
+      a(href='http://ether.fund') Ether.fund              
+      | Blockchain Services
+    li 
+      a(href='http://etherchain.org')  etherchain            
+      | Blockchain Explorer 
     li
       a(href='http://frontier.ether.camp') <ether.camp>
-      | Blockchain explorer
+      | Blockchain Search    
+    li 
+      a(href='http://etherscan.io')  etherscan            
+      | Blockchain Explorer        
+
       
 mixin thawing()
   div.thawing
