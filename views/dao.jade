@@ -2,6 +2,8 @@ extends layout
 
 block vars
   - var title='Create a Democracy contract in Ethereum'
+  - var url='dao'
+  - var image='dao'
 
 block content
   include mixins/recipes.jade
@@ -28,7 +30,6 @@ block content
     div.container
       div.row
         div.col-md-12
-          +thawing
           include:md content/dao.md
 
   div.main-tutorial.hidden.ethereum-projects.even

@@ -16,9 +16,29 @@ For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-developmen
 
 If you are building a business that needs to have always on connections to the ethereum network, we recommend you run at least one instance of both clients, to ensure reliability.
 
+## Eth
+
+![Logo for C++](/images/icons/cpp.png)
+
+The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analysis tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the C++ "Eth" client, is for you. 
+
+### Install: Mac and Linux
+
+Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
+
+    bash <(curl https://install-eth.ethereum.org -L)
+
+
+### Windows
+
+Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
+
+    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
+
+
 ## Geth
 
-![Logo for C++](/images/icons/gopher.png)
+![Logo for Go](/images/icons/gopher.png)
 
 The **Go** implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
 
@@ -35,26 +55,7 @@ Paste the above one-liner in your terminal for an automated install script. This
 
 Install [Chocolatey](https://chocolatey.org) and then run this on the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window): 
 
-    choco install geth-stable -version 1.0.0.0
-
-## Eth
-
-![Logo for C++](/images/icons/cpp.png)
-
-The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analyze tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the Eth client, the C++ client, is for you. 
-
-### Install: Mac and Linux
-
-Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
-
-    bash <(curl https://install-eth.ethereum.org -L)
-
-
-### Windows
-
-Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
-
-    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
+    choco install geth-stable -version 1.1.1.0
 
 
 ## Python
@@ -71,13 +72,6 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 * If you want more flexibility on the Mac, try [Homebrew](http://guide.ethereum.org/installing_mac.html)
 * Also available: [Docker](http://guide.ethereum.org/using_docker.html)
 
-### Create the genesis block
-
-Frontier users will need to first generate, then load the Genesis block into their Ethereum client. The Genesis block is pretty much a database file: it contains all the transactions from the Ether sale, and when a user inputs it into the client, it represents their decision to join the network under its terms: it is the first step to consensus.
-
-Because the ether pre-sale took place entirely on the bitcoin blockchain, its contents are public, and anyone can generate and verify the Genesis block. In the interest of decentralization and transparency, Ethereum does not provide the Genesis block as a download, but instead has created an open source script that anyone can use to generate the file, a link to which can be found later on in this article. 
-
-[Read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). This is probably a temporary step: once the network is healthy enough and reached a highly secured consensus on the genesis, then this step will become unnecessary. If you don't want to go through this process, and are happy not being a part of the network right at the beginning then just sit tight and wait for upcoming releases.
 
 ### Run it
 
@@ -87,11 +81,11 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
 **Instructions for Geth:**
 
-    geth --genesis path/to/genesis.json console
+    geth console
 
 **Instructions for Eth:** 
 
-    eth --frontier --network-id 1 -b --genesis-json path/to/genesis.json -i  
+    eth --frontier -b -i  
 
 The first time you start the command line you will be presented with a license. Before you can use them, you **must** accept this license, please read it careful.
 
@@ -112,7 +106,10 @@ Sometimes you might not want to connect to the live public network; Instead you 
 
 Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
 
-This will prevent anyone who doesn't know your chosen — secret — nonce and network id, from connecting to you or providing you with unwanted data. If you *want* to connect to other peers and create a small private network of multiple computers they will all need to use the same networkid and an identical genesis block. You will also have to help each node find the others. To do that, first you need your own Node URL:
+If you want to create a private network you should, for security reasons, use a different genesis block (a database that contains all the transactions from the Ether sales). You can 
+[Read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). In the near future we will provide better ways to get other genesis blocks.
+
+These commands prevent anyone who doesn't know your chosen — secret — nonce, network id and genesis file, from connecting to you or providing you with unwanted data. If you *want* to connect to other peers and create a small private network of multiple computers they will all need to use the same networkid and an identical genesis block. You will also have to help each node find the others. To do that, first you need your own Node URL:
 
     admin.nodeInfo.NodeUrl
 

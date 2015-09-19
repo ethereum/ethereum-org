@@ -122,7 +122,7 @@ So let's recap what this means: in the last two sections you created 10,000 toke
 So open your console and let's get ready to finally put your country online. First, let's set the right parameters, pick them with care:
 
     var _voterShareAddress = token.address;
-    var _minimumQuorum = 10; // Minimun amount of voter tokens the proposal needs to pass
+    var _minimumQuorum = 10; // Minimum amount of voter tokens the proposal needs to pass
     var _debatingPeriod = 60; // debating period, in minutes;
 
 With these default parameters anyone with any tokens can make a proposal on how to spend the organization's money. The proposal has 1 hour to be debated and it will pass if it has at least votes from at least 0.1% of the total tokens and has more support than rejections. Pick those parameters with care, as you won't be able to change them in the future.
@@ -153,7 +153,7 @@ With these default parameters anyone with any tokens can make a proposal on how 
         }
     });
 
-**If you are using the _online compiler_ Copy the contract code to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), and then grab the content of the box labeled **Geth Deploy**. Since you have already set the parameters, you don't need to change anything to that text, simply paste the resulting text on your geth window.**
+**If you are using the _online compiler_ Copy the contract code to the [online solidity compiler](https://chriseth.github.io/browser-solidity/), and then grab the content of the box labeled **Geth Deploy**. Since you have already set the parameters, you don't need to change anything to that text, simply paste the resulting text on your geth window.**
 
 Wait a minute until the miners pick it up. It will cost you about 850k Gas. Once that is picked up, it's time to instantiate it and set it up, by pointing it to the correct address of the token contract you created previously. 
 

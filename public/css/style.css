@@ -652,17 +652,6 @@ input.button:hover {
 	overflow: auto;
 }
 
-.press:after {
-	position: absolute;
-	content: " ";
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 200px;
-	background: linear-gradient(rgba(31,12,6,0.1), #1f0c05);
-	z-index: 100;
-}
-
 .press li {
 	height: 50px;
 	overflow: hidden;
@@ -688,8 +677,6 @@ input.button:hover {
 	background-position: center;
 	background-repeat: no-repeat;
 }
-
-
 
 .press > a {
 	position: relative;
@@ -743,6 +730,10 @@ input.button:hover {
 
 .press li span.press-ibtimes {
 	background-image: url("../images/icons/ibtimes.png");
+}
+
+.press li span.press-techcrunch {
+	background-image: url("../images/icons/techcrunch.png");
 }
 
 
@@ -953,10 +944,12 @@ figure.moon .moon-rocket {
 figure.ethereum-logo {
 	display: block;
 	background-image: url("../images/ethereum-logo.png");
-	width: 301px;
+	max-width: 301px;
 	height: 287px;
-	background-size: contain;
 	margin: 0 auto;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 
@@ -1145,10 +1138,10 @@ footer {
 
 .ethereum-projects  ul {
 	padding-left: 0;
-	display: -webkit-flex;
 	-webkit-flex-wrap: wrap;
 	-webkit-justify-content: center;
 	display: flex;
+	display: -webkit-flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	width: 100%;
@@ -1236,7 +1229,22 @@ footer {
 }
 
 .project-list a[href='http://etherparty.io'] {
-        background-image: url('../images/icons/etherparty.png');
+  background-image: url('../images/icons/etherparty.png');
+}
+
+.project-list a[href='http://etherscan.io'] {
+  background-image: url('../images/icons/etherscan.png');
+}
+
+.project-list a[href='http://www.hitfin.com']{
+  background-image: url('../images/icons/hitfin.png');
+}
+
+.project-list a[href='http://frontier.ether.camp']{
+  background-image: url('../images/icons/ethercamp.png');
+  height: 60px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 .ether-checker,
@@ -1317,6 +1325,10 @@ footer {
 
 	.breadcrumb.index a {
 		display: none;
+	}
+
+	figure.ethereum-logo {
+		height: 140px;
 	}
 }
 

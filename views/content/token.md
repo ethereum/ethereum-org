@@ -42,7 +42,7 @@ In this example we declared the mapping "coinBalanceOf" to be public, this will 
 
     var tokenCompiled = eth.compile.solidity(tokenSource)
 
-Now let’s set up the contract, just like we did in the previous section. Change the "initial Supply" to the amount of non divisible tokens you want to create. If you want to have divisible units, you should do that on the user frontend but keep them represented in the minimun unit of account. 
+Now let’s set up the contract, just like we did in the previous section. Change the "initial Supply" to the amount of non divisible tokens you want to create. If you want to have divisible units, you should do that on the user frontend but keep them represented in the minimum unit of account. 
 
     var supply = 10000;
     var tokenContract = web3.eth.contract(tokenCompiled.token.info.abiDefinition);
@@ -68,7 +68,7 @@ Now let’s set up the contract, just like we did in the previous section. Chang
 
 #### Online Compiler
 
-**If you don't have solC installed, you can simply use the online compiler.** Copy the contract code to the [online solidity compiler](https://chriseth.github.io/cpp-ethereum/), if there are no errors on the contract you should see a text box labeled **Geth Deploy**. Copy the content to a text file so you can change the first line to set the initial supply, like this:  
+**If you don't have solC installed, you can simply use the online compiler.** Copy the contract code to the [online solidity compiler](https://chriseth.github.io/browser-solidity/), if there are no errors on the contract you should see a text box labeled **Geth Deploy**. Copy the content to a text file so you can change the first line to set the initial supply, like this:  
 
     var supply = 10000;
 
@@ -128,6 +128,8 @@ You could modify this to anything else: maybe reward someone who finds a solutio
 
 ### Register a name for your coin
 
+**The name registrar contract has changed in Frontier and the following section is only valid for the Olympic test net. Please wait while we update it.**
+
 The commands mentioned only work because you have token javascript object instantiated on your local machine. If you send tokens to someone they won't be able to move them forward because they don't have the same object and wont know where to look for your contract or call its functions. In fact if you restart your console these objects will be deleted and the contracts you've been working on will be lost forever. So how do you instantiate the contract on a clean machine? 
 
 There are two ways. Let's start with the quick and dirty, providing your friends with a reference to your contract’s ABI:
@@ -156,7 +158,7 @@ If that function returns "0x00..", you can claim it to yourself:
 
 Wait for the previous transaction to be picked up. Wait up to thirty seconds and then try:
 
-    registrar.owner(myName)
+    registrar.owner(tokenName)
 
 If it returns your address, it means you own that name and are able to set your chosen name to any address you want:
 
