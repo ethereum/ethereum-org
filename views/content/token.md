@@ -17,7 +17,8 @@ This is the code for the contract we're building:
       
       /* Initializes contract with initial supply tokens to the creator of the contract */
       function token(uint supply) {
-            coinBalanceOf[msg.sender] = (supply || 10000);
+            if (supply == 0) supply = 10000;
+            coinBalanceOf[msg.sender] = supply;
         }
       
       /* Very simple trade function */
@@ -38,7 +39,7 @@ In this example we declared the mapping "coinBalanceOf" to be public, this will 
 
 **So let's run it!**
 
-    var tokenSource = ' contract token { mapping (address => uint) public coinBalanceOf; event CoinTransfer(address sender, address receiver, uint amount); /* Initializes contract with initial supply tokens to the creator of the contract */ function token(uint supply) { coinBalanceOf[msg.sender] = (supply || 10000); } /* Very simple trade function */ function sendCoin(address receiver, uint amount) returns(bool sufficient) { if (coinBalanceOf[msg.sender] < amount) return false; coinBalanceOf[msg.sender] -= amount; coinBalanceOf[receiver] += amount; CoinTransfer(msg.sender, receiver, amount); return true; } }'
+    var tokenSource = 'contract token { mapping (address => uint) public coinBalanceOf; event CoinTransfer(address sender, address receiver, uint amount); function token(uint supply) { if (supply == 0) supply = 10000; coinBalanceOf[msg.sender] = supply; } function sendCoin(address receiver, uint amount) returns(bool sufficient) { if (coinBalanceOf[msg.sender] < amount) return false; coinBalanceOf[msg.sender] -= amount; coinBalanceOf[receiver] += amount; CoinTransfer(msg.sender, receiver, amount); return true; } }'
 
     var tokenCompiled = eth.compile.solidity(tokenSource)
 
