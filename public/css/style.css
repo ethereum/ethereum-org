@@ -1228,8 +1228,8 @@ footer {
 	background-image: url('../images/icons/maker.png');
 }
 
-.project-list a[href='http://explorer.etherparty.io'] {
-  background-image: url('../images/icons/etherparty-explorer.png');
+.project-list a[href='http://etherparty.io'] {
+  background-image: url('../images/icons/etherparty.png');
 }
 
 .project-list a[href='http://etherscan.io'] {
