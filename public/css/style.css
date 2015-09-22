@@ -1224,6 +1224,9 @@ footer {
 .project-list a[href='http://boardroom.to'] {
 	background-image: url('../images/icons/boardroom.png');
 }
+.project-list a[href='http://colony.io'] {
+	background-image: url('../images/icons/colony.png');
+}
 .project-list a[href='http://makerdao.com'] {
 	background-image: url('../images/icons/maker.png');
 }
