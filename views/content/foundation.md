@@ -20,8 +20,19 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ----
 
-### Board Members
+### Board of Directors
 
+
+
+#### Vitalik Buterin
+
+![Portrait of Vitalik Buterin](/images/portraits/vitalik-buterin.jpg)
+
+**Vitalik is one of the inventors of Ethereum.** Vitalik first discovered Bitcoin in 2011, and the combination of math, economics and an immediate feeling that it represented the way that money "should be" attracted him immediately to the scene. In September 2011 he became the cofounder and original head writer for Bitcoin Magazine. Following this, Vitalik founded Ethereum, a blockchain-based arbitrary-state Turing-complete scripting platform useful for smart contracts, computational resource marketplaces, financial experimentation, decentralized governance and many other use cases that we have not even thought of yet. 
+
+[LinkedIn](https://www.linkedin.com/pub/vitalik-buterin/50/a74/267), [Twitter](https://twitter.com/vitalikbuterin)
+
+------
 
 #### Lars Klawitter
 
@@ -54,14 +65,25 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ------
 
-#### Vitalik Buterin
+### Advisory Board
 
-![Portrait of Vitalik Buterin](/images/portraits/vitalik-buterin.jpg)
+#### Stefano Bartolo
 
-**Vitalik is one of the inventors of Ethereum.** Vitalik first discovered Bitcoin in 2011, and the combination of math, economics and an immediate feeling that it represented the way that money "should be" attracted him immediately to the scene. In September 2011 he became the cofounder and original head writer for Bitcoin Magazine. Following this, Vitalik founded Ethereum, a blockchain-based arbitrary-state Turing-complete scripting platform useful for smart contracts, computational resource marketplaces, financial experimentation, decentralized governance and many other use cases that we have not even thought of yet. 
+![Portrait of Stefano Bartolo](/images/portraits/stefano-bartolo.png)
 
-[LinkedIn](https://www.linkedin.com/pub/vitalik-buterin/50/a74/267), [Twitter](https://twitter.com/vitalikbuterin)
+Stefano Bertolo is a civil servant advising Ethereum in a strictly personal capacity and with the formal permission of his employer. An alumnus of Rutgers University, where he earned his Ph.D. in philosophy and cognitive psychology, he has done post-doctoral work on human language learning at the Massachusetts Institute of Technology and worked as an artificial intelligence programmer at Cycorp. An enthusiast of prediction markets, he has earned the rank of Superforecaster in the Good Judgement Project. Stefano lives in Luxembourg where for the past ten years he has worked on public research and development funding for international projects in data management and analytics.
+
+[LinkedIn](https://www.linkedin.com/in/stefanobertolo)
+
+----
+
+#### William Mougayar
+
+![Portrait of William Mougayar](/images/portraits/william-mougayar.jpg)
+
+
+William Mougayar is an entrepreneur, angel investor, mentor to startups and an expert and analyst on startup marketing, blockchain technologies, decentralization and peer-to-peer models. William is on the Board of Directors of OB1, the OpenBazaar open source project that is pioneering peer-to-peer commerce, and a member of OMERS Ventures Board of Advisors and founder of Startup Management. Besides having started and raised capital for 3 companies,- Engagio, Eqentia, and CYBERManagement, his career also included HP, Cognizant, CommerceNet Canada, authoring 2 books on Internet business, consulting to numerous Fortune 500 companies, mentoring startups and being a professional speaker. William is a graduate of the University of Washington and the University of Western Ontario.
+
+[LinkedIn](https://www.linkedin.com/in/williammougayar)
 
 ------
-
-
