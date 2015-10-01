@@ -77,17 +77,6 @@ Stefano Bertolo is a civil servant advising Ethereum in a strictly personal capa
 
 ----
 
-
-#### Anthony Di Iorio
-
-![Portrait of Anthony Di Iorio](/images/portraits/di-iorio.png)
-
-**A co-founder, adviser and consultant for Ethereum**, Di Iorio has been heavily involved in building the Canadian Bitcoin, cryptocurrency and decentralized technology community since 2012. He is the founder and CEO of Decentral, a business development hub for entrepreneurs and tech startups, and is a co-founder and CEO of Kryptokit, a security and privacy-based software company. He is the founder of the Toronto Ethereum Meetup group, organizes DEC_TECH, an ongoing series of decentralized technology events, and is a lecturer for the Principles of Disruptive Innovation course for the University of Nicosia's MSc in Digital Currency. Di Iorio can be reached at anthony.at.decentral.ca or through his website at diior.io 
-
-[LinkedIn](https://ca.linkedin.com/in/anthonydiiorio1)
-
-----
-
 #### William Mougayar
 
 ![Portrait of William Mougayar](/images/portraits/william-mougayar.jpg)
