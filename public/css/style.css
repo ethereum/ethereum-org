@@ -1247,6 +1247,14 @@ footer {
   background-image: url('../images/icons/hitfin.png');
 }
 
+.project-list a[href='http://www.blockapps.net']{
+  background-image: url('../images/icons/blockapps.png');
+}
+
+.project-list a[href='http://groupgnosis.com']{
+  background-image: url('../images/icons/gnosis.svg');
+}
+
 .project-list a[href='http://frontier.ether.camp']{
   background-image: url('../images/icons/ethercamp.png');
   height: 60px;
@@ -1291,6 +1299,71 @@ footer {
 	margin-right: 40px;
 }
 
+
+/* DEVCON */
+
+.devcon {
+	position: absolute;
+	top: -10px;
+	right: 0;
+	left: 0;
+	z-index: 300;
+}
+
+.devcon .banner {
+	min-height: 100px;
+	background-image: url(../images/special/london.jpg);
+	background-size: cover;
+	margin: 10px auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.devcon .text {
+	float: right;
+	margin-left: 20px;
+}
+
+.devcon h3 {
+	text-indent: -100em;
+	background-image: url(../images/special/devcon.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+.devcon h4 {
+	color: #fdf5cf;
+	font-family: 'Roboto', Helvetica, Arial, sans-serif;
+	padding-right: 20px;
+}
+
+.devcon .button {
+	float: left;
+	max-width: 200px;
+	background: #ba8e59;
+	text-transform: uppercase;
+	color: #232323;
+}
+
+.devcon + .main-tutorial div.introduction {
+	padding-top: 850px;
+}
+
+@media only screen and (max-width: 500px ) {
+	.devcon .text, .devcon .button {
+		float: none;
+		margin: 10px auto;
+		text-align: center;
+	}
+
+}
+
+
+/* END DEVCON */
 
 @media (-webkit-min-device-pixel-ratio: 2) {
 	.introduction h1 {
