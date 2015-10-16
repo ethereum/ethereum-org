@@ -24,7 +24,7 @@ The **C++** implementation is simply called **Eth**. It performs slightly faster
 
 ### Install: Mac and Linux
 
-Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
+Paste the one-liner below into your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
 
     bash <(curl https://install-eth.ethereum.org -L)
 
