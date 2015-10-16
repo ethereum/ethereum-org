@@ -1151,7 +1151,7 @@ footer {
 .project-list li {
 	display: inline-block;
 	max-width: 200px;
-	padding: 20px;
+	padding: 60px;
 	text-align: center;
 	font-size: 80%;
 }
