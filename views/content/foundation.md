@@ -60,13 +60,13 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ### Advisory Board
 
-#### Stefano Bartolo
+#### Stefano Bertolo
 
 ![Portrait of Stefano Bertolo](/images/portraits/stefano-bartolo.png)
 
 Stefano Bertolo is a civil servant advising Ethereum in a strictly personal capacity and with the formal permission of his employer. An alumnus of Rutgers University, where he earned his Ph.D. in philosophy and cognitive psychology, he has done post-doctoral work on human language learning at the Massachusetts Institute of Technology and worked as an artificial intelligence programmer at Cycorp. An enthusiast of prediction markets, he has earned the rank of Superforecaster in the Good Judgement Project. Stefano lives in Luxembourg where for the past ten years he has worked on public research and development funding for international projects in data management and analytics.
 
-[LinkedIn](https://www.linkedin.com/in/stefanobertolo)
+[LinkedIn](https://www.linkedin.com/in/stefanobertolo), [Twitter](https://twitter.com/sclopit)
 
 ----
 

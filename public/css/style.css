@@ -1255,6 +1255,18 @@ footer {
   background-image: url('../images/icons/gnosis.svg');
 }
 
+.project-list a[href='http://chriseth.github.io/browser-solidity/']{
+  background-image: url('../images/icons/sol.svg');
+}
+
+.project-list a[href='http://meteor-dapp-cosmo.meteor.com']{
+  background-image: url('../images/icons/cosmo.png');
+}
+
+
+
+
+
 .project-list a[href='http://frontier.ether.camp']{
   background-image: url('../images/icons/ethercamp.png');
   height: 60px;
