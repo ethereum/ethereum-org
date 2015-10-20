@@ -60,7 +60,7 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ### Advisory Board
 
-#### Stefano Bartolo
+#### Stefano Bertolo
 
 ![Portrait of Stefano Bertolo](/images/portraits/stefano-bartolo.png)
 
