@@ -12,7 +12,7 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	letter-spacing: -1px;
 	margin: 10px 0;
 	font-weight: 400;
@@ -25,8 +25,7 @@ h1 {
 
 h2 {
 	font-size: 30px;
-	text-transform: uppercase;
-	color: #F9D774;
+	color: #A9C5E6;
 	padding-bottom: 30px;
 }
 
@@ -51,11 +50,11 @@ p {
 }
 
 a {
-	color: #D13C15;
+	color: #4A90E2;
 }
 
 a:hover {
-	color: #b5670b;
+	color: #61A7F8;
 	cursor: pointer;
 }
 
@@ -95,7 +94,7 @@ header {
 header {
 	height: 60vh;
 	min-height: 440px;
-	background: url('../images/Frontier-Background.jpg') center center no-repeat;
+	background: url('../images/homestead-background.jpg') center center no-repeat;
 	background-size: cover;
 	position: relative;
 	
@@ -113,7 +112,7 @@ header {
 }
 
 div.scrollme.intro {
-	background: #1f0c05;
+	background: #102026;
 	overflow: hidden;
 	position: relative;
 	z-index: 40;
@@ -122,7 +121,8 @@ div.scrollme.intro {
 div.scrollme.row.introduction {
 	height: 70vh;
 	min-height: 440px;
-	background: url('../images/Frontier-Background.jpg') center center no-repeat;
+	max-height: 880px;
+	background: url('../images/homestead-background.jpg') center center no-repeat;
 	background-size: cover;	
 	padding-top: 50px;
 }
@@ -131,19 +131,19 @@ div.scrollme.row.introduction {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 250px;
+	width: 243px;
 	height: 0;
-	padding-top: 290px;
+	padding-top: 244px;
 	margin-top: -200px;
-	margin-left: -125px;
-	background: url('../images/Title+Logo.png') top center no-repeat;
-	background-size: 250px 290px;
+	margin-left: -121px;
+	background: url('../images/homestead-title.png') top center no-repeat;
+	background-size: 243px 244px;
 	overflow: hidden;
 }
 
 header:after {
-	content: " ";
-	background: linear-gradient(transparent, #1f0c05);
+	content: " ";	
+	background: linear-gradient(transparent, #102026);
 	height: 100px;
 	position: absolute;	
 	bottom: 0;
@@ -153,7 +153,7 @@ header:after {
 
 .main-content:before {
 	content: " ";
-	background: linear-gradient(transparent, #1f0c05);
+	background: linear-gradient(transparent, #102026);
 	height: 100px;
 	position: absolute;	
 	top: -100px;
@@ -184,7 +184,7 @@ header:after {
 }
 
 #block-content {
-	background: #1f0c05;
+	background: #102026;
 	padding-top: 10px;
 	padding-bottom: 15px;
 }
@@ -201,7 +201,7 @@ header:after {
 #block-content span {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-size: 18px;
-	color: #F6E6CC;
+	color: #C3CCDB;
 	font-smooth: auto;
 	-webkit-font-smoothing: subpixel-antialiased;
 	-moz-font-smoothing: subpixel-antialiased;
@@ -209,45 +209,29 @@ header:after {
 
 .main-content {
 	padding-top: 40px;
-	color: #F6E6CC;
-	background: #1f0c05;
+	color: #C3CCDB;
+	background: #102026;
 	position: relative;
 	z-index: 50;
 }
 
 
 .main-tutorial {
-	background: #FFF url("../images/bg.png");
 	overflow: hidden;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-size: 18px;
 	color: #443A37;
 	position: relative;
 	-webkit-background-blend-mode: multiply;
-	background-blend-mode: multiply;
+	background-color: #F5F5F5;
 	min-width: 300px;
 }
 
 .main-tutorial.even {
-	/*background: #FFF5DE url("../images/bg.png");*/
-	background: #FFFAEE url("../images/bg.png");
-
+	background-color: #EBEBEB;
 }
 
 
-
-/*
-.main-tutorial.part2 {
-	background: #FFB51A;
-}
-
-.main-tutorial.part3 {
-	background: #D54839;
-}
-
-.main-tutorial.part4 {
-	background: #EFE6C4;
-}*/
 
 .main-tutorial p {
 	padding: 0 20px 0;
@@ -259,7 +243,7 @@ header:after {
 
 
 .inner-tutorial h1 {
-	color: #D13C15;
+	color: #354049;
 	text-align: center;
 	padding-top: 50px;
 	padding-bottom: 40px;
@@ -267,14 +251,13 @@ header:after {
 
 #tutorial-start h2 {
 	padding-bottom: 0;
+	font-size: 60px;
 }
 
 .main-tutorial h2 {
-	/*font-family: "Roboto Slab";*/
-	font-size: 30px;
-	text-transform: uppercase;
-	font-weight: 900;
-	color: #682615;
+	font-size: 40px;
+	font-weight: 300;
+	color: #354049;
 	background: transparent;
 	padding: 80px 20px 20px;
 	text-align: center;
@@ -282,19 +265,18 @@ header:after {
 
 .main-tutorial h3 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
-	font-size: 26px;
+	font-size: 23px;
 	font-weight: 600;
-	color: #D13C15;
+	color: #354049;
 	background: transparent;
 	max-width: 400px;
 	padding: 60px 20px 30px 70px;
 	position: relative;
 }
-/* The heading under the dessert */
+
 .main-tutorial .scrollme h2.animateme + h3 {
 	padding: 80px 20px;
 }
-
 
 
 .tutorial-end h3 {
@@ -302,11 +284,19 @@ header:after {
 	max-width: none;
 	text-align: center;
 }
-/*
-h3 strong {
-	color: #6D3122
+
+.middle-feature {
+	color: #E1EFFF;
+	background-color: #4990E2;
 }
-*/
+.middle-feature h2 {
+	color: #E1EFFF;
+	font-weight: 300;
+	font-size: 40px;
+	text-transform: none;
+	padding: 30px 20px;
+}
+
 .inner-tutorial h1 + h2 {
 	padding-top: 0;
 	margin-top: -40px;
@@ -331,13 +321,13 @@ h3 strong {
 
 .number {
 	display: inline-block;
-	background: #682615;
+	background: #354049;
 	width: 56px;
 	height: 56px;
 	border-radius: 28px;
-	color: #FFFAEE;
+	color: #E1EFFF;
 	text-align: center;
-	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	font-size: 40px;
 	padding-top: 5px;
 	margin-right: 10px;
@@ -369,7 +359,7 @@ h3 strong {
 .recipe h4 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;	
-	color: #D13C15;
+	color: #354049;
 	font-weight: 600;
 	text-align: center;
 	font-size: 20px;
@@ -396,7 +386,7 @@ h3 strong {
 
 .inner-page h4  ,
 .inner-tutorial h4  {
-	color: #682615;
+	color: #354049;
 	padding: 20px 20px 0;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
@@ -408,7 +398,7 @@ h3 strong {
 	text-align: center;
 	font-size: 80%;
 	padding-top: 0;
-	background: #eb453e;
+	background: #354049;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -449,8 +439,8 @@ a.button {
 	clear: right;
 	margin-top: 60px;
 	margin-bottom: 30px;
-	background: #F15625;
-	color: #FFFAEE;
+	background: #4A90E2;
+	color: #F5F5F5;
 	font-weight: 600;
 	border-radius: 3px;
 	border: none;
@@ -461,10 +451,10 @@ a.button {
 	-webkit-appearance: none;
 }
 
-input.button, 
+input.button:hover, 
 button:hover,
 a.button:hover {
-	border-bottom: solid 3px #AB3C19;
+	border-bottom: solid 3px #2F6DB5;
 	top: -3px;
 	text-shadow: rgba(0,0,0,0.2) 0 -1px 0;
 	box-shadow: rgba(0,0,0,0.1) 0 4px 1px;
@@ -472,6 +462,10 @@ a.button:hover {
 
 input.button:hover {
 	color: #FFF;
+}
+
+.main-menu {
+	min-height: 0;
 }
 
 .breadcrumb {
@@ -485,10 +479,10 @@ input.button:hover {
 	left: 0;
 	right: 0;
 	top: 0;
-	color: #F6E6CC;
-	background: #1f0c05;  
+	color: #C3CCDB;
+	background: #102026;  
 	padding: 10px 40px;
-	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	font-size: 14px;
 	z-index: 10;
 	background-image: url("../images/diamond-icon.png");
@@ -510,7 +504,7 @@ input.button:hover {
 }	
 
 .breadcrumb a.index {
-	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 }
 
 .warning .short-terms a {
@@ -518,7 +512,7 @@ input.button:hover {
 }
 
 .warning a.button {
-	background-color: #FFFAEE;
+	background-color: #E1EFFF;
 	color: #F15625;
 	margin: 30px auto;
 	float: none;
@@ -526,7 +520,7 @@ input.button:hover {
 
 .terms,
 .cannot-continue  {
-	color: #FFFAEE;
+	color: #E1EFFF;
 	text-align: center;
 	font-weight: 600;
 	display: block;
@@ -534,13 +528,13 @@ input.button:hover {
 }
 
 .warning a.back {
-	color: #FFFAEE;
+	color: #E1EFFF;
 	font-size: 80%;
 	padding-top: 15px;
 }
 
 .inner-header a.back {
-	color: #FFFAEE;
+	color: #E1EFFF;
 	float: left;
 	position: absolute;
 	top: 10px;
@@ -579,7 +573,7 @@ input.button:hover {
 
 .developers ul {
 	padding-left: 10px;
-	color: #F6E6CC;
+	color: #C3CCDB;
 }
 
 
@@ -684,7 +678,7 @@ input.button:hover {
 	float: left;
 	z-index: 110;
 	text-align: center;
-	background: #290F03;
+	background: #1C3944;
 	border-radius: 4px;
 	display: block;
 	padding: 10px;
@@ -693,7 +687,7 @@ input.button:hover {
 
 .press > a:hover {
 	text-decoration: none;
-	background: #501A04;
+	background: #255264;
 }
 
 .press li span.press-recode {
@@ -743,9 +737,9 @@ input.button:hover {
 figure.ethereum-network {
 	display: block;
 	width: 100%;
-	max-width: 488px;
-	height: 336px;
-	background-image: url("../images/ethereum-network.png");
+	max-width: 391px;
+	height: 306px;
+	background-image: url("../images/ethereum-network-outline@2x.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 }
@@ -775,40 +769,6 @@ figure.geth .geth-background {
 figure.geth .geth-logo {
 	background-image: url("../images/geth-foreground.png");
 }
-/*
-figure.get-ether {
-	max-width: 194px;
-	height: 195px;
-}
-
-figure.geth-ether .get-ether-brick-0 {
-	background-image: url("../images/get-ether-brick-0.png");
-}
-
-figure.geth-ether .get-ether-brick-1 {
-	background-image: url("../images/get-ether-brick-1.png");
-}
-
-figure.geth-ether .get-ether-brick-2 {
-	background-image: url("../images/get-ether-brick-2.png");
-}
-
-figure.geth-ether .get-ether-brick-3 {
-	background-image: url("../images/get-ether-brick-3.png");
-}
-
-figure.geth-ether .get-ether-brick-4 {
-	background-image: url("../images/get-ether-brick-4.png");
-}
-
-figure.geth-ether .get-ether-brick-5 {
-	background-image: url("../images/get-ether-brick-5.png");
-}
-
-figure.geth-ether .get-ether-coin {
-	background-image: url("../images/get-ether-coin.png");
-}*/
-
 
 figure.ether {
 	max-width: 375px;
@@ -993,69 +953,29 @@ figure.ethereum-logo {
 }
 
 code {
-	background: #F6E6CC;
+	background: #C3CCDB;
 }
 
 pre {
 	background: transparent;
 	overflow: auto;
-	border: solid 4px #FCF5E3;
 	padding:0;
 	margin: 20px 0;
 	position: relative;
 }
-/*footer {
-	background: #E4D0B7 url("../images/bg-footer.png");
-	-webkit-background-blend-mode: multiply;
-	background-blend-mode: multiply;
-	background-size: 1920px auto;
-	font-size: 14px;
-	border-top: 3px solid #eb453e;
-	color: #F6E6CC;
-}*/
 
 footer {
-	background: #FFFAEE url("../images/bg.png");
-	background-blend-mode: multiply;	
 	position: relative;
   	z-index: 100;
 }
 
 .footer {
-	background: #1f0c05;
+	background: #102026;
 	padding-top: 100px;
 }
 
 .footer p {
-	color: #F6E6CC;
-}
-
-.warning {
-	background: #eb453e;
-	color: #F6E6CC;	
-	font-size: 150%;
-	font-weight: 600;
-	z-index: 100;
-	position: relative;
-}
-
-.warning h2 {
-	background-image: url('../images/warning@2x.png');
-	background-repeat: no-repeat;
-	background-size: 59px 59px;
-	background-position: left top;
-	padding-left: 80px;
-	padding-top: 5px;
-	font-size: 40px;
-}
-
-.warning figure.bad-robot {
-	background-image: url('../images/bad-robot@2x.png');
-	background-size: contain;
-	width: 113px;
-	height: 103px;
-	display: block;
-	margin: 100px auto;
+	color: #C3CCDB;
 }
 
 .inner-tutorial figure {
@@ -1071,7 +991,7 @@ footer {
 .inner-header {
 	padding: 100px;
 	text-align: center;
-	background: #1f0c05;
+	background: #102026;
 }
 
 .inner-header h3 {
@@ -1080,7 +1000,7 @@ footer {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-weight: 200;
 	font-size: 200%;
-	color: #eb453e;
+	color: #E1EFFF;
 }
 
 .inner-page h3 {
@@ -1133,7 +1053,7 @@ footer {
 	text-align: center;
 	clear: both;
 	padding: 60px 0 10px;
-	color: #eb453e;
+	color: #354049;
 }
 
 .ethereum-projects  ul {
@@ -1298,101 +1218,23 @@ footer {
 	padding: 0;
 }
 
-.thawing {
-	background: #223767; 
-	padding: 20px 40px 40px;
-	color: #FFF;
-	border-radius: 6px;
-}
-
-.thawing img {
-	width: 49px;
-	float: left;
-	margin-right: 40px;
-}
-
-
-/* DEVCON */
-
-.devcon {
-	position: absolute;
-	top: -10px;
-	right: 0;
-	left: 0;
-	z-index: 300;
-}
-
-.devcon .banner {
-	min-height: 100px;
-	background-image: url(../images/special/london.jpg);
-	background-size: cover;
-	margin: 10px auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.devcon .text {
-	float: right;
-	margin-left: 20px;
-}
-
-.devcon h3 {
-	text-indent: -100em;
-	background-image: url(../images/special/devcon.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: left;
-}
-
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-
-.devcon h4 {
-	color: #fdf5cf;
-	font-family: 'Roboto', Helvetica, Arial, sans-serif;
-	padding-right: 20px;
-}
-
-.devcon .button {
-	float: left;
-	max-width: 200px;
-	background: #ba8e59;
-	text-transform: uppercase;
-	color: #232323;
-}
-
-.devcon + .main-tutorial div.introduction {
-	padding-top: 850px;
-}
-
-@media only screen and (max-width: 500px ) {
-	.devcon .text, .devcon .button {
-		float: none;
-		margin: 10px auto;
-		text-align: center;
-	}
-
-}
-
-
-/* END DEVCON */
 
 @media (-webkit-min-device-pixel-ratio: 2) {
 	.introduction h1 {
-		background-image: url('../images/Title+Logo@2x.png');
+		background-image: url('../images/homestead-title@2x.png');
 	}	
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
 	header {
-		background-image: url('../images/Frontier-Background@2x.jpg');
+		background-image: url('../images/homestead-background@2x.jpg');
 	}
 }
 
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1 ) and (min-width: 1300px ) {
 	header {
-		background-image: url('../images/Frontier-Background@2x.jpg');
+		background-image: url('../images/homestead-background@2x.jpg');
 	}
 }
 
@@ -1455,7 +1297,7 @@ footer {
 
 @media only screen and (min-height:900px) {
 	.introduction h1 {
-		background-image: url('../images/Title+Logo@2x.png');
+		background-image: url('../images/homestead-title@2x.png');
 	}
 }
 
@@ -1466,8 +1308,8 @@ footer {
 		padding-top: 348px;
 		margin-top: -230px;
 		margin-left: -150px;
-		background-size: 300px 348px;
-		background-image: url('../images/Title+Logo@3x.png');
+/*		background-size: 365px 366px;
+*/		background-image: url('../images/homestead-title@3x.png');
 	}
 }
 
@@ -1486,15 +1328,6 @@ footer {
 	.breadcrumb {
 		background-image: url("../images/diamond-icon@2x.png");
 	}
-
-	.main-tutorial {
-		background-image: url("../images/bg@2x.png");
-		background-size: 324px 326px !important;
-	}
-
-	.main-tutorial {
-		background: #FFF url("../images/bg@2x.png");
-	}
 	
 	.recipe {
 		background-image: url("../images/recipe-bg@2x.png");
@@ -1504,7 +1337,7 @@ footer {
 
 
 	figure.ethereum-network {
-		background-image: url("../images/ethereum-network@2x.png");
+		background-image: url("../images/ethereum-network-outline@2x.png");
 	}
 
 
