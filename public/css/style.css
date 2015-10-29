@@ -19,12 +19,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 36px;
+	font-size: 50px;
 	font-weight: 900;
 }
 
 h2 {
-	font-size: 30px;
+	font-size: 40px;
 	color: #A9C5E6;
 	padding-bottom: 30px;
 }
@@ -119,9 +119,9 @@ div.scrollme.intro {
 }
 
 div.scrollme.row.introduction {
-	height: 70vh;
+	height: 60vw;
 	min-height: 440px;
-	max-height: 880px;
+	max-height: 800px;
 	background: url('../images/homestead-background.jpg') center center no-repeat;
 	background-size: cover;	
 	padding-top: 50px;
@@ -129,15 +129,14 @@ div.scrollme.row.introduction {
 
 .introduction h1 {
 	position: absolute;
-	top: 50%;
+	top: 0px;
 	left: 50%;
-	width: 243px;
+	width: 250px;
 	height: 0;
-	padding-top: 244px;
-	margin-top: -200px;
-	margin-left: -121px;
+	padding-top: 250px;
+	margin-left: -125px;
 	background: url('../images/homestead-title.png') top center no-repeat;
-	background-size: 243px 244px;
+	background-size: contain;
 	overflow: hidden;
 }
 
@@ -215,6 +214,9 @@ header:after {
 	z-index: 50;
 }
 
+.main-content .container {
+	margin-top: -100px;
+}
 
 .main-tutorial {
 	overflow: hidden;
@@ -410,6 +412,7 @@ header:after {
 	color: #FFF;
 }
 
+.whatis figure,
 .main-tutorial figure {
 	float: right;
 	margin: 60px 0 30px 30px;	
@@ -417,6 +420,7 @@ header:after {
 	width: 100%;
 }
 
+.whatis figure div,
 .main-tutorial figure div {
 	position: absolute;
 	top: 0;
@@ -500,22 +504,11 @@ input.button:hover {
 	padding: 0 5px;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
-	color: #ffe9ae;
+	color: #E1EFFF;
 }	
 
 .breadcrumb a.index {
 	font-family: 'Source Sans Pro', Arial, sans-serif serif;
-}
-
-.warning .short-terms a {
-	color: #FFF;
-}
-
-.warning a.button {
-	background-color: #E1EFFF;
-	color: #F15625;
-	margin: 30px auto;
-	float: none;
 }
 
 .terms,
@@ -731,6 +724,43 @@ input.button:hover {
 }
 
 
+.ethereum-wallet.button {
+	float: none;
+	clear: none;
+}
+
+
+.aleth-miner h2 {
+	padding-top: 100px;
+	color: #303030;
+}
+
+.aleth-miner .button {
+	float: left;
+    margin-top: 30px;
+}
+
+.power-tools { 
+	background: #726866;
+}
+
+
+.power-tools p, 
+.power-tools h2 , 
+.power-tools h3 { 
+	color: #FFF;
+}
+
+.power-tools h2 {
+	padding-top: 90px;
+} 
+
+.power-tools .button {
+	clear: none;
+	float: left;
+	margin-top: 50px;
+}
+
 
 /* FIGURES */
 
@@ -755,6 +785,73 @@ figure.geth-console {
 	background-repeat: no-repeat;
 	margin-bottom: 50px;
 }
+
+
+figure.wallet {
+	max-width: 736px;
+	height: 627px;
+	margin-right: -250px;
+	margin-top: -100px;
+}
+
+figure.wallet .wallet-start {
+	background-image: url("../images/wallet-start.png");
+}
+figure.wallet .wallet-create {
+	background-image: url("../images/wallet-create.png");
+}
+figure.wallet .wallet-confirm {
+	background-image: url("../images/wallet-confirm.png");
+}
+
+
+figure.aleth-one {
+	max-width: 481px;
+	height: 516px;
+	float: left;
+	margin-left: -100px;
+}
+
+figure.aleth-one .aleth-one-1 {
+	background-image: url("../images/aleth-one-1.png");
+}
+figure.aleth-one .aleth-one-2 {
+	background-image: url("../images/aleth-one-2.png");
+}
+figure.aleth-one .aleth-one-3 {
+	background-image: url("../images/aleth-one-3.png");
+}
+figure.aleth-one .aleth-one-4 {
+	background-image: url("../images/aleth-one-4.png");
+}
+figure.aleth-one .aleth-one-5 {
+	background-image: url("../images/aleth-one-5.png");
+}
+
+
+
+figure.turbo {
+	max-width: 544px;
+	height: 434px;
+	margin-right: -100px;
+}
+
+figure.turbo .turbo-01 {
+	background-image: url("../images/turbo-01.png");
+}
+figure.turbo .turbo-02 {
+	background-image: url("../images/turbo-02.png");
+}
+figure.turbo .turbo-03 {
+	background-image: url("../images/turbo-03.png");
+}
+figure.turbo .turbo-04 {
+	background-image: url("../images/turbo-04.png");
+}	
+figure.turbo .turbo-05 {
+	background-image: url("../images/turbo-05.png");
+}
+
 
 
 figure.geth {
@@ -1225,6 +1322,12 @@ footer {
 	}	
 }
 
+@media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 800px ) {
+	.introduction h1 {
+		background-image: url('../images/homestead-title@3x.png');
+	}
+}
+
 @media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
 	header {
 		background-image: url('../images/homestead-background@2x.jpg');
@@ -1250,6 +1353,7 @@ footer {
 	figure {
 		height: 300px;
 		margin: 0 auto;
+
 	}
 
 	.main-tutorial a.button ,
@@ -1279,6 +1383,7 @@ footer {
 	.recipe,
 	.main-tutorial a.button ,
 	.ethereum-network,
+	.whatis figure ,
 	.main-tutorial figure {
 		float: none;
 		margin: 30px auto;
@@ -1295,31 +1400,40 @@ footer {
 	}
 }
 
-@media only screen and (min-height:900px) {
+@media only screen and (min-width:900px) {
 	.introduction h1 {
 		background-image: url('../images/homestead-title@2x.png');
 	}
 }
 
 
+@media only screen and (min-width: 800px){
+	.introduction h1 {
+		width: 350px;
+		padding-top: 350px;
+		top: -10px;
+		margin-left: -175px;
+		background-image: url('../images/homestead-title@3x.png');
+	}
+}
+
+
 @media only screen and (min-width: 1000px){
 	.introduction h1 {
-		width: 300px;
-		padding-top: 348px;
-		margin-top: -230px;
-		margin-left: -150px;
-/*		background-size: 365px 366px;
-*/		background-image: url('../images/homestead-title@3x.png');
+		width: 400px;
+		padding-top: 400px;
+		top: -12px;
+		margin-left: -200px;
+		background-image: url('../images/homestead-title@3x.png');
 	}
 }
 
 @media only screen and (min-width: 1500px){
 	.introduction h1 {
-		width: 360px;
-		padding-top: 417px;
-		margin-top: -270px;
-		margin-left: -180px;
-		background-size: 360px 417px;
+		width: 450px;
+		padding-top: 450px;
+		top: -15px;
+		margin-left: -225px;
 	}
 }
 
@@ -1338,6 +1452,50 @@ footer {
 
 	figure.ethereum-network {
 		background-image: url("../images/ethereum-network-outline@2x.png");
+	}
+
+
+	figure.wallet .wallet-start {
+		background-image: url("../images/wallet-start@2x.png");
+	}
+	figure.wallet .wallet-create {
+		background-image: url("../images/wallet-create@2x.png");
+	}
+	figure.wallet .wallet-confirm {
+		background-image: url("../images/wallet-confirm@2x.png");
+	}
+
+	figure.aleth-one .aleth-one-1 {
+		background-image: url("../images/aleth-one-1@2x.png");
+	}
+	figure.aleth-one .aleth-one-2 {
+		background-image: url("../images/aleth-one-2@2x.png");
+	}
+	figure.aleth-one .aleth-one-3 {
+		background-image: url("../images/aleth-one-3@2x.png");
+	}
+	figure.aleth-one .aleth-one-4 {
+		background-image: url("../images/aleth-one-4@2x.png");
+	}	
+	figure.aleth-one .aleth-one-5 {
+		background-image: url("../images/aleth-one-5@2x.png");
+	}
+
+
+	figure.turbo .turbo-01 {
+		background-image: url("../images/turbo-01@2x.png");
+	}
+	figure.turbo .turbo-02 {
+		background-image: url("../images/turbo-02@2x.png");
+	}
+	figure.turbo .turbo-03 {
+		background-image: url("../images/turbo-03@2x.png");
+	}
+	figure.turbo .turbo-04 {
+		background-image: url("../images/turbo-04@2x.png");
+	}	
+	figure.turbo .turbo-05 {
+		background-image: url("../images/turbo-05@2x.png");
 	}
 
 

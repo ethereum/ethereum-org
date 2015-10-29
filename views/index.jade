@@ -14,29 +14,86 @@ block content
     div.container
       div.row
         div.col-md-12.whatis.scrollme
-          figure.ethereum-network(data-when="enter", data-from="1", data-to="0", data-opacity="0", data-translatey="300").float-right.animateme
+          figure.ethereum-network(data-when="enter", data-from="1", data-to="0", data-opacity="0.5", data-translatey="-150", data-scale="0.75").float-right.animateme
           h2 What is Ethereum?
-          p Ethereum is a decentralized platform that runs smart contracts: applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third party interference.
+
+          p Ethereum is a 
+            strong decentralized platform that runs smart contracts
+            | : applications that run exactly as programmed without any possibility of downtime, censorship, fraud or third party interference.
+
+          p Ethereum apps run on a custom built 
+            strong blockchain, an enormously powerful shared global infrastructure that can move value around and represent the ownership of property. 
+            | This enables developers to  creates markets, store a registry of debts or promises, move funds in accordance with instructions given long in the past (like a will or a futures contract) and many other things that have not been invented yet, all without a middle man or counterparty risk.
 
           p Ethereum is how the Internet was supposed to work.
 
           p Ethereum was crowdfunded during August 2014 by fans all around the world. It is developed by ETHDEV with contributions from great minds across the globe.
 
 
-          div.clear
-          figure(data-when="span", data-from="0.8", data-to="0", data-opacity="0", data-translatey="300").geth-console.float-left.animateme
-          h2 What is the Frontier Release?
+          div.clear#download-tools
+          figure.wallet.scrollme
+            div.wallet-start.animateme(data-when="span", data-from="0.3", data-to="0.1", data-opacity="0", data-translatex="300")
+            div.wallet-create.animateme(data-when="span", data-from="0.45", data-to="0.35", data-opacity="0")
+            div.wallet-confirm.animateme(data-when="span", data-from="0.65", data-to="0.55", data-opacity="0", data-translatey="200")
 
-          p Frontier is the first release of the Ethereum project, tailored specifically for developers. It’s a command line only interface with a Javascript environment that allows building, testing, deploying and using decentralized applications on the Ethereum blockchain.
+          h2 Smart money, smart wallet
+           
+          
+          p The Ethereum Wallet is a great introductory tool for the power of the blockchain. It allows you to safeguard ether and ethereum based crypto-assets in smart multisignature contracts.
 
-          p Exploring the Frontier presents vast opportunities, but also many dangers, and is not for everyone.
+          p You can also upload and interact with any ethereum network contract.
+
+          a(href="https://github.com/ethereum/mist/releases/latest").button.ethereum-wallet Download the Ethereum Wallet
 
 
       div.clearfix
         br
         br
 
-  div.col-md-12.scrollme
+  div.aleth-miner
+    div.container
+      div.row
+        div.col-md-12.whatis.scrollme
+          figure.aleth-one.scrollme.float-left
+            div.aleth-one-1.animateme(data-when="span", data-from="0.2", data-to="0.1", data-opacity="0", data-translatex="-500")
+            div.aleth-one-2.animateme(data-when="span", data-from="0.4", data-to="0.35", data-opacity="0")
+            div.aleth-one-3.animateme(data-when="span", data-from="0.45", data-to="0.4", data-opacity="0")
+            div.aleth-one-4.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0")
+            div.aleth-one-5.animateme(data-when="span", data-from="0.55", data-to="0.5", data-opacity="0", data-scale="0.5", data-translatey="-100")
+
+         
+          h2 One Click Miner
+          h3 Support the network, get Ether 
+
+          p The Ethereum network is not controlled by any individual institution, company or foundation, instead it is supported by thousands of volunteer computers who run the software to verify smart contracts and secure the network.
+
+          p Since the software consumes real resources (bandwidth, electricity, etc) nodes are compensated with "Ether", an internal token that is used to pay for computation time.
+          
+          a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button Install the Aleth Miner
+
+  div.power-tools
+      div.container
+        div.row
+          div.col-md-12.whatis.scrollme
+            figure.turbo.scrollme
+              div.turbo-01.animateme(data-when="span", data-from="0.3", data-to="0.0", data-opacity="0", data-translatex="500")
+              div.turbo-02.animateme(data-when="span", data-from="0.35", data-to="0.1", data-opacity="0", data-translatex="500")
+              div.turbo-03.animateme(data-when="span", data-from="0.4", data-to="0.2", data-opacity="0", data-translatex="500")
+              div.turbo-04.animateme(data-when="span", data-from="0.45", data-to="0.3", data-opacity="0", data-translatex="500")
+              div.turbo-05.animateme(data-when="span", data-from="0.6", data-to="0.5", data-opacity="0", data-translatex="500")
+
+            h2 Ethereum Turbo
+            h3 Power tools to deploy smart contract, build dapps and debug blockchains 
+
+            p Mix is a full IDE for the Ethereum network. Develop decentralized applications, write smart contracts, inspect closely the compiled code and when you are ready it publishes, deployes and registers all the necessary contracts.
+
+            p AlethZero is an advanced ethereum browser. It allows you to browse, use and debug decentralized applications on the ethereum network.
+            
+            a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button Download the Power Suite
+
+
+
+  div.col-md-12.scrollme.main-menu
     div.breadcrumb.index.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
       strong Ethereum Frontier
       a(href="#developer-resources") Developers
