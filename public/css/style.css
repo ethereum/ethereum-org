@@ -761,6 +761,20 @@ input.button:hover {
 	margin-top: 50px;
 }
 
+.command-line {
+	background: #000;
+	color: #ccc;
+	padding-top: 40px;
+}
+
+.command-line .button {
+	float: left;
+	margin-top: 30px;
+}
+
+.command-line h3 {
+	color: #eee;
+}
 
 /* FIGURES */
 
@@ -778,7 +792,7 @@ figure.ethereum-network {
 figure.geth-console {
 	display: block;
 	width: 100%;
-	max-width: 589px;
+	max-width: 450px;
 	height: 281px;
 	background-image: url("../images/console.gif");
 	background-size: contain;
