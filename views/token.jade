@@ -7,14 +7,13 @@ block vars
 
 block content
   include mixins/recipes.jade
-  include warning.jade
   div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
     a(href="/").index Ethereum Frontier
     strong »  Create your own crypto-currency
     a(href="/greeter").previous Previous
     a(href="/crowdsale").next Next
 
-  div#tutorial-start.main-tutorial.hidden.inner-tutorial.even
+  div#tutorial-start.main-tutorial.inner-tutorial.even
     div.container
       div.row
         div.col-md-12.tutorial.scrollme
@@ -28,13 +27,13 @@ block content
 
           a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
 
-  div.main-tutorial.hidden.inner-tutorial
+  div.main-tutorial.inner-tutorial
     div.container
       div.row
         div.col-md-12
           include:md content/token.md
 
-  div.main-tutorial.hidden.even
+  div.main-tutorial.even
     div.container
       div.row
         div.col-md-12.tutorial

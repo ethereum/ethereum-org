@@ -6,7 +6,7 @@ mixin gethRecipe(header)
   if header != ""
     h2 #{header}
   h3 
-    div.number 1 
+    div.number  
     | Install and run the 
     strong Command Line Interface
 
@@ -34,7 +34,7 @@ mixin etherRecipe(header)
   if header != ""
     h2 #{header}
   h3
-    div.number 2
+    div.number 0
     | Get some ether, the crypto-fuel of the Ethereum network
   
   p Ether is the internal 'fuel' of Ethereum. Programs running on Ethereum need to pay the network for the resources they consume. Volunteers earn this ether by validating transactions, securing the network.
@@ -78,7 +78,7 @@ mixin greeterRecipe(header)
   if header != ""
     h2 #{header}
   h3 
-    div.number 3 
+    div.number 1 
     | Create the Greeter, your first live contract
 
   p The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start.
@@ -90,7 +90,7 @@ mixin greeterRecipe(header)
     ul
       li 
         input(type="checkbox") 
-        a(href="/#install-geth") Geth 
+        a(href="/#download-tools") The Wallet, Power tools or command line tools 
       li 
         input(type="checkbox") 
         |  A desire to learn new things  
@@ -105,7 +105,7 @@ mixin tokenRecipe(header)
   if header != ""
     h2 #{header}
   h3 
-    div.number 4 
+    div.number 2 
     | Design and issue your own cryptocurrency
 
   p Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API, so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. 
@@ -119,7 +119,7 @@ mixin tokenRecipe(header)
     ul
       li 
         input(type="checkbox") 
-        a(href="/#install-geth") Geth 
+        a(href="/#download-tools") The Wallet, Power tools or command line tools 
       li 
         input(type="checkbox") 
         |  Very basic programming skills 
@@ -138,7 +138,7 @@ mixin crowdsaleRecipe(header)
   if header != ""
     h2 #{header}
   h3 
-    div.number 5 
+    div.number 3 
     | Kickstart a project with a trustless crowdsale
 
   p Do you already have many ideas as to what to develop on Ethereum? Maybe you need help and some funds to bring them to life, but who would lend money to someone they don’t trust?
@@ -154,7 +154,7 @@ mixin crowdsaleRecipe(header)
     ul
       li 
         input(type="checkbox") 
-        a(href="/#install-geth") Geth 
+        a(href="/#download-tools") The Wallet, Power tools or command line tools 
       li 
         input(type="checkbox") 
         | Basic programming skills 
@@ -177,7 +177,7 @@ mixin daoRecipe(header)
   if header != ""
     h2 #{header}
   h3 
-    div.number 6 
+    div.number 4 
     | Create a democratic autonomous organization
 
   p Now that you have developed your idea and secured funds, what’s next? You have to hire managers, find a trustworthy CFO to handle the accounts, run Board meetings and do bunch of paperwork. 
@@ -193,7 +193,7 @@ mixin daoRecipe(header)
     ul
       li 
         input(type="checkbox") 
-        a(href="/#install-geth") Geth 
+        a(href="/#download-tools") The Wallet, Power tools or command line tools 
       li 
         input(type="checkbox") 
         | Basic programming skills 
