@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+function echo() { builtin echo -e "$@"; }
+
 function run_installer()
 {
 	####### Init vars
