@@ -212,6 +212,7 @@ header:after {
 	background: #102026;
 	position: relative;
 	z-index: 50;
+	overflow: hidden;
 }
 
 .main-content .container {
