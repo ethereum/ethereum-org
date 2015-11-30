@@ -53,9 +53,10 @@ Paste the above one-liner in your terminal for an automated install script. This
 
 ### Windows
 
-Install [Chocolatey](https://chocolatey.org) and then run this on the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window): 
+Download [latest stable binary](https://build.ethdev.com/builds/Windows%20Go%20master%20branch/Geth-Win64-latest.zip
+unzip), open a command terminal and chdir to the exe location:
 
-    choco install geth-stable -version 1.2.1.0
+    run geth.exe
 
 
 ## Python
