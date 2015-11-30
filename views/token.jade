@@ -18,14 +18,11 @@ block content
       div.row
         div.col-md-12.tutorial.scrollme
 
+          h2.animateme(data-when="span", data-from="0.6", data-to="0.0", data-opacity="0.9", data-translatey="-200")  Create your own crypto-currency
 
-          +tokenFigure
+          h3.center A tradeable digital token that follows your rules
 
-          h2.animateme(data-when="span", data-from="0.6", data-to="0.3", data-opacity="0", data-translatey="200") Create your own crypto-currency
-
-          h3.center.animateme(data-when="span", data-from="0.7", data-to="0.5", data-opacity="0", data-translatey="200") A tradeable digital token that follows your rules
-
-          a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
+          +tokenFigureExit
 
   div.main-tutorial.inner-tutorial
     div.container

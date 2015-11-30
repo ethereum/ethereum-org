@@ -140,6 +140,7 @@ div.scrollme.row.introduction {
 	overflow: hidden;
 }
 
+/*
 header:after {
 	content: " ";	
 	background: linear-gradient(transparent, #102026);
@@ -149,15 +150,16 @@ header:after {
 	left: 0;
 	right: 0;
 }
+*/
 
-.main-content:before {
+.intro:after {
 	content: " ";
 	background: linear-gradient(transparent, #102026);
 	height: 100px;
 	position: absolute;	
-	top: -100px;
 	left: 0;
 	right: 0;
+	bottom: 0;
 }
 
 .status-bar {
@@ -730,7 +732,10 @@ input.button:hover {
 	clear: none;
 }
 
-
+.aleth-miner {
+	background: #FFF;
+	background: linear-gradient(#FFF,#726866);
+}
 .aleth-miner h2 {
 	padding-top: 100px;
 	color: #303030;
@@ -743,6 +748,8 @@ input.button:hover {
 
 .power-tools { 
 	background: #726866;
+	background: linear-gradient(#726866, #000);
+	overflow: hidden;
 }
 
 
@@ -753,7 +760,7 @@ input.button:hover {
 }
 
 .power-tools h2 {
-	padding-top: 90px;
+	padding-top: 40px;
 } 
 
 .power-tools .button {
