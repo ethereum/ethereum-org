@@ -58,6 +58,12 @@ Install [Chocolatey](https://chocolatey.org) and then run this on the [command p
     choco install geth-stable -version 1.2.1.0
 
 
+Download [latest stable binary](https://build.ethdev.com/builds/Windows%20Go%20master%20branch/Geth-Win64-latest.zip
+unzip), open a command terminal and chdir to the exe location:
+
+    run geth.exe
+
+
 ## Python
 
 ![Logo for Python](/images/icons/python.png)
