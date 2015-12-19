@@ -4,8 +4,8 @@ function run_installer()
 {
 	####### Init vars
 
-	HOMEBREW_PREFIX=/usr/local
-	HOMEBREW_CACHE=/Library/Caches/Homebrew
+	HOMEBREW_PREFIX=`brew --prefix`
+	HOMEBREW_CACHE=`brew --cache`
 	HOMEBREW_REPO=https://github.com/Homebrew/homebrew
 	OSX_REQUIERED_VERSION="10.7.0"
 
