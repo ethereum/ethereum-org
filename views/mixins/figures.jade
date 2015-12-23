@@ -54,6 +54,14 @@ mixin daoFigure()
     div.dao-crowd.animateme(data-when="enter", data-from="0.45", data-to="0", data-opacity="0", data-translatey="-250", data-translatex="10", data-rotatez="0", data-scale="1.1", data-easing="linear")
     div.dao-ideas.animateme(data-when="enter", data-from="0.8", data-to="0.7", data-opacity="0", data-translatey="-40")
 
+mixin daoFigureExit()
+  figure.dao.scrollme
+    div.dao-robot.animateme(data-when="exit", data-to="0.65", data-from="0.1", data-opacity="0", data-translatey="400", data-rotatez="-90")
+    div.dao-money.animateme(data-when="exit", data-to="0.7", data-from="0.0", data-opacity="0", data-translatey="200")
+    div.dao-arrows.animateme(data-when="exit", data-to="0.1", data-from="0", data-opacity="0", data-scale="0.75")
+    div.dao-crowd.animateme(data-when="exit", data-to="0.45", data-from="0", data-opacity="0", data-translatey="-250", data-translatex="10", data-rotatez="0", data-scale="1.1", data-easing="linear")
+    div.dao-ideas.animateme(data-when="exit", data-to="0.3", data-from="0.1", data-opacity="0", data-scale="2")
+
 
 mixin futureFigure()
   figure.moon.scrollme

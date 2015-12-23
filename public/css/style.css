@@ -279,10 +279,15 @@ header:after {
 	position: relative;
 }
 
-.main-tutorial .scrollme h2.animateme + h3 {
+/*.main-tutorial .scrollme h2.animateme + h3 {
 	padding: 80px 20px;
 }
+*/
 
+.main-tutorial blockquote {
+    font-style: oblique;
+    font-size: 1.2em;
+}
 
 .tutorial-end h3 {
 	padding: 30px 20px;
@@ -414,6 +419,24 @@ header:after {
 .inner-tutorial h5 strong {
 	color: #FFF;
 }
+
+
+.inner-tutorial img {
+	max-width: 100%;
+}
+
+/* DAO */
+
+.dao-tutorial {
+	background-image: url("../images/tutorial/dao-bg.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+/* */
+
+
+
 
 .whatis figure,
 .main-tutorial figure {
@@ -1068,6 +1091,7 @@ figure.ethereum-logo {
 	padding: 20px;
 	overflow: auto;
 	width: 10000px;
+	max-height: 800px;
 	background: #FFF;	
 }
 
@@ -1098,9 +1122,34 @@ footer {
 }
 
 .inner-tutorial figure {
-	float: none;
-	margin: 50px auto;
+	float: left;
+	/*margin: 50px auto;*/
 } 
+
+.inner-tutorial.header h2 {
+	text-align: left;
+	font-size: 60px;
+	font-weight: 100;
+	margin: 0;
+	padding: 0;
+}
+
+.inner-tutorial.header h3 {
+	font-size: 40px;
+	font-weight: 300;
+	margin: 0;
+	padding: 0;
+}
+
+.inner-tutorial.header .scrollme {
+	display: flex;
+}
+
+.inner-tutorial.header .header-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 
 .inner-tutorial h3 {
 	padding-left: 20px;
@@ -1390,6 +1439,7 @@ footer {
 	figure.ethereum-logo {
 		height: 140px;
 	}
+
 }
 
 @media only screen and (max-width: 800px ) {
@@ -1409,6 +1459,14 @@ footer {
 	.main-tutorial figure {
 		float: none;
 		margin: 30px auto;
+	}
+
+
+	.inner-tutorial.header .scrollme {
+	    display: block;
+	}
+	.inner-tutorial.header h2, .inner-tutorial.header h3 {
+	    text-align: center;
 	}
 }
 
