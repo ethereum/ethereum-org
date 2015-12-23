@@ -53,9 +53,9 @@ Paste the above one-liner in your terminal for an automated install script. This
 
 ### Windows
 
-Download [latest stable binary](https://build.ethdev.com/builds/Windows%20Go%20master%20branch/Geth-Win64-latest.zip
-unzip), open a command terminal and chdir to the exe location:
+Download the [latest stable binary](https://build.ethdev.com/builds/Windows%20Go%20master%20branch/Geth-Win64-latest.zip), extract it, and open a command terminal:
 
+    chdir <path to extracted binary>
     run geth.exe
 
 
