@@ -32,31 +32,7 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 [Website](https://www.vitalik.ca), [Twitter](https://twitter.com/vitalikbuterin)
 
-------
-
-#### Lars Klawitter
-
-![Portrait of Lars Klawitter](/images/portraits/lars-klawitter.jpg)
-
-**Lars has a degree in Computer Science and was involved with startups as a founder or senior executive during the first internet revolution of the late 90ies.** Having since moved into senior positions in the automotive industry, Lars has substantial experience in building and growing organisations at the intersection of technology and innovation. He held several C Level IT positions, the most recent of which CIO at Rolls-Royce Motor Cars, the company where he is currently responsible for the special vehicles and innovations business. 
-
-------
-
-#### Wayne Hennessy-Barrett
-
-![Portrait of Wayne Hennessy-Barrett](/images/portraits/wayne-barrett.jpg)
-
-**Founder and CEO of 4G Capital, an African mobile money fintech business based in Kenya.**  He has created and led scalable distribution systems in emerging markets around the world with extensive experience in corporate governance and risk management.  After a distinguished military career he has provided intelligence-led consultancy and strategic advice to a number of boards in both the commercial and public sectors.  He is a committed advocate for the transformative power of financial technology for the alleviation of poverty and sustainable development. 
-
-------
-
-#### Dr. Vadim David Levitin
-
-![Portrait of Vadin Levitin](/images/portraits/vadim-levitin.jpg)
-
-**Vadim worked on technology issues in twenty-three countries on behalf of the United Nations.** Trained as a physician, he found the nexus between human and technology systems intriguing and illustrative leading him to pursue a master’s degree in technology. He ran a business development company in Eastern Europe serving Fortune 500 clients interested in those markets as the region emerged from communism. Later, he was CEO of Ecommerce Institute, a global technology company with subsidiaries in the U.K., Singapore, Malaysia, Australia, New Zealand, and the Caribbean. He has consulted with major companies, governments, and NGOs on almost every continent, authored national strategies on economic and technology issues ranging from digital marketplaces to online stock exchanges, from e-schools to technology strategies for emerging countries, from transportation to tourism, and from healthcare to national infrastructure broadband development.
-
-------
+----
 
 ### Advisory Board
 
