@@ -6,18 +6,8 @@ $(document).ready(function() {
     })
   });
 
-  // if(!localStorage.getItem("agreedUpon")){
-  //     $('#agreement').click(function(){
-  //       $(".hidden").removeClass("hidden");
-  //       $('#agreement, .cannot-continue').hide();
-  //       localStorage.setItem("agreedUpon",true);
-  //       $(window).scrollTop(1315);
-
-  //     });    
-  // } else {
-  //       $(".hidden").removeClass("hidden");
-  //       $('#agreement, .cannot-continue, .short-terms').hide();
-  // }
+  $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '3' } );
+ 
 });
 
 function selectElementContents(el) {

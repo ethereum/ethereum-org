@@ -14,7 +14,6 @@ The way this particular democracy works is that it has an *Owner** which works l
 
 #### The code
 
-
     contract owned {
         address public owner;
 
@@ -40,10 +39,8 @@ The way this particular democracy works is that it has an *Owner** which works l
         int public majorityMargin;
         Proposal[] public proposals;
         uint public numProposals;
-        mapping (address => bool) public isMember;
-        mapping (uint => Member) public members;
-        uint public numberOfMembers;
-
+        mapping (address => uint) public memberId;
+        Member[] public members;
 
         event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
         event Voted(uint proposalID, bool position, address voter, string justification);
@@ -51,12 +48,6 @@ The way this particular democracy works is that it has an *Owner** which works l
         event MembershipChanged(address member, bool isMember);
         event ChangeOfRules(uint minimumQuorum, uint debatingPeriodInMinutes, int majorityMargin);
         
-        struct Member {
-            address member;
-            bool canVote;
-            uint memberSince;
-        }
-
         struct Proposal {
             address recipient;
             uint amount;
@@ -70,6 +61,13 @@ The way this particular democracy works is that it has an *Owner** which works l
             Vote[] votes;
             mapping (address => bool) voted;
         }
+        
+        struct Member {
+            address member;
+            bool canVote;
+            string name;
+            uint memberSince;
+        }
 
         struct Vote {
             bool inSupport;
@@ -79,7 +77,9 @@ The way this particular democracy works is that it has an *Owner** which works l
         
         /* modifier that allows only shareholders to vote and create new proposals */
         modifier onlyMembers {
-            if (!isMember[msg.sender]) throw;
+            if (memberId[msg.sender] == 0 
+            || !members[memberId[msg.sender]].canVote) 
+            throw;
             _
         }
         
@@ -88,14 +88,27 @@ The way this particular democracy works is that it has an *Owner** which works l
             minimumQuorum = minimumQuorumForProposals;
             debatingPeriodInMinutes = minutesForDebate;
             majorityMargin = marginOfVotesForMajority;
-            isMember[msg.sender] = true;
+            members.length++;
+            members[0] = Member({member: 0, canVote: false, memberSince: now, name: ''});
             if (congressLeader != 0) owner = congressLeader;
+
         }
         
         /*make member*/
-        function changeMembership(address targetMember, bool canVote) onlyOwner {
-            isMember[targetMember] = canVote;
+        function changeMembership(address targetMember, bool canVote, string memberName) onlyOwner {
+            uint id;
+            if (memberId[targetMember] == 0) {
+               memberId[targetMember] = members.length;
+               id = members.length++;
+               members[id] = Member({member: targetMember, canVote: canVote, memberSince: now, name: memberName});
+            } else {
+                id = memberId[targetMember];
+                Member m = members[id];
+                m.canVote = canVote;
+            }
+            
             MembershipChanged(targetMember, canVote);
+
         }
         
         /*change rules*/
@@ -473,7 +486,7 @@ Using this DAO is exactly like the previous: members create new proposals, vote 
 
 
 
-### But how can I limit the owner's power?
+#### But how can I limit the owner's power?
 
 On this contract the address set as **owner** has some special powers: they can add or ban members at will, change the margin needed for a win, alter the time required for debate and the quorum necessary for the vote to pass. But this can be solved by using yet another power the owner has: to change ownership.
 
@@ -606,382 +619,13 @@ As an example of what that can do: create a [Mintable Token](./token/) and set t
 
 
 
-----
-
-
-
-
-[Creating a token is fun](https://blog.ethereum.org/2015/12/03/how-to-build-your-own-cryptocurrency/), but what is the value of a token that doesn't do anything new? We are now going to create a new contract that uses the tokens we just created. The contract will be a Democratic organization that lives on the blockchain and that anyone holding a share token will be able to vote on proposals.  
-
-So let's go back to "**Contracts**" and then "**Deploy Contract**" and paste the [DAO source code](http://chriseth.github.io/browser-solidity/?gist=192371538cf5e43e6dab) on the **"Solidity Source"** field. Choose the contract "Democracy" on the Picker and then select these parameters:  
-
-*   On the **amount** field you can add any ether amount you want your DAO to start with. Since you can send ether to it at any time in the future, if this is the first time you've been doing this then keep the amount at 0 and send the money later.
-*   On the **sharesAddress** field, paste the address of the token contract you just created. Pay attention to the icon and color of the little circle that appears by the side of the address. If it doesn’t match exactly the one for the contract you created previously, then there's an error.
-*   On **minimumSharesForVoting** pick what is the minimum quorum of shareholders that need to vote on an issue before it passes. Here you must put the integer number of the minimum token possible, so if you created a token with 2 decimal places, putting 500 here will mean that in order for a proposal to be executed then the number of votes must be more than 5% of the total shares of the company.
-*   **minutesForDebating: **this is the minimum time a proposal must be discussed and voted on before the results can be tallied up. Put a small number like 10 minutes if you want just to create something for testing, but put something like 20,000 if you want to store large amounts of ether, so all proposals must stay there for at least two weeks.
-
-Your contract should be looking something like this:  
-
-**[![Ethereum Wallet Screenshot 2015-12-03 at 3.50.36 PM 16](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-16.png)](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-16.png)**  
-
-After a few seconds you'll be redirected to a the dashboard where you'll see your new contract being created:  
-
-**[![Ethereum Wallet Screenshot 2015-12-03 at 3.50.36 PM 13](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-13.png)](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-13.png)**  
-
-
-**[![Ethereum Wallet Screen Shot 2015-12-03 at 9.57.34 AM](/images/tutorial/Screen-Shot-2015-12-03-at-9.57.34-AM.png)](/images/tutorial/Screen-Shot-2015-12-03-at-9.57.34-AM.png)**  
-
-
-
-**[![Ethereum Wallet Screen Shot 2015-12-01 at 6.10.32 PM](/images/tutorial/Screen-Shot-2015-12-01-at-6.10.32-PM.png)](/images/tutorial/Screen-Shot-2015-12-01-at-6.10.32-PM.png)**  
-
-
-
-[![Screen Shot 2015-12-01 at 6.18.22 PM](/images/tutorial/Screen-Shot-2015-12-01-at-6.18.22-PM.png)](/images/tutorial/Screen-Shot-2015-12-01-at-6.18.22-PM.png)  
-
-
-**[![Ethereum Wallet Screen Shot 2015-12-01 at 6.21.30 PM](/images/tutorial/Screen-Shot-2015-12-01-at-6.21.30-PM.png)](/images/tutorial/Screen-Shot-2015-12-01-at-6.21.30-PM.png)**  
-
-If everything went well you should be able to see the results of the vote in a few seconds. The "**openToVote**" parameter on the first box will turn to false while the **proposalPassed** will reflect if the proposal has been accepted or not. You should also be able to see that the Ether balance of the contract will go down and the equivalent ether will be sent to the beneficiary of the ether you wanted to send.  
-
-Now take a moment to let that in: you just created an organization that only exists on the blockchain, that obeys votes based on completely digital tokens, but yet it can move real value around and create a very real impact on the world. Also notice that the organization is not under your control anymore: it will execute only the exact code you used to create it, forever. You can't bribe it, you can't earmark it and the same rules apply either you are moving 0.01 or 1,000,000 ethers.  
-
-Can it get any better than this? Actually, it can. [On our next post we will explore how you can use "transactionBytecode" to allow the DAO to execute any kind of ethereum transaction](https://blog.ethereum.org/2015/12/07/ethereum-in-practice-part-3-how-to-build-your-own-transparent-bank-on-the-blockchain/), even owning or creating other contracts. We'll also modify the token code to allow the DAO to control the amount of a token that exists on circulation and how to send it forward.
-
-
-----
-
-
-
-
-We are going to modify the token contract to allow it to be minted by your DAO. So save the address of your current DAO in a note pad (pay attention to the icon) and [grab this source code](http://chriseth.github.io/browser-solidity/?gist=1e8ebf35ff1fd48aca46) and you know the drill: **contracts > deploy new contract > solidity source code > pick contract**  
-
-You can fill the parameters any way you want (yes, emojis are permitted on the string fields) but you'll notice one new field that didn't exist before: Central Minter. Here add the address of your newly created democracy contract.  
-
-[![Ethereum Wallet 2015-12-01 at 7.09.11 PM](/images/tutorial/Screen-Shot-2015-12-01-at-7.09.11-PM.png)](/images/tutorial/Screen-Shot-2015-12-01-at-7.09.11-PM.png)  
-
-Click Deploy and let's wait for the transaction to be picked up. After it has at least two confirmations, go to your democracy contract and you'll notice that now it owns a million of your new coins. Now if you go to the Contracts tab you'll see that there is a new **DAO dollar (admin page)** contract on your collection.  
-
-Select the "mintToken" function to your right and then put any address you own as the "target", and then the amount of new mints you want to create from thin air in their account. Press "**execute**" but **don't press send**! You'll notice that there is a warning saying that the transaction can't be executed. This happens because only the **Minter** (which is currently set to the DAO address) can call that function and you are calling it with your main account. But the calling code is the same, which is why you can simply copy it.  
-
-Instead, **copy the contract execution code from the "data" field** and put it aside on a notepad. Also get the address of your new "Mint" contract and save it somewhere.  
-
-[![Ethereum Wallet Screen-Shot-2015-12-01-at-7.17.06-PM](/images/tutorial/Screen-Shot-2015-12-01-at-7.17.06-PM.png)](/images/tutorial/Screen-Shot-2015-12-01-at-7.17.06-PM.png)  
-
-
-Now everyone can vote on the proposal and after the voting period has passed, anyone with the correct bytecode can ask the votes to be tallied up and the contract to be executed. If the proposal has enough support then the newly minted coins should appear on Alice's account, as if it was a transfer from address Zero.  
-
-[caption id="attachment_2336" align="aligncenter" width="2322"][![Why a transfer from code zero? Because it says so on the code. You can change that as you will](/images/tutorial/Screen-Shot-2015-12-02-at-12.02.43-PM.png)](/images/tutorial/Screen-Shot-2015-12-02-at-12.02.43-PM.png) Why a transfer from address zero? Because doing the opposite, sending a coin to 0x00 is a way to effectively destroy it, but more importantly, because it says so on the contract code. You can change that as you prefer.[/caption]  
-
-And now you have a central minter contract that exists solely on the blockchain, completelly fraud-proof as all their activities are logged transparently. The mint can also take coins from circulation by simply sending the coins it has to address Zero, or by freezing the funds on any account, but it's **mathematically impossible** for the Mint to do any of those actions or generate more coins without the support of enough shareholders of the mint.  
-
-Possible uses of this DAO:
-
-*   The creation of a universal stable crypto currency. By controlling the total amount of coins in circulation the Mint shareholders can attempt to create an asset whose value doesn't fluctuate too wildly.
-*   Issuance of certificates of backed assets: the coins can represent an external currency or items that the Mint owns and can prove to it's shareholders and token holders. When the Mint acquires or sells more of these assets it can burn or generate more assets to guarantee that their digital inventory will always match their real counterpart
-*   Digitally backed assets. The Mint can hold ether or other ethereum based digital currencies and use that to back the value of the currencies circulating
-
-## Improvements Suggestions
-
-There are multiple ways that this structure can be yet improved, but we will leave it as an exercise and challenge to the reader:
-
-1.  Right now votes are made by shareholders based on freely tradable tokens. Can instead membership be based on invitation, each member getting a single vote (or maybe use [quadratic voting](http://ericposner.com/quadratic-voting/) or [liquid democracy](https://en.wikipedia.org/wiki/Delegative_democracy))?
-2.  What about other voting mechanisms? Maybe the vote instead of being a boolean could be a more flexible arrangement: you could vote to postpone the decision, or you can make a vote that is neutral but still count to the quorum
-3.  Currently all proposals have the same debating period. Can you make that proportional to the value transfer being proposed? How would you calculate that to tokens?
-4.  Can you create a better token that can be automatically created by sending ether into it, which can then be retrieved by burning the token, at a fluctuating market price?
-5.  What else can the DAO own or do, besides tokens?
-
-
-
-
------
-
-# Democracy DAO
-
-
-
-So far you have created a tradeable token and you successfully distributed it among all those who were willing to help fundraise a 100 ethers. That's all very interesting but what exactly are those tokens for?  Why would anyone want to own or trade it for anything else valuable? If you can convince your new token is the next big money maybe others will want it, but so far your token offers no value per se. We are going to change that, by creating your first decentralized autonomous organization, or DAO.
-
-Think of the DAO as the constitution of a country, the executive branch of a government or maybe like a  robotic manager for an organization. The DAO receives the money that your organization raises, keeps it safe and uses it to fund whatever its members want. The robot is incorruptible, will never defraud the bank, never create secret plans, never use the money for anything other than what its constituents voted on. The DAO will never disappear, never run away and cannot be controlled by anyone other than its own citizens.
-
-The token we distributed using the crowdsale is the only citizen document needed. Anyone who holds any token is able to create and vote on proposals. Similar to being a shareholder in a company, the token can be traded on the open market and the vote is proportional to amounts of tokens the voter holds.  
-
-Take a moment to dream about the revolutionary possibilities this would allow, and now you can do it yourself, in under a 100 lines of code:
-
-
-### The Code
-
-    
-
-
-    contract token { mapping (address => uint) public coinBalanceOf;   function token() { }   function sendCoin(address receiver, uint amount) returns(bool sufficient) {  } }
-
-
-    contract Democracy {
-    
-        uint public minimumQuorum;
-        uint public debatingPeriod;
-        token public voterShare;
-        address public founder;
-        Proposal[] public proposals;
-        uint public numProposals;
-        
-        event ProposalAdded(uint proposalID, address recipient, uint amount, bytes32 data, string description);
-        event Voted(uint proposalID, int position, address voter);
-        event ProposalTallied(uint proposalID, int result, uint quorum, bool active);
-
-        struct Proposal {
-            address recipient;
-            uint amount;
-            bytes32 data;
-            string description;
-            uint creationDate;
-            bool active;
-            Vote[] votes;
-            mapping (address => bool) voted;
-        }
-        
-        struct Vote {
-            int position;
-            address voter;
-        }
-        
-        function Democracy(token _voterShareAddress, uint _minimumQuorum, uint _debatingPeriod) {
-            founder = msg.sender;  
-            voterShare = token(_voterShareAddress);
-            minimumQuorum = _minimumQuorum || 10;
-            debatingPeriod = _debatingPeriod * 1 minutes || 30 days;
-        }
-    
-        
-        function newProposal(address _recipient, uint _amount, bytes32 _data, string _description) returns (uint proposalID) {
-            if (voterShare.coinBalanceOf(msg.sender)>0) {
-                proposalID = proposals.length++;
-                Proposal p = proposals[proposalID];
-                p.recipient = _recipient;
-                p.amount = _amount;
-                p.data = _data;
-                p.description = _description;
-                p.creationDate = now;
-                p.active = true;
-                ProposalAdded(proposalID, _recipient, _amount, _data, _description);
-                numProposals = proposalID+1;
-            }
-        }
-        
-        function vote(uint _proposalID, int _position) returns (uint voteID){
-            if (voterShare.coinBalanceOf(msg.sender)>0 && (_position >= -1 || _position <= 1 )) {
-                Proposal p = proposals[_proposalID];
-                if (p.voted[msg.sender] == true) return;
-                voteID = p.votes.length++;
-                p.votes[voteID] = Vote({position: _position, voter: msg.sender});
-                p.voted[msg.sender] = true;
-                Voted(_proposalID,  _position, msg.sender);
-            }
-        }
-        
-        function executeProposal(uint _proposalID) returns (int result) {
-            Proposal p = proposals[_proposalID];
-            /* Check if debating period is over */
-            if (now > (p.creationDate + debatingPeriod) && p.active){   
-                uint quorum = 0;
-                /* tally the votes */
-                for (uint i = 0; i <  p.votes.length; ++i) {
-                    Vote v = p.votes[i];
-                    uint voteWeight = voterShare.coinBalanceOf(v.voter); 
-                    quorum += voteWeight;
-                    result += int(voteWeight) * v.position;
-                }
-                /* execute result */
-                if (quorum > minimumQuorum && result > 0 ) {
-                    p.recipient.call.value(p.amount)(p.data);
-                    p.active = false;
-                } else if (quorum > minimumQuorum && result < 0) {
-                    p.active = false;
-                }
-                ProposalTallied(_proposalID, result, quorum, p.active);
-            }
-        }
-    }
-
-
-
-
-
-There's a lot of going on but it's simpler than it looks. The rules of your organization are very simple: anyone with at least one token can create proposals to send funds from the country's account. After a week of debate and votes, if it has received votes worth a total of 100 tokens or more and has more approvals than rejections, the funds will be sent. If the quorum hasn't been met or it ends on a tie, then voting is kept until it's resolved. Otherwise, the proposal is locked and kept for historical purposes.
-
-So let's recap what this means: in the last two sections you created 10,000 tokens, sent 1,000 of those to another account you control, 2,000 to a friend named Alice and distributed 5,000 of them via a crowdsale.  This means that you no longer control over 50% of the votes in the DAO, and if Alice and the community bands together, they can outvote any spending decision on the 100 ethers raised so far. This is exactly how a democracy should work. If you don't want to be a part of your country anymore the only thing you can do is sell your own tokens on a decentralized exchange and opt out, but you cannot prevent the others from doing so.
-
-
-### Set Up your Organization
-
-So open your console and let's get ready to finally put your country online. First, let's set the right parameters, pick them with care:
-
-    var _voterShareAddress = token.address;
-    var _minimumQuorum = 10; // Minimum amount of voter tokens the proposal needs to pass
-    var _debatingPeriod = 60; // debating period, in minutes;
-
-With these default parameters anyone with any tokens can make a proposal on how to spend the organization's money. The proposal has 1 hour to be debated and it will pass if it has at least votes from at least 0.1% of the total tokens and has more support than rejections. Pick those parameters with care, as you won't be able to change them in the future.
-    
-    var daoCompiled = eth.compile.solidity('contract token { mapping (address => uint) public coinBalanceOf; function token() { } function sendCoin(address receiver, uint amount) returns(bool sufficient) { } } contract Democracy { uint public minimumQuorum; uint public debatingPeriod; token public voterShare; address public founder; Proposal[] public proposals; uint public numProposals; event ProposalAdded(uint proposalID, address recipient, uint amount, bytes32 data, string description); event Voted(uint proposalID, int position, address voter); event ProposalTallied(uint proposalID, int result, uint quorum, bool active); struct Proposal { address recipient; uint amount; bytes32 data; string description; uint creationDate; bool active; Vote[] votes; mapping (address => bool) voted; } struct Vote { int position; address voter; } function Democracy(token _voterShareAddress, uint _minimumQuorum, uint _debatingPeriod) { founder = msg.sender; voterShare = token(_voterShareAddress); minimumQuorum = _minimumQuorum || 10; debatingPeriod = _debatingPeriod * 1 minutes || 30 days; } function newProposal(address _recipient, uint _amount, bytes32 _data, string _description) returns (uint proposalID) { if (voterShare.coinBalanceOf(msg.sender)>0) { proposalID = proposals.length++; Proposal p = proposals[proposalID]; p.recipient = _recipient; p.amount = _amount; p.data = _data; p.description = _description; p.creationDate = now; p.active = true; ProposalAdded(proposalID, _recipient, _amount, _data, _description); numProposals = proposalID+1; } else { return 0; } } function vote(uint _proposalID, int _position) returns (uint voteID){ if (voterShare.coinBalanceOf(msg.sender)>0 && (_position >= -1 || _position <= 1 )) { Proposal p = proposals[_proposalID]; if (p.voted[msg.sender] == true) return; voteID = p.votes.length++; Vote v = p.votes[voteID]; v.position = _position; v.voter = msg.sender; p.voted[msg.sender] = true; Voted(_proposalID, _position, msg.sender); } else { return 0; } } function executeProposal(uint _proposalID) returns (int result) { Proposal p = proposals[_proposalID]; /* Check if debating period is over */ if (now > (p.creationDate + debatingPeriod) && p.active){ uint quorum = 0; /* tally the votes */ for (uint i = 0; i < p.votes.length; ++i) { Vote v = p.votes[i]; uint voteWeight = voterShare.coinBalanceOf(v.voter); quorum += voteWeight; result += int(voteWeight) * v.position; } /* execute result */ if (quorum > minimumQuorum && result > 0 ) { p.recipient.call.value(p.amount)(p.data); p.active = false; } else if (quorum > minimumQuorum && result < 0) { p.active = false; } } ProposalTallied(_proposalID, result, quorum, p.active); } }');
-
-    var democracyContract = web3.eth.contract(daoCompiled.Democracy.info.abiDefinition);
-    
-    var democracy = democracyContract.new(
-      _voterShareAddress, 
-      _minimumQuorum, 
-      _debatingPeriod, 
-      {
-        from:web3.eth.accounts[0], 
-        data:daoCompiled.Democracy.code, 
-        gas: 3000000
-      }, function(e, contract){
-        if(!e) {
-
-          if(!contract.address) {
-            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
-
-          } else {
-            console.log("Contract mined! Address: " + contract.address);
-            console.log(contract);
-          }
-
-        }
-    });
-
-**If you are using the _online compiler_ Copy the contract code to the [online solidity compiler](https://chriseth.github.io/browser-solidity/), and then grab the content of the box labeled **Geth Deploy**. Since you have already set the parameters, you don't need to change anything to that text, simply paste the resulting text on your geth window.**
-
-Wait a minute until the miners pick it up. It will cost you about 850k Gas. Once that is picked up, it's time to instantiate it and set it up, by pointing it to the correct address of the token contract you created previously. 
-
-If everything worked out, you can take a look at the whole organization by executing this string:
-
-    "This organization has " +  democracy.numProposals() + " proposals and uses the token at the address " + democracy.voterShare() ;
-
-If everything is setup then your DAO should return a proposal count of 0 and an address marked as the "founder". While there are still no proposals, the founder of the DAO can change the address of the token to anything it wants. 
-
-### Register your organization name
-
-Let's also register a name for your contract so it's easily accessible (don't forget to check your name availability with registrar.addr("nameYouWant") before reserving!)
-
-    var name = "MyPersonalDemocracy"
-    registrar.reserve.sendTransaction(name, {from: eth.accounts[0]})
-    var democracy = eth.contract(daoCompiled.Democracy.info.abiDefinition).at(democracy.address);
-    democracy.setup.sendTransaction(registrar.addr("MyFirstCoin"),{from:eth.accounts[0]})
-
-Wait for the previous transactions to be picked up and then:
-
-    registrar.setAddress.sendTransaction(name, democracy.address, true,{from: eth.accounts[0]});
-
-
-### The Democracy Watchbots
-
-
-    var event = democracy.ProposalAdded({}, '', function(error, result){
-      if (!error)
-        console.log("New Proposal #"+ result.args.proposalID +"!\n Send " + web3.fromWei(result.args.amount, "ether") + " ether to " + result.args.recipient.substring(2,8) + "... for " + result.args.description  )
-    });
-    var eventVote = democracy.Voted({}, '', function(error, result){
-      if (!error)
-        var opinion = "";
-        if (result.args.position > 0) { 
-          opinion = "in favor" 
-        } else if (result.args.position < 0) { 
-          opinion = "against" 
-        } else { 
-          opinion = "abstaining" 
-        }
-
-        console.log("Vote on Proposal #"+ result.args.proposalID +"!\n " + result.args.voter + " is " + opinion )
-    });
-    var eventTally = democracy.ProposalTallied({}, '', function(error, result){
-      if (!error)
-        var totalCount = "";
-        if (result.args.result > 1) { 
-          totalCount = "passed" 
-        } else if (result.args.result < 1) { 
-          totalCount = "rejected" 
-        } else { 
-          totalCount = "a tie" 
-        }
-        console.log("Votes counted on Proposal #"+ result.args.proposalID +"!\n With a total of " + Math.abs(result.args.result) + " out of " + result.args.quorum + ", proposal is " + totalCount + ". Proposal is " + (result.args.active? " still on the floor" : "archived") )
-    });
-
-
-### Interacting with the DAO
-
-After you are satisfied with what you want, it's time to get all that ether you got from the crowdfunding into your new organization:
-
-    eth.sendTransaction({from: eth.accounts[1], to: democracy.address, value: web3.toWei(100, "ether")})
-
-This should take only a minute and your country is ready for business! Now, as a first priority, your organisation needs a nice logo, but unless you are a designer, you have no idea how to do that. For the sake of argument let's say you find that your friend Bob is a great designer who's willing to do it for only 10 ethers, so you want to propose to hire him. 
-
-    recipient = registrar.addr("bob");
-    amount =  web3.toWei(10, "ether");
-    shortNote = "Logo Design";
-
-    democracy.newProposal.sendTransaction( recipient, amount, '', shortNote,  {from: eth.accounts[0], gas:1000000})
-
-After a minute, anyone can check the proposal recipient and amount by executing these commands:
-
-    "This organization has " +  (Number(democracy.numProposals())+1) + " pending proposals";
-
-### Keep an eye on the organization
-
-Unlike most governments, your country's government is completely transparent and easily programmable. As a small demonstration here's a snippet of code that goes through all the current proposals and prints what they are and for whom:
-
-       
-
-    function checkAllProposals() {
-        console.log("Country Balance: " + web3.fromWei( eth.getBalance(democracy.address), "ether") );
-        for (i = 0; i< (Number(democracy.numProposals())); i++ ) { 
-            var p = democracy.proposals(i); 
-            var timeleft = Math.floor(((Math.floor(Date.now() / 1000)) - Number(p[4]) - Number(democracy.debatingPeriod()))/60);  
-            console.log("Proposal #" + i + " Send " + web3.fromWei( p[1], "ether") + " ether to address " + p[0].substring(2,6) + " for "+ p[3] + ".\t Deadline:"+ Math.abs(Math.floor(timeleft)) + (timeleft>0?" minutes ago ":" minutes left ") + (p[5]? " Active":" Archived") ); 
-        }
-    }
-
-    checkAllProposals();
-
-A concerned citizen could easily write a bot that periodically pings the blockchain and then publicizes any new proposals that were put forth, guaranteeing total transparency.
-
-Now of course you want other people to be able to vote on your proposals. You can check the crowdsale tutorial on the best way to register your contract app so that all the user needs is a name, but for now let's use the easier version. Anyone should be able to instantiate a local copy of your country in their computer by using this giant command: 
-
-
-    democracy = eth.contract( [{ constant: true, inputs: [{ name: '', type: 'uint256' } ], name: 'proposals', outputs: [{ name: 'recipient', type: 'address' }, { name: 'amount', type: 'uint256' }, { name: 'data', type: 'bytes32' }, { name: 'descriptionHash', type: 'bytes32' }, { name: 'creationDate', type: 'uint256' }, { name: 'numVotes', type: 'uint256' }, { name: 'quorum', type: 'uint256' }, { name: 'active', type: 'bool' } ], type: 'function' }, { constant: false, inputs: [{ name: '_proposalID', type: 'uint256' } ], name: 'executeProposal', outputs: [{ name: 'result', type: 'uint256' } ], type: 'function' }, { constant: true, inputs: [ ], name: 'debatingPeriod', outputs: [{ name: '', type: 'uint256' } ], type: 'function' }, { constant: true, inputs: [ ], name: 'numProposals', outputs: [{ name: '', type: 'uint256' } ], type: 'function' }, { constant: true, inputs: [ ], name: 'founder', outputs: [{ name: '', type: 'address' } ], type: 'function' }, { constant: false, inputs: [{ name: '_proposalID', type: 'uint256' }, { name: '_position', type: 'int256' } ], name: 'vote', outputs: [{ name: 'voteID', type: 'uint256' } ], type: 'function' }, { constant: false, inputs: [{ name: '_voterShareAddress', type: 'address' } ], name: 'setup', outputs: [ ], type: 'function' }, { constant: false, inputs: [{ name: '_recipient', type: 'address' }, { name: '_amount', type: 'uint256' }, { name: '_data', type: 'bytes32' }, { name: '_descriptionHash', type: 'bytes32' } ], name: 'newProposal', outputs: [{ name: 'proposalID', type: 'uint256' } ], type: 'function' }, { constant: true, inputs: [ ], name: 'minimumQuorum', outputs: [{ name: '', type: 'uint256' } ], type: 'function' }, { inputs: [ ], type: 'constructor' } ] ).at(registrar.addr('MyPersonalCountry'))
-
-Then anyone who owns any of your tokens can vote on the proposals by doing this:
-
-    var proposalID = 0;
-    var position = -1; // +1 for voting yea, -1 for voting nay, 0 abstains but counts as quorum
-    democracy.vote.sendTransaction(proposalID, position, {from: eth.accounts[0], gas: 1000000});
-
-    var proposalID = 1;
-    var position = 1; // +1 for voting yea, -1 for voting nay, 0 abstains but counts as quorum
-    democracy.vote.sendTransaction(proposalID, position, {from: eth.accounts[0], gas: 1000000});
-
-
-Unless you changed the basic parameters in the code, any proposal will have to be debated for at least a week until it can be executed. After that anyone—even a non-citizen—can demand the votes to be counted and the proposal to be executed. The votes are tallied and weighted at that moment and if the proposal is accepted then the ether is sent immediately and the proposal is archived. If the votes end in a tie or the minimum quorum hasn’t been reached, the voting is kept open until the stalemate is resolved. If it loses, then it's archived and cannot be voted again.
-
-    var proposalID = 1;
-    democracy.executeProposal.sendTransaction(proposalID, {from: eth.accounts[0], gas: 1000000});
-
-
-If the proposal passed then you should be able to see Bob's ethers arriving on his address:
-
-    web3.fromWei(eth.getBalance(democracy.address), "ether") + " ether";
-    web3.fromWei(eth.getBalance(registrar.addr("bob")), "ether") + " ether";
-
-
-**Try for yourself:**  This is a very simple democracy contract, which could be vastly improved: currently, all proposals have the same debating time and are won by direct vote and simple majority.  Can you change that so it will have some situations, depending on the amount proposed, that the debate might be longer or that it would require a larger majority? Also think about some way where citizens didn't need to vote on every issue and could temporarily delegate their votes to a special representative. You might have also noticed that we added a tiny description for each proposal. This could be used as a title for the proposal or could be a hash of a larger document describing it in detail.
-
 ### Let's go exploring!
 
 You have reached the end of this tutorial, but it's just the beginning of a great adventure. Look back and see how much you accomplished: you created a living, talking robot, your own cryptocurrency, raised funds through a trustless crowdfunding and used it to kickstart your own personal democratic organization. 
 
-For the sake of simplicity, we only used the democratic organization you created to send ether around, the native currency of ethereum. While that might be good enough for some, this is only scratching the surface of what can be done. In the ethereum network contracts have all the same rights as any normal user, meaning that your organization could do any of the transactions that you executed coming from your own accounts. 
 
 
-### What could happen next?
+#### What could happen next?
 
 * The greeter contract you created at the beginning could be improved to charge ether for its services and could funnel those funds into the DAO.
 
