@@ -542,10 +542,11 @@ input.button:hover {
 	left: 20px;
 	top: 20px;
 	width: 200px;
-	border-left: 1px solid;
+	border-left: 4px solid #eee;
 	font-size: 18px;
     font-weight: 600;
     list-style-type: none;
+    transition: top 0.5s cubic-bezier(0.67, -0.54, 0.57, 1.21);
 }
 
 ul#tableOfContents ul {
@@ -554,6 +555,11 @@ ul#tableOfContents ul {
     padding-bottom: 10px;
     list-style-type: none;
     padding-left: 0;    
+}
+
+#tableOfContents.fixed {
+	position: fixed;
+	top: 60px;
 }
 
 .terms,
@@ -1492,6 +1498,76 @@ footer {
 	}
 }
 
+
+@media only screen and (max-width: 1200px){
+	#tableOfContents {
+		background: #eee;
+		width: 40px !important;
+		z-index: 100;
+		transition: width 0.25s;
+		overflow: hidden;
+	}
+
+	#tableOfContents:before {
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		display: block;
+		content:'\2630';
+		font-size: 16px;
+	    top: 11px;
+	    left: 12px;
+	    opacity: 0.8;
+	    transition: opacity 0.5s;
+	}
+
+	#tableOfContents:hover {
+		box-shadow: #ccc 0 1px 2px 1px;
+		width: 200px !important;
+		padding: 10px;
+	}	
+
+	#tableOfContents:hover:before {
+		/*display: none;*/
+		opacity: 0;
+	}
+
+	#tableOfContents a {
+		display: none !important;
+		width: 180px;
+		opacity: 0;
+		transition: opacity 0.75s;
+	}	
+
+	#tableOfContents:hover a {
+		display: block !important;
+		opacity: 1;
+	}
+
+}
+
+@media only screen and (max-width: 1350px){
+	#tableOfContents {
+		width: 150px;
+		padding: 0;
+		border: none;
+		left: 10px;
+		font-size: 14px;
+		text-transform: uppercase;
+		line-height: 14px
+	}
+
+	#tableOfContents ul {
+		font-size: 12px;
+		text-transform: none;
+	}
+
+	#tableOfContents a {
+	    padding-bottom: 10px;
+	    display: block;
+	}
+}
+
 @media only screen and (min-width:900px) {
 	.introduction h1 {
 		background-image: url('../images/homestead-title@2x.png');
@@ -1526,6 +1602,12 @@ footer {
 		padding-top: 450px;
 		top: -15px;
 		margin-left: -225px;
+	}
+}
+
+@media only screen and (min-width: 1600px){
+	#tableOfContents {
+		width: 320px;
 	}
 }
 
