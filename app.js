@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
+app.set('port', process.env.PORT || 8080);
+
 // Routes
 app.get('/', function(req, res) {
 	res.render('index');

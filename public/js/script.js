@@ -6,19 +6,52 @@ $(document).ready(function() {
     })
   });
 
-  // if(!localStorage.getItem("agreedUpon")){
-  //     $('#agreement').click(function(){
-  //       $(".hidden").removeClass("hidden");
-  //       $('#agreement, .cannot-continue').hide();
-  //       localStorage.setItem("agreedUpon",true);
-  //       $(window).scrollTop(1315);
+  $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '4' } );
+ 
+  var toc = document.getElementById('tableOfContents');
+  if (toc) {
+    window.onscroll = function() {
+      var innerTutorial = document.getElementsByClassName('inner-tutorial');
 
-  //     });    
-  // } else {
-  //       $(".hidden").removeClass("hidden");
-  //       $('#agreement, .cannot-continue, .short-terms').hide();
-  // }
+      var className = 'fixed';
+
+      if (innerTutorial[0].getBoundingClientRect().top <= 40 ) {
+
+        if (toc.classList)
+          toc.classList.add(className);
+        else
+          toc.className += ' ' + className;
+
+
+      } else {
+
+        if (toc.classList)
+          toc.classList.remove(className);
+        else
+          toc.className = toc.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+
+
+      }
+    }
+  }
+  
+
 });
+
+
+/* 
+
+if (el.classList)
+  el.classList.add(className);
+else
+  el.className += ' ' + className;
+
+if (el.classList)
+  el.classList.remove(className);
+else
+  el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+
+*/
 
 function selectElementContents(el) {
     if (window.getSelection && document.createRange) {
@@ -35,6 +68,21 @@ function selectElementContents(el) {
 }
 
 // function isElementInViewport (el) {
+
+//     //special bonus for those using jQuery
+//     if (typeof jQuery === "function" && el instanceof jQuery) {
+//         el = el[0];
+//     }
+
+//     var rect = el.getBoundingClientRect();
+
+//     return (
+//         rect.bottom >= 0 &&
+//         rect.top <= (window.innerHeight || document.documentElement.clientHeight) 
+//     );
+// }
+
+// function isElementTouchingTopViewport (el) {
 
 //     //special bonus for those using jQuery
 //     if (typeof jQuery === "function" && el instanceof jQuery) {

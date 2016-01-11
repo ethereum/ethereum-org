@@ -33,9 +33,7 @@ mixin etherRecipe(header)
 
   if header != ""
     h2 #{header}
-  h3
-    div.number 0
-    | Get some ether, the crypto-fuel of the Ethereum network
+  h3 Get some ether, the crypto-fuel of the Ethereum network
   
   p Ether is the internal 'fuel' of Ethereum. Programs running on Ethereum need to pay the network for the resources they consume. Volunteers earn this ether by validating transactions, securing the network.
 
@@ -94,19 +92,14 @@ mixin greeterRecipe(header)
       li 
         input(type="checkbox") 
         |  A desire to learn new things  
-      li 
-        input(type="checkbox") 
-        |  Approximately 0.001 
-        a(href="/#get-ether") ether 
+
 
 mixin tokenRecipe(header)
   +tokenFigure
 
   if header != ""
     h2 #{header}
-  h3 
-    div.number 2 
-    | Design and issue your own cryptocurrency
+  h3 Design and issue your own cryptocurrency
 
   p Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API, so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. 
 
@@ -115,21 +108,12 @@ mixin tokenRecipe(header)
   a(href="/token").button Issue your token 
 
   div.recipe
-    h4 You'll need:
+    h4 You can build:
     ul
       li 
-        input(type="checkbox") 
         a(href="/#download-tools") The Wallet, Power tools or command line tools 
-      li 
-        input(type="checkbox") 
-        |  Very basic programming skills 
-      li 
-        input(type="checkbox") 
-        |  Approximately 0.002  
-        a(href="/#get-ether") ether 
-      li 
-        input(type="checkbox") 
-        |  1 cool token name (optional)
+      li Very basic programming skills 
+      li 1 cool token name (optional)
 
 
 mixin crowdsaleRecipe(header)
@@ -137,9 +121,7 @@ mixin crowdsaleRecipe(header)
 
   if header != ""
     h2 #{header}
-  h3 
-    div.number 3 
-    | Kickstart a project with a trustless crowdsale
+  h3 Kickstart a project with a trustless crowdsale
 
   p Do you already have many ideas as to what to develop on Ethereum? Maybe you need help and some funds to bring them to life, but who would lend money to someone they don’t trust?
 
@@ -160,10 +142,6 @@ mixin crowdsaleRecipe(header)
         | Basic programming skills 
       li 
         input(type="checkbox") 
-        | Approximately 0.004  
-        a(href="/#get-ether") ether 
-      li 
-        input(type="checkbox") 
         | An Ethereum-based 
         a(href="/#crypto-currency") digital token 
         | (to track rewards)
@@ -176,9 +154,7 @@ mixin daoRecipe(header)
 
   if header != ""
     h2 #{header}
-  h3 
-    div.number 4 
-    | Create a democratic autonomous organization
+  h3 Create a democratic autonomous organization
 
   p Now that you have developed your idea and secured funds, what’s next? You have to hire managers, find a trustworthy CFO to handle the accounts, run Board meetings and do bunch of paperwork. 
 
@@ -197,11 +173,6 @@ mixin daoRecipe(header)
       li 
         input(type="checkbox") 
         | Basic programming skills 
-      li 
-        input(type="checkbox") 
-        | Approximately 0.008  
-        a(href="/#get-ether") ether 
-        | to create the contract 
       li 
         input(type="checkbox") 
         | Ethereum-based 
@@ -223,9 +194,7 @@ mixin futureRecipe(header)
 
   if header != ""
     h2 #{header}
-  h3 
-    div.number 7 
-    | Build a new kind of decentralized application
+  h3 Build a new kind of decentralized application
 
   p Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper proof network?
 
@@ -281,9 +250,6 @@ mixin futureRecipe(header)
     li
       a(href='http://chriseth.github.io/browser-solidity/') Solidity Online
       | Solidity Online Compiler
-    li
-      a(href='http://meteor-dapp-cosmo.meteor.com') Cosmo
-      | Solidity Realtime Dev Environment
 
 
    
@@ -294,6 +260,9 @@ mixin thawing()
     img(src='images/thawing@2x.png', width="49px")
     h6 The main network is thawing
     p For the first days, while the network defreezes, it is not possible to execute or send transactions, only mine blocks. When the network is secure a new version will be provided. Please be patient...
+
+mixin toc()
+  ul#tableOfContents.toc.animateme(data-when="enter", data-from="0.4", data-to="0.2", data-translatex="-100", data-opacity="0", data-easing="linear")
     
 
 mixin inner-header(title)

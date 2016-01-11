@@ -12,24 +12,25 @@ block content
     strong »  Start a democratic organization
     a(href="/crowdsale").previous Previous
 
-  div#tutorial-start.main-tutorial.inner-tutorial.even
+  div#tutorial-start.main-tutorial.dao-tutorial.inner-header.even
     div.container
       div.row
         div.col-md-12.tutorial.scrollme
 
-          +daoFigure
+          +daoFigureExit
+          div.header-title
+            h3.animateme(data-when="exit", data-from="0", data-to="0.5", data-translatey="200", data-opacity="0", data-easing="linear") How to build a 
+            h2.animateme(data-when="exit", data-from="0", data-to="1", data-translatey="400", data-easing="linear") Democracy
+            h3.animateme(data-when="exit", data-from="0", data-to="0.5", data-translatey="200", data-opacity="0", data-easing="linear") on the blockchain
 
-          h2.animateme(data-when="span", data-from="0.6", data-to="0.3", data-opacity="0", data-translatey="200") Democratic Autonomous Organization
-
-          h3.center.animateme(data-when="span", data-from="0.7", data-to="0.5", data-opacity="0", data-translatey="200") Build a better democracy
-
-          a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
 
   div.main-tutorial.inner-tutorial
     div.container
-      div.row
+      div.row.scrollme
+        +toc
         div.col-md-12
           include:md content/dao.md
+
 
   div.main-tutorial.ethereum-projects.even
     div.container

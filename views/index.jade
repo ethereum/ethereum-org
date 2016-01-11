@@ -50,6 +50,18 @@ block content
         br
         br
 
+  
+  div.col-md-12.scrollme.main-menu
+    div.breadcrumb.index.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
+      strong Ethereum Frontier
+      a(href="#developer-resources") Developers
+      a(href="#about-us") Foundation
+      a(href="#community") Community
+      a(href="#press") Press
+
+
+  include ./includes/recipes.jade
+
   div.aleth-miner
     div.container
       div.row
@@ -69,7 +81,7 @@ block content
 
           p Since the software consumes real resources (bandwidth, electricity, etc) nodes are compensated with "Ether", an internal token that is used to pay for computation time.
           
-          a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button Install the Aleth Miner
+          //- a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button Install the Aleth Miner
 
   div.power-tools
       div.container
@@ -102,18 +114,6 @@ block content
           p If you feel more confortable around a terminal, then you can just download our command line tools, built in Go, C++, Python, Java and others.
 
           a(href="/cli").button Install the Command line tools
-
-
-  div.col-md-12.scrollme.main-menu
-    div.breadcrumb.index.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
-      strong Ethereum Frontier
-      a(href="#developer-resources") Developers
-      a(href="#about-us") Foundation
-      a(href="#community") Community
-      a(href="#press") Press
-
-
-  include ./includes/recipes.jade
 
 
 
