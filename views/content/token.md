@@ -1,9 +1,9 @@
 
-## The Coin 
+### The Coin 
 
 We are going to create a digital token. Tokens in the ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the ethereum wallet and any other client or contract that uses the same standards. 
 
-### The code
+#### The code
 
 If you are in a hurry, here's the final code of the basic token:
 
@@ -40,7 +40,7 @@ If you are in a hurry, here's the final code of the basic token:
 
 Let's break it down step by step
 
-## Building from scratch
+#### Understanding the code
 
 ![Deploy New Contract](/images/tutorial/deploy-new-contract.png)
 
@@ -132,7 +132,7 @@ And then you just need to add these two lines inside the "transfer" function:
 
 And now your token is ready!
 
-## How to deploy
+#### How to deploy
 
 If you aren't there already, open the Ethereum Wallet, go to the contracts tab and then click "deploy new contract".
 
@@ -157,11 +157,11 @@ To add a token to watch, go to the contracts page and then click "Watch Token". 
 And now you have your own crypto token! Tokens by themselves can be useful as [value exchange on local communities](https://en.wikipedia.org/wiki/Local_currency), ways to [keep track of worked hours](https://en.wikipedia.org/wiki/Time-based_currency) or other loyalty programs. But can we make a currency have an intrinsic value by making it useful?
 
 
-## Improve your token
+### Improve your token
 
 You can deploy your whole crypto token without ever touching a line of code, but the real magic happens when you start customizing it. The following sections will be suggestions on functions you can add to your token to make it fit your needs more.
 
-### Centralized Administrator 
+#### Centralized Administrator 
 
 All dapps are fully decentralized by default, but that doesn't mean they can't have some sort of central manager, if you want them to. Maybe you want the ability to mint more coins, maybe you want to ban some people from using your currency. You can add any of those features, but the catch is that you can only add them at the beginning, so all the token holders will always know exactly the rules of the game before they decide to own one.
 
@@ -198,7 +198,7 @@ This means that all the functions inside **myToken** now can access the variable
     function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, address centralMinter) {
         if(centralMinter != 0 ) owner = msg.sender;
 
-### Central Mint
+#### Central Mint
 
 
 Suppose you want the amount of coins on circulation to change. This is the case when your tokens actually represent an off blockchain asset (like gold certificates or government currencies) and you want the virtual inventory to reflect the real one. This might also be the case when the currency holders expect some control on the price of the token, and want to issue or remove tokens from circulation.
@@ -212,7 +212,7 @@ Now let's add a new function finally that will enable the owner to create new to
 
 Notice the modifier **onlyOwner** on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the **modifier onlyOwner** we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account set as the owner. Just add this to a contract with an **owner** modifier and you'll be able to create more coins.
 
-### Freezing of assets
+#### Freezing of assets
 
 Depending on your use case, you might need to have some regulatory hurdles on who can and cannot use your tokens. For that to happen, you can add a parameter that enables the contract owner to freeze or unfreeze assets.
 
@@ -237,7 +237,7 @@ Now any account that is frozen will still have their funds intact, but won't be 
         if (!approvedAccount[msg.sender])) throw;
 
          
-### Automatic selling and buying
+#### Automatic selling and buying
 
 So far, you've relied on utility and trust to value your token. But if you want you can make the token's value be backed by ether (or other tokens) by creating a fund that automatically sells and buys them at market value. 
 
@@ -276,7 +276,9 @@ Notice that this will not create new tokens but change the balance the contract 
 
 **Note** Buy and sell "prices" are not set in ether, but in *wei* the minimum currency of the system (equivalent to the cent in the Euro and Dollar, or the Satoshi in Bitcoin). One ether is 1000000000000000000 wei. So when setting prices for your token in ether, add 18 zeros at the end.
 
-## Deploy and use
+### Improved Coin
+
+#### Full coin code
 
 If you add all the advanced options, this is how the final code should look like:
 
@@ -367,6 +369,8 @@ If you add all the advanced options, this is how the final code should look like
             Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
         }
     }   
+
+#### Deploying 
 
 Scroll down and you'll see an estimated cost for deployment. If you want you can change the slider to set a smaller fee, but if the price is too below the average market rate your transaction might take longer to pick up. Click *Deploy* and type your password. After a few seconds you'll be redirected to the dashboard and under **Latest transactions** you'll see a line saying "creating contract". Wait for a few seconds for someone to pick your transaction and then you'll see a slow blue rectangle representing how many other nodes have seen your transaction and confirmed them. The more confirmations you have, the more assurance you have that your code has been deployed. 
 

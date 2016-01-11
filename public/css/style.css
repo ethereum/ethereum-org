@@ -310,9 +310,9 @@ header:after {
 	margin-top: -40px;
 }
 
-.main-tutorial h2 + h3 {
+/*.main-tutorial h2 + h3 {
 	padding-top: 0;
-}
+}*/
 
 .main-tutorial h2 + h3 .number {
 	top: 0;
@@ -425,10 +425,28 @@ header:after {
 
 /* DAO */
 
-.inner-header.dao-tutorial {
-	background-image: url("../images/tutorial/dao-bg.jpg");
+.inner-header.main-tutorial  {
 	background-size: cover;
 	background-position: center;
+	background-attachment: fixed;
+}
+
+.inner-header.dao-tutorial {
+	background-image: url("../images/tutorial/dao-bg.jpg");
+}
+
+.inner-header.token-tutorial {
+	background-image: url("../images/tutorial/token-bg.jpg");
+}
+
+.inner-header.crowdsale-tutorial {
+	background-image: url("../images/tutorial/crowdsale-bg.jpg");
+}
+
+.crowdsale-tutorial .header-title h3, .crowdsale-tutorial .header-title h2 ,
+.token-tutorial .header-title h3, .token-tutorial .header-title h2 {
+	color: #F5F5F5;
+	font-weight: 500;
 }
 
 /* */
@@ -540,13 +558,13 @@ input.button:hover {
     list-style-type: none;
 	position: absolute;
 	left: 20px;
-	top: 20px;
+	top: 30px;
 	width: 200px;
 	border-left: 4px solid #eee;
 	font-size: 18px;
     font-weight: 600;
     list-style-type: none;
-    transition: top 0.5s cubic-bezier(0.67, -0.54, 0.57, 1.21);
+    transition: top 0.25s cubic-bezier(0.67, -0.54, 0.57, 1.21);
 }
 
 ul#tableOfContents ul {
@@ -1163,7 +1181,7 @@ footer {
 	font-size: 40px;
 	font-weight: 300;
 	margin: 0;
-	padding: 0;
+	padding: 15px 0 0;
 	max-width: none;
 	text-align: left;
 	text-transform:  uppercase;
@@ -1180,6 +1198,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	padding-left: 20px;
 }
 
 .inner-header {

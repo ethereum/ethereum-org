@@ -46,6 +46,15 @@ mixin crowdsaleFigure()
     div.crowdsale-crowd.animateme(data-when="enter", data-from="0.3", data-to="0", data-opacity="0", data-translatey="-100", data-scale="1.1", data-easing="linear")
 
 
+mixin crowdsaleFigureExit()
+  figure.crowdsale.scrollme
+    div.crowdsale-logic.animateme(data-when="exit", data-to="0.8", data-from="0.7", data-opacity="0", data-translatey="-100", data-easing="linear")
+    div.crowdsale-robot.animateme(data-when="exit", data-to="0.5", data-from="0.3", data-opacity="0", data-translatey="-155", data-translatex="-30", data-scale="1.1", data-rotatez="90", data-easing="linear")
+    div.crowdsale-money.animateme(data-when="exit", data-to="0.8", data-from="0.6", data-opacity="0",data-translatey="-20")
+    div.crowdsale-contributions.animateme(data-when="exit", data-to="0.7", data-from="0.5", data-opacity="0", data-scale="1.4")
+    div.crowdsale-crowd.animateme(data-when="exit", data-to="0.3", data-from="0", data-opacity="0", data-translatey="-100", data-scale="1.1", data-easing="linear")
+
+
 mixin daoFigure()
   figure.dao.scrollme
     div.dao-robot.animateme(data-when="enter", data-from="0.65", data-to="0.45", data-opacity="0", data-translatey="200", data-rotatez="-90")

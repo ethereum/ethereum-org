@@ -162,13 +162,13 @@ The way this particular democracy works is that it has an *Owner** which works l
             if (now < p.votingDeadline                                                  // has the voting deadline arrived?  
                 || p.executed                                                           // has it been already executed? 
                 || p.proposalHash != sha3(p.recipient, p.amount, transactionBytecode)   // Does the transaction code match the proposal? 
-                || p.numberOfVotes <= minimumQuorum)                                    // has minimum quorum?
+                || p.numberOfVotes < minimumQuorum)                                    // has minimum quorum?
                 throw;
             
             /* execute result */
             if (p.currentResult > majorityMargin) {     
                 /* If difference between support and opposition is larger than margin */
-                p.recipient.call.value(p.amount*1000000000000000000)(transactionBytecode);
+                p.recipient.call.value(p.amount * 1 ether)(transactionBytecode);
                 p.executed = true;
                 p.proposalPassed = true;
             } else {
@@ -352,17 +352,17 @@ Now to the shareholder code:
         }
         
         /* First time setup */
-        function Association(token sharesAddress, uint minimumSharesForVoting, uint minutesForDebate) {
+        function Association(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) {
             sharesTokenAddress = token(sharesAddress);
-            if (minimumSharesForVoting == 0 ) minimumSharesForVoting = 1;
-            minimumQuorum = minimumSharesForVoting;
+            if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
+            minimumQuorum = minimumSharesToPassAVote;
             debatingPeriodInMinutes = minutesForDebate;
         }
 
         /*change rules*/
-        function changeVotingRules(token sharesAddress, uint minimumSharesForVoting, uint minutesForDebate) onlyOwner {
+        function changeVotingRules(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
             sharesTokenAddress = token(sharesAddress);
-            minimumQuorum = minimumSharesForVoting;
+            minimumQuorum = minimumSharesToPassAVote;
             debatingPeriodInMinutes = minutesForDebate;
             ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, sharesTokenAddress);
         }
@@ -431,7 +431,7 @@ Now to the shareholder code:
                 throw;
             } else if (yea > nay ) {
                 /* has quorum and was approved */
-                p.recipient.call.value(p.amount*1000000000000000000)(transactionBytecode);
+                p.recipient.call.value(p.amount * 1 ether)(transactionBytecode);
                 p.executed = true;
                 p.proposalPassed = true;
             } else {
@@ -517,22 +517,26 @@ We are going to implement what's called a version of what's usually called **Liq
         mapping (address => uint) public voterId;
         uint public numberOfVotes;
         DelegatedVote[] public delegatedVotes;
+        bytes4 public forbiddenFunction;
 
-        event NewAppointee(address newAppointee, bool changed);
+        event NewApointee(address newApointee, bool changed);
         
         struct DelegatedVote {
             address nominee;
             address voter;
         }
             
-        function LiquidDemocracy(address votingWeightToken) {
+        function LiquidDemocracy(address votingWeightToken, string forbiddenFunctionCall) {
             votingToken = token(votingWeightToken); 
             delegatedVotes.length++;
             delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
+            forbiddenFunction = bytes4(sha3(forbiddenFunctionCall)); // example: 'transferOwnership(address)'
         }
 
         function execute(address target, uint valueInWei, bytes32 bytecode){
             if (msg.sender != appointee) throw;          // If caller is the current appointee,
+            if (bytes4(bytecode) == forbiddenFunction) throw; // and it's not trying to do the forbidden function
+            
             target.call.value(valueInWei)(bytecode);     // Then execute the command.
         }
         
@@ -613,9 +617,6 @@ The appointee is the only account that can use the **execute** function of the c
 As an example of what that can do: create a [Mintable Token](./token/) and set the address of the **liquid democracy** as the issuer of the token. Now go to the mintable token page and use any account to follow the steps as if you were going to create new tokens, but stop on the confirmation window. Instead of typing your password, instead save the **Bytecode** on a separate text file, together with the address of the Mintable Token. Now go back to the Liquid Democracy and choose **execute**: set the **target** as the mint address, leave value at 0 and put the bytecode you just copied on the **bytecode** field. If  you are not the appointee then the transaction will immediatly halt and you'll lose your fee, but if are calling that transaction from the appointee account then it should execute as if the democracy was requesting the function from the mint. [Use this power responsibly](https://www.youtube.com/watch?v=b23wrRfy7SM).  
 
 **Warning** In some contracts, like the Congress and the Association above, one of the powers of the **owner** is to execute a function called **change ownership**. If you set the **liquid democracy** as the owner of one of these contracts, you should remove that function, or limit it in some other way, otherwise the **apointee** will be able to change ownership of that contract from the democracy to themselves, executing a coup that will render the apointee position irrelevant. 
-
-
-### Approval Election
 
 
 

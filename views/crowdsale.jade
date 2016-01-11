@@ -14,21 +14,20 @@ block content
     a(href="/token").previous Previous
     a(href="/dao").next Next
 
-  div#tutorial-start.main-tutorial.inner-tutorial.even
+  div#tutorial-start.main-tutorial.crowdsale-tutorial.inner-header.even
     div.container
       div.row
         div.col-md-12.tutorial.scrollme
-          +crowdsaleFigure
 
-          h2.animateme(data-when="span", data-from="0.6", data-to="0.3", data-opacity="0", data-translatey="200") The Crowdsale
-
-          h3.center.animateme(data-when="span", data-from="0.7", data-to="0.5", data-opacity="0", data-translatey="200") Raising funds from friends without a third party
-
-          a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
+          +crowdsaleFigureExit
+          div.header-title
+            h2.animateme(data-when="exit", data-from="0", data-to="1", data-translatey="400", data-easing="linear") Crowdsale
+            h3.animateme(data-when="exit", data-from="0", data-to="0.5", data-translatey="200", data-opacity="0", data-easing="linear") Raising funds from friends without a third party
 
   div.main-tutorial.inner-tutorial
     div.container
-      div.row
+      div.row.scrollme
+        +toc
         div.col-md-12
           include:md content/crowdsale.md
 

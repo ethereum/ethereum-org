@@ -6,7 +6,7 @@ $(document).ready(function() {
     })
   });
 
-  $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '3' } );
+  $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '4' } );
  
   var toc = document.getElementById('tableOfContents');
   if (toc) {
