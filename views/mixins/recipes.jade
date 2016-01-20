@@ -110,10 +110,9 @@ mixin tokenRecipe(header)
   div.recipe
     h4 You can build:
     ul
-      li 
-        a(href="/#download-tools") The Wallet, Power tools or command line tools 
-      li Very basic programming skills 
-      li 1 cool token name (optional)
+      li A tradeable token with a fixed supply
+      li A central bank that can issue money
+      li A puzzle based cryptocurrency
 
 
 mixin crowdsaleRecipe(header)
@@ -132,22 +131,11 @@ mixin crowdsaleRecipe(header)
   a(href="/crowdsale").button Kickstart your project 
 
   div.recipe
-    h4 You'll need:
+    h4 You can build:
     ul
-      li 
-        input(type="checkbox") 
-        a(href="/#download-tools") The Wallet, Power tools or command line tools 
-      li 
-        input(type="checkbox") 
-        | Basic programming skills 
-      li 
-        input(type="checkbox") 
-        | An Ethereum-based 
-        a(href="/#crypto-currency") digital token 
-        | (to track rewards)
-      li 
-        input(type="checkbox") 
-        | One good idea that needs funding
+      li A crowdfunding to sell a product
+      li A crowdsale to sell virtual shares in a blockchain organization
+      li An auction of a limited number of items
 
 mixin daoRecipe(header)
   +daoFigure
@@ -165,28 +153,12 @@ mixin daoRecipe(header)
   a(href="/dao").button Start your organization 
 
   div.recipe
-    h4 You'll need:
+    h4 You can build:
     ul
-      li 
-        input(type="checkbox") 
-        a(href="/#download-tools") The Wallet, Power tools or command line tools 
-      li 
-        input(type="checkbox") 
-        | Basic programming skills 
-      li 
-        input(type="checkbox") 
-        | Ethereum-based 
-        a(href="/#crypto-currency") digital token  
-        | (will be used as voting right)
-      li 
-        input(type="checkbox") 
-        a(href="/#crowdsale") Any amount of funds
-      li 
-        input(type="checkbox") 
-        | Ideas on where to invest these funds
-      li 
-        input(type="checkbox") 
-        | Friends to vote on these ideas (optional)
+      li A virtual organization where members vote on issues
+      li A transparent association based on shareholders vote
+      li Your own country with an unchangeable constitution
+      li A better delegative democracy
 
 
 mixin futureRecipe(header)
@@ -251,15 +223,6 @@ mixin futureRecipe(header)
       a(href='http://chriseth.github.io/browser-solidity/') Solidity Online
       | Solidity Online Compiler
 
-
-   
-
-      
-mixin thawing()
-  div.thawing
-    img(src='images/thawing@2x.png', width="49px")
-    h6 The main network is thawing
-    p For the first days, while the network defreezes, it is not possible to execute or send transactions, only mine blocks. When the network is secure a new version will be provided. Please be patient...
 
 mixin toc()
   ul#tableOfContents.toc.animateme(data-when="enter", data-from="0.4", data-to="0.2", data-translatex="-100", data-opacity="0", data-easing="linear")

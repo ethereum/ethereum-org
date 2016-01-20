@@ -94,7 +94,7 @@ header {
 header {
 	height: 60vh;
 	min-height: 440px;
-	background: url('../images/homestead-background.jpg') center center no-repeat;
+	background: url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;
 	position: relative;
 	
@@ -122,7 +122,7 @@ div.scrollme.row.introduction {
 	height: 60vw;
 	min-height: 440px;
 	max-height: 800px;
-	background: url('../images/homestead-background.jpg') center center no-repeat;
+	background: url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;	
 	padding-top: 50px;
 }
@@ -425,22 +425,28 @@ header:after {
 
 /* DAO */
 
+.middle-feature, 
 .inner-header.main-tutorial  {
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 }
+ 
 
 .inner-header.dao-tutorial {
-	background-image: url("../images/tutorial/dao-bg.jpg");
+	background-image: url("../images/dao-bg.jpg");
 }
 
 .inner-header.token-tutorial {
-	background-image: url("../images/tutorial/token-bg.jpg");
+	background-image: url("../images/token-bg.jpg");
+}
+
+.middle-feature {
+	background-image: url("../images/solidity-bg.jpg");
 }
 
 .inner-header.crowdsale-tutorial {
-	background-image: url("../images/tutorial/crowdsale-bg.jpg");
+	background-image: url("../images/dao-dawn-bg.jpg");
 }
 
 .crowdsale-tutorial .header-title h3, .crowdsale-tutorial .header-title h2 ,
@@ -1438,14 +1444,14 @@ footer {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
 	header {
-		background-image: url('../images/homestead-background@2x.jpg');
+		background-image: url('../images/homestead-dawn-background@2x.jpg');
 	}
 }
 
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1 ) and (min-width: 1300px ) {
 	header {
-		background-image: url('../images/homestead-background@2x.jpg');
+		background-image: url('../images/homestead-dawn-background@2x.jpg');
 	}
 }
 
@@ -1475,6 +1481,10 @@ footer {
 
 	figure.ethereum-logo {
 		height: 140px;
+	}
+
+	.inner-header {
+		padding: 0;
 	}
 
 }

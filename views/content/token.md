@@ -20,7 +20,7 @@ If you are in a hurry, here's the final code of the basic token:
         event Transfer(address indexed from, address indexed to, uint256 value);
         
         /* Initializes contract with initial supply tokens to the creator of the contract */
-        function myToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
+        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
             if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
             balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
             name = tokenName;                                   // Set the name for display purposes     
@@ -275,6 +275,57 @@ The next step is making the buy and sell functions:
 Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
 
 **Note** Buy and sell "prices" are not set in ether, but in *wei* the minimum currency of the system (equivalent to the cent in the Euro and Dollar, or the Satoshi in Bitcoin). One ether is 1000000000000000000 wei. So when setting prices for your token in ether, add 18 zeros at the end.
+
+#### Proof of Work
+
+There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with ether, meaning that anyone who finds a block on ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block. 
+
+    function giveBlockReward() {
+        balanceOf[block.coinbase] += 1;
+    }
+
+It's also possible to add a mathematical formula, so that anyone who can do math can win a reward. On this next example you have to calculate the cubic root of the current challenge gets a point and the right to set the next challenge:
+
+    uint currentChallenge = 1; // Can you figure out the cubic root of this number?
+
+    function rewardMathGeniuses(uint answerToCurrentReward, uint nextChallenge) {
+        if (answerToCurrentReward**3 != currentChallenge) throw; // If answer is wrong do not continue
+        balanceOf[msg.sender] += 1;         // Reward the player
+        currentChallenge = nextChallenge;   // Set the next challenge
+    }
+
+Of course while calculating cubic roots can be hard for someone to do on their heads, they are very easy with a calculator, so this game could be easily broken by a computer. Also since the last winner can choose the next challenge, they could pick something they know and therefore would not be a very fair game to other players. There are tasks that are easy for humans but hard for computers but they are usually very hard to code in simple scripts like these. Instead a fairer system should be one that is very hard for a computer to do, but it's very hard for a computer to verify. A great candidate for would be to create a hash challenge where the challenger has to generate hashes from multiple numbers until they find one that is lower than a given difficulty.
+
+This process was first proposed by Adam Back in 1997 as [Hashcash](https://en.wikipedia.org/wiki/Hashcash) and then was implemented in Bitcoin by Satoshi Nakamoto as **Proof of work** in 2008. Ethereum was launched using such system for it's security model, but is planning to move from a Proof of Work security model into a [mixed proof of stake and betting system called *Casper*](https://blog.ethereum.org/2015/12/28/understanding-serenity-part-2-casper/). 
+
+But if you like Hashing as a form of random issuance of coins, you can still create your own ethereum based currency that has a proof of work issuance:
+
+    bytes32 public currentChallenge;                         // The coin starts with a challenge
+    uint public timeOfLastProof;                             // Variable to keep track of when rewards were given
+    uint public difficulty = 10**32;                         // Difficulty starts reasonably low
+    
+    function proofOfWork(uint nonce){
+        bytes8 n = bytes8(sha3(nonce, currentChallenge));    // Generate a random hash based on input
+        if (n < bytes8(difficulty)) throw;                   // Check if it's under the difficulty
+
+        uint timeSinceLastProof = (now - timeOfLastProof);  // Calculate time since last reward was given
+        if (timeSinceLastProof <  5 seconds) throw;         // Rewards cannot be given too quickly
+        
+        difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;  // Adjusts the difficulty
+
+        timeOfLastProof = now;                              // Reset the counter
+        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number));  // Save a hash that will be used as the next proof
+        balanceOf[msg.sender] += timeSinceLastProof / 60 seconds;  // The reward to the winner grows by the minute
+    }
+
+Also change the **Constructor function** (the one that has the same name as the contract, which is called at first upload) to add this line, so the difficulty adjustment will not go crazy:
+
+        timeOfLastProof = now;
+
+Once the contract is online, select the function "Proof of work", add your favorite number on the **nonce** field and try to execute it. If the confirmation window gives a red warning saying *"Data can't be execute"* go back and pick another number until you find one that allows the transaction to go forward: this process is random. If you find one you will be awarded 1 token for every minute that has passed since the last reward was given, and then the challenge difficulty will be adjusted up or down to target an average of 10 minutes per reward.
+
+This process of trying to find the number that will give you a reward is what is called *mining*: if difficulty rises it can be very hard to find a lucky number, but it will be always easy to verify that you found one. 
+
 
 ### Improved Coin
 
