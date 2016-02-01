@@ -12,9 +12,8 @@ block content
 
   div.main-content
     div.container
-      div.row
-        div.col-md-12.whatis.scrollme
-          figure.ethereum-network(data-when="enter", data-from="1", data-to="0", data-opacity="0.5", data-translatey="-150", data-scale="0.75").float-right.animateme
+      div.row        
+        div.col-md-6.whatis
           h2 What is Ethereum?
 
           p Ethereum is a 
@@ -28,14 +27,14 @@ block content
           p Ethereum is how the Internet was supposed to work.
 
           p Ethereum was crowdfunded during August 2014 by fans all around the world. It is developed by ETHDEV with contributions from great minds across the globe.
+        
+        div.col-md-6.whatis.scrollme
+          figure.ethereum-network(data-when="enter", data-from="1", data-to="0", data-opacity="0.5", data-translatey="-150", data-scale="0.75").animateme
 
 
-          div.clear#download-tools
-          figure.wallet.scrollme
-            div.wallet-start.animateme(data-when="span", data-from="0.3", data-to="0.1", data-opacity="0", data-translatex="300")
-            div.wallet-create.animateme(data-when="span", data-from="0.45", data-to="0.35", data-opacity="0")
-            div.wallet-confirm.animateme(data-when="span", data-from="0.65", data-to="0.55", data-opacity="0", data-translatey="200")
-
+        div.clear.clearfix#download-tools
+        
+        div.col-md-6.whatis          
           h2 Smart money, smart wallet
            
           
@@ -45,6 +44,11 @@ block content
 
           a(href="https://github.com/ethereum/mist/releases/latest").button.ethereum-wallet Download the Ethereum Wallet
 
+        div.col-md-6.whatis          
+          figure.wallet.scrollme
+            div.wallet-start.animateme(data-when="span", data-from="0.3", data-to="0.1", data-opacity="0", data-translatex="300")
+            div.wallet-create.animateme(data-when="span", data-from="0.45", data-to="0.35", data-opacity="0")
+            div.wallet-confirm.animateme(data-when="span", data-from="0.65", data-to="0.55", data-opacity="0", data-translatey="200")
 
       div.clearfix
         br
@@ -65,15 +69,7 @@ block content
   div.aleth-miner
     div.container
       div.row
-        div.col-md-12.whatis.scrollme
-          figure.aleth-one.scrollme.float-left
-            div.aleth-one-1.animateme(data-when="span", data-from="0.2", data-to="0.1", data-opacity="0", data-translatex="-500")
-            div.aleth-one-2.animateme(data-when="span", data-from="0.4", data-to="0.35", data-opacity="0")
-            div.aleth-one-3.animateme(data-when="span", data-from="0.45", data-to="0.4", data-opacity="0")
-            div.aleth-one-4.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0")
-            div.aleth-one-5.animateme(data-when="span", data-from="0.55", data-to="0.5", data-opacity="0", data-scale="0.5", data-translatey="-100")
-
-         
+        div.col-md-6.whatis.scrollme
           h2 One Click Miner
           h3 Support the network, get Ether 
 
@@ -83,17 +79,27 @@ block content
           
           a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button Install the Aleth Miner
 
+        div.col-md-6.whatis.scrollme
+          figure.aleth-one.scrollme
+            div.aleth-one-1.animateme(data-when="span", data-from="0.2", data-to="0.1", data-opacity="0", data-translatex="-500")
+            div.aleth-one-2.animateme(data-when="span", data-from="0.4", data-to="0.35", data-opacity="0")
+            div.aleth-one-3.animateme(data-when="span", data-from="0.45", data-to="0.4", data-opacity="0")
+            div.aleth-one-4.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0")
+            div.aleth-one-5.animateme(data-when="span", data-from="0.55", data-to="0.5", data-opacity="0", data-scale="0.5", data-translatey="-100")
+
+
   div.power-tools
       div.container
         div.row
-          div.col-md-12.whatis.scrollme
+          div.col-md-6.whatis.scrollme
             figure.turbo.scrollme
               div.turbo-01.animateme(data-when="span", data-from="0.3", data-to="0.0", data-opacity="0", data-translatex="500")
               div.turbo-02.animateme(data-when="span", data-from="0.35", data-to="0.1", data-opacity="0", data-translatex="500")
               div.turbo-03.animateme(data-when="span", data-from="0.4", data-to="0.2", data-opacity="0", data-translatex="500")
               div.turbo-04.animateme(data-when="span", data-from="0.45", data-to="0.3", data-opacity="0", data-translatex="500")
               div.turbo-05.animateme(data-when="span", data-from="0.6", data-to="0.5", data-opacity="0", data-translatex="500")
-
+          
+          div.col-md-6.whatis.scrollme
             h2 Mix IDE
             h3 An IDE for the blockchain era
 
@@ -105,13 +111,15 @@ block content
   div.command-line
       div.container
         div.row.scrollme
-          figure(data-when="span", data-from="0.8", data-to="0", data-opacity="0", data-translatey="300").geth-console.float-left.animateme
+          div.col-md-6.whatis          
+            h3 Or just get our command line tools
 
-          h3 Or just get our command line tools
+            p If you feel more confortable around a terminal, then you can just download our command line tools, built in Go, C++, Python, Java and others.
 
-          p If you feel more confortable around a terminal, then you can just download our command line tools, built in Go, C++, Python, Java and others.
+            a(href="/cli").button Install the Command line tools
 
-          a(href="/cli").button Install the Command line tools
+          div.col-md-6.whatis          
+            figure(data-when="span", data-from="0.8", data-to="0", data-opacity="0", data-translatey="300").geth-console.animateme
 
 
 

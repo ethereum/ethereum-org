@@ -238,6 +238,7 @@ header:after {
 
 .main-tutorial p {
 	padding: 0 20px 0;
+	text-align: left;
 }
 
 .center-align {
@@ -350,10 +351,11 @@ header:after {
 	background-repeat: repeat-y;
 	background-position: 20px;
 	display: block;
-	float: left;
-	width: 500px;
+	/*float: left;*/
+	max-width: 500px;
 	padding: 20px 40px;
 	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
+	text-align: left;
 }
 /*
 .inner-tutorial ul {
@@ -441,6 +443,13 @@ header:after {
 	background-image: url("../images/token-bg.jpg");
 }
 
+.inner-header.token-tutorial h2 ,
+.inner-header.token-tutorial h3 ,
+.inner-header.token-tutorial p {
+	color: #fff;
+	padding-left: 0;
+}
+
 .middle-feature {
 	background-image: url("../images/solidity-bg.jpg");
 }
@@ -449,10 +458,12 @@ header:after {
 	background-image: url("../images/dao-dawn-bg.jpg");
 }
 
-.crowdsale-tutorial .header-title h3, .crowdsale-tutorial .header-title h2 ,
-.token-tutorial .header-title h3, .token-tutorial .header-title h2 {
-	color: #F5F5F5;
+.inner-header .header-title h3, 
+.inner-header .header-title h2 ,
+.inner-header .header-title h3 {
+	/*color: #F5F5F5;*/
 	font-weight: 500;
+	padding-left: 0;
 }
 
 /* */
@@ -462,7 +473,7 @@ header:after {
 
 .whatis figure,
 .main-tutorial figure {
-	float: right;
+	/*float: right;*/
 	margin: 60px 0 30px 30px;	
 	position: relative;
 	width: 100%;
@@ -487,10 +498,11 @@ a.button {
 	position: relative;
 	width: 400px;
 	padding: 10px;
-	float: right;
+	/*float: right;*/
 	clear: right;
-	margin-top: 60px;
-	margin-bottom: 30px;
+	margin: 60px auto 30px;
+	/*margin-top: 60px;
+	margin-bottom: 30px;*/
 	background: #4A90E2;
 	color: #F5F5F5;
 	font-weight: 600;
@@ -861,7 +873,7 @@ ul#tableOfContents ul {
 figure.ethereum-network {
 	display: block;
 	width: 100%;
-	max-width: 391px;
+	/*max-width: 391px;*/
 	height: 306px;
 	background-image: url("../images/ethereum-network-outline@2x.png");
 	background-size: contain;
@@ -884,8 +896,8 @@ figure.geth-console {
 figure.wallet {
 	max-width: 736px;
 	height: 627px;
-	margin-right: -250px;
-	margin-top: -100px;
+	/*margin-right: -250px;*/
+	/*margin-top: -100px;*/
 }
 
 figure.wallet .wallet-start {
@@ -902,8 +914,8 @@ figure.wallet .wallet-confirm {
 figure.aleth-one {
 	max-width: 481px;
 	height: 516px;
-	float: left;
-	margin-left: -100px;
+	/*float: left;*/
+	/*margin-left: -100px;*/
 }
 
 figure.aleth-one .aleth-one-1 {
@@ -1006,7 +1018,7 @@ figure.greeter .greeter-answer {
 }
 
 figure.coin {
-	max-width: 384px;
+	/*max-width: 384px;*/
 	height: 342px;
 }
 
@@ -1025,7 +1037,7 @@ figure.coin .coin-send {
 
 
 figure.crowdsale {
-	max-width: 407px;
+	/*max-width: 407px;*/
 	height: 384px;
 }
 
@@ -1047,7 +1059,7 @@ figure.crowdsale .crowdsale-crowd {
 }
 
 figure.dao {
-	max-width: 420px;
+	/*max-width: 420px;*/
 	height: 424px;
 }
 
@@ -1169,11 +1181,11 @@ footer {
 .footer p {
 	color: #C3CCDB;
 }
-
+/*
 .inner-header figure {
 	float: left;
 	/*margin: 50px auto;*/
-} 
+/*} */
 
 .inner-header h2 {
 	text-align: left;
@@ -1187,7 +1199,7 @@ footer {
 	font-size: 40px;
 	font-weight: 300;
 	margin: 0;
-	padding: 15px 0 0;
+	padding: 15px 20px 0;
 	max-width: none;
 	text-align: left;
 	text-transform:  uppercase;
@@ -1209,10 +1221,13 @@ footer {
 
 .inner-header {
 	padding: 100px;
-	text-align: center;
+	/*text-align: center;*/
 	background: #102026;
 }
 
+.inner-page.inner-header .row {
+	display: flex;
+}
 
 .inner-page h3 {
 	padding: 20px 20px 10px;
