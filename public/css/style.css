@@ -1293,6 +1293,140 @@ footer {
 	width: 100%;
 }
 
+.slides {
+	position: relative;
+	height: 400px;
+}
+
+.slides .slide-what ,
+.slides .slide {
+	/*display: none;*/
+	transition: 0.5s transform ease-out, opacity 0.3s ease-in-out;
+	transform: translateX(-1000px) translateZ(0);
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	/*background: #666;*/
+	background-size: cover;
+	background-position: center;	
+}
+
+
+/*.slides .slide:first-child*/
+.slides .slide-what ,
+.slides .slide:target {
+	/*display: block;*/
+	transform: translateZ(0);
+	opacity: 1;	
+} 
+
+.slides .slide-what h3 ,
+.slides .slide h3 {
+	color: #fff;
+	position: absolute;
+	bottom: 20%;
+	font-size: 32px;
+	font-weight: 300;
+	line-height: 40px;
+	left: 50%;
+	text-align: center;
+	max-width: none;
+	width: 400px;
+	margin-left: -200px;
+}
+
+.slide-augur {
+	background-image: url('../images/bg/augur.jpg');
+}
+.slide-boardroom {
+	background-image: url('../images/bg/boardroom.png');
+}
+.slide-colony {
+	background-image: url('../images/bg/colony.png');
+}
+.slide-etherex {
+	background-image: url('../images/bg/etherex.png');
+}
+.slide-gnosis {
+	background-image: url('../images/bg/gnosis.jpg');
+}
+.slide-provenance {
+	background-image: url('../images/bg/provenance.png');
+}
+.slide-slockit {
+	background-image: url('../images/bg/slockit.jpg');
+}
+.slide-ujomusic {
+	background-image: url('../images/bg/ujomusic.png');
+}
+
+.slides .slide-nav {
+	position: absolute;
+	left: 10%;
+	/*top: 0;*/
+	right: 10%;
+	bottom: 10px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+.slides .slide-nav a ,
+.slides .slide a {
+	position: absolute;
+	bottom: 50px;
+	line-height: 40px;
+	left: 50%;
+	text-align: center;
+	width: 400px;
+	margin-left: -200px;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 0;
+}
+
+.slides .slide-nav a {
+	position: static;
+	background: #fff;
+	border-radius: 50%;
+	/*width: 34px;
+	height: 34px;*/
+	width: 12px;
+	height: 12px;
+	overflow: hidden;
+	font-size: 20px;
+	text-indent: 40px;
+	line-height: 28px;
+	padding: 0;
+	margin: 5px;
+	/*top: 50%;
+	bottom: 50%;
+	position: absolute;*/
+	/*color: #fff;*/
+	text-decoration: none;
+
+}
+
+.slides .slide-nav a:hover {
+	text-decoration: none;
+	background: rgba(0,0,0,0.4);	
+}
+
+.slides .slide-nav a:active {
+	text-decoration: none;
+	background: rgba(0,0,0,0.2);	
+}
+/*
+.slides .slide-nav a.prev {
+	left: 10%;
+}
+
+.slides .slide-nav a.next {
+	left: 90%;
+}*/
 
 .project-list li {
 	display: inline-block;
