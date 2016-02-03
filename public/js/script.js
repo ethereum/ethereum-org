@@ -38,6 +38,14 @@ $(document).ready(function() {
   // Usage:
   shuffle( document.getElementsByClassName('slide-link') );
 
+  $('.slide-link').mouseover(function(e){
+    console.log('hover', $(this).attr('href'));
+    var target = $(this).attr('href').substr(1);
+    $('.slide.active').removeClass('active');
+    $('.slide.slide-'+ target).addClass('active');
+  })
+
+
 
 });
 
