@@ -94,7 +94,7 @@ header {
 header {
 	height: 60vh;
 	min-height: 440px;
-	background: url('../images/homestead-background.jpg') center center no-repeat;
+	background: url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;
 	position: relative;
 	
@@ -122,7 +122,7 @@ div.scrollme.row.introduction {
 	height: 60vw;
 	min-height: 440px;
 	max-height: 800px;
-	background: url('../images/homestead-background.jpg') center center no-repeat;
+	background: url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;	
 	padding-top: 50px;
 }
@@ -140,6 +140,13 @@ div.scrollme.row.introduction {
 	overflow: hidden;
 }
 
+.caption { 
+	text-align: center;
+	letter-spacing: 0.05em;
+	font-style: italic;
+	padding: 0 40px;
+}
+
 /*
 header:after {
 	content: " ";	
@@ -155,7 +162,7 @@ header:after {
 .intro:after {
 	content: " ";
 	background: linear-gradient(transparent, #102026);
-	height: 100px;
+	height: 250px;
 	position: absolute;	
 	left: 0;
 	right: 0;
@@ -208,17 +215,20 @@ header:after {
 	-moz-font-smoothing: subpixel-antialiased;
 }
 
+body {
+	background: #102026;
+}
+
 .main-content {
 	padding-top: 40px;
 	color: #C3CCDB;
-	background: #102026;
 	position: relative;
 	z-index: 50;
 	overflow: hidden;
 }
 
-.main-content .container {
-	margin-top: -100px;
+.main-content {
+	margin-top: -150px;
 }
 
 .main-tutorial {
@@ -238,6 +248,7 @@ header:after {
 
 .main-tutorial p {
 	padding: 0 20px 0;
+	text-align: left;
 }
 
 .center-align {
@@ -350,10 +361,11 @@ header:after {
 	background-repeat: repeat-y;
 	background-position: 20px;
 	display: block;
-	float: left;
-	width: 500px;
+	/*float: left;*/
+	max-width: 500px;
 	padding: 20px 40px;
 	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
+	text-align: left;
 }
 /*
 .inner-tutorial ul {
@@ -425,28 +437,43 @@ header:after {
 
 /* DAO */
 
+.middle-feature, 
 .inner-header.main-tutorial  {
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 }
+ 
 
 .inner-header.dao-tutorial {
-	background-image: url("../images/tutorial/dao-bg.jpg");
+	background-image: url("../images/dao-bg.jpg");
 }
 
 .inner-header.token-tutorial {
-	background-image: url("../images/tutorial/token-bg.jpg");
+	background-image: url("../images/token-bg.jpg");
+}
+
+.inner-header.token-tutorial h2 ,
+.inner-header.token-tutorial h3 ,
+.inner-header.token-tutorial p {
+	color: #fff;
+	padding-left: 0;
+}
+
+.middle-feature {
+	background-image: url("../images/solidity-bg.jpg");
 }
 
 .inner-header.crowdsale-tutorial {
-	background-image: url("../images/tutorial/crowdsale-bg.jpg");
+	background-image: url("../images/dao-dawn-bg.jpg");
 }
 
-.crowdsale-tutorial .header-title h3, .crowdsale-tutorial .header-title h2 ,
-.token-tutorial .header-title h3, .token-tutorial .header-title h2 {
-	color: #F5F5F5;
+.inner-header .header-title h3, 
+.inner-header .header-title h2 ,
+.inner-header .header-title h3 {
+	/*color: #F5F5F5;*/
 	font-weight: 500;
+	padding-left: 0;
 }
 
 /* */
@@ -456,9 +483,9 @@ header:after {
 
 .whatis figure,
 .main-tutorial figure {
-	float: right;
-	margin: 60px 0 30px 30px;	
-	position: relative;
+	/*float: right;*/
+	/*margin: 60px 0 30px 30px;	*/
+	/*position: relative;*/
 	width: 100%;
 }
 
@@ -481,10 +508,11 @@ a.button {
 	position: relative;
 	width: 400px;
 	padding: 10px;
-	float: right;
+	/*float: right;*/
 	clear: right;
-	margin-top: 60px;
-	margin-bottom: 30px;
+	margin: 60px auto 30px;
+	/*margin-top: 60px;
+	margin-bottom: 30px;*/
 	background: #4A90E2;
 	color: #F5F5F5;
 	font-weight: 600;
@@ -734,9 +762,9 @@ ul#tableOfContents ul {
 	background-repeat: no-repeat;
 }
 
-.press > a {
+a.donate-button {
 	position: relative;
-	width: 45%;
+	width: 80%;
 	float: left;
 	z-index: 110;
 	text-align: center;
@@ -747,6 +775,7 @@ ul#tableOfContents ul {
 	margin: 20px 5% 20px 0;
 }
 
+a.donate-button:hover ,
 .press > a:hover {
 	text-decoration: none;
 	background: #255264;
@@ -807,10 +836,10 @@ ul#tableOfContents ul {
 	color: #303030;
 }
 
-.aleth-miner .button {
+/*.aleth-miner .button {
 	float: left;
     margin-top: 30px;
-}
+}*/
 
 .power-tools { 
 	background: #726866;
@@ -828,23 +857,23 @@ ul#tableOfContents ul {
 .power-tools h2 {
 	padding-top: 40px;
 } 
-
+/*
 .power-tools .button {
 	clear: none;
 	float: left;
 	margin-top: 50px;
-}
+}*/
 
 .command-line {
 	background: #000;
 	color: #ccc;
 	padding-top: 40px;
 }
-
+/*
 .command-line .button {
 	float: left;
 	margin-top: 30px;
-}
+}*/
 
 .command-line h3 {
 	color: #eee;
@@ -855,7 +884,7 @@ ul#tableOfContents ul {
 figure.ethereum-network {
 	display: block;
 	width: 100%;
-	max-width: 391px;
+	/*max-width: 391px;*/
 	height: 306px;
 	background-image: url("../images/ethereum-network-outline@2x.png");
 	background-size: contain;
@@ -877,9 +906,9 @@ figure.geth-console {
 
 figure.wallet {
 	max-width: 736px;
-	height: 627px;
-	margin-right: -250px;
-	margin-top: -100px;
+	height: 500px;
+	/*margin-right: -250px;*/
+	/*margin-top: -100px;*/
 }
 
 figure.wallet .wallet-start {
@@ -896,8 +925,8 @@ figure.wallet .wallet-confirm {
 figure.aleth-one {
 	max-width: 481px;
 	height: 516px;
-	float: left;
-	margin-left: -100px;
+	/*float: left;*/
+	/*margin-left: -100px;*/
 }
 
 figure.aleth-one .aleth-one-1 {
@@ -1000,7 +1029,7 @@ figure.greeter .greeter-answer {
 }
 
 figure.coin {
-	max-width: 384px;
+	/*max-width: 384px;*/
 	height: 342px;
 }
 
@@ -1019,7 +1048,7 @@ figure.coin .coin-send {
 
 
 figure.crowdsale {
-	max-width: 407px;
+	/*max-width: 407px;*/
 	height: 384px;
 }
 
@@ -1041,7 +1070,7 @@ figure.crowdsale .crowdsale-crowd {
 }
 
 figure.dao {
-	max-width: 420px;
+	/*max-width: 420px;*/
 	height: 424px;
 }
 
@@ -1163,11 +1192,11 @@ footer {
 .footer p {
 	color: #C3CCDB;
 }
-
+/*
 .inner-header figure {
 	float: left;
 	/*margin: 50px auto;*/
-} 
+/*} */
 
 .inner-header h2 {
 	text-align: left;
@@ -1181,7 +1210,7 @@ footer {
 	font-size: 40px;
 	font-weight: 300;
 	margin: 0;
-	padding: 15px 0 0;
+	padding: 15px 20px 0;
 	max-width: none;
 	text-align: left;
 	text-transform:  uppercase;
@@ -1203,10 +1232,13 @@ footer {
 
 .inner-header {
 	padding: 100px;
-	text-align: center;
+	/*text-align: center;*/
 	background: #102026;
 }
 
+.inner-page.inner-header .row {
+	display: flex;
+}
 
 .inner-page h3 {
 	padding: 20px 20px 10px;
@@ -1236,7 +1268,7 @@ footer {
 	margin: 30px auto;
 }
 
-.press-kit .asset-download {
+.donate-button {
 	display: -webkit-flex;
 	display: flex;
 	-webkit-justify-content: center;
@@ -1245,7 +1277,7 @@ footer {
 	align-items: center;
 }
 
-.press-kit .asset-download a {
+.donate-button {
 	display: block;
 }
 .ether-tutorial img {
@@ -1272,132 +1304,194 @@ footer {
 	width: 100%;
 }
 
-
-.project-list li {
-	display: inline-block;
-	max-width: 200px;
-	padding: 20px;
-	text-align: center;
-	font-size: 80%;
+.slides {
+	position: relative;
+	height: 400px;
 }
 
-
-.project-list a {
-	display: block;
+.slides .slide-what ,
+.slides .slide {
+	/*display: none;*/
+	transition: 0.6s transform ease-out, opacity 0.5s ease-in-out;
+	transform: translateY(700px) translateZ(0) scale(1,2);
+	opacity: 0;
+	position: absolute;
 	width: 100%;
-	text-indent: -500px;	
-	overflow: hidden;
-	height: 40px;
-	margin-bottom: 20px;
-	background-size: contain;
-	background-repeat: no-repeat;
+	height: 100%;
+	/*background: #666;*/
+	background-size: cover;
 	background-position: center;
-}
-
-.project-list a[href='http://augur.net'] {
-	background-image: url('../images/icons/AUGUR.png');
-}
-
-.project-list a[href='https://etherex.org/'] {
-	background-image: url('../images/icons/EX.png');
+	background-repeat: no-repeat;
 }
 
 
-.project-list a[href='https://www.theprotocol.tv/adept-demo-ibm-samsung'] {
-	background-image: url('../images/icons/ibm_white.png');
+/*.slides .slide:first-child*/
+.slides .slide-what ,
+.slides .slide.active, 
+.slides .slide:target {
+	/*display: block;*/
+	transform: translateZ(0);
+	opacity: 1;	
+	transition: 0.3s transform ease-out, opacity 0.3s ease-in-out;
+
+} 
+
+.slides .slide-what h3 ,
+.slides .slide h3 {
+	color: #fff;
+	position: absolute;
+	bottom: 20%;
+	font-size: 32px;
+	font-weight: 300;
+	line-height: 40px;
+	left: 50%;
+	text-align: center;
+	max-width: none;
+	width: 400px;
+	margin-left: -200px;
 }
 
-.project-list a[href='http://ether.fund'] {
-	background-image: url('../images/icons/ETHERFUND.png');
+.slides .slide-what {
+	background: #333;
 }
 
-.project-list a[href='http://ethergit.com'] {
-	background-image: url('../images/icons/ETHERGIT_WHITE.png');
+.slides .slide-what h5 {
+	color: #777;
+	text-align: center;
+	position: absolute;
+	top: 290px;
+	bottom: 20px;
+	left: 30%;
+	right: 30%;
+}
+.slides .slide.slide-augur {
+	background-image: url('../images/bg/augur.jpg');
 }
 
-.project-list a[href='http://airlock.me/'] {
-	background-image: url('../images/icons/airlock.png');
+.slides .slide.slide-boardroom {
+	background-image: url('../images/bg/boardroom.jpg');
+}
+.slides .slide.slide-colony {
+	background: #3f5152 url('../images/bg/colony.jpg') no-repeat;
+	background-size: contain;
+	background-position: center left;
+}
+.slides .slide.slide-etherex {
+	background-image: url('../images/bg/etherex.jpg');
+	background-position: top left;
+}
+.slides .slide.slide-gnosis {
+	background-image: url('../images/bg/gnosis.jpg');
+}
+.slides .slide.slide-provenance {
+	background: #2f3a4a url('../images/bg/provenance.jpg') no-repeat;
+	background-size: contain;
+	background-position: center left;
 }
 
-.project-list a[href='https://www.provenance.org'] {
-	background-image: url('../images/icons/Provenancve-Logo-&-Logotype-White.png');
+.slides .slide.slide-slockit {
+	background: #f1f1f1 url('../images/bg/slockit.png') no-repeat;
+	background-size: contain;
+	background-position: center left;
 }
 
-.project-list a[href='https://dgx.io/'] {
-	background-image: url('../images/icons/digixglobal_logo_dark.png');
+.slides .slide.slide-ujomusic {
+	background: #ededed url('../images/bg/ujomusic.jpg') no-repeat;
+	background-size: contain;
+	background-position: center right;
 }
 
-.project-list a[href='http://weifund.io/'] {
-	background-image: url('../images/icons/weifundalpha.png');
+.slides .slide.slide-digix {
+	background-image: url('../images/bg/digix.jpg');
 }
 
-.project-list a[href='http://www.lazooz.net/'] {
-	background-image: url('../images/icons/new-logo.png');
+.slides .slide.slide-maker {
+	background-image: url('../images/bg/maker.jpg');
 }
 
-.project-list a[href='http://etherchain.org'] {
-	background-image: url('../images/icons/etherchain.png');
-}
-
-.project-list a[href='http://main.cubespawn.com'] {
-	background-image: url('../images/icons/CUBESPAWN_2.png');
-}
-
-.project-list a[href='http://slock.it'] {
-	background-image: url('../images/icons/logo_schwarz.png');
-}
-.project-list a[href='http://boardroom.to'] {
-	background-image: url('../images/icons/boardroom.png');
-}
-.project-list a[href='http://colony.io'] {
-	background-image: url('../images/icons/colony.png');
-}
-.project-list a[href='http://makerdao.com'] {
-	background-image: url('../images/icons/maker.png');
-}
-
-.project-list a[href='http://etherparty.io'] {
-  background-image: url('../images/icons/etherparty.png');
-}
-
-.project-list a[href='http://etherscan.io'] {
-  background-image: url('../images/icons/etherscan.png');
-}
-
-.project-list a[href='http://explorer.etherparty.io'] {
-  background-image: url('../images/icons/etherparty-explorer.png');
-}
-
-.project-list a[href='http://www.hitfin.com']{
-  background-image: url('../images/icons/hitfin.png');
-}
-
-.project-list a[href='http://www.blockapps.net']{
-  background-image: url('../images/icons/blockapps.png');
-}
-
-.project-list a[href='http://groupgnosis.com']{
-  background-image: url('../images/icons/gnosis.svg');
-}
-
-.project-list a[href='http://chriseth.github.io/browser-solidity/']{
-  background-image: url('../images/icons/sol.svg');
-}
-
-.project-list a[href='http://meteor-dapp-cosmo.meteor.com']{
-  background-image: url('../images/icons/cosmo.png');
+.slides .slide.slide-freemyvunk {
+	background: #858585 url('../images/bg/freemyvunk.jpg');
+	background-position: bottom center;
+	background-repeat: repeat-x;
+	background-size: 623px 137px;
 }
 
 
-
-
-
-.project-list a[href='http://frontier.ether.camp']{
-  background-image: url('../images/icons/ethercamp.png');
-  height: 60px;
-  margin-top: -10px;
-  margin-bottom: 10px;
+/*.slides .slide.slide-freemyvunk h3 ,*/
+.slides .slide.slide-ujomusic h3 ,
+.slides .slide.slide-slockit h3 {
+	color: #666;
 }
+
+.slides .slide-nav {
+	position: absolute;
+	left: 10%;
+	/*top: 0;*/
+	right: 10%;
+	bottom: 10px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	z-index: 120;
+}
+
+.slides .slide-nav a ,
+.slides .slide a {
+	position: absolute;
+	bottom: 50px;
+	line-height: 40px;
+	left: 50%;
+	text-align: center;
+	width: 400px;
+	margin-left: -200px;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 0;
+}
+
+.slides .slide-nav a {
+	position: static;
+	background: #fff;
+	border-radius: 50%;
+	/*width: 34px;
+	height: 34px;*/
+	width: 12px;
+	height: 12px;
+	overflow: hidden;
+	font-size: 20px;
+	text-indent: 40px;
+	line-height: 28px;
+	padding: 0;
+	margin: 5px;
+	/*top: 50%;
+	bottom: 50%;
+	position: absolute;*/
+	/*color: #fff;*/
+	text-decoration: none;
+
+}
+
+.slides .slide-nav a:hover {
+	text-decoration: none;
+	background: rgba(0,0,0,0.4);	
+}
+
+/*.slides .slide-nav a:visited ,*/
+.slides .slide-nav a:active {
+	text-decoration: none;
+	background: rgba(0,0,0,0.2);	
+}
+/*
+.slides .slide-nav a.prev {
+	left: 10%;
+}
+
+.slides .slide-nav a.next {
+	left: 90%;
+}*/
+
 
 .ether-checker,
 .ether-checker input,
@@ -1438,14 +1532,14 @@ footer {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
 	header {
-		background-image: url('../images/homestead-background@2x.jpg');
+		background-image: url('../images/homestead-dawn-background@2x.jpg');
 	}
 }
 
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1 ) and (min-width: 1300px ) {
 	header {
-		background-image: url('../images/homestead-background@2x.jpg');
+		background-image: url('../images/homestead-dawn-background@2x.jpg');
 	}
 }
 
@@ -1475,6 +1569,10 @@ footer {
 
 	figure.ethereum-logo {
 		height: 140px;
+	}
+
+	.inner-header {
+		padding: 0;
 	}
 
 }

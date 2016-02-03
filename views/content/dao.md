@@ -1,4 +1,7 @@
 
+
+
+
 ## Decentralized Autonomous Organization
 
 > **"On the Blockchain, no one knows you're a fridge"**
@@ -513,11 +516,17 @@ We are going to implement what's called a version of what's usually called **Liq
 
     contract LiquidDemocracy {
         token public votingToken;
-        address public appointee;
+        address public apointee;
         mapping (address => uint) public voterId;
+        mapping (address => uint256) public voteWeight;
+        
+        uint public delegatedPercent;
+        uint public lastWeightCalculation;
+        uint public numberOfDelegationRounds;
+        
         uint public numberOfVotes;
         DelegatedVote[] public delegatedVotes;
-        bytes4 public forbiddenFunction;
+        string public forbiddenFunction;
 
         event NewApointee(address newApointee, bool changed);
         
@@ -525,19 +534,15 @@ We are going to implement what's called a version of what's usually called **Liq
             address nominee;
             address voter;
         }
-            
-        function LiquidDemocracy(address votingWeightToken, string forbiddenFunctionCall) {
+        
+        
+        function LiquidDemocracy(address votingWeightToken, string forbiddenFunctionCall, uint percentLossInEachRound) {
             votingToken = token(votingWeightToken); 
             delegatedVotes.length++;
             delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
-            forbiddenFunction = bytes4(sha3(forbiddenFunctionCall)); // example: 'transferOwnership(address)'
-        }
-
-        function execute(address target, uint valueInWei, bytes32 bytecode){
-            if (msg.sender != appointee) throw;          // If caller is the current appointee,
-            if (bytes4(bytecode) == forbiddenFunction) throw; // and it's not trying to do the forbidden function
-            
-            target.call.value(valueInWei)(bytecode);     // Then execute the command.
+            forbiddenFunction = forbiddenFunctionCall;
+            delegatedPercent =  100 - percentLossInEachRound;
+            if (delegatedPercent > 100) delegatedPercent = 100;
         }
         
         function vote(address nominatedAddress)  returns (uint voteIndex) {
@@ -551,72 +556,121 @@ We are going to implement what's called a version of what's usually called **Liq
             }
             
             delegatedVotes[voteIndex] = DelegatedVote({nominee: nominatedAddress, voter: msg.sender});
-        }         
+        } 
         
-        function calculateAppointee(uint extraRoundsOfDelegation) returns (address winner){
+        function execute(address target, uint valueInEther, bytes32 bytecode){
+            if (msg.sender != apointee ||                               // If caller is the current apointee,
+                bytes4(bytecode) == bytes4(sha3(forbiddenFunction)) ||  // and it's not trying to do the forbidden function
+                numberOfDelegationRounds < 4 ) throw;                   // and delegation has been calculated enough
+            target.call.value(valueInEther * 1 ether)(bytecode);        // Then execute the command.
+        }
+        
+        function calculateVotes() returns (address winner){
 
-            mapping (address => uint) temporaryWeight;
-            address currentWinner = appointee;
+            address currentWinner = apointee;
             uint currentMax = 0;
             uint weight = 0;
             DelegatedVote v = delegatedVotes[0];
-
-            // First, distribute the initial weight
-            for (uint i=1; i< delegatedVotes.length; i++){
-                v = delegatedVotes[i];
-                temporaryWeight[v.nominee] += votingToken.balanceOf(v.voter);
-            }
             
-            // then pass multiple times to calculate the final weight
-            for (uint n=0; n < extraRoundsOfDelegation+3; n++){
+            if (now > lastWeightCalculation + 90 minutes) {
+                numberOfDelegationRounds = 0;
+                lastWeightCalculation = now;
+                
+                // Distribute the initial weight
+                for (uint i=1; i< delegatedVotes.length; i++){
+                    voteWeight[delegatedVotes[i].nominee] = 0;
+                }            
                 for (i=1; i< delegatedVotes.length; i++){
-                    v = delegatedVotes[i];                  
-                    weight = temporaryWeight[v.voter];                  
-                    temporaryWeight[v.voter] = 0;
-                    temporaryWeight[v.nominee] += weight;
-                }  
-            }
-            
-            // finally calculate the winner
-            for (i=1; i< delegatedVotes.length; i++){
-                v = delegatedVotes[i];
-                if (temporaryWeight[v.nominee] > currentMax) {
-                    currentWinner = v.nominee;
-                    currentMax = temporaryWeight[v.nominee];
+                    voteWeight[delegatedVotes[i].voter] = votingToken.balanceOf(delegatedVotes[i].voter);
+                }
+            } else {
+                numberOfDelegationRounds++;
+                uint lossRatio = 100 * delegatedPercent ** numberOfDelegationRounds / 100 ** numberOfDelegationRounds;
+                if (lossRatio > 0){
+                    for (i=1; i< delegatedVotes.length; i++){
+                        v = delegatedVotes[i];                  
+                        
+                        if (v.nominee != v.voter && voteWeight[v.voter] > 0) {
+                            weight = voteWeight[v.voter] * lossRatio / 100 ;
+                            voteWeight[v.voter] -= weight;
+                            voteWeight[v.nominee] += weight; 
+                        }
+                        
+                        if (numberOfDelegationRounds>3 && voteWeight[v.nominee] > currentMax) {
+                            currentWinner = v.nominee;
+                            currentMax = voteWeight[v.nominee];
+                        }
+                    }
                 }
             }
             
-            // set the winner and log
-            NewAppointee(currentWinner, appointee == currentWinner);
-            appointee = currentWinner;
+            if (numberOfDelegationRounds > 3) {
+                NewApointee(currentWinner, apointee == currentWinner);
+                apointee = currentWinner;
+            }
+                    
             return currentWinner;
         }
     }
 
 
-#### Highlights 
-
-The most important piece of code is the **execute** contract. It can only be called by the contract or account elected as the **appointee* for this contract. That person or software can execute any command in the name of the Liquid Democracy contract, so if you use this contract as the **owner** of another contract, the appointee will be, indirectly, the temporary owner of that contract.
-
-    function execute(address target, bytes32 bytecode){
-            if (msg.sender != appointee) throw;          // If caller is the current appointee,
-            target.call.value(msg.value)(bytecode);     // Then execute the command.
-        }
 
 
-#### How to use it
+#### Deployment 
 
 First, you need a token. If you have followed the **Stakeholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token/) and distribute it among some accounts. Copy the token address.
 
-Now deploy the democracy contract, and make sure that you put the token address on the **Voting weight token**. Now deploy the Liquid democracy and go to its page. First have any of the stakeholders **vote** on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you'd rather have no one representing you on that role. If the person you apointed apoints someone else, then your vote will be redirected to that final person and so on, until it either reaches someone who didn't vote or that voted on themselves.
+Deploy the democracy contract, and put the token address on the **Voting weight token**, put **75** as the **Percent loss in each round** and **transferOwnership(address)** (without any spaces or extra characters!) as the **forbidden function.
 
-When enough people have voted execute the **Calculate appointee**. Anyone can run that contract anytime and it will recalculate who is the current most trusted person on the network. They will then be set as the **appointee** of the contract. 
+#### Selecting a delegate
 
-The appointee is the only account that can use the **execute** function of the contract, this is very important role as the execute function will allow the contract to do anything in the name of the contract: move ether, move tokens, execute other contracts. The only thing the appointee cannot do is change the nature of the democracy itself: at any point if he loses support he will be immediately dismissed from the post of appointee.
+Now deploy the Liquid democracy and go to its page. First have any of the stakeholders **vote** on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you'd rather have no one representing you on that role. 
 
-As an example of what that can do: create a [Mintable Token](./token/) and set the address of the **liquid democracy** as the issuer of the token. Now go to the mintable token page and use any account to follow the steps as if you were going to create new tokens, but stop on the confirmation window. Instead of typing your password, instead save the **Bytecode** on a separate text file, together with the address of the Mintable Token. Now go back to the Liquid Democracy and choose **execute**: set the **target** as the mint address, leave value at 0 and put the bytecode you just copied on the **bytecode** field. If  you are not the appointee then the transaction will immediatly halt and you'll lose your fee, but if are calling that transaction from the appointee account then it should execute as if the democracy was requesting the function from the mint. [Use this power responsibly](https://www.youtube.com/watch?v=b23wrRfy7SM).  
+After enough people have casted their votes, you can execute the function **Calculate Votes** so it will calculate everyone's voting weight. This function needs to be run multiple times, so the first run it will just set everyone's weight as their balance in the selected token, in the next round that voting weight will go to the person you voted apointed, in the next it will go to the person voted by the person you chose and so on. To prevent infinite loops of vote delegations, each time a vote is forwarded it loses a bit of power, set by at contract launch at **percentLossInEachRound**. So if the loss is set at 75%, it means that the person you vote gets 100% of your weight, but if they delegate the vote to someone else only 75% of their weight is forwarded. That person can delegate to someone else but they'll get only 56% of your voting weight and so on. If the ratio is anything lower than 100% there will be a finite moment where recalculating voting delegation won't change the result anymore, but if it's a 100% it means that voting weights will simply circulate around any potential loops.
 
-**Warning** In some contracts, like the Congress and the Association above, one of the powers of the **owner** is to execute a function called **change ownership**. If you set the **liquid democracy** as the owner of one of these contracts, you should remove that function, or limit it in some other way, otherwise the **apointee** will be able to change ownership of that contract from the democracy to themselves, executing a coup that will render the apointee position irrelevant. 
+If there has been more than one hour and a half since this round of calling **Calculate votes** has started, all weights will reset and will be recalculated based on the original token balance, so if you have recently received more tokens you should execute this function again.
+
+#### House of representatives
+
+What is all that vote delegation good for? For one, you can use instead of the token weight on a **Association**. First of all, get the code for a [shareholder association](#the-stakeholder-association) but replace the first line where it describes the token:
+
+    contract token { mapping (address => uint256) public balanceOf;  }
+
+Into this:
+
+    contract token { 
+        mapping (address => uint256) public voteWeight;  
+        uint public numberOfDelegationRounds;
+        function balanceOf(address member) constant returns (uint256 balance) {
+            if (numberOfDelegationRounds < 3) return 0;
+            else return this.voteWeight(member);
+        }
+    }
+
+When you are writing your contract you can describe multiple other contracts used by your main contract. Some might be functions and variables that are already defined on the target contract, like **voteWeight** and **numberOfDelegationRounds**. But notice that **balanceOf** is a new function, that doesn't exist neither on the Liquid Democracy or the Association contract, we are defining it now, as a function that will return the **voteWeight** if at least three rounds of delegations have been calculated.
+
+Use the **Liquid democracy** as the **Token Address** instead of the original token and proceed to deploy the shareholder association as usual. Just like before you the users can create new proposals on what to do or cast votes on these issues: but now, **instead of using the token balance as the voting power we are using a delegative proccess**. So if you are a token holder, instead of having to keep yourself constantly informed by all the issues, you can just select someone you know trust and appoint them, and then they can choose someone they trust: the result is that your representative, instead of being limited to a given arbitrary **geographical proximity**, will be someone in your **social proximity**.
+
+Also it means that you can switch your vote at any moment: if your representative has voted against your interests in some issue you can, before the proposal votes are tallied up, switch your apointee, or just choose to represent yourself on the issue and cast the vote yourself.
+
+
+#### The Executive Branch
+
+Delegative democracies are a great way to choose representatives, but voting on individual proposals might be too slow for some important or simpler decisions: that's why most democratic governments have an executive branch, where an apointed person has the right to represent the state. 
+
+After four rounds of delegations, the address with more weight will be set as the **Apointee**. If there are many delegated votes, then a few more rounds of **Calculate Votes** might be necessary to settle in the final apointed address.
+
+The Apointee is the only address that can call the **Execute** function, which will be able to execute (almost) any function representing the democracy as a whole. If there is any ether or token stored in the Liquid democracy contract, the Apointee will be allowed to move it anywhere.
+
+If you have followed our example and created a **Shareholder association** using this liquid democracy as a token, then you should be able to use the executive branch in an interesting manner: go to the main Association address and execute a **Transfer Ownership** function to the liquid democracy. 
+
+Once that transfer is complete, switch the function to **Change Voting Rules**. This allows you to change some essential voting rules, like the minimum quorum needed for a vote to pass or the time a new proposal needs to stay on the floor. Try changing these settings and click **execute**: when the confirmation window pops up it will tell you that the transaction *Can't be executed*. This happens, of course, because only the address set as **Owner** can change these settings and the contract will reject this transaction attempt. So **instead of typing your password** copy the code on the **data** field and save it to a text file. Click cancel, scroll to the top and click **copy address** and also save that to a text file.
+
+Now go to the Liquid democracy page and choose **execute**. On **target** put the address of the association contract, leave **ether amount** at 0 and paste the code you copied previously into the **bytecode data** field. Make sure you are executing it from the account set as the **appointee** and click **execute**. 
+
+Once the transaction has been picked up, the Liquid democracy will pass the order to the association and the new voting rules might apply. The apointee has the absolute power to do anything that the **Liquid democracy** contract can execute. You can use the same technique to create a [Mintable Token](./token/) owned by the delegative democracy, and then allow the apointee to mint tokens or freeze accounts.
+
+To prevent abuses of powers, you can set one **Forbidden function** that the Apointee cannot ever do. If you followed our example the forbidden function is the **transferOwnership(address)**, to prevent the apointee from transfering the ownership of the association to themselves (in politics, when a president uses his executive power to transfer to themselves something that used to belongs to the presidency, it's a coup or embezzling).
 
 
 
