@@ -523,15 +523,32 @@ a.button {
 	text-decoration: none;
 	font-weight: 600;
 	-webkit-appearance: none;
+	border-bottom: solid 3px #2F6DB5;
+	top: -3px;
+	box-shadow: rgba(0,0,0,0.1) 0 6px 1px;
+	transition: box-shadow 0.6s, border-bottom 0.6s, top 0.6s, margin-bottom 0.6s;	
+	transition-timing-function: ease-out;
 }
 
 input.button:hover, 
 button:hover,
 a.button:hover {
-	border-bottom: solid 3px #2F6DB5;
-	top: -3px;
+	border-bottom: solid 1px #2F6DB5;
+	top: -1px;
 	text-shadow: rgba(0,0,0,0.2) 0 -1px 0;
-	box-shadow: rgba(0,0,0,0.1) 0 4px 1px;
+	box-shadow: rgba(0,0,0,0.05) 0 2px 1px;
+	margin-bottom: 32px;
+	cursor: hand;
+	cursor: pointer;	
+	transition: box-shadow 0.3s, border-bottom 0.3s, top 0.3s, margin-bottom 0.3s;		
+	transition-timing-function: ease-in;	
+}
+
+input.button:active, 
+button:active,
+a.button:active {
+	border-bottom: solid 1px #2F6DB5;
+	top: -1px;
 }
 
 input.button:hover {
@@ -822,10 +839,105 @@ a.donate-button:hover ,
 }
 
 
-.ethereum-wallet.button {
-	float: none;
-	clear: none;
+
+
+
+a.ethereum-wallet {
+	display: none;
+	text-align: center;
 }
+
+a.button.allversions.ethereum-wallet {
+	display: block;
+}
+
+a.button.ethereum-wallet {
+	background-size: 23px 23px;
+	background-repeat: no-repeat;
+	background-position: 25px center;
+	font-weight: 400;
+}
+
+a.button.ethereum-wallet strong {
+	display: block;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+.MacIn a.ethereum-wallet.link,
+.MacIn a.button.ethereum-wallet.mac {
+	display: block;
+}
+
+.MacIn a.button.allversions.ethereum-wallet {
+	display: none;
+}
+
+
+.Win32 a.ethereum-wallet.link,
+.Win32 a.button.ethereum-wallet.win32 {
+	display: block;
+}
+
+.Win32 a.button.allversions.ethereum-wallet {
+	display: none;
+}
+
+
+.Win64 a.ethereum-wallet.link,
+.Win64 a.button.ethereum-wallet.win64 {
+	display: block;
+}
+
+.Win64 a.button.allversions.ethereum-wallet {
+	display: none;
+}
+
+
+
+.Linux a.ethereum-wallet.link,
+.Linux a.button.ethereum-wallet.linux {
+	display: block;
+}
+
+.Linux a.button.allversions.ethereum-wallet {
+	display: none;
+}
+
+
+a.button.ethereum-wallet.mac {
+	background-image: url("../images/button-mac.png");	
+}
+
+a.button.ethereum-wallet.linux {
+	background-image: url("../images/button-linux.png");	
+}
+
+a.button.ethereum-wallet.win32 {
+	background-image: url("../images/button-win32.png");	
+}
+
+a.button.ethereum-wallet.win64 {
+	background-image: url("../images/button-win64.png");	
+}
+
+/*
+
+a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-macosx-0-3-9.zip").button.mac.ethereum-wallet Download the Ethereum Wallet for Mac OS X
+
+          a(href="https://github.com/ethereum/mist/releases/download/v0.3.8/Ethereum-Wallet-win32-0-3-8.zip").button.win32.ethereum-wallet Download the Ethereum Wallet for Windows 
+
+          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-win64-0-3-9.zip").button.win64.ethereum-wallet Download the Ethereum Wallet for Windows
+
+          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-linux64-0-3-9.zip").button.ethereum-wallet Download the Ethereum Wallet for Linux
+
+          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-linux32-0-3-9.zip").button.ethereum-wallet Download the Ethereum Wallet for Linux
+          
+          a(href="https://github.com/ethereum/mist/releases/latest").allversions.button.ethereum-wallet Download the Ethereum Wallet
+
+          a(href="https://github.com/ethereum/mist/releases/latest").allversions.ethereum-wallet See all versions
+
+*/
 
 .aleth-miner {
 	background: #FFF;

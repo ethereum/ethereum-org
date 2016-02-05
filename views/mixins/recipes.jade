@@ -96,7 +96,14 @@ mixin greeterRecipe(header)
 
 mixin tokenRecipe(header)
 
+
+  if header != ""
+    div.col-md-12.tutorial
+      h2 #{header}
+
+
   div.col-md-6.tutorial
+
     h3 Design and issue your own cryptocurrency
 
     p Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API, so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. 
@@ -106,8 +113,7 @@ mixin tokenRecipe(header)
   div.col-md-6.tutorial
     +tokenFigure
 
-    if header != ""
-      h2 #{header}
+    
   
   div.clearfix
   div.col-md-6.tutorial
@@ -123,14 +129,17 @@ mixin tokenRecipe(header)
 
 
 mixin crowdsaleRecipe(header)
+
+  if header != ""
+    div.col-md-12.tutorial
+      h2 #{header}
+
+
   div.col-md-6.tutorial
     +crowdsaleFigure
 
-    if header != ""
-    h2 #{header}
-
-  div.col-md-6.tutorial
-    
+  
+  div.col-md-6.tutorial    
     h3 Kickstart a project with a trustless crowdsale
 
     p Do you already have many ideas as to what to develop on Ethereum? Maybe you need help and some funds to bring them to life, but who would lend money to someone they don’t trust?
@@ -154,12 +163,15 @@ mixin crowdsaleRecipe(header)
   
 mixin daoRecipe(header)
 
+
+  if header != ""
+    div.col-md-12.tutorial
+      h2 #{header}
+
+
   div.col-md-6.tutorial
 
     +daoFigure
-
-    if header != ""
-      h2 #{header}
 
   div.col-md-6.tutorial
     h3 Create a democratic autonomous organization
@@ -186,10 +198,14 @@ mixin daoRecipe(header)
 
 mixin futureRecipe(header)
   
+
+  if header != ""
+    div.col-md-12.tutorial
+      h2 #{header}
+
+
   div.col-md-6.tutorial
 
-    if header != ""
-      h2 #{header}
     h3 Build a new kind of decentralized application
 
     p Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper proof network?

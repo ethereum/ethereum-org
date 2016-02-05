@@ -3,6 +3,11 @@ mixin gethFigure(center)
     div.geth-background.animateme(data-when="enter", data-from="0.5", data-to="0", data-opacity="0", data-translatex="100")
     div.geth-logo.animateme(data-when="enter", data-from="0.7", data-to="0.6", data-opacity="0")
 
+mixin gethFigureExit()
+  figure.geth.scrollme
+    div.geth-background.animateme(data-when="exit", data-to="0.5", data-from="0.2", data-opacity="0", data-translatex="100")
+    div.geth-logo.animateme(data-when="exit", data-to="0.1", data-from="0.0", data-opacity="0")
+
 
 mixin etherFigure()
   figure.ether.scrollme

@@ -45,7 +45,7 @@ $(document).ready(function() {
     $('.slide.slide-'+ target).addClass('active');
   })
 
-
+  $('body').addClass(window.navigator.platform.substr(0,5));
 
 });
 
