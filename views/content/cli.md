@@ -5,8 +5,8 @@ The Frontier is the first live release of the Ethereum network. As such you are 
 In order to navigate the Frontier, you’ll need to use the command line. If you are not comfortable using it, we strongly advise you to step back, watch from a distance for a while and wait until more user friendly tools are made available. Remember, there are no safety nets and for everything you do here, you are mostly on your own.
 
 * **Learn More**
-  * [What is Ethereum?](http://guide.ethereum.org/ethereum.html)
-  * [Frontier Release](http://guide.ethereum.org/frontier.html)
+  * [What is Ethereum?](https://ethereum.gitbooks.io/frontier-guide/content/ethereum.html)
+  * [Frontier Release](https://ethereum.gitbooks.io/frontier-guide/content/frontier.html)
   * [License](https://ethereum.gitbooks.io/frontier-guide/content/license.html) and [Contributors](https://ethereum.gitbooks.io/frontier-guide/content/contributors.html)
   
 
