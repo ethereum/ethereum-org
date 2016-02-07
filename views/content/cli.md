@@ -7,7 +7,7 @@ In order to navigate the Frontier, you’ll need to use the command line. If you
 * **Learn More**
   * [What is Ethereum?](http://guide.ethereum.org/ethereum.html)
   * [Frontier Release](http://guide.ethereum.org/frontier.html)
-  * [License and Contributors](http://guide.ethereum.org/contributors.html)
+  * [License](https://ethereum.gitbooks.io/frontier-guide/content/license.html) and [Contributors](https://ethereum.gitbooks.io/frontier-guide/content/contributors.html)
   
 
 # Clients
