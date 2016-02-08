@@ -30,7 +30,19 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 **Vitalik is one of the inventors of Ethereum.** Vitalik first discovered Bitcoin in 2011, and the combination of math, economics and an immediate feeling that it represented the way that money "should be" attracted him immediately to the scene. In September 2011 he became the cofounder and original head writer for Bitcoin Magazine. Following this, Vitalik founded Ethereum, a blockchain-based arbitrary-state Turing-complete scripting platform useful for smart contracts, computational resource marketplaces, financial experimentation, decentralized governance and many other use cases that we have not even thought of yet. 
 
-[Website](https://www.vitalik.ca), [Twitter](https://twitter.com/vitalikbuterin)
+[Website](https://www.vitalik.ca), [Twitter](https://twitter.com/vitalikbuterin), [Github](https://github.com/vbuterin/)
+
+----
+
+
+
+#### Jeffrey Wilcke
+
+![Portrait of Jeffrey Wilcke](/images/portraits/Jeffrey.jpg)
+
+**Jeffrey is one of the founders of Ethereum.** Jeff started one of the first implementations of Ethereum in 2014, using Go. He helped found ethereum and has leading development ever since. 
+
+[Linkedin](https://www.linkedin.com/in/jeffreywilcke), [Twitter](https://twitter.com/jeffehh), [Github](https://github.com/obscuren)
 
 ----
 
