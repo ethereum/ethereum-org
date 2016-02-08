@@ -5,9 +5,9 @@ The Frontier is the first live release of the Ethereum network. As such you are 
 In order to navigate the Frontier, you’ll need to use the command line. If you are not comfortable using it, we strongly advise you to step back, watch from a distance for a while and wait until more user friendly tools are made available. Remember, there are no safety nets and for everything you do here, you are mostly on your own.
 
 * **Learn More**
-  * [What is Ethereum?](http://guide.ethereum.org/ethereum.html)
-  * [Frontier Release](http://guide.ethereum.org/frontier.html)
-  * [License and Contributors](http://guide.ethereum.org/contributors.html)
+  * [What is Ethereum?](https://ethereum.gitbooks.io/frontier-guide/content/ethereum.html)
+  * [Frontier Release](https://ethereum.gitbooks.io/frontier-guide/content/frontier.html)
+  * [License](https://ethereum.gitbooks.io/frontier-guide/content/license.html) and [Contributors](https://ethereum.gitbooks.io/frontier-guide/content/contributors.html)
   
 
 # Clients
@@ -149,7 +149,7 @@ The console has auto completion and history support that persists between sessio
 
 In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://guide.ethereum.org/managing_accounts.html), but the simplest one is through the console. 
 
-**ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontire release clients.
+**ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontier release clients.
 
 **GETH**:
 
