@@ -1004,6 +1004,7 @@ figure.ethereum-network {
 }
 
 
+
 figure.geth-console {
 	display: block;
 	width: 100%;
@@ -1014,6 +1015,24 @@ figure.geth-console {
 	background-repeat: no-repeat;
 	margin-bottom: 50px;
 }
+
+
+figure.ethereum-explain {
+	max-width: 460px;
+	height: 310px;
+	position: relative;
+}
+
+figure.ethereum-explain .explain-01 {
+	background-image: url("../images/explain-01.png");
+}
+figure.ethereum-explain .explain-02 {
+	background-image: url("../images/explain-02.png");
+}
+figure.ethereum-explain .explain-03 {
+	background-image: url("../images/explain-03.png");
+}
+
 
 
 figure.wallet {
@@ -1032,6 +1051,7 @@ figure.wallet .wallet-create {
 figure.wallet .wallet-confirm {
 	background-image: url("../images/wallet-confirm.png");
 }
+
 
 
 figure.aleth-one {
