@@ -39,7 +39,7 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ![Portrait of Jeffrey Wilcke](/images/portraits/Jeffrey.jpg)
 
-**Jeffrey is one of the founders of Ethereum.** Jeff started one of the first implementations of Ethereum in 2013, using Go. He helped found ethereum and has leading development ever since. 
+**Jeffrey is one of the founders of Ethereum.** Jeff started one of the first implementations of Ethereum in 2013, using the Go programming language. He helped found Ethereum and has been leading the development ever since.
 
 [Linkedin](https://www.linkedin.com/in/jeffreywilcke), [Twitter](https://twitter.com/jeffehh), [Github](https://github.com/obscuren)
 
