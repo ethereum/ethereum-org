@@ -1393,6 +1393,17 @@ footer {
 	clear: both;
 }
 
+.foundation-page.even {
+	background-image: url('../images/foundation-collage.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+
+.foundation-page.even h2,
+.foundation-page.even p {
+	color: #FFF;
+}
 
 .main-tutorial img[alt*="Logo"] {
 	width: 100px;
