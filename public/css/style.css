@@ -94,7 +94,7 @@ header {
 header {
 	height: 60vh;
 	min-height: 440px;
-	background: url('../images/homestead-dawn-background.jpg') center center no-repeat;
+	background: #f8f6fb url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;
 	position: relative;
 	
@@ -122,7 +122,7 @@ div.scrollme.row.introduction {
 	height: 60vw;
 	min-height: 440px;
 	max-height: 800px;
-	background: url('../images/homestead-dawn-background.jpg') center center no-repeat;
+	background: #f8f6fb url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;	
 	padding-top: 50px;
 }
