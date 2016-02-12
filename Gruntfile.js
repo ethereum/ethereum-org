@@ -79,6 +79,9 @@ module.exports = function(grunt) {
 					},
 					{
 						'dist/foundation.html': 'views/foundation.jade'
+					},
+					{
+						'dist/donate.html': 'views/donate.jade'
 					}
 				]
 			}

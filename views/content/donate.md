@@ -30,7 +30,7 @@ If you feel like contributing, click on the **Deposit Ether** button on the top 
 
 ![First ever Unicorn Token Transaction](/images/tutorial/unicorn-is-born.png)
 
-If you want to send your unicorn to someone else, or maybe even to a wallet for safekeeping, it's very easy: just go to the **Send** tab, select the account you own an unicorn from and your unicorn token will appear under your "ether" and any other currency you own.
+If you want to send your unicorn to someone else, or maybe even to a wallet for safekeeping, it's very easy: just go to the **Send** tab, select the account you own a unicorn from and your unicorn token will appear under your "ether" and any other currency you own.
 
 
 ## Other ways to help
