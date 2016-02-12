@@ -24,6 +24,8 @@ This will add it to your watch list. Clicking on it will take you to the contrac
 
 The list of members and proposals can be acessed by typing a number on the input below their section titles. For example, type "1" on the input under the **Members** and you'll see that the first member is *Vitalik Buterin* and it's capabilities on this DAO. Some members have voting rights while others are added with only administrative privileges like adding new proposals. You won't find many proposals at first.
 
+*This contract **does not represent all the Ethereum Foundation holdings**, it's a newly created contract to experiment with charity [DAOs](./dao)*.
+
 If you feel like contributing, click on the **Deposit Ether** button on the top and donate any amount you want. If you send over the limit of a unicorn price (currently at 2.014 ether), then you'll get one or more unicorns!
 
 ![First ever Unicorn Token Transaction](/images/tutorial/unicorn-is-born.png)
