@@ -8,6 +8,8 @@ block content
   include mixins/recipes.jade
   +inner-header("About the Ethereum Foundation")
 
+
+
   div.main-tutorial.inner-page.foundation-page
     div.container  
       div.row
@@ -15,8 +17,8 @@ block content
           include:md content/foundation.md        
 
   div.main-tutorial.inner-page.foundation-page.even
-    div.container  
-      div.row
+    div.container.scrollme  
+      div.row.animateme(data-when="enter", data-from="0.9", data-to="0.1", data-opacity="0", data-scale="0.8")
         div.col-md-12
           include:md content/timeline.md        
 

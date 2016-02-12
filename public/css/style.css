@@ -784,9 +784,6 @@ ul#tableOfContents ul {
 
 a.donate-button {
 	position: relative;
-	width: 80%;
-	float: left;
-	z-index: 110;
 	text-align: center;
 	background: #1C3944;
 	border-radius: 4px;
@@ -799,6 +796,48 @@ a.donate-button:hover ,
 .press > a:hover {
 	text-decoration: none;
 	background: #255264;
+}
+
+
+.dapp-identicon {
+	position: absolute;
+	display: block;
+	left: 50%;
+	margin-left: -32px;
+	height: 64px;
+	width: 64px;
+	background-size: cover;
+	border-radius: 50%;
+	box-shadow: rgba(255, 255, 255, 0.4) 0px 4px 8px 0px inset, rgba(0, 0, 0, 0.6) 0px -4px 12px 0px inset;
+	
+}
+
+.donate h2 {
+	padding-bottom: 0;
+}
+
+.main-tutorial .donate h3 {
+	padding-top: 0;
+	text-align: center;
+	max-width: none;
+}
+
+
+.main-tutorial .donate h4 {
+	text-align: center;
+	padding-top: 50px;
+}
+
+
+.main-tutorial .donate .caption {
+	max-width: 600px;
+	margin: 10px auto;
+	text-align: center;
+	display: block;
+}
+
+footer .caption {
+	color:  #C3CCDB;
 }
 
 .press li span.press-recode {
@@ -1357,6 +1396,11 @@ footer {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-weight: 200;
 	font-size: 200%;
+}
+
+.inner-header.default-header h3 {
+	text-align: center;
+	color: #FFF;
 }
 
 .inner-header .scrollme {

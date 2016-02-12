@@ -62,6 +62,10 @@ app.get('/foundation', function(req, res) {
 	res.render('foundation');
 });
 
+app.get('/donate', function(req, res) {
+	res.render('donate');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
