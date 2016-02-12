@@ -538,7 +538,7 @@ button:hover,
 a.button:hover {
 	border-bottom: solid 1px #2F6DB5;
 	top: -1px;
-	text-shadow: rgba(0,0,0,0.2) 0 -1px 0;
+	/*text-shadow: rgba(0,0,0,0.2) 0 -1px 0;*/
 	box-shadow: rgba(0,0,0,0.05) 0 2px 1px;
 	margin-bottom: 32px;
 	cursor: hand;
@@ -552,6 +552,16 @@ button:active,
 a.button:active {
 	border-bottom: solid 1px #2F6DB5;
 	top: -1px;
+}
+
+.button.small {
+	top: -1px;
+	max-width: 200px;
+	padding: 3px 5px;
+	border-bottom: #c1d7ef 1px solid;	
+	box-shadow: rgba(0,0,0,0.1) 0 1px 1px;	
+	background-color: #e4ebf3;
+	color: #4a90e2;
 }
 
 input.button:hover {
@@ -723,6 +733,9 @@ ul#tableOfContents ul {
 }
 .community ul li a.email {
 	background-image: url("../images/icons/icon-email.png");
+}
+.community ul li a.stackexchange {
+	background-image: url("../images/icons/icon-stackexchange.png");
 }
 
 .community li.canary {
@@ -2120,36 +2133,9 @@ footer {
 	.community ul li a.email {
 		background-image: url("../images/icons/icon-email@2x.png");
 	}
-
-
-	.press li span.press-fast-company {
-		background-image: url("../images/icons/fast-company@2x.png");
-	}	
-	.press li span.press-reason {
-		background-image: url("../images/icons/reason@2x.png");
+	.community ul li a.stackexchange {
+		background-image: url("../images/icons/icon-stackexchange@2x.png");
 	}
-	.press li span.press-forbes {
-		background-image: url("../images/icons/forbes@2x.png");
-	}
-	.press li span.press-telegraph {
-		background-image: url("../images/icons/the-telegraph@2x.png");
-	}
-	.press li span.press-wired {
-		background-image: url("../images/icons/wired@2x.png");
-	}
-	.press li span.press-wsj {
-		background-image: url("../images/icons/wall-street-journal@2x.png");
-	}
-	.press li span.press-aljazeera {
-		background-image: url("../images/icons/al-jazeera@2x.png");
-	}
-	.press li span.press-bloomberg {
-		background-image: url("../images/icons/bloomberg@2x.png");
-	}
-	.press li span.press-new-scientist {
-		background-image: url("../images/icons/new-scientist@2x.png");
-	}
-
 
 
 }
