@@ -15,13 +15,14 @@ If you are in a hurry, here's the final code of the basic token:
         
         /* This creates an array with all balances */
         mapping (address => uint256) public balanceOf;
-        
+        mapping (address => mapping (address => uint)) public allowance;
+        mapping (address => mapping (address => uint)) public spentAllowance;
+
         /* This generates a public event on the blockchain that will notify clients */
         event Transfer(address indexed from, address indexed to, uint256 value);
         
         /* Initializes contract with initial supply tokens to the creator of the contract */
         function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
-            if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
             balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
             name = tokenName;                                   // Set the name for display purposes     
             symbol = tokenSymbol;                               // Set the symbol for display purposes    
@@ -36,6 +37,29 @@ If you are in a hurry, here's the final code of the basic token:
             balanceOf[_to] += _value;                            // Add the same to the recipient            
             Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
         }
+
+        /* Allow another contract to spend some tokens in your behalf */
+
+        function approve(address _spender, uint256 _value) returns (bool success) {
+            allowance[msg.sender][_spender] = _value;          
+        }
+
+        /* A contract attempts to get the coins */
+
+        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough   
+            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
+            if (spentAllowance[_from][msg.sender] + _value > allowance[_from][msg.sender]) throw;   // Check allowance
+            balanceOf[_from] -= _value;                          // Subtract from the sender
+            balanceOf[_to] += _value;                            // Add the same to the recipient            
+            spentAllowance[_from][msg.sender] += _value;
+            Transfer(msg.sender, _to, _value); 
+        } 
+
+        /* This unnamed function is called whenever someone tries to send ether to it */
+        function () {
+            throw;     // Prevents accidental sending of ether
+        }        
     }   
 
 Let's break it down step by step
@@ -363,6 +387,8 @@ If you add all the advanced options, this is how the final code should look like
         /* This creates an array with all balances */
         mapping (address => uint256) public balanceOf;
         mapping (address => bool) public frozenAccount; 
+        mapping (address => mapping (address => uint)) public allowance;
+        mapping (address => mapping (address => uint)) public spentAllowance;
 
         /* This generates a public event on the blockchain that will notify clients */
         event Transfer(address indexed from, address indexed to, uint256 value);
@@ -387,8 +413,30 @@ If you add all the advanced options, this is how the final code should look like
             balanceOf[_to] += _value;                            // Add the same to the recipient            
             Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
         }
-        
-        function mintToken(address target, uint256 mintedAmount) onlyOwner {
+
+        /* Allow another contract to spend some tokens in your behalf */
+
+        function approve(address _spender, uint256 _value) returns (bool success) {
+            allowance[msg.sender][_spender] = _value;          
+        }
+
+        /* A contract attempts to get the coins */
+
+        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough   
+            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
+            if (spentAllowance[_from][msg.sender] + _value > allowance[_from][msg.sender]) throw;   // Check allowance
+            balanceOf[_from] -= _value;                          // Subtract from the sender
+            balanceOf[_to] += _value;                            // Add the same to the recipient            
+            spentAllowance[_from][msg.sender] += _value;
+            Transfer(msg.sender, _to, _value); 
+        } 
+
+        /* This unnamed function is called whenever someone tries to send ether to it */
+        function () {
+            throw;     // Prevents accidental sending of ether
+        }
+                function mintToken(address target, uint256 mintedAmount) onlyOwner {
             balanceOf[target] += mintedAmount;  
             Transfer(0, target, mintedAmount);
         }
@@ -440,6 +488,21 @@ Select the address where those new currencies will be created and then the amoun
 After a few confirmations, the recipient balance will be updated to reflect the new amount. But your recipient wallet might not show it automatically: in order to be aware of custom tokens, the wallet must add them manually to a watch list. Copy your token address (at the admin page, press *copy address*) and send that to your recipient. If they haven't already they should go to the contracts tab, press **Watch Token** and then add the address there. Name, symbols and decimal amounts displayed can be customized by the end user, specially if they have other tokens with similar (or the same) name. The main icon is not changeable and users should pay attention to them when sending and receiving tokens to ensure they are dealing with the real deal and not some copycat token.
 
 ![add token](/images/tutorial/add-token.png)
+
+
+## Using your coin
+
+Once you deployed your tokens, it will be added to your list of watched tokens, and the total balance will be shown on your account. In order to send tokens, just go on the **Send** tab and select an account that contains tokens. The tokens the account has will be listed just under *Ether*. Select them and then type the amount of tokens you want to send.
+
+If you want to add someone's else token, just go to the **Contracts** tab and click **Watch token**. For example, to add the **Unicorn (🦄)** token to your watch list, just add the address **0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. 
+
+![Invisible Unicorns](/images/tutorial/unicorn-token.png)
+
+Unicorn tokens are memorabilia created exclusively for those who have donated to the address **0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359** that is controlled by the Ethereum Foundation. For more information about them [read it here](./donate)
+
+### Now what?
+
+You just learned how you can use ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to [represent a share in a company#the-stakeholder-association](./dao) or you can use a [central committee](./dao#the-code) to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a [crowdsale](./crowdsale). What will you build next?
 
 
 

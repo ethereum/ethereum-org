@@ -31,6 +31,7 @@ block content
         +toc
         div.col-md-12
           include:md content/dao.md
+          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/dao.md') Improve this page
 
 
   div.main-tutorial.ethereum-projects.even
@@ -38,3 +39,14 @@ block content
       div.row
         div.col-md-12
           +futureRecipe("What's next?")
+
+  script
+    |  ((window.gitter = {}).chat = {}).options = {
+    |    room: 'ethereum/tutorials'
+    |  };
+
+  script(src="https://sidecar.gitter.im/dist/sidecar.v1.js", async, defer)
+
+
+
+

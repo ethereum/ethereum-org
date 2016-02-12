@@ -31,9 +31,20 @@ block content
         +toc
         div.col-md-12
           include:md content/crowdsale.md
+          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/crowdsale.md') Improve this page
 
   div.main-tutorial.even
     div.container
       div.row
         div.col-md-12.tutorial
           +daoRecipe("What's next?")
+
+
+  script
+    |  ((window.gitter = {}).chat = {}).options = {
+    |    room: 'ethereum/tutorials'
+    |  };
+
+  script(src="https://sidecar.gitter.im/dist/sidecar.v1.js", async, defer)
+
+
