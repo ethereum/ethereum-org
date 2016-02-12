@@ -7,7 +7,6 @@ block vars
 
 block content
   include mixins/recipes.jade
-  include warning.jade
 
   div.breadcrumb.animateme(data-when="span", data-from="0.9", data-to="0.2", data-opacity="0", data-translatey="-20")
     a(href="/").index Ethereum Frontier
@@ -16,7 +15,7 @@ block content
     a(href="/greeter").next Next
 
 
-  div#tutorial-start.main-tutorial.hidden.inner-tutorial.even
+  div#tutorial-start.main-tutorial.inner-tutorial.even
     div.container
       div.row
         div.col-md-12.tutorial.scrollme
@@ -28,7 +27,7 @@ block content
 
           a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
 
-  div.main-tutorial.hidden.inner-tutorial.ether-tutorial
+  div.main-tutorial.inner-tutorial.ether-tutorial
     div.container
       div.row
         div.col-md-12
@@ -44,7 +43,7 @@ block content
             input(type="text" name="address" placeholder="Ether address")
             input(class="button btn btn-blue" type="submit" value="Check your balance")
 
-  div.main-tutorial.hidden
+  div.main-tutorial
     div.container
       div.row
         div.col-md-12.tutorial
