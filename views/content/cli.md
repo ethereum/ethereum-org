@@ -45,11 +45,10 @@ The **Go** implementation is called **Geth** (the Old English third person singu
 
 ### Install: Mac and Linux
 
-In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth. 
+In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) and paste the following one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth:
 
     bash <(curl https://install-geth.ethereum.org -L)
 
-Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
 
 ### Windows
 
