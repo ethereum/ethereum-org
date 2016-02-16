@@ -122,7 +122,7 @@ Now you have the compiler installed, you need now reformat your contract by remo
 
     var greeterCompiled = web3.eth.compile.solidity(greeterSource)
 
-You have now compiled your code. Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than 'Hello World!" and execute these commands:
+You have now compiled your code. Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
 
     var _greeting = "Hello World!"
     var greeterContract = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition);
@@ -181,7 +181,7 @@ In order to other people to run your contract they need two things: the address 
     greeterCompiled.greeter.info.abiDefinition;
     greeter.address;
 
-Then you can instantiate a javascript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' and 'address' to create a contract object in javascript:
+Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' and 'Address' to create a contract object in JavaScript:
 
     var greeter = eth.contract(ABI).at(Address);
 
@@ -199,7 +199,7 @@ Replace _greeterAddress_ with your contract's address.
 
 You must be very excited to have your first contract live, but this excitement wears off sometimes, when the owners go on to write further contracts, leading to the unpleasant sight of abandoned contracts on the blockchain. In the future, blockchain rent might be implemented in order to increase the scalability of the blockchain but for now, be a good citizen and humanely put down your abandoned bots. 
 
-A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is ran. The suicide is subsidized by the network so it will cost much less than a usual transaction.
+A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is run. The suicide is subsidized by the network so it will cost much less than a usual transaction.
 
     greeter.kill.sendTransaction({from:eth.accounts[0]})
 
