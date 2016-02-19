@@ -118,7 +118,7 @@ To stop a contract execution mid execution you can either **return** or **throw*
 
     function transfer(address _to, uint256 _value) {
         /* Check if sender has balance and for overflows */
-        if (balanceOf[msg.sender] < amount || balanceOf[recipient] + amount < balanceOf[recipient])
+        if (balanceOf[msg.sender] < _value || balanceOf[_to] + _value < balanceOf[_to])
             throw;
 
         /* Add and subtract new balances */
