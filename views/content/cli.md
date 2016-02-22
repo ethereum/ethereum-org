@@ -33,7 +33,7 @@ Paste the one-liner below into your terminal for an automated install script. Th
 
 Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
 
-    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
+    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
 
 
 ## Geth
