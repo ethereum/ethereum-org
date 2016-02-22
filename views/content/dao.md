@@ -74,7 +74,7 @@ Take a moment to dream about the revolutionary possibilities this would allow, a
         }
         
         function vote(uint _proposalID, int _position) returns (uint voteID){
-            if (voterShare.coinBalanceOf(msg.sender)>0 && (_position >= -1 || _position <= 1 )) {
+            if (voterShare.coinBalanceOf(msg.sender)>0 && (_position >= -1 && _position <= 1 )) {
                 Proposal p = proposals[_proposalID];
                 if (p.voted[msg.sender] == true) return;
                 voteID = p.votes.length++;
