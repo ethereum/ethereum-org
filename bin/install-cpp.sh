@@ -397,6 +397,8 @@ function run_installer()
 
 	function linux_installer()
 	{
+		packageName=eth
+		
 		echo
 		head "Installing ethereum"
 
@@ -407,7 +409,7 @@ function run_installer()
 		if [[ $isEth == true ]]
 		then
 			info "Uninstalling previous eth version"
-			exe sudo apt-get remove -y
+			exe sudo apt-get remove -y "$packageName"
 			exe sudo apt-get clean
 		fi
 
@@ -420,7 +422,7 @@ function run_installer()
 		echo
 
 		info "Installing eth"
-		exe sudo apt-get install -q -y eth
+		exe sudo apt-get install -q -y "$packageName"
 		echo
 	}
 
