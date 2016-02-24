@@ -299,7 +299,6 @@ The next step is making the buy and sell functions:
         Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
     }
 
-
 Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
 
 **Note** Buy and sell "prices" are not set in ether, but in *wei* the minimum currency of the system (equivalent to the cent in the Euro and Dollar, or the Satoshi in Bitcoin). One ether is 1000000000000000000 wei. So when setting prices for your token in ether, add 18 zeros at the end.

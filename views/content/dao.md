@@ -13,6 +13,7 @@ On this section we are going to build a decentralized and democratic organizatio
 
 The way this particular democracy works is that it has an *Owner** which works like an administrator, CEO or a President. The *Owner* can add (or remove) voting members to the organization. Any member can make a proposal, which is in the form of an ethereum transaction to either send ether or execute some contract and other members can vote in support or against the proposal. Once a predetermined amount of time and a certain number of members has voted, the proposal can be executed: the contract counts the votes and if there are enough votes it will execute the given transaction.
 
+
 ### The Blockchain Congress
 
 #### The code
@@ -203,7 +204,6 @@ In a few seconds you'll be taken to the dashboard, scroll down and you'll be abl
 
 
 #### Sharing with others
-
 
 If you want to share your DAO with others, then they need both the contract address and the interface file, a small text string that works as an instruction manual of the contract. Click **copy address** to get the former and **show interface** for the former.
 
@@ -688,10 +688,10 @@ You have reached the end of this tutorial, but it's just the beginning of a grea
 
 * Your DAO could own its own name on the name registrar, and then change where it's redirecting in order to update itself if the token holders approved.
 
-* The organization could hold not only ethers, but any kind of other coin created on ethereum, including assets whose value are tied to the bitcoin or dollar. 
+* The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar. 
 
 * The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future. 
-It could also own shares of other DAO's, meaning it could vote on larger organization or be a part of a federation of DAO's.
+It could also own shares of other DAOs, meaning it could vote on larger organization or be a part of a federation of DAOs.
 
 * The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.
 
