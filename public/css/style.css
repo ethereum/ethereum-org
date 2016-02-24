@@ -1190,6 +1190,10 @@ footer {
 	background-image: url('../images/icons/ETHERGIT_WHITE.png');
 }
 
+.project-list a[href='http://rubixbydeloitte.com'] {
+	background-image: url('../images/icons/rubix.svg');
+}
+
 .project-list a[href='http://airlock.me/'] {
 	background-image: url('../images/icons/airlock.png');
 }
