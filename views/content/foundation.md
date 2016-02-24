@@ -51,7 +51,7 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ![Portrait of David Kay](/images/portraits/david-ben-kay.jpg)
 
-**David Ben Kay is a lawyer specialized in creating innovative intellectual property solutions for emerging markets.** David is a US lawyer who has worked and lived in China for the past 30 years. He was the managing partner of the Beijing office of Denton Hall (later Dentons) and the General Counsel of Microsoft China. Over the past 8 years David has run his own consulting company and business incubator in Beijing's 798 Art District.
+**David Ben Kay is a lawyer specialized in creating innovative intellectual property solutions for emerging markets.** David is a US lawyer who has worked and lived in China for the past 30 years. He was the managing partner of the Beijing office of Denton Hall (later Dentons) and the General Counsel of Microsoft China. Over the past 8 years, David has run his own consulting company and business incubator in Beijing's 798 Art District.
 
 [Linkedin](https://www.linkedin.com/in/davidbenkay), [Twitter](https://twitter.com/davidbenkay)
 
@@ -89,6 +89,18 @@ Stefano Bertolo is a civil servant advising Ethereum in a strictly personal capa
 ![Portrait of Yessin Schiegg ](/images/portraits/yessin.jpg)
 
 Yessin Schiegg is the CFO of Source Capital AG, a proprietary trading firm which specialises in sophisticated automated trading and operates in the main electronic financial markets. Previously, he was engaged in the private equity business of BlackRock, Swiss Reinsurance Company, and Horizon21. Before that, he was a senior auditor at PwC, serving banks and asset managers. He graduated from the University of St.Gallen in Switzerland, where he studied Finance. Moreover, he is a Swiss CPA, a CFA Charterholder, and has achieved the CAIA designation.
+
+
+### Special Advisors
+
+
+#### William Mougayar
+  
+![Portrait of William Mougayar](/images/portraits/william-mougayar.jpg)
+   
+William Mougayar is an entrepreneur, angel investor, mentor to startups and an expert and analyst on startup marketing, blockchain technologies, decentralization and peer-to-peer models. William is on the Board of Directors of OB1, the OpenBazaar open source project that is pioneering peer-to-peer commerce, and a member of OMERS Ventures Board of Advisors and founder of Startup Management. Besides having started and raised capital for 3 companies—Engagio, Eqentia, and CYBERManagement—his career also included HP, Cognizant, CommerceNet Canada, authoring 2 books on Internet business, consulting to numerous Fortune 500 companies, mentoring startups and being a professional speaker. William is a graduate of the University of Washington and the University of Western Ontario.
+  
+[LinkedIn](https://www.linkedin.com/in/williammougayar)
 
 
 
