@@ -51,9 +51,9 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ![Portrait of David Kay](/images/portraits/david-ben-kay.jpg)
 
-**David Ben Kay is an lawyer specialized in creating innovative intellectual property solutions for emerging markets.** David is a US lawyer who has worked and lived in China for the past 30 years. He was the managing partner of the Beijing office of Denton Hall (later Dentons) and the General Counsel of Microsoft China. Over the past 8 years David has run his own consulting company and business incubator in Beijing's 798 Art District.
+**David Ben Kay is a lawyer specialized in creating innovative intellectual property solutions for emerging markets.** David is a US lawyer who has worked and lived in China for the past 30 years. He was the managing partner of the Beijing office of Denton Hall (later Dentons) and the General Counsel of Microsoft China. Over the past 8 years David has run his own consulting company and business incubator in Beijing's 798 Art District.
 
-[Linkedin](https://www.linkedin.com/in/davidbenkayhttps://twitter.com/davidbenkay)
+[Linkedin](https://www.linkedin.com/in/davidbenkay), [Twitter](https://twitter.com/davidbenkay)
 
 ----
 
@@ -65,7 +65,7 @@ It is the aim that decentralized and open technologies will be developed, nurtur
 
 ![Portrait of Bernd Lapp](/images/portraits/bernd-lapp.jpg)
 
-Bernd Lapp has several years of management experience across multiple industries, including finance, digital media and sports. In his last role as Head of Sales he was responsible for defining and implementing the sales strategy for the most successful mobile banking app in Germany. Bernd is an advising the Executive Director of the Ethereum Foundation on topics such as PR, Marketing, Communications, Funding and Membership Programs and related HR and business planning..
+Bernd Lapp has several years of management experience across multiple industries, including finance, digital media and sports. In his last role as Head of Sales he was responsible for defining and implementing the sales strategy for the most successful mobile banking app in Germany. Bernd is advising the Executive Director of the Ethereum Foundation on topics such as PR, Marketing, Communications, Funding and Membership Programs and related HR and business planning.
 
 
 [LinkedIn](https://ch.linkedin.com/in/berndlapp)
@@ -77,7 +77,7 @@ Bernd Lapp has several years of management experience across multiple industries
 
 ![Portrait of Stefano Bertolo](/images/portraits/stefano-bartolo.jpg)
 
-Stefano Bertolo is a civil servant advising Ethereum in a strictly personal capacity and with the formal permission of his employer. An alumnus of Rutgers University, where he earned his Ph.D. in philosophy and cognitive psychology, he has done post-doctoral work on human language learning at the Massachusetts Institute of Technology and worked as an artificial intelligence programmer at Cycorp. An enthusiast of prediction markets, he has earned the rank of Superforecaster in the Good Judgement Project. Stefano lives in Luxembourg where for the past ten years he has worked on public research and development funding for international projects in data management and analytics.
+Stefano Bertolo is a civil servant advising Ethereum in a strictly personal capacity and with the formal permission of his employer. An alumnus of Rutgers University, where he earned his Ph.D. in philosophy and cognitive psychology, he has done post-doctoral work on human language learning at the Massachusetts Institute of Technology and worked as an artificial intelligence programmer at Cycorp. An enthusiast of prediction markets, he has earned the rank of Superforecaster in the Good Judgment Project. Stefano lives in Luxembourg where for the past ten years he has worked on public research and development funding for international projects in data management and analytics.
 
 [LinkedIn](https://www.linkedin.com/in/stefanobertolo), [Twitter](https://twitter.com/sclopit)
 

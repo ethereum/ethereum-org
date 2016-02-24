@@ -33,23 +33,22 @@ Paste the one-liner below into your terminal for an automated install script. Th
 
 Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
 
-    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum%20%28%2B%2B%29-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
+    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
 
 
 ## Geth
 
 ![Logo for Go](/images/icons/gopher.png)
 
-The **Go** implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
+The **Go** implementation is called **Geth** (the Old English third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
 
 
 ### Install: Mac and Linux
 
-In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth. 
+In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) and paste the following one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth:
 
     bash <(curl https://install-geth.ethereum.org -L)
 
-Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
 
 ### Windows
 
@@ -76,7 +75,7 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 
 ### Run it
 
-Geth and Eth are multipurpose command line tools that runs a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](http://guide.ethereum.org/cli.html) subcommands and options, a [JSON-RPC server](http://guide.ethereum.org/rpc.html) and an [interactive console](http://guide.ethereum.org/jsre.html).
+Geth and Eth are multipurpose command line tools that run a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](http://guide.ethereum.org/cli.html) subcommands and options, a [JSON-RPC server](http://guide.ethereum.org/rpc.html) and an [interactive console](http://guide.ethereum.org/jsre.html).
 
 For the purposes of this guide, we will focus on the Console, a JavaScript environment that contains all the main features you probably want. Depending on your client, paste either of these commands:
 
@@ -88,14 +87,14 @@ For the purposes of this guide, we will focus on the Console, a JavaScript envir
 
     eth --frontier -b -i  
 
-The first time you start the command line you will be presented with a license. Before you can use them, you **must** accept this license, please read it careful.
+The first time you start the command line you will be presented with a license. Before you can use them, you **must** accept this license, please read it carefully.
 
 **ATTENTION: If you just want to test the technology and play around, DON'T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.**
 
 
 ### Connecting to a private test net
 
-Sometimes you might not want to connect to the live public network; Instead you can choose to create your own private testnet. This is very useful if you don't need to test public contracts and want just to try- or develop on the technology. Since you are the only member of your private network you are responsible for finding all blocks, validating all transactions and executing all smart contracts. This makes development cheaper and easier as you have the ability to flexibly control the inclusion of transactions in your own personal blockchain.
+Sometimes you might not want to connect to the live public network; instead you can choose to create your own private testnet. This is very useful if you don't need to test public contracts and want just to try- or develop on the technology. Since you are the only member of your private network you are responsible for finding all blocks, validating all transactions and executing all smart contracts. This makes development cheaper and easier as you have the ability to flexibly control the inclusion of transactions in your own personal blockchain.
 
 **Geth:**
 
@@ -107,8 +106,7 @@ Sometimes you might not want to connect to the live public network; Instead you 
 
 Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
 
-If you want to create a private network you should, for security reasons, use a different genesis block (a database that contains all the transactions from the Ether sales). You can 
-[Read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). In the near future we will provide better ways to get other genesis blocks.
+If you want to create a private network you should, for security reasons, use a different genesis block (a database that contains all the transactions from the Ether sales). You can [read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). In the near future we will provide better ways to get other genesis blocks.
 
 These commands prevent anyone who doesn't know your chosen — secret — nonce, network id and genesis file, from connecting to you or providing you with unwanted data. If you *want* to connect to other peers and create a small private network of multiple computers they will all need to use the same networkid and an identical genesis block. You will also have to help each node find the others. To do that, first you need your own Node URL:
 
@@ -149,7 +147,7 @@ The console has auto completion and history support that persists between sessio
 
 In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://guide.ethereum.org/managing_accounts.html), but the simplest one is through the console. 
 
-**ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontire release clients.
+**ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontier release clients.
 
 **GETH**:
 
@@ -159,7 +157,7 @@ In order to do anything on an Ethereum network you need ether, and to get it, yo
 
     web3.admin.eth.newAccount({name:"account01",password:"Write here a good, randomly generated, passphrase!", passwordHint:"my hint"})
 
-**Note: Pick up a good passphrase and write it down. If you lose the passphrase you used to encrypt your account, you will not be able to access that account. Repeat: There are no safety nets. It is NOT possible to access your account without a valid passphrase and there is no "forgot my password" option here. See [this XKCD](https://xkcd.com/936/) for details**
+**Note: Pick up a good passphrase and write it down. If you lose the passphrase you used to encrypt your account, you will not be able to access that account. Repeat: There are no safety nets. It is NOT possible to access your account without a valid passphrase and there is no "forgot my password" option here. See [this XKCD](https://xkcd.com/936/) for details.**
 
 Password hint is optional. You can pick any name you want, it isn't very important.
 
