@@ -484,6 +484,10 @@ body {
 	min-height: 400px;
 }
 
+.whatis.wallet-figure-outer {
+	min-height: 400px;
+}
+
 .whatis figure,
 .main-tutorial figure {
 	/*float: right;*/
@@ -1074,7 +1078,7 @@ figure.geth-console {
 
 figure.ethereum-explain {
 	max-width: 460px;
-	height: 310px;
+	height: 450px;
 	position: absolute;
 }
 
@@ -1086,6 +1090,24 @@ figure.ethereum-explain .explain-02 {
 }
 figure.ethereum-explain .explain-03 {
 	background-image: url("../images/explain-03.gif");
+}
+
+
+
+figure.wallet-figure {
+	max-width: 460px;
+	height: 310px;
+	position: absolute;
+}
+
+figure.wallet-figure .wallet-01 {
+	background-image: url("../images/wallet-01.png");
+}
+figure.wallet-figure .wallet-02 {
+	background-image: url("../images/wallet-02.png");
+}
+figure.wallet-figure .wallet-03 {
+	background-image: url("../images/wallet-03.png");
 }
 
 .whatis .caption { 
@@ -1788,6 +1810,10 @@ footer {
 	}
 
 	.whatis.server-figure {
+    	min-height: 500px;
+	}
+
+	.whatis.wallet-figure-outer {
     	min-height: 500px;
 	}
 

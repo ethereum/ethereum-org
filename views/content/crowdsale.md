@@ -199,8 +199,7 @@ Click on the green icon that you just added and on then choose a function call u
 
 The crowdsale contract specifies a deadline using a timestamp, but the Alarm clock currently schedules calls based on block numbers.  Since ethereum has a block time of approximately 17 seconds, we need to compute a block number that is going to be probabilistically past the deadline.  We can do this with the formula **current_block_number + duration_in_minutes * 60 / 17 + buffer** where **buffer** is a number of blocks that is sufficiently large that you can rely on it occuring after the crowdsale deadline.  For short crowdsales less than a day in duration a buffer of 200 blocks should be sufficient.  For durations closer to 30 days, you should probably pick a number closer to 5,000.
 
-You can use the following chart for rough estimates for how many blocks to add
-to the current block to compute the `targetBlock`.
+You can use the following chart for rough estimates for how many blocks to add to the current block to compute the **targetBlock**.
 
 * 1 hour duration (60 minutes): 15 blocks
 * 1 day duration  (1440 minutes):  200 blocks
