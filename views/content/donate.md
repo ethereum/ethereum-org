@@ -6,7 +6,7 @@
 You can use the **Ethereum Wallet** to keep an eye on the foundation donation tip box and to keep your unicorns safe. [Download the latest Wallet release](https://github.com/ethereum/mist/releases) and set up a wallet. 
 
 
-First you need to add the Unicorn Token to your watch list, as Unicorns are invisible by default. Scroll to the bottom and click **Watch Token**. Add the address **0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. Now you need to get one!
+First you might need to add the Unicorn Token to your watch list, as Unicorns are sometimes invisible. Scroll to the bottom and click **Watch Token**. Add the address **0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. Now you need to get one!
 
 ![Invisible Unicorns](/images/tutorial/unicorn-token.png)
 
