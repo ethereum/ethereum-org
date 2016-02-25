@@ -2207,6 +2207,32 @@ footer {
 	.community ul li a.stackexchange {
 		background-image: url("../images/icons/icon-stackexchange@2x.png");
 	}
+}
 
 
+/* GITTER CHAT */
+
+div.gitter-chat-embed-action-bar {
+	max-height: 50px;
+	display: block;
+	height: 50px;
+	position: absolute
+}
+
+a.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-pop-out {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-collapse-chat {
+	width: 50px;
+	height: 50px;
+	top: 0;
+	right: 0;
+	position: absolute;
+	/* max-height: 50px; */
+	/* flex: 0 0 50px; */
+	padding: 0;
+	margin: 0;
 }
