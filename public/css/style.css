@@ -1262,9 +1262,9 @@ footer {
 .project-list a[href='http://meteor-dapp-cosmo.meteor.com']{
   background-image: url('../images/icons/cosmo.png');
 }
-
-
-
+.project-list a[href='https://www.ambisafe.co']{
+  background-image: url('../images/icons/ambisafe.png');
+}
 
 
 .project-list a[href='http://frontier.ether.camp']{
