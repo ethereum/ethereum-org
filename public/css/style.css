@@ -1510,11 +1510,6 @@ footer {
 .donate-button {
 	display: block;
 }
-.ether-tutorial img {
-	width: 229px;
-	float: right;
-	margin: 0 0 40px 40px;
-}
 
 .ethereum-projects h4  {
 	text-align: center;
@@ -1639,6 +1634,8 @@ footer {
 	background-image: url('../images/bg/maker.jpg');
 }
 
+
+
 .slides .slide.slide-freemyvunk {
 	background: #858585 url('../images/bg/freemyvunk.jpg');
 	background-position: bottom center;
@@ -1646,6 +1643,9 @@ footer {
 	background-size: 623px 137px;
 }
 
+.slides .slide.slide-ethercamp {
+	background-image: url('../images/bg/ethercamp.jpg');
+}
 
 /*.slides .slide.slide-freemyvunk h3 ,*/
 .slides .slide.slide-ujomusic h3 ,
@@ -1713,14 +1713,33 @@ footer {
 	text-decoration: none;
 	background: rgba(0,0,0,0.2);	
 }
-/*
+
+
+.slides .slide-nav a.prev ,
+.slides .slide-nav a.next {
+	position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,.5);
+    color: #FFF;
+    font-size: 80px;
+    text-align: center;
+    text-indent: 5px;
+    line-height: 43px;
+    font-family: Source Sans Pro, helvetica neue;
+    font-weight: 100;
+    opacity: 0.9;
+}
+
 .slides .slide-nav a.prev {
-	left: 10%;
+	left: -30px;
+    text-indent: -5px;
 }
 
 .slides .slide-nav a.next {
-	left: 90%;
-}*/
+	right: -30px;
+    left: auto;
+}
 
 
 .ether-checker,
