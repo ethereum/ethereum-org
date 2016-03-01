@@ -1,97 +1,113 @@
 include figures.jade
 
 mixin gethRecipe(header)
-  +gethFigure()
 
   if header != ""
-    h2 #{header}
-  h3 
-    div.number  
-    | Install and run the 
-    strong Command Line Interface
+    div.col-md-12.tutorial
+      h2 #{header}
 
-  p Frontier is focused on command line tools. You can use them to send the network’s internal fuel, ether, to someone else, to load and execute contracts, to import your pre-sale wallet if you have one, or to make your computer into a supporting node and earn ether.
 
-  a(href="/cli").button Install the Command line tools
+  div.col-md-6.tutorial
 
-  div.recipe
-    h4 You'll need:
-    ul
-      li 
-        input(type="checkbox") 
-        | Basic command line skills 
-      li 
-        input(type="checkbox") 
-        | Basic coding skills
-      li 
-        input(type="checkbox") 
-        | 1-2Gb free space for the blockchain
+    h3 Install and run the 
+      strong Command Line Interface
+
+     p We've built 
+      a(href='https://github.com/ethereum/mist/releases/latest') easy to use graphical tools
+      | , but if you are a developer you probably want to install the command line tools.
+
+  div.col-md-6.tutorial
+    +gethFigure
+
+    
+  
+  div.clearfix
+  div.col-md-6.tutorial
+    a(href="/cli").button Install the Command line tools
+  
+  div.col-md-6.tutorial
+    div.recipe
+      h4 You'll need:
+      ul
+        li 
+          input(type="checkbox") 
+          | Basic command line skills 
+        li 
+          input(type="checkbox") 
+          | Basic coding skills
+        li 
+          input(type="checkbox") 
+          | 1-2Gb free space for the blockchain
 
 
 mixin etherRecipe(header)
-  +etherFigure
-
+ 
   if header != ""
-    h2 #{header}
-  h3 Get some ether, the crypto-fuel of the Ethereum network
-  
-  p Ether is the internal 'fuel' of Ethereum. Programs running on Ethereum need to pay the network for the resources they consume. Volunteers earn this ether by validating transactions, securing the network.
+    div.col-md-12.tutorial
+      h2 #{header}
 
-  p Alternatively, if you participated in the presale to fund Ethereum's development, or won a reward from the Olympic or 
-    a(href="https://bounty.ethdev.com/") Bug Bounty 
-    | programs, you will have a wallet file (.json) that can be imported and give you access to your ether.
+
+  div.col-md-6.tutorial
+
+    h3 Learn about the ether, the crypto-fuel of the Ethereum network
+    
+    p Ether is the internal 'fuel' of Ethereum. Programs running on Ethereum need to pay the network for the resources they consume. Volunteers earn this ether by validating transactions, securing the network.
+
+    p Alternatively, if you participated in the presale to fund Ethereum's development, or won a reward from the Olympic or 
+      a(href="https://bounty.ethdev.com/") Bug Bounty 
+      | programs, you will have a wallet file (.json) that can be imported and give you access to your ether.
   
-  p You can also get some from a friend or purchase it online.
+    p You can also get some from a friend or purchase it online.
+
+  div.col-md-6.tutorial
+    +etherFigure
+
+    
   
-  a(href="/ether").button Get Ether
+  div.clearfix
+  div.col-md-6.tutorial
+    a(href="/ether").button Learn about ether 
   
-  div.recipe
-    h4 You'll need:
-    ul
-      li 
-        input(type="checkbox") 
-        | Any of the 
-        a(href="/#install-geth") Command Line Tools  
-      li 
-        input(type="checkbox") 
-        | One of these:
-        ul
-          li 
-            input(type="checkbox") 
-            | Computer with a modern GPU
-          li 
-            input(type="checkbox") 
-            | Generous friend with ether
-          li 
-            input(type="checkbox") 
-            | Bitcoins to exchange
-          li 
-            input(type="checkbox") 
-            | An ether JSON wallet
+  div.col-md-6.tutorial
+    div.recipe
+      h4 You will:
+      ul
+        li Learn what ether is and how many exist
+        li Import your presale wallet
+        li Learn how to send transactions using the command line
 
 
 mixin greeterRecipe(header)
-  +greeterFigure
-
+  
   if header != ""
-    h2 #{header}
-  h3 
-    div.number 1 
-    | Create the Greeter, your first live contract
+    div.col-md-12.tutorial
+      h2 #{header}
 
-  p The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start.
 
-  a(href="/greeter").button Summon the Greeter 
+  div.col-md-6.tutorial
 
-  div.recipe
-    h4 You'll need:
-    ul
-      li 
-        input(type="checkbox") 
-        a(href="/#download-tools") The Wallet, Power tools or command line tools 
-      li 
-        input(type="checkbox") 
-        |  A desire to learn new things  
+    h3 Create the Greeter, your first live contract
+
+    p This tutorial will teach you how to build a contract using the command line
+
+    p The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start. 
+
+  div.col-md-6.tutorial
+    +greeterFigure
+
+    
+  
+  div.clearfix
+  div.col-md-6.tutorial
+    a(href="/greeter").button Summon the Greeter 
+  
+  div.col-md-6.tutorial
+    div.recipe
+      h4 You can build:
+      ul
+        li Your first smart contract
+        li A professional jokster that is paid to tell jokes
+        li A long living inteligent bot that answer questions
 
 
 mixin tokenRecipe(header)
