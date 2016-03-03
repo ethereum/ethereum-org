@@ -11,19 +11,19 @@ mixin gethFigureExit()
 
 mixin etherFigure()
   figure.ether.scrollme
-    div.ether-screen.animateme(data-when="span", data-from="0.6", data-to="0", data-translatey="500")
-    div.ether-pacman.animateme(data-when="span", data-from="0.55", data-to="0.5", data-opacity="0")
-    div.ether-arcade-back.animateme(data-when="span", data-from="0.6", data-to="0", data-translatey="500")
-    div.ether-coin.animateme(data-when="span", data-from="0.6", data-to="0.4", data-translatey="-300")
-    div.ether-arcade-front.animateme(data-when="span", data-from="0.6", data-to="0", data-translatey="500")
+    div.ether-screen.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
+    div.ether-pacman.animateme(data-when="enter", data-from="0.55", data-to="0.5", data-opacity="0")
+    div.ether-arcade-back.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
+    div.ether-coin.animateme(data-when="enter", data-from="0.6", data-to="0.4", data-translatey="-300")
+    div.ether-arcade-front.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
 
 
 mixin greeterFigure()
   figure.greeter.scrollme
-    div.greeter-human.animateme(data-when="span", data-from="0.4", data-to="0", data-opacity="0", data-translatex="-200")
-    div.greeter-robot.animateme(data-when="span", data-from="0.5", data-to="0.2", data-opacity="0", data-translatex="200")
-    div.greeter-question.animateme(data-when="span", data-from="0.7", data-to="0.5", data-opacity="0")
-    div.greeter-answer.animateme(data-when="span", data-from="0.9", data-to="0.6", data-opacity="0")
+    div.greeter-human.animateme(data-when="exit", data-to="0.7", data-from="0.3", data-opacity="0", data-translatex="-200")
+    div.greeter-robot.animateme(data-when="exit", data-to="0.8", data-from="0.5", data-opacity="0", data-translatex="200")
+    div.greeter-question.animateme(data-when="exit", data-to="0.4", data-from="0.2", data-opacity="0")
+    div.greeter-answer.animateme(data-when="exit", data-to="0.3", data-from="0.1", data-opacity="0")
 
 
 mixin tokenFigure()

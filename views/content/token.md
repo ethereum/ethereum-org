@@ -7,12 +7,14 @@ We are going to create a digital token. Tokens in the ethereum ecosystem can rep
 
 If you are in a hurry, here's the final code of the basic token:
 
+    contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
+
     contract MyToken { 
         /* Public variables of the token */
         string public name;
         string public symbol;
         uint8 public decimals;
-        
+
         /* This creates an array with all balances */
         mapping (address => uint256) public balanceOf;
         mapping (address => mapping (address => uint)) public allowance;
@@ -20,7 +22,7 @@ If you are in a hurry, here's the final code of the basic token:
 
         /* This generates a public event on the blockchain that will notify clients */
         event Transfer(address indexed from, address indexed to, uint256 value);
-        
+
         /* Initializes contract with initial supply tokens to the creator of the contract */
         function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
             balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
@@ -40,8 +42,10 @@ If you are in a hurry, here's the final code of the basic token:
 
         /* Allow another contract to spend some tokens in your behalf */
 
-        function approve(address _spender, uint256 _value) returns (bool success) {
-            allowance[msg.sender][_spender] = _value;          
+        function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
+            allowance[msg.sender][_spender] = _value;     
+            tokenRecipient spender = tokenRecipient(_spender);
+            spender.receiveApproval(msg.sender, _value, this, _extraData);  
         }
 
         /* A contract attempts to get the coins */
@@ -60,7 +64,7 @@ If you are in a hurry, here's the final code of the basic token:
         function () {
             throw;     // Prevents accidental sending of ether
         }        
-    }   
+    }     
 
 Let's break it down step by step
 
@@ -254,11 +258,11 @@ Add this variable and function anywhere inside the contract. You can put them an
 With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Unfortunately freezing has no practical effect, because we haven't added anything to the transfer function. We are changing that now:
 
     function transfer(address _to, uint256 _value) {
-        if (frozenAccount[msg.sender])) throw;
+        if (frozenAccount[msg.sender]) throw;
 
 Now any account that is frozen will still have their funds intact, but won't be able to move them. All accounts are unfrozen by default until you freeze them, but you can easily revert that behavior into a whitelist where you need to manually approve every account. Just rename **frozenAccount** into **approvedAccount** and change the last line to:
 
-        if (!approvedAccount[msg.sender])) throw;
+        if (!approvedAccount[msg.sender]) throw;
 
          
 #### Automatic selling and buying
@@ -294,7 +298,6 @@ The next step is making the buy and sell functions:
         msg.sender.send(amount * sellPrice);               // sends ether to the seller
         Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
     }
-
 
 Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
 
@@ -375,6 +378,8 @@ If you add all the advanced options, this is how the final code should look like
             owner = newOwner;
         }
     }
+    
+    contract tokenRecipient { function sendApproval(address _from, uint256 _value, address _token); }
 
     contract MyToken is owned { 
         /* Public variables of the token */
@@ -417,7 +422,9 @@ If you add all the advanced options, this is how the final code should look like
         /* Allow another contract to spend some tokens in your behalf */
 
         function approve(address _spender, uint256 _value) returns (bool success) {
-            allowance[msg.sender][_spender] = _value;          
+            allowance[msg.sender][_spender] = _value;  
+            tokenRecipient spender = tokenRecipient(_spender);
+            spender.sendApproval(msg.sender, _value, this);          
         }
 
         /* A contract attempts to get the coins */
@@ -443,7 +450,6 @@ If you add all the advanced options, this is how the final code should look like
 
         function freezeAccount(address target, bool freeze) onlyOwner {
             frozenAccount[target] = freeze;
-        
             FrozenFunds(target, freeze);
         }
             

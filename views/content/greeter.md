@@ -1,4 +1,9 @@
-Now that you have mastered the basics on how to get started with geth and how to transact ether, it's time to get your hands dirty in what really makes ethereum stand out of the crowd: smart contracts. Smart contracts are account holding objects on the ethereum blockchain. They contain code functions and can interact with other contracts, make decisions, store data, and send ether to others. Contracts are defined by their creators, but their execution, and by extension the services they offer, is provided by the ethereum network itself. They will exist and be executable as long as the whole network exists, and will only disappear if they were programmed to self destruct.
+
+## Building a smart contract using the command line
+
+This page will help you build a *Hello, World* contract on the ethereum command line. If you don't know how to use the command line we recommend you skip this tutorial and instead build a [Custom token using the graphical user interface](./token/).
+
+Smart contracts are account holding objects on the ethereum blockchain. They contain code functions and can interact with other contracts, make decisions, store data, and send ether to others. Contracts are defined by their creators, but their execution, and by extension the services they offer, is provided by the ethereum network itself. They will exist and be executable as long as the whole network exists, and will only disappear if they were programmed to self destruct.
 
 What can you do with contracts? Well, you can do almost anything really, but for our getting started guide let's do some simple things: To start you will create a classic "Hello World" contract, then you can build you own crypto token to send to whomever you like. Once you've mastered that then you will raise funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
 
@@ -7,7 +12,7 @@ So let's start now.
 [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
 
 
-## Your first citizen: the greeter
+### Your first citizen: the greeter
 
 Now that you’ve mastered the basics of Ethereum, let’s move into your first serious contract. The Frontier is a big open territory and sometimes you might feel lonely, so our first order of business will be to create a little automatic companion to greet you whenever you feel lonely. We’ll call him the “Greeter”.
 
@@ -45,7 +50,7 @@ You'll notice that there are two different contracts in this code: _"mortal"_ an
 
 The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
 
-### Installing a compiler
+### The Solc Compiler
 
 Before you are able to Deploy it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract.
 
@@ -57,63 +62,11 @@ If you have it installed, it should output something like this:
 
     ['Solidity' ]
 
-If you do not get Solidity above, then you need to install it. Press control+c to exit the console and go back to the command line.
-
-#### Install SolC on Ubuntu
-
-Open the terminal and execute these commands:
-
-    sudo add-apt-repository ppa:ethereum/ethereum
-    sudo apt-get update
-    sudo apt-get install solc
-    which solc
-
-Take note of the path given by the last line, you'll need it soon.
-
-#### Install SolC on Mac OSX
-
-You need [brew](http://brew.sh) in order to install on your mac
-
-    brew install cpp-ethereum
-    brew linkapps cpp-ethereum
-    which solc
-
-Take note of the path given by the last line, you'll need it soon.
-
-#### Install SolC on Windows
-
-You need [chocolatey](http://chocolatey.org) in order to install solc.
-
-    cinst -pre solC-stable
-
-The Windows install is going to take a little longer, so sit tight.
-
-If you have the SolC Solidity Compiler installed,  you need now reformat by removing line breaks so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
-
-#### Compile from source
-
-    git clone https://github.com/ethereum/cpp-ethereum.git
-    mkdir cpp-ethereum/build
-    cd cpp-ethereum/build
-    cmake -DJSONRPC=OFF -DMINER=OFF -DETHKEY=OFF -DSERPENT=OFF -DGUI=OFF -DTESTS=OFF -DJSCONSOLE=OFF ..
-    make -j4 
-    make install
-    which solc
-
-#### Linking your compiler in Geth
-
-Now [go back to the console](../cli) and type this command to install solC, replacing _path/to/solc_ to the path that you got on the last command you did:
-
-    admin.setSolc("path/to/solc")
-
-Now type again:
-
-    eth.getCompilers()
-
-If you now have solC installed, then congratulations, you can keep reading. If you don't, then go to our [forums](http://forum.ethereum.org) or [subreddit](http://www.reddit.com/r/ethereum) and berate us on failing to make the process easier.
+If you do not get Solidity above, then you need to install it. 
 
 
-### Compiling your contract 
+
+#### Compiling your contract 
 
 
 Now you have the compiler installed, you need now reformat your contract by removing line-breaks so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
@@ -122,7 +75,7 @@ Now you have the compiler installed, you need now reformat your contract by remo
 
     var greeterCompiled = web3.eth.compile.solidity(greeterSource)
 
-You have now compiled your code. Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than 'Hello World!" and execute these commands:
+You have now compiled your code. Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
 
     var _greeting = "Hello World!"
     var greeterContract = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition);
@@ -174,14 +127,14 @@ Since this call changes nothing on the blockchain, it returns instantly and with
     'Hello World!'
 
 
-### Getting other people to interact with your code
+#### Getting other people to interact with your code
 
 In order to other people to run your contract they need two things: the address where the contract is located and the ABI (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them to your JavaScript console. In order to get each of them run these commands:
 
     greeterCompiled.greeter.info.abiDefinition;
     greeter.address;
 
-Then you can instantiate a javascript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' and 'address' to create a contract object in javascript:
+Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' and 'Address' to create a contract object in JavaScript:
 
     var greeter = eth.contract(ABI).at(Address);
 
@@ -195,11 +148,11 @@ Replace _greeterAddress_ with your contract's address.
 **Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing _greeterCompiled.greeter.info.abiDefinition_  with the abi from your compiler.**
 
 
-### Cleaning up after yourself: 
+#### Cleaning up after yourself: 
 
 You must be very excited to have your first contract live, but this excitement wears off sometimes, when the owners go on to write further contracts, leading to the unpleasant sight of abandoned contracts on the blockchain. In the future, blockchain rent might be implemented in order to increase the scalability of the blockchain but for now, be a good citizen and humanely put down your abandoned bots. 
 
-A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is ran. The suicide is subsidized by the network so it will cost much less than a usual transaction.
+A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is run. The suicide is subsidized by the network so it will cost much less than a usual transaction.
 
     greeter.kill.sendTransaction({from:eth.accounts[0]})
 

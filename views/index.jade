@@ -28,7 +28,7 @@ block content
             a(href='./foundation') Ethereum Foundation
             | , a swiss nonprofit, with contributions from great minds across the globe.
         
-        div.col-md-6.whatis.scrollme
+        div.col-md-6.whatis.server-figure.scrollme
           figure.ethereum-explain.scrollme.animateme(data-when="span", data-from="0.2", data-to="0.3", data-opacity="0")
             div.explain-01.animateme(data-when="span", data-from="0.1", data-to="0", data-opacity="0.5", data-scale="0.8")
           
@@ -37,19 +37,11 @@ block content
           
           figure.ethereum-explain.scrollme
             div.explain-03.animateme(data-when="span", data-from="0.5", data-to="0.4", data-opacity="0")
-            
-
-
-          //- figure.ethereum-network(data-when="enter", data-from="1", data-to="0", data-opacity="0.5", data-translatey="-50", data-scale="0.75").animateme
           
           h6.caption(data-when="span", data-from="0.2", data-to="0", data-opacity="0").animateme On traditional server architectures, every application has to set up its own servers that run their own code in isolated silos, making sharing of data hard.
           h6.caption(data-when="span", data-from="0.4", data-to="0.2", data-opacity="0").animateme If a single app is compromised or goes offline, many users and other apps are affected. 
           h6.caption(data-when="span", data-from="0.6", data-to="0.4", data-opacity="0").animateme On a Blockchain, anyone can set up a node that replicates the necessary data for all nodes to reach an agreement, and be compensated by users and app developers. 
           h6.caption(data-when="span", data-from="0.6", data-to="0.5", data-opacity="0").animateme This allows user data to be remain private and apps decentralized, like the Internet was supposed to work.           
-          
-
-          //- h6.caption(data-when="enter", data-from="1", data-to="0", data-opacity="0.5", data-translatey="-50", data-scale="0.75").animateme Blockhains allows any number of parties to reach agreements without the need of trusting a central node or each other
-
 
         div.clear.clearfix#download-tools
         
@@ -58,19 +50,19 @@ block content
            
           p The Ethereum Wallet is a gateway to the decentralised applications on the Ethereum blockchain. It allows you to hold and secure ether and other crypto-assets built on ethereum, as well as write, deploy and use smart contracts.
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-macosx-0-3-9.zip").button.mac.ethereum-wallet 
+          a(href="https://github.com/ethereum/mist/releases/download/0.5.0/Ethereum-Wallet-macosx-0-5-0.zip").button.mac.ethereum-wallet 
             strong Download 
             | Ethereum Wallet for Mac OS X
 
-          a(href="https://github.com/ethereum/mist/releases/download/v0.3.8/Ethereum-Wallet-win32-0-3-8.zip").button.win32.ethereum-wallet 
+          a(href="https://github.com/ethereum/mist/releases/latest").button.win32.ethereum-wallet 
             strong Download 
             |  Ethereum Wallet for Windows 32 bits
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-win64-0-3-9.zip").button.win64.ethereum-wallet 
+          a(href="https://github.com/ethereum/mist/releases/download/0.5.0/Ethereum-Wallet-win64-0-5-0.zip").button.win64.ethereum-wallet 
             strong Download 
             |  Ethereum Wallet for Windows 64 bits
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-linux64-0-3-9.zip").button.linux.ethereum-wallet 
+          a(href="https://github.com/ethereum/mist/releases/download/0.5.0/Ethereum-Wallet-linux64-0-5-0.zip").button.linux.ethereum-wallet 
             strong Download 
             |  Ethereum Wallet for Linux 64 bits
           
@@ -80,11 +72,18 @@ block content
 
           a(href="https://github.com/ethereum/mist/releases/latest").allversions.ethereum-wallet.link See all versions
 
-        div.col-md-6.whatis          
-          figure.wallet.scrollme
-            div.wallet-start.animateme(data-when="span", data-from="0.3", data-to="0.1", data-opacity="0", data-translatex="300")
-            div.wallet-create.animateme(data-when="span", data-from="0.45", data-to="0.35", data-opacity="0")
-            div.wallet-confirm.animateme(data-when="span", data-from="0.65", data-to="0.55", data-opacity="0", data-translatey="200")
+        div.col-md-6.whatis.wallet-figure-outer.scrollme
+          figure.wallet-figure.scrollme.animateme(data-when="span", data-from="0.425", data-to="0.475", data-opacity="0", data-translatey="-100")
+            div.wallet-01.animateme(data-when="enter", data-from="0.9", data-to="0", data-opacity="0.5", data-scale="0.8", data-translatey="100")
+            h6.caption.animateme(data-when="enter", data-from="0.9", data-to="0.1", data-opacity="0.5", data-scale="0.8", data-translatey="100") Hold, ether or any ethereum based token on safe wallets
+          
+          figure.wallet-figure.scrollme.animateme(data-when="span", data-from="0.67", data-to="0.68", data-opacity="0", data-translatey="-100")
+            div.wallet-02.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0", data-translatey="100")
+            h6.caption.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0", data-translatey="100") Easy template-based contract creation
+          
+          figure.wallet-figure.scrollme
+            div.wallet-03.animateme(data-when="span", data-from="0.7", data-to="0.675", data-opacity="0", data-translatey="100")
+            h6.caption.animateme(data-when="span", data-from="0.7", data-to="0.65", data-opacity="0", data-translatey="100") Your acessible interface to blockchain applications
 
       div.clearfix
         br
@@ -94,10 +93,9 @@ block content
   div.col-md-12.scrollme.main-menu
     div.breadcrumb.index.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
       strong Ethereum 
-      a(href="#developer-resources") Developers
-      a(href="#about-us") Foundation
-      a(href="#community") Community
-      a(href="#press") Press
+      a(href="#power-tools") Developer Tools
+      a(href="#community") Join the Community
+      a(href="./donate").donation-button Donate
 
 
   include ./includes/recipes.jade
@@ -124,7 +122,7 @@ block content
             div.aleth-one-5.animateme(data-when="span", data-from="0.55", data-to="0.5", data-opacity="0", data-scale="0.5", data-translatey="-100")
 
 
-  div.power-tools
+  div.power-tools#power-tools
       div.container
         div.row
           div.col-md-6.whatis.scrollme
