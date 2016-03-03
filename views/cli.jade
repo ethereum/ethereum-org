@@ -7,35 +7,42 @@ block vars
 
 block content
   include mixins/recipes.jade
-  include warning.jade
 
   div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
-    a(href="/").index Ethereum Frontier
+    a(href="/").index Ethereum 
     strong » Geth Installation
-    a(href="/ether").next Next
+    a(href="/greeter").next Next
 
-  div#tutorial-start.main-tutorial.inner-tutorial.even
+  div#tutorial-start.main-tutorial.cli-tutorial.inner-header.inner-page.even
     div.container
       div.row
-        div.col-md-12.tutorial.scrollme
+        div.col-md-6.tutorial.scrollme
+          +gethFigureExit
 
+        div.col-md-6.tutorial.scrollme
+          div.header-title
+            h2.animateme(data-when="exit", data-from="0", data-to="1", data-translatey="400", data-easing="linear") Geth & Eth
+            h3.animateme(data-when="exit", data-from="0", data-to="0.5", data-translatey="200", data-opacity="0", data-easing="linear") Command line tools for Ethereum Network
 
-          +gethFigure(true)
-
-          h2.animateme(data-when="span", data-from="0.6", data-to="0.3", data-opacity="0", data-translatey="200") Geth & Eth
-
-          h3.center.animateme(data-when="span", data-from="0.7", data-to="0.5", data-opacity="0", data-translatey="200") The command line tools for Ethereum Frontier
-
-          a(href="#warning").cannot-continue You cannot continue until you read and understand the dangers
-
-  div.main-tutorial.hidden.inner-tutorial
+  div.main-tutorial.inner-tutorial
     div.container
       div.row
+        +toc
         div.col-md-12
           include:md content/cli.md
+          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/cli.md') Improve this page
 
-  div.main-tutorial.hidden.even
+  div.main-tutorial.even
     div.container
       div.row
         div.col-md-12.tutorial
-          +etherRecipe("What's next?")
+          +greeterRecipe("What's next?")
+
+
+  script
+    |  ((window.gitter = {}).chat = {}).options = {
+    |    room: 'ethereum/go-ethereum'
+    |  };
+
+  script(src="https://sidecar.gitter.im/dist/sidecar.v1.js", async, defer)
+

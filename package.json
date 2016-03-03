@@ -1,10 +1,10 @@
 {
-  "name": "frontier.ethereum.org",
-  "description": "Ethereum Frontier website",
-  "version": "0.0.1",
+  "name": "ethereum.org",
+  "description": "Ethereum website",
+  "version": "2.0.1",
   "private": true,
   "engines": {
-    "node": "0.12.0",
+    "node": "0.12.3",
     "npm": "2.5.0"
   },
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cubedro/frontier.ethereum.org.git"
+    "url": "https://github.com/alexvandesande/ethereum-org"
   },
   "homepage": "https://github.com/cubedro/frontier.ethereum.org",
   "bugs": {

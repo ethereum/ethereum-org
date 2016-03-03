@@ -1,51 +1,127 @@
 include ../mixins/recipes.jade
 
-div.main-tutorial
+div.main-tutorial.middle-feature
   div.container
     div.row
       div.col-md-12.tutorial.scrollme
-        h2.animateme(data-when="enter", data-from="0.7", data-to="0", data-opacity="0", data-translatey="200") WHAT CAN I DO WITH THE ETHEREUM FRONTIER RELEASE?
+        h2.animateme(data-when="span", data-from="1", data-to="0", data-opacity="0", data-translatey="200") Learn 
+          strong Solidity
+          | , a new language for smart contracts
 
-        h3.center.animateme(data-when="enter", data-from="0.8", data-to="0.2", data-opacity="0", data-translatey="200") Build unstoppable applications. Here are some recipe ideas:
-
-div.main-tutorial.even#install-geth
+div.main-tutorial.inner-header.token-tutorial#crypto-currency
   div.container   
     div.row
-      div.col-md-12
-        +gethRecipe
+      +tokenRecipe
 
-div.main-tutorial#get-ether
+div.main-tutorial.even.inner-header.crowdsale-tutorial#crowdsale
   div.container   
     div.row
-      div.col-md-12
-        +etherRecipe
+      +crowdsaleRecipe
 
-div.main-tutorial.even
+div.main-tutorial.dao-tutorial.inner-header
   div.container   
     div.row
-      div.col-md-12.tutorial
-        +greeterRecipe
-
-div.main-tutorial#crypto-currency
-  div.container   
-    div.row
-      div.col-md-12
-        +tokenRecipe
-
-div.main-tutorial.even#crowdsale
-  div.container   
-    div.row
-      div.col-md-12.tutorial
-        +crowdsaleRecipe
-
-div.main-tutorial
-  div.container   
-    div.row
-      div.col-md-12
-        +daoRecipe
+      +daoRecipe
 
 div.main-tutorial.even.ethereum-projects 
   div.container   
     div.row
-      div.col-md-12
-        +futureRecipe
+      +futureRecipe
+
+div.main-tutorial.slides
+  //- div.container   
+  //-   div.row
+  //-     div.col-md-12.tutorial
+  div.slide-what
+    h3 See examples of what companies around the world are building with ethereum
+    h5 Inclusion on this list does not represent endorsement or guarantees by the Ethereum Foundation
+
+  div.slide.slide-augur#augur
+    h3 
+      strong Augur 
+      | is using ethereum to get more precise forecastings
+    a(href='http://www.augur.net') Read more
+
+  div.slide.slide-gnosis#gnosis
+    h3 
+      strong Gnosis 
+      | is using the blockchain to crowdsource predictions 
+    a(href='http://groupgnosis.com') Read more
+
+  div.slide.slide-boardroom#boardroom
+    h3 
+      strong Boardroom 
+      | is creating organizations on the blockchain  
+    a(href='http://boardroom.to') Build a company
+
+  div.slide.slide-colony#colony
+    h3 
+      strong Colony 
+      | is using ethereum to create new kinds of companies
+    a(href='http://colony.io') Join a colony
+
+  div.slide.slide-provenance#provenance
+    h3 
+      strong Provenance 
+      | is using the blockchain to bring transparency to the supply chain 
+    a(href='https://www.provenance.org/') Read more
+
+  div.slide.slide-slockit#slockit
+    h3 
+      strong Slockit 
+      | is building tools to allow any device sell their own services
+    a(href='http://slock.it') Read more
+
+  div.slide.slide-digix#digix
+    h3 
+      strong Digix 
+      | is using ethereum to turn bitcoin into gold
+    a(href='https://dgx.io') Read more
+
+  div.slide.slide-maker#maker
+    h3 
+      strong Maker 
+      | is using ethereum to put stable assets on the blockchain
+    a(href='https://blog.makerdao.com') Read more
+
+  //- div.slide.slide-etherex#etherex
+  //-   h3 
+  //-     strong Etherex 
+  //-     | is building an open source decentralized exchange on ethereum
+  //-   a(href='http://etherex.org') Read more
+
+  div.slide.slide-freemyvunk#freemyvunk
+    h3 
+      strong Free My Vunk 
+      | is using the blockchain to recycle your virtual junk
+    a(href='http://www.freemyvunk.com') Read more
+
+
+  div.slide.slide-ujomusic#ujomusic
+    h3 
+      strong Ujo Music 
+      | is rebuilding the music industry on the blockchain
+    a(href='http://ujomusic.com') Read more
+
+  div.slide.slide-ethercamp#ethercamp
+    h3 
+      strong Ether Camp 
+      | is automating hackatons on ethereum  
+    a(href='http://hack.ether.camp') Read more
+
+  div.slide-nav
+    a(href='#prev').prev ‹
+    a(href='#next').next ›
+    a(href='#augur').slide-link •
+    a(href='#gnosis').slide-link •
+    a(href='#boardroom').slide-link •
+    a(href='#colony').slide-link •
+    a(href='#provenance').slide-link •
+    a(href='#slockit').slide-link •
+    a(href='#digix').slide-link •
+    a(href='#maker').slide-link •
+    a(href='#etherex').slide-link •
+    a(href='#freemyvunk').slide-link •
+    a(href='#ujomusic').slide-link •
+    a(href='#ethercamp').slide-link •
+

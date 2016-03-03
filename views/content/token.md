@@ -1,194 +1,521 @@
 
-## The Coin 
+### The Coin 
 
-What is a coin? Coins are much more interesting and useful than they seem, they are in essence just a tradeable token, but can become much more, depending on how you use them. Its value depends on what you do with it: a token can be used to control access (**an entrance ticket**), can be used to represent debt owed by an organization (**a bond**), can be placeholders for an asset held by a third party (**a certificate of ownership**) or even simply be used as an exchange of value within a community (**a currency**).
+We are going to create a digital token. Tokens in the ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the ethereum wallet and any other client or contract that uses the same standards. 
 
-You could do all those things by creating a centralized server, but using an Ethereum token contract comes with some free functionalities: for one, it's a decentralized service and tokens can be still exchanged even if the original service goes down for any reason. The code can guarantee that no tokens will ever be created other than the ones set in the original code. Finally, by having each user hold their own token, this eliminates the scenarios where one single server break-in can result in the loss of funds from thousands of clients. This makes the service ethereum offers effectively censorship proof.
+#### The code
 
-You could create your own token on a different blockchain, but creating on ethereum is easier and, as you'll see in the next few tutorials, more flexible. This means you can focus your energy on the innovation that will make your coin stand out - and it's more secure, as your security is provided by all the miners who are supporting the ethereum network. Finally, by creating your token in Ethereum, your coin will be compatible with any other contract running on ethereum.
+If you are in a hurry, here's the final code of the basic token:
 
-### The Code
+    contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
-This is the code for the contract we're building:
- 
-    contract token { 
-        mapping (address => uint) public coinBalanceOf;
-        event CoinTransfer(address sender, address receiver, uint amount);
-      
-      /* Initializes contract with initial supply tokens to the creator of the contract */
-      function token(uint supply) {
-            if (supply == 0) supply = 10000;
-            coinBalanceOf[msg.sender] = supply;
+    contract MyToken { 
+        /* Public variables of the token */
+        string public name;
+        string public symbol;
+        uint8 public decimals;
+
+        /* This creates an array with all balances */
+        mapping (address => uint256) public balanceOf;
+        mapping (address => mapping (address => uint)) public allowance;
+        mapping (address => mapping (address => uint)) public spentAllowance;
+
+        /* This generates a public event on the blockchain that will notify clients */
+        event Transfer(address indexed from, address indexed to, uint256 value);
+
+        /* Initializes contract with initial supply tokens to the creator of the contract */
+        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
+            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
+            name = tokenName;                                   // Set the name for display purposes     
+            symbol = tokenSymbol;                               // Set the symbol for display purposes    
+            decimals = decimalUnits;                            // Amount of decimals for display purposes        
         }
-      
-      /* Very simple trade function */
-        function sendCoin(address receiver, uint amount) returns(bool sufficient) {
-            if (coinBalanceOf[msg.sender] < amount) return false;
-            coinBalanceOf[msg.sender] -= amount;
-            coinBalanceOf[receiver] += amount;
-            CoinTransfer(msg.sender, receiver, amount);
-            return true;
+
+        /* Send coins */
+        function transfer(address _to, uint256 _value) {
+            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough   
+            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
+            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
+            balanceOf[_to] += _value;                            // Add the same to the recipient            
+            Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+        }
+
+        /* Allow another contract to spend some tokens in your behalf */
+
+        function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
+            allowance[msg.sender][_spender] = _value;     
+            tokenRecipient spender = tokenRecipient(_spender);
+            spender.receiveApproval(msg.sender, _value, this, _extraData);  
+        }
+
+        /* A contract attempts to get the coins */
+
+        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough   
+            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
+            if (spentAllowance[_from][msg.sender] + _value > allowance[_from][msg.sender]) throw;   // Check allowance
+            balanceOf[_from] -= _value;                          // Subtract from the sender
+            balanceOf[_to] += _value;                            // Add the same to the recipient            
+            spentAllowance[_from][msg.sender] += _value;
+            Transfer(msg.sender, _to, _value); 
+        } 
+
+        /* This unnamed function is called whenever someone tries to send ether to it */
+        function () {
+            throw;     // Prevents accidental sending of ether
+        }        
+    }     
+
+Let's break it down step by step
+
+#### Understanding the code
+
+![Deploy New Contract](/images/tutorial/deploy-new-contract.png)
+
+
+So let's start with the basics. Open the **Wallet** app, go to the *Contracts* tab and then *Deploy New Contract*. On the *Solidity Contract Source code* text field, type the code below:
+
+
+    contract MyToken {         
+        /* This creates an array with all balances */
+        mapping (address => uint256) public balanceOf;   
+    }
+
+A mapping means an associative array, where you associate addresses with balances. The addresses are in the the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that that variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
+
+![Edit New Contract](/images/tutorial/edit-contract.png)
+
+If you published your contract right away, it would work but wouldn't be very useful: it would be a contract that could query the balance of your coin for any address–but since you never created a single coin, every one of them would return 0. So we are going to create a few tokens on startup. Add this code *before* the last closing bracket, just under the *mapping..* line. 
+
+
+    function MyToken() {
+        balanceOf[msg.sender] = 21000000;
+    }
+
+
+Notice that the *function MyToken* has the same name as the *contract MyToken*. This is very important and if you rename one, you have to rename the other too: this is a special, startup function that runs only once and only once, when the contract is first uploaded to the network. This function will set the balance of *msg.sender*, the user which deployed the contract, with a balance of 21 million. 
+
+The choice of 21 million was rather arbitrary, and you can change to anything you want on the code, but there's a better way: instead, supply it as a parameter for the function, like this:
+
+
+    function MyToken(uint256 initialSupply) {
+        balanceOf[msg.sender] = initialSupply;
+    }
+
+Take a look at the right column besides the contract and you'll see a drop down, written *pick a contract*. Select the "myToken" contract and you'll see that now it shows a section called *Constructor parameters*. These are changeable parameters for your token, so you can reuse the same code and only change this variables in the future.
+
+![Edit New Contract](/images/tutorial/function-picker.png)
+
+
+Right now you have a functional contract that created balances of tokens but since there isn't any function to move it, all it does is stay on the same account. So we are going to implement that now. Write the following code *before the last bracket*.
+
+    /* Send coins */
+    function transfer(address _to, uint256 _value) {
+        /* Add and subtract new balances */
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;        
+    }
+
+This is a very straightforward function: it has a recipient and a value as the parameter and whenever someone calls it, it will subtract the *_value* from their balance and add it to the *_recipient* balance. Right away there's an obvious problem: what happens if the person wants to send more than it owns? Since we don't want to handle debt in this particular contract, we are simply going to make a quick check and if the sender doesn't have enough funds the contract execution will simply stop. It's also to check for overflows, to avoid having a number so big that it becomes zero again.
+
+To stop a contract execution mid execution you can either **return** or **throw** The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'throw' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all ether he sent on gas. But since the Wallet can detect that a contract will throw, it always shows an alert, therefore preventing any ether to be spent at all.
+
+    function transfer(address _to, uint256 _value) {
+        /* Check if sender has balance and for overflows */
+        if (balanceOf[msg.sender] < _value || balanceOf[_to] + _value < balanceOf[_to])
+            throw;
+
+        /* Add and subtract new balances */
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;        
+    }
+
+
+Now all that is missing is having some basic information about the contract. In the near future this can be handled by a token registry, but for now we'll add them directly to the contract:
+
+    string public name;
+    string public symbol;
+    uint8 public decimals;
+
+And now we update the **constructor function** to allow all those variables to be set up at the start:
+
+    /* Initializes contract with initial supply tokens to the creator of the contract */
+    function myToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
+        if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
+        balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
+        name = tokenName;                                   // Set the name for display purposes     
+        symbol = tokenSymbol;                               // Set the symbol for display purposes    
+        decimals = decimalUnits;                            // Amount of decimals for display purposes        
+    }    
+
+
+Finally we now need something called **Events**. These are special, empty functions that you call to help clients like the Ethereum Wallet keep track of activities happening in the contract. Events should start with a capital letter. Add this line at the beginning of the contract to declare the event:
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+And then you just need to add these two lines inside the "transfer" function:
+
+        /* Notifiy anyone listening that this transfer took place */
+        Transfer(msg.sender, _to, _value);
+
+And now your token is ready!
+
+#### How to deploy
+
+If you aren't there already, open the Ethereum Wallet, go to the contracts tab and then click "deploy new contract".
+
+Now get the token source from above and paste it into the "Solidity source field". If the code compiles without any error, you should see a "pick a contract" drop down on the left. Get it and select the "MyToken" contract. On the right column you'll see all the parameters you need to personalize your own token. You can tweak them as you please, but for the purpose of this tutorial we recommend you to pick these parameters: 10,000 as the supply, any name you want, "%" for a symbol and 2 decimal places. Your app should be looking like this:
+
+[![Ethereum Wallet Screenshot 2015-12-03 at 3.50.36 PM 10](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-10.png)](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-10.png)
+
+Scroll to the end of the page and you'll see an estimate of the computation cost of that contract and you can select a fee on how much ether you are willing to pay for it. **Any excess ether you don't spend will be returned to you** so you can leave the default settings if you wish. Press "deploy", type your account password and wait a few seconds for your transaction to be picked up.
+
+[![Ethereum Wallet Screenshot 2015-12-03 at 3.50.36 PM 11](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-11.png)](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-11.png)
+
+You'll be redirected to the front page where you can see your transaction waiting for confirmations. Click the account named "Etherbase" (your main account) and after no more than a minute you should see that your account will show that you have 100% of the shares you just created.  To send some to a few friends: select "send", and then choose which currency you want to send (ether or your newly created share), paste your friend's address on the "to" field and press "send".
+
+![Screen Shot 2015-12-03 at 9.48.15 AM](/images/tutorial/Screen-Shot-2015-12-03-at-9.48.15-AM.png)
+
+If you send it to a friend, they will not see anything in their wallet yet. This is because the wallet only tracks tokens it knows about, and you have to add these manually. Now go to the "Contracts" tab and you should see a link for your newly created contract. Click on it to go to it's page. Since this is a very simple contract page there isn't much to do here, just click "copy address" and paste the contract address on a text editor, you'll need it shortly.
+
+To add a token to watch, go to the contracts page and then click "Watch Token". A pop-up will appear and you only need to paste the contract address. The token name, symbol and decimal number should be automatically filled but if it's not you can put anything you want (it will only affect how it displays on your wallet). Once you do this, you'll automatically be shown any balance you have of that token and you'll be able to send it to anyone else.
+
+[![Ethereum Wallet Beta 4 Screen Shot 2015-12-03 at 9.44.42 AM](/images/tutorial/Screen-Shot-2015-12-03-at-9.44.42-AM.png)](/images/tutorial/Screen-Shot-2015-12-03-at-9.44.42-AM.png)
+
+And now you have your own crypto token! Tokens by themselves can be useful as [value exchange on local communities](https://en.wikipedia.org/wiki/Local_currency), ways to [keep track of worked hours](https://en.wikipedia.org/wiki/Time-based_currency) or other loyalty programs. But can we make a currency have an intrinsic value by making it useful?
+
+
+### Improve your token
+
+You can deploy your whole crypto token without ever touching a line of code, but the real magic happens when you start customizing it. The following sections will be suggestions on functions you can add to your token to make it fit your needs more.
+
+#### Centralized Administrator 
+
+All dapps are fully decentralized by default, but that doesn't mean they can't have some sort of central manager, if you want them to. Maybe you want the ability to mint more coins, maybe you want to ban some people from using your currency. You can add any of those features, but the catch is that you can only add them at the beginning, so all the token holders will always know exactly the rules of the game before they decide to own one.
+
+For that to happen, you need a central controller of currency. This could be a simple account, but could also be a contract and therefore the decision on creating more tokens will depend on the contract: if it's a democratic organization that can be up to vote, or maybe it can be just a way to limit the power of the token owner.
+
+In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, **before *contract myToken {**.
+
+    contract owned {
+        address public owner;
+        
+        function owned() {
+            owner = msg.sender;
+        }
+        
+        modifier onlyOwner {
+            if (msg.sender != owner) throw;
+            _
+        }
+        
+        function transferOwnership(address newOwner) onlyOwner {
+            owner = newOwner;
         }
     }
 
-If you have ever programmed, you won't find it hard to understand what it does: it is a contract that generates 10 thousand tokens to the creator of the contract, and then allows anyone with enough balance to send it to others. These tokens are the minimum tradeable unit and cannot be subdivided, but for the final users could be presented as 100 units subdividable by 100 subunits, so owning a single token would represent having 0.01% of the total. If your application needs more fine grained atomic divisibility, then just increase the initial issuance amount.
 
-In this example we declared the mapping "coinBalanceOf" to be public, this will automatically create a 'get' function that returns any account's balance.
+This creates a very basic contract that doesn't do anything except define some generic functions about a contract that can be "owned". Now the next step is just add the text *is owned* to your token:
 
-### Compile and Deploy
-
-**So let's run it!**
-
-    var tokenSource = 'contract token { mapping (address => uint) public coinBalanceOf; event CoinTransfer(address sender, address receiver, uint amount); function token(uint supply) { if (supply == 0) supply = 10000; coinBalanceOf[msg.sender] = supply; } function sendCoin(address receiver, uint amount) returns(bool sufficient) { if (coinBalanceOf[msg.sender] < amount) return false; coinBalanceOf[msg.sender] -= amount; coinBalanceOf[receiver] += amount; CoinTransfer(msg.sender, receiver, amount); return true; } }'
-
-    var tokenCompiled = eth.compile.solidity(tokenSource)
-
-Now let’s set up the contract, just like we did in the previous section. Change the "initial Supply" to the amount of non divisible tokens you want to create. If you want to have divisible units, you should do that on the user frontend but keep them represented in the minimum unit of account. 
-
-    var supply = 10000;
-    var tokenContract = web3.eth.contract(tokenCompiled.token.info.abiDefinition);
-    var token = tokenContract.new(
-      supply,
-      {
-        from:web3.eth.accounts[0], 
-        data:tokenCompiled.token.code, 
-        gas: 1000000
-      }, function(e, contract){
-        if(!e) {
-
-          if(!contract.address) {
-            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
-
-          } else {
-            console.log("Contract mined! Address: " + contract.address);
-            console.log(contract);
-          }
-
-        }
-    })
-
-#### Online Compiler
-
-**If you don't have solC installed, you can simply use the online compiler.** Copy the contract code to the [online solidity compiler](https://chriseth.github.io/browser-solidity/), if there are no errors on the contract you should see a text box labeled **Geth Deploy**. Copy the content to a text file so you can change the first line to set the initial supply, like this:  
-
-    var supply = 10000;
-
-Now you can paste the resulting text in your geth window. Wait up to thirty seconds and you'll see a message like this:
-
-    Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e 
-
-This has deployed the contract, and it is ready to be interacted with.
-
-### Check balance watching coin transfers
-
-If everything worked correctly, you should be able to check your own balance with:
-
-    token.coinBalanceOf(eth.accounts[0]) + " tokens"
-
-It should have all the 10 000 tokens that were created once the contract was published. Since there is not any other defined way for new coins to be issued, these are all that will ever exist. 
-
-You can set up a **Watcher** to react whenever anyone sends a coin using your contract. Here's how you do it:
-
-    var event = token.CoinTransfer({}, '', function(error, result){
-      if (!error)
-        console.log("Coin transfer: " + result.args.amount + " tokens were sent. Balances now are as following: \n Sender:\t" + result.args.sender + " \t" + token.coinBalanceOf.call(result.args.sender) + " tokens \n Receiver:\t" + result.args.receiver + " \t" + token.coinBalanceOf.call(result.args.receiver) + " tokens" )
-    });
-
-### Sending coins
-
-Now of course those tokens aren't very useful if you hoard them all, so in order to send them to someone else, use this command:
-
-    token.sendCoin.sendTransaction(eth.accounts[1], 1000, {from: eth.accounts[0]})
-
-If a friend has registered a name on the registrar you can send it without knowing their address, doing this:
-
-    token.sendCoin.sendTransaction(registrar.addr("Alice"), 2000, {from: eth.accounts[0]})
+    function myToken is owned {
+        /* the rest of the contract as usual */
 
 
-Note that our first function **coinBalanceOf** was simply called directly on the contract instance and returned a value. This was possible since this was a simple read operation that incurs no state change and which executes locally and synchronously. Our second function **sendCoin** needs a **.sendTransaction()** call. Since this function is meant to change the state (write operation), it is sent as a transaction to the network to be picked up by miners and included in the canonical blockchain. As a result the consensus state of all participant nodes will adequately reflect the state changes resulting from executing the transaction. Sender address needs to be sent as part of the transaction to fund the fuel needed to run the transaction. Now, wait until the transaction is included in a block and check both accounts' balances:
+This means that all the functions inside **myToken** now can access the variable *owner* and the modifier *onlyOwner*. The contract also gets a function to transfer ownership. Since it might be interesting to set the owner of the contract at startup, you can also add this to the *constructor function*: 
 
-    token.coinBalanceOf.call(eth.accounts[0])/100 + "% of all tokens"
-    token.coinBalanceOf.call(eth.accounts[1])/100 + "% of all tokens"
-    token.coinBalanceOf.call(registrar.addr("Alice"))/100 + "% of all tokens"
+    function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, address centralMinter) {
+        if(centralMinter != 0 ) owner = msg.sender;
+
+#### Central Mint
 
 
-### Improvement suggestions
+Suppose you want the amount of coins on circulation to change. This is the case when your tokens actually represent an off blockchain asset (like gold certificates or government currencies) and you want the virtual inventory to reflect the real one. This might also be the case when the currency holders expect some control on the price of the token, and want to issue or remove tokens from circulation.
 
-Right now this "cryptocurrency" is quite limited as there will only ever be 10,000 coins and all are controlled by the coin creator, but you can change that. You could for example reward ethereum miners, by creating a transaction that will reward who found the current block:
+Now let's add a new function finally that will enable the owner to create new tokens:
 
-    mapping (uint => address) miningReward;
-    function claimMiningReward() {
-      if (miningReward[block.number] == 0) {
-        coinBalanceOf[block.coinbase] += 1;
-        miningReward[block.number] = block.coinbase;
-      }
+    function mintToken(address target, uint256 mintedAmount) onlyOwner {
+        balanceOf[target] += mintedAmount;  
+        Transfer(0, target, mintedAmount);
     }
 
-You could modify this to anything else: maybe reward someone who finds a solution for a new puzzle, wins a game of chess, installs a solar panel—as long as that can be somehow translated to a contract. Or maybe you want to create a central bank for your personal country, so you can keep track of hours worked, favours owed or control of property. In that case you might want to add a function to allow the bank to remotely freeze funds and destroy tokens if needed. 
+Notice the modifier **onlyOwner** on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the **modifier onlyOwner** we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account set as the owner. Just add this to a contract with an **owner** modifier and you'll be able to create more coins.
+
+#### Freezing of assets
+
+Depending on your use case, you might need to have some regulatory hurdles on who can and cannot use your tokens. For that to happen, you can add a parameter that enables the contract owner to freeze or unfreeze assets.
+
+Add this variable and function anywhere inside the contract. You can put them anywhere but for good practice we recommend you put the mappings with the other mappings and events with the other events.
+
+    mapping (address => bool) public frozenAccount; 
+    event FrozenFunds(address target, bool frozen);
+
+    function freezeAccount(address target, bool freeze) onlyOwner {
+        frozenAccount[target] = freeze;
+        
+        FrozenFunds(target, freeze);
+    }
+
+With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Unfortunately freezing has no practical effect, because we haven't added anything to the transfer function. We are changing that now:
+
+    function transfer(address _to, uint256 _value) {
+        if (frozenAccount[msg.sender]) throw;
+
+Now any account that is frozen will still have their funds intact, but won't be able to move them. All accounts are unfrozen by default until you freeze them, but you can easily revert that behavior into a whitelist where you need to manually approve every account. Just rename **frozenAccount** into **approvedAccount** and change the last line to:
+
+        if (!approvedAccount[msg.sender]) throw;
+
+         
+#### Automatic selling and buying
+
+So far, you've relied on utility and trust to value your token. But if you want you can make the token's value be backed by ether (or other tokens) by creating a fund that automatically sells and buys them at market value. 
+
+First, let's set the price for buying and selling:
+
+    uint256 public sellPrice;
+    uint256 public buyPrice;
+
+    function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
+        sellPrice = newSellPrice;
+        buyPrice = newBuyPrice;
+    }
+
+This is acceptable for a price that doesn't change very often, as every new price change will require to execute a transaction and spend a bit of ether. If you want to have a constant floating price we recommend investigating [standard data feeds](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds)    
+
+The next step is making the buy and sell functions:
+
+    function buy() {
+        uint amount = msg.value / buyPrice;                // calculates the amount
+        if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
+        balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
+        balanceOf[this] -= amount;                         // subtracts amount from seller's balance
+        Transfer(this, msg.sender, amount);                // execute an event reflecting the change
+    }
+
+    function sell(uint amount) {
+        if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
+        balanceOf[this] += amount;                         // adds the amount to owner's balance
+        balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
+        msg.sender.send(amount * sellPrice);               // sends ether to the seller
+        Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
+    }
+
+Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
+
+**Note** Buy and sell "prices" are not set in ether, but in *wei* the minimum currency of the system (equivalent to the cent in the Euro and Dollar, or the Satoshi in Bitcoin). One ether is 1000000000000000000 wei. So when setting prices for your token in ether, add 18 zeros at the end.
+
+#### Proof of Work
+
+There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with ether, meaning that anyone who finds a block on ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block. 
+
+    function giveBlockReward() {
+        balanceOf[block.coinbase] += 1;
+    }
+
+It's also possible to add a mathematical formula, so that anyone who can do math can win a reward. On this next example you have to calculate the cubic root of the current challenge gets a point and the right to set the next challenge:
+
+    uint currentChallenge = 1; // Can you figure out the cubic root of this number?
+
+    function rewardMathGeniuses(uint answerToCurrentReward, uint nextChallenge) {
+        if (answerToCurrentReward**3 != currentChallenge) throw; // If answer is wrong do not continue
+        balanceOf[msg.sender] += 1;         // Reward the player
+        currentChallenge = nextChallenge;   // Set the next challenge
+    }
+
+Of course while calculating cubic roots can be hard for someone to do on their heads, they are very easy with a calculator, so this game could be easily broken by a computer. Also since the last winner can choose the next challenge, they could pick something they know and therefore would not be a very fair game to other players. There are tasks that are easy for humans but hard for computers but they are usually very hard to code in simple scripts like these. Instead a fairer system should be one that is very hard for a computer to do, but it's very hard for a computer to verify. A great candidate for would be to create a hash challenge where the challenger has to generate hashes from multiple numbers until they find one that is lower than a given difficulty.
+
+This process was first proposed by Adam Back in 1997 as [Hashcash](https://en.wikipedia.org/wiki/Hashcash) and then was implemented in Bitcoin by Satoshi Nakamoto as **Proof of work** in 2008. Ethereum was launched using such system for it's security model, but is planning to move from a Proof of Work security model into a [mixed proof of stake and betting system called *Casper*](https://blog.ethereum.org/2015/12/28/understanding-serenity-part-2-casper/). 
+
+But if you like Hashing as a form of random issuance of coins, you can still create your own ethereum based currency that has a proof of work issuance:
+
+    bytes32 public currentChallenge;                         // The coin starts with a challenge
+    uint public timeOfLastProof;                             // Variable to keep track of when rewards were given
+    uint public difficulty = 10**32;                         // Difficulty starts reasonably low
+    
+    function proofOfWork(uint nonce){
+        bytes8 n = bytes8(sha3(nonce, currentChallenge));    // Generate a random hash based on input
+        if (n < bytes8(difficulty)) throw;                   // Check if it's under the difficulty
+
+        uint timeSinceLastProof = (now - timeOfLastProof);  // Calculate time since last reward was given
+        if (timeSinceLastProof <  5 seconds) throw;         // Rewards cannot be given too quickly
+        
+        difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;  // Adjusts the difficulty
+
+        timeOfLastProof = now;                              // Reset the counter
+        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number));  // Save a hash that will be used as the next proof
+        balanceOf[msg.sender] += timeSinceLastProof / 60 seconds;  // The reward to the winner grows by the minute
+    }
+
+Also change the **Constructor function** (the one that has the same name as the contract, which is called at first upload) to add this line, so the difficulty adjustment will not go crazy:
+
+        timeOfLastProof = now;
+
+Once the contract is online, select the function "Proof of work", add your favorite number on the **nonce** field and try to execute it. If the confirmation window gives a red warning saying *"Data can't be execute"* go back and pick another number until you find one that allows the transaction to go forward: this process is random. If you find one you will be awarded 1 token for every minute that has passed since the last reward was given, and then the challenge difficulty will be adjusted up or down to target an average of 10 minutes per reward.
+
+This process of trying to find the number that will give you a reward is what is called *mining*: if difficulty rises it can be very hard to find a lucky number, but it will be always easy to verify that you found one. 
 
 
-### Register a name for your coin
+### Improved Coin
 
-**The name registrar contract has changed in Frontier and the following section is only valid for the Olympic test net. Please wait while we update it.**
+#### Full coin code
 
-The commands mentioned only work because you have a token JavaScript object instantiated on your local machine. If you send tokens to someone they won't be able to move them forward because they don't have the same object and won't know where to look for your contract or call its functions. In fact if you restart your console these objects will be deleted and the contracts you've been working on will be lost forever. So how do you instantiate the contract on a clean machine? 
+If you add all the advanced options, this is how the final code should look like:
 
-There are two ways. Let's start with the quick and dirty, providing your friends with a reference to your contract’s ABI:
+![Advanced Token](/images/tutorial/advanced-token-deploy.png)
 
-    token = eth.contract([{constant:false,inputs:[{name:'receiver',type:'address'},{name:'amount',type:'uint256'}],name:'sendCoin',outputs:[{name:'sufficient',type:'bool'}],type:'function'},{constant:true,inputs:[{name:'',type:'address'}],name:'coinBalanceOf',outputs:[{name:'',type:'uint256'}],type:'function'},{inputs:[{name:'supply',type:'uint256'}],type:'constructor'},{anonymous:false,inputs:[{indexed:false,name:'sender',type:'address'},{indexed:false,name:'receiver',type:'address'},{indexed:false,name:'amount',type:'uint256'}],name:'CoinTransfer',type:'event'}]).at('0x4a4ce7844735c4b6fc66392b200ab6fe007cfca8')
+    contract owned {
+        address public owner;
 
-Just replace the address at the end for your own token address, then anyone that uses this snippet will immediately be able to use your contract. Of course this will work only for this specific contract so let's analyze step by step and see how to improve this code so you'll be able to use it anywhere.
+        function owned() {
+            owner = msg.sender;
+        }
 
-All accounts are referenced in the network by their public address. But addresses are long, difficult to write down, hard to memorize and immutable. The last one is specially important if you want to be able to generate fresh accounts in your name, or upgrade the code of your contract. In order to solve this, there is a default name registrar contract which is used to associate the long addresses with short, human-friendly names.
+        modifier onlyOwner {
+            if (msg.sender != owner) throw;
+            _
+        }
 
-Names have to use only alphanumeric characters and cannot contain blank spaces. In future releases the name registrar will likely implement a bidding process to prevent name squatting but for now, it works on a first come first served basis: as long as no one else registered the name, you can claim it.
+        function transferOwnership(address newOwner) onlyOwner {
+            owner = newOwner;
+        }
+    }
+    
+    contract tokenRecipient { function sendApproval(address _from, uint256 _value, address _token); }
+
+    contract MyToken is owned { 
+        /* Public variables of the token */
+        string public name;
+        string public symbol;
+        uint8 public decimals;
+        uint256 public sellPrice;
+        uint256 public buyPrice;
+
+        /* This creates an array with all balances */
+        mapping (address => uint256) public balanceOf;
+        mapping (address => bool) public frozenAccount; 
+        mapping (address => mapping (address => uint)) public allowance;
+        mapping (address => mapping (address => uint)) public spentAllowance;
+
+        /* This generates a public event on the blockchain that will notify clients */
+        event Transfer(address indexed from, address indexed to, uint256 value);
+        event FrozenFunds(address target, bool frozen);
+
+        /* Initializes contract with initial supply tokens to the creator of the contract */
+        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, address centralMinter) { 
+            if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
+            if(centralMinter != 0 ) owner = msg.sender;         // Sets the minter
+            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
+            name = tokenName;                                   // Set the name for display purposes     
+            symbol = tokenSymbol;                               // Set the symbol for display purposes    
+            decimals = decimalUnits;                            // Amount of decimals for display purposes        
+        }
+
+        /* Send coins */
+        function transfer(address _to, uint256 _value) {
+            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough   
+            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
+            if (frozenAccount[msg.sender]) throw;                // Check if frozen
+            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
+            balanceOf[_to] += _value;                            // Add the same to the recipient            
+            Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+        }
+
+        /* Allow another contract to spend some tokens in your behalf */
+
+        function approve(address _spender, uint256 _value) returns (bool success) {
+            allowance[msg.sender][_spender] = _value;  
+            tokenRecipient spender = tokenRecipient(_spender);
+            spender.sendApproval(msg.sender, _value, this);          
+        }
+
+        /* A contract attempts to get the coins */
+
+        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough   
+            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
+            if (spentAllowance[_from][msg.sender] + _value > allowance[_from][msg.sender]) throw;   // Check allowance
+            balanceOf[_from] -= _value;                          // Subtract from the sender
+            balanceOf[_to] += _value;                            // Add the same to the recipient            
+            spentAllowance[_from][msg.sender] += _value;
+            Transfer(msg.sender, _to, _value); 
+        } 
+
+        /* This unnamed function is called whenever someone tries to send ether to it */
+        function () {
+            throw;     // Prevents accidental sending of ether
+        }
+                function mintToken(address target, uint256 mintedAmount) onlyOwner {
+            balanceOf[target] += mintedAmount;  
+            Transfer(0, target, mintedAmount);
+        }
+
+        function freezeAccount(address target, bool freeze) onlyOwner {
+            frozenAccount[target] = freeze;
+            FrozenFunds(target, freeze);
+        }
+            
+        function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
+            sellPrice = newSellPrice;
+            buyPrice = newBuyPrice;
+        }
+        
+        function buy() {
+            uint amount = msg.value / buyPrice;                // calculates the amount
+            if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
+            balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
+            balanceOf[this] -= amount;                         // subtracts amount from seller's balance
+            Transfer(this, msg.sender, amount);                // execute an event reflecting the change
+        }
+
+        function sell(uint256 amount) {
+            if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
+            balanceOf[this] += amount;                         // adds the amount to owner's balance
+            balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
+            msg.sender.send(amount * sellPrice);               // sends ether to the seller
+            Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
+        }
+    }   
+
+#### Deploying 
+
+Scroll down and you'll see an estimated cost for deployment. If you want you can change the slider to set a smaller fee, but if the price is too below the average market rate your transaction might take longer to pick up. Click *Deploy* and type your password. After a few seconds you'll be redirected to the dashboard and under **Latest transactions** you'll see a line saying "creating contract". Wait for a few seconds for someone to pick your transaction and then you'll see a slow blue rectangle representing how many other nodes have seen your transaction and confirmed them. The more confirmations you have, the more assurance you have that your code has been deployed. 
+
+![Created Token](/images/tutorial/created-token.png)
+
+Click on the link that says *Admin page* and you'll be taken the simplest central bank dashboard in the world,   where you can do anything you want with your newly created currency. 
+
+On the left side under *Read from contract* you have all the options and functions you can use to read information from the contract, for free. If your token has an owner, it will display it's address here. Copy that address and paste it on **Balance of** and it will show you the balance of any account (the balance is also automatically shown on any account page that has tokens). 
+
+On the right side, under **Write to Contract** you'll see all the functions you can use to alter or change the blockchain in any way. These will cost gas. If you created a contract that allows to mint new coins, you should have a function called "Mint Token". Select it.
+
+![Manage central dollar](/images/tutorial/manage-central-dollar.png)
+
+Select the address where those new currencies will be created and then the amount (if you have decimals set at 2, then add 2 zeros after the amount, to create the correct quantity). On **Execute from** select the account that set as owner, leave the ether amount at zero and then press execute.
+
+After a few confirmations, the recipient balance will be updated to reflect the new amount. But your recipient wallet might not show it automatically: in order to be aware of custom tokens, the wallet must add them manually to a watch list. Copy your token address (at the admin page, press *copy address*) and send that to your recipient. If they haven't already they should go to the contracts tab, press **Watch Token** and then add the address there. Name, symbols and decimal amounts displayed can be customized by the end user, specially if they have other tokens with similar (or the same) name. The main icon is not changeable and users should pay attention to them when sending and receiving tokens to ensure they are dealing with the real deal and not some copycat token.
+
+![add token](/images/tutorial/add-token.png)
 
 
-First, if you register a name, then you won't need the hardcoded address in the end. Select a nice coin name and try to reserve it for yourself. First, select your name:
+## Using your coin
 
-    var tokenName = "MyFirstCoin"
+Once you deployed your tokens, it will be added to your list of watched tokens, and the total balance will be shown on your account. In order to send tokens, just go on the **Send** tab and select an account that contains tokens. The tokens the account has will be listed just under *Ether*. Select them and then type the amount of tokens you want to send.
 
-Then, check the availability of your name:
+If you want to add someone's else token, just go to the **Contracts** tab and click **Watch token**. For example, to add the **Unicorn (🦄)** token to your watch list, just add the address **0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. 
 
-    registrar.addr(tokenName)
+![Invisible Unicorns](/images/tutorial/unicorn-token.png)
 
-If that function returns "0x00..", you can claim it to yourself:
+Unicorn tokens are memorabilia created exclusively for those who have donated to the address **0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359** that is controlled by the Ethereum Foundation. For more information about them [read it here](./donate)
 
-    registrar.reserve.sendTransaction(tokenName, {from: eth.accounts[0]});
+### Now what?
 
-
-Wait for the previous transaction to be picked up. Wait up to thirty seconds and then try:
-
-    registrar.owner(tokenName)
-
-If it returns your address, it means you own that name and are able to set your chosen name to any address you want:
-
-    registrar.setAddress.sendTransaction(tokenName, token.address, true,{from: eth.accounts[0]});
-
-_You can replace **token.address** for **eth.accounts[0]** if you want to use it as a personal nickname._
-
-Wait a little bit for that transaction to be picked up too and test it:
-
-    registrar.addr("MyFirstCoin")
-
-You can send a transaction to anyone or any contract by name instead of account simply by typing 
-
-    eth.sendTransaction({from: eth.accounts[0], to: registrar.addr("MyFirstCoin"), value: web3.toWei(1, "ether")})
-
-**Tip: don't mix registrar.addr for registrar.owner. The first is to which address that name is pointed at: anyone can point a name to anywhere else, just like anyone can forward a link to google.com, but only the owner of the name can change and update the link. You can set both to be the same address.**
-
-This should now return your token address, meaning that now the previous code to instantiate could use a name instead of an address.
-
-    token = eth.contract([{constant:false,inputs:[{name:'receiver',type:'address'},{name:'amount',type:'uint256'}],name:'sendCoin',outputs:[{name:'sufficient',type:'bool'}],type:'function'},{constant:true,inputs:[{name:'',type:'address'}],name:'coinBalanceOf',outputs:[{name:'',type:'uint256'}],type:'function'},{inputs:[{name:'supply',type:'uint256'}],type:'constructor'},{anonymous:false,inputs:[{indexed:false,name:'sender',type:'address'},{indexed:false,name:'receiver',type:'address'},{indexed:false,name:'amount',type:'uint256'}],name:'CoinTransfer',type:'event'}]).at(registrar.addr("MyFirstCoin"))
-
-This also means that the owner of the coin can update the coin by pointing the registrar to the new contract. This would, of course, require the coin holders trust the owner set at  registrar.owner("MyFirstCoin")
-
-Of course this is a rather unpleasant big chunk of code just to allow others to interact with a contract. There are some avenues being investigated to upload the contract ABI to the network, so that all the user will need is the contract name. You can [read about these approaches](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions#natspec) but they are very experimental and will certainly change in the future.
+You just learned how you can use ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to [represent a share in a company#the-stakeholder-association](./dao) or you can use a [central committee](./dao#the-code) to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a [crowdsale](./crowdsale). What will you build next?
 
 
-### Learn More 
 
-* [Meta coin standard](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs) is a proposed standardization of function names for coin and token contracts, to allow them to be automatically added to other ethereum contract that utilizes trading, like exchanges or escrow.
 
-* [Formal proofing](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format#documentation-output) is a way where the contract developer will be able to assert some invariant qualities of the contract, like the total cap of the coin. *Not yet implemented*.
+
+
+
+
+
 

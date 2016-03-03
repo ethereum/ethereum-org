@@ -3,22 +3,27 @@ mixin gethFigure(center)
     div.geth-background.animateme(data-when="enter", data-from="0.5", data-to="0", data-opacity="0", data-translatex="100")
     div.geth-logo.animateme(data-when="enter", data-from="0.7", data-to="0.6", data-opacity="0")
 
+mixin gethFigureExit()
+  figure.geth.scrollme
+    div.geth-background.animateme(data-when="exit", data-to="0.5", data-from="0.2", data-opacity="0", data-translatex="100")
+    div.geth-logo.animateme(data-when="exit", data-to="0.1", data-from="0.0", data-opacity="0")
+
 
 mixin etherFigure()
   figure.ether.scrollme
-    div.ether-screen.animateme(data-when="span", data-from="0.6", data-to="0", data-translatey="500")
-    div.ether-pacman.animateme(data-when="span", data-from="0.55", data-to="0.5", data-opacity="0")
-    div.ether-arcade-back.animateme(data-when="span", data-from="0.6", data-to="0", data-translatey="500")
-    div.ether-coin.animateme(data-when="span", data-from="0.6", data-to="0.4", data-translatey="-300")
-    div.ether-arcade-front.animateme(data-when="span", data-from="0.6", data-to="0", data-translatey="500")
+    div.ether-screen.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
+    div.ether-pacman.animateme(data-when="enter", data-from="0.55", data-to="0.5", data-opacity="0")
+    div.ether-arcade-back.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
+    div.ether-coin.animateme(data-when="enter", data-from="0.6", data-to="0.4", data-translatey="-300")
+    div.ether-arcade-front.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
 
 
 mixin greeterFigure()
   figure.greeter.scrollme
-    div.greeter-human.animateme(data-when="enter", data-from="0.4", data-to="0", data-opacity="0", data-translatex="-200")
-    div.greeter-robot.animateme(data-when="enter", data-from="0.5", data-to="0.2", data-opacity="0", data-translatex="200")
-    div.greeter-question.animateme(data-when="enter", data-from="0.7", data-to="0.5", data-opacity="0")
-    div.greeter-answer.animateme(data-when="enter", data-from="0.9", data-to="0.6", data-opacity="0")
+    div.greeter-human.animateme(data-when="exit", data-to="0.7", data-from="0.3", data-opacity="0", data-translatex="-200")
+    div.greeter-robot.animateme(data-when="exit", data-to="0.8", data-from="0.5", data-opacity="0", data-translatex="200")
+    div.greeter-question.animateme(data-when="exit", data-to="0.4", data-from="0.2", data-opacity="0")
+    div.greeter-answer.animateme(data-when="exit", data-to="0.3", data-from="0.1", data-opacity="0")
 
 
 mixin tokenFigure()
@@ -27,6 +32,14 @@ mixin tokenFigure()
     div.coin-send.animateme(data-when="enter", data-from="0.9", data-to="0.8", data-opacity="0", data-translatey="-50", data-translatex="-200")
     div.coin-users.animateme(data-when="enter", data-from="0.5", data-to="0", data-opacity="0", data-translatey="-100", data-scale="1.5", data-rotate="45")
     div.coin-coins.animateme(data-when="enter", data-from="0.6", data-to="0.4", data-opacity="0", data-scale="0.5", data-translatey="-10")
+
+
+mixin tokenFigureExit()
+  figure.coin.scrollme
+    div.coin-connection.animateme(data-when="enter", data-to="1", data-from="0.5", data-opacity="0", data-translatey="0")
+    div.coin-send.animateme(data-when="enter", data-to="0.9", data-from="0.8", data-opacity="0", data-translatey="-50", data-translatex="-200")
+    div.coin-users.animateme(data-when="enter", data-to="0.5", data-from="0", data-opacity="0", data-translatey="-100", data-scale="1.5", data-rotate="45")
+    div.coin-coins.animateme(data-when="enter", data-to="0.6", data-from="0.4", data-opacity="0", data-scale="0.5", data-translatey="-10")
 
 
 mixin crowdsaleFigure()
@@ -38,6 +51,15 @@ mixin crowdsaleFigure()
     div.crowdsale-crowd.animateme(data-when="enter", data-from="0.3", data-to="0", data-opacity="0", data-translatey="-100", data-scale="1.1", data-easing="linear")
 
 
+mixin crowdsaleFigureExit()
+  figure.crowdsale.scrollme
+    div.crowdsale-logic.animateme(data-when="exit", data-to="0.8", data-from="0.7", data-opacity="0", data-translatey="-100", data-easing="linear")
+    div.crowdsale-robot.animateme(data-when="exit", data-to="0.5", data-from="0.3", data-opacity="0", data-translatey="-155", data-translatex="-30", data-scale="1.1", data-rotatez="90", data-easing="linear")
+    div.crowdsale-money.animateme(data-when="exit", data-to="0.8", data-from="0.6", data-opacity="0",data-translatey="-20")
+    div.crowdsale-contributions.animateme(data-when="exit", data-to="0.7", data-from="0.5", data-opacity="0", data-scale="1.4")
+    div.crowdsale-crowd.animateme(data-when="exit", data-to="0.3", data-from="0", data-opacity="0", data-translatey="-100", data-scale="1.1", data-easing="linear")
+
+
 mixin daoFigure()
   figure.dao.scrollme
     div.dao-robot.animateme(data-when="enter", data-from="0.65", data-to="0.45", data-opacity="0", data-translatey="200", data-rotatez="-90")
@@ -45,6 +67,14 @@ mixin daoFigure()
     div.dao-arrows.animateme(data-when="enter", data-from="0.95", data-to="0.8", data-opacity="0", data-scale="1.5")
     div.dao-crowd.animateme(data-when="enter", data-from="0.45", data-to="0", data-opacity="0", data-translatey="-250", data-translatex="10", data-rotatez="0", data-scale="1.1", data-easing="linear")
     div.dao-ideas.animateme(data-when="enter", data-from="0.8", data-to="0.7", data-opacity="0", data-translatey="-40")
+
+mixin daoFigureExit()
+  figure.dao.scrollme
+    div.dao-robot.animateme(data-when="exit", data-to="0.65", data-from="0.1", data-opacity="0", data-translatey="400", data-rotatez="-90")
+    div.dao-money.animateme(data-when="exit", data-to="0.7", data-from="0.0", data-opacity="0", data-translatey="200")
+    div.dao-arrows.animateme(data-when="exit", data-to="0.1", data-from="0", data-opacity="0", data-scale="0.75")
+    div.dao-crowd.animateme(data-when="exit", data-to="0.45", data-from="0", data-opacity="0", data-translatey="-250", data-translatex="10", data-rotatez="0", data-scale="1.1", data-easing="linear")
+    div.dao-ideas.animateme(data-when="exit", data-to="0.3", data-from="0.1", data-opacity="0", data-scale="2")
 
 
 mixin futureFigure()

@@ -12,21 +12,20 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	letter-spacing: -1px;
 	margin: 10px 0;
 	font-weight: 400;
 }
 
 h1 {
-	font-size: 36px;
+	font-size: 50px;
 	font-weight: 900;
 }
 
 h2 {
-	font-size: 30px;
-	text-transform: uppercase;
-	color: #F9D774;
+	font-size: 40px;
+	color: #A9C5E6;
 	padding-bottom: 30px;
 }
 
@@ -51,11 +50,11 @@ p {
 }
 
 a {
-	color: #D13C15;
+	color: #4A90E2;
 }
 
 a:hover {
-	color: #b5670b;
+	color: #61A7F8;
 	cursor: pointer;
 }
 
@@ -95,7 +94,7 @@ header {
 header {
 	height: 60vh;
 	min-height: 440px;
-	background: url('../images/Frontier-Background.jpg') center center no-repeat;
+	background: #f8f6fb url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;
 	position: relative;
 	
@@ -113,52 +112,62 @@ header {
 }
 
 div.scrollme.intro {
-	background: #1f0c05;
+	background: #102026;
 	overflow: hidden;
 	position: relative;
 	z-index: 40;
 }
 
 div.scrollme.row.introduction {
-	height: 70vh;
+	height: 60vw;
 	min-height: 440px;
-	background: url('../images/Frontier-Background.jpg') center center no-repeat;
+	max-height: 800px;
+	background: #102026 url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;	
 	padding-top: 50px;
 }
 
 .introduction h1 {
 	position: absolute;
-	top: 50%;
+	top: 0px;
 	left: 50%;
 	width: 250px;
 	height: 0;
-	padding-top: 290px;
-	margin-top: -200px;
+	padding-top: 250px;
 	margin-left: -125px;
-	background: url('../images/Title+Logo.png') top center no-repeat;
-	background-size: 250px 290px;
+	background: url('../images/homestead-title.png') top center no-repeat;
+	background-size: contain;
 	overflow: hidden;
 }
 
+.caption { 
+	text-align: center;
+	letter-spacing: 0.05em;
+	font-style: italic;
+	font-size: 90%;
+	padding: 0 40px;
+}
+
+/*
 header:after {
-	content: " ";
-	background: linear-gradient(transparent, #1f0c05);
+	content: " ";	
+	background: linear-gradient(transparent, #102026);
 	height: 100px;
 	position: absolute;	
 	bottom: 0;
 	left: 0;
 	right: 0;
 }
+*/
 
-.main-content:before {
+.intro:after {
 	content: " ";
-	background: linear-gradient(transparent, #1f0c05);
-	height: 100px;
+	background: linear-gradient(transparent, #102026);
+	height: 250px;
 	position: absolute;	
-	top: -100px;
 	left: 0;
 	right: 0;
+	bottom: 0;
 }
 
 .status-bar {
@@ -184,7 +193,7 @@ header:after {
 }
 
 #block-content {
-	background: #1f0c05;
+	background: #102026;
 	padding-top: 10px;
 	padding-bottom: 15px;
 }
@@ -201,56 +210,46 @@ header:after {
 #block-content span {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-size: 18px;
-	color: #F6E6CC;
+	color: #C3CCDB;
 	font-smooth: auto;
 	-webkit-font-smoothing: subpixel-antialiased;
 	-moz-font-smoothing: subpixel-antialiased;
 }
 
-.main-content {
-	padding-top: 40px;
-	color: #F6E6CC;
-	background: #1f0c05;
-	position: relative;
-	z-index: 50;
+body {
+	background: #102026;
 }
 
+.main-content {
+	padding-top: 40px;
+	color: #C3CCDB;
+	position: relative;
+	z-index: 50;
+	overflow: hidden;
+}
+
+.main-content {
+	margin-top: -150px;
+}
 
 .main-tutorial {
-	background: #FFF url("../images/bg.png");
 	overflow: hidden;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-size: 18px;
 	color: #443A37;
 	position: relative;
 	-webkit-background-blend-mode: multiply;
-	background-blend-mode: multiply;
+	background-color: #F5F5F5;
 	min-width: 300px;
 }
 
 .main-tutorial.even {
-	/*background: #FFF5DE url("../images/bg.png");*/
-	background: #FFFAEE url("../images/bg.png");
-
+	background-color: #EBEBEB;
 }
-
-
-
-/*
-.main-tutorial.part2 {
-	background: #FFB51A;
-}
-
-.main-tutorial.part3 {
-	background: #D54839;
-}
-
-.main-tutorial.part4 {
-	background: #EFE6C4;
-}*/
 
 .main-tutorial p {
 	padding: 0 20px 0;
+	text-align: left;
 }
 
 .center-align {
@@ -259,7 +258,7 @@ header:after {
 
 
 .inner-tutorial h1 {
-	color: #D13C15;
+	color: #354049;
 	text-align: center;
 	padding-top: 50px;
 	padding-bottom: 40px;
@@ -267,14 +266,13 @@ header:after {
 
 #tutorial-start h2 {
 	padding-bottom: 0;
+	font-size: 60px;
 }
 
 .main-tutorial h2 {
-	/*font-family: "Roboto Slab";*/
-	font-size: 30px;
-	text-transform: uppercase;
-	font-weight: 900;
-	color: #682615;
+	font-size: 40px;
+	font-weight: 300;
+	color: #354049;
 	background: transparent;
 	padding: 80px 20px 20px;
 	text-align: center;
@@ -282,48 +280,60 @@ header:after {
 
 .main-tutorial h3 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
-	font-size: 26px;
+	font-size: 23px;
 	font-weight: 600;
-	color: #D13C15;
+	color: #354049;
 	background: transparent;
 	max-width: 400px;
-	padding: 60px 20px 30px 70px;
+	padding: 60px 20px 30px;
 	position: relative;
 }
-/* The heading under the dessert */
-.main-tutorial .scrollme h2.animateme + h3 {
+
+/*.main-tutorial .scrollme h2.animateme + h3 {
 	padding: 80px 20px;
 }
+*/
 
-
+.main-tutorial blockquote {
+    font-style: oblique;
+    font-size: 1.2em;
+}
 
 .tutorial-end h3 {
 	padding: 30px 20px;
 	max-width: none;
 	text-align: center;
 }
-/*
-h3 strong {
-	color: #6D3122
+
+.middle-feature {
+	color: #E1EFFF;
+	background-color: #4990E2;
 }
-*/
+.middle-feature h2 {
+	color: #E1EFFF;
+	font-weight: 300;
+	font-size: 40px;
+	text-transform: none;
+	padding: 30px 20px;
+}
+
 .inner-tutorial h1 + h2 {
 	padding-top: 0;
 	margin-top: -40px;
 }
 
-.main-tutorial h2 + h3 {
+/*.main-tutorial h2 + h3 {
 	padding-top: 0;
-}
+}*/
 
 .main-tutorial h2 + h3 .number {
 	top: 0;
 }
 
-.main-tutorial h3 + h2 {
+/*.main-tutorial h3 + h2 {
 	padding-top: 0;
 	margin-top: -50px
-}
+}*/
 
 .main-tutorial .row {
 	padding: 80px 0;
@@ -331,13 +341,13 @@ h3 strong {
 
 .number {
 	display: inline-block;
-	background: #682615;
+	background: #354049;
 	width: 56px;
 	height: 56px;
 	border-radius: 28px;
-	color: #FFFAEE;
+	color: #E1EFFF;
 	text-align: center;
-	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	font-size: 40px;
 	padding-top: 5px;
 	margin-right: 10px;
@@ -352,10 +362,11 @@ h3 strong {
 	background-repeat: repeat-y;
 	background-position: 20px;
 	display: block;
-	float: left;
-	width: 500px;
+	/*float: left;*/
+	max-width: 500px;
 	padding: 20px 40px;
 	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
+	text-align: left;
 }
 /*
 .inner-tutorial ul {
@@ -369,7 +380,7 @@ h3 strong {
 .recipe h4 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;	
-	color: #D13C15;
+	color: #354049;
 	font-weight: 600;
 	text-align: center;
 	font-size: 20px;
@@ -396,7 +407,7 @@ h3 strong {
 
 .inner-page h4  ,
 .inner-tutorial h4  {
-	color: #682615;
+	color: #354049;
 	padding: 20px 20px 0;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
@@ -408,7 +419,7 @@ h3 strong {
 	text-align: center;
 	font-size: 80%;
 	padding-top: 0;
-	background: #eb453e;
+	background: #354049;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -420,13 +431,72 @@ h3 strong {
 	color: #FFF;
 }
 
+
+.inner-tutorial img {
+	max-width: 100%;
+}
+
+/* DAO */
+
+.middle-feature, 
+.inner-header.main-tutorial  {
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+ 
+
+.inner-header.dao-tutorial {
+	background-image: url("../images/dao-bg.jpg");
+}
+
+.inner-header.token-tutorial {
+	background-image: url("../images/token-bg.jpg");
+}
+
+.inner-header.token-tutorial h2 ,
+.inner-header.token-tutorial h3 ,
+.inner-header.token-tutorial p {
+	color: #fff;
+	padding-left: 0;
+}
+
+.middle-feature {
+	background-image: url("../images/solidity-bg.jpg");
+}
+
+.inner-header.crowdsale-tutorial {
+	background-image: url("../images/dao-dawn-bg.jpg");
+}
+
+.inner-header .header-title h3, 
+.inner-header .header-title h2 ,
+.inner-header .header-title h3 {
+	/*color: #F5F5F5;*/
+	font-weight: 500;
+	padding-left: 0;
+}
+
+/* */
+
+
+.whatis.server-figure {
+	min-height: 400px;
+}
+
+.whatis.wallet-figure-outer {
+	min-height: 400px;
+}
+
+.whatis figure,
 .main-tutorial figure {
-	float: right;
-	margin: 60px 0 30px 30px;	
-	position: relative;
+	/*float: right;*/
+	/*margin: 60px 0 30px 30px;	*/
+	/*position: relative;*/
 	width: 100%;
 }
 
+.whatis figure div,
 .main-tutorial figure div {
 	position: absolute;
 	top: 0;
@@ -443,14 +513,15 @@ button,
 a.button {
 	display: block;
 	position: relative;
-	width: 400px;
+	max-width: 400px;
 	padding: 10px;
-	float: right;
+	/*float: right;*/
 	clear: right;
-	margin-top: 60px;
-	margin-bottom: 30px;
-	background: #F15625;
-	color: #FFFAEE;
+	margin: 60px auto 30px;
+	/*margin-top: 60px;
+	margin-bottom: 30px;*/
+	background: #4A90E2;
+	color: #F5F5F5;
 	font-weight: 600;
 	border-radius: 3px;
 	border: none;
@@ -459,19 +530,50 @@ a.button {
 	text-decoration: none;
 	font-weight: 600;
 	-webkit-appearance: none;
+	border-bottom: solid 3px #2F6DB5;
+	top: -3px;
+	box-shadow: rgba(0,0,0,0.1) 0 6px 1px;
+	transition: box-shadow 0.6s, border-bottom 0.6s, top 0.6s, margin-bottom 0.6s;	
+	transition-timing-function: ease-out;
 }
 
-input.button, 
+input.button:hover, 
 button:hover,
 a.button:hover {
-	border-bottom: solid 3px #AB3C19;
-	top: -3px;
-	text-shadow: rgba(0,0,0,0.2) 0 -1px 0;
-	box-shadow: rgba(0,0,0,0.1) 0 4px 1px;
+	border-bottom: solid 1px #2F6DB5;
+	top: -1px;
+	/*text-shadow: rgba(0,0,0,0.2) 0 -1px 0;*/
+	box-shadow: rgba(0,0,0,0.05) 0 2px 1px;
+	margin-bottom: 32px;
+	cursor: hand;
+	cursor: pointer;	
+	transition: box-shadow 0.3s, border-bottom 0.3s, top 0.3s, margin-bottom 0.3s;		
+	transition-timing-function: ease-in;	
+}
+
+input.button:active, 
+button:active,
+a.button:active {
+	border-bottom: solid 1px #2F6DB5;
+	top: -1px;
+}
+
+.button.small {
+	top: -1px;
+	max-width: 200px;
+	padding: 3px 5px;
+	border-bottom: #c1d7ef 1px solid;	
+	box-shadow: rgba(0,0,0,0.1) 0 1px 1px;	
+	background-color: #e4ebf3;
+	color: #4a90e2;
 }
 
 input.button:hover {
 	color: #FFF;
+}
+
+.main-menu {
+	min-height: 0;
 }
 
 .breadcrumb {
@@ -485,10 +587,10 @@ input.button:hover {
 	left: 0;
 	right: 0;
 	top: 0;
-	color: #F6E6CC;
-	background: #1f0c05;  
+	color: #C3CCDB;
+	background: #102026;  
 	padding: 10px 40px;
-	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	font-size: 14px;
 	z-index: 10;
 	background-image: url("../images/diamond-icon.png");
@@ -506,27 +608,47 @@ input.button:hover {
 	padding: 0 5px;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
-	color: #ffe9ae;
+	color: #E1EFFF;
 }	
 
+a.donation-button {
+	font-weight: bold;
+}
+
 .breadcrumb a.index {
-	font-family: 'Wicked-Grit', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 }
 
-.warning .short-terms a {
-	color: #FFF;
+#tableOfContents {
+    padding-left: 20px;
+    list-style-type: none;
+	position: absolute;
+	left: 20px;
+	top: 30px;
+	width: 200px;
+	border-left: 4px solid #eee;
+	font-size: 18px;
+    font-weight: 600;
+    list-style-type: none;
+    transition: top 0.25s cubic-bezier(0.67, -0.54, 0.57, 1.21);
 }
 
-.warning a.button {
-	background-color: #FFFAEE;
-	color: #F15625;
-	margin: 30px auto;
-	float: none;
+ul#tableOfContents ul {
+    font-size: 15px;
+    font-weight: 400;
+    padding-bottom: 10px;
+    list-style-type: none;
+    padding-left: 0;    
+}
+
+#tableOfContents.fixed {
+	position: fixed;
+	top: 60px;
 }
 
 .terms,
 .cannot-continue  {
-	color: #FFFAEE;
+	color: #E1EFFF;
 	text-align: center;
 	font-weight: 600;
 	display: block;
@@ -534,13 +656,13 @@ input.button:hover {
 }
 
 .warning a.back {
-	color: #FFFAEE;
+	color: #E1EFFF;
 	font-size: 80%;
 	padding-top: 15px;
 }
 
 .inner-header a.back {
-	color: #FFFAEE;
+	color: #E1EFFF;
 	float: left;
 	position: absolute;
 	top: 10px;
@@ -579,7 +701,7 @@ input.button:hover {
 
 .developers ul {
 	padding-left: 10px;
-	color: #F6E6CC;
+	color: #C3CCDB;
 }
 
 
@@ -619,6 +741,9 @@ input.button:hover {
 }
 .community ul li a.email {
 	background-image: url("../images/icons/icon-email.png");
+}
+.community ul li a.stackexchange {
+	background-image: url("../images/icons/icon-stackexchange.png");
 }
 
 .community li.canary {
@@ -678,22 +803,62 @@ input.button:hover {
 	background-repeat: no-repeat;
 }
 
-.press > a {
+a.donate-button {
 	position: relative;
-	width: 45%;
-	float: left;
-	z-index: 110;
 	text-align: center;
-	background: #290F03;
+	background: #1C3944;
 	border-radius: 4px;
 	display: block;
 	padding: 10px;
 	margin: 20px 5% 20px 0;
 }
 
+a.donate-button:hover ,
 .press > a:hover {
 	text-decoration: none;
-	background: #501A04;
+	background: #255264;
+}
+
+
+.dapp-identicon {
+	position: absolute;
+	display: block;
+	left: 50%;
+	margin-left: -32px;
+	height: 64px;
+	width: 64px;
+	background-size: cover;
+	border-radius: 50%;
+	box-shadow: rgba(255, 255, 255, 0.4) 0px 4px 8px 0px inset, rgba(0, 0, 0, 0.6) 0px -4px 12px 0px inset;
+	
+}
+
+.donate h2 {
+	padding-bottom: 0;
+}
+
+.main-tutorial .donate h3 {
+	padding-top: 0;
+	text-align: center;
+	max-width: none;
+}
+
+
+.main-tutorial .donate h4 {
+	text-align: center;
+	padding-top: 50px;
+}
+
+
+.main-tutorial .donate .caption {
+	max-width: 600px;
+	margin: 10px auto;
+	text-align: center;
+	display: block;
+}
+
+footer .caption {
+	color:  #C3CCDB;
 }
 
 .press li span.press-recode {
@@ -738,29 +903,290 @@ input.button:hover {
 
 
 
+
+
+a.ethereum-wallet {
+	display: none;
+	text-align: center;
+}
+
+a.button.allversions.ethereum-wallet {
+	display: block;
+}
+
+a.button.ethereum-wallet {
+	background-size: 23px 23px;
+	background-repeat: no-repeat;
+	background-position: 25px center;
+	font-weight: 400;
+}
+
+a.button.ethereum-wallet strong {
+	display: block;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+.MacIn a.ethereum-wallet.link,
+.MacIn a.button.ethereum-wallet.mac {
+	display: block;
+}
+
+.MacIn a.button.allversions.ethereum-wallet {
+	display: none;
+}
+
+
+.Win32 a.ethereum-wallet.link,
+.Win32 a.button.ethereum-wallet.win32 {
+	display: block;
+}
+
+.Win32 a.button.allversions.ethereum-wallet {
+	display: none;
+}
+
+
+.Win64 a.ethereum-wallet.link,
+.Win64 a.button.ethereum-wallet.win64 {
+	display: block;
+}
+
+.Win64 a.button.allversions.ethereum-wallet {
+	display: none;
+}
+
+
+
+.Linux a.ethereum-wallet.link,
+.Linux a.button.ethereum-wallet.linux {
+	display: block;
+}
+
+.Linux a.button.allversions.ethereum-wallet {
+	display: none;
+}
+
+
+a.button.ethereum-wallet.mac {
+	background-image: url("../images/button-mac.png");	
+}
+
+a.button.ethereum-wallet.linux {
+	background-image: url("../images/button-linux.png");	
+}
+
+a.button.ethereum-wallet.win32 {
+	background-image: url("../images/button-win32.png");	
+}
+
+a.button.ethereum-wallet.win64 {
+	background-image: url("../images/button-win64.png");	
+}
+
+/*
+
+a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-macosx-0-3-9.zip").button.mac.ethereum-wallet Download the Ethereum Wallet for Mac OS X
+
+          a(href="https://github.com/ethereum/mist/releases/download/v0.3.8/Ethereum-Wallet-win32-0-3-8.zip").button.win32.ethereum-wallet Download the Ethereum Wallet for Windows 
+
+          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-win64-0-3-9.zip").button.win64.ethereum-wallet Download the Ethereum Wallet for Windows
+
+          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-linux64-0-3-9.zip").button.ethereum-wallet Download the Ethereum Wallet for Linux
+
+          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-linux32-0-3-9.zip").button.ethereum-wallet Download the Ethereum Wallet for Linux
+          
+          a(href="https://github.com/ethereum/mist/releases/latest").allversions.button.ethereum-wallet Download the Ethereum Wallet
+
+          a(href="https://github.com/ethereum/mist/releases/latest").allversions.ethereum-wallet See all versions
+
+*/
+
+.aleth-miner {
+	background: #FFF;
+	background: linear-gradient(#FFF,#726866);
+}
+.aleth-miner h2 {
+	padding-top: 100px;
+	color: #303030;
+}
+
+/*.aleth-miner .button {
+	float: left;
+    margin-top: 30px;
+}*/
+
+.power-tools { 
+	background: #726866;
+	background: linear-gradient(#726866, #000);
+	overflow: hidden;
+}
+
+
+.power-tools p, 
+.power-tools h2 , 
+.power-tools h3 { 
+	color: #FFF;
+}
+
+.power-tools h2 {
+	padding-top: 40px;
+} 
+/*
+.power-tools .button {
+	clear: none;
+	float: left;
+	margin-top: 50px;
+}*/
+
+.command-line {
+	background: #000;
+	color: #ccc;
+	padding-top: 40px;
+}
+/*
+.command-line .button {
+	float: left;
+	margin-top: 30px;
+}*/
+
+.command-line h3 {
+	color: #eee;
+}
+
 /* FIGURES */
 
 figure.ethereum-network {
 	display: block;
 	width: 100%;
-	max-width: 488px;
-	height: 336px;
-	background-image: url("../images/ethereum-network.png");
+	/*max-width: 391px;*/
+	height: 306px;
+	background-image: url("../images/ethereum-network-outline@2x.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 }
 
 
+
 figure.geth-console {
 	display: block;
 	width: 100%;
-	max-width: 589px;
+	max-width: 450px;
 	height: 281px;
 	background-image: url("../images/console.gif");
 	background-size: contain;
 	background-repeat: no-repeat;
 	margin-bottom: 50px;
 }
+
+
+figure.ethereum-explain {
+	max-width: 460px;
+	height: 450px;
+	position: absolute;
+}
+
+figure.ethereum-explain .explain-01 {
+	background-image: url("../images/explain-01.gif");
+}
+figure.ethereum-explain .explain-02 {
+	background-image: url("../images/explain-02.png");
+}
+figure.ethereum-explain .explain-03 {
+	background-image: url("../images/explain-03.gif");
+}
+
+
+
+figure.wallet-figure {
+	max-width: 460px;
+	height: 310px;
+	position: absolute;
+}
+
+figure.wallet-figure .wallet-01 {
+	background-image: url("../images/wallet-01.gif");
+}
+figure.wallet-figure .wallet-02 {
+	background-image: url("../images/wallet-02.gif");
+}
+figure.wallet-figure .wallet-03 {
+	background-image: url("../images/wallet-03.gif");
+}
+
+.whatis .caption { 
+	position: relative;
+	top: 310px;
+
+}
+
+
+figure.wallet {
+	max-width: 736px;
+	height: 500px;
+	/*margin-right: -250px;*/
+	/*margin-top: -100px;*/
+}
+
+figure.wallet .wallet-start {
+	background-image: url("../images/wallet-start.png");
+}
+figure.wallet .wallet-create {
+	background-image: url("../images/wallet-create.png");
+}
+figure.wallet .wallet-confirm {
+	background-image: url("../images/wallet-confirm.png");
+}
+
+
+
+figure.aleth-one {
+	max-width: 481px;
+	height: 516px;
+	/*float: left;*/
+	/*margin-left: -100px;*/
+}
+
+figure.aleth-one .aleth-one-1 {
+	background-image: url("../images/aleth-one-1.png");
+}
+figure.aleth-one .aleth-one-2 {
+	background-image: url("../images/aleth-one-2.png");
+}
+figure.aleth-one .aleth-one-3 {
+	background-image: url("../images/aleth-one-3.png");
+}
+figure.aleth-one .aleth-one-4 {
+	background-image: url("../images/aleth-one-4.png");
+}
+figure.aleth-one .aleth-one-5 {
+	background-image: url("../images/aleth-one-5.png");
+}
+
+
+
+figure.turbo {
+	max-width: 544px;
+	height: 434px;
+	margin-right: -100px;
+}
+
+figure.turbo .turbo-01 {
+	background-image: url("../images/turbo-01.png");
+}
+figure.turbo .turbo-02 {
+	background-image: url("../images/turbo-02.png");
+}
+figure.turbo .turbo-03 {
+	background-image: url("../images/turbo-03.png");
+}
+figure.turbo .turbo-04 {
+	background-image: url("../images/turbo-04.png");
+}	
+figure.turbo .turbo-05 {
+	background-image: url("../images/turbo-05.png");
+}
+
 
 
 figure.geth {
@@ -775,40 +1201,6 @@ figure.geth .geth-background {
 figure.geth .geth-logo {
 	background-image: url("../images/geth-foreground.png");
 }
-/*
-figure.get-ether {
-	max-width: 194px;
-	height: 195px;
-}
-
-figure.geth-ether .get-ether-brick-0 {
-	background-image: url("../images/get-ether-brick-0.png");
-}
-
-figure.geth-ether .get-ether-brick-1 {
-	background-image: url("../images/get-ether-brick-1.png");
-}
-
-figure.geth-ether .get-ether-brick-2 {
-	background-image: url("../images/get-ether-brick-2.png");
-}
-
-figure.geth-ether .get-ether-brick-3 {
-	background-image: url("../images/get-ether-brick-3.png");
-}
-
-figure.geth-ether .get-ether-brick-4 {
-	background-image: url("../images/get-ether-brick-4.png");
-}
-
-figure.geth-ether .get-ether-brick-5 {
-	background-image: url("../images/get-ether-brick-5.png");
-}
-
-figure.geth-ether .get-ether-coin {
-	background-image: url("../images/get-ether-coin.png");
-}*/
-
 
 figure.ether {
 	max-width: 375px;
@@ -855,7 +1247,7 @@ figure.greeter .greeter-answer {
 }
 
 figure.coin {
-	max-width: 384px;
+	/*max-width: 384px;*/
 	height: 342px;
 }
 
@@ -874,7 +1266,7 @@ figure.coin .coin-send {
 
 
 figure.crowdsale {
-	max-width: 407px;
+	/*max-width: 407px;*/
 	height: 384px;
 }
 
@@ -896,7 +1288,7 @@ figure.crowdsale .crowdsale-crowd {
 }
 
 figure.dao {
-	max-width: 420px;
+	/*max-width: 420px;*/
 	height: 424px;
 }
 
@@ -989,98 +1381,86 @@ figure.ethereum-logo {
 	padding: 20px;
 	overflow: auto;
 	width: 10000px;
+	max-height: 800px;
 	background: #FFF;	
 }
 
 code {
-	background: #F6E6CC;
+	background: #C3CCDB;
 }
 
 pre {
 	background: transparent;
 	overflow: auto;
-	border: solid 4px #FCF5E3;
 	padding:0;
 	margin: 20px 0;
 	position: relative;
 }
-/*footer {
-	background: #E4D0B7 url("../images/bg-footer.png");
-	-webkit-background-blend-mode: multiply;
-	background-blend-mode: multiply;
-	background-size: 1920px auto;
-	font-size: 14px;
-	border-top: 3px solid #eb453e;
-	color: #F6E6CC;
-}*/
 
 footer {
-	background: #FFFAEE url("../images/bg.png");
-	background-blend-mode: multiply;	
 	position: relative;
   	z-index: 100;
 }
 
 .footer {
-	background: #1f0c05;
+	background: #102026;
 	padding-top: 100px;
 }
 
 .footer p {
-	color: #F6E6CC;
+	color: #C3CCDB;
 }
+/*
+.inner-header figure {
+	float: left;
+	/*margin: 50px auto;*/
+/*} */
 
-.warning {
-	background: #eb453e;
-	color: #F6E6CC;	
-	font-size: 150%;
-	font-weight: 600;
-	z-index: 100;
-	position: relative;
-}
-
-.warning h2 {
-	background-image: url('../images/warning@2x.png');
-	background-repeat: no-repeat;
-	background-size: 59px 59px;
-	background-position: left top;
-	padding-left: 80px;
-	padding-top: 5px;
-	font-size: 40px;
-}
-
-.warning figure.bad-robot {
-	background-image: url('../images/bad-robot@2x.png');
-	background-size: contain;
-	width: 113px;
-	height: 103px;
-	display: block;
-	margin: 100px auto;
-}
-
-.inner-tutorial figure {
-	float: none;
-	margin: 50px auto;
-} 
-
-.inner-tutorial h3 {
-	padding-left: 20px;
-	max-width: none;
-}
-
-.inner-header {
-	padding: 100px;
-	text-align: center;
-	background: #1f0c05;
+.inner-header h2 {
+	text-align: left;
+	font-size: 60px;
+	font-weight: 100;
+	margin: 0;
+	padding: 0;
 }
 
 .inner-header h3 {
-	padding-top: 20px;
+	font-size: 40px;
+	font-weight: 300;
+	margin: 0;
+	padding: 15px 20px 0;
+	max-width: none;
+	text-align: left;
 	text-transform:  uppercase;
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-weight: 200;
 	font-size: 200%;
-	color: #eb453e;
+}
+
+.inner-header.default-header h3 {
+	text-align: center;
+	color: #FFF;
+}
+
+.inner-header .scrollme {
+	display: flex;
+}
+
+.inner-header .header-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 20px;
+}
+
+.inner-header {
+	padding: 100px;
+	/*text-align: center;*/
+	background: #102026;
+}
+
+.inner-page.inner-header .row {
+	display: flex;
 }
 
 .inner-page h3 {
@@ -1089,13 +1469,23 @@ footer {
 }
 
 .foundation-page img[alt*="Portrait"] {
-	width: 250px;
-	height: 250px;
+	width: 160px;
 	float: right;
 	margin: 0 0 40px 40px;
 	clear: both;
 }
 
+.foundation-page.even {
+	background-image: url('../images/foundation-collage.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+
+.foundation-page.even h2,
+.foundation-page.even p {
+	color: #FFF;
+}
 
 .main-tutorial img[alt*="Logo"] {
 	width: 100px;
@@ -1111,7 +1501,7 @@ footer {
 	margin: 30px auto;
 }
 
-.press-kit .asset-download {
+.donate-button {
 	display: -webkit-flex;
 	display: flex;
 	-webkit-justify-content: center;
@@ -1120,20 +1510,15 @@ footer {
 	align-items: center;
 }
 
-.press-kit .asset-download a {
+.donate-button {
 	display: block;
-}
-.ether-tutorial img {
-	width: 229px;
-	float: right;
-	margin: 0 0 40px 40px;
 }
 
 .ethereum-projects h4  {
 	text-align: center;
 	clear: both;
 	padding: 60px 0 10px;
-	color: #eb453e;
+	color: #354049;
 }
 
 .ethereum-projects  ul {
@@ -1147,132 +1532,218 @@ footer {
 	width: 100%;
 }
 
-
-.project-list li {
-	display: inline-block;
-	max-width: 200px;
-	padding: 20px;
-	text-align: center;
-	font-size: 80%;
+.slides {
+	position: relative;
+	height: 400px;
 }
 
-
-.project-list a {
-	display: block;
+.slides .slide-what ,
+.slides .slide {
+	/*display: none;*/
+	transition: 0.6s transform ease-out, opacity 0.5s ease-in-out;
+	transform: translateY(700px) translateZ(0) scale(1,2);
+	opacity: 0;
+	position: absolute;
 	width: 100%;
-	text-indent: -500px;	
-	overflow: hidden;
-	height: 40px;
-	margin-bottom: 20px;
-	background-size: contain;
-	background-repeat: no-repeat;
+	height: 100%;
+	/*background: #666;*/
+	background-size: cover;
 	background-position: center;
-}
-
-.project-list a[href='http://augur.net'] {
-	background-image: url('../images/icons/AUGUR.png');
-}
-
-.project-list a[href='https://etherex.org/'] {
-	background-image: url('../images/icons/EX.png');
+	background-repeat: no-repeat;
 }
 
 
-.project-list a[href='https://www.theprotocol.tv/adept-demo-ibm-samsung'] {
-	background-image: url('../images/icons/ibm_white.png');
+/*.slides .slide:first-child*/
+.slides .slide-what ,
+.slides .slide.active, 
+.slides .slide:target {
+	/*display: block;*/
+	transform: translateZ(0);
+	opacity: 1;	
+	transition: 0.3s transform ease-out, opacity 0.3s ease-in-out;
+
+} 
+
+.slides .slide-what h3 ,
+.slides .slide h3 {
+	color: #fff;
+	position: absolute;
+	bottom: 20%;
+	font-size: 32px;
+	font-weight: 300;
+	line-height: 40px;
+	left: 50%;
+	text-align: center;
+	max-width: none;
+	width: 400px;
+	margin-left: -200px;
 }
 
-.project-list a[href='http://ether.fund'] {
-	background-image: url('../images/icons/ETHERFUND.png');
+.slides .slide-what {
+	background: #333;
 }
 
-.project-list a[href='http://ethergit.com'] {
-	background-image: url('../images/icons/ETHERGIT_WHITE.png');
+.slides .slide-what h5 {
+	color: #777;
+	text-align: center;
+	position: absolute;
+	top: 290px;
+	bottom: 20px;
+	left: 30%;
+	right: 30%;
+}
+.slides .slide.slide-augur {
+	background-image: url('../images/bg/augur.jpg');
 }
 
-.project-list a[href='http://airlock.me/'] {
-	background-image: url('../images/icons/airlock.png');
+.slides .slide.slide-boardroom {
+	background-image: url('../images/bg/boardroom.jpg');
+}
+.slides .slide.slide-colony {
+	background: #3f5152 url('../images/bg/colony.jpg') no-repeat;
+	background-size: contain;
+	background-position: center left;
+}
+.slides .slide.slide-etherex {
+	background-image: url('../images/bg/etherex.jpg');
+	background-position: top left;
+}
+.slides .slide.slide-gnosis {
+	background-image: url('../images/bg/gnosis.jpg');
+}
+.slides .slide.slide-provenance {
+	background: #2f3a4a url('../images/bg/provenance.jpg') no-repeat;
+	background-size: contain;
+	background-position: center left;
 }
 
-.project-list a[href='https://www.provenance.org'] {
-	background-image: url('../images/icons/Provenancve-Logo-&-Logotype-White.png');
+.slides .slide.slide-slockit {
+	background: #f1f1f1 url('../images/bg/slockit.png') no-repeat;
+	background-size: contain;
+	background-position: center left;
 }
 
-.project-list a[href='https://dgx.io/'] {
-	background-image: url('../images/icons/digixglobal_logo_dark.png');
+.slides .slide.slide-ujomusic {
+	background: #ededed url('../images/bg/ujomusic.jpg') no-repeat;
+	background-size: contain;
+	background-position: center right;
 }
 
-.project-list a[href='http://weifund.io/'] {
-	background-image: url('../images/icons/weifundalpha.png');
+.slides .slide.slide-digix {
+	background-image: url('../images/bg/digix.jpg');
 }
 
-.project-list a[href='http://www.lazooz.net/'] {
-	background-image: url('../images/icons/new-logo.png');
-}
-
-.project-list a[href='http://etherchain.org'] {
-	background-image: url('../images/icons/etherchain.png');
-}
-
-.project-list a[href='http://main.cubespawn.com'] {
-	background-image: url('../images/icons/CUBESPAWN_2.png');
-}
-
-.project-list a[href='http://slock.it'] {
-	background-image: url('../images/icons/logo_schwarz.png');
-}
-.project-list a[href='http://boardroom.to'] {
-	background-image: url('../images/icons/boardroom.png');
-}
-.project-list a[href='http://colony.io'] {
-	background-image: url('../images/icons/colony.png');
-}
-.project-list a[href='http://makerdao.com'] {
-	background-image: url('../images/icons/maker.png');
-}
-
-.project-list a[href='http://etherparty.io'] {
-  background-image: url('../images/icons/etherparty.png');
-}
-
-.project-list a[href='http://etherscan.io'] {
-  background-image: url('../images/icons/etherscan.png');
-}
-
-.project-list a[href='http://explorer.etherparty.io'] {
-  background-image: url('../images/icons/etherparty-explorer.png');
-}
-
-.project-list a[href='http://www.hitfin.com']{
-  background-image: url('../images/icons/hitfin.png');
-}
-
-.project-list a[href='http://www.blockapps.net']{
-  background-image: url('../images/icons/blockapps.png');
-}
-
-.project-list a[href='http://groupgnosis.com']{
-  background-image: url('../images/icons/gnosis.svg');
-}
-
-.project-list a[href='http://chriseth.github.io/browser-solidity/']{
-  background-image: url('../images/icons/sol.svg');
-}
-
-.project-list a[href='http://meteor-dapp-cosmo.meteor.com']{
-  background-image: url('../images/icons/cosmo.png');
+.slides .slide.slide-maker {
+	background-image: url('../images/bg/maker.jpg');
 }
 
 
 
-
-
-.project-list a[href='http://frontier.ether.camp']{
-  background-image: url('../images/icons/ethercamp.png');
-  height: 60px;
-  margin-top: -10px;
-  margin-bottom: 10px;
+.slides .slide.slide-freemyvunk {
+	background: #858585 url('../images/bg/freemyvunk.jpg');
+	background-position: bottom center;
+	background-repeat: repeat-x;
+	background-size: 623px 137px;
 }
+
+.slides .slide.slide-ethercamp {
+	background-image: url('../images/bg/ethercamp.jpg');
+}
+
+/*.slides .slide.slide-freemyvunk h3 ,*/
+.slides .slide.slide-ujomusic h3 ,
+.slides .slide.slide-slockit h3 {
+	color: #666;
+}
+
+.slides .slide-nav {
+	position: absolute;
+	left: 10%;
+	/*top: 0;*/
+	right: 10%;
+	bottom: 10px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	z-index: 120;
+}
+
+.slides .slide-nav a ,
+.slides .slide a {
+	position: absolute;
+	bottom: 50px;
+	line-height: 40px;
+	left: 50%;
+	text-align: center;
+	width: 400px;
+	margin-left: -200px;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 0;
+}
+
+.slides .slide-nav a {
+	position: static;
+	background: #fff;
+	border-radius: 50%;
+	/*width: 34px;
+	height: 34px;*/
+	width: 12px;
+	height: 12px;
+	overflow: hidden;
+	font-size: 20px;
+	text-indent: 40px;
+	line-height: 28px;
+	padding: 0;
+	margin: 5px;
+	/*top: 50%;
+	bottom: 50%;
+	position: absolute;*/
+	/*color: #fff;*/
+	text-decoration: none;
+
+}
+
+.slides .slide-nav a:hover {
+	text-decoration: none;
+	background: rgba(0,0,0,0.4);	
+}
+
+/*.slides .slide-nav a:visited ,*/
+.slides .slide-nav a:active {
+	text-decoration: none;
+	background: rgba(0,0,0,0.2);	
+}
+
+
+.slides .slide-nav a.prev ,
+.slides .slide-nav a.next {
+	position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,.5);
+    color: #FFF;
+    font-size: 80px;
+    text-align: center;
+    text-indent: 5px;
+    line-height: 43px;
+    font-family: Source Sans Pro, helvetica neue;
+    font-weight: 100;
+    opacity: 0.9;
+}
+
+.slides .slide-nav a.prev {
+	left: -30px;
+    text-indent: -5px;
+}
+
+.slides .slide-nav a.next {
+	right: -30px;
+    left: auto;
+}
+
 
 .ether-checker,
 .ether-checker input,
@@ -1298,101 +1769,29 @@ footer {
 	padding: 0;
 }
 
-.thawing {
-	background: #223767; 
-	padding: 20px 40px 40px;
-	color: #FFF;
-	border-radius: 6px;
-}
-
-.thawing img {
-	width: 49px;
-	float: left;
-	margin-right: 40px;
-}
-
-
-/* DEVCON */
-
-.devcon {
-	position: absolute;
-	top: -10px;
-	right: 0;
-	left: 0;
-	z-index: 300;
-}
-
-.devcon .banner {
-	min-height: 100px;
-	background-image: url(../images/special/london.jpg);
-	background-size: cover;
-	margin: 10px auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.devcon .text {
-	float: right;
-	margin-left: 20px;
-}
-
-.devcon h3 {
-	text-indent: -100em;
-	background-image: url(../images/special/devcon.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: left;
-}
-
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-
-.devcon h4 {
-	color: #fdf5cf;
-	font-family: 'Roboto', Helvetica, Arial, sans-serif;
-	padding-right: 20px;
-}
-
-.devcon .button {
-	float: left;
-	max-width: 200px;
-	background: #ba8e59;
-	text-transform: uppercase;
-	color: #232323;
-}
-
-.devcon + .main-tutorial div.introduction {
-	padding-top: 850px;
-}
-
-@media only screen and (max-width: 500px ) {
-	.devcon .text, .devcon .button {
-		float: none;
-		margin: 10px auto;
-		text-align: center;
-	}
-
-}
-
-
-/* END DEVCON */
 
 @media (-webkit-min-device-pixel-ratio: 2) {
 	.introduction h1 {
-		background-image: url('../images/Title+Logo@2x.png');
+		background-image: url('../images/homestead-title@2x.png');
 	}	
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 800px ) {
+	.introduction h1 {
+		background-image: url('../images/homestead-title@3x.png');
+	}
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
 	header {
-		background-image: url('../images/Frontier-Background@2x.jpg');
+		background-image: url('../images/homestead-dawn-background@2x.jpg');
 	}
 }
 
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1 ) and (min-width: 1300px ) {
 	header {
-		background-image: url('../images/Frontier-Background@2x.jpg');
+		background-image: url('../images/homestead-dawn-background@2x.jpg');
 	}
 }
 
@@ -1408,6 +1807,7 @@ footer {
 	figure {
 		height: 300px;
 		margin: 0 auto;
+
 	}
 
 	.main-tutorial a.button ,
@@ -1422,6 +1822,60 @@ footer {
 	figure.ethereum-logo {
 		height: 140px;
 	}
+
+	.inner-header {
+		padding: 0;
+	}
+
+	.caption {
+		padding: 0 5px;
+	}
+
+	.whatis.server-figure {
+    	min-height: 500px;
+	}
+
+	.whatis.wallet-figure-outer {
+    	min-height: 500px;
+	}
+
+	figure.wallet {
+		height: 300px;
+	}
+
+	figure.coin, 
+	figure.crowdsale, 
+	figure.dao ,
+	figure.moon {
+		height: 260px;
+	}
+
+	.inner-header.dao-tutorial {
+		background-image: url("../images/dao-bg-mob.jpg");
+	}
+
+	.inner-header.token-tutorial {
+		background-image: url("../images/token-bg-mob.jpg");
+	}
+
+	.middle-feature {
+		background-image: url("../images/solidity-bg-mob.jpg");
+	}
+
+	.inner-header.crowdsale-tutorial {
+		background-image: url("../images/dao-dawn-bg-mob.jpg");
+	}
+
+	.slides .slide h3, .slides .slide-what h3 {
+	    width: 300px;
+	    margin-left: -150px;
+	}
+
+	.slides .slide-what h5 {
+	    left: 5%;
+	    right: 5%;
+	}
+
 }
 
 @media only screen and (max-width: 800px ) {
@@ -1437,9 +1891,18 @@ footer {
 	.recipe,
 	.main-tutorial a.button ,
 	.ethereum-network,
+	.whatis figure ,
 	.main-tutorial figure {
 		float: none;
 		margin: 30px auto;
+	}
+
+
+	.inner-header .scrollme {
+	    display: block;
+	}
+	.inner-header h2, .inner-header h3 {
+	    text-align: center;
 	}
 }
 
@@ -1453,31 +1916,116 @@ footer {
 	}
 }
 
-@media only screen and (min-height:900px) {
+
+@media only screen and (max-width: 1200px){
+	#tableOfContents {
+		background: #eee;
+		width: 40px !important;
+		z-index: 100;
+		transition: width 0.25s;
+		overflow: hidden;
+	}
+
+	#tableOfContents:before {
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		display: block;
+		content:'\2630';
+		font-size: 16px;
+	    top: 11px;
+	    left: 12px;
+	    opacity: 0.8;
+	    transition: opacity 0.5s;
+	}
+
+	#tableOfContents:hover {
+		box-shadow: #ccc 0 1px 2px 1px;
+		width: 200px !important;
+		padding: 10px;
+	}	
+
+	#tableOfContents:hover:before {
+		/*display: none;*/
+		opacity: 0;
+	}
+
+	#tableOfContents a {
+		display: none !important;
+		width: 180px;
+		opacity: 0;
+		transition: opacity 0.75s;
+	}	
+
+	#tableOfContents:hover a {
+		display: block !important;
+		opacity: 1;
+	}
+
+}
+
+@media only screen and (max-width: 1350px){
+	#tableOfContents {
+		width: 150px;
+		padding: 0;
+		border: none;
+		left: 10px;
+		font-size: 14px;
+		text-transform: uppercase;
+		line-height: 14px
+	}
+
+	#tableOfContents ul {
+		font-size: 12px;
+		text-transform: none;
+	}
+
+	#tableOfContents a {
+	    padding-bottom: 10px;
+	    display: block;
+	}
+}
+
+@media only screen and (min-width:900px) {
 	.introduction h1 {
-		background-image: url('../images/Title+Logo@2x.png');
+		background-image: url('../images/homestead-title@2x.png');
+	}
+}
+
+
+@media only screen and (min-width: 800px){
+	.introduction h1 {
+		width: 350px;
+		padding-top: 350px;
+		top: -10px;
+		margin-left: -175px;
+		background-image: url('../images/homestead-title@3x.png');
 	}
 }
 
 
 @media only screen and (min-width: 1000px){
 	.introduction h1 {
-		width: 300px;
-		padding-top: 348px;
-		margin-top: -230px;
-		margin-left: -150px;
-		background-size: 300px 348px;
-		background-image: url('../images/Title+Logo@3x.png');
+		width: 400px;
+		padding-top: 400px;
+		top: -12px;
+		margin-left: -200px;
+		background-image: url('../images/homestead-title@3x.png');
 	}
 }
 
 @media only screen and (min-width: 1500px){
 	.introduction h1 {
-		width: 360px;
-		padding-top: 417px;
-		margin-top: -270px;
-		margin-left: -180px;
-		background-size: 360px 417px;
+		width: 450px;
+		padding-top: 450px;
+		top: -15px;
+		margin-left: -225px;
+	}
+}
+
+@media only screen and (min-width: 1600px){
+	#tableOfContents {
+		width: 320px;
 	}
 }
 
@@ -1485,15 +2033,6 @@ footer {
 
 	.breadcrumb {
 		background-image: url("../images/diamond-icon@2x.png");
-	}
-
-	.main-tutorial {
-		background-image: url("../images/bg@2x.png");
-		background-size: 324px 326px !important;
-	}
-
-	.main-tutorial {
-		background: #FFF url("../images/bg@2x.png");
 	}
 	
 	.recipe {
@@ -1504,7 +2043,51 @@ footer {
 
 
 	figure.ethereum-network {
-		background-image: url("../images/ethereum-network@2x.png");
+		background-image: url("../images/ethereum-network-outline@2x.png");
+	}
+
+
+	figure.wallet .wallet-start {
+		background-image: url("../images/wallet-start@2x.png");
+	}
+	figure.wallet .wallet-create {
+		background-image: url("../images/wallet-create@2x.png");
+	}
+	figure.wallet .wallet-confirm {
+		background-image: url("../images/wallet-confirm@2x.png");
+	}
+
+	figure.aleth-one .aleth-one-1 {
+		background-image: url("../images/aleth-one-1@2x.png");
+	}
+	figure.aleth-one .aleth-one-2 {
+		background-image: url("../images/aleth-one-2@2x.png");
+	}
+	figure.aleth-one .aleth-one-3 {
+		background-image: url("../images/aleth-one-3@2x.png");
+	}
+	figure.aleth-one .aleth-one-4 {
+		background-image: url("../images/aleth-one-4@2x.png");
+	}	
+	figure.aleth-one .aleth-one-5 {
+		background-image: url("../images/aleth-one-5@2x.png");
+	}
+
+
+	figure.turbo .turbo-01 {
+		background-image: url("../images/turbo-01@2x.png");
+	}
+	figure.turbo .turbo-02 {
+		background-image: url("../images/turbo-02@2x.png");
+	}
+	figure.turbo .turbo-03 {
+		background-image: url("../images/turbo-03@2x.png");
+	}
+	figure.turbo .turbo-04 {
+		background-image: url("../images/turbo-04@2x.png");
+	}	
+	figure.turbo .turbo-05 {
+		background-image: url("../images/turbo-05@2x.png");
 	}
 
 
@@ -1643,36 +2226,35 @@ footer {
 	.community ul li a.email {
 		background-image: url("../images/icons/icon-email@2x.png");
 	}
+	.community ul li a.stackexchange {
+		background-image: url("../images/icons/icon-stackexchange@2x.png");
+	}
+}
 
 
-	.press li span.press-fast-company {
-		background-image: url("../images/icons/fast-company@2x.png");
-	}	
-	.press li span.press-reason {
-		background-image: url("../images/icons/reason@2x.png");
-	}
-	.press li span.press-forbes {
-		background-image: url("../images/icons/forbes@2x.png");
-	}
-	.press li span.press-telegraph {
-		background-image: url("../images/icons/the-telegraph@2x.png");
-	}
-	.press li span.press-wired {
-		background-image: url("../images/icons/wired@2x.png");
-	}
-	.press li span.press-wsj {
-		background-image: url("../images/icons/wall-street-journal@2x.png");
-	}
-	.press li span.press-aljazeera {
-		background-image: url("../images/icons/al-jazeera@2x.png");
-	}
-	.press li span.press-bloomberg {
-		background-image: url("../images/icons/bloomberg@2x.png");
-	}
-	.press li span.press-new-scientist {
-		background-image: url("../images/icons/new-scientist@2x.png");
-	}
+/* GITTER CHAT */
 
+div.gitter-chat-embed-action-bar {
+	max-height: 50px;
+	display: block;
+	height: 50px;
+	position: absolute
+}
 
+a.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-pop-out {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 
+button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-collapse-chat {
+	width: 50px;
+	height: 50px;
+	top: 0;
+	right: 0;
+	position: absolute;
+	/* max-height: 50px; */
+	/* flex: 0 0 50px; */
+	padding: 0;
+	margin: 0;
 }
