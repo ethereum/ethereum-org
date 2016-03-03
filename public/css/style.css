@@ -611,6 +611,10 @@ input.button:hover {
 	color: #E1EFFF;
 }	
 
+a.donation-button {
+	font-weight: bold;
+}
+
 .breadcrumb a.index {
 	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 }
@@ -1101,13 +1105,13 @@ figure.wallet-figure {
 }
 
 figure.wallet-figure .wallet-01 {
-	background-image: url("../images/wallet-01.png");
+	background-image: url("../images/wallet-01.gif");
 }
 figure.wallet-figure .wallet-02 {
-	background-image: url("../images/wallet-02.png");
+	background-image: url("../images/wallet-02.gif");
 }
 figure.wallet-figure .wallet-03 {
-	background-image: url("../images/wallet-03.png");
+	background-image: url("../images/wallet-03.gif");
 }
 
 .whatis .caption { 
@@ -1465,8 +1469,7 @@ footer {
 }
 
 .foundation-page img[alt*="Portrait"] {
-	width: 250px;
-	height: 250px;
+	width: 160px;
 	float: right;
 	margin: 0 0 40px 40px;
 	clear: both;

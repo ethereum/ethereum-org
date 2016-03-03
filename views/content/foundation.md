@@ -1,14 +1,7 @@
 
+## Mission and Vision Statement
 
-
-The Ethereum Foundation is a non-profit organization registered in Switzerland, and has the purpose of managing the funds that were raised from the Ether Sale in order to best serve the Ethereum and decentralized technology ecosystem.
-
-Founded July 2014 in Switzerland, Stiftung Ethereum’s mission is the promotion of developments of new technologies and applications, especially in the fields of new open and decentralized software architectures. 
-
-
-## Mission and Vision
-
-**The Ethereum Foundation’s mission is to promote and support research, development and education to bring decentralized protocols and tools to the world that empower developers to produce next generation decentralized applications (“dapps”) and together build a more globally accessible, more free and more trustworthy Internet.**
+**The Ethereum Foundation’s mission is to promote and support research, development and education to bring decentralized protocols and tools to the world that empower developers to produce next generation decentralized applications (dapps), and together build a more globally accessible, more free and more trustworthy Internet.
 
 ## Foundation Team
 
