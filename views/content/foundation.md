@@ -99,5 +99,10 @@ Yessin Schiegg is the CFO of Source Capital AG, a proprietary trading firm which
 William Mougayar is an entrepreneur, angel investor, mentor to startups and an expert and analyst on startup marketing, blockchain technologies, decentralization and peer-to-peer models. He is on the Board of Directors of OB1, the OpenBazaar open source project that is pioneering peer-to-peer commerce, and a member of OMERS Ventures Board of Advisors and the founder of Startup Management. Besides having started and raised capital for three  companies (Engagio, Eqentia, and CYBERManagement), his career also included HP, Cognizant, CommerceNet Canada, authoring two books on Internet business, consulting for numerous Fortune 500 companies, and being a professional speaker. William is a graduate of the University of Washington and the University of Western Ontario.  
 [LinkedIn](https://www.linkedin.com/in/williammougayar)
 
+#### Thomas Greco 
+
+Thomas Greco works at Omise.
+
+
 
 
