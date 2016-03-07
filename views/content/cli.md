@@ -22,20 +22,41 @@ If you are building a business that needs to have always on connections to the e
 The **Go** implementation is called **Geth**. Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
 
 
-#### Install: Mac and Linux
+#### Install on Mac
 
-In order to 'geth' it, open your command line tool (if you are unsure how to do this, consider waiting for a more user friendly release) paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install Geth. 
+Install [Homebrew](http://brew.sh/) and then make sure it's up to date:
 
-    bash <(curl https://install-geth.ethereum.org -L)
+    brew update
+    brew upgrade
 
-Paste the above one-liner in your terminal for an automated install script. This script will detect your OS and will attempt to install the ethereum CLI. 
+Then use these commands to install cpp-ethereum:
+
+    brew tap ethereum/ethereum
+    brew install ethereum
+
+For more see the [full documentation on Mac OSX Geth](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac)
 
 #### Windows
 
-Download the [latest stable binary](https://build.ethdev.com/builds/Windows%20Go%20master%20branch/Geth-Win64-latest.zip), extract it, and open a command terminal:
+Download the [latest stable binary](https://build.ethdev.com/builds/Windows%20Go%20master%20branch/), extract it, download the zip file, extract geth.exe from zip, open a command terminal and type:
 
     chdir <path to extracted binary>
-    run geth.exe
+    open geth.exe
+
+
+For more see the [full documentation on Windows Geth](https://github.com/ethereum/go-ethereum/wiki/Installation-instructions-for-Windows)
+
+#### Install on Linux
+
+On Ubuntu execute these commands:
+
+    sudo apt-get install software-properties-common
+    sudo add-apt-repository -y ppa:ethereum/ethereum
+    sudo add-apt-repository -y ppa:ethereum/ethereum-dev
+    sudo apt-get update
+    sudo apt-get install ethereum
+
+For other environments and more instruction see the [full documentation on Geth](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
 
 
 ### Eth
@@ -44,19 +65,36 @@ Download the [latest stable binary](https://build.ethdev.com/builds/Windows%20Go
 
 The **C++** implementation is simply called **Eth**. It is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analysis tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the C++ "Eth" client, is for you. 
 
-#### Install: Mac and Linux
+#### Install: on Mac
 
-Paste the one-liner below into your terminal for an automated install script. This script will detect your OS and will attempt to install Eth:
+Install [Homebrew](http://brew.sh/) and then make sure it's up to date:
 
-    bash <(curl https://install-eth.ethereum.org -L)
+    brew update
+    brew upgrade
 
+Then use these commands to install cpp-ethereum:
 
-#### Windows
+    brew tap ethereum/ethereum
+    brew install cpp-ethereum
+    brew linkapps cpp-ethereum
+
+For more see the [full documentation on Mac OSX CPP](https://github.com/ethereum/webthree-umbrella/wiki/Building-on-OS-X)
+
+#### Install on Linux:
+
+If you use Apt-get, then paste this on the terminal:
+
+    apt-get install cpp-ethereum
+
+For more detailed instructions select your environment and read the [build instructions for linux](https://github.com/ethereum/webthree-umbrella/wiki/Building-on-Linux)
+
+#### Install on Windows
 
 Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
 
-    bitsadmin /transfer cpp-ethereum "https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/Ethereum-win64-latest.exe" %temp%\eth++.exe & %temp%\eth++.exe
+    C:\> git clone --recursive https://github.com/ethereum/webthree-umbrella.git
 
+For more see the [full documentation on Windows OSX CPP](https://github.com/ethereum/webthree-umbrella/wiki/Building-on-Windows)
 
 
 ### Python
