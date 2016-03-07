@@ -19,7 +19,7 @@ If you are building a business that needs to have always on connections to the e
 
 ![Logo for Go](/images/icons/gopher.png)
 
-The **Go** implementation is called **Geth** (the old english third person singular conjugation of “to go”. Quite appropriate given geth is written in Go). Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
+The **Go** implementation is called **Geth**. Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
 
 
 #### Install: Mac and Linux
@@ -42,7 +42,7 @@ Download the [latest stable binary](https://build.ethdev.com/builds/Windows%20Go
 
 ![Logo for C++](/images/icons/cpp.png)
 
-The **C++** implementation is simply called **Eth**. It performs slightly faster and is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analysis tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the C++ "Eth" client, is for you. 
+The **C++** implementation is simply called **Eth**. It is the basis for the future release of the contract development toolset **Mix IDE**. Eth also comes with some powerful network analysis tools like Alethzero and an in browser solidity compiler. If you are serious about GPU mining and are interested in using ethereum as the backend for projects that involve internet of things, then the C++ "Eth" client, is for you. 
 
 #### Install: Mac and Linux
 
