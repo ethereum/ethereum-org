@@ -6,7 +6,7 @@ If you want to contribute with traditional currency, please contact us at [donat
 #### Watch the contract and unicorns
 
 
-You can use the **Ethereum Wallet** to keep an eye on the foundation donation tip box and to keep your unicorns safe. [Download the latest Wallet release](https://github.com/ethereum/mist/releases) and set up a wallet. 
+You can use the **Ethereum Wallet** to keep an eye on the foundation donation tip box and to keep your unicorns safe. [Download the latest Wallet release](https://github.com/ethereum/mist/releases) and set up a wallet.
 
 
 First you might need to add the Unicorn Token to your watch list, as Unicorns are sometimes invisible. Scroll to the bottom and click **Watch Token**. Add the address **0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. Now you need to get one!
@@ -25,7 +25,7 @@ This will add it to your watch list. Clicking on it will take you to the contrac
 
 ![Keep an eye on the foundation tip jar](/images/tutorial/foundation-tip-box.png)
 
-The list of members and proposals can be acessed by typing a number on the input below their section titles. For example, type "1" on the input under the **Members** and you'll see that the first member is *Vitalik Buterin* and it's capabilities on this DAO. Some members have voting rights while others are added with only administrative privileges like adding new proposals. You won't find many proposals at first.
+The list of members and proposals can be accessed by typing a number on the input below their section titles. For example, type "1" on the input under the **Members** and you'll see that the first member is *Vitalik Buterin* and it's capabilities on this DAO. Some members have voting rights while others are added with only administrative privileges like adding new proposals. You won't find many proposals at first.
 
 *This contract **does not represent all the Ethereum Foundation holdings**, it's a newly created contract to experiment with charity [DAOs](./dao)*.
 
@@ -37,7 +37,7 @@ If you want to send your unicorn to someone else, or maybe even to a wallet for 
 
 ### Other cryptocurrencies
 
-The [Ethereum Wallet](https://github.com/ethereum/mist/releases) app uses *shapeshift* to convert between any cryptocurrency and ether to any contract. If you are on the Foundation Tip Jar page, just click the button **deposit using bitcoin**. Unicorns will not be sent back to you thou.  
+The [Ethereum Wallet](https://github.com/ethereum/mist/releases) app uses *shapeshift* to convert between any cryptocurrency and ether to any contract. If you are on the Foundation Tip Jar page, just click the button **deposit using bitcoin**. Unicorns will not be sent back to you, though.  
 
 
 ## Other ways to help
@@ -45,8 +45,3 @@ The [Ethereum Wallet](https://github.com/ethereum/mist/releases) app uses *shape
 There are many other ways to help the Ethereum network. If you like meeting people and organizing events, you can set up a [Meetup near you](http://www.meetup.com/topics/ethereum/). If you prefer staying at home, you can volunteer at answering technical questions at our [Stack Exchange](http://ethereum.stackexchange.com) or helping newcomers at [Reddit forum](https://www.reddit.com/r/ethereum). And you can always help the network by [running a full node client](http://github.com/ethereum/mist/releases/latest) or a [Miner](https://github.com/ethereum/webthree-umbrella/releases/latest) and sharing your statistics at [the network stats dashboard](https://ethstats.net).
 
 But the best way to truly help ethereum adoption is to **go out there and build something awesome!**
-
-
-
-
-
