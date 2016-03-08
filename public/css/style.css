@@ -1004,6 +1004,9 @@ figure.ethereum-explain .explain-01 {
 figure.ethereum-explain .explain-02 {
 	background-image: url("../images/explain-02.png");
 }
+figure.ethereum-explain .explain-02b {
+	background-image: url("../images/explain-02b.gif");
+}
 figure.ethereum-explain .explain-03 {
 	background-image: url("../images/explain-03.gif");
 }
