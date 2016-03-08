@@ -560,8 +560,10 @@ We are going to implement what's called a version of what's usually called **Liq
         
         function execute(address target, uint valueInEther, bytes32 bytecode){
             if (msg.sender != apointee ||                               // If caller is the current apointee,
+                !target.call.value(valueInEther * 1 ether)(bytecode) || // if the call is valid,
                 bytes4(bytecode) == bytes4(sha3(forbiddenFunction)) ||  // and it's not trying to do the forbidden function
                 numberOfDelegationRounds < 4 ) throw;                   // and delegation has been calculated enough
+
             target.call.value(valueInEther * 1 ether)(bytecode);        // Then execute the command.
         }
         

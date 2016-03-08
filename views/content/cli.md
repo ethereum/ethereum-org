@@ -52,7 +52,6 @@ On Ubuntu execute these commands:
 
     sudo apt-get install software-properties-common
     sudo add-apt-repository -y ppa:ethereum/ethereum
-    sudo add-apt-repository -y ppa:ethereum/ethereum-dev
     sudo apt-get update
     sudo apt-get install ethereum
 
@@ -107,6 +106,7 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 
 * [Parity](https://ethcore.io/parity.html) a Rust implementation by [Ethcore](https://ethcore.io/)  
 * A [Haskell](https://github.com/bkirwi/ethereum-haskell) implementation developed by [Blockapps](http://www.blockapps.net)
+* [EthereumJ](https://github.com/ethereum/ethereumj) A Java implementation, licensed as MIT.
 * If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
 * If you want to create a small hardware project, look into the implementation for the [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
 * If you want to install geth for non-ubuntu linux then we recommend you look into [building from source using PPA](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/installing-a-client.html#linux)

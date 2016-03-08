@@ -1,15 +1,11 @@
 include ../mixins/recipes.jade
 
-div.main-tutorial.middle-feature
-  div.container
-    div.row
-      div.col-md-12.tutorial.scrollme
-        h2.animateme(data-when="span", data-from="1", data-to="0", data-opacity="0", data-translatey="200") Learn 
-          strong Solidity
-          | , a new language for smart contracts
-
 div.main-tutorial.inner-header.token-tutorial#crypto-currency
-  div.container   
+  div.container  
+    div.row.solidity.scrollme
+      h2.animateme(data-when="span", data-from="1", data-to="0", data-opacity="0", data-translatey="400") Learn 
+          strong Solidity
+          | , a new language for smart contracts:
     div.row
       +tokenRecipe
 
@@ -68,14 +64,14 @@ div.main-tutorial.slides
 
   div.slide.slide-slockit#slockit
     h3 
-      strong Slockit 
+      strong Slock.it 
       | is building tools to allow any device sell their own services
     a(href='http://slock.it') Read more
 
   div.slide.slide-digix#digix
     h3 
       strong Digix 
-      | is using ethereum to turn bitcoin into gold
+      | is using Ethereum to create gold and asset backed tokens
     a(href='https://dgx.io') Read more
 
   div.slide.slide-maker#maker
@@ -106,7 +102,7 @@ div.main-tutorial.slides
   div.slide.slide-ethercamp#ethercamp
     h3 
       strong Ether Camp 
-      | is automating hackatons on ethereum  
+      | is automating hackathons on ethereum  
     a(href='http://hack.ether.camp') Read more
 
   div.slide-nav
@@ -124,4 +120,3 @@ div.main-tutorial.slides
     a(href='#freemyvunk').slide-link •
     a(href='#ujomusic').slide-link •
     a(href='#ethercamp').slide-link •
-
