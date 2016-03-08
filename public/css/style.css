@@ -305,16 +305,15 @@ body {
 	text-align: center;
 }
 
-.middle-feature {
-	color: #E1EFFF;
-	background-color: #4990E2;
+.main-tutorial .row.solidity {
+	padding: 0;
 }
-.middle-feature h2 {
-	color: #E1EFFF;
+.inner-header.token-tutorial h2 {
 	font-weight: 300;
-	font-size: 40px;
+	font-size: 45px;
 	text-transform: none;
 	padding: 30px 20px;
+	text-align: center;
 }
 
 .inner-tutorial h1 + h2 {
@@ -322,18 +321,9 @@ body {
 	margin-top: -40px;
 }
 
-/*.main-tutorial h2 + h3 {
-	padding-top: 0;
-}*/
-
 .main-tutorial h2 + h3 .number {
 	top: 0;
 }
-
-/*.main-tutorial h3 + h2 {
-	padding-top: 0;
-	margin-top: -50px
-}*/
 
 .main-tutorial .row {
 	padding: 80px 0;
@@ -438,7 +428,6 @@ body {
 
 /* DAO */
 
-.middle-feature, 
 .inner-header.main-tutorial  {
 	background-size: cover;
 	background-position: center;
@@ -451,6 +440,7 @@ body {
 }
 
 .inner-header.token-tutorial {
+	background-attachment: initial;
 	background-image: url("../images/token-bg.jpg");
 }
 
@@ -459,10 +449,6 @@ body {
 .inner-header.token-tutorial p {
 	color: #fff;
 	padding-left: 0;
-}
-
-.middle-feature {
-	background-image: url("../images/solidity-bg.jpg");
 }
 
 .inner-header.crowdsale-tutorial {
@@ -1081,9 +1067,11 @@ figure.geth-console {
 
 
 figure.ethereum-explain {
-	max-width: 460px;
-	height: 450px;
+	max-width: 360px;
+	height: 400px;
 	position: absolute;
+	left: 50%;
+	margin-left: -180px;
 }
 
 figure.ethereum-explain .explain-01 {
@@ -1102,6 +1090,7 @@ figure.wallet-figure {
 	max-width: 460px;
 	height: 310px;
 	position: absolute;
+	left: 0;
 }
 
 figure.wallet-figure .wallet-01 {
@@ -1858,10 +1847,6 @@ footer {
 		background-image: url("../images/token-bg-mob.jpg");
 	}
 
-	.middle-feature {
-		background-image: url("../images/solidity-bg-mob.jpg");
-	}
-
 	.inner-header.crowdsale-tutorial {
 		background-image: url("../images/dao-dawn-bg-mob.jpg");
 	}
@@ -1891,7 +1876,6 @@ footer {
 	.recipe,
 	.main-tutorial a.button ,
 	.ethereum-network,
-	.whatis figure ,
 	.main-tutorial figure {
 		float: none;
 		margin: 30px auto;
