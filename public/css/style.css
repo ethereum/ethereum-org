@@ -62,7 +62,6 @@ a:hover {
 	float:right;
 	margin-left: 30px;
 	padding-bottom: 30px;
-	/*clear: both;*/	
 }
 
 .float-left {
@@ -142,23 +141,11 @@ div.scrollme.row.introduction {
 
 .caption { 
 	text-align: center;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.04em;
 	font-style: italic;
 	font-size: 90%;
 	padding: 0 40px;
 }
-
-/*
-header:after {
-	content: " ";	
-	background: linear-gradient(transparent, #102026);
-	height: 100px;
-	position: absolute;	
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-*/
 
 .intro:after {
 	content: " ";
@@ -289,11 +276,6 @@ body {
 	position: relative;
 }
 
-/*.main-tutorial .scrollme h2.animateme + h3 {
-	padding: 80px 20px;
-}
-*/
-
 .main-tutorial blockquote {
     font-style: oblique;
     font-size: 1.2em;
@@ -346,26 +328,16 @@ body {
 	left: 0;
 }
 
-/*.inner-tutorial ul,*/
 .recipe {
 	background: #FFF url("../images/recipe-bg.png");
 	background-repeat: repeat-y;
 	background-position: 20px;
 	display: block;
-	/*float: left;*/
 	max-width: 500px;
 	padding: 20px 40px;
 	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
 	text-align: left;
 }
-/*
-.inner-tutorial ul {
-	padding-left: 60px;
-}*/
-
-/*.inner-tutorial h4 {
-	text-align: center;
-}*/
 
 .recipe h4 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
@@ -458,13 +430,9 @@ body {
 .inner-header .header-title h3, 
 .inner-header .header-title h2 ,
 .inner-header .header-title h3 {
-	/*color: #F5F5F5;*/
 	font-weight: 500;
 	padding-left: 0;
 }
-
-/* */
-
 
 .whatis.server-figure {
 	min-height: 400px;
@@ -476,9 +444,6 @@ body {
 
 .whatis figure,
 .main-tutorial figure {
-	/*float: right;*/
-	/*margin: 60px 0 30px 30px;	*/
-	/*position: relative;*/
 	width: 100%;
 }
 
@@ -501,11 +466,8 @@ a.button {
 	position: relative;
 	max-width: 400px;
 	padding: 10px;
-	/*float: right;*/
 	clear: right;
 	margin: 60px auto 30px;
-	/*margin-top: 60px;
-	margin-bottom: 30px;*/
 	background: #4A90E2;
 	color: #F5F5F5;
 	font-weight: 600;
@@ -528,7 +490,6 @@ button:hover,
 a.button:hover {
 	border-bottom: solid 1px #2F6DB5;
 	top: -1px;
-	/*text-shadow: rgba(0,0,0,0.2) 0 -1px 0;*/
 	box-shadow: rgba(0,0,0,0.05) 0 2px 1px;
 	margin-bottom: 32px;
 	cursor: hand;
@@ -743,14 +704,12 @@ ul#tableOfContents ul {
 }
 
 .community li.canary p {
-	/*visibility: hidden;*/
 	opacity: 0;
 	font-size: 80%;
 	transition: opacity 2s ease-out;
 }
 
 .community li.canary:hover p {
-	/*visibility: visible;*/
 	opacity: 1;
 	transition: opacity 0.25s ease-out;	
 }
@@ -922,7 +881,7 @@ a.button.ethereum-wallet strong {
 	display: none;
 }
 
-
+/*
 .Win32 a.ethereum-wallet.link,
 .Win32 a.button.ethereum-wallet.win32 {
 	display: block;
@@ -931,7 +890,7 @@ a.button.ethereum-wallet strong {
 .Win32 a.button.allversions.ethereum-wallet {
 	display: none;
 }
-
+*/
 
 .Win64 a.ethereum-wallet.link,
 .Win64 a.button.ethereum-wallet.win64 {
@@ -962,31 +921,13 @@ a.button.ethereum-wallet.linux {
 	background-image: url("../images/button-linux.png");	
 }
 
-a.button.ethereum-wallet.win32 {
+/*a.button.ethereum-wallet.win32 {
 	background-image: url("../images/button-win32.png");	
-}
+}*/
 
 a.button.ethereum-wallet.win64 {
 	background-image: url("../images/button-win64.png");	
 }
-
-/*
-
-a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-macosx-0-3-9.zip").button.mac.ethereum-wallet Download the Ethereum Wallet for Mac OS X
-
-          a(href="https://github.com/ethereum/mist/releases/download/v0.3.8/Ethereum-Wallet-win32-0-3-8.zip").button.win32.ethereum-wallet Download the Ethereum Wallet for Windows 
-
-          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-win64-0-3-9.zip").button.win64.ethereum-wallet Download the Ethereum Wallet for Windows
-
-          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-linux64-0-3-9.zip").button.ethereum-wallet Download the Ethereum Wallet for Linux
-
-          a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet-linux32-0-3-9.zip").button.ethereum-wallet Download the Ethereum Wallet for Linux
-          
-          a(href="https://github.com/ethereum/mist/releases/latest").allversions.button.ethereum-wallet Download the Ethereum Wallet
-
-          a(href="https://github.com/ethereum/mist/releases/latest").allversions.ethereum-wallet See all versions
-
-*/
 
 .aleth-miner {
 	background: #FFF;
@@ -996,11 +937,6 @@ a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet
 	padding-top: 100px;
 	color: #303030;
 }
-
-/*.aleth-miner .button {
-	float: left;
-    margin-top: 30px;
-}*/
 
 .power-tools { 
 	background: #726866;
@@ -1018,23 +954,12 @@ a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet
 .power-tools h2 {
 	padding-top: 40px;
 } 
-/*
-.power-tools .button {
-	clear: none;
-	float: left;
-	margin-top: 50px;
-}*/
 
 .command-line {
 	background: #000;
 	color: #ccc;
 	padding-top: 40px;
 }
-/*
-.command-line .button {
-	float: left;
-	margin-top: 30px;
-}*/
 
 .command-line h3 {
 	color: #eee;
@@ -1045,7 +970,6 @@ a(href="https://github.com/ethereum/mist/releases/download/0.3.9/Ethereum-Wallet
 figure.ethereum-network {
 	display: block;
 	width: 100%;
-	/*max-width: 391px;*/
 	height: 306px;
 	background-image: url("../images/ethereum-network-outline@2x.png");
 	background-size: contain;
@@ -1106,15 +1030,12 @@ figure.wallet-figure .wallet-03 {
 .whatis .caption { 
 	position: relative;
 	top: 310px;
-
 }
 
 
 figure.wallet {
 	max-width: 736px;
 	height: 500px;
-	/*margin-right: -250px;*/
-	/*margin-top: -100px;*/
 }
 
 figure.wallet .wallet-start {
@@ -1132,8 +1053,6 @@ figure.wallet .wallet-confirm {
 figure.aleth-one {
 	max-width: 481px;
 	height: 516px;
-	/*float: left;*/
-	/*margin-left: -100px;*/
 }
 
 figure.aleth-one .aleth-one-1 {
@@ -1175,8 +1094,6 @@ figure.turbo .turbo-04 {
 figure.turbo .turbo-05 {
 	background-image: url("../images/turbo-05.png");
 }
-
-
 
 figure.geth {
 	max-width: 380px;
@@ -1236,7 +1153,6 @@ figure.greeter .greeter-answer {
 }
 
 figure.coin {
-	/*max-width: 384px;*/
 	height: 342px;
 }
 
@@ -1255,7 +1171,6 @@ figure.coin .coin-send {
 
 
 figure.crowdsale {
-	/*max-width: 407px;*/
 	height: 384px;
 }
 
@@ -1277,7 +1192,6 @@ figure.crowdsale .crowdsale-crowd {
 }
 
 figure.dao {
-	/*max-width: 420px;*/
 	height: 424px;
 }
 
@@ -1399,11 +1313,6 @@ footer {
 .footer p {
 	color: #C3CCDB;
 }
-/*
-.inner-header figure {
-	float: left;
-	/*margin: 50px auto;*/
-/*} */
 
 .inner-header h2 {
 	text-align: left;
@@ -1444,7 +1353,6 @@ footer {
 
 .inner-header {
 	padding: 100px;
-	/*text-align: center;*/
 	background: #102026;
 }
 
@@ -1528,25 +1436,21 @@ footer {
 
 .slides .slide-what ,
 .slides .slide {
-	/*display: none;*/
 	transition: 0.6s transform ease-out, opacity 0.5s ease-in-out;
 	transform: translateY(700px) translateZ(0) scale(1,2);
 	opacity: 0;
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	/*background: #666;*/
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 }
 
 
-/*.slides .slide:first-child*/
 .slides .slide-what ,
 .slides .slide.active, 
 .slides .slide:target {
-	/*display: block;*/
 	transform: translateZ(0);
 	opacity: 1;	
 	transition: 0.3s transform ease-out, opacity 0.3s ease-in-out;
@@ -1639,7 +1543,6 @@ footer {
 	background-image: url('../images/bg/ethercamp.jpg');
 }
 
-/*.slides .slide.slide-freemyvunk h3 ,*/
 .slides .slide.slide-ujomusic h3 ,
 .slides .slide.slide-slockit h3 {
 	color: #666;
@@ -1648,7 +1551,6 @@ footer {
 .slides .slide-nav {
 	position: absolute;
 	left: 10%;
-	/*top: 0;*/
 	right: 10%;
 	bottom: 10px;
 	height: 40px;
@@ -1677,8 +1579,6 @@ footer {
 	position: static;
 	background: #fff;
 	border-radius: 50%;
-	/*width: 34px;
-	height: 34px;*/
 	width: 12px;
 	height: 12px;
 	overflow: hidden;
@@ -1687,10 +1587,6 @@ footer {
 	line-height: 28px;
 	padding: 0;
 	margin: 5px;
-	/*top: 50%;
-	bottom: 50%;
-	position: absolute;*/
-	/*color: #fff;*/
 	text-decoration: none;
 
 }
@@ -1700,7 +1596,6 @@ footer {
 	background: rgba(0,0,0,0.4);	
 }
 
-/*.slides .slide-nav a:visited ,*/
 .slides .slide-nav a:active {
 	text-decoration: none;
 	background: rgba(0,0,0,0.2);	
@@ -1930,7 +1825,6 @@ footer {
 	}	
 
 	#tableOfContents:hover:before {
-		/*display: none;*/
 		opacity: 0;
 	}
 
@@ -2237,8 +2131,6 @@ button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-colla
 	top: 0;
 	right: 0;
 	position: absolute;
-	/* max-height: 50px; */
-	/* flex: 0 0 50px; */
 	padding: 0;
 	margin: 0;
 }
