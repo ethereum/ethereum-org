@@ -508,7 +508,7 @@ Unicorn tokens are memorabilia created exclusively for those who have donated to
 
 ### Now what?
 
-You just learned how you can use ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to [represent a share in a company#the-stakeholder-association](./dao) or you can use a [central committee](./dao#the-code) to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a [crowdsale](./crowdsale). What will you build next?
+You just learned how you can use ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to [represent a share in a company](./dao#the-stakeholder-association) or you can use a [central committee](./dao#the-code) to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a [crowdsale](./crowdsale). What will you build next?
 
 
 
