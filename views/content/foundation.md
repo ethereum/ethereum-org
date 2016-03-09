@@ -103,8 +103,9 @@ William Mougayar is an entrepreneur, angel investor, mentor to startups and an e
 
 #### Thomas Greco 
 
-Thomas Greco works at Omise.
+**Thomas Greco is Special Adviser to Omise (おみせ)**, an Asia-Pacific fintech company developing solutions that can add value to a financially disintermediated future.
 
+[Omise](https://omise.co)
 
 
 
