@@ -116,7 +116,7 @@ Right now you have a functional contract that created balances of tokens but sin
         balanceOf[_to] += _value;        
     }
 
-This is a very straightforward function: it has a recipient and a value as the parameter and whenever someone calls it, it will subtract the *_value* from their balance and add it to the *_recipient* balance. Right away there's an obvious problem: what happens if the person wants to send more than it owns? Since we don't want to handle debt in this particular contract, we are simply going to make a quick check and if the sender doesn't have enough funds the contract execution will simply stop. It's also to check for overflows, to avoid having a number so big that it becomes zero again.
+This is a very straightforward function: it has a recipient and a value as the parameter and whenever someone calls it, it will subtract the *_value* from their balance and add it to the *_to* balance. Right away there's an obvious problem: what happens if the person wants to send more than it owns? Since we don't want to handle debt in this particular contract, we are simply going to make a quick check and if the sender doesn't have enough funds the contract execution will simply stop. It's also to check for overflows, to avoid having a number so big that it becomes zero again.
 
 To stop a contract execution mid execution you can either **return** or **throw** The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'throw' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all ether he sent on gas. But since the Wallet can detect that a contract will throw, it always shows an alert, therefore preventing any ether to be spent at all.
 
@@ -195,7 +195,7 @@ All dapps are fully decentralized by default, but that doesn't mean they can't h
 
 For that to happen, you need a central controller of currency. This could be a simple account, but could also be a contract and therefore the decision on creating more tokens will depend on the contract: if it's a democratic organization that can be up to vote, or maybe it can be just a way to limit the power of the token owner.
 
-In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, **before *contract myToken {**.
+In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, **before contract myToken {**.
 
     contract owned {
         address public owner;
@@ -321,7 +321,7 @@ It's also possible to add a mathematical formula, so that anyone who can do math
         currentChallenge = nextChallenge;   // Set the next challenge
     }
 
-Of course while calculating cubic roots can be hard for someone to do on their heads, they are very easy with a calculator, so this game could be easily broken by a computer. Also since the last winner can choose the next challenge, they could pick something they know and therefore would not be a very fair game to other players. There are tasks that are easy for humans but hard for computers but they are usually very hard to code in simple scripts like these. Instead a fairer system should be one that is very hard for a computer to do, but it's very hard for a computer to verify. A great candidate for would be to create a hash challenge where the challenger has to generate hashes from multiple numbers until they find one that is lower than a given difficulty.
+Of course while calculating cubic roots can be hard for someone to do on their heads, they are very easy with a calculator, so this game could be easily broken by a computer. Also since the last winner can choose the next challenge, they could pick something they know and therefore would not be a very fair game to other players. There are tasks that are easy for humans but hard for computers but they are usually very hard to code in simple scripts like these. Instead a fairer system should be one that is very hard for a computer to do, but isn't very hard for a computer to verify. A great candidate would be to create a hash challenge where the challenger has to generate hashes from multiple numbers until they find one that is lower than a given difficulty.
 
 This process was first proposed by Adam Back in 1997 as [Hashcash](https://en.wikipedia.org/wiki/Hashcash) and then was implemented in Bitcoin by Satoshi Nakamoto as **Proof of work** in 2008. Ethereum was launched using such system for it's security model, but is planning to move from a Proof of Work security model into a [mixed proof of stake and betting system called *Casper*](https://blog.ethereum.org/2015/12/28/understanding-serenity-part-2-casper/). 
 
