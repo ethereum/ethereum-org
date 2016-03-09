@@ -1,30 +1,30 @@
 # Welcome, Blockchain developers!
 
-These are the tools of potential blockchain developers. Command line tools that will allow you to connect your server or application to run and connect to the ethereum blockchain – or your own private blockchain.
+These are tools for blockchain developers. The command line tools will allow you to connect your server to or run your application on the Ethereum blockchain – or your own private blockchain.
 
 * **Learn More**
   * [What is Ethereum?](https://ethereum-homestead.readthedocs.org/en/latest/introduction/what-is-ethereum.html#what-is-ethereum)
   * [What is ether?](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/ether.html)
   * [The Ethereum Ecossystem](https://ethereum-homestead.readthedocs.org/en/latest/ethereum-ecosystem/ethereum-ecosystem.html)
-  
+
 
 ## Clients
 
-For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-development-process/) three independent implementations were created for Ethereum. The clients have almost identical functionality so which one you pick is left to personal choice on platform, language and what are your planned use for the network. 
+For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-development-process/), three independent implementations were created for Ethereum. The clients have almost identical functionality, so the one you pick is left to personal choice on platform, language and what your planned use is for the network.
 
-If you are building a business that needs to have always on connections to the ethereum network, we recommend you run at least one instance of both clients, to ensure reliability.
+If you are building a business that needs to have maximum uptime guarantees to the Ethereum network, we recommend that you run at least one instance of both clients to ensure reliability.
 
 
 ### Geth
 
 ![Logo for Go](/images/icons/gopher.png)
 
-The **Go** implementation is called **Geth**. Geth has been audited for security and will be the future basis for the end user facing **Mist Browser**, so if you have experience on web development and are interested in building frontend for html dapps, you should experiment with Geth.
+The **Go** implementation is called **Geth**. Geth has been audited for security and will be the future basis for the enduser-facing **Mist Browser**, so if you have experience with web development and are interested in building frontends for dapps, you should experiment with Geth.
 
 
 #### Install on Mac
 
-Install [Homebrew](http://brew.sh/) and then make sure it's up to date:
+Install [Homebrew](http://brew.sh/) and make sure it's up to date:
 
     brew update
     brew upgrade
@@ -34,7 +34,7 @@ Then use these commands to install cpp-ethereum:
     brew tap ethereum/ethereum
     brew install ethereum
 
-For more see the [full documentation on Mac OSX Geth](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac)
+For more, see the [full documentation on Mac OSX Geth](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac)
 
 #### Windows
 
@@ -44,25 +44,25 @@ Download the [latest stable binary](https://build.ethdev.com/builds/Windows%20Go
     open geth.exe
 
 
-For more see the [full documentation on Windows Geth](https://github.com/ethereum/go-ethereum/wiki/Installation-instructions-for-Windows)
+For more, see the [full documentation on Windows Geth](https://github.com/ethereum/go-ethereum/wiki/Installation-instructions-for-Windows)
 
 #### Install on Linux
 
-On Ubuntu execute these commands:
+On Ubuntu, execute these commands:
 
     sudo apt-get install software-properties-common
     sudo add-apt-repository -y ppa:ethereum/ethereum
     sudo apt-get update
     sudo apt-get install ethereum
 
-For other environments and more instruction see the [full documentation on Geth](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
+For other environments and more instruction, see the [full documentation on Geth](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
 
 
 ### Eth
 
 ![Logo for C++](/images/icons/cpp.png)
 
-The **C++** implementation is simply called **Eth**. If you want added security by running two different implementations in parallel or are serious about GPU mining, then the C++ "Eth" client, is for you. 
+The **C++** implementation is simply called **Eth**. If you want added security by running two different implementations in parallel or are serious about GPU mining, then the C++ "Eth" client is for you.
 
 #### Install: on Mac
 
@@ -81,7 +81,7 @@ For more see the [full documentation on Mac OSX CPP](https://github.com/ethereum
 
 #### Install on Linux:
 
-If you use Apt-get, then paste this on the terminal:
+If you use Apt-get, paste this into the terminal:
 
     apt-get install cpp-ethereum
 
@@ -89,24 +89,23 @@ For more detailed instructions select your environment and read the [build instr
 
 #### Install on Windows
 
-Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this: 
+Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this:
 
     C:\> git clone --recursive https://github.com/ethereum/webthree-umbrella.git
 
-For more see the [full documentation on Windows OSX CPP](https://github.com/ethereum/webthree-umbrella/wiki/Building-on-Windows)
+For more, see the [full documentation on Windows OSX CPP](https://github.com/ethereum/webthree-umbrella/wiki/Building-on-Windows)
 
 
 ### Python
 
 ![Logo for Python](/images/icons/python.png)
 
-The **Python** implementation is called Pyethapp. If you are interested in understanding how ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or you are interested in Ethereum for research, or an academic purpose, this is a great client: we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethapp).  
+The **Python** implementation is called Pyethapp. If you are interested in understanding how Ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or are interested in Ethereum for research or an academic purpose, this is a great client: we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethapp).  
 
 #### Other Options
 
 * [Parity](https://ethcore.io/parity.html) a Rust implementation by [Ethcore](https://ethcore.io/)  
 * A [Haskell](https://github.com/bkirwi/ethereum-haskell) implementation developed by [Blockapps](http://www.blockapps.net)
-* [EthereumJ](https://github.com/ethereum/ethereumj) A Java implementation, licensed as MIT.
 * If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
 * If you want to create a small hardware project, look into the implementation for the [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
 * If you want to install geth for non-ubuntu linux then we recommend you look into [building from source using PPA](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/installing-a-client.html#linux)
@@ -117,24 +116,24 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 
 Geth and Eth are multipurpose command line tools that run a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](http://guide.ethereum.org/cli.html) subcommands and options, a [JSON-RPC server](http://guide.ethereum.org/rpc.html) and an [interactive console](http://guide.ethereum.org/jsre.html).
 
-For the purposes of this guide, we will focus on the Console, a JavaScript environment that contains all the main features you probably want. Depending on your client, paste either of these commands:
+For the purposes of this guide, we will focus on the console, a JavaScript environment that contains all of the main features that you probably want. Depending on your client, paste either of these commands:
 
 **Instructions for Geth:**
 
     geth console
 
-**Instructions for Eth:** 
+**Instructions for Eth:**
 
-Eth still has a built-in console but it will be removed soon. Just start it using
+Eth still has a built-in console, but it will be removed soon. Start it using
 
     eth
 
-and then either use `geth attach` (if you also have geth) or use the following npm console. Eth might take some time to start up.
+and then use either `geth attach` (if you also have geth) or the following npm console. Eth might take some time to start up.
 
     npm install -g ethereum-console
     ethconsole
 
-The first time you start the command line you will be presented with a license. Before you can use them, you **must** accept this license, please read it carefully.
+The first time you start the command line you will be presented with a license. Before you can use it, you **must** accept this license, please read it carefully.
 
 **ATTENTION: If you just want to test the technology and play around, DON'T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.**
 
@@ -151,7 +150,7 @@ Sometimes you might not want to connect to the live public network; instead you 
 
     eth --private 12345 --genesis-json ~/test/genesis.json --db-path ~/.ethereum_experiment
 
-Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours. 
+Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the _"real"_ one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours.
 
 If you want to create a private network you should, for security reasons, use a different genesis block (a database that contains all the transactions from the Ether sales). You can [read our announcement blog post on how to generate your file](https://blog.ethereum.org/2015/07/27/final-steps/). In the near future we will provide better ways to get other genesis blocks.
 
@@ -170,7 +169,7 @@ If you are using **Eth** then simply [figure out your IP](https://www.google.com
     web3.admin.net.connect("YOURIP:30303")
 
 
-#### Logs 
+#### Logs
 
 If you are running Geth you'll notice that there are many log entries popping up on your console - sometimes while you type. This is because all warnings and progress information are logged live into your terminal by the client. If you want to save the logs to a file you can view later, use this command:
 
@@ -192,7 +191,7 @@ The console has auto completion and history support that persists between sessio
 
 #### Creating accounts
 
-In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/account-management.html), but the simplest one is through the console. 
+In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/account-management.html), but the simplest one is through the console.
 
 **ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontier release clients.
 
@@ -203,7 +202,7 @@ In order to do anything on an Ethereum network you need ether, and to get it, yo
 **DO NOT FORGET YOUR PASSPHRASE! **
 
 You may create as many or as few accounts as you like. By convention we call the first account you create your primary account. You can see all your accounts with the command:
- 
+
     web3.eth.accounts
 
 The ordering of the accounts reflects the time of their creation. Keyfiles are stored under DATADIR/keystore and can be transferred between clients by copying the files contained within. The files are encrypted with your passphrase and should be backed up if they contain any amount of ether. Note, however, if you transfer individual key files, the order of accounts presented may change and you may not end up the same account on the same position. So be aware that relying on account index is sound only as long as you do not copy external keyfiles to your keystore.
@@ -225,23 +224,23 @@ You now have a variable called primaryAccount that you can use in other calls. T
 
 #### Check All Balances at once
 
-The command line tools are JavaScript environments, which means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet. 
+The command line tools are JavaScript environments, which means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet.
 
 It will iterate over each of your accounts and print their balance in ether, you can use the following code:
- 
-    function checkAllBalances() { 
+
+    function checkAllBalances() {
       web3.eth.getAccounts(function(err, accounts) {
        accounts.forEach(function(id) {
         web3.eth.getBalance(id, function(err, balance) {
-         console.log("" + id + ":\tbalance: " + web3.fromWei(balance, "ether") + " ether"); 
+         console.log("" + id + ":\tbalance: " + web3.fromWei(balance, "ether") + " ether");
        });
       });
      });
-    }; 
+    };
 
 Once you executed the line above, all you need to check all of your balances is to call the below function:
 
-    checkAllBalances() 
+    checkAllBalances()
 
 
 **Tip: if you have many small handy scripts like this you use frequently, you can save them to a file and then load them all at once using _loadScript_:**
@@ -254,4 +253,3 @@ Once you executed the line above, all you need to check all of your balances is 
 * [Developing on Ethereum](https://ethereum-homestead.readthedocs.org/en/latest/developing-on-ethereum/dapp-development.html)
 * [Developer tools](https://ethereum-homestead.readthedocs.org/en/latest/developing-on-ethereum/developer-tools.html)
 * [Solidity Documentation](https://solidity.readthedocs.org/)
-
