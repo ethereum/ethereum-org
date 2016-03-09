@@ -187,7 +187,7 @@ The way this particular democracy works is that it has an *Owner** which works l
 
 #### How to deploy 
 
-Open the wallet (if you are only testing, go to the menu develop > network > testnet), go to the **contracts* tab and then press **deploy contract**, and on the **solidity code** box, paste the code above. On the contract picker, choose **Congress** and you'll see the setup variables.
+Open the wallet (if you are only testing, go to the menu develop > network > testnet), go to the **contracts** tab and then press **deploy contract**, and on the **solidity code** box, paste the code above. On the contract picker, choose **Congress** and you'll see the setup variables.
 
 * **Minimum quorum for proposals** is the minimum amount of votes a proposal needs to have before it can be executed.
 * **Minutes for debate** is the minimum amount of time (in minutes) that needs to pass before it can be executed
