@@ -72,7 +72,6 @@ Now copy this code and let's create the crowdsale:
                 beneficiary.send(amountRaised);
                 FundTransfer(beneficiary, amountRaised, false);
             } else {
-                FundTransfer(0, 11, false);
                 for (uint i = 0; i < funders.length; ++i) {
                   funders[i].addr.send(funders[i].amount);  
                   FundTransfer(funders[i].addr, funders[i].amount, false);
