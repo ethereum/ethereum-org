@@ -337,12 +337,12 @@ But if you like Hashing as a form of random issuance of coins, you can still cre
 
         uint timeSinceLastProof = (now - timeOfLastProof);  // Calculate time since last reward was given
         if (timeSinceLastProof <  5 seconds) throw;         // Rewards cannot be given too quickly
+        balanceOf[msg.sender] += timeSinceLastProof / 60 seconds;  // The reward to the winner grows by the minute
         
         difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;  // Adjusts the difficulty
 
         timeOfLastProof = now;                              // Reset the counter
-        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number));  // Save a hash that will be used as the next proof
-        balanceOf[msg.sender] += timeSinceLastProof / 60 seconds;  // The reward to the winner grows by the minute
+        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number-1));  // Save a hash that will be used as the next proof
     }
 
 Also change the **Constructor function** (the one that has the same name as the contract, which is called at first upload) to add this line, so the difficulty adjustment will not go crazy:
@@ -500,11 +500,11 @@ After a few confirmations, the recipient balance will be updated to reflect the 
 
 Once you deployed your tokens, it will be added to your list of watched tokens, and the total balance will be shown on your account. In order to send tokens, just go on the **Send** tab and select an account that contains tokens. The tokens the account has will be listed just under *Ether*. Select them and then type the amount of tokens you want to send.
 
-If you want to add someone's else token, just go to the **Contracts** tab and click **Watch token**. For example, to add the **Unicorn (🦄)** token to your watch list, just add the address **0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. 
+If you want to add someone's else token, just go to the **Contracts** tab and click **Watch token**. For example, to add the **Unicorn (🦄)** token to your watch list, just add the address **0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. 
 
 ![Invisible Unicorns](/images/tutorial/unicorn-token.png)
 
-Unicorn tokens are memorabilia created exclusively for those who have donated to the address **0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359** that is controlled by the Ethereum Foundation. For more information about them [read it here](./donate)
+Unicorn tokens are memorabilia created exclusively for those who have donated to the address **0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359** that is controlled by the Ethereum Foundation. For more information about them [read it here](./donate)
 
 ### Now what?
 
