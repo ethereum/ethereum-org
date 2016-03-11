@@ -122,11 +122,11 @@ Go to **contracts** and then **deploy contract**:
 
 * The address of the token you created should be added to the **token reward address**
 
-Put a gas price, click deploy and wait for your crowdsale to be created. Once the crowdsale page is created, you now need to deposit enough rewards so it can pay the rewards back. Click the address of the crowdsale, then deposit and on send **50 gadgets** to the crowdsale.
+Put a gas price, click deploy and wait for your crowdsale to be created. Once the crowdsale page is created, you now need to deposit enough rewards so it can pay the rewards back. Click the address of the crowdsale, then deposit and send **50 gadgets** to the crowdsale.
 
 **I have 100 gadgets. Why not sell them all?**
 
-This is a very important point. The crowdsale we are building will be completelly controlled by the token holders. This creates the danger that someone controlling 50%+1 of all the tokens will be able to get all the funds to themselves. You can try to create special code on the association contract to prevent these hostile takeovers, or you can instead have all the funds sent to a simple address. To simplify we are simply selling off half of all the gadgets: if you want to further decentralize this, split the remainder half between trusted organizations.
+This is a very important point. The crowdsale we are building will be completely controlled by the token holders. This creates the danger that someone controlling 50%+1 of all the tokens will be able to get all the funds to themselves. You can try to create special code on the association contract to prevent these hostile takeovers, or you can instead have all the funds sent to a simple address. To simplify we are simply selling off half of all the gadgets: if you want to further decentralize this, split the remaining half between trusted organizations.
 
 #### Raise funds
 
@@ -141,9 +141,9 @@ The [unnamed function](https://solidity.readthedocs.org/en/latest/contracts.html
 
 ![Crowdsale error](/images/tutorial/crowdsale-error.png) 
 
-This has the advantage that the contract prevents falling in a situation that someone will be left without their ether or tokens. In a previous version of this contract we would also [**self destruct**](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#contract-related) the contract after the crowdsale ended: this would mean that any transaction sent after that moment would lose their funds. By creating a fall back function that throws when the sale is over, we prevent anyone losing money.
+This has the advantage that the contract prevents falling into a situation that someone will be left without their ether or tokens. In a previous version of this contract we would also [**self destruct**](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#contract-related) the contract after the crowdsale ended: this would mean that any transaction sent after that moment would lose their funds. By creating a fallback function that throws when the sale is over, we prevent anyone losing money.
 
-The contract has a single function, without any parameters, that can be executed by anyone once the crowdsale is over (and can even be [scheduled using the **ethereum alarm clock**](http://www.ethereum-alarm-clock.com) community feature). The function will see if the funding goals were reached distribute funds accordingly.
+The contract has a single function, without any parameters, that can be executed by anyone once the crowdsale is over (and can even be [scheduled using the **ethereum alarm clock**](http://www.ethereum-alarm-clock.com) community feature). The function will see if the funding goals were reached and distribute funds accordingly.
 
 ![Crowdsale execution](/images/tutorial/crowdsale-execute.png) 
 
@@ -151,13 +151,13 @@ The contract has a single function, without any parameters, that can be executed
 
 #### What if the crowdsale overshoots its target?
 
-In our code, only two things can happen: either the crowdsale reaches it's target or it doesn't. Since the token amount is limited, it means that once the goal has been reached no one else can contribute. But the history of crowdfunding is full of projects that overshoot their goals in much less time than predicted or that raised many times over the required amount.
+In our code, only two things can happen: either the crowdsale reaches its target or it doesn't. Since the token amount is limited, it means that once the goal has been reached no one else can contribute. But the history of crowdfunding is full of projects that overshoot their goals in much less time than predicted or that raised many times over the required amount.
 
 #### Unlimited crowdsale
 
-So we are going to modify our project slighlty so that instead of sending a limited set of tokens, the project actually creates a new token out of thin air whenever someone sends them ether. First of all, we need to create a (Mintable token)[http://localhost:3000/token#central-mint]. 
+So we are going to modify our project slighlty so that instead of sending a limited set of tokens, the project actually creates a new token out of thin air whenever someone sends them ether. First of all, we need to create a [Mintable token](./token#central-mint).
 
-Then modify the crowdsale to rename all mentions of **transfer** into **mintToken**: 
+Then modify the crowdsale to rename all mentions of **transfer** to **mintToken**: 
 
 
 
@@ -169,13 +169,13 @@ Then modify the crowdsale to rename all mentions of **transfer** into **mintToke
             ...
         }
 
-Once you published the crowdsale contract, get it's address and go into your **Token Contract** to execute a **Change Ownership** function. This will allow your crowdsale to call the **Mint Token** function as much as it wants.
+Once you published the crowdsale contract, get its address and go into your **Token Contract** to execute a **Change Ownership** function. This will allow your crowdsale to call the **Mint Token** function as much as it wants.
 
 **Warning** This opens you to the danger of hostile takeover. At any point during the crowdsale anyone who donates more than the amount already raised will be able to control the whole pie and steal it. There are many strategies to prevent that, but implementing will be left as an exercise to the reader:
 
-* Modify the crowdsale such as when a token is bought, also send the same quantity of tokens to the founder's account so that they always control 50% of the project
+* Modify the crowdsale such that when a token is bought, also send the same quantity of tokens to the founder's account so that they always control 50% of the project
 * Modify the Organization to create a veto power to some trusted third party that could stop any hostile proposal
-* Modify the token to allow a central trusted party to freeze token accounts, so as require a verification that there isnt any single entity controlling a majority of them
+* Modify the token to allow a central trusted party to freeze token accounts, so as require a verification that there isn't any single entity controlling a majority of them
 
 #### Auction
 
