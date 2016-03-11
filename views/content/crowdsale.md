@@ -19,7 +19,7 @@ Also, generally those who are funding can't have any say on how the money is spe
 
 * First of all, create a [fixed supply token](./token#the-code). For this example, we are going create a supply of **100**, use the name **gadgets**, the box emoji (📦) as a symbol and **0** decimal places. Deploy it and save the address.
 
-* Now create a (stakeholder association)[./dao#the-stakeholder-association]. In this example we are going to use the address of the token we just created as the **Shares Address**, a minimum quorum of **10**, and **1500** minutes (25 hours) as the voting time. Deploy this contract and save the address.
+* Now create a [stakeholder association](./dao#the-stakeholder-association). In this example we are going to use the address of the token we just created as the **Shares Address**, a minimum quorum of **10**, and **1500** minutes (25 hours) as the voting time. Deploy this contract and save the address.
 
 
 #### The code
@@ -72,7 +72,6 @@ Now copy this code and let's create the crowdsale:
                 beneficiary.send(amountRaised);
                 FundTransfer(beneficiary, amountRaised, false);
             } else {
-                FundTransfer(0, 11, false);
                 for (uint i = 0; i < funders.length; ++i) {
                   funders[i].addr.send(funders[i].amount);  
                   FundTransfer(funders[i].addr, funders[i].amount, false);
