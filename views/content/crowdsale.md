@@ -46,8 +46,8 @@ Now copy this code and let's create the crowdsale:
         }
         
         /*  at initialization, setup the owner */
-        function Crowdsale(address ifSucessfulSendTo, uint fundingGoalInEthers, uint durationInMinutes, uint etherCostOfEachToken, token addressOfTokenUsedAsReward) {
-            beneficiary = ifSucessfulSendTo;
+        function Crowdsale(address ifSuccessfulSendTo, uint fundingGoalInEthers, uint durationInMinutes, uint etherCostOfEachToken, token addressOfTokenUsedAsReward) {
+            beneficiary = ifSuccessfulSendTo;
             fundingGoal = fundingGoalInEthers * 1 ether;
             deadline = now + durationInMinutes * 1 minutes;
             price = etherCostOfEachToken * 1 ether;
@@ -93,7 +93,7 @@ Notice that on the **Crowdsale** function (the one that is called upon contract 
     deadline = now + durationInMinutes * 1 minutes;
     price = etherCostOfEachToken * 1 ether;
 
-Those are some of the [special keywords](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html) in solidity that help you code, allowing you to evaluate some things like *1 ether == 1000 finney* or *2 days == 48 hours**. This will automatically convert the fundiong goal into **wei** the smallest unit available in the system and will create a timestamp that is exactly X minutes away from today.
+Those are some of the [special keywords](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html) in solidity that help you code, allowing you to evaluate some things like *1 ether == 1000 finney* or *2 days == 48 hours*. This will automatically convert the funding goal into **wei** the smallest unit available in the system and will create a timestamp that is exactly X minutes away from today.
         
 The following line will instantiate a contract at a given adress:
 
@@ -112,7 +112,7 @@ Go to **contracts** and then **deploy contract**:
 
 ![Crowdsale deployment](/images/tutorial/crowdsale-deploy.png) 
 
-* Put the address of the organization you just created on the filed **if sucessfull, send to**. 
+* Put the address of the organization you just created on the filed **if successful, send to**. 
 
 * Put **250** ethers as the funding goal
 
