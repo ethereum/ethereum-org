@@ -269,7 +269,7 @@ In a few seconds you should be able to see that the details on the proposal. You
 
 But that of course creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the "read from contract" function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.  
 
-[![It's an older code, but it checks out](/images/tutorial/check-code.png)](/images/tutorial/check-code.png)]](https://www.youtube.com/watch?v=4HJ-Y8YTo8Q)
+![It's an older code, but it checks out](/images/tutorial/check-code.png)
 
 Anyone can actually check the proposal very easily by following the same steps to get the correct bytecode and then adding the proposal number and other parameters to the function called **Check proposal code** on the bottom of **Read from contract**.
 
