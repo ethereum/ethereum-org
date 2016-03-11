@@ -7,11 +7,11 @@
 > **"On the Blockchain, no one knows you're a fridge"**
 > - Richard Brown
 
-So far, all contracts we listed were owned and executed by other accounts probably held by humans. But there is no discriminations against robots or humans on the Ethereum ecosystem and contracts can create arbitrary actions like any other account would. Contracts can own tokens, participate in crowdsales even be voting members of other contracts. 
+So far, all contracts we listed were owned and executed by other accounts probably held by humans. But there is no discrimination against robots or humans in the Ethereum ecosystem and contracts can create arbitrary actions like any other account would. Contracts can own tokens, participate in crowdsales, and even be voting members of other contracts. 
 
-On this section we are going to build a decentralized and democratic organization that exists solely on the blockchain, but that it can do anything that a simple account would be able to. The organization has a central manager that decides who are the members and the voting rules, but as we'll see, this can also be changed.
+In this section we are going to build a decentralized and democratic organization that exists solely on the blockchain, but that can do anything that a simple account would be able to. The organization has a central manager that decides who are the members and the voting rules, but as we'll see, this can also be changed.
 
-The way this particular democracy works is that it has an *Owner** which works like an administrator, CEO or a President. The *Owner* can add (or remove) voting members to the organization. Any member can make a proposal, which is in the form of an ethereum transaction to either send ether or execute some contract and other members can vote in support or against the proposal. Once a predetermined amount of time and a certain number of members has voted, the proposal can be executed: the contract counts the votes and if there are enough votes it will execute the given transaction.
+The way this particular democracy works is that it has an **Owner** which works like an administrator, CEO or a President. The *Owner* can add (or remove) voting members to the organization. Any member can make a proposal, which is in the form of an ethereum transaction to either send ether or execute some contract, and other members can vote in support or against the proposal. Once a predetermined amount of time and a certain number of members has voted, the proposal can be executed: the contract counts the votes and if there are enough votes it will execute the given transaction.
 
 
 ### The Blockchain Congress
@@ -198,7 +198,7 @@ Open the wallet (if you are only testing, go to the menu develop > network > tes
 
 You can change these parameters later, choose a name, 5 minutes for debate time and leave the remaining of them at 0. A little lower on the page you'll see an estimate cost of your contract in ether. You can try lowering the price if you want to save, but that might mean having to wait longer for your contract to be created. Click **Deploy**, type your password and wait.
 
-In a few seconds you'll be taken to the dashboard, scroll down and you'll be able to see your transaction being created. In under a minute you'll see the transaction sucessful and a new unique icon will have been created. Click the contract's name to see it (you can get to it at any time on the *Contracts* tab).
+In a few seconds you'll be taken to the dashboard, scroll down and you'll be able to see your transaction being created. In under a minute you'll see the transaction successful and a new unique icon will have been created. Click the contract's name to see it (you can get to it at any time on the *Contracts* tab).
 
 ![DAO Just created](/images/tutorial/dao-just-created.png) 
 
@@ -269,7 +269,7 @@ In a few seconds you should be able to see that the details on the proposal. You
 
 But that of course creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the "read from contract" function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.  
 
-[caption id="attachment_2335" align="aligncenter" width="500"][![It's an older code, but it checks out](/images/tutorial/check-code.png)](/images/tutorial/check-code.png) [It's an older code, but it checks out](https://www.youtube.com/watch?v=4HJ-Y8YTo8Q)[/caption]
+[![It's an older code, but it checks out](/images/tutorial/check-code.png)](/images/tutorial/check-code.png)]](https://www.youtube.com/watch?v=4HJ-Y8YTo8Q)
 
 Anyone can actually check the proposal very easily by following the same steps to get the correct bytecode and then adding the proposal number and other parameters to the function called **Check proposal code** on the bottom of **Read from contract**.
 
@@ -622,7 +622,7 @@ We are going to implement what's called a version of what's usually called **Liq
 
 First, you need a token. If you have followed the **Stakeholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token/) and distribute it among some accounts. Copy the token address.
 
-Deploy the democracy contract, and put the token address on the **Voting weight token**, put **75** as the **Percent loss in each round** and **transferOwnership(address)** (without any spaces or extra characters!) as the **forbidden function.
+Deploy the democracy contract, and put the token address on the **Voting weight token**, put **75** as the **Percent loss in each round** and **transferOwnership(address)** (without any spaces or extra characters!) as the **forbidden function**.
 
 #### Selecting a delegate
 
