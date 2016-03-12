@@ -32,48 +32,12 @@ $(document).ready(function() {
     }
   };
 
-
-
-  // Usage:
-  shuffle( document.getElementsByClassName('slide-link') );
-  shuffle( document.getElementsByClassName('slide') );
-
-  $('.slide-link').mouseover(function(e){
-    console.log('hover', $(this).attr('href'));
-    var target = $(this).attr('href').substr(1);
-    $('.slide.active').removeClass('active');
-    $('.slide.slide-'+ target).addClass('active');
-
-  }).click(function(e){
-    e.preventDefault();
-  })
-
   $('body').addClass(window.navigator.platform.substr(0,5));
 
 
 });
 
-  $('.next').click(function(e){
-    console.log(this);
-    var target = $('.slide.active + .slide');
-    if (target.length == 0 ) {
-      target = $('.slide').first()[0];
-    }
-
-    $('.slide.active').removeClass('active');
-    $(target).addClass('active');
-  })
-
-  $('.prev').click(function(e){
-    console.log(this);
-    var target = $('.slide.active').prev();
-    if (target.length == 0  || $('.slide.active').prev().hasClass('slide-what') ) {
-      target = $('.slide').last()[0];
-    }
-
-    $('.slide.active').removeClass('active');
-    $(target).addClass('active');
-  })
+  
 
 
 // WARNING: I haven't yet tested this
