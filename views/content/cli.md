@@ -29,7 +29,7 @@ Install [Homebrew](http://brew.sh/) and make sure it's up to date:
     brew update
     brew upgrade
 
-Then use these commands to install cpp-ethereum:
+Then use these commands to install ethereum:
 
     brew tap ethereum/ethereum
     brew install ethereum
