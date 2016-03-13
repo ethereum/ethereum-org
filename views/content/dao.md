@@ -205,7 +205,7 @@ In a few seconds you'll be taken to the dashboard, scroll down and you'll be abl
 
 #### Sharing with others
 
-If you want to share your DAO with others, then they need both the contract address and the interface file, a small text string that works as an instruction manual of the contract. Click **copy address** to get the former and **show interface** for the former.
+If you want to share your DAO with others, then they need both the contract address and the interface file, a small text string that works as an instruction manual of the contract. Click **copy address** to get the former and **show interface** to reveal the latter.
 
 On the other computer, go into the contracts tab and then click on **watch contract**. Add the correct address and interface and press **Ok**.
 
