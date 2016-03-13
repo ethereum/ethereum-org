@@ -10,6 +10,15 @@ block content
     div.scrollme.row.introduction.animateme(data-when="span", data-from="0", data-to="1", data-opacity="0.2", data-translatey="300", data-easing="linear")
       h1.animateme(data-when="span", data-from="0", data-to="1", data-scale="0.75", data-translatey="100", data-easing="linear") Ethereum Homestead: Build unstoppable applications
 
+  div.legal-modal 
+    div.legal-text
+      div.bad-robot
+        img(src='images/bad-robot@2x.png', width='113')
+        h3 Please agree to this before downloading
+      include:md content/agreement.md
+    a(href='#cancel').button-cancel Mmmm nevermind...
+    a(href='#proceed').button-proceed Sure I understand and agree
+
   div.main-content
     div.container
       div.row        
@@ -51,28 +60,30 @@ block content
         div.col-md-6.whatis          
           h2 Smart money, smart wallet
            
-          p The Ethereum Wallet is a gateway to decentralized applications on the Ethereum blockchain. It allows you to hold and secure ether and other crypto-assets built on Ethereum, as well as write, deploy and use smart contracts.
+          p The 
+            strong Ethereum Wallet 
+            | is a gateway to decentralized applications on the Ethereum blockchain. It allows you to hold and secure ether and other crypto-assets built on Ethereum, as well as write, deploy and use smart contracts.
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.5.1/Ethereum-Wallet-macosx-0-5-1.zip").button.mac.ethereum-wallet 
+          a(href="https://github.com/ethereum/mist/releases/download/0.5.2/Ethereum-Wallet-macosx-0-5-2.zip").button.mac.ethereum-wallet.require-legal 
             strong Download 
             | Ethereum Wallet for Mac OS X
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.5.1/Ethereum-Wallet-win64-0-5-1.zip").button.win64.ethereum-wallet 
+          a(href="https://github.com/ethereum/mist/releases/download/0.5.2/Ethereum-Wallet-win64-0-5-2.zip").button.win64.ethereum-wallet.require-legal 
             strong Download 
             |  Ethereum Wallet for Windows 64 bits
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.5.1/Ethereum-Wallet-linux64-0-5-1.zip").button.linux.ethereum-wallet 
+          a(href="https://github.com/ethereum/mist/releases/download/0.5.2/Ethereum-Wallet-linux64-0-5-2.zip").button.linux.ethereum-wallet.require-legal 
             strong Download 
             |  Ethereum Wallet for Linux 64 bits
 
           //- a(href="https://github.com/ethereum/mist/releases/latest").button.win32.ethereum-wallet  
           //-   em  Windows 32 bits is not yet supported
           
-          a(href="https://github.com/ethereum/mist/releases/latest").allversions.button.ethereum-wallet 
+          a(href="https://github.com/ethereum/mist/releases/latest").allversions.button.ethereum-wallet.require-legal 
             strong Download 
-            |  Ethereum Wallet (Windows 64 bits, Linux 64 and Mac OS X)
+            |  Ethereum Wallet (Windows 64 bits, Linux and OS X)
 
-          a(href="https://github.com/ethereum/mist/releases/latest").allversions.ethereum-wallet.link See all versions
+          a(href="https://github.com/ethereum/mist/releases/latest").allversions.ethereum-wallet.link.require-legal See all versions
 
         div.col-md-6.whatis.wallet-figure-outer.scrollme
           figure.wallet-figure.scrollme.animateme(data-when="span", data-from="0.425", data-to="0.475", data-opacity="0", data-translatey="-100")
@@ -113,7 +124,7 @@ block content
 
           p Since the software consumes real resources (bandwidth, electricity, etc.), nodes are compensated with "Ether", an internal token that is used to pay for computation time.
           
-          a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button Install the Aleth Miner
+          a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button.require-legal Install the Aleth Miner
 
         div.col-md-6.whatis.scrollme
           figure.aleth-one.scrollme
@@ -141,7 +152,7 @@ block content
 
             p Mix is a full IDE for the Ethereum network. Develop decentralized applications, write smart contracts and closely inspect the compiled code. When you are ready, use it to publish, deploy and register your contracts.
             
-            a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button Download Mix
+            a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button.require-legal Download Mix
 
 
   div.command-line
@@ -152,7 +163,7 @@ block content
 
             p If you feel more comfortable around a terminal, you can download our command line tools. We have different client implementations built in Go, C++, Python, Java and others.
 
-            a(href="/cli").button Install the Command line tools
+            a(href="/cli").button.require-legal Install the Command line tools
 
           div.col-md-6.whatis          
             figure(data-when="span", data-from="0.8", data-to="0", data-opacity="0", data-translatey="300").geth-console.animateme

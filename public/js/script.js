@@ -8,6 +8,18 @@ $(document).ready(function() {
 
   $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '5' } );
  
+  $('.require-legal').click(function(e){
+    e.preventDefault();
+    $('.legal-modal').addClass('visible');
+    console.log(this, $(this));
+
+    $('.button-proceed').attr('href', $(this).attr('href') );
+  });
+
+  $('.button-cancel, .button-proceed').click(function(){
+    $('.legal-modal').removeClass('visible');
+  })
+
   var toc = document.getElementById('tableOfContents');
   if (toc) {
     window.onscroll = function() {
@@ -67,6 +79,19 @@ function shuffle(elems) {
  
 }
  
+
+function GetLatestReleaseInfo() {
+        $.getJSON("https://api.github.com/repos/ethereum/mist/releases/latest").done(function (release) {
+            var asset = release.assets[0];
+            var downloadCount = 0;
+            for (var i = 0; i < release.assets.length; i++) {
+                downloadCount += release.assets[i].download_count;
+            }
+            
+            var releaseInfo = release.name + " and downloaded " + downloadCount.toLocaleString() + " times.";
+            console.log(release, releaseInfo)
+        });
+    } 
 
 
 

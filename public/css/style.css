@@ -930,8 +930,8 @@ a.button.ethereum-wallet.win64 {
 }
 
 .aleth-miner {
-	background: #FFF;
-	background: linear-gradient(#FFF,#726866);
+	background: #D6CFCF;
+	background: linear-gradient(#D6CFCF,#726866);
 }
 .aleth-miner h2 {
 	padding-top: 100px;
@@ -944,6 +944,55 @@ a.button.ethereum-wallet.win64 {
 	overflow: hidden;
 }
 
+
+.legal-modal {
+	display: none;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    align-content: flex-end;
+	position: fixed;
+    top: 10%;
+    left: 10%;
+    bottom: 10%;
+    right: 10%;
+    padding: 32px 64px;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: #000 0 0 150px;
+    border-radius: 1px;
+}
+
+.legal-modal.visible {
+    display: flex;
+}
+
+.legal-text {
+	position: absolute;
+	top: 20px;
+	bottom: 150px;
+	left: 80px;
+	right: 80px;
+	overflow: scroll;
+}
+
+.bad-robot {
+	margin: 20px auto 40px;
+	text-align: center;
+}
+
+.button-cancel ,
+.button-proceed {
+	flex: 1 1 200px;
+	height: 40px;
+	font-weight: 400;
+	text-align: right;
+	text-transform: uppercase;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;	
+}
+
+.button-proceed {
+	font-weight: 600;
+}
 
 .power-tools p, 
 .power-tools h2 , 
