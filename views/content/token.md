@@ -81,7 +81,7 @@ So let's start with the basics. Open the **Wallet** app, go to the *Contracts* t
         mapping (address => uint256) public balanceOf;   
     }
 
-A mapping means an associative array, where you associate addresses with balances. The addresses are in the the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that that variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
+A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that that variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
 
 ![Edit New Contract](/images/tutorial/edit-contract.png)
 
@@ -93,7 +93,7 @@ If you published your contract right away, it would work but wouldn't be very us
     }
 
 
-Notice that the *function MyToken* has the same name as the *contract MyToken*. This is very important and if you rename one, you have to rename the other too: this is a special, startup function that runs only once and only once, when the contract is first uploaded to the network. This function will set the balance of *msg.sender*, the user which deployed the contract, with a balance of 21 million. 
+Notice that the *function MyToken* has the same name as the *contract MyToken*. This is very important and if you rename one, you have to rename the other too: this is a special, startup function that runs only once and once only, when the contract is first uploaded to the network. This function will set the balance of *msg.sender*, the user which deployed the contract, with a balance of 21 million. 
 
 The choice of 21 million was rather arbitrary, and you can change to anything you want on the code, but there's a better way: instead, supply it as a parameter for the function, like this:
 
@@ -102,7 +102,7 @@ The choice of 21 million was rather arbitrary, and you can change to anything yo
         balanceOf[msg.sender] = initialSupply;
     }
 
-Take a look at the right column besides the contract and you'll see a drop down, written *pick a contract*. Select the "myToken" contract and you'll see that now it shows a section called *Constructor parameters*. These are changeable parameters for your token, so you can reuse the same code and only change this variables in the future.
+Take a look at the right column besides the contract and you'll see a drop down, written *pick a contract*. Select the "myToken" contract and you'll see that now it shows a section called *Constructor parameters*. These are changeable parameters for your token, so you can reuse the same code and only change these variables in the future.
 
 ![Edit New Contract](/images/tutorial/function-picker.png)
 
