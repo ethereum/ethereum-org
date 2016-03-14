@@ -77,7 +77,9 @@ Then use these commands to install cpp-ethereum:
     brew install cpp-ethereum
     brew linkapps cpp-ethereum
 
-For more see the [full documentation on Mac OSX CPP](https://github.com/ethereum/webthree-umbrella/wiki/Building-on-OS-X)
+The [cpp-ethereum documentation](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
+has detailed information on [OS X Homebrew package](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html)
+and on [Building OS X from Source](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/osx.html).
 
 #### Install on Linux:
 
@@ -85,15 +87,17 @@ If you use Apt-get, paste this into the terminal:
 
     apt-get install cpp-ethereum
 
-For more detailed instructions select your environment and read the [build instructions for linux](https://github.com/ethereum/webthree-umbrella/wiki/Building-on-Linux)
+The [cpp-ethereum documentation](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
+has detailed information on [PPAs for Ubuntu](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/linux-ubuntu-ppa.html)
+and on [Building Linux from Source](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/linux.html).
+
 
 #### Install on Windows
 
-Open the [command prompt](http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window) and paste this:
+There is an [Installer for Windows](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/windows-installer.html).
 
-    C:\> git clone --recursive https://github.com/ethereum/webthree-umbrella.git
-
-For more, see the [full documentation on Windows OSX CPP](https://github.com/ethereum/webthree-umbrella/wiki/Building-on-Windows)
+The [cpp-ethereum documentation](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
+has detailed information on [Building Windows from Source](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/windows.html).
 
 
 ### Python
