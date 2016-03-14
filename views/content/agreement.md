@@ -69,7 +69,7 @@ Acknowledgment, Acceptance of all Risks and Disclaimer of Warranties and Liabili
 
 #### Risk of temporary network incoherence
 
-We recommend any groups handling large or important transactions to maintain a voluntary 24 hour waiting period on any ether deposited. In case the integrity of the network is at risk due to issues in the clients, we will publish patches in a timely fashion to address the issues. We will endeavour to provide solutions within the voluntary 24 hour waiting period.
+We recommend any groups handling large or important transactions to maintain a voluntary 24 hour waiting period on any ether deposited. In case the integrity of the network is at risk due to issues in the clients, we will endeavor to publish patches in a timely fashion to address the issues. We will endeavour to provide solutions within the voluntary 24 hour waiting period.
 
 #### Dispute Resolution
 
