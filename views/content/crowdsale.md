@@ -8,7 +8,7 @@ Sometimes a good idea takes a lot of funds and collective effort. You could ask 
 
 In this example we will make a better crowdfunding by solving two important problems: how rewards are managed and kept, and how the money is spent after the funds are raised. 
 
-Rewards in crowdfundings are usually handled by a central unchangeable database that keeps track of all donors: anyone who lost the campaign cannot get in anymore and any donor who changed their mind can't get out. Instead we are going to do this the decentralized way and just create a [token](./token) to keep track of rewards, anyone who contributes get a token that they can trade, sell or keep for later. When the time comes to give the physical reward the producer only needs to exchange the tokens for real products. Donors get to keep their tokens, even if the project doesn't achieve its goals, as a souvenir.
+Rewards in crowdfundings are usually handled by a central unchangeable database that keeps track of all donors: anyone who lost the deadline for the campaign cannot get in anymore and any donor who changed their mind can't get out. Instead we are going to do this the decentralized way and just create a [token](./token) to keep track of rewards, anyone who contributes get a token that they can trade, sell or keep for later. When the time comes to give the physical reward the producer only needs to exchange the tokens for real products. Donors get to keep their tokens, even if the project doesn't achieve its goals, as a souvenir.
 
 Also, generally those who are funding can't have any say on how the money is spent after the funds are raised and mismanagement often causes projects never to deliver anything at all. In this project we will use a [Democratic Organization](./dao) that will have to approve any money coming out of the system. This is often called a **crowdsale** or **crowd equity** and is so fundamental that in some cases the token can be the reward itself, especially in projects where a group of people gather together to build a common public good.
 
@@ -92,7 +92,7 @@ Notice that in the **Crowdsale** function (the one that is called upon contract 
     deadline = now + durationInMinutes * 1 minutes;
     price = etherCostOfEachToken * 1 ether;
 
-Those are some of the [special keywords](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html) in solidity that help you code, allowing you to evaluate some things like *1 ether == 1000 finney* or *2 days == 48 hours*. This will automatically convert the funding goal into **wei** the smallest unit available in the system and will create a timestamp that is exactly X minutes away from today.
+Those are some of the [special keywords](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html) in solidity that help you code, allowing you to evaluate some things like *1 ether == 1000 finney* or *2 days == 48 hours*. Inside the system all ether amounts are kept track in **wei**, the smallest divisible unit of ether. The code above converts the funding goal into wei by multiplying it by 1,000,000,000,000,000,000 (which is what the special keyword **ether** converts into). The next line creates a timestamp that is exactly X minutes away from today by also using a combination of the special keywords **now** and **minutes**. For more global keywords, check the [solidity documentation on Globally available variables](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html).
         
 The following line will instantiate a contract at a given adress:
 
@@ -190,7 +190,7 @@ First, you need to add the contract to your watchlist. Go to your *Contracts* ta
 
 **Tip: if you are on the test net, use the address *0xb8da699d7fb01289d4ef718a55c3174971092bef* instead**
 
-Click on the green icon that you just added and (on)[delete] then choose a function call under the **Write to contract** title. There will be multiple *Schedule Call* functions, choose the first one, that only has three fields:
+Click on the green icon that you just added and then choose a function call under the **Write to contract** title. There will be multiple *Schedule Call* functions, choose the first one, that only has three fields:
 
 * **contractAddress** will be the address of the deployed crowdsale contract.
 * **abiSignature** will be **0x01cb3b20**. You can figure out the signature for any function by trying to execute them but in the confirmation window, instead of typing your password, copy the code in the **Data** field. The function signature is the first 10 characters in bold.
