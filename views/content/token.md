@@ -500,7 +500,7 @@ After a few confirmations, the recipient balance will be updated to reflect the 
 
 Once you've deployed your tokens, they will be added to your list of watched tokens, and the total balance will be shown on your account. In order to send tokens, just go to the **Send** tab and select an account that contains tokens. The tokens the account has will be listed just under *Ether*. Select them and then type the amount of tokens you want to send.
 
-If you want to add someone's else token, just go to the **Contracts** tab and click **Watch token**. For example, to add the **Unicorn (🦄)** token to your watch list, just add the address **0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. 
+If you want to add someone else's token, just go to the **Contracts** tab and click **Watch token**. For example, to add the **Unicorn (🦄)** token to your watch list, just add the address **0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. 
 
 ![Invisible Unicorns](/images/tutorial/unicorn-token.png)
 
