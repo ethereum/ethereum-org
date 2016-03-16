@@ -485,7 +485,7 @@ Click on the link that says *Admin page* and you'll be taken the simplest centra
 
 On the left side under *Read from contract* you have all the options and functions you can use to read information from the contract, for free. If your token has an owner, it will display it's address here. Copy that address and paste it on **Balance of** and it will show you the balance of any account (the balance is also automatically shown on any account page that has tokens). 
 
-On the right side, under **Write to Contract** you'll see all the functions you can use to alter or change the blockchain in any way. These will cost gas. If you created a contract that allows to mint new coins, you should have a function called "Mint Token". Select it.
+On the right side, under **Write to Contract** you'll see all the functions you can use to alter or change the blockchain in any way. These will cost gas. If you created a contract that allows you to mint new coins, you should have a function called "Mint Token". Select it.
 
 ![Manage central dollar](/images/tutorial/manage-central-dollar.png)
 
