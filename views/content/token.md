@@ -279,7 +279,7 @@ First, let's set the price for buying and selling:
         buyPrice = newBuyPrice;
     }
 
-This is acceptable for a price that doesn't change very often, as every new price change will require to execute a transaction and spend a bit of ether. If you want to have a constant floating price we recommend investigating [standard data feeds](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds)    
+This is acceptable for a price that doesn't change very often, as every new price change will require you to execute a transaction and spend a bit of ether. If you want to have a constant floating price we recommend investigating [standard data feeds](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds)    
 
 The next step is making the buy and sell functions:
 
