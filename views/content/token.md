@@ -238,7 +238,7 @@ Now let's add a new function finally that will enable the owner to create new to
         Transfer(0, target, mintedAmount);
     }
 
-Notice the modifier **onlyOwner** on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the **modifier onlyOwner** we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account set as the owner. Just add this to a contract with an **owner** modifier and you'll be able to create more coins.
+Notice the modifier **onlyOwner** on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the **modifier onlyOwner** we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account that is set as the owner. Just add this to a contract with an **owner** modifier and you'll be able to create more coins.
 
 #### Freezing of assets
 
@@ -491,7 +491,7 @@ On the right side, under **Write to Contract** you'll see all the functions you 
 
 Select the address where those new currencies will be created and then the amount (if you have decimals set at 2, then add 2 zeros after the amount, to create the correct quantity). On **Execute from** select the account that set as owner, leave the ether amount at zero and then press execute.
 
-After a few confirmations, the recipient balance will be updated to reflect the new amount. But your recipient wallet might not show it automatically: in order to be aware of custom tokens, the wallet must add them manually to a watch list. Copy your token address (at the admin page, press *copy address*) and send that to your recipient. If they haven't already they should go to the contracts tab, press **Watch Token** and then add the address there. Name, symbols and decimal amounts displayed can be customized by the end user, specially if they have other tokens with similar (or the same) name. The main icon is not changeable and users should pay attention to them when sending and receiving tokens to ensure they are dealing with the real deal and not some copycat token.
+After a few confirmations, the recipient balance will be updated to reflect the new amount. But your recipient wallet might not show it automatically: in order to be aware of custom tokens, the wallet must add them manually to a watch list. Copy your token address (at the admin page, press *copy address*) and send that to your recipient. If they haven't already they should go to the contracts tab, press **Watch Token** and then add the address there. Name, symbols and decimal amounts displayed can be customized by the end user, especially if they have other tokens with similar (or the same) name. The main icon is not changeable and users should pay attention to them when sending and receiving tokens to ensure they are dealing with the real deal and not some copycat token.
 
 ![add token](/images/tutorial/add-token.png)
 
