@@ -283,25 +283,67 @@ This is acceptable for a price that doesn't change very often, as every new pric
 
 The next step is making the buy and sell functions:
 
-    function buy() {
+    function buy() returns (uint amount){
         uint amount = msg.value / buyPrice;                // calculates the amount
         if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
         balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
         balanceOf[this] -= amount;                         // subtracts amount from seller's balance
         Transfer(this, msg.sender, amount);                // execute an event reflecting the change
+        return amount;                                     // ends function and returns
     }
 
-    function sell(uint amount) {
+
+    function sell(uint amount) returns (uint revenue){
         if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
         balanceOf[this] += amount;                         // adds the amount to owner's balance
         balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
-        msg.sender.send(amount * sellPrice);               // sends ether to the seller
+        revenue = amount * sellPrice;                      // calculate the revenue
+        msg.sender.send(revenue);                          // sends ether to the seller
         Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
+        return revenue;                                    // ends function and returns
     }
+
 
 Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
 
 **Note** Buy and sell "prices" are not set in ether, but in *wei* the minimum currency of the system (equivalent to the cent in the Euro and Dollar, or the Satoshi in Bitcoin). One ether is 1000000000000000000 wei. So when setting prices for your token in ether, add 18 zeros at the end.
+
+When creating the contract, **send enough ether to it so that it can buy back all the tokens on the market** otherwise your contract will be insolvent and your users won't be able to sell their tokens.
+
+The previous examples, of course, describe a contract with a single central buyer and seller, a much more interesting contract would allow a market where anyone can bid different prices, or maybe it would load the prices directly from an external source.
+
+#### Autorefill
+
+Everytime you make a transaction on ethereum you need to pay a fee to the miner of the block that will calculate the result of your smart contract. [While this might change in the future](https://github.com/ethereum/EIPs/issues/28), for the moment fees can only be paid in ether and therefore all users of your tokens need it. Tokens in accounts with a balance smaller than the fee are stuck until the owner can pay for the necessary fee. But in some usecases, you might not want your users to think about ethereum, blockchain or how to obtain ether, so one possible approach would have your coin automatically refill the user balance as soon as it detects the balance is dangerously low.
+
+In order to do that, first you need to create a variable that will hold the threshold amount and a function to change it. If you don't know any value, set it to **5 finney (0.005 ether)**.
+
+    
+    uint minBalanceForAccounts;
+    
+    function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
+         minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
+    }
+
+Then, add this line to the **transfer* function so that the sender is refunded:
+
+    /* Send coins */
+    function transfer(address _to, uint256 _value) {
+        ...
+        if(msg.sender.balance<minBalanceForAccounts)
+            sell((minBalanceForAccounts-msg.sender.balance)/sellPrice);
+    }
+
+You can also instead change it so that the fee is paid forward to the receiver by the sender:
+
+    /* Send coins */
+    function transfer(address _to, uint256 _value) {
+        ...
+        if(_to.balance<minBalanceForAccounts)
+            _to.send(sell((minBalanceForAccounts-_to.balance)/sellPrice));
+    }
+
+This will ensure that no account receiving the token has less than the necessary ether to pay the fees. 
 
 #### Proof of Work
 
