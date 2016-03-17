@@ -463,7 +463,7 @@ Then we define a variable of the *type* token, meaning that it will inherit all 
     function Association(token sharesAddress, uint minimumSharesForVoting, uint minutesForDebate) {
             sharesTokenAddress = token(sharesAddress);
 
-This association presents a challenge that the previous congress didn't had: since anyone with tokens can vote and the balances can change very quickly, the actual score of the proposal can't be counted when the shareholder votes, otherwise someone would be able to vote multiple times by simply sending his share to different addresses. So in this contract only the vote position is recorded and then the real score is tallied up on the **execute proposal** phase.       
+This association presents a challenge that the previous congress didn't have: since anyone with tokens can vote and the balances can change very quickly, the actual score of the proposal can't be counted when the shareholder votes, otherwise someone would be able to vote multiple times by simply sending his share to different addresses. So in this contract only the vote position is recorded and then the real score is tallied up on the **execute proposal** phase.       
 
     /* tally the votes */
     uint quorum = 0;
