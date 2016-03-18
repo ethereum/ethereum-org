@@ -77,9 +77,9 @@ Then use these commands to install cpp-ethereum:
     brew install cpp-ethereum
     brew linkapps cpp-ethereum
 
-The [cpp-ethereum documentation](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
-has detailed information on [OS X Homebrew package](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html)
-and on [Building OS X from Source](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/osx.html).
+The [cpp-ethereum documentation](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
+has detailed information on [OS X Homebrew package](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html)
+and on [Building OS X from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/osx.html).
 
 #### Install on Linux:
 
@@ -87,17 +87,17 @@ If you use Apt-get, paste this into the terminal:
 
     apt-get install cpp-ethereum
 
-The [cpp-ethereum documentation](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
-has detailed information on [PPAs for Ubuntu](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/linux-ubuntu-ppa.html)
-and on [Building Linux from Source](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/linux.html).
+The [cpp-ethereum documentation](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
+has detailed information on [PPAs for Ubuntu](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/linux-ubuntu-ppa.html)
+and on [Building Linux from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/linux.html).
 
 
 #### Install on Windows
 
-There is an [Installer for Windows](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/windows-installer.html).
+There is an [Installer for Windows](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/windows-installer.html).
 
-The [cpp-ethereum documentation](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
-has detailed information on [Building Windows from Source](http://ethereum-homestead.readthedocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/windows.html).
+The [cpp-ethereum documentation](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
+has detailed information on [Building Windows from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/windows.html).
 
 
 ### Python

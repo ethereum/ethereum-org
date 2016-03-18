@@ -93,9 +93,9 @@ If you published your contract right away, it would work but wouldn't be very us
     }
 
 
-Notice that the *function MyToken* has the same name as the *contract MyToken*. This is very important and if you rename one, you have to rename the other too: this is a special, startup function that runs only once and once only, when the contract is first uploaded to the network. This function will set the balance of *msg.sender*, the user which deployed the contract, with a balance of 21 million. 
+Notice that the *function MyToken* has the same name as the *contract MyToken*. This is very important and if you rename one, you have to rename the other too: this is a special, startup function that runs only once and once only when the contract is first uploaded to the network. This function will set the balance of *msg.sender*, the user which deployed the contract, with a balance of 21 million. 
 
-The choice of 21 million was rather arbitrary, and you can change to anything you want on the code, but there's a better way: instead, supply it as a parameter for the function, like this:
+The choice of 21 million was rather arbitrary, and you can change it to anything you want in the code, but there's a better way: instead, supply it as a parameter for the function, like this:
 
 
     function MyToken(uint256 initialSupply) {
@@ -229,7 +229,7 @@ This means that all the functions inside **myToken** now can access the variable
 #### Central Mint
 
 
-Suppose you want the amount of coins on circulation to change. This is the case when your tokens actually represent an off blockchain asset (like gold certificates or government currencies) and you want the virtual inventory to reflect the real one. This might also be the case when the currency holders expect some control on the price of the token, and want to issue or remove tokens from circulation.
+Suppose you want the amount of coins in circulation to change. This is the case when your tokens actually represent an off blockchain asset (like gold certificates or government currencies) and you want the virtual inventory to reflect the real one. This might also be the case when the currency holders expect some control of the price of the token, and want to issue or remove tokens from circulation.
 
 Now let's add a new function finally that will enable the owner to create new tokens:
 
@@ -238,7 +238,7 @@ Now let's add a new function finally that will enable the owner to create new to
         Transfer(0, target, mintedAmount);
     }
 
-Notice the modifier **onlyOwner** on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the **modifier onlyOwner** we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account set as the owner. Just add this to a contract with an **owner** modifier and you'll be able to create more coins.
+Notice the modifier **onlyOwner** on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the **modifier onlyOwner** we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account that is set as the owner. Just add this to a contract with an **owner** modifier and you'll be able to create more coins.
 
 #### Freezing of assets
 
@@ -279,29 +279,71 @@ First, let's set the price for buying and selling:
         buyPrice = newBuyPrice;
     }
 
-This is acceptable for a price that doesn't change very often, as every new price change will require to execute a transaction and spend a bit of ether. If you want to have a constant floating price we recommend investigating [standard data feeds](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds)    
+This is acceptable for a price that doesn't change very often, as every new price change will require you to execute a transaction and spend a bit of ether. If you want to have a constant floating price we recommend investigating [standard data feeds](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds)    
 
 The next step is making the buy and sell functions:
 
-    function buy() {
+    function buy() returns (uint amount){
         uint amount = msg.value / buyPrice;                // calculates the amount
         if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
         balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
         balanceOf[this] -= amount;                         // subtracts amount from seller's balance
         Transfer(this, msg.sender, amount);                // execute an event reflecting the change
+        return amount;                                     // ends function and returns
     }
 
-    function sell(uint amount) {
+
+    function sell(uint amount) returns (uint revenue){
         if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
         balanceOf[this] += amount;                         // adds the amount to owner's balance
         balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
-        msg.sender.send(amount * sellPrice);               // sends ether to the seller
+        revenue = amount * sellPrice;                      // calculate the revenue
+        msg.sender.send(revenue);                          // sends ether to the seller
         Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
+        return revenue;                                    // ends function and returns
     }
 
-Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
+
+Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) it cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
 
 **Note** Buy and sell "prices" are not set in ether, but in *wei* the minimum currency of the system (equivalent to the cent in the Euro and Dollar, or the Satoshi in Bitcoin). One ether is 1000000000000000000 wei. So when setting prices for your token in ether, add 18 zeros at the end.
+
+When creating the contract, **send enough ether to it so that it can buy back all the tokens on the market** otherwise your contract will be insolvent and your users won't be able to sell their tokens.
+
+The previous examples, of course, describe a contract with a single central buyer and seller, a much more interesting contract would allow a market where anyone can bid different prices, or maybe it would load the prices directly from an external source.
+
+#### Autorefill
+
+Everytime you make a transaction on ethereum you need to pay a fee to the miner of the block that will calculate the result of your smart contract. [While this might change in the future](https://github.com/ethereum/EIPs/issues/28), for the moment fees can only be paid in ether and therefore all users of your tokens need it. Tokens in accounts with a balance smaller than the fee are stuck until the owner can pay for the necessary fee. But in some usecases, you might not want your users to think about ethereum, blockchain or how to obtain ether, so one possible approach would have your coin automatically refill the user balance as soon as it detects the balance is dangerously low.
+
+In order to do that, first you need to create a variable that will hold the threshold amount and a function to change it. If you don't know any value, set it to **5 finney (0.005 ether)**.
+
+    
+    uint minBalanceForAccounts;
+    
+    function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
+         minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
+    }
+
+Then, add this line to the **transfer* function so that the sender is refunded:
+
+    /* Send coins */
+    function transfer(address _to, uint256 _value) {
+        ...
+        if(msg.sender.balance<minBalanceForAccounts)
+            sell((minBalanceForAccounts-msg.sender.balance)/sellPrice);
+    }
+
+You can also instead change it so that the fee is paid forward to the receiver by the sender:
+
+    /* Send coins */
+    function transfer(address _to, uint256 _value) {
+        ...
+        if(_to.balance<minBalanceForAccounts)
+            _to.send(sell((minBalanceForAccounts-_to.balance)/sellPrice));
+    }
+
+This will ensure that no account receiving the token has less than the necessary ether to pay the fees. 
 
 #### Proof of Work
 
@@ -485,22 +527,22 @@ Click on the link that says *Admin page* and you'll be taken the simplest centra
 
 On the left side under *Read from contract* you have all the options and functions you can use to read information from the contract, for free. If your token has an owner, it will display it's address here. Copy that address and paste it on **Balance of** and it will show you the balance of any account (the balance is also automatically shown on any account page that has tokens). 
 
-On the right side, under **Write to Contract** you'll see all the functions you can use to alter or change the blockchain in any way. These will cost gas. If you created a contract that allows to mint new coins, you should have a function called "Mint Token". Select it.
+On the right side, under **Write to Contract** you'll see all the functions you can use to alter or change the blockchain in any way. These will cost gas. If you created a contract that allows you to mint new coins, you should have a function called "Mint Token". Select it.
 
 ![Manage central dollar](/images/tutorial/manage-central-dollar.png)
 
 Select the address where those new currencies will be created and then the amount (if you have decimals set at 2, then add 2 zeros after the amount, to create the correct quantity). On **Execute from** select the account that set as owner, leave the ether amount at zero and then press execute.
 
-After a few confirmations, the recipient balance will be updated to reflect the new amount. But your recipient wallet might not show it automatically: in order to be aware of custom tokens, the wallet must add them manually to a watch list. Copy your token address (at the admin page, press *copy address*) and send that to your recipient. If they haven't already they should go to the contracts tab, press **Watch Token** and then add the address there. Name, symbols and decimal amounts displayed can be customized by the end user, specially if they have other tokens with similar (or the same) name. The main icon is not changeable and users should pay attention to them when sending and receiving tokens to ensure they are dealing with the real deal and not some copycat token.
+After a few confirmations, the recipient balance will be updated to reflect the new amount. But your recipient wallet might not show it automatically: in order to be aware of custom tokens, the wallet must add them manually to a watch list. Copy your token address (at the admin page, press *copy address*) and send that to your recipient. If they haven't already they should go to the contracts tab, press **Watch Token** and then add the address there. Name, symbols and decimal amounts displayed can be customized by the end user, especially if they have other tokens with similar (or the same) name. The main icon is not changeable and users should pay attention to them when sending and receiving tokens to ensure they are dealing with the real deal and not some copycat token.
 
 ![add token](/images/tutorial/add-token.png)
 
 
 ## Using your coin
 
-Once you deployed your tokens, it will be added to your list of watched tokens, and the total balance will be shown on your account. In order to send tokens, just go on the **Send** tab and select an account that contains tokens. The tokens the account has will be listed just under *Ether*. Select them and then type the amount of tokens you want to send.
+Once you've deployed your tokens, they will be added to your list of watched tokens, and the total balance will be shown on your account. In order to send tokens, just go to the **Send** tab and select an account that contains tokens. The tokens the account has will be listed just under *Ether*. Select them and then type the amount of tokens you want to send.
 
-If you want to add someone's else token, just go to the **Contracts** tab and click **Watch token**. For example, to add the **Unicorn (🦄)** token to your watch list, just add the address **0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. 
+If you want to add someone else's token, just go to the **Contracts** tab and click **Watch token**. For example, to add the **Unicorn (🦄)** token to your watch list, just add the address **0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7** and the remaining information will be loaded automatically. Click *Ok* and your token will be added. 
 
 ![Invisible Unicorns](/images/tutorial/unicorn-token.png)
 

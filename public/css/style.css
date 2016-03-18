@@ -252,8 +252,8 @@ body {
 }
 
 #tutorial-start h2 {
-	padding-bottom: 0;
-	font-size: 60px;
+	padding: 0;
+	text-transform: uppercase;
 }
 
 .main-tutorial h2 {
