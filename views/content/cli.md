@@ -4,7 +4,7 @@ These are tools for blockchain developers. The command line tools will allow you
 
 * **Learn More**
   * [What is Ethereum?](https://ethereum-homestead.readthedocs.org/en/latest/introduction/what-is-ethereum.html#what-is-ethereum)
-  * [What is ether?](http://ethereum-homestead.readthedocs.org/en/latest/ether.html)
+  * [What is ether?](http://ethdocs.org/en/latest/ether.html)
 
 
 ## Clients
