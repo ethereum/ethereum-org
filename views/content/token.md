@@ -13,22 +13,26 @@ If you are in a hurry, here's the final code of the basic token:
         /* Public variables of the token */
         string public name;
         string public symbol;
+        string public version;
         uint8 public decimals;
+        uint256 public totalSupply;
 
         /* This creates an array with all balances */
         mapping (address => uint256) public balanceOf;
-        mapping (address => mapping (address => uint)) public allowance;
-        mapping (address => mapping (address => uint)) public spentAllowance;
+        mapping (address => mapping (address => uint256)) public allowance;
+        mapping (address => mapping (address => uint256)) public spentAllowance;
 
         /* This generates a public event on the blockchain that will notify clients */
         event Transfer(address indexed from, address indexed to, uint256 value);
 
         /* Initializes contract with initial supply tokens to the creator of the contract */
-        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
+        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, string versionOfTheCode) {
             balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
+            totalSupply = initialSupply;                        // Update total supply
             name = tokenName;                                   // Set the name for display purposes     
             symbol = tokenSymbol;                               // Set the symbol for display purposes    
             decimals = decimalUnits;                            // Amount of decimals for display purposes        
+            version = versionOfTheCode;
         }
 
         /* Send coins */
@@ -45,7 +49,8 @@ If you are in a hurry, here's the final code of the basic token:
         function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
             allowance[msg.sender][_spender] = _value;     
             tokenRecipient spender = tokenRecipient(_spender);
-            spender.receiveApproval(msg.sender, _value, this, _extraData);  
+            spender.receiveApproval(msg.sender, _value, this, _extraData); 
+            return true; 
         }
 
         /* A contract attempts to get the coins */
@@ -57,7 +62,8 @@ If you are in a hurry, here's the final code of the basic token:
             balanceOf[_from] -= _value;                          // Subtract from the sender
             balanceOf[_to] += _value;                            // Add the same to the recipient            
             spentAllowance[_from][msg.sender] += _value;
-            Transfer(msg.sender, _to, _value); 
+            Transfer(_from, _to, _value); 
+            return true;
         } 
 
         /* This unnamed function is called whenever someone tries to send ether to it */
@@ -235,6 +241,7 @@ Now let's add a new function finally that will enable the owner to create new to
 
     function mintToken(address target, uint256 mintedAmount) onlyOwner {
         balanceOf[target] += mintedAmount;  
+        totalSupply += mintedAmount;
         Transfer(0, target, mintedAmount);
     }
 
@@ -421,34 +428,39 @@ If you add all the advanced options, this is how the final code should look like
         }
     }
     
-    contract tokenRecipient { function sendApproval(address _from, uint256 _value, address _token); }
+    contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token); }
 
     contract MyToken is owned { 
         /* Public variables of the token */
         string public name;
         string public symbol;
         uint8 public decimals;
+        string public version;
+
         uint256 public sellPrice;
         uint256 public buyPrice;
+        uint256 public totalSupply;
 
         /* This creates an array with all balances */
         mapping (address => uint256) public balanceOf;
         mapping (address => bool) public frozenAccount; 
-        mapping (address => mapping (address => uint)) public allowance;
-        mapping (address => mapping (address => uint)) public spentAllowance;
+        mapping (address => mapping (address => uint256)) public allowance;
+        mapping (address => mapping (address => uint256)) public spentAllowance;
 
         /* This generates a public event on the blockchain that will notify clients */
         event Transfer(address indexed from, address indexed to, uint256 value);
         event FrozenFunds(address target, bool frozen);
 
         /* Initializes contract with initial supply tokens to the creator of the contract */
-        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, address centralMinter) { 
+        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, address centralMinter, string versionOfTheCode) { 
             if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
             if(centralMinter != 0 ) owner = msg.sender;         // Sets the minter
             balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
             name = tokenName;                                   // Set the name for display purposes     
             symbol = tokenSymbol;                               // Set the symbol for display purposes    
-            decimals = decimalUnits;                            // Amount of decimals for display purposes        
+            decimals = decimalUnits;                            // Amount of decimals for display purposes
+            totalSupply = initialSupply; 
+            version = versionOfTheCode;       
         }
 
         /* Send coins */
@@ -463,10 +475,11 @@ If you add all the advanced options, this is how the final code should look like
 
         /* Allow another contract to spend some tokens in your behalf */
 
-        function approve(address _spender, uint256 _value) returns (bool success) {
+        function approveAndCall(address _spender, uint256 _value) returns (bool success) {
             allowance[msg.sender][_spender] = _value;  
             tokenRecipient spender = tokenRecipient(_spender);
-            spender.sendApproval(msg.sender, _value, this);          
+            spender.receiveApproval(msg.sender, _value, this); 
+            return true;         
         }
 
         /* A contract attempts to get the coins */
@@ -478,15 +491,18 @@ If you add all the advanced options, this is how the final code should look like
             balanceOf[_from] -= _value;                          // Subtract from the sender
             balanceOf[_to] += _value;                            // Add the same to the recipient            
             spentAllowance[_from][msg.sender] += _value;
-            Transfer(msg.sender, _to, _value); 
+            Transfer(_from, _to, _value); 
+            return true;
         } 
 
         /* This unnamed function is called whenever someone tries to send ether to it */
         function () {
             throw;     // Prevents accidental sending of ether
         }
-                function mintToken(address target, uint256 mintedAmount) onlyOwner {
-            balanceOf[target] += mintedAmount;  
+        
+        function mintToken(address target, uint256 mintedAmount) onlyOwner {
+            balanceOf[target] += mintedAmount; 
+            totalSupply += mintedAmount; 
             Transfer(0, target, mintedAmount);
         }
 

@@ -267,8 +267,8 @@ body {
 
 .main-tutorial h3 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
-	font-size: 23px;
-	font-weight: 600;
+	font-size: 30px;
+	font-weight: 400;
 	color: #354049;
 	background: transparent;
 	max-width: 400px;
@@ -802,6 +802,26 @@ a.donate-button:hover ,
 	display: block;
 }
 
+/* DevGrants */
+
+.devgrants-hof {
+	text-align: center;
+}
+
+.devgrants-hof img {
+	max-width: 60%;
+}
+
+.main-tutorial .devgrants-hof h2 {
+	padding-top: 0;
+}
+
+.main-tutorial .devgrants-hof h3 {
+	max-width: none;
+}
+
+
+
 footer .caption {
 	color:  #C3CCDB;
 }
@@ -1288,6 +1308,29 @@ figure.moon .moon-rocket {
 }
 
 
+
+figure.swarm {
+	max-width: 300px;
+	height: 300px;
+}
+
+figure.swarm .swarm-01 {
+	background-image: url("../images/swarm-01.png");
+}
+
+figure.swarm .swarm-02 {
+	background-image: url("../images/swarm-02.png");
+}
+
+figure.swarm .swarm-03 {
+	background-image: url("../images/swarm-03.png");
+}
+
+figure.swarm .swarm-04 {
+	background-image: url("../images/swarm-04.png");
+}
+
+
 figure.ethereum-logo {
 	display: block;
 	background-image: url("../images/ethereum-logo.png");
@@ -1434,6 +1477,10 @@ footer {
 .foundation-page.even h2,
 .foundation-page.even p {
 	color: #FFF;
+}
+
+.swarm-page.main-tutorial {
+	background-color: #FFF582;
 }
 
 .main-tutorial img[alt*="Logo"] {
