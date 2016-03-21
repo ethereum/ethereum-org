@@ -949,18 +949,9 @@ a.button.ethereum-wallet.win64 {
 	background-image: url("../images/button-win64.png");	
 }
 
-.aleth-miner {
-	background: #D6CFCF;
-	background: linear-gradient(#D6CFCF,#726866);
-}
-.aleth-miner h2 {
-	padding-top: 100px;
-	color: #303030;
-}
-
 .power-tools { 
-	background: #726866;
-	background: linear-gradient(#726866, #000);
+	background: #A59A9A;
+	background: linear-gradient(#A59A9A,#000);
 	overflow: hidden;
 }
 
