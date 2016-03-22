@@ -83,11 +83,11 @@ module.exports = function(grunt) {
 					{
 						'dist/donate.html': 'views/donate.jade'
 					},
+					// {
+					// 	'dist/swarm.html': 'views/swarm.jade'
+					// },
 					{
 						'dist/devgrants.html': 'views/devgrants.jade'
-					},
-					{
-						'dist/swarm.html': 'views/swarm.jade'
 					}
 				]
 			}
