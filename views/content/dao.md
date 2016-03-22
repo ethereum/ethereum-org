@@ -35,6 +35,7 @@ The way this particular democracy works is that it has an **Owner** which works 
         }
     }
 
+
     contract Congress is owned {
 
         /* Contract Variables and events */
@@ -88,10 +89,12 @@ The way this particular democracy works is that it has an **Owner** which works 
         }
         
         /* First time setup */
-        function Congress(uint minimumQuorumForProposals, uint minutesForDebate, int marginOfVotesForMajority, address congressLeader) {
-            minimumQuorum = minimumQuorumForProposals;
-            debatingPeriodInMinutes = minutesForDebate;
-            majorityMargin = marginOfVotesForMajority;
+        function Congress(
+            uint minimumQuorumForProposals, 
+            uint minutesForDebate, 
+            int marginOfVotesForMajority, address congressLeader
+        ) {
+            changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
             members.length++;
             members[0] = Member({member: 0, canVote: false, memberSince: now, name: ''});
             if (congressLeader != 0) owner = congressLeader;
@@ -116,7 +119,11 @@ The way this particular democracy works is that it has an **Owner** which works 
         }
         
         /*change rules*/
-        function changeVotingRules(uint minimumQuorumForProposals, uint minutesForDebate, int marginOfVotesForMajority) onlyOwner {
+        function changeVotingRules(
+            uint minimumQuorumForProposals, 
+            uint minutesForDebate, 
+            int marginOfVotesForMajority
+        ) onlyOwner {
             minimumQuorum = minimumQuorumForProposals;
             debatingPeriodInMinutes = minutesForDebate;
             majorityMargin = marginOfVotesForMajority;
@@ -125,7 +132,15 @@ The way this particular democracy works is that it has an **Owner** which works 
         }
 
         /* Function to create a new proposal */
-        function newProposal(address beneficiary, uint etherAmount, string JobDescription, bytes transactionBytecode) onlyMembers returns (uint proposalID) {
+        function newProposal(
+            address beneficiary, 
+            uint etherAmount, 
+            string JobDescription, 
+            bytes transactionBytecode
+        ) 
+            onlyMembers 
+            returns (uint proposalID) 
+        {
             proposalID = proposals.length++;
             Proposal p = proposals[proposalID];
             p.recipient = beneficiary;
@@ -141,12 +156,27 @@ The way this particular democracy works is that it has an **Owner** which works 
         }
         
         /* function to check if a proposal code matches */
-        function checkProposalCode(uint proposalNumber, address beneficiary, uint etherAmount, bytes transactionBytecode) constant returns (bool codeChecksOut) {
+        function checkProposalCode(
+            uint proposalNumber, 
+            address beneficiary, 
+            uint etherAmount, 
+            bytes transactionBytecode
+        ) 
+            constant 
+            returns (bool codeChecksOut) 
+        {
             Proposal p = proposals[proposalNumber];
             return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
         }
         
-        function vote(uint proposalNumber, bool supportsProposal, string justificationText) onlyMembers returns (uint voteID){
+        function vote(
+            uint proposalNumber, 
+            bool supportsProposal, 
+            string justificationText
+        ) 
+            onlyMembers 
+            returns (uint voteID)
+        {
             Proposal p = proposals[proposalNumber];         // Get the proposal
             if (p.voted[msg.sender] == true) throw;         // If has already voted, cancel
             p.voted[msg.sender] = true;                     // Set this voter as having voted
@@ -297,6 +327,7 @@ Now to the shareholder code:
     /* The token is used as a voting shares */
     contract token { mapping (address => uint256) public balanceOf;  }
 
+
     /* define 'owned' */
     contract owned {
         address public owner;
@@ -314,6 +345,7 @@ Now to the shareholder code:
             owner = newOwner;
         }
     }
+
 
     /* The democracy contract itself */
     contract Association is owned {
@@ -356,22 +388,28 @@ Now to the shareholder code:
         
         /* First time setup */
         function Association(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) {
-            sharesTokenAddress = token(sharesAddress);
-            if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
-            minimumQuorum = minimumSharesToPassAVote;
-            debatingPeriodInMinutes = minutesForDebate;
+            changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
         }
 
         /*change rules*/
         function changeVotingRules(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
             sharesTokenAddress = token(sharesAddress);
+            if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
             minimumQuorum = minimumSharesToPassAVote;
             debatingPeriodInMinutes = minutesForDebate;
             ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, sharesTokenAddress);
         }
 
         /* Function to create a new proposal */
-        function newProposal(address beneficiary, uint etherAmount, string JobDescription, bytes transactionBytecode) onlyShareholders returns (uint proposalID) {
+        function newProposal(
+            address beneficiary, 
+            uint etherAmount, 
+            string JobDescription, 
+            bytes transactionBytecode
+        ) 
+            onlyShareholders 
+            returns (uint proposalID) 
+        {
             proposalID = proposals.length++;
             Proposal p = proposals[proposalID];
             p.recipient = beneficiary;
@@ -387,13 +425,24 @@ Now to the shareholder code:
         }
         
         /* function to check if a proposal code matches */
-        function checkProposalCode(uint proposalNumber, address beneficiary, uint etherAmount, bytes transactionBytecode) constant returns (bool codeChecksOut) {
+        function checkProposalCode(
+            uint proposalNumber, 
+            address beneficiary, 
+            uint etherAmount, 
+            bytes transactionBytecode
+        ) 
+            constant 
+            returns (bool codeChecksOut) 
+        {
             Proposal p = proposals[proposalNumber];
             return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
         }
         
         /* */
-        function vote(uint proposalNumber, bool supportsProposal) onlyShareholders returns (uint voteID){
+        function vote(uint proposalNumber, bool supportsProposal) 
+            onlyShareholders 
+            returns (uint voteID)
+        {
             Proposal p = proposals[proposalNumber];
             if (p.voted[msg.sender] == true) throw;
             
@@ -514,6 +563,7 @@ We are going to implement what's called a version of what's usually called **Liq
 
     contract token { mapping (address => uint256) public balanceOf;  }
 
+
     contract LiquidDemocracy {
         token public votingToken;
         address public apointee;
@@ -535,8 +585,11 @@ We are going to implement what's called a version of what's usually called **Liq
             address voter;
         }
         
-        
-        function LiquidDemocracy(address votingWeightToken, string forbiddenFunctionCall, uint percentLossInEachRound) {
+        function LiquidDemocracy(
+            address votingWeightToken, 
+            string forbiddenFunctionCall, 
+            uint percentLossInEachRound) 
+        {
             votingToken = token(votingWeightToken); 
             delegatedVotes.length++;
             delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});

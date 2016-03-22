@@ -26,7 +26,13 @@ If you are in a hurry, here's the final code of the basic token:
         event Transfer(address indexed from, address indexed to, uint256 value);
 
         /* Initializes contract with initial supply tokens to the creator of the contract */
-        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, string versionOfTheCode) {
+        function MyToken(
+            uint256 initialSupply, 
+            string tokenName, 
+            uint8 decimalUnits, 
+            string tokenSymbol, 
+            string versionOfTheCode
+            ) {
             balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
             totalSupply = initialSupply;                        // Update total supply
             name = tokenName;                                   // Set the name for display purposes     
@@ -46,7 +52,8 @@ If you are in a hurry, here's the final code of the basic token:
 
         /* Allow another contract to spend some tokens in your behalf */
 
-        function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
+        function approveAndCall(address _spender, uint256 _value, bytes _extraData) 
+            returns (bool success) {
             allowance[msg.sender][_spender] = _value;     
             tokenRecipient spender = tokenRecipient(_spender);
             spender.receiveApproval(msg.sender, _value, this, _extraData); 
@@ -229,7 +236,13 @@ This creates a very basic contract that doesn't do anything except define some g
 
 This means that all the functions inside **myToken** now can access the variable *owner* and the modifier *onlyOwner*. The contract also gets a function to transfer ownership. Since it might be interesting to set the owner of the contract at startup, you can also add this to the *constructor function*: 
 
-    function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, address centralMinter) {
+    function MyToken(
+        uint256 initialSupply, 
+        string tokenName, 
+        uint8 decimalUnits, 
+        string tokenSymbol, 
+        address centralMinter
+        ) {
         if(centralMinter != 0 ) owner = msg.sender;
 
 #### Central Mint
@@ -258,7 +271,6 @@ Add this variable and function anywhere inside the contract. You can put them an
 
     function freezeAccount(address target, bool freeze) onlyOwner {
         frozenAccount[target] = freeze;
-        
         FrozenFunds(target, freeze);
     }
 
@@ -298,7 +310,6 @@ The next step is making the buy and sell functions:
         Transfer(this, msg.sender, amount);                // execute an event reflecting the change
         return amount;                                     // ends function and returns
     }
-
 
     function sell(uint amount) returns (uint revenue){
         if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
@@ -427,8 +438,12 @@ If you add all the advanced options, this is how the final code should look like
             owner = newOwner;
         }
     }
+
     
-    contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token); }
+    contract tokenRecipient { 
+        function receiveApproval(address _from, uint256 _value, address _token); 
+    }
+
 
     contract MyToken is owned { 
         /* Public variables of the token */
@@ -452,7 +467,14 @@ If you add all the advanced options, this is how the final code should look like
         event FrozenFunds(address target, bool frozen);
 
         /* Initializes contract with initial supply tokens to the creator of the contract */
-        function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, address centralMinter, string versionOfTheCode) { 
+        function MyToken(
+            uint256 initialSupply, 
+            string tokenName, 
+            uint8 decimalUnits, 
+            string tokenSymbol, 
+            address centralMinter, 
+            string versionOfTheCode
+        ) { 
             if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
             if(centralMinter != 0 ) owner = msg.sender;         // Sets the minter
             balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
