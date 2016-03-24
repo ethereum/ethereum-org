@@ -51,7 +51,6 @@ If you are in a hurry, here's the final code of the basic token:
         }
 
         /* Allow another contract to spend some tokens in your behalf */
-
         function approveAndCall(address _spender, uint256 _value, bytes _extraData) 
             returns (bool success) {
             allowance[msg.sender][_spender] = _value;     
@@ -61,7 +60,6 @@ If you are in a hurry, here's the final code of the basic token:
         }
 
         /* A contract attempts to get the coins */
-
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
             if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough   
             if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
@@ -154,7 +152,6 @@ And now we update the **constructor function** to allow all those variables to b
 
     /* Initializes contract with initial supply tokens to the creator of the contract */
     function myToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
-        if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
         name = tokenName;                                   // Set the name for display purposes     
         symbol = tokenSymbol;                               // Set the symbol for display purposes    
@@ -255,7 +252,8 @@ Now let's add a new function finally that will enable the owner to create new to
     function mintToken(address target, uint256 mintedAmount) onlyOwner {
         balanceOf[target] += mintedAmount;  
         totalSupply += mintedAmount;
-        Transfer(0, target, mintedAmount);
+        Transfer(0, owner, mintedAmount);
+        Transfer(owner, target, mintedAmount);
     }
 
 Notice the modifier **onlyOwner** on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the **modifier onlyOwner** we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account that is set as the owner. Just add this to a contract with an **owner** modifier and you'll be able to create more coins.
@@ -450,7 +448,6 @@ If you add all the advanced options, this is how the final code should look like
         string public name;
         string public symbol;
         uint8 public decimals;
-        string public version;
 
         uint256 public sellPrice;
         uint256 public buyPrice;
@@ -472,17 +469,14 @@ If you add all the advanced options, this is how the final code should look like
             string tokenName, 
             uint8 decimalUnits, 
             string tokenSymbol, 
-            address centralMinter, 
-            string versionOfTheCode
+            address centralMinter 
         ) { 
-            if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
             if(centralMinter != 0 ) owner = msg.sender;         // Sets the minter
             balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
             name = tokenName;                                   // Set the name for display purposes     
             symbol = tokenSymbol;                               // Set the symbol for display purposes    
             decimals = decimalUnits;                            // Amount of decimals for display purposes
             totalSupply = initialSupply; 
-            version = versionOfTheCode;       
         }
 
         /* Send coins */
@@ -496,7 +490,6 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         /* Allow another contract to spend some tokens in your behalf */
-
         function approveAndCall(address _spender, uint256 _value) returns (bool success) {
             allowance[msg.sender][_spender] = _value;  
             tokenRecipient spender = tokenRecipient(_spender);
@@ -505,7 +498,6 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         /* A contract attempts to get the coins */
-
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
             if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough   
             if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
@@ -525,7 +517,8 @@ If you add all the advanced options, this is how the final code should look like
         function mintToken(address target, uint256 mintedAmount) onlyOwner {
             balanceOf[target] += mintedAmount; 
             totalSupply += mintedAmount; 
-            Transfer(0, target, mintedAmount);
+            Transfer(0, owner, mintedAmount);
+            Transfer(owner, target, mintedAmount);
         }
 
         function freezeAccount(address target, bool freeze) onlyOwner {

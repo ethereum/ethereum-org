@@ -1442,6 +1442,21 @@ footer {
 	background: #102026;
 }
 
+.inner-header.default-header.devcon2 {
+	background-image: url('../images/special/cityscape.jpg');
+	background-size: cover;
+}
+
+.inner-header.default-header.devcon2 figure.ethereum-logo {
+	background-image: url('../images/special/devcon2.png');
+}
+
+.big-subscribe {
+	width: 100%;
+	padding: 10px;
+	margin: 5px auto;
+}
+
 .inner-page.inner-header .row {
 	display: flex;
 }
@@ -1449,6 +1464,7 @@ footer {
 .inner-page h3 {
 	padding: 20px 20px 10px;
 	clear: both;
+	max-width: none;
 }
 
 .foundation-page img[alt*="Portrait"] {

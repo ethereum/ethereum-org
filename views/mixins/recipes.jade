@@ -246,7 +246,7 @@ mixin toc()
     
 
 mixin inner-header(title)
-  div.inner-header.default-header.scrollme
+  div.inner-header.default-header.scrollme(class!=attributes.class)
     div.breadcrumb.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
       a(href="/").index Ethereum  
       | »  
