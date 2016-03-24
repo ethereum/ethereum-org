@@ -82,3 +82,12 @@ mixin futureFigure()
     div.moon-stars.animateme(data-when="span", data-from="0", data-to="1", data-translatey="100", data-rotatez="360", data-easing="linear")
     div.moon-moon.animateme(data-when="span", data-from="0", data-to="1", data-translatey="100", data-rotatez="720", data-easing="linear")
     div.moon-rocket.animateme(data-when="span", data-from="0", data-to="1", data-translatey="-200", data-easing="linear")
+
+
+mixin swarmFigure()
+  figure.swarm.scrollme
+    div.swarm-01.animateme(data-when="span", data-to="0.6", data-from="0.3", data-opacity="0", data-translatex="-200")
+    div.swarm-02.animateme(data-when="span", data-to="0.3", data-from="0.0", data-opacity="0", data-translatex="288", data-translatey="-180")
+    div.swarm-03.animateme(data-when="span", data-to="0.4", data-from="0.1", data-opacity="0", data-translatex="144", data-translatey="90")
+    div.swarm-04.animateme(data-when="span", data-to="0.5", data-from="0.2", data-opacity="0", data-translatex="-144", data-translatey="90")
+

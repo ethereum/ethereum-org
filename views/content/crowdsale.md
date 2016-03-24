@@ -29,15 +29,14 @@ Now copy this code and let's create the crowdsale:
      
     contract token { function transfer(address receiver, uint amount){  } }
     
+
     contract Crowdsale {
-        
         address public beneficiary;
         uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
         token public tokenReward;   
         Funder[] public funders;
         event FundTransfer(address backer, uint amount, bool isContribution);
         bool crowdsaleClosed = false;
-        
         
         /* data structure to hold information about campaign contributors */
         struct Funder {
@@ -46,7 +45,13 @@ Now copy this code and let's create the crowdsale:
         }
         
         /*  at initialization, setup the owner */
-        function Crowdsale(address ifSuccessfulSendTo, uint fundingGoalInEthers, uint durationInMinutes, uint etherCostOfEachToken, token addressOfTokenUsedAsReward) {
+        function Crowdsale(
+            address ifSuccessfulSendTo, 
+            uint fundingGoalInEthers, 
+            uint durationInMinutes, 
+            uint etherCostOfEachToken, 
+            token addressOfTokenUsedAsReward
+        ) {
             beneficiary = ifSuccessfulSendTo;
             fundingGoal = fundingGoalInEthers * 1 ether;
             deadline = now + durationInMinutes * 1 minutes;

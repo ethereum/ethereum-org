@@ -267,8 +267,8 @@ body {
 
 .main-tutorial h3 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
-	font-size: 23px;
-	font-weight: 600;
+	font-size: 30px;
+	font-weight: 400;
 	color: #354049;
 	background: transparent;
 	max-width: 400px;
@@ -802,6 +802,26 @@ a.donate-button:hover ,
 	display: block;
 }
 
+/* DevGrants */
+
+.devgrants-hof {
+	text-align: center;
+}
+
+.devgrants-hof img {
+	max-width: 40%;
+}
+
+.main-tutorial .devgrants-hof h2 {
+	padding-top: 0;
+}
+
+.main-tutorial .devgrants-hof h3 {
+	max-width: none;
+}
+
+
+
 footer .caption {
 	color:  #C3CCDB;
 }
@@ -929,18 +949,9 @@ a.button.ethereum-wallet.win64 {
 	background-image: url("../images/button-win64.png");	
 }
 
-.aleth-miner {
-	background: #D6CFCF;
-	background: linear-gradient(#D6CFCF,#726866);
-}
-.aleth-miner h2 {
-	padding-top: 100px;
-	color: #303030;
-}
-
 .power-tools { 
-	background: #726866;
-	background: linear-gradient(#726866, #000);
+	background: #A59A9A;
+	background: linear-gradient(#A59A9A,#000);
 	overflow: hidden;
 }
 
@@ -1288,6 +1299,29 @@ figure.moon .moon-rocket {
 }
 
 
+
+figure.swarm {
+	max-width: 300px;
+	height: 300px;
+}
+
+figure.swarm .swarm-01 {
+	background-image: url("../images/swarm-01.png");
+}
+
+figure.swarm .swarm-02 {
+	background-image: url("../images/swarm-02.png");
+}
+
+figure.swarm .swarm-03 {
+	background-image: url("../images/swarm-03.png");
+}
+
+figure.swarm .swarm-04 {
+	background-image: url("../images/swarm-04.png");
+}
+
+
 figure.ethereum-logo {
 	display: block;
 	background-image: url("../images/ethereum-logo.png");
@@ -1408,6 +1442,21 @@ footer {
 	background: #102026;
 }
 
+.inner-header.default-header.devcon2 {
+	background-image: url('../images/special/cityscape.jpg');
+	background-size: cover;
+}
+
+.inner-header.default-header.devcon2 figure.ethereum-logo {
+	background-image: url('../images/special/devcon2.png');
+}
+
+.big-subscribe {
+	width: 100%;
+	padding: 10px;
+	margin: 5px auto;
+}
+
 .inner-page.inner-header .row {
 	display: flex;
 }
@@ -1415,6 +1464,7 @@ footer {
 .inner-page h3 {
 	padding: 20px 20px 10px;
 	clear: both;
+	max-width: none;
 }
 
 .foundation-page img[alt*="Portrait"] {
@@ -1434,6 +1484,10 @@ footer {
 .foundation-page.even h2,
 .foundation-page.even p {
 	color: #FFF;
+}
+
+.swarm-page.main-tutorial {
+	background-color: #FFF582;
 }
 
 .main-tutorial img[alt*="Logo"] {
