@@ -301,7 +301,7 @@ This is acceptable for a price that doesn't change very often, as every new pric
 The next step is making the buy and sell functions:
 
     function buy() returns (uint amount){
-        uint amount = msg.value / buyPrice;                // calculates the amount
+        amount = msg.value / buyPrice;                     // calculates the amount
         if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
         balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
         balanceOf[this] -= amount;                         // subtracts amount from seller's balance
