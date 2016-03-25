@@ -87,7 +87,7 @@ module.exports = function(grunt) {
 					// 	'dist/swarm.html': 'views/swarm.jade'
 					// },
 					{
-						'dist/devcon2.html': 'views/devcon2.jade'
+						'dist/4b24096abefbcbb08cb2b482eef4e36.html': 'views/devcon2.jade'
 					},
 					{
 						'dist/devgrants.html': 'views/devgrants.jade'
