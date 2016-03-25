@@ -70,7 +70,7 @@ app.get('/devgrants', function(req, res) {
 	res.render('devgrants');
 });
 
-app.get('/devcon2', function(req, res) {
+app.get('/devcontwo', function(req, res) {
 	res.render('devcon2');
 });
 

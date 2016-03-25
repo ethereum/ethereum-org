@@ -1443,12 +1443,19 @@ footer {
 }
 
 .inner-header.default-header.devcon2 {
-	background-image: url('../images/special/cityscape.jpg');
+	background-image: url('../images/special/cityscape-pink.jpg');
 	background-size: cover;
+	background-position: center;
 }
 
 .inner-header.default-header.devcon2 figure.ethereum-logo {
 	background-image: url('../images/special/devcon2.png');
+	max-width: 388px;
+}
+
+.inner-header.default-header.devcon2 a.back {
+	opacity: 1;
+	color: #FFF;
 }
 
 .big-subscribe {
