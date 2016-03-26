@@ -102,7 +102,7 @@ The choice of 21 million was rather arbitrary, and you can change it to anything
         balanceOf[msg.sender] = initialSupply;
     }
 
-Take a look at the right column besides the contract and you'll see a drop down, written *pick a contract*. Select the "myToken" contract and you'll see that now it shows a section called *Constructor parameters*. These are changeable parameters for your token, so you can reuse the same code and only change these variables in the future.
+Take a look at the right column besides the contract and you'll see a drop down, written *pick a contract*. Select the "MyToken" contract and you'll see that now it shows a section called *Constructor parameters*. These are changeable parameters for your token, so you can reuse the same code and only change these variables in the future.
 
 ![Edit New Contract](/images/tutorial/function-picker.png)
 
@@ -140,7 +140,7 @@ Now all that is missing is having some basic information about the contract. In 
 And now we update the **constructor function** to allow all those variables to be set up at the start:
 
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    function myToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
+    function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
         if (initialSupply == 0) initialSupply = 1000000;    // if supply not given then generate 1 million 
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
         name = tokenName;                                   // Set the name for display purposes     
@@ -195,7 +195,7 @@ All dapps are fully decentralized by default, but that doesn't mean they can't h
 
 For that to happen, you need a central controller of currency. This could be a simple account, but could also be a contract and therefore the decision on creating more tokens will depend on the contract: if it's a democratic organization that can be up to vote, or maybe it can be just a way to limit the power of the token owner.
 
-In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, **before contract myToken {**.
+In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, **before contract MyToken {**.
 
     contract owned {
         address public owner;
@@ -217,11 +217,11 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
 
 This creates a very basic contract that doesn't do anything except define some generic functions about a contract that can be "owned". Now the next step is just add the text *is owned* to your token:
 
-    function myToken is owned {
+    function MyToken is owned {
         /* the rest of the contract as usual */
 
 
-This means that all the functions inside **myToken** now can access the variable *owner* and the modifier *onlyOwner*. The contract also gets a function to transfer ownership. Since it might be interesting to set the owner of the contract at startup, you can also add this to the *constructor function*: 
+This means that all the functions inside **MyToken** now can access the variable *owner* and the modifier *onlyOwner*. The contract also gets a function to transfer ownership. Since it might be interesting to set the owner of the contract at startup, you can also add this to the *constructor function*: 
 
     function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol, address centralMinter) {
         if(centralMinter != 0 ) owner = msg.sender;
