@@ -1,4 +1,3 @@
-
 ### The Coin
 
 We are going to create a digital token. Tokens in the ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the ethereum wallet and any other client or contract that uses the same standards.
@@ -582,13 +581,3 @@ Unicorn tokens are memorabilia created exclusively for those who have donated to
 ### Now what?
 
 You just learned how you can use ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to [represent a share in a company](./dao#the-stakeholder-association) or you can use a [central committee](./dao#the-code) to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a [crowdsale](./crowdsale). What will you build next?
-
-
-
-
-
-
-
-
-
-
