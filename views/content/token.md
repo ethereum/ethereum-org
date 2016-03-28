@@ -249,10 +249,10 @@ Suppose you want the amount of coins in circulation to change. This is the case 
 First we need to add a variable to store the **totalSupply** and assign it in our constructor function.
 
     contract MyToken {
-        uint256 public totalSupply
+        uint256 public totalSupply;
 
         function MyToken(...) {
-            totalSupply = initialSupply
+            totalSupply = initialSupply;
             ...
         }
         ...
