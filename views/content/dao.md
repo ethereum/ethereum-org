@@ -276,7 +276,7 @@ If the transaction was executed, then after a few seconds you should be able to 
 
 You can use this democracy to execute any transaction on ethereum, as long as you can figure out the bytecode that that transaction generates. Luckily for us, you can use the wallet to do precisely that!
 
-In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token/) that belongs to one your normal accounts. On the contract page, click deposit some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After than we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
+In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token/) that belongs to one your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
 
 
 ![Select the bytecode](/images/tutorial/select-code.png)
@@ -295,9 +295,9 @@ Now go back to the democracy contract and create a new proposal with these param
 
 ![New proposal](/images/tutorial/new-proposal-token.png)
 
-In a few seconds you should be able to see that the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a "transaction hash". Unlike the other fields, Bytecode can be extremely very and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.
+In a few seconds you should be able to see the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a "transaction hash". Unlike the other fields, Bytecode can be extremely very and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.
 
-But that of course creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the "read from contract" function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.
+But that, of course, creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the "read from contract" function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.
 
 ![It's an older code, but it checks out](/images/tutorial/check-code.png)
 
