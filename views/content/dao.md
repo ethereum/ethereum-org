@@ -217,7 +217,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
 #### How to deploy 
 
-Open the wallet (if you are only testing, go to the menu develop > network > testnet), go to the **contracts** tab and then press **deploy contract**, and on the **solidity code** box, paste the code above. On the contract picker, choose **Congress** and you'll see the setup variables.
+Open the wallet (if you are only testing, go to the menu develop > network > testnet), go to the **Contracts** tab and then press **deploy contract**, and on the **solidity code** box, paste the code above. On the contract picker, choose **Congress** and you'll see the setup variables.
 
 * **Minimum quorum for proposals** is the minimum amount of votes a proposal needs to have before it can be executed.
 * **Minutes for debate** is the minimum amount of time (in minutes) that needs to pass before it can be executed
@@ -237,7 +237,7 @@ In a few seconds you'll be taken to the dashboard, scroll down and you'll be abl
 
 If you want to share your DAO with others, then they need both the contract address and the interface file, a small text string that works as an instruction manual of the contract. Click **copy address** to get the former and **show interface** to reveal the latter.
 
-On the other computer, go into the contracts tab and then click on **watch contract**. Add the correct address and interface and press **Ok**.
+On the other computer, go into the *Contracts* tab and then click on **watch contract**. Add the correct address and interface and press **OK**.
 
 ![Add Contract](/images/tutorial/add-contract.png)
 
@@ -281,7 +281,7 @@ In this example, we'll use a token to show that this contract can hold more than
 
 ![Select the bytecode](/images/tutorial/select-code.png)
 
-Instead, copy the code displayed on the "data" field and save it to a text file or notepad. Cancel the transaction. You'll also need the address of the contract you'll be calling for that operation, in this case the token contract. You can find it on the contracts tab: save that somewhere too.
+Instead, copy the code displayed on the "data" field and save it to a text file or notepad. Cancel the transaction. You'll also need the address of the contract you'll be calling for that operation, in this case the token contract. You can find it on the *Contracts* tab: save that somewhere too.
 
 Now go back to your DAO contract and add a new proposal. In the **beneficiary** field, add the address of the token contract , leave **ether amount** as 0, a good description to the **Job description** and finally add the data code you've saved to the **transaction bytecode**.
 
