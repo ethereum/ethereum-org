@@ -7,7 +7,7 @@
 > **"On the Blockchain, no one knows you're a fridge"**
 > - Richard Brown
 
-So far, all contracts we listed were owned and executed by other accounts probably held by humans. But there is no discrimination against robots or humans in the Ethereum ecosystem and contracts can create arbitrary actions like any other account would. Contracts can own tokens, participate in crowdsales, and even be voting members of other contracts. 
+So far, all contracts we listed were owned and executed by other accounts probably held by humans. But there is no discrimination against robots or humans in the Ethereum ecosystem and contracts can create arbitrary actions like any other account would. Contracts can own tokens, participate in crowdsales, and even be voting members of other contracts.
 
 In this section we are going to build a decentralized and democratic organization that exists solely on the blockchain, but that can do anything that a simple account would be able to. The organization has a central manager that decides who are the members and the voting rules, but as we'll see, this can also be changed.
 
@@ -215,7 +215,7 @@ The way this particular democracy works is that it has an **Owner** which works 
     }
 
 
-#### How to deploy 
+#### How to deploy
 
 Open the wallet (if you are only testing, go to the menu develop > network > testnet), go to the **Contracts** tab and then press **deploy contract**, and on the **solidity code** box, paste the code above. On the contract picker, choose **Congress** and you'll see the setup variables.
 
@@ -223,14 +223,14 @@ Open the wallet (if you are only testing, go to the menu develop > network > tes
 * **Minutes for debate** is the minimum amount of time (in minutes) that needs to pass before it can be executed
 * **Margin of votes for majority** A proposal passes if there are more than 50% of the votes plus the margin. Leave at 0 for simple majority, put it at the *number of members - 1* to require an absolute consensus.
 
-![DAO Setup](/images/tutorial/dao-setup.png) 
+![DAO Setup](/images/tutorial/dao-setup.png)
 
 
 You can change these parameters later, choose a name, 5 minutes for debate time and leave the remaining of them at 0. A little lower on the page you'll see an estimate cost of your contract in ether. You can try lowering the price if you want to save, but that might mean having to wait longer for your contract to be created. Click **Deploy**, type your password and wait.
 
 In a few seconds you'll be taken to the dashboard, scroll down and you'll be able to see your transaction being created. In under a minute you'll see the transaction successful and a new unique icon will have been created. Click the contract's name to see it (you can get to it at any time on the *Contracts* tab).
 
-![DAO Just created](/images/tutorial/dao-just-created.png) 
+![DAO Just created](/images/tutorial/dao-just-created.png)
 
 
 #### Sharing with others
@@ -247,9 +247,9 @@ On the other computer, go into the *Contracts* tab and then click on **watch con
 
 On the **"read from contract"** you can see all the functions you can execute for free on the contract, as they are just reading information from the blockchain. Here you can see, for instance, the current "owner" of the contract (that should be the account that uploaded the contract).
 
-On the **"Write to contract"** you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select "newProposal" and it will show all the options options for that function.  
+On the **"Write to contract"** you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select "newProposal" and it will show all the options options for that function.
 
-Before interacting with the contract, you'll need to add new members so they can vote. On the **select function** picker, choose **Change Membership**. Add the address of the person you want to make a member and check the box **can vote** (to remove a member, do the same but leave the box unticked). On **execute from** make sure that you have the same account that is set as the owner  as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change. 
+Before interacting with the contract, you'll need to add new members so they can vote. On the **select function** picker, choose **Change Membership**. Add the address of the person you want to make a member and check the box **can vote** (to remove a member, do the same but leave the box unticked). On **execute from** make sure that you have the same account that is set as the owner  as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
 
 There's no list of members, but you can check if anyone is a member by putting their address on the **Is a member** function, below **owner** on the *Read from contract* column.
 
@@ -259,18 +259,18 @@ Also, if you want the contract to have any money of its own, you need to deposit
 
 Now let's add the first proposal to the contract. On the function picker, select **New proposal**.
 
-For "beneficiary" add the address of someone you want to send ether to, then put how many ethers you want on the "etherAmount" (must be an integer) and finally some text describing the reason you want to do this. Leave transactionByteCode blank for now. Click execute and type your password. After a few seconds the numProposals will increase to 1 and the first proposal, number 0, will appear on the left column. As you add more proposals, you can see any of them by simply putting the proposal number on the "proposals" field and you can read all about it.  
+For "beneficiary" add the address of someone you want to send ether to, then put how many ethers you want on the "etherAmount" (must be an integer) and finally some text describing the reason you want to do this. Leave transactionByteCode blank for now. Click execute and type your password. After a few seconds the numProposals will increase to 1 and the first proposal, number 0, will appear on the left column. As you add more proposals, you can see any of them by simply putting the proposal number on the "proposals" field and you can read all about it.
 
-Voting on a proposal is also very simple. Choose "vote" on the function picker. Type the proposal Number on the first box and check the "Yes" box if you agree with it (or leave it blank to vote against it). Click "**execute**" to send your vote.  
+Voting on a proposal is also very simple. Choose "vote" on the function picker. Type the proposal Number on the first box and check the "Yes" box if you agree with it (or leave it blank to vote against it). Click "**execute**" to send your vote.
 
 ![Add new proposal](/images/tutorial/dao-add-proposal.png)
 
 
-When the voting time has passed, you can select **"executeProposal"**. If the proposal was simply sending ether, then you can also leave the "**transactionBytecode**" field blank. After pressing "execute" but before typing your password, pay attention to the screen that appears. 
+When the voting time has passed, you can select **"executeProposal"**. If the proposal was simply sending ether, then you can also leave the "**transactionBytecode**" field blank. After pressing "execute" but before typing your password, pay attention to the screen that appears.
 
 **If there is a warning on the "estimated fee consumption" field, then this means that for some reason the function called will not execute and will be abruptly terminated. It can mean many things, but in the context of this contract this warning will show up whenever you try to execute a contract before its deadline has passed, or if the user is trying to send a different bytecode data than the original proposal had. For security reasons if any of these things happens, the contract execution is abruptly terminated and the user that attempted the illegal transaction will lose the all the ether he sent to pay transaction fees.**
 
-If the transaction was executed, then after a few seconds you should be able the result: **executed** will turn to true and the correct amount of ether should be subtracted from this contract's balance and into the recipient address. 
+If the transaction was executed, then after a few seconds you should be able the result: **executed** will turn to true and the correct amount of ether should be subtracted from this contract's balance and into the recipient address.
 
 #### Add a complex proposal: own another token
 
@@ -295,9 +295,9 @@ Now go back to the democracy contract and create a new proposal with these param
 
 ![New proposal](/images/tutorial/new-proposal-token.png)
 
-In a few seconds you should be able to see that the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a "transaction hash". Unlike the other fields, Bytecode can be extremely very and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.  
+In a few seconds you should be able to see that the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a "transaction hash". Unlike the other fields, Bytecode can be extremely very and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.
 
-But that of course creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the "read from contract" function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.  
+But that of course creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the "read from contract" function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.
 
 ![It's an older code, but it checks out](/images/tutorial/check-code.png)
 
@@ -501,9 +501,9 @@ Now to the shareholder code:
 The code is deployed almost exactly like the previous code, but you need to also put a **shares token address** which is the address of the token that will work as a share with voting rights.
 
 Notice these lines of codes: first we describe the token contract to our new contract. Since it only uses the **balanceOf** function, we only need to add that single line.
- 
+
     contract token { mapping (address => uint256) public balanceOf;  }
- 
+
 Then we define a variable of the *type* token, meaning that it will inherit all the functions we described earlier. Finally we point the token variable to an address on the blockchain, so it can use that and request live information. This is the simplest way to make one contract understand the other in ethereum.
 
     contract Association {
@@ -512,7 +512,7 @@ Then we define a variable of the *type* token, meaning that it will inherit all 
     function Association(token sharesAddress, uint minimumSharesForVoting, uint minutesForDebate) {
             sharesTokenAddress = token(sharesAddress);
 
-This association presents a challenge that the previous congress didn't have: since anyone with tokens can vote and the balances can change very quickly, the actual score of the proposal can't be counted when the shareholder votes, otherwise someone would be able to vote multiple times by simply sending his share to different addresses. So in this contract only the vote position is recorded and then the real score is tallied up on the **execute proposal** phase.       
+This association presents a challenge that the previous congress didn't have: since anyone with tokens can vote and the balances can change very quickly, the actual score of the proposal can't be counted when the shareholder votes, otherwise someone would be able to vote multiple times by simply sending his share to different addresses. So in this contract only the vote position is recorded and then the real score is tallied up on the **execute proposal** phase.
 
     /* tally the votes */
     uint quorum = 0;
@@ -555,7 +555,7 @@ But what if you wanted different rules for voting? Maybe to change voting rules 
 ### Liquid democracy
 
 Voting on all expenses and actions of a contract takes time and requires users to be constantly active, informed and attentive. Another interesting approach is to elect an apointed account that will have control over a contract and then be able to take swift decisions over it.
- 
+
 We are going to implement what's called a version of what's usually called **Liquid Democracy**, which is a more flexible delegative democracy. In this kind of democracy, any voter can be a potential delegate: instead of voting the candidate you want, you just say which voter you trust to handle this decision for you. Your voting weight is delegated to them and they can in turn delegate it to another voter they trust and so on. The end result should be that the most voted account is one that has trust connections to the largest amount of voters.
 
 
@@ -671,7 +671,7 @@ We are going to implement what's called a version of what's usually called **Liq
 
 
 
-#### Deployment 
+#### Deployment
 
 First, you need a token. If you have followed the **Stakeholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token/) and distribute it among some accounts. Copy the token address.
 
@@ -679,7 +679,7 @@ Deploy the democracy contract, and put the token address on the **Voting weight 
 
 #### Selecting a delegate
 
-Now deploy the Liquid democracy and go to its page. First have any of the stakeholders **vote** on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you'd rather have no one representing you on that role. 
+Now deploy the Liquid democracy and go to its page. First have any of the stakeholders **vote** on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you'd rather have no one representing you on that role.
 
 After enough people have casted their votes, you can execute the function **Calculate Votes** so it will calculate everyone's voting weight. This function needs to be run multiple times, so the first run it will just set everyone's weight as their balance in the selected token, in the next round that voting weight will go to the person you voted apointed, in the next it will go to the person voted by the person you chose and so on. To prevent infinite loops of vote delegations, each time a vote is forwarded it loses a bit of power, set by at contract launch at **percentLossInEachRound**. So if the loss is set at 75%, it means that the person you vote gets 100% of your weight, but if they delegate the vote to someone else only 75% of their weight is forwarded. That person can delegate to someone else but they'll get only 56% of your voting weight and so on. If the ratio is anything lower than 100% there will be a finite moment where recalculating voting delegation won't change the result anymore, but if it's a 100% it means that voting weights will simply circulate around any potential loops.
 
@@ -711,17 +711,17 @@ Also it means that you can switch your vote at any moment: if your representativ
 
 #### The Executive Branch
 
-Delegative democracies are a great way to choose representatives, but voting on individual proposals might be too slow for some important or simpler decisions: that's why most democratic governments have an executive branch, where an apointed person has the right to represent the state. 
+Delegative democracies are a great way to choose representatives, but voting on individual proposals might be too slow for some important or simpler decisions: that's why most democratic governments have an executive branch, where an apointed person has the right to represent the state.
 
 After four rounds of delegations, the address with more weight will be set as the **Apointee**. If there are many delegated votes, then a few more rounds of **Calculate Votes** might be necessary to settle in the final apointed address.
 
 The Apointee is the only address that can call the **Execute** function, which will be able to execute (almost) any function representing the democracy as a whole. If there is any ether or token stored in the Liquid democracy contract, the Apointee will be allowed to move it anywhere.
 
-If you have followed our example and created a **Shareholder association** using this liquid democracy as a token, then you should be able to use the executive branch in an interesting manner: go to the main Association address and execute a **Transfer Ownership** function to the liquid democracy. 
+If you have followed our example and created a **Shareholder association** using this liquid democracy as a token, then you should be able to use the executive branch in an interesting manner: go to the main Association address and execute a **Transfer Ownership** function to the liquid democracy.
 
 Once that transfer is complete, switch the function to **Change Voting Rules**. This allows you to change some essential voting rules, like the minimum quorum needed for a vote to pass or the time a new proposal needs to stay on the floor. Try changing these settings and click **execute**: when the confirmation window pops up it will tell you that the transaction *Can't be executed*. This happens, of course, because only the address set as **Owner** can change these settings and the contract will reject this transaction attempt. So **instead of typing your password** copy the code on the **data** field and save it to a text file. Click cancel, scroll to the top and click **copy address** and also save that to a text file.
 
-Now go to the Liquid democracy page and choose **execute**. On **target** put the address of the association contract, leave **ether amount** at 0 and paste the code you copied previously into the **bytecode data** field. Make sure you are executing it from the account set as the **appointee** and click **execute**. 
+Now go to the Liquid democracy page and choose **execute**. On **target** put the address of the association contract, leave **ether amount** at 0 and paste the code you copied previously into the **bytecode data** field. Make sure you are executing it from the account set as the **appointee** and click **execute**.
 
 Once the transaction has been picked up, the Liquid democracy will pass the order to the association and the new voting rules might apply. The apointee has the absolute power to do anything that the **Liquid democracy** contract can execute. You can use the same technique to create a [Mintable Token](./token/) owned by the delegative democracy, and then allow the apointee to mint tokens or freeze accounts.
 
@@ -731,7 +731,7 @@ To prevent abuses of powers, you can set one **Forbidden function** that the Apo
 
 ### Let's go exploring!
 
-You have reached the end of this tutorial, but it's just the beginning of a great adventure. Look back and see how much you accomplished: you created a living, talking robot, your own cryptocurrency, raised funds through a trustless crowdfunding and used it to kickstart your own personal democratic organization. 
+You have reached the end of this tutorial, but it's just the beginning of a great adventure. Look back and see how much you accomplished: you created a living, talking robot, your own cryptocurrency, raised funds through a trustless crowdfunding and used it to kickstart your own personal democratic organization.
 
 
 
@@ -743,15 +743,15 @@ You have reached the end of this tutorial, but it's just the beginning of a grea
 
 * Your DAO could own its own name on the name registrar, and then change where it's redirecting in order to update itself if the token holders approved.
 
-* The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar. 
+* The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar.
 
-* The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future. 
+* The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future.
 It could also own shares of other DAOs, meaning it could vote on larger organization or be a part of a federation of DAOs.
 
 * The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.
 
 This all means that this tiny society you created could grow, get funding from third parties, pay recurrent salaries, own any kind of crypto-assets and even use crowdsales to fund its activities. All with full transparency, complete accountability and complete immunity from any human interference. While the network lives the contracts will execute exactly the code they were created to execute, without any exception, forever.
 
-So what will your contract be? Will it be a country, a company, a non-profit group? What will your code do? 
+So what will your contract be? Will it be a country, a company, a non-profit group? What will your code do?
 
 That's up to you.
