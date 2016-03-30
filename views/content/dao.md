@@ -245,7 +245,7 @@ On the other computer, go into the contracts tab and then click on **watch contr
 #### Interacting with the contract
 
 
-On the **"read from contract"** you can see all the functions you can execute for free on the contract, as they are just reading information from the blockchain. Here you can see, for instance, that the current "owner"  of the contract (that should be the account that uploaded the contract).  
+On the **"read from contract"** you can see all the functions you can execute for free on the contract, as they are just reading information from the blockchain. Here you can see, for instance, the current "owner" of the contract (that should be the account that uploaded the contract).
 
 On the **"Write to contract"** you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select "newProposal" and it will show all the options options for that function.  
 
