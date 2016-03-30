@@ -249,7 +249,7 @@ On the **"read from contract"** you can see all the functions you can execute fo
 
 On the **"Write to contract"** you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select "newProposal" and it will show all the options options for that function.
 
-Before interacting with the contract, you'll need to add new members so they can vote. On the **select function** picker, choose **Change Membership**. Add the address of the person you want to make a member and check the box **can vote** (to remove a member, do the same but leave the box unticked). On **execute from** make sure that you have the same account that is set as the owner  as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
+Before interacting with the contract, you'll need to add new members so they can vote. On the **select function** picker, choose **Change Membership**. Add the address of the person you want to make a member and check the box **can vote** (to remove a member, do the same but leave the box unticked). On **execute from** make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
 
 There's no list of members, but you can check if anyone is a member by putting their address on the **Is a member** function, below **owner** on the *Read from contract* column.
 
@@ -502,7 +502,7 @@ The code is deployed almost exactly like the previous code, but you need to also
 
 Notice these lines of codes: first we describe the token contract to our new contract. Since it only uses the **balanceOf** function, we only need to add that single line.
 
-    contract token { mapping (address => uint256) public balanceOf;  }
+    contract token { mapping (address => uint256) public balanceOf; }
 
 Then we define a variable of the *type* token, meaning that it will inherit all the functions we described earlier. Finally we point the token variable to an address on the blockchain, so it can use that and request live information. This is the simplest way to make one contract understand the other in ethereum.
 
@@ -594,11 +594,11 @@ We are going to implement what's called a version of what's usually called **Liq
             delegatedVotes.length++;
             delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
             forbiddenFunction = forbiddenFunctionCall;
-            delegatedPercent =  100 - percentLossInEachRound;
+            delegatedPercent = 100 - percentLossInEachRound;
             if (delegatedPercent > 100) delegatedPercent = 100;
         }
         
-        function vote(address nominatedAddress)  returns (uint voteIndex) {
+        function vote(address nominatedAddress) returns (uint voteIndex) {
             if (voterId[msg.sender]== 0) {
                 voterId[msg.sender] = delegatedVotes.length;
                 numberOfVotes++;
