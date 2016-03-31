@@ -276,7 +276,7 @@ If the transaction was executed, then after a few seconds you should be able to 
 
 You can use this democracy to execute any transaction on ethereum, as long as you can figure out the bytecode that that transaction generates. Luckily for us, you can use the wallet to do precisely that!
 
-In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token/) that belongs to one your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
+In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token/) that belongs to one of your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
 
 
 ![Select the bytecode](/images/tutorial/select-code.png)
@@ -530,7 +530,7 @@ This association presents a challenge that the previous congress didn't have: si
         }
     }
 
-Another way to achieve the same goal would to create the a single signed integer to keep score of the votes and check if it was positive or negative on the end, but you'd have to convert the *unsigned integer* balanceOf into a *signed integer* using **int score = int(voteWeight);**
+Another way to achieve the same goal would be to create a single signed integer to keep score of the votes and check if it was positive or negative on the end, but you'd have to convert the *unsigned integer* balanceOf into a *signed integer* using **int score = int(voteWeight);**
 
 Using this DAO is exactly like the previous: members create new proposals, vote on them, wait until the deadline passes and then anyone can count the votes and execute it.
 
@@ -544,7 +544,7 @@ On this contract the address set as **owner** has some special powers: they can 
 
 The owner could change the ownership to no one by pointing the new owner as *0x00000...*. This would guarantee that the rules will never change, but it's an irreversible action. The owner can also change the ownership to the contract itself: just click on "copy address" and add it on the "new owner" field. This would make that all the powers of the owner could be executed by creating proposals.
 
-If you want, you can also set one contract as the owner of the other: suppose you wanted a corporate structure where you wanted a President for life that had the power to appoint board members, which could then issue more shares and finally these shares voted on how to spend a budget. You could create that an **Association** contract, that used a **[mintable token](./token)** owned by a **congress** finally owned by a single account.
+If you want, you can also set one contract as the owner of the other: suppose you wanted a corporate structure where you wanted a President for life that had the power to appoint board members, which could then issue more shares and finally these shares voted on how to spend a budget. You could create an **Association** contract, that used a **[mintable token](./token)** owned by a **congress** finally owned by a single account.
 
 But what if you wanted different rules for voting? Maybe to change voting rules you'd need a 80% consensus, or maybe the members are different. In that case, you can create another identical DAO or use some other source code and plug that one as the owner of the first.
 
@@ -556,7 +556,7 @@ But what if you wanted different rules for voting? Maybe to change voting rules 
 
 Voting on all expenses and actions of a contract takes time and requires users to be constantly active, informed and attentive. Another interesting approach is to elect an apointed account that will have control over a contract and then be able to take swift decisions over it.
 
-We are going to implement what's called a version of what's usually called **Liquid Democracy**, which is a more flexible delegative democracy. In this kind of democracy, any voter can be a potential delegate: instead of voting the candidate you want, you just say which voter you trust to handle this decision for you. Your voting weight is delegated to them and they can in turn delegate it to another voter they trust and so on. The end result should be that the most voted account is one that has trust connections to the largest amount of voters.
+We are going to implement a version of what's usually called **Liquid Democracy**, which is a more flexible delegative democracy. In this kind of democracy, any voter can be a potential delegate: instead of voting the candidate you want, you just say which voter you trust to handle this decision for you. Your voting weight is delegated to them and they can in turn delegate it to another voter they trust and so on. The end result should be that the most voted account is one that has trust connections to the largest amount of voters.
 
 
 #### The code
