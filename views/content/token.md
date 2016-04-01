@@ -224,9 +224,9 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
     }
 
 
-This creates a very basic contract that doesn't do anything except define some generic functions about a contract that can be "owned". Now the next step is just add the text *is owned* to your token:
+This creates a very basic contract that doesn't do anything except define some generic functions about a contract that can be "owned". Now the next step is just add the text *is owned* to your contract:
 
-    function MyToken is owned {
+    contract MyToken is owned {
         /* the rest of the contract as usual */
 
 
