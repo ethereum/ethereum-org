@@ -1,9 +1,9 @@
 # Welcome, Blockchain developers!
 
-These are tools for blockchain developers. The command line tools will allow you to connect your server to or run your application on the Ethereum blockchain – or your own private blockchain.
+These are tools for blockchain developers. The command line tools will allow you to connect your server to or run your application on the Ethereum blockchain – or your own private blockchain.
 
 * **Learn More**
-  * [What is Ethereum?](https://ethereum-homestead.readthedocs.org/en/latest/introduction/what-is-ethereum.html#what-is-ethereum)
+  * [What is Ethereum?](http://ethdocs.org/en/latest/introduction/what-is-ethereum.html#what-is-ethereum)
   * [What is ether?](http://ethdocs.org/en/latest/ether.html)
 
 
@@ -111,13 +111,13 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 * A [Haskell](https://github.com/bkirwi/ethereum-haskell) implementation developed by [Blockapps](http://www.blockapps.net)
 * If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
 * If you want to create a small hardware project, look into the implementation for the [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
-* If you want to install geth for non-ubuntu linux then we recommend you look into [building from source using PPA](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/installing-a-client.html#linux)
-* If you want more flexibility on the Mac, try [Homebrew](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/installing-a-client.html#mac)
+* If you want to install geth for non-ubuntu linux then we recommend you look into [building from source](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
+* If you want more flexibility on the Mac, try [Homebrew](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac)
 
 
 ### Run it
 
-Geth and Eth are multipurpose command line tools that run a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](http://guide.ethereum.org/cli.html) subcommands and options, a [JSON-RPC server](http://guide.ethereum.org/rpc.html) and an [interactive console](http://guide.ethereum.org/jsre.html).
+Geth and Eth are multipurpose command line tools that run a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](https://ethereum.gitbooks.io/frontier-guide/content/cli.html) subcommands and options, a [JSON-RPC server](https://ethereum.gitbooks.io/frontier-guide/content/rpc.html) and an [interactive console](https://ethereum.gitbooks.io/frontier-guide/content/jsre.html).
 
 For the purposes of this guide, we will focus on the console, a JavaScript environment that contains all of the main features that you probably want. Depending on your client, paste either of these commands:
 
@@ -186,15 +186,15 @@ The console has auto completion and history support that persists between sessio
 
 #### Learn More on Running a node
 
-* [Backup and restore](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/backup-import-accounts.html)
-* [Connecting to the network](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/connecting-to-the-network.html)
+* [Backup and restore](http://ethdocs.org/en/latest/account-management.html#backup-and-restore-accounts)
+* [Connecting to the network](http://ethdocs.org/en/latest/network/connecting-to-the-network.html)
 
 
 ### Usage examples
 
 #### Creating accounts
 
-In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](https://ethereum-homestead.readthedocs.org/en/latest/using-ethereum-the-basics/account-management.html), but the simplest one is through the console.
+In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://ethdocs.org/en/latest/account-management.html), but the simplest one is through the console.
 
 **ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontier release clients.
 
@@ -252,7 +252,7 @@ Once you executed the line above, all you need to check all of your balances is 
 
 #### Learn more
 
-* [Account Types, Gas, and Transactions](https://ethereum-homestead.readthedocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html)
-* [Developing on Ethereum](https://ethereum-homestead.readthedocs.org/en/latest/developing-on-ethereum/dapp-development.html)
-* [Developer tools](https://ethereum-homestead.readthedocs.org/en/latest/developing-on-ethereum/developer-tools.html)
-* [Solidity Documentation](https://solidity.readthedocs.org/)
+* [Account Types, Gas, and Transactions](http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html)
+* [Developing on Ethereum](http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html#writing-a-contract)
+* [Developer tools](http://ethdocs.org/en/latest/contracts-and-transactions/developer-tools.html#developer-tools)
+* [Solidity Documentation](https://solidity.readthedocs.org/en/latest/)
