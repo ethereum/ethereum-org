@@ -186,15 +186,15 @@ The console has auto completion and history support that persists between sessio
 
 #### Learn More on Running a node
 
-* [Backup and restore](https://ethereum.gitbooks.io/frontier-guide/content/backup_restore.html)
-* [Connecting to the network](https://ethereum.gitbooks.io/frontier-guide/content/connecting.html)
+* [Backup and restore](http://ethdocs.org/en/latest/account-management.html#backup-and-restore-accounts)
+* [Connecting to the network](http://ethdocs.org/en/latest/network/connecting-to-the-network.html)
 
 
 ### Usage examples
 
 #### Creating accounts
 
-In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](https://ethereum.gitbooks.io/frontier-guide/content/managing_accounts.html), but the simplest one is through the console.
+In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://ethdocs.org/en/latest/account-management.html), but the simplest one is through the console.
 
 **ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontier release clients.
 
@@ -252,7 +252,7 @@ Once you executed the line above, all you need to check all of your balances is 
 
 #### Learn more
 
-* [Account Types, Gas, and Transactions](https://ethereum.gitbooks.io/frontier-guide/content/contracts_and_transactions_intro.html)
-* [Developing on Ethereum](https://ethereum.gitbooks.io/frontier-guide/content/writing_contract.html)
+* [Account Types, Gas, and Transactions](http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html)
+* [Developing on Ethereum](http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html#writing-a-contract)
 * [Developer tools](http://ethdocs.org/en/latest/contracts-and-transactions/developer-tools.html#developer-tools)
 * [Solidity Documentation](https://solidity.readthedocs.org/en/latest/)
