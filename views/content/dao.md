@@ -561,9 +561,11 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 
 #### The code
 
-    contract token { mapping (address => uint256) public balanceOf;  }
+    contract token {
+        mapping (address => uint256) public balanceOf;
+    }
 
-
+    
     contract LiquidDemocracy {
         token public votingToken;
         address public apointee;
@@ -588,8 +590,8 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         function LiquidDemocracy(
             address votingWeightToken,
             string forbiddenFunctionCall,
-            uint percentLossInEachRound)
-        {
+            uint percentLossInEachRound
+        ) {
             votingToken = token(votingWeightToken);
             delegatedVotes.length++;
             delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
@@ -604,7 +606,8 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                 numberOfVotes++;
                 voteIndex = delegatedVotes.length++;
                 numberOfVotes = voteIndex;
-            } else {
+            }
+            else {
                 voteIndex = voterId[msg.sender];
             }
             
@@ -612,16 +615,16 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         }
         
         function execute(address target, uint valueInEther, bytes32 bytecode){
-            if (msg.sender != apointee ||                               // If caller is the current apointee,
-                !target.call.value(valueInEther * 1 ether)(bytecode) || // if the call is valid,
-                bytes4(bytecode) == bytes4(sha3(forbiddenFunction)) ||  // and it's not trying to do the forbidden function
-                numberOfDelegationRounds < 4 ) throw;                   // and delegation has been calculated enough
+            if (msg.sender != apointee                                  // If caller is the current apointee,
+                || !target.call.value(valueInEther * 1 ether)(bytecode) // if the call is valid,
+                || bytes4(bytecode) == bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
+                || numberOfDelegationRounds < 4 )                       // and delegation has been calculated enough
+                throw;
 
             target.call.value(valueInEther * 1 ether)(bytecode);        // Then execute the command.
         }
         
-        function calculateVotes() returns (address winner){
-
+        function calculateVotes() returns (address winner) {
             address currentWinner = apointee;
             uint currentMax = 0;
             uint weight = 0;
@@ -632,21 +635,22 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                 lastWeightCalculation = now;
                 
                 // Distribute the initial weight
-                for (uint i=1; i< delegatedVotes.length; i++){
+                for (uint i=1; i< delegatedVotes.length; i++) {
                     voteWeight[delegatedVotes[i].nominee] = 0;
                 }
-                for (i=1; i< delegatedVotes.length; i++){
+                for (i=1; i< delegatedVotes.length; i++) {
                     voteWeight[delegatedVotes[i].voter] = votingToken.balanceOf(delegatedVotes[i].voter);
                 }
-            } else {
+            }
+            else {
                 numberOfDelegationRounds++;
                 uint lossRatio = 100 * delegatedPercent ** numberOfDelegationRounds / 100 ** numberOfDelegationRounds;
-                if (lossRatio > 0){
+                if (lossRatio > 0) {
                     for (i=1; i< delegatedVotes.length; i++){
                         v = delegatedVotes[i];
                         
                         if (v.nominee != v.voter && voteWeight[v.voter] > 0) {
-                            weight = voteWeight[v.voter] * lossRatio / 100 ;
+                            weight = voteWeight[v.voter] * lossRatio / 100;
                             voteWeight[v.voter] -= weight;
                             voteWeight[v.nominee] += weight;
                         }
