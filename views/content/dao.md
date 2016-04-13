@@ -564,7 +564,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
     contract token {
         mapping (address => uint256) public balanceOf;
     }
-
+    
     
     contract LiquidDemocracy {
         token public votingToken;
@@ -579,7 +579,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         uint public numberOfVotes;
         DelegatedVote[] public delegatedVotes;
         string public forbiddenFunction;
-
+        
         event NewApointee(address newApointee, bool changed);
         
         struct DelegatedVote {
@@ -620,7 +620,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                 || bytes4(bytecode) == bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
                 || numberOfDelegationRounds < 4 )                       // and delegation has been calculated enough
                 throw;
-
+            
             target.call.value(valueInEther * 1 ether)(bytecode);        // Then execute the command.
         }
         
@@ -667,7 +667,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                 NewApointee(currentWinner, apointee == currentWinner);
                 apointee = currentWinner;
             }
-
+            
             return currentWinner;
         }
     }
@@ -691,24 +691,29 @@ If there has been more than one hour and a half since this round of calling **Ca
 
 #### House of representatives
 
-What is all that vote delegation good for? For one, you can use instead of the token weight on a **Association**. First of all, get the code for a [shareholder association](#the-stakeholder-association) but replace the first line where it describes the token:
+What is all that vote delegation good for? For one, you can use it instead of the token weight on an **Association**. First of all, get the code for a [shareholder association](#the-stakeholder-association) but replace the first lines where it describes the token:
 
-    contract token { mapping (address => uint256) public balanceOf;  }
+    contract token {
+        mapping (address => uint256) public balanceOf;
+    }
 
 Into this:
 
     contract token {
         mapping (address => uint256) public voteWeight;
         uint public numberOfDelegationRounds;
+        
         function balanceOf(address member) constant returns (uint256 balance) {
-            if (numberOfDelegationRounds < 3) return 0;
-            else return this.voteWeight(member);
+            if (numberOfDelegationRounds < 3)
+                return 0;
+            else
+                return this.voteWeight(member);
         }
     }
 
 When you are writing your contract you can describe multiple other contracts used by your main contract. Some might be functions and variables that are already defined on the target contract, like **voteWeight** and **numberOfDelegationRounds**. But notice that **balanceOf** is a new function, that doesn't exist neither on the Liquid Democracy or the Association contract, we are defining it now, as a function that will return the **voteWeight** if at least three rounds of delegations have been calculated.
 
-Use the **Liquid democracy** as the **Token Address** instead of the original token and proceed to deploy the shareholder association as usual. Just like before you the users can create new proposals on what to do or cast votes on these issues: but now, **instead of using the token balance as the voting power we are using a delegative proccess**. So if you are a token holder, instead of having to keep yourself constantly informed by all the issues, you can just select someone you know trust and appoint them, and then they can choose someone they trust: the result is that your representative, instead of being limited to a given arbitrary **geographical proximity**, will be someone in your **social proximity**.
+Use the **Liquid democracy** as the **Token Address** instead of the original token and proceed to deploy the shareholder association as usual. Just like you before, users can create new proposals on what to do or cast votes on these issues, but now, **instead of using the token balance as the voting power we are using a delegative proccess**. So if you are a token holder, instead of having to keep yourself constantly informed by all the issues, you can just select someone you trust and appoint them, and then they can choose someone they trust: the result is that your representative, instead of being limited to a given arbitrary **geographical proximity**, will be someone in your **social proximity**.
 
 Also it means that you can switch your vote at any moment: if your representative has voted against your interests in some issue you can, before the proposal votes are tallied up, switch your apointee, or just choose to represent yourself on the issue and cast the vote yourself.
 
