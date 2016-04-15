@@ -295,7 +295,7 @@ Now go back to the democracy contract and create a new proposal with these param
 
 ![New proposal](/images/tutorial/new-proposal-token.png)
 
-In a few seconds you should be able to see the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a "transaction hash". Unlike the other fields, Bytecode can be extremely very and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.
+In a few seconds you should be able to see the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a "transaction hash". Unlike the other fields, Bytecode can be extremely lengthy and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.
 
 But that, of course, creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the "read from contract" function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.
 
