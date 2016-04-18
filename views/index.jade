@@ -2,6 +2,8 @@ extends layout
 
 block vars
   - var title='Ethereum Project'
+  - var version = '0.7.1'
+  - var versiondash = '0-7-1'
 
 
 
@@ -64,15 +66,15 @@ block content
             strong Ethereum Wallet 
             | is a gateway to decentralized applications on the Ethereum blockchain. It allows you to hold and secure ether and other crypto-assets built on Ethereum, as well as write, deploy and use smart contracts.
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.5.2/Ethereum-Wallet-macosx-0-5-2.zip").button.mac.ethereum-wallet.require-legal 
+          a(href="https://github.com/ethereum/mist/releases/download/#{version}/Ethereum-Wallet-macosx-#{versiondash}.zip").button.mac.ethereum-wallet.require-legal 
             strong Download 
             | Ethereum Wallet for Mac OS X
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.5.2/Ethereum-Wallet-win64-0-5-2.zip").button.win64.ethereum-wallet.require-legal 
+          a(href="https://github.com/ethereum/mist/releases/download/#{version}/Ethereum-Wallet-win64-#{versiondash}.zip").button.win64.ethereum-wallet.require-legal 
             strong Download 
             |  Ethereum Wallet for Windows 64 bits
 
-          a(href="https://github.com/ethereum/mist/releases/download/0.5.2/Ethereum-Wallet-linux64-0-5-2.zip").button.linux.ethereum-wallet.require-legal 
+          a(href="https://github.com/ethereum/mist/releases/download/#{version}/Ethereum-Wallet-linux64-#{versiondash}.zip").button.linux.ethereum-wallet.require-legal 
             strong Download 
             |  Ethereum Wallet for Linux 64 bits
 

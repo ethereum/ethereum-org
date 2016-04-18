@@ -295,7 +295,7 @@ Now go back to the democracy contract and create a new proposal with these param
 
 ![New proposal](/images/tutorial/new-proposal-token.png)
 
-In a few seconds you should be able to see the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a "transaction hash". Unlike the other fields, Bytecode can be extremely very and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.
+In a few seconds you should be able to see the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a "transaction hash". Unlike the other fields, Bytecode can be extremely lengthy and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.
 
 But that, of course, creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the "read from contract" function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.
 
@@ -561,9 +561,11 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 
 #### The code
 
-    contract token { mapping (address => uint256) public balanceOf;  }
-
-
+    contract token {
+        mapping (address => uint256) public balanceOf;
+    }
+    
+    
     contract LiquidDemocracy {
         token public votingToken;
         address public apointee;
@@ -577,7 +579,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         uint public numberOfVotes;
         DelegatedVote[] public delegatedVotes;
         string public forbiddenFunction;
-
+        
         event NewApointee(address newApointee, bool changed);
         
         struct DelegatedVote {
@@ -588,8 +590,8 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         function LiquidDemocracy(
             address votingWeightToken,
             string forbiddenFunctionCall,
-            uint percentLossInEachRound)
-        {
+            uint percentLossInEachRound
+        ) {
             votingToken = token(votingWeightToken);
             delegatedVotes.length++;
             delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
@@ -604,7 +606,8 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                 numberOfVotes++;
                 voteIndex = delegatedVotes.length++;
                 numberOfVotes = voteIndex;
-            } else {
+            }
+            else {
                 voteIndex = voterId[msg.sender];
             }
             
@@ -612,16 +615,16 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         }
         
         function execute(address target, uint valueInEther, bytes32 bytecode){
-            if (msg.sender != apointee ||                               // If caller is the current apointee,
-                !target.call.value(valueInEther * 1 ether)(bytecode) || // if the call is valid,
-                bytes4(bytecode) == bytes4(sha3(forbiddenFunction)) ||  // and it's not trying to do the forbidden function
-                numberOfDelegationRounds < 4 ) throw;                   // and delegation has been calculated enough
-
+            if (msg.sender != apointee                                  // If caller is the current apointee,
+                || !target.call.value(valueInEther * 1 ether)(bytecode) // if the call is valid,
+                || bytes4(bytecode) == bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
+                || numberOfDelegationRounds < 4 )                       // and delegation has been calculated enough
+                throw;
+            
             target.call.value(valueInEther * 1 ether)(bytecode);        // Then execute the command.
         }
         
-        function calculateVotes() returns (address winner){
-
+        function calculateVotes() returns (address winner) {
             address currentWinner = apointee;
             uint currentMax = 0;
             uint weight = 0;
@@ -632,21 +635,22 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                 lastWeightCalculation = now;
                 
                 // Distribute the initial weight
-                for (uint i=1; i< delegatedVotes.length; i++){
+                for (uint i=1; i< delegatedVotes.length; i++) {
                     voteWeight[delegatedVotes[i].nominee] = 0;
                 }
-                for (i=1; i< delegatedVotes.length; i++){
+                for (i=1; i< delegatedVotes.length; i++) {
                     voteWeight[delegatedVotes[i].voter] = votingToken.balanceOf(delegatedVotes[i].voter);
                 }
-            } else {
+            }
+            else {
                 numberOfDelegationRounds++;
                 uint lossRatio = 100 * delegatedPercent ** numberOfDelegationRounds / 100 ** numberOfDelegationRounds;
-                if (lossRatio > 0){
+                if (lossRatio > 0) {
                     for (i=1; i< delegatedVotes.length; i++){
                         v = delegatedVotes[i];
                         
                         if (v.nominee != v.voter && voteWeight[v.voter] > 0) {
-                            weight = voteWeight[v.voter] * lossRatio / 100 ;
+                            weight = voteWeight[v.voter] * lossRatio / 100;
                             voteWeight[v.voter] -= weight;
                             voteWeight[v.nominee] += weight;
                         }
@@ -663,7 +667,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                 NewApointee(currentWinner, apointee == currentWinner);
                 apointee = currentWinner;
             }
-
+            
             return currentWinner;
         }
     }
@@ -687,24 +691,29 @@ If there has been more than one hour and a half since this round of calling **Ca
 
 #### House of representatives
 
-What is all that vote delegation good for? For one, you can use instead of the token weight on a **Association**. First of all, get the code for a [shareholder association](#the-stakeholder-association) but replace the first line where it describes the token:
+What is all that vote delegation good for? For one, you can use it instead of the token weight on an **Association**. First of all, get the code for a [shareholder association](#the-stakeholder-association) but replace the first lines where it describes the token:
 
-    contract token { mapping (address => uint256) public balanceOf;  }
+    contract token {
+        mapping (address => uint256) public balanceOf;
+    }
 
 Into this:
 
     contract token {
         mapping (address => uint256) public voteWeight;
         uint public numberOfDelegationRounds;
+        
         function balanceOf(address member) constant returns (uint256 balance) {
-            if (numberOfDelegationRounds < 3) return 0;
-            else return this.voteWeight(member);
+            if (numberOfDelegationRounds < 3)
+                return 0;
+            else
+                return this.voteWeight(member);
         }
     }
 
 When you are writing your contract you can describe multiple other contracts used by your main contract. Some might be functions and variables that are already defined on the target contract, like **voteWeight** and **numberOfDelegationRounds**. But notice that **balanceOf** is a new function, that doesn't exist neither on the Liquid Democracy or the Association contract, we are defining it now, as a function that will return the **voteWeight** if at least three rounds of delegations have been calculated.
 
-Use the **Liquid democracy** as the **Token Address** instead of the original token and proceed to deploy the shareholder association as usual. Just like before you the users can create new proposals on what to do or cast votes on these issues: but now, **instead of using the token balance as the voting power we are using a delegative proccess**. So if you are a token holder, instead of having to keep yourself constantly informed by all the issues, you can just select someone you know trust and appoint them, and then they can choose someone they trust: the result is that your representative, instead of being limited to a given arbitrary **geographical proximity**, will be someone in your **social proximity**.
+Use the **Liquid democracy** as the **Token Address** instead of the original token and proceed to deploy the shareholder association as usual. Just like you before, users can create new proposals on what to do or cast votes on these issues, but now, **instead of using the token balance as the voting power we are using a delegative proccess**. So if you are a token holder, instead of having to keep yourself constantly informed by all the issues, you can just select someone you trust and appoint them, and then they can choose someone they trust: the result is that your representative, instead of being limited to a given arbitrary **geographical proximity**, will be someone in your **social proximity**.
 
 Also it means that you can switch your vote at any moment: if your representative has voted against your interests in some issue you can, before the proposal votes are tallied up, switch your apointee, or just choose to represent yourself on the issue and cast the vote yourself.
 
