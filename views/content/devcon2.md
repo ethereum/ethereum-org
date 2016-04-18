@@ -18,10 +18,8 @@ Practical challenges of developing applications on top of the ethereum platform 
 
 IoT, finance, government, supply chain tracking, notarization, creative registries, identity and reputation, markets and exchanges, and related topics for policymakers and investors.
 
-### Program
-
-The 1st half of the week focused on research and ÐApp development, the 2nd half on industry and social implications.
-(Click on talk titles for more info and links.)
+### Devcon2 - Days 1-3*September 19, 20, 21*
+Ethereum’s Devcon2 will debut in Asia with the support of its co-host and event partner, Wanxiang Blockchain Labs. Devcon2 will continue to feature Ethereum developers who will introduce, present, and discuss the latest work and related considerations and topics of interest in Ethereum research and development. 
 
 #### Conference Videos
 Monday
