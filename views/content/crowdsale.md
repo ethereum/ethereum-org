@@ -99,7 +99,7 @@ Notice that in the **Crowdsale** function (the one that is called upon contract 
 
 Those are some of the [special keywords](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html) in solidity that help you code, allowing you to evaluate some things like **1 ether == 1000 finney** or **2 days == 48 hours**. Inside the system all ether amounts are kept track in **wei**, the smallest divisible unit of ether. The code above converts the funding goal into wei by multiplying it by 1,000,000,000,000,000,000 (which is what the special keyword **ether** converts into). The next line creates a timestamp that is exactly X minutes away from today by also using a combination of the special keywords **now** and **minutes**. For more global keywords, check the [solidity documentation on Globally available variables](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html).
         
-The following line will instantiate a contract at a given adress:
+The following line will instantiate a contract at a given address:
 
     tokenReward = token(addressOfTokenUsedAsReward);
 
