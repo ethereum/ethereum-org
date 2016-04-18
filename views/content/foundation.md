@@ -11,9 +11,7 @@
 
 ![Portrait of Ming Chan](/images/portraits/ming-chan.jpg)
 
-**An alumna of Massachusetts Institute of Technology, where she studied Computer Science and Media Arts & Sciences**, Ming has a background leading enterprise IT and management consulting projects and teams, founding and growing businesses, and working with top educators, scientists, and inventors to bring inspiring research innovation to life. She discovered bitcoin in 2010 and Ethereum in 2013, and brings with her a sound understanding of legal and regulatory issues relevant to blockchain technology.
-
-[LinkedIn](https://ch.linkedin.com/in/mingchan88), [Twitter](https://twitter.com/mingchan88)
+**An alumna of Massachusetts Institute of Technology, where she studied Computer Science and Media Arts & Sciences**, Ming has a background in enterprise IT and management consulting projects, founding and growing businesses, and working with top educators, scientists, and inventors to bring inspiring research innovation to life. Her interests and work include legal and regulatory matters related to blockchain technology.
 
 ----
 
@@ -83,9 +81,9 @@ Stefano Bertolo is a civil servant advising the Foundation in a strictly persona
 
 #### Yessin Schiegg 
 
-![Portrait of Yessin Schiegg ](/images/portraits/yessin.jpg)
+![Portrait of Yessin Schiegg ](/images/portraits/Yessin2.jpg)
 
-Yessin Schiegg is the CFO of Source Capital AG, a proprietary trading firm which specialises in sophisticated automated trading and operates in the main electronic financial markets. Previously, he was engaged in the private equity business of BlackRock, Swiss Reinsurance Company, and Horizon21. Before that, he was a senior auditor at PwC, serving banks and asset managers. He graduated from the University of St.Gallen in Switzerland, where he studied Finance. Yessin is a Swiss CPA, a CFA Charterholder, and has achieved the CAIA designation.
+Yessin Schiegg is the CFO of Alpha Associates AG, an independent private equity, private debt and infrastructure management and consulting firm based in Zurich, Switzerland. He was previously engaged in the algorithmic trading business at Source Capital and separately in the private equity businesses at BlackRock, Swiss Reinsurance Company, and Horizon21. He was also a senior auditor at PwC, serving banks and asset managers. Yessin is a Swiss CPA, a CFA Charterholder, and has achieved the CAIA designation. He graduated from the University of St.Gallen in Switzerland, where he studied Finance.
 
 ----
 
@@ -106,6 +104,16 @@ William Mougayar is an entrepreneur, angel investor, mentor to startups and an e
 **Thomas Greco is Special Adviser to Omise (おみせ)**, an Asia-Pacific fintech company developing solutions that can add value to a financially disintermediated future.
 
 [Omise](https://omise.co)
+
+----
+
+#### Vladislav Martynov
+
+![Portrait of Vladislav Martynov](/images/portraits/Vladislav1.jpg)
+   
+Vladislav Martynov is CEO and a co-founder of Yota Devices. He has twenty years of highly diversified experience in software and digital technology as a co-founder, angel investor and CEO of several highly successful start-ups. After the sale of one of his companies to Microsoft, he became a corporate executive at Microsoft HQ and ran the implementation of a global program to grow the ecosystem of developers and software partners. In 2014, Vlad was nominated by Ernst and Young for the Entrepreneur of the Year Award.
+
+
 
 
 
