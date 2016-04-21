@@ -1143,19 +1143,19 @@ figure.turbo {
 }
 
 figure.turbo .turbo-01 {
-	background-image: url("../images/turbo-01.png");
+	background-image: url("../images/turbo-01@2x.png");
 }
 figure.turbo .turbo-02 {
-	background-image: url("../images/turbo-02.png");
+	background-image: url("../images/turbo-02@2x.png");
 }
 figure.turbo .turbo-03 {
-	background-image: url("../images/turbo-03.png");
+	background-image: url("../images/turbo-03@2x.png");
 }
 figure.turbo .turbo-04 {
-	background-image: url("../images/turbo-04.png");
+	background-image: url("../images/turbo-04@2x.png");
 }	
 figure.turbo .turbo-05 {
-	background-image: url("../images/turbo-05.png");
+	background-image: url("../images/turbo-05@2x.png");
 }
 
 figure.geth {
