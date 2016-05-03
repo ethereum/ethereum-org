@@ -276,7 +276,7 @@ If the transaction was executed, then after a few seconds you should be able to 
 
 You can use this democracy to execute any transaction on ethereum, as long as you can figure out the bytecode that that transaction generates. Luckily for us, you can use the wallet to do precisely that!
 
-In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token/) that belongs to one of your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
+In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token) that belongs to one of your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
 
 
 ![Select the bytecode](/images/tutorial/select-code.png)
@@ -677,7 +677,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 
 #### Deployment
 
-First, you need a token. If you have followed the **Stakeholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token/) and distribute it among some accounts. Copy the token address.
+First, you need a token. If you have followed the **Stakeholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token) and distribute it among some accounts. Copy the token address.
 
 Deploy the democracy contract, and put the token address on the **Voting weight token**, put **75** as the **Percent loss in each round** and **transferOwnership(address)** (without any spaces or extra characters!) as the **forbidden function**.
 
@@ -732,7 +732,7 @@ Once that transfer is complete, switch the function to **Change Voting Rules**. 
 
 Now go to the Liquid democracy page and choose **execute**. On **target** put the address of the association contract, leave **ether amount** at 0 and paste the code you copied previously into the **bytecode data** field. Make sure you are executing it from the account set as the **appointee** and click **execute**.
 
-Once the transaction has been picked up, the Liquid democracy will pass the order to the association and the new voting rules might apply. The apointee has the absolute power to do anything that the **Liquid democracy** contract can execute. You can use the same technique to create a [Mintable Token](./token/) owned by the delegative democracy, and then allow the apointee to mint tokens or freeze accounts.
+Once the transaction has been picked up, the Liquid democracy will pass the order to the association and the new voting rules might apply. The apointee has the absolute power to do anything that the **Liquid democracy** contract can execute. You can use the same technique to create a [Mintable Token](./token) owned by the delegative democracy, and then allow the apointee to mint tokens or freeze accounts.
 
 To prevent abuses of powers, you can set one **Forbidden function** that the Apointee cannot ever do. If you followed our example the forbidden function is the **transferOwnership(address)**, to prevent the apointee from transfering the ownership of the association to themselves (in politics, when a president uses his executive power to transfer to themselves something that used to belongs to the presidency, it's a coup or embezzling).
 
