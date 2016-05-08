@@ -129,7 +129,7 @@ Since this call changes nothing on the blockchain, it returns instantly and with
 
 #### Getting other people to interact with your code
 
-In order to other people to run your contract they need two things: the address where the contract is located and the ABI (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them to your JavaScript console. In order to get each of them run these commands:
+In order for other people to run your contract they need two things: the address where the contract is located and the ABI (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them to your JavaScript console. In order to get each of them run these commands:
 
     greeterCompiled.greeter.info.abiDefinition;
     greeter.address;
