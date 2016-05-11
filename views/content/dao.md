@@ -314,9 +314,9 @@ Here are some drawbacks of this current DAO that we leave as an exercise to the 
 * Currently the vote message is only visible on logs, can you make a function that will display all votes?
 
 
-### The Stakeholder Association
+### The Shareholder Association
 
-In the previous section we created a contract that works like an invitation-only club, where members are invited or banned by the whim of the president. But this has a few drawbacks: what if someone wants to change his main address? What if some members have more weight than others? What if you actually want to trade or sell memberships or shares on an open market? What if you wanted your organization to have work as a constant decision machine by stakeholders?
+In the previous section we created a contract that works like an invitation-only club, where members are invited or banned by the whim of the president. But this has a few drawbacks: what if someone wants to change his main address? What if some members have more weight than others? What if you actually want to trade or sell memberships or shares on an open market? What if you wanted your organization to have work as a constant decision machine by shareholders?
 
 We are going to modify a bit our contract to connect it to a specific token, which will work as the holding shares of the contract. First we need to create this token: go to the [token tutorial](./token) and create a simple token with **initial supply** of 100, **decimals** of 0 and a percentage sign (%) as a **symbol**. If you want to be able to trade in fractions of a percent, then increase the supply by 100x or 1000x and then add the corresponding amount of zeros as the **decimals**. Deploy this contract and save its address on a text file.
 
@@ -677,13 +677,13 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 
 #### Deployment
 
-First, you need a token. If you have followed the **Stakeholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token) and distribute it among some accounts. Copy the token address.
+First, you need a token. If you have followed the **Shareholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token/) and distribute it among some accounts. Copy the token address.
 
 Deploy the democracy contract, and put the token address on the **Voting weight token**, put **75** as the **Percent loss in each round** and **transferOwnership(address)** (without any spaces or extra characters!) as the **forbidden function**.
 
 #### Selecting a delegate
 
-Now deploy the Liquid democracy and go to its page. First have any of the stakeholders **vote** on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you'd rather have no one representing you on that role.
+Now deploy the Liquid democracy and go to its page. First have any of the shareholders **vote** on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you'd rather have no one representing you on that role.
 
 After enough people have casted their votes, you can execute the function **Calculate Votes** so it will calculate everyone's voting weight. This function needs to be run multiple times, so the first run it will just set everyone's weight as their balance in the selected token, in the next round that voting weight will go to the person you voted apointed, in the next it will go to the person voted by the person you chose and so on. To prevent infinite loops of vote delegations, each time a vote is forwarded it loses a bit of power, set by at contract launch at **percentLossInEachRound**. So if the loss is set at 75%, it means that the person you vote gets 100% of your weight, but if they delegate the vote to someone else only 75% of their weight is forwarded. That person can delegate to someone else but they'll get only 56% of your voting weight and so on. If the ratio is anything lower than 100% there will be a finite moment where recalculating voting delegation won't change the result anymore, but if it's a 100% it means that voting weights will simply circulate around any potential loops.
 
@@ -691,7 +691,7 @@ If there has been more than one hour and a half since this round of calling **Ca
 
 #### House of representatives
 
-What is all that vote delegation good for? For one, you can use it instead of the token weight on an **Association**. First of all, get the code for a [shareholder association](#the-stakeholder-association) but replace the first lines where it describes the token:
+What is all that vote delegation good for? For one, you can use it instead of the token weight on an **Association**. First of all, get the code for a [shareholder association](#the-shareholder-association) but replace the first lines where it describes the token:
 
     contract token {
         mapping (address => uint256) public balanceOf;
@@ -745,8 +745,6 @@ You have reached the end of this tutorial, but it's just the beginning of a grea
 
 
 #### What could happen next?
-
-* The greeter contract you created at the beginning could be improved to charge ether for its services and could funnel those funds into the DAO.
 
 * The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further develop the first contract and grow the organization.
 
