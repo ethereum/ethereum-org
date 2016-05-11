@@ -19,7 +19,7 @@ Also, generally those who are funding can't have any say on how the money is spe
 
 * First of all, create a [fixed supply token](./token#the-code). For this example, we are going to create a supply of **100**, use the name **gadgets**, the box emoji (📦) as a symbol and **0** decimal places. Deploy it and save the address.
 
-* Now create a [stakeholder association](./dao#the-stakeholder-association). In this example we are going to use the address of the token we just created as the **Shares Address**, a minimum quorum of **10**, and **1500** minutes (25 hours) as the voting time. Deploy this contract and save the address.
+* Now create a [shareholder association](./dao#the-shareholder-association). In this example we are going to use the address of the token we just created as the **Shares Address**, a minimum quorum of **10**, and **1500** minutes (25 hours) as the voting time. Deploy this contract and save the address.
 
 
 #### The code
@@ -203,10 +203,10 @@ The crowdsale contract specifies a deadline using a timestamp, but the Alarm clo
 
 You can use the following chart for rough estimates for how many blocks to add to the current block to compute the **targetBlock**.
 
-* 1 hour duration (60 minutes): 15 blocks
-* 1 day duration  (1440 minutes):  200 blocks
-* 1 week duration (10,800 minutes): 1,000 blocks
-* 1 month duration (44,640 minutes): 3,000 blocks
+* 1 hour duration (60 minutes): 212 blocks
+* 1 day duration  (1440 minutes):  5082 blocks
+* 1 week duration (10,800 minutes): 38,117 blocks
+* 1 month duration (44,640 minutes): 157,553 blocks
 
 On the **Send** field, you need to send enough ether to pay the transaction fee, plus some more to pay the scheduler. Any extra money sent will be refunded, so sending at least 0.25 ether will probably keep you on the safe side.
 

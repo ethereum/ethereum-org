@@ -901,7 +901,6 @@ a.button.ethereum-wallet strong {
 	display: none;
 }
 
-/*
 .Win32 a.ethereum-wallet.link,
 .Win32 a.button.ethereum-wallet.win32 {
 	display: block;
@@ -910,7 +909,7 @@ a.button.ethereum-wallet strong {
 .Win32 a.button.allversions.ethereum-wallet {
 	display: none;
 }
-*/
+
 
 .Win64 a.ethereum-wallet.link,
 .Win64 a.button.ethereum-wallet.win64 {
