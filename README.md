@@ -4,7 +4,8 @@
 
 This repository contains the Homestead Release of the [ethereum.org](https://ethereum.org/) website.
 
-![Screenshot](https://raw.githubusercontent.com/alexvandesande/ethereum-org/fe2c601a562f6034600bc7644daa82a2c9e449d4/public/images/screenshot.png "Screenshot")
+
+![Screenshot](https://cloud.githubusercontent.com/assets/112898/15186824/f2c9ba56-1774-11e6-944b-8309c6b9114e.png "Screenshot")
 
 ## Prerequisite
 * node
