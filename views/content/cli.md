@@ -147,7 +147,10 @@ Sometimes you might not want to connect to the live public network; instead you 
 
 **Geth:**
 
-    geth --networkid 12345 --genesis ~/test/genesis.json --datadir ~/.ethereum_experiment console
+    geth --datadir ~/.ethereum_private init ~/dev/genesis.json
+
+    geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 1234 --datadir ~/.ethereum_private  console 
+
 
 **Eth:**
 
