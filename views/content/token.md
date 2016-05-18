@@ -185,7 +185,7 @@ You'll be redirected to the front page where you can see your transaction waitin
 
 ![Screen Shot 2015-12-03 at 9.48.15 AM](/images/tutorial/Screen-Shot-2015-12-03-at-9.48.15-AM.png)
 
-If you send it to a friend, they will not see anything in their wallet yet. This is because the wallet only tracks tokens it knows about, and you have to add these manually. Now go to the "Contracts" tab and you should see a link for your newly created contract. Click on it to go to it's page. Since this is a very simple contract page there isn't much to do here, just click "copy address" and paste the contract address on a text editor, you'll need it shortly.
+If you send it to a friend, they will not see anything in their wallet yet. This is because the wallet only tracks tokens it knows about, and you have to add these manually. Now go to the "Contracts" tab and you should see a link for your newly created contract. Click on it to go to its page. Since this is a very simple contract page there isn't much to do here, just click "copy address" and paste the contract address on a text editor, you'll need it shortly.
 
 To add a token to watch, go to the contracts page and then click "Watch Token". A pop-up will appear and you only need to paste the contract address. The token name, symbol and decimal number should be automatically filled but if it's not you can put anything you want (it will only affect how it displays on your wallet). Once you do this, you'll automatically be shown any balance you have of that token and you'll be able to send it to anyone else.
 
@@ -392,7 +392,7 @@ It's also possible to add a mathematical formula, so that anyone who can do math
 
 Of course while calculating cubic roots can be hard for someone to do on their heads, they are very easy with a calculator, so this game could be easily broken by a computer. Also since the last winner can choose the next challenge, they could pick something they know and therefore would not be a very fair game to other players. There are tasks that are easy for humans but hard for computers but they are usually very hard to code in simple scripts like these. Instead a fairer system should be one that is very hard for a computer to do, but isn't very hard for a computer to verify. A great candidate would be to create a hash challenge where the challenger has to generate hashes from multiple numbers until they find one that is lower than a given difficulty.
 
-This process was first proposed by Adam Back in 1997 as [Hashcash](https://en.wikipedia.org/wiki/Hashcash) and then was implemented in Bitcoin by Satoshi Nakamoto as **Proof of work** in 2008. Ethereum was launched using such system for it's security model, but is planning to move from a Proof of Work security model into a [mixed proof of stake and betting system called *Casper*](https://blog.ethereum.org/2015/12/28/understanding-serenity-part-2-casper/).
+This process was first proposed by Adam Back in 1997 as [Hashcash](https://en.wikipedia.org/wiki/Hashcash) and then was implemented in Bitcoin by Satoshi Nakamoto as **Proof of work** in 2008. Ethereum was launched using such system for its security model, but is planning to move from a Proof of Work security model into a [mixed proof of stake and betting system called *Casper*](https://blog.ethereum.org/2015/12/28/understanding-serenity-part-2-casper/).
 
 But if you like Hashing as a form of random issuance of coins, you can still create your own ethereum based currency that has a proof of work issuance:
 
@@ -567,7 +567,7 @@ Scroll down and you'll see an estimated cost for deployment. If you want you can
 
 Click on the link that says *Admin page* and you'll be taken the simplest central bank dashboard in the world,   where you can do anything you want with your newly created currency.
 
-On the left side under *Read from contract* you have all the options and functions you can use to read information from the contract, for free. If your token has an owner, it will display it's address here. Copy that address and paste it on **Balance of** and it will show you the balance of any account (the balance is also automatically shown on any account page that has tokens).
+On the left side under *Read from contract* you have all the options and functions you can use to read information from the contract, for free. If your token has an owner, it will display its address here. Copy that address and paste it on **Balance of** and it will show you the balance of any account (the balance is also automatically shown on any account page that has tokens).
 
 On the right side, under **Write to Contract** you'll see all the functions you can use to alter or change the blockchain in any way. These will cost gas. If you created a contract that allows you to mint new coins, you should have a function called "Mint Token". Select it.
 
