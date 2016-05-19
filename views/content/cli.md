@@ -117,7 +117,7 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 
 ### Run it
 
-Geth and Eth are multipurpose command line tools that run a full Ethereum node implemented in Go. They offer multiple interfaces: the [command line](https://ethereum.gitbooks.io/frontier-guide/content/cli.html) subcommands and options, a [JSON-RPC server](https://ethereum.gitbooks.io/frontier-guide/content/rpc.html) and an [interactive console](https://ethereum.gitbooks.io/frontier-guide/content/jsre.html).
+Geth and Eth are multipurpose command line tools that run a full Ethereum node. They offer multiple interfaces: the [command line](https://ethereum.gitbooks.io/frontier-guide/content/cli.html) subcommands and options, a [JSON-RPC server](https://ethereum.gitbooks.io/frontier-guide/content/rpc.html) and an [interactive console](https://ethereum.gitbooks.io/frontier-guide/content/jsre.html).
 
 For the purposes of this guide, we will focus on the console, a JavaScript environment that contains all of the main features that you probably want. Depending on your client, paste either of these commands:
 
