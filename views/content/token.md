@@ -89,7 +89,7 @@ So let's start with the basics. Open the **Wallet** app, go to the *Contracts* t
         mapping (address => uint256) public balanceOf;
     }
 
-A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that that variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
+A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that this variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
 
 ![Edit New Contract](/images/tutorial/edit-contract.png)
 
