@@ -109,7 +109,7 @@ You will probably be asked for the password you picked in the beginning, because
 **Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
 
 
-Within less than a minute, you should have a log with the contract address, this means you've sucessfully deployed your contract. You can verify the deployed code (which will be compiled) by using this command:
+Within less than a minute, you should have a log with the contract address, this means you've successfully deployed your contract. You can verify the deployed code (which will be compiled) by using this command:
 
     eth.getCode(greeter.address)
 
