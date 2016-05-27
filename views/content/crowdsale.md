@@ -159,7 +159,7 @@ In our code, only two things can happen: either the crowdsale reaches its target
 
 #### Unlimited crowdsale
 
-So we are going to modify our project slighlty so that instead of sending a limited set of tokens, the project actually creates a new token out of thin air whenever someone sends them ether. First of all, we need to create a [Mintable token](./token#central-mint).
+So we are going to modify our project slightly so that instead of sending a limited set of tokens, the project actually creates a new token out of thin air whenever someone sends them ether. First of all, we need to create a [Mintable token](./token#central-mint).
 
 Then modify the crowdsale to rename all mentions of **transfer** to **mintToken**: 
 
@@ -199,7 +199,7 @@ Click on the green icon that you just added and then choose a function call unde
 * **abiSignature** will be **0x01cb3b20**. You can figure out the signature for any function by trying to execute them but in the confirmation window, instead of typing your password, copy the code in the **Data** field. The function signature is the first 10 characters in bold.
 * **targetBlock** is the block number in which you want the function to be executed, read below to calculate an estimation.
 
-The crowdsale contract specifies a deadline using a timestamp, but the Alarm clock currently schedules calls based on block numbers.  Since ethereum has a block time of approximately 17 seconds, we need to compute a block number that is going to be probabilistically past the deadline.  We can do this with the formula **current\_block\_number + duration\_in\_minutes * 60 / 17 + buffer** where **buffer** is a number of blocks that is sufficiently large that you can rely on it occuring after the crowdsale deadline.  For short crowdsales less than a day in duration a buffer of 200 blocks should be sufficient.  For durations closer to 30 days, you should probably pick a number closer to 5,000.
+The crowdsale contract specifies a deadline using a timestamp, but the Alarm clock currently schedules calls based on block numbers.  Since ethereum has a block time of approximately 17 seconds, we need to compute a block number that is going to be probabilistically past the deadline.  We can do this with the formula **current\_block\_number + duration\_in\_minutes * 60 / 17 + buffer** where **buffer** is a number of blocks that is sufficiently large that you can rely on it occurring after the crowdsale deadline.  For short crowdsales less than a day in duration a buffer of 200 blocks should be sufficient.  For durations closer to 30 days, you should probably pick a number closer to 5,000.
 
 You can use the following chart for rough estimates for how many blocks to add to the current block to compute the **targetBlock**.
 

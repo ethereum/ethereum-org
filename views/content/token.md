@@ -162,7 +162,7 @@ Finally we now need something called **Events**. These are special, empty functi
 
 And then you just need to add these two lines inside the "transfer" function:
 
-        /* Notifiy anyone listening that this transfer took place */
+        /* Notify anyone listening that this transfer took place */
         Transfer(msg.sender, _to, _value);
 
 And now your token is ready!
