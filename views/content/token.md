@@ -237,7 +237,7 @@ This means that all the functions inside **MyToken** now can access the variable
         string tokenSymbol,
         address centralMinter
         ) {
-        if(centralMinter != 0 ) owner = msg.sender;
+        if(centralMinter != 0 ) owner = centralMinter;
 
 #### Central Mint
 
@@ -471,7 +471,6 @@ If you add all the advanced options, this is how the final code should look like
             uint8 decimalUnits,
             string tokenSymbol
             ) {
-            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
             totalSupply = initialSupply;                        // Update total supply
             name = tokenName;                                   // Set the name for display purposes
             symbol = tokenSymbol;                               // Set the symbol for display purposes
@@ -532,13 +531,9 @@ If you add all the advanced options, this is how the final code should look like
             uint8 decimalUnits,
             string tokenSymbol,
             address centralMinter
-        ) {
-            if(centralMinter != 0 ) owner = msg.sender;         // Sets the minter
-            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
-            name = tokenName;                                   // Set the name for display purposes
-            symbol = tokenSymbol;                               // Set the symbol for display purposes
-            decimals = decimalUnits;                            // Amount of decimals for display purposes
-            totalSupply = initialSupply;
+        ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {
+            if(centralMinter != 0 ) owner = centralMinter;      // Sets the owner as specified (if centralMinter is not specified the owner is msg.sender)
+            balanceOf[owner] = initialSupply;                   // Give the owner all initial tokens
         }
 
         /* Send coins */
