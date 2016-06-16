@@ -554,7 +554,7 @@ But what if you wanted different rules for voting? Maybe to change voting rules 
 
 ### Liquid democracy
 
-Voting on all expenses and actions of a contract takes time and requires users to be constantly active, informed and attentive. Another interesting approach is to elect an apointed account that will have control over a contract and then be able to take swift decisions over it.
+Voting on all expenses and actions of a contract takes time and requires users to be constantly active, informed and attentive. Another interesting approach is to elect an appointed account that will have control over a contract and then be able to take swift decisions over it.
 
 We are going to implement a version of what's usually called **Liquid Democracy**, which is a more flexible delegative democracy. In this kind of democracy, any voter can be a potential delegate: instead of voting the candidate you want, you just say which voter you trust to handle this decision for you. Your voting weight is delegated to them and they can in turn delegate it to another voter they trust and so on. The end result should be that the most voted account is one that has trust connections to the largest amount of voters.
 
@@ -568,7 +568,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
     
     contract LiquidDemocracy {
         token public votingToken;
-        address public apointee;
+        address public appointee;
         mapping (address => uint) public voterId;
         mapping (address => uint256) public voteWeight;
         
@@ -580,7 +580,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         DelegatedVote[] public delegatedVotes;
         string public forbiddenFunction;
         
-        event NewApointee(address newApointee, bool changed);
+        event NewAppointee(address newAppointee, bool changed);
         
         struct DelegatedVote {
             address nominee;
@@ -615,7 +615,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         }
         
         function execute(address target, uint valueInEther, bytes32 bytecode){
-            if (msg.sender != apointee                                  // If caller is the current apointee,
+            if (msg.sender != appointee                                 // If caller is the current appointee,
                 || !target.call.value(valueInEther * 1 ether)(bytecode) // if the call is valid,
                 || bytes4(bytecode) == bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
                 || numberOfDelegationRounds < 4 )                       // and delegation has been calculated enough
@@ -625,7 +625,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         }
         
         function calculateVotes() returns (address winner) {
-            address currentWinner = apointee;
+            address currentWinner = appointee;
             uint currentMax = 0;
             uint weight = 0;
             DelegatedVote v = delegatedVotes[0];
@@ -664,8 +664,8 @@ We are going to implement a version of what's usually called **Liquid Democracy*
             }
             
             if (numberOfDelegationRounds > 3) {
-                NewApointee(currentWinner, apointee == currentWinner);
-                apointee = currentWinner;
+                NewAppointee(currentWinner, appointee == currentWinner);
+                appointee = currentWinner;
             }
             
             return currentWinner;
@@ -685,7 +685,7 @@ Deploy the democracy contract, and put the token address on the **Voting weight 
 
 Now deploy the Liquid democracy and go to its page. First have any of the shareholders **vote** on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you'd rather have no one representing you on that role.
 
-After enough people have casted their votes, you can execute the function **Calculate Votes** so it will calculate everyone's voting weight. This function needs to be run multiple times, so the first run it will just set everyone's weight as their balance in the selected token, in the next round that voting weight will go to the person you voted apointed, in the next it will go to the person voted by the person you chose and so on. To prevent infinite loops of vote delegations, each time a vote is forwarded it loses a bit of power, set by at contract launch at **percentLossInEachRound**. So if the loss is set at 75%, it means that the person you vote gets 100% of your weight, but if they delegate the vote to someone else only 75% of their weight is forwarded. That person can delegate to someone else but they'll get only 56% of your voting weight and so on. If the ratio is anything lower than 100% there will be a finite moment where recalculating voting delegation won't change the result anymore, but if it's a 100% it means that voting weights will simply circulate around any potential loops.
+After enough people have cast their votes, you can execute the function **Calculate Votes** so it will calculate everyone's voting weight. This function needs to be run multiple times, so the first run it will just set everyone's weight as their balance in the selected token, in the next round that voting weight will go to the person you voted appointed, in the next it will go to the person voted by the person you chose and so on. To prevent infinite loops of vote delegations, each time a vote is forwarded it loses a bit of power, set by at contract launch at **percentLossInEachRound**. So if the loss is set at 75%, it means that the person you vote gets 100% of your weight, but if they delegate the vote to someone else only 75% of their weight is forwarded. That person can delegate to someone else but they'll get only 56% of your voting weight and so on. If the ratio is anything lower than 100% there will be a finite moment where recalculating voting delegation won't change the result anymore, but if it's a 100% it means that voting weights will simply circulate around any potential loops.
 
 If there has been more than one hour and a half since this round of calling **Calculate votes** has started, all weights will reset and will be recalculated based on the original token balance, so if you have recently received more tokens you should execute this function again.
 
@@ -713,18 +713,18 @@ Into this:
 
 When you are writing your contract you can describe multiple other contracts used by your main contract. Some might be functions and variables that are already defined on the target contract, like **voteWeight** and **numberOfDelegationRounds**. But notice that **balanceOf** is a new function, that doesn't exist neither on the Liquid Democracy or the Association contract, we are defining it now, as a function that will return the **voteWeight** if at least three rounds of delegations have been calculated.
 
-Use the **Liquid democracy** as the **Token Address** instead of the original token and proceed to deploy the shareholder association as usual. Just like you before, users can create new proposals on what to do or cast votes on these issues, but now, **instead of using the token balance as the voting power we are using a delegative proccess**. So if you are a token holder, instead of having to keep yourself constantly informed by all the issues, you can just select someone you trust and appoint them, and then they can choose someone they trust: the result is that your representative, instead of being limited to a given arbitrary **geographical proximity**, will be someone in your **social proximity**.
+Use the **Liquid democracy** as the **Token Address** instead of the original token and proceed to deploy the shareholder association as usual. Just like you before, users can create new proposals on what to do or cast votes on these issues, but now, **instead of using the token balance as the voting power we are using a delegative process**. So if you are a token holder, instead of having to keep yourself constantly informed by all the issues, you can just select someone you trust and appoint them, and then they can choose someone they trust: the result is that your representative, instead of being limited to a given arbitrary **geographical proximity**, will be someone in your **social proximity**.
 
-Also it means that you can switch your vote at any moment: if your representative has voted against your interests in some issue you can, before the proposal votes are tallied up, switch your apointee, or just choose to represent yourself on the issue and cast the vote yourself.
+Also it means that you can switch your vote at any moment: if your representative has voted against your interests in some issue you can, before the proposal votes are tallied up, switch your appointee, or just choose to represent yourself on the issue and cast the vote yourself.
 
 
 #### The Executive Branch
 
-Delegative democracies are a great way to choose representatives, but voting on individual proposals might be too slow for some important or simpler decisions: that's why most democratic governments have an executive branch, where an apointed person has the right to represent the state.
+Delegative democracies are a great way to choose representatives, but voting on individual proposals might be too slow for some important or simpler decisions: that's why most democratic governments have an executive branch, where an appointed person has the right to represent the state.
 
-After four rounds of delegations, the address with more weight will be set as the **Apointee**. If there are many delegated votes, then a few more rounds of **Calculate Votes** might be necessary to settle in the final apointed address.
+After four rounds of delegations, the address with more weight will be set as the **Appointee**. If there are many delegated votes, then a few more rounds of **Calculate Votes** might be necessary to settle in the final appointed address.
 
-The Apointee is the only address that can call the **Execute** function, which will be able to execute (almost) any function representing the democracy as a whole. If there is any ether or token stored in the Liquid democracy contract, the Apointee will be allowed to move it anywhere.
+The Appointee is the only address that can call the **Execute** function, which will be able to execute (almost) any function representing the democracy as a whole. If there is any ether or token stored in the Liquid democracy contract, the Appointee will be allowed to move it anywhere.
 
 If you have followed our example and created a **Shareholder association** using this liquid democracy as a token, then you should be able to use the executive branch in an interesting manner: go to the main Association address and execute a **Transfer Ownership** function to the liquid democracy.
 
@@ -732,9 +732,9 @@ Once that transfer is complete, switch the function to **Change Voting Rules**. 
 
 Now go to the Liquid democracy page and choose **execute**. On **target** put the address of the association contract, leave **ether amount** at 0 and paste the code you copied previously into the **bytecode data** field. Make sure you are executing it from the account set as the **appointee** and click **execute**.
 
-Once the transaction has been picked up, the Liquid democracy will pass the order to the association and the new voting rules might apply. The apointee has the absolute power to do anything that the **Liquid democracy** contract can execute. You can use the same technique to create a [Mintable Token](./token) owned by the delegative democracy, and then allow the apointee to mint tokens or freeze accounts.
+Once the transaction has been picked up, the Liquid democracy will pass the order to the association and the new voting rules might apply. The appointee has the absolute power to do anything that the **Liquid democracy** contract can execute. You can use the same technique to create a [Mintable Token](./token) owned by the delegative democracy, and then allow the appointee to mint tokens or freeze accounts.
 
-To prevent abuses of powers, you can set one **Forbidden function** that the Apointee cannot ever do. If you followed our example the forbidden function is the **transferOwnership(address)**, to prevent the apointee from transfering the ownership of the association to themselves (in politics, when a president uses his executive power to transfer to themselves something that used to belongs to the presidency, it's a coup or embezzling).
+To prevent abuses of powers, you can set one **Forbidden function** that the Appointee cannot ever do. If you followed our example the forbidden function is the **transferOwnership(address)**, to prevent the appointee from transferring the ownership of the association to themselves (in politics, when a president uses his executive power to transfer to themselves something that used to belongs to the presidency, it's a coup or embezzling).
 
 
 

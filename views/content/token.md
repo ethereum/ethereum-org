@@ -90,7 +90,7 @@ So let's start with the basics. Open the **Wallet** app, go to the *Contracts* t
         mapping (address => uint256) public balanceOf;
     }
 
-A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that that variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
+A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that this variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
 
 ![Edit New Contract](/images/tutorial/edit-contract.png)
 
@@ -163,7 +163,7 @@ Finally we now need something called **Events**. These are special, empty functi
 
 And then you just need to add these two lines inside the "transfer" function:
 
-        /* Notifiy anyone listening that this transfer took place */
+        /* Notify anyone listening that this transfer took place */
         Transfer(msg.sender, _to, _value);
 
 And now your token is ready!
@@ -238,7 +238,7 @@ This means that all the functions inside **MyToken** now can access the variable
         string tokenSymbol,
         address centralMinter
         ) {
-        if(centralMinter != 0 ) owner = msg.sender;
+        if(centralMinter != 0 ) owner = centralMinter;
 
 #### Central Mint
 
@@ -533,13 +533,9 @@ If you add all the advanced options, this is how the final code should look like
             uint8 decimalUnits,
             string tokenSymbol,
             address centralMinter
-        ) {
-            if(centralMinter != 0 ) owner = msg.sender;         // Sets the minter
-            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
-            name = tokenName;                                   // Set the name for display purposes
-            symbol = tokenSymbol;                               // Set the symbol for display purposes
-            decimals = decimalUnits;                            // Amount of decimals for display purposes
-            totalSupply = initialSupply;
+        ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {
+            if(centralMinter != 0 ) owner = centralMinter;      // Sets the owner as specified (if centralMinter is not specified the owner is msg.sender)
+            balanceOf[owner] = initialSupply;                   // Give the owner all initial tokens
         }
 
         /* Send coins */
