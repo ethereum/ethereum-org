@@ -18,7 +18,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
 #### The code
 
-    contract owned {
+   contract owned {
         address public owner;
 
         function owned() {
@@ -52,7 +52,7 @@ The way this particular democracy works is that it has an **Owner** which works 
         event ProposalTallied(uint proposalID, int result, uint quorum, bool active);
         event MembershipChanged(address member, bool isMember);
         event ChangeOfRules(uint minimumQuorum, uint debatingPeriodInMinutes, int majorityMargin);
-        
+
         struct Proposal {
             address recipient;
             uint amount;
@@ -66,7 +66,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             Vote[] votes;
             mapping (address => bool) voted;
         }
-        
+
         struct Member {
             address member;
             bool canVote;
@@ -79,7 +79,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             address voter;
             string justification;
         }
-        
+
         /* modifier that allows only shareholders to vote and create new proposals */
         modifier onlyMembers {
             if (memberId[msg.sender] == 0
@@ -87,7 +87,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             throw;
             _
         }
-        
+
         /* First time setup */
         function Congress(
             uint minimumQuorumForProposals,
@@ -100,7 +100,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             if (congressLeader != 0) owner = congressLeader;
 
         }
-        
+
         /*make member*/
         function changeMembership(address targetMember, bool canVote, string memberName) onlyOwner {
             uint id;
@@ -113,11 +113,11 @@ The way this particular democracy works is that it has an **Owner** which works 
                 Member m = members[id];
                 m.canVote = canVote;
             }
-            
+
             MembershipChanged(targetMember, canVote);
 
         }
-        
+
         /*change rules*/
         function changeVotingRules(
             uint minimumQuorumForProposals,
@@ -127,7 +127,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             minimumQuorum = minimumQuorumForProposals;
             debatingPeriodInMinutes = minutesForDebate;
             majorityMargin = marginOfVotesForMajority;
-            
+
             ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
         }
 
@@ -154,7 +154,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
             numProposals = proposalID+1;
         }
-        
+
         /* function to check if a proposal code matches */
         function checkProposalCode(
             uint proposalNumber,
@@ -168,7 +168,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             Proposal p = proposals[proposalNumber];
             return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
         }
-        
+
         function vote(
             uint proposalNumber,
             bool supportsProposal,
@@ -192,27 +192,38 @@ The way this particular democracy works is that it has an **Owner** which works 
 
         function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
             Proposal p = proposals[proposalNumber];
-            /* Check if the proposal can be executed */
-            if (now < p.votingDeadline                                                  // has the voting deadline arrived?
-                || p.executed                                                           // has it been already executed?
-                || p.proposalHash != sha3(p.recipient, p.amount, transactionBytecode)   // Does the transaction code match the proposal?
-                || p.numberOfVotes < minimumQuorum)                                    // has minimum quorum?
+            /* Check if the proposal can be executed:
+               - Has the voting deadline arrived?
+               - Has it been already executed or is it being executed?
+               - Does the transaction code match the proposal?
+               - Has a minimum quorum?
+            */
+
+            if (now < p.votingDeadline
+                || p.executed
+                || p.proposalHash != sha3(p.recipient, p.amount, transactionBytecode)
+                || p.numberOfVotes < minimumQuorum)
                 throw;
-            
+
             /* execute result */
+            /* If difference between support and opposition is larger than margin */
             if (p.currentResult > majorityMargin) {
-                /* If difference between support and opposition is larger than margin */
-                p.recipient.call.value(p.amount * 1 ether)(transactionBytecode);
+                // Avoid recursive calling
+                
                 p.executed = true;
+                if (!p.recipient.call.value(p.amount * 1 ether)(transactionBytecode)) {
+                    throw;
+                }
+
                 p.proposalPassed = true;
             } else {
-                p.executed = true;
                 p.proposalPassed = false;
             }
             // Fire Events
             ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
         }
     }
+
 
 
 #### How to deploy
