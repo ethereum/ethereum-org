@@ -27,7 +27,7 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         function mortal() { owner = msg.sender; }
 
         /* Function to recover the funds on the contract */
-        function kill() { if (msg.sender == owner) suicide(owner); }
+        function kill() { if (msg.sender == owner) selfdestruct(owner); }
     }
 
     contract greeter is mortal {
@@ -71,7 +71,7 @@ If you do not get Solidity above, then you need to install it.
 
 Now you have the compiler installed, you need now reformat your contract by removing line-breaks so it fits into a string variable [(there are some online tools that will do this)](http://www.textfixer.com/tools/remove-line-breaks.php):
 
-    var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) suicide(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
+    var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
 
     var greeterCompiled = web3.eth.compile.solidity(greeterSource)
 
@@ -152,7 +152,7 @@ Replace _greeterAddress_ with your contract's address.
 
 You must be very excited to have your first contract live, but this excitement wears off sometimes, when the owners go on to write further contracts, leading to the unpleasant sight of abandoned contracts on the blockchain. In the future, blockchain rent might be implemented in order to increase the scalability of the blockchain but for now, be a good citizen and humanely put down your abandoned bots. 
 
-A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is run. The suicide is subsidized by the network so it will cost much less than a usual transaction.
+A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is run. The self-destruct is subsidized by the network so it will cost much less than a usual transaction.
 
     greeter.kill.sendTransaction({from:eth.accounts[0]})
 
