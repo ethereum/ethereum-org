@@ -18,7 +18,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
 #### The code
 
-    contract owned {
+   contract owned {
         address public owner;
 
         function owned() {
@@ -52,7 +52,7 @@ The way this particular democracy works is that it has an **Owner** which works 
         event ProposalTallied(uint proposalID, int result, uint quorum, bool active);
         event MembershipChanged(address member, bool isMember);
         event ChangeOfRules(uint minimumQuorum, uint debatingPeriodInMinutes, int majorityMargin);
-        
+
         struct Proposal {
             address recipient;
             uint amount;
@@ -66,7 +66,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             Vote[] votes;
             mapping (address => bool) voted;
         }
-        
+
         struct Member {
             address member;
             bool canVote;
@@ -79,7 +79,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             address voter;
             string justification;
         }
-        
+
         /* modifier that allows only shareholders to vote and create new proposals */
         modifier onlyMembers {
             if (memberId[msg.sender] == 0
@@ -87,7 +87,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             throw;
             _
         }
-        
+
         /* First time setup */
         function Congress(
             uint minimumQuorumForProposals,
@@ -100,7 +100,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             if (congressLeader != 0) owner = congressLeader;
 
         }
-        
+
         /*make member*/
         function changeMembership(address targetMember, bool canVote, string memberName) onlyOwner {
             uint id;
@@ -113,11 +113,11 @@ The way this particular democracy works is that it has an **Owner** which works 
                 Member m = members[id];
                 m.canVote = canVote;
             }
-            
+
             MembershipChanged(targetMember, canVote);
 
         }
-        
+
         /*change rules*/
         function changeVotingRules(
             uint minimumQuorumForProposals,
@@ -127,7 +127,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             minimumQuorum = minimumQuorumForProposals;
             debatingPeriodInMinutes = minutesForDebate;
             majorityMargin = marginOfVotesForMajority;
-            
+
             ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
         }
 
@@ -154,7 +154,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
             numProposals = proposalID+1;
         }
-        
+
         /* function to check if a proposal code matches */
         function checkProposalCode(
             uint proposalNumber,
@@ -168,7 +168,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             Proposal p = proposals[proposalNumber];
             return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
         }
-        
+
         function vote(
             uint proposalNumber,
             bool supportsProposal,
@@ -192,27 +192,38 @@ The way this particular democracy works is that it has an **Owner** which works 
 
         function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
             Proposal p = proposals[proposalNumber];
-            /* Check if the proposal can be executed */
-            if (now < p.votingDeadline                                                  // has the voting deadline arrived?
-                || p.executed                                                           // has it been already executed?
-                || p.proposalHash != sha3(p.recipient, p.amount, transactionBytecode)   // Does the transaction code match the proposal?
-                || p.numberOfVotes < minimumQuorum)                                    // has minimum quorum?
+            /* Check if the proposal can be executed:
+               - Has the voting deadline arrived?
+               - Has it been already executed or is it being executed?
+               - Does the transaction code match the proposal?
+               - Has a minimum quorum?
+            */
+
+            if (now < p.votingDeadline
+                || p.executed
+                || p.proposalHash != sha3(p.recipient, p.amount, transactionBytecode)
+                || p.numberOfVotes < minimumQuorum)
                 throw;
-            
+
             /* execute result */
+            /* If difference between support and opposition is larger than margin */
             if (p.currentResult > majorityMargin) {
-                /* If difference between support and opposition is larger than margin */
-                p.recipient.call.value(p.amount * 1 ether)(transactionBytecode);
+                // Avoid recursive calling
+
                 p.executed = true;
+                if (!p.recipient.call.value(p.amount * 1 ether)(transactionBytecode)) {
+                    throw;
+                }
+
                 p.proposalPassed = true;
             } else {
-                p.executed = true;
                 p.proposalPassed = false;
             }
             // Fire Events
             ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
         }
     }
+
 
 
 #### How to deploy
@@ -379,13 +390,13 @@ Now to the shareholder code:
             bool inSupport;
             address voter;
         }
-        
+
         /* modifier that allows only shareholders to vote and create new proposals */
         modifier onlyShareholders {
             if (sharesTokenAddress.balanceOf(msg.sender) == 0) throw;
             _
         }
-        
+
         /* First time setup */
         function Association(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) {
             changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
@@ -423,7 +434,7 @@ Now to the shareholder code:
             ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
             numProposals = proposalID+1;
         }
-        
+
         /* function to check if a proposal code matches */
         function checkProposalCode(
             uint proposalNumber,
@@ -437,7 +448,7 @@ Now to the shareholder code:
             Proposal p = proposals[proposalNumber];
             return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
         }
-        
+
         /* */
         function vote(uint proposalNumber, bool supportsProposal)
             onlyShareholders
@@ -445,14 +456,14 @@ Now to the shareholder code:
         {
             Proposal p = proposals[proposalNumber];
             if (p.voted[msg.sender] == true) throw;
-            
+
             voteID = p.votes.length++;
             p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
             p.voted[msg.sender] = true;
             p.numberOfVotes = voteID +1;
             Voted(proposalNumber,  supportsProposal, msg.sender);
         }
-        
+
         function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
             Proposal p = proposals[proposalNumber];
             /* Check if the proposal can be executed */
@@ -465,7 +476,7 @@ Now to the shareholder code:
             uint quorum = 0;
             uint yea = 0;
             uint nay = 0;
-            
+
             for (uint i = 0; i <  p.votes.length; ++i) {
                 Vote v = p.votes[i];
                 uint voteWeight = sharesTokenAddress.balanceOf(v.voter);
@@ -476,18 +487,19 @@ Now to the shareholder code:
                     nay += voteWeight;
                 }
             }
-            
+
             /* execute result */
             if (quorum <= minimumQuorum) {
                 /* Not enough significant voters */
                 throw;
             } else if (yea > nay ) {
                 /* has quorum and was approved */
-                p.recipient.call.value(p.amount * 1 ether)(transactionBytecode);
                 p.executed = true;
+                if (!p.recipient.call.value(p.amount * 1 ether)(transactionBytecode)) {
+                    throw;
+                }
                 p.proposalPassed = true;
             } else {
-                p.executed = true;
                 p.proposalPassed = false;
             }
             // Fire Events
@@ -564,29 +576,30 @@ We are going to implement a version of what's usually called **Liquid Democracy*
     contract token {
         mapping (address => uint256) public balanceOf;
     }
-    
-    
+
+
     contract LiquidDemocracy {
         token public votingToken;
+        bool  underExecution;
         address public appointee;
         mapping (address => uint) public voterId;
         mapping (address => uint256) public voteWeight;
-        
+
         uint public delegatedPercent;
         uint public lastWeightCalculation;
         uint public numberOfDelegationRounds;
-        
+
         uint public numberOfVotes;
         DelegatedVote[] public delegatedVotes;
         string public forbiddenFunction;
-        
+
         event NewAppointee(address newAppointee, bool changed);
-        
+
         struct DelegatedVote {
             address nominee;
             address voter;
         }
-        
+
         function LiquidDemocracy(
             address votingWeightToken,
             string forbiddenFunctionCall,
@@ -599,7 +612,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
             delegatedPercent = 100 - percentLossInEachRound;
             if (delegatedPercent > 100) delegatedPercent = 100;
         }
-        
+
         function vote(address nominatedAddress) returns (uint voteIndex) {
             if (voterId[msg.sender]== 0) {
                 voterId[msg.sender] = delegatedVotes.length;
@@ -610,30 +623,37 @@ We are going to implement a version of what's usually called **Liquid Democracy*
             else {
                 voteIndex = voterId[msg.sender];
             }
-            
+
             delegatedVotes[voteIndex] = DelegatedVote({nominee: nominatedAddress, voter: msg.sender});
         }
-        
-        function execute(address target, uint valueInEther, bytes32 bytecode){
+
+        function execute(address target, uint valueInEther, bytes32 bytecode) {
             if (msg.sender != appointee                                 // If caller is the current appointee,
-                || !target.call.value(valueInEther * 1 ether)(bytecode) // if the call is valid,
+                || underExecution //                                    // if the call is being executed,
                 || bytes4(bytecode) == bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
                 || numberOfDelegationRounds < 4 )                       // and delegation has been calculated enough
                 throw;
-            
-            target.call.value(valueInEther * 1 ether)(bytecode);        // Then execute the command.
+
+            underExecution = true;
+
+            if (!target.call.value(valueInEther * 1 ether)(bytecode)) { // Then execute the command.
+                throw;
+            }
+            else {
+              underExecution = false;
+            }
         }
-        
+
         function calculateVotes() returns (address winner) {
             address currentWinner = appointee;
             uint currentMax = 0;
             uint weight = 0;
             DelegatedVote v = delegatedVotes[0];
-            
+
             if (now > lastWeightCalculation + 90 minutes) {
                 numberOfDelegationRounds = 0;
                 lastWeightCalculation = now;
-                
+
                 // Distribute the initial weight
                 for (uint i=1; i< delegatedVotes.length; i++) {
                     voteWeight[delegatedVotes[i].nominee] = 0;
@@ -648,13 +668,13 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                 if (lossRatio > 0) {
                     for (i=1; i< delegatedVotes.length; i++){
                         v = delegatedVotes[i];
-                        
+
                         if (v.nominee != v.voter && voteWeight[v.voter] > 0) {
                             weight = voteWeight[v.voter] * lossRatio / 100;
                             voteWeight[v.voter] -= weight;
                             voteWeight[v.nominee] += weight;
                         }
-                        
+
                         if (numberOfDelegationRounds>3 && voteWeight[v.nominee] > currentMax) {
                             currentWinner = v.nominee;
                             currentMax = voteWeight[v.nominee];
@@ -662,12 +682,12 @@ We are going to implement a version of what's usually called **Liquid Democracy*
                     }
                 }
             }
-            
+
             if (numberOfDelegationRounds > 3) {
                 NewAppointee(currentWinner, appointee == currentWinner);
                 appointee = currentWinner;
             }
-            
+
             return currentWinner;
         }
     }
@@ -702,7 +722,7 @@ Into this:
     contract token {
         mapping (address => uint256) public voteWeight;
         uint public numberOfDelegationRounds;
-        
+
         function balanceOf(address member) constant returns (uint256 balance) {
             if (numberOfDelegationRounds < 3)
                 return 0;
