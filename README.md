@@ -17,8 +17,8 @@ Make sure you have node.js and npm installed.
 Clone the repository and install the dependencies
 
 ```bash
-git clone https://github.com/ethereum/frontier-release
-cd frontier-release
+git clone https://github.com/ethereum/ethereum-org
+cd ethereum-org
 npm install
 npm install -g grunt-cli
 ```
