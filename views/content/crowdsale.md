@@ -26,16 +26,14 @@ Also, generally those who are funding can't have any say on how the money is spe
 
 Now copy this code and let's create the crowdsale:
 
-
 contract token { function transfer(address receiver, uint amount){  } }
-
 
 contract Crowdsale {
   address public beneficiary;
   uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
-  token public tokenReward;   
-  mapping(address => uint) public fundersBalance;
-  bool fundingGoalReached;
+  token public tokenReward;
+  mapping(address => uint256) public balanceOf;
+  bool fundingGoalReached = false;
   event GoalReached(address beneficiary, uint amountRaised);
   event FundTransfer(address backer, uint amount, bool isContribution);
   bool crowdsaleClosed = false;
@@ -55,13 +53,13 @@ contract Crowdsale {
       deadline = now + durationInMinutes * 1 minutes;
       price = etherCostOfEachToken * 1 ether;
       tokenReward = token(addressOfTokenUsedAsReward);
-  }   
+  }
 
   /* The function without name is the default function that is called whenever anyone sends funds to a contract */
   function () {
       if (crowdsaleClosed) throw;
       uint amount = msg.value;
-      fundersBalance[msg.sender] = amount;
+      balanceOf[msg.sender] = amount;
       amountRaised += amount;
       tokenReward.transfer(msg.sender, amount / price);
       FundTransfer(msg.sender, amount, true);
@@ -74,34 +72,37 @@ contract Crowdsale {
       if (amountRaised >= fundingGoal){
           fundingGoalReached = true;
           GoalReached(beneficiary, amountRaised);
-      }           
+      }
       crowdsaleClosed = true;
   }
 
 
   function safeWithdrawl() afterDeadline {
+      if (!fundingGoalReached) {
+          uint amount = balanceOf[msg.sender];
+          balanceOf[msg.sender] = 0;
+          if (amount > 0) {
+            if (msg.sender.send(amount)) {
+              FundTransfer(msg.sender, amount, false);
+            }
+            else {
+              balanceOf[msg.sender] = amount;
+            }
+          }
+      }
+
       if (fundingGoalReached && beneficiary == msg.sender) {
           if (beneficiary.send(amountRaised)) {
               FundTransfer(beneficiary, amountRaised, false);
           }
-      }
-
-      if (!fundingGoalReached) {
-          uint amount = fundersBalance[msg.sender];
-          fundersBalance[msg.sender] = 0;
-
-          if (msg.sender.send(amount)) {
-              FundTransfer(msg.sender, amount, false);
-          }
           else {
-              fundersBalance[msg.sender] = amount;
+              //If we fail to send the funds to beneficiary, unlock funders balance
+              fundingGoalReached = false;
           }
-
-
       }
+
   }
 }
-
 
 #### Code highlights
 
@@ -161,7 +162,7 @@ The [unnamed function](https://solidity.readthedocs.org/en/latest/contracts.html
 
 This has the advantage that the contract prevents falling into a situation that someone will be left without their ether or tokens. In a previous version of this contract we would also [**self destruct**](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#contract-related) the contract after the crowdsale ended: this would mean that any transaction sent after that moment would lose their funds. By creating a fallback function that throws when the sale is over, we prevent anyone losing money.
 
-The contract has a single function, without any parameters, that can be executed by anyone once the crowdsale is over (and can even be [scheduled using the **ethereum alarm clock**](http://www.ethereum-alarm-clock.com) community feature). The function will see if the funding goals were reached and distribute funds accordingly.
+The contract has a safeWithdrawl() function, without any parameters, that can be executed by the beneficiary to access the amount raised or by the funders to get back their funds in the case of a failed fundraise.
 
 ![Crowdsale execution](/images/tutorial/crowdsale-execute.png)
 
