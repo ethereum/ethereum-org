@@ -15,8 +15,7 @@
 
 ----
 
-### Governing Board
-
+### Foundation Council
 
 #### Vitalik Buterin
 
@@ -28,7 +27,7 @@
 
 ----
 
-
+### Technical Steering Group
 
 #### Jeffrey Wilcke
 
@@ -37,18 +36,6 @@
 **Jeff is one of the founders of Ethereum.** He started the first implementation of Ethereum using the Go programming language in 2013 and has been the Go team lead and head developer ever since. The Go client launched successfully on July 30, 2015, marking the release of the genesis block and Ethereum platform. Jeff complements Vitalik on the board as a founder-director.
 
 [Linkedin](https://www.linkedin.com/in/jeffreywilcke), [Twitter](https://twitter.com/jeffehh), [Github](https://github.com/obscuren)
-
-----
-
-
-
-#### David Ben Kay
-
-![Portrait of David Kay](/images/portraits/david-ben-kay.jpg)
-
-**David Ben Kay is a lawyer specialized in creating innovative intellectual property solutions for emerging markets.** He has lived and worked in China for the past 30 years, where he was the managing partner of the Beijing office of Denton Hall (later Dentons), and the General Counsel of Microsoft China. In the past eight years, David has run his own consulting company and business incubator in Beijing's 798 Art District, and has been active in the technology and business innovation space as a speaker, host and mentor.
-
-[Linkedin](https://www.linkedin.com/in/davidbenkay), [Twitter](https://twitter.com/davidbenkay)
 
 ----
 
