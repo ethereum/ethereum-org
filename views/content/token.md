@@ -6,7 +6,7 @@ We are going to create a digital token. Tokens in the ethereum ecosystem can rep
 
 If you are in a hurry, here's the final code of the basic token:
 
-    
+
     contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
     contract MyToken {
@@ -323,8 +323,10 @@ The next step is making the buy and sell functions:
         if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
         balanceOf[this] += amount;                         // adds the amount to owner's balance
         balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
-        revenue = amount * sellPrice;                      // calculate the revenue
-        msg.sender.send(revenue);                          // sends ether to the seller
+        uint revenue = amount * sellPrice;
+        if (!msg.sender.send(revenue)) {                    // sends ether to the seller
+            balanceOf[msg.sender] += amount
+        }
         Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
         return revenue;                                    // ends function and returns
     }
@@ -591,7 +593,9 @@ If you add all the advanced options, this is how the final code should look like
             if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
             balanceOf[this] += amount;                         // adds the amount to owner's balance
             balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
-            msg.sender.send(amount * sellPrice);               // sends ether to the seller
+            if (!msg.sender.send(amount * sellPrice)) {        // sends ether to the seller
+                balanceOf[msg.sender] += amount
+            }               
             Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
         }
     }

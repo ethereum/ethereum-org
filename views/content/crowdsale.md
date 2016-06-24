@@ -6,13 +6,13 @@ Sometimes a good idea takes a lot of funds and collective effort. You could ask 
 
 #### Tokens and DAOs
 
-In this example we will make a better crowdfunding by solving two important problems: how rewards are managed and kept, and how the money is spent after the funds are raised. 
+In this example we will make a better crowdfunding by solving two important problems: how rewards are managed and kept, and how the money is spent after the funds are raised.
 
 Rewards in crowdfundings are usually handled by a central unchangeable database that keeps track of all donors: anyone who missed the deadline for the campaign cannot get in anymore and any donor who changed their mind can't get out. Instead we are going to do this the decentralized way and just create a [token](./token) to keep track of rewards, anyone who contributes gets a token that they can trade, sell or keep for later. When the time comes to give the physical reward the producer only needs to exchange the tokens for real products. Donors get to keep their tokens, even if the project doesn't achieve its goals, as a souvenir.
 
 Also, generally those who are funding can't have any say on how the money is spent after the funds are raised and mismanagement often causes projects never to deliver anything at all. In this project we will use a [Democratic Organization](./dao) that will have to approve any money coming out of the system. This is often called a **crowdsale** or **crowd equity** and is so fundamental that in some cases the token can be the reward itself, especially in projects where a group of people gather together to build a common public good.
 
-![Get the necessary contracts](/images/tutorial/token-crowdsale.png) 
+![Get the necessary contracts](/images/tutorial/token-crowdsale.png)
 
 
 * If you are just testing, switch the wallet to the testnet and start mining.
@@ -26,68 +26,83 @@ Also, generally those who are funding can't have any say on how the money is spe
 
 Now copy this code and let's create the crowdsale:
 
-     
-    contract token { function transfer(address receiver, uint amount){  } }
-    
+contract token { function transfer(address receiver, uint amount){  } }
 
-    contract Crowdsale {
-        address public beneficiary;
-        uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
-        token public tokenReward;   
-        Funder[] public funders;
-        event FundTransfer(address backer, uint amount, bool isContribution);
-        bool crowdsaleClosed = false;
-        
-        /* data structure to hold information about campaign contributors */
-        struct Funder {
-            address addr;
-            uint amount;
-        }
-        
-        /*  at initialization, setup the owner */
-        function Crowdsale(
-            address ifSuccessfulSendTo, 
-            uint fundingGoalInEthers, 
-            uint durationInMinutes, 
-            uint etherCostOfEachToken, 
-            token addressOfTokenUsedAsReward
-        ) {
-            beneficiary = ifSuccessfulSendTo;
-            fundingGoal = fundingGoalInEthers * 1 ether;
-            deadline = now + durationInMinutes * 1 minutes;
-            price = etherCostOfEachToken * 1 ether;
-            tokenReward = token(addressOfTokenUsedAsReward);
-        }   
-        
-        /* The function without name is the default function that is called whenever anyone sends funds to a contract */
-        function () {
-            if (crowdsaleClosed) throw;
-            uint amount = msg.value;
-            funders[funders.length++] = Funder({addr: msg.sender, amount: amount});
-            amountRaised += amount;
-            tokenReward.transfer(msg.sender, amount / price);
-            FundTransfer(msg.sender, amount, true);
-        }
-            
-        modifier afterDeadline() { if (now >= deadline) _ }
+contract Crowdsale {
+  address public beneficiary;
+  uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
+  token public tokenReward;
+  mapping(address => uint256) public balanceOf;
+  bool fundingGoalReached = false;
+  event GoalReached(address beneficiary, uint amountRaised);
+  event FundTransfer(address backer, uint amount, bool isContribution);
+  bool crowdsaleClosed = false;
 
-        /* checks if the goal or time limit has been reached and ends the campaign */
-        function checkGoalReached() afterDeadline {
-            if (amountRaised >= fundingGoal){
-                beneficiary.send(amountRaised);
-                FundTransfer(beneficiary, amountRaised, false);
-            } else {
-                for (uint i = 0; i < funders.length; ++i) {
-                  funders[i].addr.send(funders[i].amount);  
-                  FundTransfer(funders[i].addr, funders[i].amount, false);
-                }               
+  /* data structure to hold information about campaign contributors */
+
+  /*  at initialization, setup the owner */
+  function Crowdsale(
+      address ifSuccessfulSendTo,
+      uint fundingGoalInEthers,
+      uint durationInMinutes,
+      uint etherCostOfEachToken,
+      token addressOfTokenUsedAsReward
+  ) {
+      beneficiary = ifSuccessfulSendTo;
+      fundingGoal = fundingGoalInEthers * 1 ether;
+      deadline = now + durationInMinutes * 1 minutes;
+      price = etherCostOfEachToken * 1 ether;
+      tokenReward = token(addressOfTokenUsedAsReward);
+  }
+
+  /* The function without name is the default function that is called whenever anyone sends funds to a contract */
+  function () {
+      if (crowdsaleClosed) throw;
+      uint amount = msg.value;
+      balanceOf[msg.sender] = amount;
+      amountRaised += amount;
+      tokenReward.transfer(msg.sender, amount / price);
+      FundTransfer(msg.sender, amount, true);
+  }
+
+  modifier afterDeadline() { if (now >= deadline) _ }
+
+  /* checks if the goal or time limit has been reached and ends the campaign */
+  function checkGoalReached() afterDeadline {
+      if (amountRaised >= fundingGoal){
+          fundingGoalReached = true;
+          GoalReached(beneficiary, amountRaised);
+      }
+      crowdsaleClosed = true;
+  }
+
+
+  function safeWithdrawl() afterDeadline {
+      if (!fundingGoalReached) {
+          uint amount = balanceOf[msg.sender];
+          balanceOf[msg.sender] = 0;
+          if (amount > 0) {
+            if (msg.sender.send(amount)) {
+              FundTransfer(msg.sender, amount, false);
             }
-            
-            beneficiary.send(this.balance); // send any remaining balance to beneficiary anyway
-            crowdsaleClosed = true;
-        }
-    }
+            else {
+              balanceOf[msg.sender] = amount;
+            }
+          }
+      }
 
+      if (fundingGoalReached && beneficiary == msg.sender) {
+          if (beneficiary.send(amountRaised)) {
+              FundTransfer(beneficiary, amountRaised, false);
+          }
+          else {
+              //If we fail to send the funds to beneficiary, unlock funders balance
+              fundingGoalReached = false;
+          }
+      }
+
+  }
+}
 
 #### Code highlights
 
@@ -98,7 +113,7 @@ Notice that in the **Crowdsale** function (the one that is called upon contract 
     price = etherCostOfEachToken * 1 ether;
 
 Those are some of the [special keywords](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html) in solidity that help you code, allowing you to evaluate some things like **1 ether == 1000 finney** or **2 days == 48 hours**. Inside the system all ether amounts are kept track in **wei**, the smallest divisible unit of ether. The code above converts the funding goal into wei by multiplying it by 1,000,000,000,000,000,000 (which is what the special keyword **ether** converts into). The next line creates a timestamp that is exactly X minutes away from today by also using a combination of the special keywords **now** and **minutes**. For more global keywords, check the [solidity documentation on Globally available variables](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html).
-        
+
 The following line will instantiate a contract at a given address:
 
     tokenReward = token(addressOfTokenUsedAsReward);
@@ -112,11 +127,11 @@ This doesn't fully describe how the contract works or all the functions it has, 
 
 #### How to use            
 
-Go to **contracts** and then **deploy contract**: 
+Go to **contracts** and then **deploy contract**:
 
-![Crowdsale deployment](/images/tutorial/crowdsale-deploy.png) 
+![Crowdsale deployment](/images/tutorial/crowdsale-deploy.png)
 
-* Put the address of the organization you just created in the field **if successful, send to**. 
+* Put the address of the organization you just created in the field **if successful, send to**.
 
 * Put **250** ethers as the funding goal
 
@@ -143,13 +158,13 @@ Once the crowdsale has all the necessary tokens, contributing to it is easy and 
 
 The [unnamed function](https://solidity.readthedocs.org/en/latest/contracts.html#fallback-function) is the default function executed whenever a contract receives ether. This function will automatically check if the crowdsale is active, calculate how many tokens the caller bought and send the equivalent. If the crowdsale has ended or if the contract is out of tokens the contract will **throw** meaning the execution will be stopped and the ether sent will be returned (but all the gas will be spent).
 
-![Crowdsale error](/images/tutorial/crowdsale-error.png) 
+![Crowdsale error](/images/tutorial/crowdsale-error.png)
 
 This has the advantage that the contract prevents falling into a situation that someone will be left without their ether or tokens. In a previous version of this contract we would also [**self destruct**](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#contract-related) the contract after the crowdsale ended: this would mean that any transaction sent after that moment would lose their funds. By creating a fallback function that throws when the sale is over, we prevent anyone losing money.
 
-The contract has a single function, without any parameters, that can be executed by anyone once the crowdsale is over (and can even be [scheduled using the **ethereum alarm clock**](http://www.ethereum-alarm-clock.com) community feature). The function will see if the funding goals were reached and distribute funds accordingly.
+The contract has a safeWithdrawl() function, without any parameters, that can be executed by the beneficiary to access the amount raised or by the funders to get back their funds in the case of a failed fundraise.
 
-![Crowdsale execution](/images/tutorial/crowdsale-execute.png) 
+![Crowdsale execution](/images/tutorial/crowdsale-execute.png)
 
 ### Extending the crowdsale
 
@@ -161,7 +176,7 @@ In our code, only two things can happen: either the crowdsale reaches its target
 
 So we are going to modify our project slightly so that instead of sending a limited set of tokens, the project actually creates a new token out of thin air whenever someone sends them ether. First of all, we need to create a [Mintable token](./token#central-mint).
 
-Then modify the crowdsale to rename all mentions of **transfer** to **mintToken**: 
+Then modify the crowdsale to rename all mentions of **transfer** to **mintToken**:
 
 
 
@@ -183,12 +198,12 @@ Once you published the crowdsale contract, get its address and go into your **To
 
 #### Scheduling a call
 
-Ethereum contracts are passive, in that they can only do something once they have been activated. Fortunately there are some third party community services that provide that service for you: the [Ethereum Alarm Clock](http://www.ethereum-alarm-clock.com/) is an open marketplace where anyone can receive ether to execute scheduled calls or pay ether to schedule them. This tutorial will be using the [0.6.0 version](http://www.ethereum-alarm-clock.com/source/v0.6.0/) of the Alarm service.  Documentation for this version available [here](http://ethereum-alarm-clock-service.readthedocs.org/en/v0.6.0/). 
+Ethereum contracts are passive, in that they can only do something once they have been activated. Fortunately there are some third party community services that provide that service for you: the [Ethereum Alarm Clock](http://www.ethereum-alarm-clock.com/) is an open marketplace where anyone can receive ether to execute scheduled calls or pay ether to schedule them. This tutorial will be using the [0.6.0 version](http://www.ethereum-alarm-clock.com/source/v0.6.0/) of the Alarm service.  Documentation for this version available [here](http://ethereum-alarm-clock-service.readthedocs.org/en/v0.6.0/).
 
 ![Add the alarm clock](/images/tutorial/add-alarm-clock.png)
 
 First, you need to add the contract to your watchlist. Go to your *Contracts* tab and then *Watch contract* (**not** *deploy contract*): Give the name "Ethereum Alarm Clock", use **0xe109EcB193841aF9dA3110c80FDd365D1C23Be2a** as address (the icon should look like a green eyed creature) and add this code as the *Json Interface*:
-    
+
     [{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"},{"name":"suggestedGas","type":"uint256"},{"name":"gracePeriod","type":"uint8"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"getDefaultPayment","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"getDefaultFee","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"},{"name":"suggestedGas","type":"uint256"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[{"name":"callAddress","type":"address"}],"name":"getNextCallSibling","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[{"name":"callAddress","type":"address"}],"name":"isKnownCall","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":true,"inputs":[{"name":"basePayment","type":"uint256"}],"name":"getMinimumCallCost","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"},{"name":"suggestedGas","type":"uint256"},{"name":"gracePeriod","type":"uint8"},{"name":"basePayment","type":"uint256"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"getMinimumCallCost","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"},{"name":"suggestedGas","type":"uint256"},{"name":"gracePeriod","type":"uint8"},{"name":"basePayment","type":"uint256"},{"name":"baseFee","type":"uint256"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[{"name":"basePayment","type":"uint256"},{"name":"baseFee","type":"uint256"}],"name":"getMinimumCallCost","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"getMinimumCallGas","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"getCallWindowSize","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[{"name":"blockNumber","type":"uint256"}],"name":"getNextCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"getMinimumGracePeriod","outputs":[{"name":"","type":"uint256"}],"type":"function"}]
 
 **Tip: if you are on the test net, use the address *0xb8Da699d7FB01289D4EF718A55C3174971092BEf* instead**
@@ -210,7 +225,4 @@ You can use the following chart for rough estimates for how many blocks to add t
 
 On the **Send** field, you need to send enough ether to pay the transaction fee, plus some more to pay the scheduler. Any extra money sent will be refunded, so sending at least 0.25 ether will probably keep you on the safe side.
 
-After that, just press execute and your call will be scheduled. There are no guarantees that someone will actually execute it, so you should check back after the deadline has passed to be sure. 
-
-
-
+After that, just press execute and your call will be scheduled. There are no guarantees that someone will actually execute it, so you should check back after the deadline has passed to be sure.
