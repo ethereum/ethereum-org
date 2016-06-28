@@ -353,7 +353,7 @@ In order to do that, first you need to create a variable that will hold the thre
          minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
     }
 
-Then, add this line to the **transfer* function so that the sender is refunded:
+Then, add this line to the **transfer** function so that the sender is refunded:
 
     /* Send coins */
     function transfer(address _to, uint256 _value) {
