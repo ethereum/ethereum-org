@@ -324,11 +324,13 @@ The next step is making the buy and sell functions:
         balanceOf[this] += amount;                         // adds the amount to owner's balance
         balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
         uint revenue = amount * sellPrice;
-        if (!msg.sender.send(revenue)) {                    // sends ether to the seller
-            balanceOf[msg.sender] += amount
+        if (!msg.sender.send(revenue)) {                   // sends ether to the seller
+            throw;
         }
-        Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
-        return revenue;                                    // ends function and returns
+        else {
+            Transfer(msg.sender, this, amount);             // executes an event reflecting on the change
+            return revenue;                                 // ends function and returns
+        }
     }
 
 
@@ -594,9 +596,11 @@ If you add all the advanced options, this is how the final code should look like
             balanceOf[this] += amount;                         // adds the amount to owner's balance
             balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
             if (!msg.sender.send(amount * sellPrice)) {        // sends ether to the seller
-                balanceOf[msg.sender] += amount
+                throw;
+            }
+            else {
+                Transfer(msg.sender, this, amount);            // executes an event reflecting on the change
             }               
-            Transfer(msg.sender, this, amount);                // executes an event reflecting on the change
         }
     }
 
