@@ -47,7 +47,7 @@
 
 ![Portrait of Bernd Lapp](/images/portraits/bernd-lapp.jpg)
 
-Bernd Lapp’s background and experience in management experience spans many years across multiple industries including finance, digital media, and sports. In his last role as Head of Sales, he was responsible for defining and implementing the sales strategy for the most successful mobile banking app in Germany. Bernd advises the Foundation on topics such as PR, Marketing, Communications, Fundraising and related HR and business planning.
+Bernd Lapp is founder of the decentralized consulting network, which gives extensive support to companies researching and developing business models on a Blockchain. He has many years of Business Development experience across multiple industries including fintech, digital media and sports. Bernd advises the Foundation on topics such as PR, Marketing, Communications, Fundraising and related HR and business planning. 
 
 
 [LinkedIn](https://ch.linkedin.com/in/berndlapp)
