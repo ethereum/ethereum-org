@@ -18,7 +18,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
 #### The code
 
-   contract owned {
+    contract owned {
         address public owner;
 
         function owned() {
