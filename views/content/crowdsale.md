@@ -26,6 +26,7 @@ Also, generally those who are funding can't have any say on how the money is spe
 
 Now copy this code and let's create the crowdsale:
 
+
     contract token { function transfer(address receiver, uint amount){  } }
 
     contract Crowdsale {
@@ -77,15 +78,14 @@ Now copy this code and let's create the crowdsale:
         }
 
 
-        function safeWithdrawl() afterDeadline {
+        function safeWithdrawal() afterDeadline {
             if (!fundingGoalReached) {
                 uint amount = balanceOf[msg.sender];
                 balanceOf[msg.sender] = 0;
                 if (amount > 0) {
                     if (msg.sender.send(amount)) {
                         FundTransfer(msg.sender, amount, false);
-                    }
-                    else {
+                    } else {
                         balanceOf[msg.sender] = amount;
                     }
                 }
@@ -94,8 +94,7 @@ Now copy this code and let's create the crowdsale:
             if (fundingGoalReached && beneficiary == msg.sender) {
                 if (beneficiary.send(amountRaised)) {
                     FundTransfer(beneficiary, amountRaised, false);
-                }
-                else {
+                } else {
                     //If we fail to send the funds to beneficiary, unlock funders balance
                     fundingGoalReached = false;
                 }
