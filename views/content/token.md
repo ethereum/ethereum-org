@@ -323,7 +323,7 @@ The next step is making the buy and sell functions:
         if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
         balanceOf[this] += amount;                         // adds the amount to owner's balance
         balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
-        uint revenue = amount * sellPrice;
+        revenue = amount * sellPrice;
         if (!msg.sender.send(revenue)) {                   // sends ether to the seller: it's important
             throw;                                         // to do this last to prevent recursion attacks
         } else {
