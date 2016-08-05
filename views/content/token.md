@@ -49,13 +49,21 @@ If you are in a hurry, here's the final code of the basic token:
         }
 
         /* Allow another contract to spend some tokens in your behalf */
-        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+        function approve(address _spender, uint256 _value)
             returns (bool success) {
             allowance[msg.sender][_spender] = _value;
             tokenRecipient spender = tokenRecipient(_spender);
-            spender.receiveApproval(msg.sender, _value, this, _extraData);
             return true;
         }
+        
+        /* Approve and then comunicate the approved contract in a single tx */
+        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+            returns (bool success) {
+            if (approve(_spender, _value)) {
+                _spender.receiveApproval(msg.sender, _value, this, _extraData);
+                return true;
+            }
+        }        
 
         /* A contract attempts to get the coins */
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
@@ -492,13 +500,21 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         /* Allow another contract to spend some tokens in your behalf */
-        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+        function approve(address _spender, uint256 _value)
             returns (bool success) {
             allowance[msg.sender][_spender] = _value;
             tokenRecipient spender = tokenRecipient(_spender);
-            spender.receiveApproval(msg.sender, _value, this, _extraData);
             return true;
         }
+        
+        /* Approve and then comunicate the approved contract in a single tx */
+        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+            returns (bool success) {
+            if (approve(_spender, _value)) {
+                _spender.receiveApproval(msg.sender, _value, this, _extraData);
+                return true;
+            }
+        } 
 
         /* A contract attempts to get the coins */
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
