@@ -2,10 +2,8 @@ extends layout
 
 block vars
   - var title='Ethereum Project'
-  - var version = '0.8.1'
-  - var versiondash = '0-8-1'
-
-
+  - var version = '0.8.2'
+  - var versiondash = '0-8-2'
 
 block content
   div.main-tutorial.scrollme.intro
@@ -35,7 +33,7 @@ block content
             strong blockchain, an enormously powerful shared global infrastructure that can move value around and represent the ownership of property. 
             | This enables developers to create markets, store registries of debts or promises, move funds in accordance with instructions given long in the past (like a will or a futures contract) and many other things that have not been invented yet, all without a middle man or counterparty risk.
 
-          p The project was crowdfunded during August 2014 by fans all around the world. It is developed by the 
+          p The project was bootstraped via an ether pre-sale during August 2014 by fans all around the world. It is developed by the 
             a(href='./foundation') Ethereum Foundation
             | , a Swiss nonprofit, with contributions from great minds across the globe.
         
@@ -113,34 +111,13 @@ block content
       a(href="#community") Join the Community
       a(href="./donate").donation-button Donate
 
-
   include ./includes/recipes.jade
-
-  div.power-tools#power-tools
-      div.container
-        div.row
-          div.col-md-6.whatis.scrollme
-            figure.turbo.scrollme
-              div.turbo-01.animateme(data-when="span", data-from="0.3", data-to="0.0", data-opacity="0", data-translatex="500")
-              div.turbo-02.animateme(data-when="span", data-from="0.35", data-to="0.1", data-opacity="0", data-translatex="500")
-              div.turbo-03.animateme(data-when="span", data-from="0.4", data-to="0.2", data-opacity="0", data-translatex="500")
-              div.turbo-04.animateme(data-when="span", data-from="0.45", data-to="0.3", data-opacity="0", data-translatex="500")
-              div.turbo-05.animateme(data-when="span", data-from="0.6", data-to="0.5", data-opacity="0", data-translatex="500")
-          
-          div.col-md-6.whatis.scrollme
-            h2 Mix IDE
-            h3 An IDE for the blockchain era
-
-            p Mix is a full IDE for the Ethereum network. Develop decentralized applications, write smart contracts and closely inspect the compiled code. When you are ready, use it to publish, deploy and register your contracts.
-            
-            a(href="https://github.com/ethereum/webthree-umbrella/releases/latest").button.require-legal Download Mix
-
 
   div.command-line
       div.container
         div.row.scrollme
           div.col-md-6.whatis          
-            h3 Or just get our command line tools
+            h3 Get our command line tools
 
             p If you feel more comfortable around a terminal, you can download our command line tools. We have different client implementations built in Go, C++, Python, Java and others.
 
