@@ -49,13 +49,21 @@ If you are in a hurry, here's the final code of the basic token:
         }
 
         /* Allow another contract to spend some tokens in your behalf */
-        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+        function approve(address _spender, uint256 _value)
             returns (bool success) {
             allowance[msg.sender][_spender] = _value;
-            tokenRecipient spender = tokenRecipient(_spender);
-            spender.receiveApproval(msg.sender, _value, this, _extraData);
             return true;
         }
+        
+        /* Approve and then comunicate the approved contract in a single tx */
+        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+            returns (bool success) {
+            tokenRecipient spender = tokenRecipient(_spender);
+            if (approve(_spender, _value)) {
+                spender.receiveApproval(msg.sender, _value, this, _extraData);
+                return true;
+            }
+        }        
 
         /* A contract attempts to get the coins */
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
@@ -480,6 +488,7 @@ If you add all the advanced options, this is how the final code should look like
             name = tokenName;                                   // Set the name for display purposes
             symbol = tokenSymbol;                               // Set the symbol for display purposes
             decimals = decimalUnits;                            // Amount of decimals for display purposes
+            msg.sender.send(msg.value);                         // Send back any ether sent accidentally
         }
 
         /* Send coins */
@@ -492,12 +501,21 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         /* Allow another contract to spend some tokens in your behalf */
-        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+        function approve(address _spender, uint256 _value)
             returns (bool success) {
             allowance[msg.sender][_spender] = _value;
             tokenRecipient spender = tokenRecipient(_spender);
-            spender.receiveApproval(msg.sender, _value, this, _extraData);
             return true;
+        }
+        
+        /* Approve and then comunicate the approved contract in a single tx */
+        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+            returns (bool success) {    
+            tokenRecipient spender = tokenRecipient(_spender);
+            if (approve(_spender, _value)) {
+                spender.receiveApproval(msg.sender, _value, this, _extraData);
+                return true;
+            }
         }
 
         /* A contract attempts to get the coins */
@@ -568,8 +586,8 @@ If you add all the advanced options, this is how the final code should look like
         function mintToken(address target, uint256 mintedAmount) onlyOwner {
             balanceOf[target] += mintedAmount;
             totalSupply += mintedAmount;
-            Transfer(0, owner, mintedAmount);
-            Transfer(owner, target, mintedAmount);
+            Transfer(0, this, mintedAmount);
+            Transfer(this, target, mintedAmount);
         }
 
         function freezeAccount(address target, bool freeze) onlyOwner {
