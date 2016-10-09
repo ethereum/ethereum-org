@@ -95,10 +95,11 @@ The way this particular democracy works is that it has an **Owner** which works 
             int marginOfVotesForMajority, address congressLeader
         ) {
             changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
-            members.length++;
-            members[0] = Member({member: 0, canVote: false, memberSince: now, name: ''});
             if (congressLeader != 0) owner = congressLeader;
-
+            // It’s necessary to add an empty first member
+            changeMembership(0, false, ''); 
+            // and let's add the founder, to save a step later       
+            changeMembership(owner, true, 'founder');        
         }
 
         /*make member*/
@@ -223,7 +224,6 @@ The way this particular democracy works is that it has an **Owner** which works 
             ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
         }
     }
-
 
 
 #### How to deploy
