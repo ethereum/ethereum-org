@@ -2011,9 +2011,9 @@ footer {
 	.community ul li a.twitter {
 		background-image: url("../images/icons/icon-twitter@2x.png");
 	}
-  .community ul li a.gitter {
-    background-image: url("../images/icons/icon-gitter@2x.png");
-  }
+	.community ul li a.gitter {
+		background-image: url("../images/icons/icon-gitter@2x.png");
+	}
 	.community ul li a.facebook {
 		background-image: url("../images/icons/icon-facebook@2x.png");
 	}
