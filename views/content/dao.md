@@ -18,6 +18,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
 #### The code
 
+    pragma solidity ^0.4.2;
     contract owned {
         address public owner;
 
@@ -93,7 +94,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             uint minimumQuorumForProposals,
             uint minutesForDebate,
             int marginOfVotesForMajority, address congressLeader
-        ) {
+        ) payable {
             changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
             if (congressLeader != 0) owner = congressLeader;
             // It’s necessary to add an empty first member
@@ -334,7 +335,7 @@ We are going to modify a bit our contract to connect it to a specific token, whi
 Now to the shareholder code:
 
 
-
+    pragma solidity ^0.4.2;
     /* The token is used as a voting shares */
     contract token { mapping (address => uint256) public balanceOf;  }
 
@@ -398,7 +399,7 @@ Now to the shareholder code:
         }
 
         /* First time setup */
-        function Association(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) {
+        function Association(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable {
             changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
         }
 

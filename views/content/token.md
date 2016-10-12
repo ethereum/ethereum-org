@@ -6,7 +6,7 @@ We are going to create a digital token. Tokens in the ethereum ecosystem can rep
 
 If you just want to copy paste the code, then use this:
 
-
+    pragma solidity ^0.4.2;
     contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
     contract MyToken {
@@ -36,7 +36,6 @@ If you just want to copy paste the code, then use this:
             name = tokenName;                                   // Set the name for display purposes
             symbol = tokenSymbol;                               // Set the symbol for display purposes
             decimals = decimalUnits;                            // Amount of decimals for display purposes
-            if (!msg.sender.send(msg.value)) throw;             // Send back any ether sent accidentally
         }
 
         /* Send coins */
@@ -83,12 +82,10 @@ If you just want to copy paste the code, then use this:
         }
     }
 
-Let's break it down step by step
 
 #### Minimum Viable Token
 
 The token contract is quite complex. But in essence a very basic token boils down to this:
-
 
     contract MyToken {
         /* This creates an array with all balances */
@@ -467,6 +464,7 @@ If you add all the advanced options, this is how the final code should look like
 ![Advanced Token](/images/tutorial/advanced-token-deploy.png)
 
 
+    pragma solidity ^0.4.2;
     contract owned {
         address public owner;
 
@@ -513,7 +511,6 @@ If you add all the advanced options, this is how the final code should look like
             name = tokenName;                                   // Set the name for display purposes
             symbol = tokenSymbol;                               // Set the symbol for display purposes
             decimals = decimalUnits;                            // Amount of decimals for display purposes
-            if (!msg.sender.send(msg.value)) throw;             // Send back any ether sent accidentally
         }
 
         /* Send coins */
