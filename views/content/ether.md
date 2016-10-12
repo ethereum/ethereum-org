@@ -60,10 +60,6 @@ The Ethereum network is kept running by computers all over the world. In order t
 
 This process is usually called **_mining_** in the crypto-currency lingo.
 
-#### Aleth One Miner
-
-Since homestead, we provide an easy one click miner app called  [Aleth One](https://github.com/ethereum/webthree-umbrella/releases/latest). This is your best option if you don't like using the command line
-
 #### CPU MINING Using the command line
 
 If you are on a [private network](../cli) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is the best choice for small scale network or testing privately, as it's less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to successfully mine a block and receive ether.

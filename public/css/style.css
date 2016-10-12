@@ -67,10 +67,10 @@ a:hover {
 .float-left {
 	float: left;
 	margin-right: 30px;
-	padding-bottom: 30px;	
+	padding-bottom: 30px;
 }
 
-.center { 
+.center {
 	text-align: center;
 	max-width: none !important;
 }
@@ -96,7 +96,7 @@ header {
 	background: #f8f6fb url('../images/homestead-dawn-background.jpg') center center no-repeat;
 	background-size: cover;
 	position: relative;
-	
+
 	display: -webkit-flex;
 	-webkit-justify-content: center;
 	-webkit-align-items: center;
@@ -122,7 +122,7 @@ div.scrollme.row.introduction {
 	min-height: 440px;
 	max-height: 800px;
 	background: #102026 url('../images/homestead-dawn-background.jpg') center center no-repeat;
-	background-size: cover;	
+	background-size: cover;
 	padding-top: 50px;
 }
 
@@ -139,7 +139,7 @@ div.scrollme.row.introduction {
 	overflow: hidden;
 }
 
-.caption { 
+.caption {
 	text-align: center;
 	letter-spacing: 0.04em;
 	font-style: italic;
@@ -151,7 +151,7 @@ div.scrollme.row.introduction {
 	content: " ";
 	background: linear-gradient(transparent, #102026);
 	height: 250px;
-	position: absolute;	
+	position: absolute;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -341,7 +341,7 @@ body {
 
 .recipe h4 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
-	text-transform: uppercase;	
+	text-transform: uppercase;
 	color: #354049;
 	font-weight: 600;
 	text-align: center;
@@ -405,7 +405,7 @@ body {
 	background-position: center;
 	background-attachment: fixed;
 }
- 
+
 
 .inner-header.dao-tutorial {
 	background-image: url("../images/dao-bg.jpg");
@@ -427,7 +427,7 @@ body {
 	background-image: url("../images/dao-dawn-bg.jpg");
 }
 
-.inner-header .header-title h3, 
+.inner-header .header-title h3,
 .inner-header .header-title h2 ,
 .inner-header .header-title h3 {
 	font-weight: 500;
@@ -473,7 +473,7 @@ a.button {
 	font-weight: 600;
 	border-radius: 3px;
 	border: none;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;	
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-align: center;
 	text-decoration: none;
 	font-weight: 600;
@@ -481,11 +481,11 @@ a.button {
 	border-bottom: solid 3px #2F6DB5;
 	top: -3px;
 	box-shadow: rgba(0,0,0,0.1) 0 6px 1px;
-	transition: box-shadow 0.6s, border-bottom 0.6s, top 0.6s, margin-bottom 0.6s;	
+	transition: box-shadow 0.6s, border-bottom 0.6s, top 0.6s, margin-bottom 0.6s;
 	transition-timing-function: ease-out;
 }
 
-input.button:hover, 
+input.button:hover,
 button:hover,
 a.button:hover {
 	border-bottom: solid 1px #2F6DB5;
@@ -493,12 +493,12 @@ a.button:hover {
 	box-shadow: rgba(0,0,0,0.05) 0 2px 1px;
 	margin-bottom: 32px;
 	cursor: hand;
-	cursor: pointer;	
-	transition: box-shadow 0.3s, border-bottom 0.3s, top 0.3s, margin-bottom 0.3s;		
-	transition-timing-function: ease-in;	
+	cursor: pointer;
+	transition: box-shadow 0.3s, border-bottom 0.3s, top 0.3s, margin-bottom 0.3s;
+	transition-timing-function: ease-in;
 }
 
-input.button:active, 
+input.button:active,
 button:active,
 a.button:active {
 	border-bottom: solid 1px #2F6DB5;
@@ -509,8 +509,8 @@ a.button:active {
 	top: -1px;
 	max-width: 200px;
 	padding: 3px 5px;
-	border-bottom: #c1d7ef 1px solid;	
-	box-shadow: rgba(0,0,0,0.1) 0 1px 1px;	
+	border-bottom: #c1d7ef 1px solid;
+	box-shadow: rgba(0,0,0,0.1) 0 1px 1px;
 	background-color: #e4ebf3;
 	color: #4a90e2;
 }
@@ -535,7 +535,7 @@ input.button:hover {
 	right: 0;
 	top: 0;
 	color: #C3CCDB;
-	background: #102026;  
+	background: #102026;
 	padding: 10px 40px;
 	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	font-size: 14px;
@@ -556,7 +556,7 @@ input.button:hover {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
 	color: #E1EFFF;
-}	
+}
 
 a.donation-button {
 	font-weight: bold;
@@ -585,7 +585,7 @@ ul#tableOfContents ul {
     font-weight: 400;
     padding-bottom: 10px;
     list-style-type: none;
-    padding-left: 0;    
+    padding-left: 0;
 }
 
 #tableOfContents.fixed {
@@ -680,6 +680,9 @@ ul#tableOfContents ul {
 .community ul li a.twitter {
 	background-image: url("../images/icons/icon-twitter.png");
 }
+.community ul li a.gitter {
+	background-image: url("../images/icons/icon-gitter.png");
+}
 .community ul li a.facebook {
 	background-image: url("../images/icons/icon-facebook.png");
 }
@@ -694,10 +697,10 @@ ul#tableOfContents ul {
 }
 
 .community li.canary {
-	background-image: url("../images/icons/canary.svg");	
+	background-image: url("../images/icons/canary.svg");
 	background-size: 30px 30px;
 	background-position: left top;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
 	min-height: 50px;
 	padding-left: 50px;
 	padding-right: 50px;
@@ -711,7 +714,7 @@ ul#tableOfContents ul {
 
 .community li.canary:hover p {
 	opacity: 1;
-	transition: opacity 0.25s ease-out;	
+	transition: opacity 0.25s ease-out;
 }
 
 .press ul {
@@ -775,7 +778,7 @@ a.donate-button:hover ,
 	background-size: cover;
 	border-radius: 50%;
 	box-shadow: rgba(255, 255, 255, 0.4) 0px 4px 8px 0px inset, rgba(0, 0, 0, 0.6) 0px -4px 12px 0px inset;
-	
+
 }
 
 .donate h2 {
@@ -933,22 +936,22 @@ a.button.ethereum-wallet strong {
 
 
 a.button.ethereum-wallet.mac {
-	background-image: url("../images/button-mac.png");	
+	background-image: url("../images/button-mac.png");
 }
 
 a.button.ethereum-wallet.linux {
-	background-image: url("../images/button-linux.png");	
+	background-image: url("../images/button-linux.png");
 }
 
 /*a.button.ethereum-wallet.win32 {
-	background-image: url("../images/button-win32.png");	
+	background-image: url("../images/button-win32.png");
 }*/
 
 a.button.ethereum-wallet.win64 {
-	background-image: url("../images/button-win64.png");	
+	background-image: url("../images/button-win64.png");
 }
 
-.power-tools { 
+.power-tools {
 	background: #A59A9A;
 	background: linear-gradient(#A59A9A,#000);
 	overflow: hidden;
@@ -997,22 +1000,22 @@ a.button.ethereum-wallet.win64 {
 	font-weight: 400;
 	text-align: right;
 	text-transform: uppercase;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;	
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 }
 
 .button-proceed {
 	font-weight: 600;
 }
 
-.power-tools p, 
-.power-tools h2 , 
-.power-tools h3 { 
+.power-tools p,
+.power-tools h2 ,
+.power-tools h3 {
 	color: #FFF;
 }
 
 .power-tools h2 {
 	padding-top: 40px;
-} 
+}
 
 .command-line {
 	background: #000;
@@ -1089,7 +1092,7 @@ figure.wallet-figure .wallet-03 {
 	background-image: url("../images/wallet-03.gif");
 }
 
-.whatis .caption { 
+.whatis .caption {
 	position: relative;
 	top: 310px;
 }
@@ -1152,7 +1155,7 @@ figure.turbo .turbo-03 {
 }
 figure.turbo .turbo-04 {
 	background-image: url("../images/turbo-04.png");
-}	
+}
 figure.turbo .turbo-05 {
 	background-image: url("../images/turbo-05.png");
 }
@@ -1370,7 +1373,7 @@ figure.ethereum-logo {
 	overflow: auto;
 	width: 10000px;
 	max-height: 800px;
-	background: #FFF;	
+	background: #FFF;
 }
 
 code {
@@ -1570,7 +1573,7 @@ footer {
 @media (-webkit-min-device-pixel-ratio: 2) {
 	.introduction h1 {
 		background-image: url('../images/homestead-title@2x.png');
-	}	
+	}
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 800px ) {
@@ -1640,8 +1643,8 @@ footer {
 		height: 300px;
 	}
 
-	figure.coin, 
-	figure.crowdsale, 
+	figure.coin,
+	figure.crowdsale,
 	figure.dao ,
 	figure.moon {
 		height: 260px;
@@ -1680,7 +1683,7 @@ footer {
 		top: 0;
 	}
 
-	.row img, 
+	.row img,
 	.recipe,
 	.main-tutorial a.button ,
 	.ethereum-network,
@@ -1735,7 +1738,7 @@ footer {
 		box-shadow: #ccc 0 1px 2px 1px;
 		width: 200px !important;
 		padding: 10px;
-	}	
+	}
 
 	#tableOfContents:hover:before {
 		opacity: 0;
@@ -1746,7 +1749,7 @@ footer {
 		width: 180px;
 		opacity: 0;
 		transition: opacity 0.75s;
-	}	
+	}
 
 	#tableOfContents:hover a {
 		display: block !important;
@@ -1820,12 +1823,12 @@ footer {
 	}
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio:2){	
+@media only screen and (-webkit-min-device-pixel-ratio:2){
 
 	.breadcrumb {
 		background-image: url("../images/diamond-icon@2x.png");
 	}
-	
+
 	.recipe {
 		background-image: url("../images/recipe-bg@2x.png");
 		background-size: 8px 12px;
@@ -1859,7 +1862,7 @@ footer {
 	}
 	figure.aleth-one .aleth-one-4 {
 		background-image: url("../images/aleth-one-4@2x.png");
-	}	
+	}
 	figure.aleth-one .aleth-one-5 {
 		background-image: url("../images/aleth-one-5@2x.png");
 	}
@@ -1876,7 +1879,7 @@ footer {
 	}
 	figure.turbo .turbo-04 {
 		background-image: url("../images/turbo-04@2x.png");
-	}	
+	}
 	figure.turbo .turbo-05 {
 		background-image: url("../images/turbo-05@2x.png");
 	}
@@ -1894,7 +1897,7 @@ footer {
 
 	figure.geth .geth-logo {
 		background-image: url("../images/geth-foreground@2x.gif");
-	}	
+	}
 
 	figure.ether .ether-screen {
 		background-image: url("../images/ether-screen@2x.gif");
@@ -1980,7 +1983,7 @@ footer {
 	figure.dao .dao-crowd {
 		background-image: url("../images/dao-crowd@2x.png");
 	}
-	
+
 	figure.moon .moon-stars {
 		background-image: url("../images/moon-stars@2x.png");
 	}
@@ -2008,12 +2011,15 @@ footer {
 	.community ul li a.twitter {
 		background-image: url("../images/icons/icon-twitter@2x.png");
 	}
+	.community ul li a.gitter {
+		background-image: url("../images/icons/icon-gitter@2x.png");
+	}
 	.community ul li a.facebook {
 		background-image: url("../images/icons/icon-facebook@2x.png");
 	}
 	.community ul li a.meetups {
 		background-image: url("../images/icons/icon-meetup@2x.png");
-	}	
+	}
 	.community ul li a.email {
 		background-image: url("../images/icons/icon-email@2x.png");
 	}
