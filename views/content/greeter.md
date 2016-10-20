@@ -96,15 +96,17 @@ You have now compiled your code. Now you need to get it ready for deployment, th
 
 #### Using the online compiler
 
-If you don't have solC installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://chriseth.github.io/browser-solidity/) and then your compiled code should appear on the left pane. Copy the code on the box labeled **Geth deploy** to a text file. Now change the first line to your greeting:
+If you don't have solC installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://ethereum.github.io/browser-solidity/) and then your compiled code should appear on the left pane. Copy the code in the box labeled **Web3 deploy** for both the `greeter` contract and the `mortal` contract to a single text file. Now, in that file, change the first line to your greeting:
 
     var _greeting = "Hello World!"
  
-Now you can paste the resulting text on your geth window. Wait up to thirty seconds and you'll see a message like this:
+Now you can paste the resulting text on your geth window, or import the file with `loadScript("yourFilename.js")`. Wait up to thirty seconds and you'll see a message like this:
 
     Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e 
 
-You will probably be asked for the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract. This contract is estimated to need 172 thousand gas to deploy (according to the [online solidity compiler](https://chriseth.github.io/browser-solidity/)), at the time of writing, gas on the test net is priced at 1 to 10 microethers per unit of gas (nicknamed "szabo" = 1 followed by 12 zeroes in wei). To know the latest price in ether all you can see the [latest gas prices at the network stats page](https://stats.ethdev.com) and multiply both terms. 
+You may have to "unlock" the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. `personal.unlockAccount(web3.eth.accounts[0], "yourPassword")`. 
+
+This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](https://ethereum.github.io/browser-solidity/)), at the time of writing, gas on the test net is priced at 20 gwei ([equal to( 20000000000 wei, or  0.00000002 ether](http://ether.fund/tool/converter#v=20&u=Gwei)) per unit of gas. There are many useful stats, including the latest gas prices [at the network stats page](https://stats.ethdev.com). 
 
 **Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
 
@@ -134,7 +136,9 @@ In order for other people to run your contract they need two things: the address
     greeterCompiled.greeter.info.abiDefinition;
     greeter.address;
 
-Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' and 'Address' to create a contract object in JavaScript:
+If you compiled with the [browser-based tool](https://ethereum.github.io/browser-solidity/), you can get the ABI from the fields for the `greeter` and `mortal` contracts labeled "Interface".
+
+Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' (an array) and 'Address' (a string) to create a contract object in JavaScript:
 
     var greeter = eth.contract(ABI).at(Address);
 
