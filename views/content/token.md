@@ -474,7 +474,7 @@ If you add all the advanced options, this is how the final code should look like
 
         modifier onlyOwner {
             if (msg.sender != owner) throw;
-            _
+            _;
         }
 
         function transferOwnership(address newOwner) onlyOwner {
@@ -511,6 +511,7 @@ If you add all the advanced options, this is how the final code should look like
             name = tokenName;                                   // Set the name for display purposes
             symbol = tokenSymbol;                               // Set the symbol for display purposes
             decimals = decimalUnits;                            // Amount of decimals for display purposes
+            if (!msg.sender.send(msg.value)) throw;                         // Send back any ether sent accidentally
         }
 
         /* Send coins */
@@ -529,7 +530,7 @@ If you add all the advanced options, this is how the final code should look like
             tokenRecipient spender = tokenRecipient(_spender);
             return true;
         }
-        
+
         /* Approve and then comunicate the approved contract in a single tx */
         function approveAndCall(address _spender, uint256 _value, bytes _extraData)
             returns (bool success) {    
