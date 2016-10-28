@@ -28,7 +28,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
         modifier onlyOwner {
             if (msg.sender != owner) throw;
-            _
+            _;
         }
 
         function transferOwnership(address newOwner) onlyOwner {
@@ -86,7 +86,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             if (memberId[msg.sender] == 0
             || !members[memberId[msg.sender]].canVote)
             throw;
-            _
+            _;
         }
 
         /* First time setup */
@@ -350,7 +350,7 @@ Now to the shareholder code:
 
         modifier onlyOwner {
             if (msg.sender != owner) throw;
-            _
+            _;
         }
 
         function transferOwnership(address newOwner) onlyOwner {
@@ -395,7 +395,7 @@ Now to the shareholder code:
         /* modifier that allows only shareholders to vote and create new proposals */
         modifier onlyShareholders {
             if (sharesTokenAddress.balanceOf(msg.sender) == 0) throw;
-            _
+            _;
         }
 
         /* First time setup */
@@ -574,6 +574,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 
 #### The code
 
+    pragma solidity ^0.4.2;
     contract token {
         mapping (address => uint256) public balanceOf;
     }
