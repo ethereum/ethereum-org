@@ -58,7 +58,7 @@ contract Crowdsale {
         FundTransfer(msg.sender, amount, true);
     }
 
-    modifier afterDeadline() { if (now &gt;= deadline) _ }
+    modifier afterDeadline() { if (now &gt;= deadline) _; }
 
     /* checks if the goal or time limit has been reached and ends the campaign */
     function checkGoalReached() afterDeadline {

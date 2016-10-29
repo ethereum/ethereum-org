@@ -23,7 +23,7 @@ contract owned {
 
     modifier onlyOwner {
         if (msg.sender != owner) throw;
-        _
+        _;
     }
 
     function transferOwnership(address newOwner) onlyOwner {
@@ -81,7 +81,7 @@ contract Congress is owned {
         if (memberId[msg.sender] == 0
         || !members[memberId[msg.sender]].canVote)
         throw;
-        _
+        _;
     }
 
     /* First time setup */
@@ -328,7 +328,7 @@ contract owned {
 
     modifier onlyOwner {
         if (msg.sender != owner) throw;
-        _
+        _;
     }
 
     function transferOwnership(address newOwner) onlyOwner {
@@ -373,7 +373,7 @@ contract Association is owned {
     /* modifier that allows only shareholders to vote and create new proposals */
     modifier onlyShareholders {
         if (sharesTokenAddress.balanceOf(msg.sender) == 0) throw;
-        _
+        _;
     }
 
     /* First time setup */
@@ -544,7 +544,8 @@ for (uint i = 0; i &lt;  p.votes.length; ++i) {
 
 <h4>The code</h4>
 
-<pre><code>contract token {
+<pre><code>pragma solidity ^0.4.2;
+contract token {
     mapping (address =&gt; uint256) public balanceOf;
 }
 

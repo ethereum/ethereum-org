@@ -326,7 +326,7 @@ function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
 
 <p>The next step is making the buy and sell functions:</p>
 
-<pre><code>function buy() returns (uint amount){
+<pre><code>function buy() payable returns (uint amount){
     amount = msg.value / buyPrice;                     // calculates the amount
     if (balanceOf[this] &lt; amount) throw;               // checks if it has enough to sell
     balanceOf[msg.sender] += amount;                   // adds the amount to buyer&#39;s balance
@@ -456,7 +456,7 @@ contract owned {
 
     modifier onlyOwner {
         if (msg.sender != owner) throw;
-        _
+        _;
     }
 
     function transferOwnership(address newOwner) onlyOwner {
@@ -493,7 +493,6 @@ contract token {
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
         decimals = decimalUnits;                            // Amount of decimals for display purposes
-        msg.sender.send(msg.value);                         // Send back any ether sent accidentally
     }
 
     /* Send coins */
@@ -605,7 +604,7 @@ contract MyAdvancedToken is owned, token {
         buyPrice = newBuyPrice;
     }
 
-    function buy() {
+    function buy() payable {
         uint amount = msg.value / buyPrice;                // calculates the amount
         if (balanceOf[this] &lt; amount) throw;               // checks if it has enough to sell
         balanceOf[msg.sender] += amount;                   // adds the amount to buyer&#39;s balance

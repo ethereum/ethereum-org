@@ -340,7 +340,7 @@ This is acceptable for a price that doesn't change very often, as every new pric
 
 The next step is making the buy and sell functions:
 
-    function buy() returns (uint amount){
+    function buy() payable returns (uint amount){
         amount = msg.value / buyPrice;                     // calculates the amount
         if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
         balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
@@ -474,7 +474,7 @@ If you add all the advanced options, this is how the final code should look like
 
         modifier onlyOwner {
             if (msg.sender != owner) throw;
-            _
+            _;
         }
 
         function transferOwnership(address newOwner) onlyOwner {
@@ -511,7 +511,6 @@ If you add all the advanced options, this is how the final code should look like
             name = tokenName;                                   // Set the name for display purposes
             symbol = tokenSymbol;                               // Set the symbol for display purposes
             decimals = decimalUnits;                            // Amount of decimals for display purposes
-            msg.sender.send(msg.value);                         // Send back any ether sent accidentally
         }
 
         /* Send coins */
@@ -530,7 +529,7 @@ If you add all the advanced options, this is how the final code should look like
             tokenRecipient spender = tokenRecipient(_spender);
             return true;
         }
-        
+
         /* Approve and then comunicate the approved contract in a single tx */
         function approveAndCall(address _spender, uint256 _value, bytes _extraData)
             returns (bool success) {    
@@ -623,7 +622,7 @@ If you add all the advanced options, this is how the final code should look like
             buyPrice = newBuyPrice;
         }
 
-        function buy() {
+        function buy() payable {
             uint amount = msg.value / buyPrice;                // calculates the amount
             if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
             balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance

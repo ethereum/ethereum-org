@@ -66,7 +66,7 @@ Now copy this code and let's create the crowdsale:
             FundTransfer(msg.sender, amount, true);
         }
 
-        modifier afterDeadline() { if (now >= deadline) _ }
+        modifier afterDeadline() { if (now >= deadline) _; }
 
         /* checks if the goal or time limit has been reached and ends the campaign */
         function checkGoalReached() afterDeadline {
