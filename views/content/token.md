@@ -340,7 +340,7 @@ This is acceptable for a price that doesn't change very often, as every new pric
 
 The next step is making the buy and sell functions:
 
-    function buy() returns (uint amount){
+    function buy() payable returns (uint amount){
         amount = msg.value / buyPrice;                     // calculates the amount
         if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
         balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
@@ -623,7 +623,7 @@ If you add all the advanced options, this is how the final code should look like
             buyPrice = newBuyPrice;
         }
 
-        function buy() {
+        function buy() payable {
             uint amount = msg.value / buyPrice;                // calculates the amount
             if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
             balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
