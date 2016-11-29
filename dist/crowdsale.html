@@ -49,7 +49,7 @@ contract Crowdsale {
     }
 
     /* The function without name is the default function that is called whenever anyone sends funds to a contract */
-    function () {
+    function () payable {
         if (crowdsaleClosed) throw;
         uint amount = msg.value;
         balanceOf[msg.sender] = amount;
@@ -169,7 +169,7 @@ price = etherCostOfEachToken * 1 ether;</code></pre>
 
 <p>Once you published the crowdsale contract, get its address and go into your <strong>Token Contract</strong> to execute a <strong>Change Ownership</strong> function. This will allow your crowdsale to call the <strong>Mint Token</strong> function as much as it wants.</p>
 
-<p><strong>Warning</strong> This opens you to the danger of hostile takeover. At any point during the crowdsale anyone who donates more than the amount already raised will be able to control the whole pie and steal it. There are many strategies to prevent that, but implementing will be left as an exercise to the reader:</p>
+<p><strong>Warning:</strong>  This opens you to the danger of hostile takeover. At any point during the crowdsale anyone who donates more than the amount already raised will be able to control the whole pie and steal it. There are many strategies to prevent that, but implementing will be left as an exercise to the reader:</p>
 
 <ul><li>Modify the crowdsale such that when a token is bought, also send the same quantity of tokens to the founder&#39;s account so that they always control 50% of the project</li><li>Modify the Organization to create a veto power to some trusted third party that could stop any hostile proposal</li><li>Modify the token to allow a central trusted party to freeze token accounts, so as to require a verification that there isn&#39;t any single entity controlling a majority of them</li></ul>
 

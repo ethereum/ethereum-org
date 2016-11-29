@@ -234,7 +234,7 @@ function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, st
 
     modifier onlyOwner {
         if (msg.sender != owner) throw;
-        _
+        _;
     }
 
     function transferOwnership(address newOwner) onlyOwner {
