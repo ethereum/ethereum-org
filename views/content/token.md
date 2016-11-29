@@ -244,7 +244,7 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
 
         modifier onlyOwner {
             if (msg.sender != owner) throw;
-            _
+            _;
         }
 
         function transferOwnership(address newOwner) onlyOwner {

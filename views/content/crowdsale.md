@@ -57,7 +57,7 @@ Now copy this code and let's create the crowdsale:
         }
 
         /* The function without name is the default function that is called whenever anyone sends funds to a contract */
-        function () {
+        function () payable {
             if (crowdsaleClosed) throw;
             uint amount = msg.value;
             balanceOf[msg.sender] = amount;
@@ -188,7 +188,7 @@ Then modify the crowdsale to rename all mentions of **transfer** to **mintToken*
 
 Once you published the crowdsale contract, get its address and go into your **Token Contract** to execute a **Change Ownership** function. This will allow your crowdsale to call the **Mint Token** function as much as it wants.
 
-**Warning** This opens you to the danger of hostile takeover. At any point during the crowdsale anyone who donates more than the amount already raised will be able to control the whole pie and steal it. There are many strategies to prevent that, but implementing will be left as an exercise to the reader:
+**Warning:**  This opens you to the danger of hostile takeover. At any point during the crowdsale anyone who donates more than the amount already raised will be able to control the whole pie and steal it. There are many strategies to prevent that, but implementing will be left as an exercise to the reader:
 
 * Modify the crowdsale such that when a token is bought, also send the same quantity of tokens to the founder's account so that they always control 50% of the project
 * Modify the Organization to create a veto power to some trusted third party that could stop any hostile proposal
