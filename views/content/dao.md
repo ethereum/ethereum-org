@@ -851,7 +851,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             receivedEther(msg.sender, msg.value);
         }
     }
-    
+
     contract Token {
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
     }
@@ -863,7 +863,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
         uint public numProposals;
         mapping (address => uint) public memberId;
         Member[] public members;
-        int minimumTime = 30;
+        uint minimumTime = 30;
 
         event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
         event Voted(uint proposalID, bool position, address voter, string justification);
@@ -906,7 +906,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
         /* First time setup */
         function TimeLockMultisig(address founder, address[] initialMembers, uint minimumAmountOfMinutes) payable {
             if (founder != 0) owner = founder;
-            if (minimumAmountOfMinutes !=0) minimumTime = int(minimumAmountOfMinutes);
+            if (minimumAmountOfMinutes !=0) minimumTime = minimumAmountOfMinutes;
             // It’s necessary to add an empty first member
             changeMembership(0, false, ''); 
             // and let's add the founder, to save a step later       
@@ -1012,7 +1012,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 
         function proposalDeadline(uint proposalNumber) constant returns(uint deadline) {
             Proposal p = proposals[proposalNumber];
-            int factor = minimumTime*10**(6 - (5 * p.currentResult / int(members.length - 1)))/10;
+            uint factor = minimumTime*10**(6 - (5 - uint(p.currentResult)/(members.length - 1)))/10;
             return p.creationDate + uint(factor * 1 minutes);
         }
 
