@@ -1080,7 +1080,3 @@ It could also own shares of other DAOs, meaning it could vote on larger organiza
 * The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.
 
 This all means that this tiny society you created could grow, get funding from third parties, pay recurrent salaries, own any kind of crypto-assets and even use crowdsales to fund its activities. All with full transparency, complete accountability and complete immunity from any human interference. While the network lives the contracts will execute exactly the code they were created to execute, without any exception, forever.
-
-So what will your contract be? Will it be a country, a company, a non-profit group? What will your code do?
-
-That's up to you.
