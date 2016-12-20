@@ -83,7 +83,6 @@ contract Congress is owned, tokenRecipient {
 
     struct Member {
         address member;
-        bool canVote;
         string name;
         uint memberSince;
     }
@@ -96,8 +95,7 @@ contract Congress is owned, tokenRecipient {
 
     /* modifier that allows only shareholders to vote and create new proposals */
     modifier onlyMembers {
-        if (memberId[msg.sender] == 0
-        || !members[memberId[msg.sender]].canVote)
+        if (memberId[msg.sender] == 0)
         throw;
         _;
     }
@@ -111,26 +109,34 @@ contract Congress is owned, tokenRecipient {
         changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
         if (congressLeader != 0) owner = congressLeader;
         // It’s necessary to add an empty first member
-        changeMembership(0, false, &#39;&#39;); 
+        addMember(0, &#39;&#39;); 
         // and let&#39;s add the founder, to save a step later       
-        changeMembership(owner, true, &#39;founder&#39;);        
+        addMember(owner, &#39;founder&#39;);        
     }
 
     /*make member*/
-    function changeMembership(address targetMember, bool canVote, string memberName) onlyOwner {
+    function addMember(address targetMember, string memberName) onlyOwner {
         uint id;
         if (memberId[targetMember] == 0) {
            memberId[targetMember] = members.length;
            id = members.length++;
-           members[id] = Member({member: targetMember, canVote: canVote, memberSince: now, name: memberName});
+           members[id] = Member({member: targetMember, memberSince: now, name: memberName});
         } else {
             id = memberId[targetMember];
             Member m = members[id];
-            m.canVote = canVote;
         }
 
-        MembershipChanged(targetMember, canVote);
+        MembershipChanged(targetMember, true);
+    }
 
+    function removeMember(address targetMember) onlyOwner {
+        if (memberId[targetMember] == 0) throw;
+
+        for (uint i = memberId[targetMember]; i&lt;members.length-1; i++){
+            members[i] = members[i+1];
+        }
+        delete members[members.length-1];
+        members.length--;
     }
 
     /*change rules*/
@@ -759,17 +765,17 @@ contract LiquidDemocracy {
 
 <h3>Time-Locked Multisig</h3>
 
-<p>Sometimes time can also be used as a great security mechanism. The following code is based on the congress DAO but with a different twist. Instead of every action requiring the approval of an X number of members, instead any transactions can be initiated by a single member, but they all will require a minimum amount of delay before they can be executed, which varies according to the support that transaction has. The more approvals a proposal has, the sooner it can be executed. A member can vote against a transaction, which will mean that it will cancel one of the other approved signatures. In a contract with 5 members, each vote  will reduce the waiting time tenfold.</p>
+<p>Sometimes time can also be used as a great security mechanism. The following code is based on the congress DAO but with a different twist. Instead of every action requiring the approval of an X number of members, instead any transactions can be initiated by a single member, but they all will require a minimum amount of delay before they can be executed, which varies according to the support that transaction has. The more approvals a proposal has, the sooner it can be executed. A member can vote against a transaction, which will mean that it will cancel one of the other approved signatures. </p>
 
 <p>This means that if you don&#39;t have urgency, one or two signatures might be all you need to execute any transaction. But if a single key is compromised, other keys can delay that transaction for months or year or even stop it from being executed.</p>
 
 <h4>How it works</h4>
 
-<p>Any member can initiate a transaction, which then needs to wait a given period, which is proportional to the amount of votes it has. The person initiating the transaction counts as an automatic vote supporting it. Any member who votes against a transaction counts as subtracting one vote for it. Support is proportional to the total amount of members, so the more members, the more it takes. These are the default values, but this can be set differently when creating the contract:</p>
+<p>A transaction that has been approved by all keys can be executed after ten minutes (this amount is configurable), and the amount of time it requires doubles every time for every 5% of members who don&#39;t vote (and quadruples if they activelly vote against). If it&#39;s a simple ether transaction, the transaction is executed as soon as a vote of support puts it under the required time, but a more complex transaction will require it to be manually executed with the correct bytecode. These are the default values, but this can be set differently when creating the contract:</p>
 
 <p><strong>Number of members approving transaction: Approximate time delay</strong></p>
 
-<ul><li>100% approval:                                30 minutes (minimum default) </li><li>90% approval:                                 1h30                         </li><li>80%:                                          5 hours                      </li><li>50%:                                          about a week                 </li><li>25%:                                          4 months                     </li><li>10%:                                          2 years                      </li><li>0%:                                           5 years or more              </li><li>More opposition than support:                 Never                        </li></ul>
+<ul><li>100% approval:                                10 minutes (minimum default) </li><li>90% approval:                                 40 minutes                         </li><li>80%:                                          2h40                     </li><li>50%:                                          about a week                 </li><li>40%:                                          1 month                     </li><li>30%:                                          4 months                     </li><li>20%:                                          Over a year              </li><li>10% or less:                                  5 years or never                        </li></ul>
 
 <p>Once the minimum amount of time has passed, anyone can execute the transaction <a href="dao#add-a-simple-proposal-send-ether">(See &quot;Congress&quot; for a more complete walktrough)</a>. This is intentional, as it allows someone to <a href="crowdsale#scheduling-a-call">schedule a transaction</a> or hire someone else to execute it.</p>
 
@@ -819,7 +825,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
     uint public numProposals;
     mapping (address =&gt; uint) public memberId;
     Member[] public members;
-    uint minimumTime = 30;
+    uint minimumTime = 10;
 
     event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
     event Voted(uint proposalID, bool position, address voter, string justification);
@@ -840,7 +846,6 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
     struct Member {
         address member;
-        bool canVote;
         string name;
         uint memberSince;
     }
@@ -853,8 +858,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
     /* modifier that allows only shareholders to vote and create new proposals */
     modifier onlyMembers {
-        if (memberId[msg.sender] == 0
-        || !members[memberId[msg.sender]].canVote)
+        if (memberId[msg.sender] == 0)
         throw;
         _;
     }
@@ -864,32 +868,43 @@ contract TimeLockMultisig is owned, tokenRecipient {
         if (founder != 0) owner = founder;
         if (minimumAmountOfMinutes !=0) minimumTime = minimumAmountOfMinutes;
         // It’s necessary to add an empty first member
-        changeMembership(0, false, &#39;&#39;); 
+        addMember(0, &#39;&#39;); 
         // and let&#39;s add the founder, to save a step later       
-        changeMembership(owner, true, &#39;founder&#39;);   
+        addMember(owner, &#39;founder&#39;);   
         changeMembers(initialMembers, true);     
     }
 
     /*make member*/
-    function changeMembership(address targetMember, bool canVote, string memberName) onlyOwner {
+    function addMember(address targetMember, string memberName) onlyOwner {
         uint id;
         if (memberId[targetMember] == 0) {
            memberId[targetMember] = members.length;
            id = members.length++;
-           members[id] = Member({member: targetMember, canVote: canVote, memberSince: now, name: memberName});
+           members[id] = Member({member: targetMember, memberSince: now, name: memberName});
         } else {
             id = memberId[targetMember];
             Member m = members[id];
-            m.canVote = canVote;
         }
 
-        MembershipChanged(targetMember, canVote);
+        MembershipChanged(targetMember, true);
+    }
 
+    function removeMember(address targetMember) onlyOwner {
+        if (memberId[targetMember] == 0) throw;
+
+        for (uint i = memberId[targetMember]; i&lt;members.length-1; i++){
+            members[i] = members[i+1];
+        }
+        delete members[members.length-1];
+        members.length--;
     }
 
     function changeMembers(address[] newMembers, bool canVote) {
         for (uint i = 0; i &lt; newMembers.length; i++) {
-            changeMembership(newMembers[i], canVote, &#39;&#39;);
+            if (canVote)
+                addMember(newMembers[i], &#39;&#39;);
+            else 
+                removeMember(newMembers[i]);
         }
     }
 
@@ -917,7 +932,6 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
         return proposalID;
     }
-
 
     /* Function to create a new proposal */
     function newProposalInEther(
@@ -962,14 +976,27 @@ contract TimeLockMultisig is owned, tokenRecipient {
         } else {                                        // If they don&#39;t
             p.currentResult--;                          // Decrease the score
         }
+
         // Create a log of this event
         Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+
+        // If you can execute it now, do it
+        if ( now &gt; proposalDeadline(proposalNumber)
+            &amp;&amp; p.currentResult &gt; 0
+            &amp;&amp; p.proposalHash == sha3(p.recipient, p.amount, &#39;&#39;)
+            &amp;&amp; supportsProposal) {
+            executeProposal(proposalNumber, &#39;&#39;);
+        }
     }
 
     function proposalDeadline(uint proposalNumber) constant returns(uint deadline) {
         Proposal p = proposals[proposalNumber];
-        uint factor = minimumTime*10**(6 - (5 - uint(p.currentResult)/(members.length - 1)))/10;
-        return p.creationDate + uint(factor * 1 minutes);
+        uint factor = calculateFactor(uint(p.currentResult), (members.length - 1));
+        return p.creationDate + uint(factor * minimumTime *  1 minutes);
+    }
+
+    function calculateFactor(uint a, uint b) constant returns (uint factor) {
+        return 2**(20 - (20 * a)/b);
     }
 
     function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
@@ -1000,7 +1027,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
 <h4>Deployment and usage</h4>
 
-<p>Deploy that code as you have done before on these tutorials. On the deployment parameters, leaving the minimum time blank will default to 30 minutes, if you want faster lock times, then put 1 minute. After uploading, execute the functions &quot;Change Membership&quot; to add new members of your group, they can be either other people you know or accounts on different computers or stored offline. </p>
+<p>Deploy that code as you have done before on these tutorials. On the deployment parameters, leaving the minimum time blank will default to 30 minutes, if you want faster lock times, then put 1 minute. After uploading, execute the functions &quot;Add Members&quot; to add new members of your group, they can be either other people you know or accounts on different computers or stored offline. </p>
 
 <p>The account set as &quot;owner&quot; is very powerful as it can add or remove members at will. Therefore, after you added the main members, we recommend that you set the &quot;owner&quot; to another account, by executing the function <strong>Transfer Membership</strong>. Set that to the multisig itself if you want to have all additions or removals of members to be voted, just like any other transaction. Another alternative is to set that to another trusted multisig wallet, or maybe to <em>0x000</em> if you want the number of members to be fixed forever. Remember, the funds on this contract are only as safe as the the &quot;owner&quot; account.</p>
 
@@ -1008,9 +1035,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
 <h4>Caveats and improvements</h4>
 
-<p>For simplicity&#39;s sake, this contract doesn&#39;t allow votes to be changed and only checks membership at vote time. So it means that if an account is compromised and banned, it will lost the right to vote in the future, but all its past vote will still count towards the dates. </p>
-
-<p>Also, a vote against a proposal simply counts as one less vote of support. If you want, you can play around with the idea that negative votes have more weight, but this means that a minority of members could have an effective veto power on any proposed transaction!</p>
+<p>For simplicity&#39;s sake, a vote against a proposal simply counts as one less vote of support. If you want, you can play around with the idea that negative votes have more weight, but this means that a minority of members could have an effective veto power on any proposed transaction!</p>
 
 <p>How else could you improve this contract?</p>
 
