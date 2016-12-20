@@ -88,7 +88,6 @@ The way this particular democracy works is that it has an **Owner** which works 
 
         struct Member {
             address member;
-            bool canVote;
             string name;
             uint memberSince;
         }
@@ -101,8 +100,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
         /* modifier that allows only shareholders to vote and create new proposals */
         modifier onlyMembers {
-            if (memberId[msg.sender] == 0
-            || !members[memberId[msg.sender]].canVote)
+            if (memberId[msg.sender] == 0)
             throw;
             _;
         }
@@ -116,26 +114,34 @@ The way this particular democracy works is that it has an **Owner** which works 
             changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
             if (congressLeader != 0) owner = congressLeader;
             // It’s necessary to add an empty first member
-            changeMembership(0, false, ''); 
+            addMember(0, ''); 
             // and let's add the founder, to save a step later       
-            changeMembership(owner, true, 'founder');        
+            addMember(owner, 'founder');        
         }
 
         /*make member*/
-        function changeMembership(address targetMember, bool canVote, string memberName) onlyOwner {
+        function addMember(address targetMember, string memberName) onlyOwner {
             uint id;
             if (memberId[targetMember] == 0) {
                memberId[targetMember] = members.length;
                id = members.length++;
-               members[id] = Member({member: targetMember, canVote: canVote, memberSince: now, name: memberName});
+               members[id] = Member({member: targetMember, memberSince: now, name: memberName});
             } else {
                 id = memberId[targetMember];
                 Member m = members[id];
-                m.canVote = canVote;
             }
+    
+            MembershipChanged(targetMember, true);
+        }
+    
+        function removeMember(address targetMember) onlyOwner {
+            if (memberId[targetMember] == 0) throw;
 
-            MembershipChanged(targetMember, canVote);
-
+            for (uint i = memberId[targetMember]; i<members.length-1; i++){
+                members[i] = members[i+1];
+            }
+            delete members[members.length-1];
+            members.length--;
         }
 
         /*change rules*/
@@ -243,6 +249,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
         }
     }
+
 
 
 #### How to deploy
@@ -793,31 +800,30 @@ To prevent abuses of powers, you can set one **Forbidden function** that the App
 ### Time-Locked Multisig
 
 
-Sometimes time can also be used as a great security mechanism. The following code is based on the congress DAO but with a different twist. Instead of every action requiring the approval of an X number of members, instead any transactions can be initiated by a single member, but they all will require a minimum amount of delay before they can be executed, which varies according to the support that transaction has. The more approvals a proposal has, the sooner it can be executed. A member can vote against a transaction, which will mean that it will cancel one of the other approved signatures. In a contract with 5 members, each vote  will reduce the waiting time tenfold.
+Sometimes time can also be used as a great security mechanism. The following code is based on the congress DAO but with a different twist. Instead of every action requiring the approval of an X number of members, instead any transactions can be initiated by a single member, but they all will require a minimum amount of delay before they can be executed, which varies according to the support that transaction has. The more approvals a proposal has, the sooner it can be executed. A member can vote against a transaction, which will mean that it will cancel one of the other approved signatures. 
 
 This means that if you don't have urgency, one or two signatures might be all you need to execute any transaction. But if a single key is compromised, other keys can delay that transaction for months or year or even stop it from being executed.
 
 
 #### How it works
 
-Any member can initiate a transaction, which then needs to wait a given period, which is proportional to the amount of votes it has. The person initiating the transaction counts as an automatic vote supporting it. Any member who votes against a transaction counts as subtracting one vote for it. Support is proportional to the total amount of members, so the more members, the more it takes. These are the default values, but this can be set differently when creating the contract:
+A transaction that has been approved by all keys can be executed after ten minutes (this amount is configurable), and the amount of time it requires doubles every time for every 5% of members who don't vote (and quadruples if they activelly vote against). If it's a simple ether transaction, the transaction is executed as soon as a vote of support puts it under the required time, but a more complex transaction will require it to be manually executed with the correct bytecode. These are the default values, but this can be set differently when creating the contract:
 
 **Number of members approving transaction: Approximate time delay**
 
-* 100% approval:                                30 minutes (minimum default) 
-* 90% approval:                                 1h30                         
-* 80%:                                          5 hours                      
+* 100% approval:                                10 minutes (minimum default) 
+* 90% approval:                                 40 minutes                         
+* 80%:                                          2h40                     
 * 50%:                                          about a week                 
-* 25%:                                          4 months                     
-* 10%:                                          2 years                      
-* 0%:                                           5 years or more              
-* More opposition than support:                 Never                        
+* 40%:                                          1 month                     
+* 30%:                                          4 months                     
+* 20%:                                          Over a year              
+* 10% or less:                                  5 years or never                        
 
 
 Once the minimum amount of time has passed, anyone can execute the transaction [(See "Congress" for a more complete walktrough)](dao#add-a-simple-proposal-send-ether). This is intentional, as it allows someone to [schedule a transaction](crowdsale#scheduling-a-call) or hire someone else to execute it.
 
 #### The code
-
 
     pragma solidity ^0.4.2;
     contract owned {
@@ -863,7 +869,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
         uint public numProposals;
         mapping (address => uint) public memberId;
         Member[] public members;
-        uint minimumTime = 30;
+        uint minimumTime = 10;
 
         event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
         event Voted(uint proposalID, bool position, address voter, string justification);
@@ -884,7 +890,6 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 
         struct Member {
             address member;
-            bool canVote;
             string name;
             uint memberSince;
         }
@@ -897,8 +902,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 
         /* modifier that allows only shareholders to vote and create new proposals */
         modifier onlyMembers {
-            if (memberId[msg.sender] == 0
-            || !members[memberId[msg.sender]].canVote)
+            if (memberId[msg.sender] == 0)
             throw;
             _;
         }
@@ -908,32 +912,43 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             if (founder != 0) owner = founder;
             if (minimumAmountOfMinutes !=0) minimumTime = minimumAmountOfMinutes;
             // It’s necessary to add an empty first member
-            changeMembership(0, false, ''); 
+            addMember(0, ''); 
             // and let's add the founder, to save a step later       
-            changeMembership(owner, true, 'founder');   
+            addMember(owner, 'founder');   
             changeMembers(initialMembers, true);     
         }
 
         /*make member*/
-        function changeMembership(address targetMember, bool canVote, string memberName) onlyOwner {
+        function addMember(address targetMember, string memberName) onlyOwner {
             uint id;
             if (memberId[targetMember] == 0) {
                memberId[targetMember] = members.length;
                id = members.length++;
-               members[id] = Member({member: targetMember, canVote: canVote, memberSince: now, name: memberName});
+               members[id] = Member({member: targetMember, memberSince: now, name: memberName});
             } else {
                 id = memberId[targetMember];
                 Member m = members[id];
-                m.canVote = canVote;
             }
 
-            MembershipChanged(targetMember, canVote);
+            MembershipChanged(targetMember, true);
+        }
+        
+        function removeMember(address targetMember) onlyOwner {
+            if (memberId[targetMember] == 0) throw;
 
+            for (uint i = memberId[targetMember]; i<members.length-1; i++){
+                members[i] = members[i+1];
+            }
+            delete members[members.length-1];
+            members.length--;
         }
 
         function changeMembers(address[] newMembers, bool canVote) {
             for (uint i = 0; i < newMembers.length; i++) {
-                changeMembership(newMembers[i], canVote, '');
+                if (canVote)
+                    addMember(newMembers[i], '');
+                else 
+                    removeMember(newMembers[i]);
             }
         }
 
@@ -961,7 +976,6 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 
             return proposalID;
         }
-
 
         /* Function to create a new proposal */
         function newProposalInEther(
@@ -1006,14 +1020,27 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             } else {                                        // If they don't
                 p.currentResult--;                          // Decrease the score
             }
+            
             // Create a log of this event
             Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+     
+            // If you can execute it now, do it
+            if ( now > proposalDeadline(proposalNumber)
+                && p.currentResult > 0
+                && p.proposalHash == sha3(p.recipient, p.amount, '')
+                && supportsProposal) {
+                executeProposal(proposalNumber, '');
+            }
         }
 
         function proposalDeadline(uint proposalNumber) constant returns(uint deadline) {
             Proposal p = proposals[proposalNumber];
-            uint factor = minimumTime*10**(6 - (5 - uint(p.currentResult)/(members.length - 1)))/10;
-            return p.creationDate + uint(factor * 1 minutes);
+            uint factor = calculateFactor(uint(p.currentResult), (members.length - 1));
+            return p.creationDate + uint(factor * minimumTime *  1 minutes);
+        }
+        
+        function calculateFactor(uint a, uint b) constant returns (uint factor) {
+            return 2**(20 - (20 * a)/b);
         }
 
         function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
@@ -1045,7 +1072,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 
 #### Deployment and usage
 
-Deploy that code as you have done before on these tutorials. On the deployment parameters, leaving the minimum time blank will default to 30 minutes, if you want faster lock times, then put 1 minute. After uploading, execute the functions "Change Membership" to add new members of your group, they can be either other people you know or accounts on different computers or stored offline. 
+Deploy that code as you have done before on these tutorials. On the deployment parameters, leaving the minimum time blank will default to 30 minutes, if you want faster lock times, then put 1 minute. After uploading, execute the functions "Add Members" to add new members of your group, they can be either other people you know or accounts on different computers or stored offline. 
 
 The account set as "owner" is very powerful as it can add or remove members at will. Therefore, after you added the main members, we recommend that you set the "owner" to another account, by executing the function **Transfer Membership**. Set that to the multisig itself if you want to have all additions or removals of members to be voted, just like any other transaction. Another alternative is to set that to another trusted multisig wallet, or maybe to *0x000* if you want the number of members to be fixed forever. Remember, the funds on this contract are only as safe as the the "owner" account.
 
@@ -1053,9 +1080,7 @@ As with any of the above DAO's, this contract can hold ether, any ethereum based
 
 #### Caveats and improvements
 
-For simplicity's sake, this contract doesn't allow votes to be changed and only checks membership at vote time. So it means that if an account is compromised and banned, it will lost the right to vote in the future, but all its past vote will still count towards the dates. 
-
-Also, a vote against a proposal simply counts as one less vote of support. If you want, you can play around with the idea that negative votes have more weight, but this means that a minority of members could have an effective veto power on any proposed transaction!
+For simplicity's sake, a vote against a proposal simply counts as one less vote of support. If you want, you can play around with the idea that negative votes have more weight, but this means that a minority of members could have an effective veto power on any proposed transaction!
 
 How else could you improve this contract?
 
