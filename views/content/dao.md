@@ -216,7 +216,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
         }
 
-        function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
+        function executeProposal(uint proposalNumber, bytes transactionBytecode) {
             Proposal p = proposals[proposalNumber];
             /* Check if the proposal can be executed:
                - Has the voting deadline arrived?
