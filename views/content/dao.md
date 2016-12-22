@@ -203,6 +203,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             string justificationText
         )
             onlyMembers
+            returns (uint voteID)
         {
             Proposal p = proposals[proposalNumber];         // Get the proposal
             if (p.voted[msg.sender] == true) throw;         // If has already voted, cancel
@@ -215,6 +216,7 @@ The way this particular democracy works is that it has an **Owner** which works 
             }
             // Create a log of this event
             Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+            return p.numberOfVotes;
         }
 
         function executeProposal(uint proposalNumber, bytes transactionBytecode) {
