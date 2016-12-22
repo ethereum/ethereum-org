@@ -179,6 +179,8 @@ The way this particular democracy works is that it has an **Owner** which works 
             p.numberOfVotes = 0;
             ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
             numProposals = proposalID+1;
+            
+            return proposalID;
         }
 
         /* function to check if a proposal code matches */
@@ -201,7 +203,6 @@ The way this particular democracy works is that it has an **Owner** which works 
             string justificationText
         )
             onlyMembers
-            returns (uint voteID)
         {
             Proposal p = proposals[proposalNumber];         // Get the proposal
             if (p.voted[msg.sender] == true) throw;         // If has already voted, cancel
@@ -474,6 +475,8 @@ Now to the shareholder code:
             p.numberOfVotes = 0;
             ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
             numProposals = proposalID+1;
+            
+            return proposalID;
         }
 
         /* function to check if a proposal code matches */
@@ -503,9 +506,10 @@ Now to the shareholder code:
             p.voted[msg.sender] = true;
             p.numberOfVotes = voteID +1;
             Voted(proposalNumber,  supportsProposal, msg.sender);
+            return voteID;
         }
 
-        function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
+        function executeProposal(uint proposalNumber, bytes transactionBytecode) {
             Proposal p = proposals[proposalNumber];
             /* Check if the proposal can be executed */
             if (now < p.votingDeadline  /* has the voting deadline arrived? */
@@ -666,6 +670,8 @@ We are going to implement a version of what's usually called **Liquid Democracy*
             }
 
             delegatedVotes[voteIndex] = DelegatedVote({nominee: nominatedAddress, voter: msg.sender});
+            
+            return voteIndex;
         }
 
         function execute(address target, uint valueInEther, bytes32 bytecode) {
