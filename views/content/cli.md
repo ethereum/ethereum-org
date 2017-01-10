@@ -37,7 +37,7 @@ For more, see the [full documentation on Mac OSX Geth](https://github.com/ethere
 
 #### Windows
 
-Download the [latest stable binary](https://build.ethdev.com/builds/Windows%20Go%20master%20branch/), extract it, download the zip file, extract geth.exe from zip, open a command terminal and type:
+Download the [latest stable binary](https://geth.ethereum.org/downloads/), extract it, download the zip file, extract geth.exe from zip, open a command terminal and type:
 
     chdir <path to extracted binary>
     open geth.exe
