@@ -34,7 +34,7 @@ var blockchainUrl = "https://blockchain.info",
               totalEth = 0,
               counter = 0;
 
-          unspent.forEach(unspent, function(tx){
+          unspent.forEach(function(tx){
             var txUrl = blockchainUrl + "/rawtx/" + tx.tx_index + "?cors=true&api_code=" +
                   blockchainApi + "&format=json";
 
