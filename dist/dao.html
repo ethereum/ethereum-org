@@ -174,6 +174,8 @@ contract Congress is owned, tokenRecipient {
         p.numberOfVotes = 0;
         ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
         numProposals = proposalID+1;
+
+        return proposalID;
     }
 
     /* function to check if a proposal code matches */
@@ -209,9 +211,10 @@ contract Congress is owned, tokenRecipient {
         }
         // Create a log of this event
         Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+        return p.numberOfVotes;
     }
 
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
+    function executeProposal(uint proposalNumber, bytes transactionBytecode) {
         Proposal p = proposals[proposalNumber];
         /* Check if the proposal can be executed:
            - Has the voting deadline arrived?
@@ -452,6 +455,8 @@ contract Association is owned, tokenRecipient {
         p.numberOfVotes = 0;
         ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
         numProposals = proposalID+1;
+
+        return proposalID;
     }
 
     /* function to check if a proposal code matches */
@@ -481,9 +486,10 @@ contract Association is owned, tokenRecipient {
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID +1;
         Voted(proposalNumber,  supportsProposal, msg.sender);
+        return voteID;
     }
 
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
+    function executeProposal(uint proposalNumber, bytes transactionBytecode) {
         Proposal p = proposals[proposalNumber];
         /* Check if the proposal can be executed */
         if (now &lt; p.votingDeadline  /* has the voting deadline arrived? */
@@ -636,6 +642,8 @@ contract LiquidDemocracy {
         }
 
         delegatedVotes[voteIndex] = DelegatedVote({nominee: nominatedAddress, voter: msg.sender});
+
+        return voteIndex;
     }
 
     function execute(address target, uint valueInEther, bytes32 bytecode) {
