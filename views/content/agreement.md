@@ -30,7 +30,7 @@ The user acknowledges the following serious risks to any use the Ethereum Platfo
 
 #### Risk of Regulatory Actions in One or More Jurisdictions
 
-The Ethereum Platform and ETH could be impacted by on or more regulatory inquiries or regulatory actions, which could impede or limit the ability of Stiftung Ethereum to continue to develop the Ethereum Platform, or which could impede or limit the ability of a User to use Ethereum Platform or ETH.
+The Ethereum Platform and ETH could be impacted by one or more regulatory inquiries or regulatory actions, which could impede or limit the ability of Stiftung Ethereum to continue to develop the Ethereum Platform, or which could impede or limit the ability of a User to use Ethereum Platform or ETH.
  
 #### Risk of Alternative, Unofficial Ethereum Networks
 
