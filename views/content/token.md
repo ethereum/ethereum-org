@@ -574,12 +574,8 @@ If you add all the advanced options, this is how the final code should look like
             uint256 initialSupply,
             string tokenName,
             uint8 decimalUnits,
-            string tokenSymbol,
-            address centralMinter
-        ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {
-            if(centralMinter != 0 ) owner = centralMinter;      // Sets the owner as specified (if centralMinter is not specified the owner is msg.sender)
-            balanceOf[owner] = initialSupply;                   // Give the owner all initial tokens
-        }
+            string tokenSymbol
+        ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {}
 
         /* Send coins */
         function transfer(address _to, uint256 _value) {
