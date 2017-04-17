@@ -392,7 +392,7 @@ contract Association is owned, tokenRecipient {
 
     event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
     event Voted(uint proposalID, bool position, address voter);
-    event ProposalTallied(uint proposalID, int result, uint quorum, bool active);
+    event ProposalTallied(uint proposalID, uint result, uint quorum, bool active);
     event ChangeOfRules(uint minimumQuorum, uint debatingPeriodInMinutes, address sharesTokenAddress);
 
     struct Proposal {
@@ -485,7 +485,7 @@ contract Association is owned, tokenRecipient {
         p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID +1;
-        Voted(proposalNumber,  supportsProposal, msg.sender);
+        Voted(proposalNumber,  supportsProposal, msg.sender); 
         return voteID;
     }
 
@@ -528,7 +528,7 @@ contract Association is owned, tokenRecipient {
             p.proposalPassed = false;
         }
         // Fire Events
-        ProposalTallied(proposalNumber, result, quorum, p.proposalPassed);
+        ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
     }
 }</code></pre>
 

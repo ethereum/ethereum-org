@@ -3,11 +3,11 @@ SECURITY WARNINGS
 -----------------
 
 
-* **You are responsible for your own computer security.** If your machine is compromised you **will** lose your ether, access to any contracts and maybe more.
+* **You are responsible for your own computer security.** If your machine is compromised you **will** lose your ether, access to any contracts and possibly more. 
 
 * **You are responsible for your own actions.** If you mess something up or break any laws while using this software, it's your fault, and your fault only.
 
-* **You are responsible for your own karma.** Don't be a jerk and respect others.
+* **You are responsible for your own karma.** Don't be a jerk and respect the rights of others.What goes around comes around.
 
 
 LEGAL WARNING
@@ -18,19 +18,19 @@ LEGAL WARNING
 
 
 * **The user expressly knows and agrees that the user is using the Ethereum platform at the user’s sole risk.**
-* **The user represents that the user has an adequate understanding of the risks, usage and intricacies of cryptographic tokens and blockchain-based open source software, eth platform and eth.** 
-* **The user acknowledges and agrees that, to the fullest extent permitted by any applicable law, the disclaimers of liability contained herein apply to any and all damages or injury whatsoever caused by or related to risks of, use of, or inability to use, eth or the Ethereum platform under any cause or action whatsoever of any kind in any jurisdiction, including, without limitation, actions for breach of warranty, breach of contract or tort (including negligence) and that neither Stiftung Ethereum nor Ethereum team shall be liable for any indirect, incidental, special, exemplary or consequential damages, including for loss of profits, goodwill or data.** 
-* **Some jurisdictions do not allow the exclusion of certain warranties or the limitation or exclusion of liability for certain types of damages. therefore, some of the above limitations in this section may not apply to a user. In particular, nothing in these terms shall affect the statutory rights of any user or exclude injury arising from any willful misconduct or fraud of Stiftung Ethereum.**
+* **The user acknowledges that the user has an adequate understanding of the risks, usage and intricacies of cryptographic tokens and blockchain-based open source software, eth platform and ethereum** 
+* **The user acknowledges and agrees that, to the fullest extent permitted by any applicable law, the disclaimers of liability contained herein apply to any and all damages or injury whatsoever caused by or related to risks of, use of, or inability to use, ethereum or the Ethereum platform under any cause or action whatsoever of any kind in any jurisdiction, including, without limitation, actions for breach of warranty, breach of contract or tort (including negligence) and that neither Stiftung Ethereum (i.e. Ethereum Foundation) nor Ethereum team shall be liable for any indirect, incidental, special, exemplary or consequential damages, including for loss of profits, goodwill or data that occurs as a result.** 
+* **Some jurisdictions do not allow the exclusion of certain warranties or the limitation or exclusion of liability for certain types of damages. Therefore, some of the above limitations in this section may not apply to a user. In particular, nothing in these terms shall affect the statutory rights of any user or exclude injury arising from any willful misconduct or fraud of Stiftung Ethereum.**
 
 ### LONG VERSION
  
 The following Terms and Conditions (“Terms”) govern the use of the Ethereum open source software platform (“Ethereum Platform”). Prior to any use of the Ethereum Platform, the User confirms to understand and expressly agrees to all of the Terms. All capitalized terms in this agreement will be given the same effect and meaning as in the Terms. The group of developers and other personnel that is now, or will be, employed by, or contracted with, Stiftung Ethereum (“Stiftung Ethereum”) is termed the “Ethereum Team.” The Platform will be developed by persons and entities who support Ethereum, including both volunteers and developers who are paid by nonprofit entities interested in supporting the Ethereum Platform.
  
-The user acknowledges the following serious risks to any use the Ethereum Platform and ETH and expressly agrees not to hold liable Ethereum Stiftung or Ethereum Team should any of these risks occur:
+The user acknowledges the following serious risks to any use the Ethereum Platform and ETH and expressly agrees to neither hold Ethereum Stiftung nor the Ethereum Team liable should any of the following risks occur:
 
 #### Risk of Regulatory Actions in One or More Jurisdictions
 
-The Ethereum Platform and ETH could be impacted by one or more regulatory inquiries or regulatory action, which could impede or limit the ability of Stiftung Ethereum to continue to develop the Ethereum Platform, or which could impeded or limit the ability of User to use Ethereum Platform or ETH.
+The Ethereum Platform and ETH could be impacted by one or more regulatory inquiries or regulatory actions, which could impede or limit the ability of Stiftung Ethereum to continue to develop the Ethereum Platform, or which could impede or limit the ability of a User to use Ethereum Platform or ETH.
  
 #### Risk of Alternative, Unofficial Ethereum Networks
 
@@ -42,7 +42,7 @@ It is possible that the Ethereum Platform will not be used by a large number of 
 
 #### Risk that the Ethereum Platform, As Developed, Will Not Meet the Expectations of User
 
-The User recognizes that the Ethereum Platform is under development and may undergo significant changes before release.  User acknowledges that any expectations regarding the form and functionality of the Ethereum Platform held by the User may not be met upon release of the Ethereum Platform, for any number of reasons including a change in the design and implementation plans and execution of the implementation of the Ethereum Platform.
+The User recognizes that the Ethereum Platform is under development and may undergo significant changes before release. The User acknowledges that any expectations regarding the form and functionality of the Ethereum Platform held by the User may not be met upon release of the Ethereum Platform, for any number of reasons including a change in the design and implementation plans and execution of the implementation of the Ethereum Platform.
 
 #### Risk of Security Weaknesses in the Ethereum Platform Core Infrastructure Software
 
@@ -50,11 +50,18 @@ The Ethereum Platform rests on open-source software, and there is a risk that th
 
 #### Risk of Weaknesses or Exploitable Breakthroughs in the Field of Cryptography
 
-Cryptography is an art, not a science. And the state of the art can advance over time Advances in code cracking, or technical advances such as the development of quantum computers, could present risks to cryptocurrencies and the Ethereum Platform, which could result in the theft or loss of ETH. To the extent possible, Stiftung Ethereum intends to update the protocol underlying the Ethereum Platform to account for any advances in cryptography and to incorporate additional security measures, but it cannot predict the future of cryptography or guaranty that any security updates will be made, timely or successful.
+Cryptography is an art, not a science. And the state of the art can advance over time. Advances in code cracking, or technical advances such as the development of quantum computers, could present risks to cryptocurrencies and the Ethereum Platform, which could result in the theft or loss of ETH. To the extent possible, Stiftung Ethereum intends to update the protocol underlying the Ethereum Platform to account for any advances in cryptography and to incorporate additional security measures, but it cannot predict the future of cryptography or guarantee that any security updates will be made in a timely or successful manner.
 
 #### Risk of Ether Mining Attacks
 
-As with other cryptocurrencies, the blockchain used for the Ethereum Platform is susceptible to mining attacks, including but not limited to double-spend attacks, majority mining power attacks, “selfish-mining” attacks, and race condition attacks. Any successful attacks present a risk to the Ethereum Platform, expected proper execution and sequencing of ETH transactions, and expected proper execution and sequencing of contract computations. Despite the efforts of the Ethereum Stiftung and Team, known or novel mining attacks may be successful.
+As with other cryptocurrencies, the blockchain used for the Ethereum Platform is susceptible to mining attacks, including but not limited to:
+
+* Double-spend attacks
+* Majority mining power attacks, 
+* “Selfish-mining” attacks
+* Race condition attacks. 
+
+Any successful attacks present a risk to the Ethereum Platform, expected proper execution and sequencing of ETH transactions, and expected proper execution and sequencing of contract computations. Despite the efforts of the Ethereum Stiftung and Team, known or novel mining attacks may be successful.
 
 #### Risk of Rapid Adoption and Increased Demand
 
@@ -65,7 +72,7 @@ If the Ethereum Platform is rapidly adopted, the demand for ETH could rise drama
 If the Ethereum Platform is rapidly adopted, the demand for transaction processing and distributed application computations could rise dramatically and at a pace that exceeds the rate with which ETH miners can bring online additional mining power. Under such a scenario, the entire Ethereum Platform could become destabilized, due to the increased cost of running distributed applications. In turn, this could dampen interest in the Ethereum Platform and ETH. Insufficiency of computational resources and an associated rise in the price of ETH could result in businesses being unable to acquire scarce computational resources to run their distributed applications. This would represent revenue losses to businesses or worst case, cause businesses to cease operations because such operations have become uneconomical due to distortions in the crypto-economy.
 
 Acknowledgment, Acceptance of all Risks and Disclaimer of Warranties and Liabilities
-**THE USER EXPRESSLY KNOWS AND AGREES THAT THE USER IS USING THE Ethereum PLATFORM AT THE USER’S SOLE RISK. THE USER REPRESENTS THAT THE USER HAS AN ADEQUATE UNDERSTANDING OF THE RISKS, USAGE AND INTRICACIES OF CRYPTOGRAPHIC TOKENS AND BLOCKCHAIN-BASED OPEN SOURCE SOFTWARE, ETH PLATFORM AND ETH.  THE USER ACKNOWLEDGES AND AGREES THAT, TO THE FULLEST EXTENT PERMITTED BY ANY APPLICABLE LAW, THE DISCLAIMERS OF LIABILITY CONTAINED HEREIN APPLY TO ANY AND ALL DAMAGES OR INJURY WHATSOEVER CAUSED BY OR RELATED TO RISKS OF, USE OF, OR INABILITY TO USE, ETH OR THE Ethereum PLATFORM UNDER ANY CAUSE OF ACTION WHATSOEVER OF ANY KIND IN ANY JURISDICTION, INCLUDING, WITHOUT LIMITATION, ACTIONS FOR BREACH OF WARRANTY, BREACH OF CONTRACT OR TORT (INCLUDING NEGLIGENCE) AND THAT NEITHER Stiftung Ethereum NOR ETHEREUM TEAM SHALL BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY OR CONSEQUENTIAL DAMAGES, INCLUDING FOR LOSS OF PROFITS, GOODWILL OR DATA. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR CERTAIN TYPES OF DAMAGES. THEREFORE, SOME OF THE ABOVE LIMITATIONS IN THIS SECTION MAY NOT APPLY TO A USER. IN PARTICULAR, NOTHING IN THESE TERMS SHALL AFFECT THE STATUTORY RIGHTS OF ANY USER OR EXCLUDE INJURY ARISING FROM ANY WILLFUL MISCONDUCT OR FRAUD OF Stiftung Ethereum**.
+**THE USER EXPRESSLY KNOWS AND AGREES THAT THE USER IS USING THE Ethereum PLATFORM AT THE USER’S SOLE RISK. THE USER REPRESENTS THAT THE USER HAS AN ADEQUATE UNDERSTANDING OF THE RISKS, USAGES AND INTRICACIES OF CRYPTOGRAPHIC TOKENS AND BLOCKCHAIN-BASED OPEN SOURCE SOFTWARE, ETH PLATFORM AND ETH.  THE USER ACKNOWLEDGES AND AGREES THAT, TO THE FULLEST EXTENT PERMITTED BY ANY APPLICABLE LAW, THE DISCLAIMERS OF LIABILITY CONTAINED HEREIN APPLY TO ANY AND ALL DAMAGES OR INJURY WHATSOEVER CAUSED BY OR RELATED TO RISKS OF, USE OF, OR INABILITY TO USE, ETH OR THE Ethereum PLATFORM UNDER ANY CAUSE OF ACTION WHATSOEVER OF ANY KIND IN ANY JURISDICTION, INCLUDING, WITHOUT LIMITATION, ACTIONS FOR BREACH OF WARRANTY, BREACH OF CONTRACT OR TORT (INCLUDING NEGLIGENCE) AND THAT NEITHER Stiftung Ethereum NOR ETHEREUM TEAM SHALL BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY OR CONSEQUENTIAL DAMAGES, INCLUDING FOR LOSS OF PROFITS, GOODWILL OR DATA. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR CERTAIN TYPES OF DAMAGES. THEREFORE, SOME OF THE ABOVE LIMITATIONS IN THIS SECTION MAY NOT APPLY TO A USER. IN PARTICULAR, NOTHING IN THESE TERMS SHALL AFFECT THE STATUTORY RIGHTS OF ANY USER OR EXCLUDE INJURY ARISING FROM ANY WILLFUL MISCONDUCT OR FRAUD OF Stiftung Ethereum**.
 
 #### Risk of temporary network incoherence
 
@@ -79,13 +86,13 @@ All disputes or claims arising out of, relating to, or in connection with the Te
 
 **Stiftung Ethereum** is finally not liable for:
 
-* unavoidable casualty,
-* delays in delivery of materials,
-* embargoes,
-* government orders,
-* acts of civil or military authorities,
-* lack of energy, or
-* any similar unforeseen event that renders performance commercially implausible.
+* Unavoidable casualty
+* Delays in delivery of materials
+* Embargoes
+* Government orders
+* Acts of civil or military authorities
+* Lack of energy
+* Any similar unforeseen event that renders performance commercially implausible.
  
 
 
