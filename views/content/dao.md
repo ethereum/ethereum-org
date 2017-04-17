@@ -397,7 +397,7 @@ Now to the shareholder code:
             receivedEther(msg.sender, msg.value);
         }
     }
-    
+
     contract Token {
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
     }
@@ -414,7 +414,7 @@ Now to the shareholder code:
 
         event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
         event Voted(uint proposalID, bool position, address voter);
-        event ProposalTallied(uint proposalID, int result, uint quorum, bool active);
+        event ProposalTallied(uint proposalID, uint result, uint quorum, bool active);
         event ChangeOfRules(uint minimumQuorum, uint debatingPeriodInMinutes, address sharesTokenAddress);
 
         struct Proposal {
@@ -477,7 +477,7 @@ Now to the shareholder code:
             p.numberOfVotes = 0;
             ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
             numProposals = proposalID+1;
-            
+
             return proposalID;
         }
 
@@ -507,7 +507,7 @@ Now to the shareholder code:
             p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
             p.voted[msg.sender] = true;
             p.numberOfVotes = voteID +1;
-            Voted(proposalNumber,  supportsProposal, msg.sender);
+            Voted(proposalNumber,  supportsProposal, msg.sender); 
             return voteID;
         }
 
@@ -550,7 +550,7 @@ Now to the shareholder code:
                 p.proposalPassed = false;
             }
             // Fire Events
-            ProposalTallied(proposalNumber, result, quorum, p.proposalPassed);
+            ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
         }
     }
 
