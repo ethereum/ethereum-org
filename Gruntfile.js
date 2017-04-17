@@ -11,7 +11,6 @@ var vendor = [
 	'public/js/bootstrap.min.js',
 	'public/js/jquery.scrollme.min.js',
 	'public/js/bitcoinjs-min.js',
-	'public/js/underscore-min.js',
 	'public/js/numeral.js',
 	'public/js/jquery.tableofcontents.min.js'
 ];
@@ -129,10 +128,6 @@ module.exports = function(grunt) {
 					{
 						src: 'public/js/jquery-1.11.2.min.map',
 						dest: 'dist/js/jquery-1.11.2.min.map'
-					},
-					{
-						src: 'public/js/underscore-min.map',
-						dest: 'dist/js/underscore-min.map'
 					}
 				]
 			}

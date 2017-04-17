@@ -13,11 +13,11 @@ var blockchainUrl = "https://blockchain.info",
 
   $checkForm.submit(function(e){
     e.preventDefault();
-    
+
     var addr = $checkForm.find("input[name=address]").val();
 
     if(!addr) return;
-    
+
     var btcaddr = base58checkEncode(addr, 0),
         getUnspentUrl = blockchainUrl + "/unspent?active=" + btcaddr + "&cors=true&api_code=" +
           blockchainApi;
@@ -34,10 +34,10 @@ var blockchainUrl = "https://blockchain.info",
               totalEth = 0,
               counter = 0;
 
-          _.each(unspent, function(tx){
+          unspent.forEach(function(tx){
             var txUrl = blockchainUrl + "/rawtx/" + tx.tx_index + "?cors=true&api_code=" +
                   blockchainApi + "&format=json";
-            
+
             if(tx.tx_index !== undefined){
                $.getJSON(txUrl, function(data){
                 try{
@@ -47,7 +47,7 @@ var blockchainUrl = "https://blockchain.info",
 
                     totalBtc += btc;
                     totalEth += eth;
-                    
+
                     tick();
                   }else{
                     throw new Error(data.out[0].addr + " is not the fundraising address");
