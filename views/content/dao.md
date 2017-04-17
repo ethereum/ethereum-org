@@ -550,7 +550,7 @@ Now to the shareholder code:
                 p.proposalPassed = false;
             }
             // Fire Events
-            ProposalTallied(proposalNumber, result, quorum, p.proposalPassed);
+            ProposalTallied(proposalNumber, 0, quorum, p.proposalPassed);
         }
     }
 
