@@ -81,14 +81,14 @@ If you just want to copy paste the code, then use this:
             return true;
         }
     
-        function burn() payable returns (bool success) {
+        function burn(address _from,  uint256 _value) payable returns (bool success) {
             if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
             balanceOf[_from] -= _value;                          // Subtract from the sender
             Burn(_from, _value);
             return true;
         }
 
-        function burnFrom(address _from) payable returns (bool success) {
+        function burnFrom(address _from, uint256 _value) payable returns (bool success) {
             if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
             if (_value > allowance[_from][msg.sender]) throw;   // Check allowance
             balanceOf[_from] -= _value;                          // Subtract from the sender
