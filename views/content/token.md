@@ -57,7 +57,7 @@ If you just want to copy paste the code, then use this:
             allowance[msg.sender][_spender] = _value;
             return true;
         }
-        
+
         /* Approve and then comunicate the approved contract in a single tx */
         function approveAndCall(address _spender, uint256 _value, bytes _extraData)
             returns (bool success) {
@@ -95,6 +95,8 @@ If you just want to copy paste the code, then use this:
             Burn(_from, _value);
             return true;
         }
+
+
     }
 
 
@@ -578,7 +580,6 @@ If you add all the advanced options, this is how the final code should look like
 
         uint256 public sellPrice;
         uint256 public buyPrice;
-        uint256 public totalSupply;
 
         mapping (address => bool) public frozenAccount;
 
@@ -590,12 +591,8 @@ If you add all the advanced options, this is how the final code should look like
             uint256 initialSupply,
             string tokenName,
             uint8 decimalUnits,
-            string tokenSymbol,
-            address centralMinter
-        ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {
-            if(centralMinter != 0 ) owner = centralMinter;      // Sets the owner as specified (if centralMinter is not specified the owner is msg.sender)
-            balanceOf[owner] = initialSupply;                   // Give the owner all initial tokens
-        }
+            string tokenSymbol
+        ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {}
 
         /* Send coins */
         function transfer(address _to, uint256 _value) {
