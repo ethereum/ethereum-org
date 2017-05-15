@@ -84,6 +84,7 @@ If you just want to copy paste the code, then use this:
         function burn(uint256 _value) returns (bool success) {
             if (balanceOf[msg.sender] < _value) throw;            // Check if the sender has enough
             balanceOf[msg.sender] -= _value;                      // Subtract from the sender
+            totalSupply -= _value;                                // Updates totalSupply
             Burn(msg.sender, _value);
             return true;
         }
@@ -92,11 +93,10 @@ If you just want to copy paste the code, then use this:
             if (balanceOf[_from] < _value) throw;                // Check if the sender has enough
             if (_value > allowance[_from][msg.sender]) throw;    // Check allowance
             balanceOf[_from] -= _value;                          // Subtract from the sender
+            totalSupply -= _value;                               // Updates totalSupply
             Burn(_from, _value);
             return true;
         }
-
-
     }
 
 
