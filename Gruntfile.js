@@ -1,7 +1,7 @@
 var src = 'public/';
 var dest = 'dist/';
 
-var scripts = [
+var app = [
 	'public/js/ether-checker.js',
 	'public/js/script.js'
 ];
@@ -144,20 +144,20 @@ module.exports = function(grunt) {
 		concat: {
 			vendor: {
 				src: vendor,
-				dest: 'dist/js/vendor.min.js'
+				dest: 'dist/js/vendor.js'
 			},
-			scripts : {
+			app : {
 				options: {
 					separator: ';',
 				},
-				src: scripts,
+				src: app,
 				dest: 'dist/js/app.js'
 			},
 			frontier: {
 				options: {
 					sourceMap: true
 				},
-				src: ['<%= concat.vendor.dest %>', '<%= uglify.app.dest %>'],
+				src: ['<%= uglify.vendor.dest %>', '<%= uglify.app.dest %>'],
 				dest: 'dist/js/frontier.min.js'
 			},
 			css: {
@@ -167,11 +167,15 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			app: {
-				options: {
-					mangle: false,
-				},
 				dest: 'dist/js/app.min.js',
-				src: ['<%= concat.scripts.dest %>']
+				src: ['<%= concat.app.dest %>']
+			},
+			vendor: {
+				dest: 'dist/js/vendor.min.js',
+				src: ['<%= concat.vendor.dest %>']
+			},
+			options: {
+				mangle: false
 			}
 		}
 	});
@@ -183,6 +187,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default', ['clean', 'jade', 'copy', 'cssmin', 'concat:vendor', 'concat:scripts', 'uglify', 'concat:frontier', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
-	grunt.registerTask('build',   'default');
+	grunt.registerTask('default', ['clean', 'jade', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:frontier', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
+	grunt.registerTask('build', 'default');
 };
