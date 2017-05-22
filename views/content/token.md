@@ -43,7 +43,7 @@ If you just want to copy paste the code, then use this:
 
         /* Send coins */
         function transfer(address _to, uint256 _value) {
-            if (_to == 0x0) throw;                               // Prevent transfer to 0x0 address
+            if (_to == 0x0) throw;                               // Prevent transfer to 0x0 address. Use burn() instead
             if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
             if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
             balanceOf[msg.sender] -= _value;                     // Subtract from the sender
@@ -58,7 +58,7 @@ If you just want to copy paste the code, then use this:
             return true;
         }
 
-        /* Approve and then comunicate the approved contract in a single tx */
+        /* Approve and then communicate the approved contract in a single tx */
         function approveAndCall(address _spender, uint256 _value, bytes _extraData)
             returns (bool success) {
             tokenRecipient spender = tokenRecipient(_spender);
@@ -70,7 +70,7 @@ If you just want to copy paste the code, then use this:
 
         /* A contract attempts to get the coins */
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            if (_to == 0x0) throw;                                // Prevent transfer to 0x0 address
+            if (_to == 0x0) throw;                                // Prevent transfer to 0x0 address. Use burn() instead
             if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
             if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
             if (_value > allowance[_from][msg.sender]) throw;     // Check allowance
@@ -81,22 +81,22 @@ If you just want to copy paste the code, then use this:
             return true;
         }
     
-        function burn() payable returns (bool success) {
-            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-            balanceOf[_from] -= _value;                          // Subtract from the sender
-            Burn(_from, _value);
+        function burn(uint256 _value) returns (bool success) {
+            if (balanceOf[msg.sender] < _value) throw;            // Check if the sender has enough
+            balanceOf[msg.sender] -= _value;                      // Subtract from the sender
+            totalSupply -= _value;                                // Updates totalSupply
+            Burn(msg.sender, _value);
             return true;
         }
 
-        function burnFrom(address _from) payable returns (bool success) {
-            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-            if (_value > allowance[_from][msg.sender]) throw;   // Check allowance
+        function burnFrom(address _from, uint256 _value) returns (bool success) {
+            if (balanceOf[_from] < _value) throw;                // Check if the sender has enough
+            if (_value > allowance[_from][msg.sender]) throw;    // Check allowance
             balanceOf[_from] -= _value;                          // Subtract from the sender
+            totalSupply -= _value;                               // Updates totalSupply
             Burn(_from, _value);
             return true;
         }
-
-
     }
 
 
@@ -543,11 +543,10 @@ If you add all the advanced options, this is how the final code should look like
         function approve(address _spender, uint256 _value)
             returns (bool success) {
             allowance[msg.sender][_spender] = _value;
-            tokenRecipient spender = tokenRecipient(_spender);
             return true;
         }
 
-        /* Approve and then comunicate the approved contract in a single tx */
+        /* Approve and then communicate the approved contract in a single tx */
         function approveAndCall(address _spender, uint256 _value, bytes _extraData)
             returns (bool success) {    
             tokenRecipient spender = tokenRecipient(_spender);

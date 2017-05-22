@@ -23,13 +23,13 @@ npm install
 npm install -g grunt-cli
 ```
 
-##Build static resources
+## Build static resources
 
 ```bash
 grunt
 ```
 
-##Run
+## Run
 
 ```bash
 npm start
