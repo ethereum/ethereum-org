@@ -19,7 +19,6 @@ var styles = [
 	'bootstrap.min.css',
 	'font-awesome.css',
 	'wicked-grit.css',
-	'github.css',
 	'style.css'
 ];
 
