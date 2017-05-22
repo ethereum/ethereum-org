@@ -528,7 +528,6 @@ If you add all the advanced options, this is how the final code should look like
             name = tokenName;                                   // Set the name for display purposes
             symbol = tokenSymbol;                               // Set the symbol for display purposes
             decimals = decimalUnits;                            // Amount of decimals for display purposes
-            if (!msg.sender.send(msg.value)) throw;                         // Send back any ether sent accidentally
         }
 
         /* Send coins */
