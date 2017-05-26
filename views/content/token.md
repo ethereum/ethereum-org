@@ -286,6 +286,7 @@ This means that all the functions inside **MyToken** now can access the variable
         address centralMinter
         ) {
         if(centralMinter != 0 ) owner = centralMinter;
+    }
 
 #### Central Mint
 
