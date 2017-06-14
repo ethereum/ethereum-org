@@ -196,7 +196,7 @@ Now all that is missing is having some basic information about the contract. In 
 And now we update the **constructor function** to allow all those variables to be set up at the start:
 
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
+    function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) {
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
