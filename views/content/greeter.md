@@ -7,10 +7,13 @@ Smart contracts are account holding objects on the ethereum blockchain. They con
 
 What can you do with contracts? Well, you can do almost anything really, but for our getting started guide let's do some simple things: To start you will create a classic "Hello World" contract, then you can build your own crypto token to send to whomever you like. Once you've mastered that then you will raise funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
 
-So let's start now.
-
+Before you begin:
+[Install the Ethereum CLI](https://ethereum.org/cli)
 [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
+Please confirm that the GUI is closed before entering the `geth` console.
+Run `geth` to begin the sync process (this may take a while on the first run).
 
+So let's start now.
 
 ### Your first citizen: the greeter
 
@@ -20,10 +23,10 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
 
 
     contract mortal {
-        /* Define variable owner of the type address*/
+        /* Define variable owner of the type address */
         address owner;
 
-        /* this function is executed at initialization and sets the owner of the contract */
+        /* This function is executed at initialization and sets the owner of the contract */
         function mortal() { owner = msg.sender; }
 
         /* Function to recover the funds on the contract */
@@ -31,15 +34,15 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
     }
 
     contract greeter is mortal {
-        /* define variable greeting of the type string */
+        /* Define variable greeting of the type string */
         string greeting;
         
-        /* this runs when the contract is executed */
+        /* This runs when the contract is executed */
         function greeter(string _greeting) public {
             greeting = _greeting;
         }
 
-        /* main function */
+        /* Main function */
         function greet() constant returns (string) {
             return greeting;
         }
