@@ -6,9 +6,13 @@
 
 <p>What can you do with contracts? Well, you can do almost anything really, but for our getting started guide let&#39;s do some simple things: To start you will create a classic &quot;Hello World&quot; contract, then you can build your own crypto token to send to whomever you like. Once you&#39;ve mastered that then you will raise funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.</p>
 
-<p>So let&#39;s start now.</p>
+<p>Before you begin:
+<a href="https://ethereum.org/cli">Install the Ethereum CLI</a>
+<a href="https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions">Learn more about contracts</a>
+Please confirm that the GUI is closed before entering the <code>geth</code> console.
+Run <code>geth</code> to begin the sync process (this may take a while on the first run).</p>
 
-<p><a href="https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions">Learn more about contracts</a></p>
+<p>So let&#39;s start now.</p>
 
 <h3>Your first citizen: the greeter</h3>
 
@@ -17,10 +21,10 @@
 <p>The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:</p>
 
 <pre><code>contract mortal {
-    /* Define variable owner of the type address*/
+    /* Define variable owner of the type address */
     address owner;
 
-    /* this function is executed at initialization and sets the owner of the contract */
+    /* This function is executed at initialization and sets the owner of the contract */
     function mortal() { owner = msg.sender; }
 
     /* Function to recover the funds on the contract */
@@ -28,15 +32,15 @@
 }
 
 contract greeter is mortal {
-    /* define variable greeting of the type string */
+    /* Define variable greeting of the type string */
     string greeting;
 
-    /* this runs when the contract is executed */
+    /* This runs when the contract is executed */
     function greeter(string _greeting) public {
         greeting = _greeting;
     }
 
-    /* main function */
+    /* Main function */
     function greet() constant returns (string) {
         return greeting;
     }

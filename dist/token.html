@@ -188,7 +188,7 @@ uint8 public decimals;</code></pre>
 <p>And now we update the <strong>constructor function</strong> to allow all those variables to be set up at the start:</p>
 
 <pre><code>/* Initializes contract with initial supply tokens to the creator of the contract */
-function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
+function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) {
     balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
     name = tokenName;                                   // Set the name for display purposes
     symbol = tokenSymbol;                               // Set the symbol for display purposes
@@ -273,7 +273,8 @@ function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, st
     string tokenSymbol,
     address centralMinter
     ) {
-    if(centralMinter != 0 ) owner = centralMinter;</code></pre>
+    if(centralMinter != 0 ) owner = centralMinter;
+}</code></pre>
 
 <h4>Central Mint</h4>
 
