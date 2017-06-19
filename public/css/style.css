@@ -629,6 +629,36 @@ ul#tableOfContents ul {
 	color: #eb453e;
 }
 
+
+.footer_pages {
+	margin-top:50px;
+}
+
+p.footer_links{
+    font-size: 80%;
+    text-align: center;
+}
+
+div.cookie_table table th:first-child {
+	width: 220px;
+}
+div.cookie_table table th:nth-child(2) {
+	width: 160px;
+}
+
+div.cookie_table table th {
+	text-align:left;
+}
+div.cookie_table table td {
+	padding: 0 20px 20px 0;
+    vertical-align: top;
+}
+
+p.cookie_pol {
+	padding:20px 0 0 0;
+}
+   
+   
 /* FOOTER */
 
 .footer h2 {
