@@ -399,7 +399,7 @@ In order to do that, first you need to create a variable that will hold the thre
     uint minBalanceForAccounts;
 
     function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
-         minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
+         minBalanceForAccounts = minimumBalanceInFinney * 5 finney;
     }
 
 Then, add this line to the **transfer** function so that the sender is refunded:
