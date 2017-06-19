@@ -1,0 +1,216 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Create a crowdsale contract in Ethereum</title><meta name="description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><meta name="twitter:card" value="summary"><meta property="og:title" content="Create a crowdsale contract in Ethereum"><meta property="og:type" content="article"><meta property="og:url" content="https://www.ethereum.org/crowdsale"><meta property="og:image" content="https://ethereum.org/images/social-crowdsale.jpg"><meta property="og:image:width" content="500"><meta property="og:image:height" content="500"><meta property="og:description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/css/frontier.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css"></head><body><div data-when="enter" data-from="1" data-to="0.8" data-opacity="0" data-translatey="-20" class="breadcrumb animateme"><a href="/" class="index">Ethereum </a><strong>»  Create a crowdsale</strong><a href="/token" class="previous">Previous</a><a href="/dao" class="next">Next</a></div><div id="tutorial-start" class="main-tutorial crowdsale-tutorial inner-header inner-page even"><div class="container"><div class="row"><div class="col-md-6 tutorial scrollme"><figure class="crowdsale scrollme"><div data-when="exit" data-to="0.8" data-from="0.7" data-opacity="0" data-translatey="-100" data-easing="linear" class="crowdsale-logic animateme"></div><div data-when="exit" data-to="0.5" data-from="0.3" data-opacity="0" data-translatey="-155" data-translatex="-30" data-scale="1.1" data-rotatez="90" data-easing="linear" class="crowdsale-robot animateme"></div><div data-when="exit" data-to="0.8" data-from="0.6" data-opacity="0" data-translatey="-20" class="crowdsale-money animateme"></div><div data-when="exit" data-to="0.7" data-from="0.5" data-opacity="0" data-scale="1.4" class="crowdsale-contributions animateme"></div><div data-when="exit" data-to="0.3" data-from="0" data-opacity="0" data-translatey="-100" data-scale="1.1" data-easing="linear" class="crowdsale-crowd animateme"></div></figure></div><div class="col-md-6 tutorial scrollme"><div class="header-title"><h2 data-when="exit" data-from="0" data-to="1" data-translatey="400" data-easing="linear" class="animateme">Crowdsale</h2><h3 data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear" class="animateme">Raising funds from friends without a third party</h3></div></div></div></div></div><div class="main-tutorial inner-tutorial"><div class="container"><div class="row scrollme"><ul id="tableOfContents" data-when="enter" data-from="0.4" data-to="0.2" data-translatex="-100" data-opacity="0" data-easing="linear" class="toc animateme"></ul><div class="col-md-12"><h3>Crowdfund your idea</h3>
+
+<p>Sometimes a good idea takes a lot of funds and collective effort. You could ask for donations, but donors prefer to give to projects they are more certain will get traction and proper funding. This is an example where a crowdfunding would be ideal: you set up a goal and a deadline for reaching it. If you miss your goal, the donations are returned, therefore reducing the risk for donors. Since the code is open and auditable, there is no need for a centralized, trusted platform and therefore the only fees everyone will pay are just the gas fees.</p>
+
+<h4>Tokens and DAOs</h4>
+
+<p>In this example we will make a better crowdfunding by solving two important problems: how rewards are managed and kept, and how the money is spent after the funds are raised.</p>
+
+<p>Rewards in crowdfundings are usually handled by a central unchangeable database that keeps track of all donors: anyone who missed the deadline for the campaign cannot get in anymore and any donor who changed their mind can&#39;t get out. Instead we are going to do this the decentralized way and just create a <a href="./token">token</a> to keep track of rewards, anyone who contributes gets a token that they can trade, sell or keep for later. When the time comes to give the physical reward the producer only needs to exchange the tokens for real products. Donors get to keep their tokens, even if the project doesn&#39;t achieve its goals, as a souvenir.</p>
+
+<p>Also, generally those who are funding can&#39;t have any say on how the money is spent after the funds are raised and mismanagement often causes projects never to deliver anything at all. In this project we will use a <a href="./dao">Democratic Organization</a> that will have to approve any money coming out of the system. This is often called a <strong>crowdsale</strong> or <strong>crowd equity</strong> and is so fundamental that in some cases the token can be the reward itself, especially in projects where a group of people gather together to build a common public good.</p>
+
+<p><img alt="Get the necessary contracts" src="/images/tutorial/token-crowdsale.png"/></p>
+
+<ul><li><p>If you are just testing, switch the wallet to the testnet and start mining.</p></li><li><p>First of all, create a <a href="./token#the-code">fixed supply token</a>. For this example, we are going to create a supply of <strong>100</strong>, use the name <strong>gadgets</strong>, the box emoji (📦) as a symbol and <strong>0</strong> decimal places. Deploy it and save the address.</p></li><li><p>Now create a <a href="./dao#the-shareholder-association">shareholder association</a>. In this example we are going to use the address of the token we just created as the <strong>Shares Address</strong>, a minimum quorum of <strong>10</strong>, and <strong>1500</strong> minutes (25 hours) as the voting time. Deploy this contract and save the address.</p></li></ul>
+
+<h4>The code</h4>
+
+<p>Now copy this code and let&#39;s create the crowdsale:</p>
+
+<pre><code>pragma solidity ^0.4.2;
+contract token { function transfer(address receiver, uint amount); }
+
+contract Crowdsale {
+    address public beneficiary;
+    uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
+    token public tokenReward;
+    mapping(address =&gt; uint256) public balanceOf;
+    bool fundingGoalReached = false;
+    event GoalReached(address beneficiary, uint amountRaised);
+    event FundTransfer(address backer, uint amount, bool isContribution);
+    bool crowdsaleClosed = false;
+
+    /* data structure to hold information about campaign contributors */
+
+    /*  at initialization, setup the owner */
+    function Crowdsale(
+        address ifSuccessfulSendTo,
+        uint fundingGoalInEthers,
+        uint durationInMinutes,
+        uint etherCostOfEachToken,
+        token addressOfTokenUsedAsReward
+    ) {
+        beneficiary = ifSuccessfulSendTo;
+        fundingGoal = fundingGoalInEthers * 1 ether;
+        deadline = now + durationInMinutes * 1 minutes;
+        price = etherCostOfEachToken * 1 ether;
+        tokenReward = token(addressOfTokenUsedAsReward);
+    }
+
+    /* The function without name is the default function that is called whenever anyone sends funds to a contract */
+    function () payable {
+        if (crowdsaleClosed) throw;
+        uint amount = msg.value;
+        balanceOf[msg.sender] += amount;
+        amountRaised += amount;
+        tokenReward.transfer(msg.sender, amount / price);
+        FundTransfer(msg.sender, amount, true);
+    }
+
+    modifier afterDeadline() { if (now &gt;= deadline) _; }
+
+    /* checks if the goal or time limit has been reached and ends the campaign */
+    function checkGoalReached() afterDeadline {
+        if (amountRaised &gt;= fundingGoal){
+            fundingGoalReached = true;
+            GoalReached(beneficiary, amountRaised);
+        }
+        crowdsaleClosed = true;
+    }
+
+
+    function safeWithdrawal() afterDeadline {
+        if (!fundingGoalReached) {
+            uint amount = balanceOf[msg.sender];
+            balanceOf[msg.sender] = 0;
+            if (amount &gt; 0) {
+                if (msg.sender.send(amount)) {
+                    FundTransfer(msg.sender, amount, false);
+                } else {
+                    balanceOf[msg.sender] = amount;
+                }
+            }
+        }
+
+        if (fundingGoalReached &amp;&amp; beneficiary == msg.sender) {
+            if (beneficiary.send(amountRaised)) {
+                FundTransfer(beneficiary, amountRaised, false);
+            } else {
+                //If we fail to send the funds to beneficiary, unlock funders balance
+                fundingGoalReached = false;
+            }
+        }
+    }
+}</code></pre>
+
+<h4>Code highlights</h4>
+
+<p>Notice that in the <strong>Crowdsale</strong> function (the one that is called upon contract creation), how the variables <strong>deadline</strong> and <strong>fundingGoal</strong> are set:</p>
+
+<pre><code>fundingGoal = fundingGoalInEthers * 1 ether;
+deadline = now + durationInMinutes * 1 minutes;
+price = etherCostOfEachToken * 1 ether;</code></pre>
+
+<p>Those are some of the <a href="https://solidity.readthedocs.org/en/latest/units-and-global-variables.html">special keywords</a> in solidity that help you code, allowing you to evaluate some things like <strong>1 ether == 1000 finney</strong> or <strong>2 days == 48 hours</strong>. Inside the system all ether amounts are kept track in <strong>wei</strong>, the smallest divisible unit of ether. The code above converts the funding goal into wei by multiplying it by 1,000,000,000,000,000,000 (which is what the special keyword <strong>ether</strong> converts into). The next line creates a timestamp that is exactly X minutes away from today by also using a combination of the special keywords <strong>now</strong> and <strong>minutes</strong>. For more global keywords, check the <a href="https://solidity.readthedocs.org/en/latest/units-and-global-variables.html">solidity documentation on Globally available variables</a>.</p>
+
+<p>The following line will instantiate a contract at a given address:</p>
+
+<pre><code>tokenReward = token(addressOfTokenUsedAsReward);</code></pre>
+
+<p>Notice that the contract understands what a <em>token</em> is because we defined it earlier by starting the code with:</p>
+
+<pre><code>contract token { function transfer(address receiver, uint amount){  } }</code></pre>
+
+<p>This doesn&#39;t fully describe how the contract works or all the functions it has, but describes only the ones this contract needs: a token is a contract with a <em>transfer</em> function, and we have one at this address.</p>
+
+<h4>How to use</h4>
+
+<p>Go to <strong>contracts</strong> and then <strong>deploy contract</strong>:</p>
+
+<p><img alt="Crowdsale deployment" src="/images/tutorial/crowdsale-deploy.png"/></p>
+
+<ul><li><p>Put the address of the organization you just created in the field <strong>if successful, send to</strong>.</p></li><li><p>Put <strong>250</strong> ethers as the funding goal</p></li><li><p>If you are just doing it for a test or demonstration, put the crowdsale duration as 3-10 minutes, but if you are really raising funds you can put a larger amount, like <strong>45,000</strong> (31 days).</p></li><li><p>The <strong>ether cost of each token</strong> should be calculated based on how many tokens you are putting up for sale (a maximum of how many you added as &quot;initial supply&quot; of your token on the previous step). In this example, put 5 ethers.</p></li><li><p>The address of the token you created should be added to the <strong>token reward address</strong></p></li></ul>
+
+<p>Put a gas price, click deploy and wait for your crowdsale to be created. Once the crowdsale page is created, you now need to deposit enough rewards so it can pay the rewards back. Click the address of the crowdsale, then deposit and send <strong>50 gadgets</strong> to the crowdsale.</p>
+
+<p><strong>I have 100 gadgets. Why not sell them all?</strong></p>
+
+<p>This is a very important point. The crowdsale we are building will be completely controlled by the token holders. This creates the danger that someone controlling 50%+1 of all the tokens will be able to send all the funds to themselves. You can try to create special code on the association contract to prevent these hostile takeovers, or you can instead have all the funds sent to a simple address. To simplify we are simply selling off half of all the gadgets: if you want to further decentralize this, split the remaining half between trusted organizations.</p>
+
+<h4>Raise funds</h4>
+
+<p>Once the crowdsale has all the necessary tokens, contributing to it is easy and you can do it from any ethereum wallet: just send funds to it. You can see the relevant code bit here:</p>
+
+<pre><code>function () {
+    if (crowdsaleClosed) throw;
+    uint amount = msg.value;  
+    ...</code></pre>
+
+<p>The <a href="https://solidity.readthedocs.org/en/latest/contracts.html#fallback-function">unnamed function</a> is the default function executed whenever a contract receives ether. This function will automatically check if the crowdsale is active, calculate how many tokens the caller bought and send the equivalent. If the crowdsale has ended or if the contract is out of tokens the contract will <strong>throw</strong> meaning the execution will be stopped and the ether sent will be returned (but all the gas will be spent).</p>
+
+<p><img alt="Crowdsale error" src="/images/tutorial/crowdsale-error.png"/></p>
+
+<p>This has the advantage that the contract prevents falling into a situation that someone will be left without their ether or tokens. In a previous version of this contract we would also <a href="https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#contract-related"><strong>self destruct</strong></a> the contract after the crowdsale ended: this would mean that any transaction sent after that moment would lose their funds. By creating a fallback function that throws when the sale is over, we prevent anyone losing money.</p>
+
+<p>The contract has a safeWithdrawl() function, without any parameters, that can be executed by the beneficiary to access the amount raised or by the funders to get back their funds in the case of a failed fundraise.</p>
+
+<p><img alt="Crowdsale execution" src="/images/tutorial/crowdsale-execute.png"/></p>
+
+<h3>Extending the crowdsale</h3>
+
+<h4>What if the crowdsale overshoots its target?</h4>
+
+<p>In our code, only two things can happen: either the crowdsale reaches its target or it doesn&#39;t. Since the token amount is limited, it means that once the goal has been reached no one else can contribute. But the history of crowdfunding is full of projects that overshoot their goals in much less time than predicted or that raised many times over the required amount.</p>
+
+<h4>Unlimited crowdsale</h4>
+
+<p>So we are going to modify our project slightly so that instead of sending a limited set of tokens, the project actually creates a new token out of thin air whenever someone sends them ether. First of all, we need to create a <a href="./token#central-mint">Mintable token</a>.</p>
+
+<p>Then modify the crowdsale to rename all mentions of <strong>transfer</strong> to <strong>mintToken</strong>:</p>
+
+<pre><code>contract token { function mintToken(address receiver, uint amount){  } }
+...
+    function () {
+        ...
+        tokenReward.mintToken(msg.sender, amount / price);
+        ...
+    }</code></pre>
+
+<p>Once you published the crowdsale contract, get its address and go into your <strong>Token Contract</strong> to execute a <strong>Change Ownership</strong> function. This will allow your crowdsale to call the <strong>Mint Token</strong> function as much as it wants.</p>
+
+<p><strong>Warning:</strong>  This opens you to the danger of hostile takeover. At any point during the crowdsale anyone who donates more than the amount already raised will be able to control the whole pie and steal it. There are many strategies to prevent that, but implementing will be left as an exercise to the reader:</p>
+
+<ul><li>Modify the crowdsale such that when a token is bought, also send the same quantity of tokens to the founder&#39;s account so that they always control 50% of the project</li><li>Modify the Organization to create a veto power to some trusted third party that could stop any hostile proposal</li><li>Modify the token to allow a central trusted party to freeze token accounts, so as to require a verification that there isn&#39;t any single entity controlling a majority of them</li></ul>
+
+<h4>Scheduling a call</h4>
+
+<p>Ethereum contracts are passive, in that they can only do something once they have been activated. Fortunately there are some third party community services that provide that service for you: the <a href="http://www.ethereum-alarm-clock.com/">Ethereum Alarm Clock</a> is an open marketplace where anyone can receive ether to execute scheduled calls or pay ether to schedule them. This tutorial will be using the <a href="http://www.ethereum-alarm-clock.com/source/v0.6.0/">0.6.0 version</a> of the Alarm service.  Documentation for this version available <a href="http://ethereum-alarm-clock-service.readthedocs.org/en/v0.6.0/">here</a>.</p>
+
+<p><img alt="Add the alarm clock" src="/images/tutorial/add-alarm-clock.png"/></p>
+
+<p>First, you need to add the contract to your watchlist. Go to your <em>Contracts</em> tab and then <em>Watch contract</em> (<strong>not</strong> <em>deploy contract</em>): Give the name &quot;Ethereum Alarm Clock&quot;, use <strong>0xe109EcB193841aF9dA3110c80FDd365D1C23Be2a</strong> as address (the icon should look like a green eyed creature) and add this code as the <em>Json Interface</em>:</p>
+
+<pre><code>[{&quot;constant&quot;:false,&quot;inputs&quot;:[{&quot;name&quot;:&quot;contractAddress&quot;,&quot;type&quot;:&quot;address&quot;},{&quot;name&quot;:&quot;abiSignature&quot;,&quot;type&quot;:&quot;bytes4&quot;},{&quot;name&quot;:&quot;targetBlock&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;name&quot;:&quot;scheduleCall&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:false,&quot;inputs&quot;:[{&quot;name&quot;:&quot;contractAddress&quot;,&quot;type&quot;:&quot;address&quot;},{&quot;name&quot;:&quot;abiSignature&quot;,&quot;type&quot;:&quot;bytes4&quot;},{&quot;name&quot;:&quot;targetBlock&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;suggestedGas&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;gracePeriod&quot;,&quot;type&quot;:&quot;uint8&quot;}],&quot;name&quot;:&quot;scheduleCall&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[],&quot;name&quot;:&quot;getDefaultPayment&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[],&quot;name&quot;:&quot;getDefaultFee&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:false,&quot;inputs&quot;:[{&quot;name&quot;:&quot;contractAddress&quot;,&quot;type&quot;:&quot;address&quot;},{&quot;name&quot;:&quot;abiSignature&quot;,&quot;type&quot;:&quot;bytes4&quot;},{&quot;name&quot;:&quot;targetBlock&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;suggestedGas&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;name&quot;:&quot;scheduleCall&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[{&quot;name&quot;:&quot;callAddress&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;name&quot;:&quot;getNextCallSibling&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[{&quot;name&quot;:&quot;callAddress&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;name&quot;:&quot;isKnownCall&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;bool&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[{&quot;name&quot;:&quot;basePayment&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;name&quot;:&quot;getMinimumCallCost&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:false,&quot;inputs&quot;:[{&quot;name&quot;:&quot;contractAddress&quot;,&quot;type&quot;:&quot;address&quot;},{&quot;name&quot;:&quot;abiSignature&quot;,&quot;type&quot;:&quot;bytes4&quot;},{&quot;name&quot;:&quot;targetBlock&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;suggestedGas&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;gracePeriod&quot;,&quot;type&quot;:&quot;uint8&quot;},{&quot;name&quot;:&quot;basePayment&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;name&quot;:&quot;scheduleCall&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[],&quot;name&quot;:&quot;getMinimumCallCost&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:false,&quot;inputs&quot;:[{&quot;name&quot;:&quot;contractAddress&quot;,&quot;type&quot;:&quot;address&quot;},{&quot;name&quot;:&quot;abiSignature&quot;,&quot;type&quot;:&quot;bytes4&quot;},{&quot;name&quot;:&quot;targetBlock&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;suggestedGas&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;gracePeriod&quot;,&quot;type&quot;:&quot;uint8&quot;},{&quot;name&quot;:&quot;basePayment&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;baseFee&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;name&quot;:&quot;scheduleCall&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[{&quot;name&quot;:&quot;basePayment&quot;,&quot;type&quot;:&quot;uint256&quot;},{&quot;name&quot;:&quot;baseFee&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;name&quot;:&quot;getMinimumCallCost&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[],&quot;name&quot;:&quot;getMinimumCallGas&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[],&quot;name&quot;:&quot;getCallWindowSize&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[{&quot;name&quot;:&quot;blockNumber&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;name&quot;:&quot;getNextCall&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;address&quot;}],&quot;type&quot;:&quot;function&quot;},{&quot;constant&quot;:true,&quot;inputs&quot;:[],&quot;name&quot;:&quot;getMinimumGracePeriod&quot;,&quot;outputs&quot;:[{&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;uint256&quot;}],&quot;type&quot;:&quot;function&quot;}]</code></pre>
+
+<p><strong>Tip: if you are on the test net, use the address <em>0xb8Da699d7FB01289D4EF718A55C3174971092BEf</em> instead</strong></p>
+
+<p>Click on the green icon that you just added and then choose a function call under the <strong>Write to contract</strong> title. There will be multiple <em>Schedule Call</em> functions, choose the first one, that only has three fields:</p>
+
+<ul><li><strong>contractAddress</strong> will be the address of the deployed crowdsale contract.</li><li><strong>abiSignature</strong> will be <strong>0x01cb3b20</strong>. You can figure out the signature for any function by trying to execute them but in the confirmation window, instead of typing your password, copy the code in the <strong>Data</strong> field. The function signature is the first 10 characters in bold.</li><li><strong>targetBlock</strong> is the block number in which you want the function to be executed, read below to calculate an estimation.</li></ul>
+
+<p>The crowdsale contract specifies a deadline using a timestamp, but the Alarm clock currently schedules calls based on block numbers.  Since ethereum has a block time of approximately 17 seconds, we need to compute a block number that is going to be probabilistically past the deadline.  We can do this with the formula <strong>current_block_number + duration_in_minutes * 60 / 17 + buffer</strong> where <strong>buffer</strong> is a number of blocks that is sufficiently large that you can rely on it occurring after the crowdsale deadline.  For short crowdsales less than a day in duration a buffer of 200 blocks should be sufficient.  For durations closer to 30 days, you should probably pick a number closer to 5,000.</p>
+
+<p>You can use the following chart for rough estimates for how many blocks to add to the current block to compute the <strong>targetBlock</strong>.</p>
+
+<ul><li>1 hour duration (60 minutes): 212 blocks</li><li>1 day duration  (1440 minutes):  5082 blocks</li><li>1 week duration (10,800 minutes): 38,117 blocks</li><li>1 month duration (44,640 minutes): 157,553 blocks</li></ul>
+
+<p>On the <strong>Send</strong> field, you need to send enough ether to pay the transaction fee, plus some more to pay the scheduler. Any extra money sent will be refunded, so sending at least 0.25 ether will probably keep you on the safe side.</p>
+
+<p>After that, just press execute and your call will be scheduled. There are no guarantees that someone will actually execute it, so you should check back after the deadline has passed to be sure.</p><a href="https://github.com/ethereum/ethereum-org/edit/master/views/content/crowdsale.md" class="button small">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><div class="col-md-12 tutorial"><h2>What's next?</h2></div><div class="col-md-6 tutorial"><figure class="dao scrollme"><div data-when="enter" data-from="0.65" data-to="0.45" data-opacity="0" data-translatey="200" data-rotatez="-90" class="dao-robot animateme"></div><div data-when="enter" data-from="0.7" data-to="0.5" data-opacity="0" data-translatey="200" class="dao-money animateme"></div><div data-when="enter" data-from="0.95" data-to="0.8" data-opacity="0" data-scale="1.5" class="dao-arrows animateme"></div><div data-when="enter" data-from="0.45" data-to="0" data-opacity="0" data-translatey="-250" data-translatex="10" data-rotatez="0" data-scale="1.1" data-easing="linear" class="dao-crowd animateme"></div><div data-when="enter" data-from="0.8" data-to="0.7" data-opacity="0" data-translatey="-40" class="dao-ideas animateme"></div></figure></div><div class="col-md-6 tutorial"><h3>Create a democratic autonomous organization</h3><p>Now that you have developed your idea and secured funds, what’s next? You have to hire managers, find a trustworthy CFO to handle the accounts, run board meetings and do a bunch of paperwork. </p><p>Or you can simply leave all that to an Ethereum contract. It will collect proposals from your backers and submit them through a completely transparent voting process.</p><p>One of the many advantages of having a robot run your organization is that it is immune to any outside influence as it’s guaranteed to execute only what it was programmed to. And because the Ethereum network is decentralized, you'll be able to provide services with a 100% uptime guarantee. </p></div><div class="clearfix"></div><div class="col-md-6 tutorial"><a href="/dao" class="button">Start your organization </a></div><div class="col-md-6 tutorial"><div class="recipe"><h4>You can build:</h4><ul><li>A virtual organization where members vote on issues</li><li>A transparent association based on shareholder voting</li><li>Your own country with an unchangeable constitution</li><li>A better delegative democracy</li></ul></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
+   room: 'ethereum/tutorials'
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div id="developer-resources" class="col-md-6 developers"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div id="about-us" class="col-md-6"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a href="./donate" class="donate-button">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div id="community" class="col-md-6 community"><h2>Community</h2><ul><li><a href="http://blog.ethereum.org">Blog</a></li><li><a href="http://twitter.com/ethereumproject" class="twitter">Twitter</a></li><li><a href="https://www.youtube.com/user/ethereumproject" class="youtube">Youtube</a></li><li><a href="http://www.reddit.com/r/ethereum" class="reddit">Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" class="gitter">Gitter</a></li><li><a href="http://ethereum.stackexchange.com" class="stackexchange">Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" class="facebook">Facebook                </a></li><li><a href="http://ethereum.meetup.com" class="meetups">Meetups</a></li><li><a href="mailto:info@ethereum.org" class="email">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div id="news" class="col-md-6 news"><h2>Tweets</h2><a href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px" class="twitter-timeline">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/frontier.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+    $("#toc").tableOfContents(
+      $(".main-tutorial"),      // Scoped to div#wrapper
+      {
+        startLevel: 2,    // H2 and up
+        depth:      3    // H2 through H4,
+      }
+    );
+  });</script><script>   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+   (i[r].q=i[r].q||[]).push(arguments)
+   },i[r].l=1*new Date();a=s.createElement(o),
+   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+   ga('create', 'UA-52040685-2', 'auto');
+   ga('send', 'pageview');</script></body></html>

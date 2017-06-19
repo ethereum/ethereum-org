@@ -11,7 +11,7 @@ pids
 .grunt
 
 # Compiled
-dist
+# dist
 
 # Dependency directory
 # Commenting this out is preferred by some people, see
