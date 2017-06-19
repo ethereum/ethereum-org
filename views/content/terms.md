@@ -92,7 +92,7 @@ We may update the content on this Website from time to time, but its content is 
 
 **Information About You and Your Visits to the Website** 
 
-All information we collect on this Website is subject to our <a href="/devcon3/privacy-policy">Privacy Policy</a>. By using the Website, you consent to all actions taken by us with respect to your information in compliance with the Privacy Policy. 
+All information we collect on this Website is subject to our [https://ethereumfoundation.org/devcon3/privacy-policy](https://ethereumfoundation.org/devcon3/privacy-policy). By using the Website, you consent to all actions taken by us with respect to your information in compliance with the Privacy Policy. 
 
 **Online Purchases and Other Terms and Conditions** 
 
