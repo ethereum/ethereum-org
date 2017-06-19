@@ -1,0 +1,161 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>What is Ether</title><meta name="description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><meta name="twitter:card" value="summary"><meta property="og:title" content="What is Ether"><meta property="og:type" content="article"><meta property="og:url" content="https://www.ethereum.org/ether"><meta property="og:image" content="https://ethereum.org/images/social-ether.jpg"><meta property="og:image:width" content="500"><meta property="og:image:height" content="500"><meta property="og:description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/css/frontier.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css"></head><body><div data-when="enter" data-from="1" data-to="0.8" data-opacity="0" data-translatey="-20" class="breadcrumb animateme"><a href="/" class="index">Ethereum </a><strong>» Ether</strong></div><div id="tutorial-start" class="main-tutorial ether-tutorial inner-header inner-page even"><div class="container"><div class="row"><div class="col-md-6 tutorial scrollme"><figure class="ether scrollme"><div data-when="enter" data-from="0.6" data-to="0" data-translatey="500" class="ether-screen animateme"></div><div data-when="enter" data-from="0.55" data-to="0.5" data-opacity="0" class="ether-pacman animateme"></div><div data-when="enter" data-from="0.6" data-to="0" data-translatey="500" class="ether-arcade-back animateme"></div><div data-when="enter" data-from="0.6" data-to="0.4" data-translatey="-300" class="ether-coin animateme"></div><div data-when="enter" data-from="0.6" data-to="0" data-translatey="500" class="ether-arcade-front animateme"></div></figure></div><div class="col-md-6 tutorial scrollme"><div class="header-title"><h2 data-when="exit" data-from="0" data-to="1" data-translatey="400" data-easing="linear" class="animateme">Ether</h2><h3 data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear" class="animateme"> The crypto-fuel for the Ethereum network</h3></div></div></div></div></div><div class="main-tutorial inner-tutorial ether-tutorial"><div class="container"><div class="row"><div class="col-md-12"><h2>What is Ether?</h2><p>Ether is a necessary element -- a fuel -- for operating the distributed application platform Ethereum. It is a form of payment made by the clients of the platform to the machines executing the requested operations. To put it another way, ether is the incentive ensuring that developers write quality applications (wasteful code costs more), and that the network remains healthy (people are compensated for their contributed resources).</p><p><strong>If you just want to test the technology, you probably don't need real ether. <a href="https://github.com/ethereum/mist/releases/latest">Download the latest Wallet app </a>and switch to the Test Network</strong></p></div></div></div></div><div id="balance" class="main-tutorial ether-checker even"><div class="container"><div class="row"><div class="col-md-12"><h2>Did you buy ether during the presale?</h2><h3>Check your ether presale balance safely here:</h3><form id="ether-checker"><input type="text" name="address" placeholder="Ether address"><input type="submit" value="Check your balance" class="button btn btn-blue"></form></div></div></div></div><div class="main-tutorial inner-tutorial ether-tutorial"><div class="container"><div class="row"><div class="col-md-12"><h2>FAQ</h2>
+
+<h3>How are ethers created?</h3>
+
+<p>The total supply of ether and its rate of issuance was decided by the donations gathered on the 2014 presale. The results were roughly:</p>
+
+<ul><li>60 million ether created to contributors of the presale</li><li>12 Million (20% of the above) were created to the development fund, most of it going to early contributors and developers and the remaining to the <a href="./foundation">Ethereum Foundation</a></li><li>5 ethers are created every block (roughly 15-17 seconds) to the miner of the block</li><li>2-3 ethers are sometimes sent to another miner if they were also able to find a solution but his block wasn&#39;t included (called uncle/aunt reward)</li></ul>
+
+<h3>Is the ether supply infinite?</h3>
+
+<p>No. According to the terms agreed by all parties on the 2014 presale, issuance of ether is capped at 18 million ether per year (this number equals 25% of the initial supply). This means that while the absolute issuance is fixed, the relative inflation is decreased every year. In theory if this issuance was kept indefinitely then at some point the rate of new tokens created every year would reach the average amount lost yearly (by misuse, accidental key lost, death of holders etc) and there would reach an equilibrium.</p>
+
+<p>But the rate is not expected to be kept: sometime in 2017 Ethereum will be switched from Proof of Work to a new consensus algorithm under development, called <a href="https://blog.ethereum.org/2015/08/01/introducing-casper-friendly-ghost/">Casper</a> that is expected to be more efficient and require less mining subsidy. The exact method of issuance and which function it will serve is an area of active research, but what can be guaranteed now is that (1) the current maximum is considered a ceiling and the new issuance under casper will not exceed it (and is expected to be much less) and (2) whatever method is ultimately picked to issue, it will be a decentralized smart contract that will <strong>not</strong> give preferential treatment to any particular group of people and whose purpose is to benefit the overall health and security of the network.</p>
+
+<h3>Who needs ether?</h3>
+
+<p>Developers who intend to build apps that will use the ethereum blockchain. Users who want to access and interact with smart contracts on the ethereum blockchain.</p>
+
+<h3>I bought ether during the 2014 presale. How do I access it?</h3>
+
+<p>The <a href="https://github.com/ethereum/mist/releases/latest">Ethereum Wallet</a> includes an easy presale import. Download it and it will offer that option automatically.</p>
+
+<p><img alt="Import presale" src="/images/tutorial/presale-import.jpg"/></p>
+
+<h4>Using the command line</h4>
+
+<p>If you are still on the console, then quit it by pressing <em>control+C</em> multiple times and pressing enter.</p>
+
+<p>Then, if you are using <strong>Geth</strong> execute this:</p>
+
+<pre><code>geth wallet import /path/to/my/presale.wallet </code></pre>
+
+<p>Alternatively, if you are using <strong>Eth</strong> execute this:</p>
+
+<pre><code>eth --import-presale /path/to/my/presale.wallet</code></pre>
+
+<p>This will prompt for your password and imports your ether presale account. It can be used non-interactively with the <em>--password</em> option taking a password file as argument containing the wallet password in cleartext.</p>
+
+<p>If this does not work, please do not hesitate in contacting us on our <a href="http://forum.ethereum.org">forums</a>, <a href="http://reddit.com/r/ethereum">reddit</a> or at <strong>info (at) ethereum.org</strong>.</p>
+
+<p>If you don&#39;t feel comfortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our <a href="#balance">online balance checker</a>.</p>
+
+<p>Read <a href="http://guide.ethereum.org/managing_accounts.html">more about accounts</a>.</p>
+
+<h3>How do I mine ether?</h3>
+
+<p>The Ethereum network is kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given to the computer that was able to create the latest block on the chain. Every 12 seconds, on average, a new block is added to the blockchain with the latest transactions processed by the network and the computer that generated this block will be awarded 5 ether. Due to the nature of the algorithm for block generation, this process (generating a proof of work) is guaranteed to be random and rewards are given in proportion to the computational power of each machine. </p>
+
+<p>This process is usually called <strong><em>mining</em></strong> in the crypto-currency lingo.</p>
+
+<h4>CPU MINING Using the command line</h4>
+
+<p>If you are on a <a href="../cli">private network</a> (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is the best choice for small scale network or testing privately, as it&#39;s less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to successfully mine a block and receive ether.</p>
+
+<p>Before you do any mining, you need to set which address will receive your earnings (called &quot;etherbase&quot;). You only need to this once. Here&#39;s how to set your etherbase and then start mining:</p>
+
+<p><strong>Geth:</strong></p>
+
+<pre><code>miner.setEtherbase(eth.accounts[0]) 
+miner.start() </code></pre>
+
+<p><strong>Eth:</strong></p>
+
+<pre><code>web3.admin.eth.setMiningBenefactor(web3.eth.accounts[0]) 
+web3.admin.eth.setMining(true)</code></pre>
+
+<p>Before you can find any blocks, however, your computer needs to go through a process called “building a DAG”. This DAG (short for “Directed Acyclic Graph”) is a large data structure (~1GB) required for mining, intended to prevent ASIC machines (“Application Specific Integrated Circuits”) from being mass manufactured for mining ether. Its goal is to protect miners like yourself, so that you will only ever need your home computer to remain competitive. The DAG should take about 10 minutes to generate and as soon as it finishes, Geth will start mining automatically.</p>
+
+<p>If you have successfully mined a block you will see a message like this among the logs:</p>
+
+<pre><code>🔨 Mined block #123456</code></pre>
+
+<p>To check your earnings, you can display your balance with:</p>
+
+<pre><code>web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]), &quot;ether&quot;)</code></pre>
+
+<h4>GPU MINING Using the command line</h4>
+
+<p>If you are serious about mining on the live ethereum network and getting real ether rewards, then you should use a dedicated computer with very powerful graphic cards in order to run the network. </p>
+
+<p><strong>Instructions for Eth:</strong> </p>
+
+<p>If you are using <strong>Eth</strong> then GPU mining comes out of the box. Simply quit the console (press control+C multiple times and then enter) and then start it with the --GPU option turned on:</p>
+
+<pre><code>eth --frontier -b --genesis path/to/genesis.json -i -m on -G</code></pre>
+
+<p>Once you started, just follow the same instructions as normal CPU mining.</p>
+
+<p><strong>Instructions for Geth</strong></p>
+
+<p>There are currently two options for GPU mining in Geth available. You can read a more detailed description on how to install it on this <a href="https://forum.ethereum.org/discussion/197/mining-faq-live-updates">mining post</a>.</p>
+
+<ul><li><p><strong>C++ Etherminer</strong>. This is a version for the pro miners. To install it, follow the guide to <a href="https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients">install the whole C++ ethereum code</a>. </p></li><li><p><strong>Go experimental GPU branch</strong>. It&#39;s experimental so you need to build go from source to get it. This version is focused for hobbyists and developers. To install it, <a href="https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu">clone geth from source</a> and then switch to the <a href="https://github.com/ethereum/go-ethereum/tree/gpu_miner">GPU Miner branch</a>.</p></li></ul>
+
+<h4>More information on Mining</h4>
+
+<ul><li><p>Frontier&#39;s proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages <a href="https://github.com/ethereum/wiki/wiki/Ethash">EtHash</a>, a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the <a href="http://guide.ethereum.org/mining.html">Frontier gitBook, mining chapter</a>. Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).</p></li><li><p>The Ethash proof of work algorithm is memory hard, you&#39;ll need at least 1+GB of RAM on each GPU. I say 1+ because the DAG, which is the set of data that&#39;s being pushed in and out of the GPU to make parallelisation costly, will start at 1GB and will continue growing indefinitely. 2GB should be a good approximation of what&#39;s needed to continue mining throughout the year.</p></li><li><p>Mining prowess roughly scales proportionally to <a href="https://en.wikipedia.org/wiki/AMD_Radeon_Rx_200_series#Chipset_table">memory bandwidth</a>. As our implementation is written in OpenCL, AMD GPUs will be &#39;faster&#39; than similarly priced NVIDIA GPUs. Empirical evidence has already confirmed this, with R9 290x regularly topping benchmarks. </p></li><li><p>ASICs and FPGAs are strongly discouraged by being rendered financially inefficient, which was confirmed in <a href="https://github.com/LeastAuthority/ethereum-analyses/blob/master/PoW.md#HardwareFeasibility">an independent audit</a>. Don&#39;t expect to see them on the market, and if you do, proceed with extreme caution.</p></li></ul>
+
+<h3>What&#39;s the relationship between bitcoin and ether?</h3>
+
+<p><img alt="Bitcoin and Ethereum" src="/images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png"/></p>
+
+<p>Ethereum would never be possible without bitcoin—both the technology and the currency—and we see ourselves not as a competing currency but as complementary within the digital ecosystem. Ether is to be treated as &quot;crypto-fuel&quot;, a token whose purpose is to pay for computation, and is not intended to be used as or considered a currency, asset, share or anything else.</p>
+
+<p>There are many ways in which you can use Bitcoins within the Ethereum ecosystem:</p>
+
+<ul><li><p><strong>Trade BTC for ETH:</strong> multiple third party companies are working to make the exchanging of ether and bitcoins as easy and seamless as possible. If so desired one could trade bitcoins for ether with the purpose of executing contracts and trade it back immediately in order to keep their value pegged and secured by the bitcoin network. The latest version of the wallet includes an automatic conversion between ether and bitcoin.</p></li><li><p><strong>Use a pegged derivative:</strong> Ethereum is a great tool for creating complex trading between multiple parties. If you have a source for the price of Bitcoin that all parties trust, then it&#39;s possible to create an <a href="../token">ethereum based currency</a> whose value is pegged to the market value of Bitcoin. This means that you could trade bitcoins to a token that is guaranteed to always trade back to the same amount of bitcoins while still being fully compatible with other ethereum contracts. </p></li><li><p><strong>Use a Bitcoin relay to convert a 2 way peg</strong>: <a href="https://github.com/ethereum/btcrelay/">the bitcoin relay</a> is a piece of code that allows you to sidechain a bitcoin into ethereum. This means that you can use Bitcoin&#39;s native limited scripting capability to lock a bitcoin into a contract that is directly connected to an ethereum contract, which can then issue an ethereum based token that is guaranteed to be backed by bitcoin. The relay is under development and as implementations are tested and proved to be secure, we will list them here.</p></li></ul>
+
+<h2>How do I send ether using the command line?</h2>
+
+<p><strong>ATTENTION: Ethereum addresses don&#39;t have built-in checks on them yet. That means that if you mistype an address, your ether will be lost forever, without a secondary confirmation window. If you are moving a significant amount, start with smaller quantities that you can afford to lose, until you feel comfortable enough.</strong></p>
+
+<p>There are two types of accounts in Ethereum: <em>normal accounts</em>, holding ether that can only be moved with a private key and <em>contracts</em>, which hold ether only controlled by their own internal code. In this section we focus on the former. The remainder of this guide will be dedicated to the latter.</p>
+
+<p>Similarly, your transactions are also of two types: those sent to normal accounts are <em>ether transfers</em>, while the rest are <em>communication</em> with smart contracts.</p>
+
+<p>Before you execute your first ether transfer you need a friend to send your ether to. If you don’t have any, you can also create as many new accounts as you want, following the steps discussed previously and simply move your funds between accounts you own. Assuming you created a second account to send the ether to:</p>
+
+<pre><code>var sender    = web3.eth.accounts[0];
+var recipient = web3.eth.accounts[1];
+
+var amount = web3.toWei(0.01, &quot;ether&quot;);</code></pre>
+
+<p>The first two lines set local variables with account numbers for easier access later. Change the sender and recipient addresses to whatever you like. If you are adding a friend&#39;s account address instead, put it in between quotes like ‘0xffd25e388bf07765e6d7a00d6ae83fa750460c7e&#39;. The third line converts the chosen amount to the network&#39;s base unit (wei).</p>
+
+<p>Although there are many names for ether denominations, we will use only two: “ether” and “wei”. Wei is the atomic unit of ether, and is the one used on the system level. Most day-to-day transactions will be done with ether, which is equivalent to one quintillion wei, or a 1 followed by 18 zeros. So before sending any transactions, it’s very important to convert the amount to wei, and for that, you can use the <em>web3.toWei</em> function.</p>
+
+<p>After having set the variables above, send the transaction with:</p>
+
+<pre><code>web3.eth.sendTransaction({from: sender, to: recipient, value: amount})</code></pre>
+
+<p>Waiting a few seconds, the transaction should be complete. To check the balance of an account, simply type:</p>
+
+<pre><code>web3.eth.getBalance(recipient)</code></pre>
+
+<p><strong>Tip:</strong> If you are using <em>Geth</em> then you can just use <strong>eth</strong> instead of <strong>web3.eth</strong> command.</p>
+
+<h3>Transaction Receipts</h3>
+
+<p>Anytime you create a transaction in Ethereum, the string that is returned is the <strong>Transaction Hash</strong>. You can use those to keep track of a transaction in progress, or the amount of gas spent in a past transaction using <em>eth.getTransaction()</em> and <em>eth.getTransactionReceipt</em>. Here&#39;s how to use it:</p>
+
+<pre><code>var tx =  web3.eth.sendTransaction({from: web3.eth.accounts[0], to: web3.eth.accounts[1], value: amount});
+web3.eth.getTransaction(tx);</code></pre>
+
+<p>And if the transaction has been picked up already, you can check its receipt with this:</p>
+
+<pre><code>web3.eth.getTransactionReceipt(tx);</code></pre><a href="https://github.com/ethereum/ethereum-org/edit/master/views/content/ether.md" class="button small">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><div class="col-md-12 tutorial"><h2>What's next?</h2></div><div class="col-md-6 tutorial"><h3>Install and run the <strong>Command Line Interface</strong></h3><p>We've built <a href="https://github.com/ethereum/mist/releases/latest">easy to use graphical tools</a>, but if you are a developer you probably want to install the command line tools.</p></div><div class="col-md-6 tutorial"><figure class="geth scrollme"><div data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatex="100" class="geth-background animateme"></div><div data-when="enter" data-from="0.7" data-to="0.6" data-opacity="0" class="geth-logo animateme"></div></figure></div><div class="clearfix"></div><div class="col-md-6 tutorial"><a href="/cli" class="button">Install the Command line tools</a></div><div class="col-md-6 tutorial"><div class="recipe"><h4>You'll need:</h4><ul><li> <input type="checkbox">Basic command line skills </li><li> <input type="checkbox">Basic coding skills</li><li> <input type="checkbox">1-2Gb free space for the blockchain</li></ul></div></div></div></div></div></div><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div id="developer-resources" class="col-md-6 developers"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div id="about-us" class="col-md-6"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a href="./donate" class="donate-button">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div id="community" class="col-md-6 community"><h2>Community</h2><ul><li><a href="http://blog.ethereum.org">Blog</a></li><li><a href="http://twitter.com/ethereumproject" class="twitter">Twitter</a></li><li><a href="https://www.youtube.com/user/ethereumproject" class="youtube">Youtube</a></li><li><a href="http://www.reddit.com/r/ethereum" class="reddit">Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" class="gitter">Gitter</a></li><li><a href="http://ethereum.stackexchange.com" class="stackexchange">Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" class="facebook">Facebook                </a></li><li><a href="http://ethereum.meetup.com" class="meetups">Meetups</a></li><li><a href="mailto:info@ethereum.org" class="email">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div id="news" class="col-md-6 news"><h2>Tweets</h2><a href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px" class="twitter-timeline">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/frontier.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+    $("#toc").tableOfContents(
+      $(".main-tutorial"),      // Scoped to div#wrapper
+      {
+        startLevel: 2,    // H2 and up
+        depth:      3    // H2 through H4,
+      }
+    );
+  });</script><script>   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+   (i[r].q=i[r].q||[]).push(arguments)
+   },i[r].l=1*new Date();a=s.createElement(o),
+   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+   ga('create', 'UA-52040685-2', 'auto');
+   ga('send', 'pageview');</script></body></html>
