@@ -1116,3 +1116,5 @@ This all means that this tiny society you created could grow, get funding from t
 So what will your contract be? Will it be a country, a company, a non-profit group? What will your code do?
 
 That's up to you.
+
+Denfaf
