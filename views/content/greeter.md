@@ -65,7 +65,7 @@ If you have it installed, it should output something like this:
 
     ['Solidity' ]
 
-If you do not get Solidity above, then you need to install it. 
+If you do not get Solidity above, then you need to install it. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
 
 
 
