@@ -93,8 +93,6 @@ and on [Building Linux from Source](http://www.ethdocs.org/en/latest/ethereum-cl
 
 #### Install on Windows
 
-There is an [Installer for Windows](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/windows-installer.html).
-
 The [cpp-ethereum documentation](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
 has detailed information on [Building Windows from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/windows.html).
 
