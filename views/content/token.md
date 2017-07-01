@@ -6,7 +6,7 @@ We are going to create a digital token. Tokens in the ethereum ecosystem can rep
 
 If you just want to copy paste the code, then use this:
 
-    pragma solidity ^0.4.8;
+    pragma solidity ^0.4.11;
     contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
     contract MyToken {
@@ -43,12 +43,12 @@ If you just want to copy paste the code, then use this:
 
         /* Send coins */
         function transfer(address _to, uint256 _value) {
-            if (_to == 0x0) throw;                               // Prevent transfer to 0x0 address. Use burn() instead
-            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-            Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+            require(_to != 0x0);                                // Prevent transfer to 0x0 address. Use burn() instead
+            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
+            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
+            balanceOf[_to] += _value;                           // Add the same to the recipient
+            Transfer(msg.sender, _to, _value);                  // Notify anyone listening that this transfer took place
         }
 
         /* Allow another contract to spend some tokens in your behalf */
@@ -70,30 +70,30 @@ If you just want to copy paste the code, then use this:
 
         /* A contract attempts to get the coins */
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            if (_to == 0x0) throw;                                // Prevent transfer to 0x0 address. Use burn() instead
-            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
-            if (_value > allowance[_from][msg.sender]) throw;     // Check allowance
-            balanceOf[_from] -= _value;                           // Subtract from the sender
-            balanceOf[_to] += _value;                             // Add the same to the recipient
+            require(_to != 0x0);                                // Prevent transfer to 0x0 address. Use burn() instead
+            require(balanceOf[_from] >= _value);                // Check if the sender has enough
+            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+            require(_value <= allowance[_from][msg.sender]);    // Check allowance
+            balanceOf[_from] -= _value;                         // Subtract from the sender
+            balanceOf[_to] += _value;                           // Add the same to the recipient
             allowance[_from][msg.sender] -= _value;
             Transfer(_from, _to, _value);
             return true;
         }
     
         function burn(uint256 _value) returns (bool success) {
-            if (balanceOf[msg.sender] < _value) throw;            // Check if the sender has enough
-            balanceOf[msg.sender] -= _value;                      // Subtract from the sender
-            totalSupply -= _value;                                // Updates totalSupply
+            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
+            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
+            totalSupply -= _value;                              // Updates totalSupply
             Burn(msg.sender, _value);
             return true;
         }
 
         function burnFrom(address _from, uint256 _value) returns (bool success) {
-            if (balanceOf[_from] < _value) throw;                // Check if the sender has enough
-            if (_value > allowance[_from][msg.sender]) throw;    // Check allowance
-            balanceOf[_from] -= _value;                          // Subtract from the sender
-            totalSupply -= _value;                               // Updates totalSupply
+            require(balanceOf[_from] >= _value);                // Check if the sender has enough
+            require(_value <= allowance[_from][msg.sender]);    // Check allowance
+            balanceOf[_from] -= _value;                         // Subtract from the sender
+            totalSupply -= _value;                              // Updates totalSupply
             Burn(_from, _value);
             return true;
         }
@@ -117,10 +117,10 @@ The token contract is quite complex. But in essence a very basic token boils dow
 
         /* Send coins */
         function transfer(address _to, uint256 _value) {
-            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
+            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
+            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
+            balanceOf[_to] += _value;                           // Add the same to the recipient
         }
     }
 
@@ -178,8 +178,7 @@ To stop a contract execution mid execution you can either **return** or **throw*
 
     function transfer(address _to, uint256 _value) {
         /* Check if sender has balance and for overflows */
-        if (balanceOf[msg.sender] < _value || balanceOf[_to] + _value < balanceOf[_to])
-            throw;
+        require(balanceOf[msg.sender] >= _value && balanceOf[_to] + _value >= balanceOf[_to]);
 
         /* Add and subtract new balances */
         balanceOf[msg.sender] -= _value;
@@ -260,7 +259,7 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
         }
 
         modifier onlyOwner {
-            if (msg.sender != owner) throw;
+            require(msg.sender == owner);
             _;
         }
 
@@ -333,11 +332,11 @@ Add this variable and function anywhere inside the contract. You can put them an
 With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Unfortunately freezing has no practical effect, because we haven't added anything to the transfer function. We are changing that now:
 
     function transfer(address _to, uint256 _value) {
-        if (frozenAccount[msg.sender]) throw;
+        require(!frozenAccount[msg.sender]);
 
 Now any account that is frozen will still have their funds intact, but won't be able to move them. All accounts are unfrozen by default until you freeze them, but you can easily revert that behavior into a whitelist where you need to manually approve every account. Just rename **frozenAccount** into **approvedAccount** and change the last line to:
 
-        if (!approvedAccount[msg.sender]) throw;
+        require(approvedAccount[msg.sender]);
 
 
 #### Automatic selling and buying
@@ -359,24 +358,24 @@ This is acceptable for a price that doesn't change very often, as every new pric
 The next step is making the buy and sell functions:
 
     function buy() payable returns (uint amount){
-        amount = msg.value / buyPrice;                     // calculates the amount
-        if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
-        balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
-        balanceOf[this] -= amount;                         // subtracts amount from seller's balance
-        Transfer(this, msg.sender, amount);                // execute an event reflecting the change
-        return amount;                                     // ends function and returns
+        amount = msg.value / buyPrice;                    // calculates the amount
+        require(balanceOf[this] >= amount);               // checks if it has enough to sell
+        balanceOf[msg.sender] += amount;                  // adds the amount to buyer's balance
+        balanceOf[this] -= amount;                        // subtracts amount from seller's balance
+        Transfer(this, msg.sender, amount);               // execute an event reflecting the change
+        return amount;                                    // ends function and returns
     }
 
     function sell(uint amount) returns (uint revenue){
-        if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
-        balanceOf[this] += amount;                         // adds the amount to owner's balance
-        balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
+        require(balanceOf[msg.sender] >= amount );        // checks if the sender has enough to sell
+        balanceOf[this] += amount;                        // adds the amount to owner's balance
+        balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
         revenue = amount * sellPrice;
-        if (!msg.sender.send(revenue)) {                   // sends ether to the seller: it's important
-            throw;                                         // to do this last to prevent recursion attacks
+        if (!msg.sender.send(revenue)) {                  // sends ether to the seller: it's important
+            throw;                                        // to do this last to prevent recursion attacks
         } else {
-            Transfer(msg.sender, this, amount);             // executes an event reflecting on the change
-            return revenue;                                 // ends function and returns
+            Transfer(msg.sender, this, amount);           // executes an event reflecting on the change
+            return revenue;                               // ends function and returns
         }
     }
 
@@ -435,7 +434,7 @@ It's also possible to add a mathematical formula, so that anyone who can do math
     uint currentChallenge = 1; // Can you figure out the cubic root of this number?
 
     function rewardMathGeniuses(uint answerToCurrentReward, uint nextChallenge) {
-        if (answerToCurrentReward**3 != currentChallenge) throw; // If answer is wrong do not continue
+        require(answerToCurrentReward**3 == currentChallenge); // If answer is wrong do not continue
         balanceOf[msg.sender] += 1;         // Reward the player
         currentChallenge = nextChallenge;   // Set the next challenge
     }
@@ -452,10 +451,10 @@ But if you like Hashing as a form of random issuance of coins, you can still cre
 
     function proofOfWork(uint nonce){
         bytes8 n = bytes8(sha3(nonce, currentChallenge));    // Generate a random hash based on input
-        if (n < bytes8(difficulty)) throw;                   // Check if it's under the difficulty
+        require(n >= bytes8(difficulty));                   // Check if it's under the difficulty
 
         uint timeSinceLastProof = (now - timeOfLastProof);  // Calculate time since last reward was given
-        if (timeSinceLastProof <  5 seconds) throw;         // Rewards cannot be given too quickly
+        require(timeSinceLastProof >=  5 seconds);         // Rewards cannot be given too quickly
         balanceOf[msg.sender] += timeSinceLastProof / 60 seconds;  // The reward to the winner grows by the minute
 
         difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;  // Adjusts the difficulty
@@ -482,7 +481,7 @@ If you add all the advanced options, this is how the final code should look like
 ![Advanced Token](/images/tutorial/advanced-token-deploy.png)
 
 
-    pragma solidity ^0.4.2;
+    pragma solidity ^0.4.11;
     contract owned {
         address public owner;
 
@@ -491,7 +490,7 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         modifier onlyOwner {
-            if (msg.sender != owner) throw;
+            require(msg.sender == owner);
             _;
         }
 
@@ -533,11 +532,11 @@ If you add all the advanced options, this is how the final code should look like
 
         /* Send coins */
         function transfer(address _to, uint256 _value) {
-            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-            Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
+            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
+            balanceOf[_to] += _value;                           // Add the same to the recipient
+            Transfer(msg.sender, _to, _value);                  // Notify anyone listening that this transfer took place
         }
 
         /* Allow another contract to spend some tokens in your behalf */
@@ -559,11 +558,11 @@ If you add all the advanced options, this is how the final code should look like
 
         /* A contract attempts to get the coins */
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
-            if (_value > allowance[_from][msg.sender]) throw;   // Check allowance
-            balanceOf[_from] -= _value;                          // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
+            require(balanceOf[_from] >= _value);                // Check if the sender has enough
+            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+            require(_value <= allowance[_from][msg.sender]);    // Check allowance
+            balanceOf[_from] -= _value;                         // Subtract from the sender
+            balanceOf[_to] += _value;                           // Add the same to the recipient
             allowance[_from][msg.sender] -= _value;
             Transfer(_from, _to, _value);
             return true;
@@ -595,23 +594,23 @@ If you add all the advanced options, this is how the final code should look like
 
         /* Send coins */
         function transfer(address _to, uint256 _value) {
-            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-            if (frozenAccount[msg.sender]) throw;                // Check if frozen
-            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-            Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
+            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+            require(!frozenAccount[msg.sender]);                // Check if frozen
+            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
+            balanceOf[_to] += _value;                           // Add the same to the recipient
+            Transfer(msg.sender, _to, _value);                  // Notify anyone listening that this transfer took place
         }
 
 
         /* A contract attempts to get the coins */
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            if (frozenAccount[_from]) throw;                        // Check if frozen            
-            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
-            if (_value > allowance[_from][msg.sender]) throw;   // Check allowance
-            balanceOf[_from] -= _value;                          // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
+            require(!frozenAccount[_from]);                     // Check if frozen            
+            require(balanceOf[_from] >= _value);                // Check if the sender has enough
+            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+            require(_value <= allowance[_from][msg.sender]);    // Check allowance
+            balanceOf[_from] -= _value;                         // Subtract from the sender
+            balanceOf[_to] += _value;                           // Add the same to the recipient
             allowance[_from][msg.sender] -= _value;
             Transfer(_from, _to, _value);
             return true;
@@ -635,21 +634,21 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         function buy() payable {
-            uint amount = msg.value / buyPrice;                // calculates the amount
-            if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
-            balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
-            balanceOf[this] -= amount;                         // subtracts amount from seller's balance
-            Transfer(this, msg.sender, amount);                // execute an event reflecting the change
+            uint amount = msg.value / buyPrice;               // calculates the amount
+            require(balanceOf[this] >= amount);               // checks if it has enough to sell
+            balanceOf[msg.sender] += amount;                  // adds the amount to buyer's balance
+            balanceOf[this] -= amount;                        // subtracts amount from seller's balance
+            Transfer(this, msg.sender, amount);               // execute an event reflecting the change
         }
 
         function sell(uint256 amount) {
-            if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
-            balanceOf[this] += amount;                         // adds the amount to owner's balance
-            balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
-            if (!msg.sender.send(amount * sellPrice)) {        // sends ether to the seller. It's important
-                throw;                                         // to do this last to avoid recursion attacks
+            require(balanceOf[msg.sender] >= amount );        // checks if the sender has enough to sell
+            balanceOf[this] += amount;                        // adds the amount to owner's balance
+            balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
+            if (!msg.sender.send(amount * sellPrice)) {       // sends ether to the seller. It's important
+                throw;                                        // to do this last to avoid recursion attacks
             } else {
-                Transfer(msg.sender, this, amount);            // executes an event reflecting on the change
+                Transfer(msg.sender, this, amount);           // executes an event reflecting on the change
             }               
         }
     }
