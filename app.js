@@ -22,6 +22,10 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
+app.get('/wallet', function(req, res) {
+	res.render('wallet')
+});
+
 app.get('/cli', function(req, res) {
 	res.render('cli');
 });
