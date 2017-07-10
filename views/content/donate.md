@@ -1,10 +1,21 @@
 
-## Money donations
+## FOR MONEY DONATIONS: 
 
 If you want to contribute with traditional currency, please contact us at [donate@ethereum.org](mailto:donate@ethereum.org)
 
-#### Watch the contract and unicorns
+## FOR OTHER CRYPTOCURRENCIES:
 
+The [Ethereum Wallet](https://github.com/ethereum/mist/releases) app uses *shapeshift* to convert between any cryptocurrency and ether to any contract. If you are on the Foundation Tip Jar page, just click the button **deposit using bitcoin**. Unicorns will not be sent back to you, though.  
+
+
+## Other ways to help
+
+There are many other ways to help the Ethereum network. If you like meeting people and organizing events, you can set up a [Meetup near you](http://www.meetup.com/topics/ethereum/). If you prefer staying at home, you can volunteer at answering technical questions at our [Stack Exchange](http://ethereum.stackexchange.com) or helping newcomers at [Reddit forum](https://www.reddit.com/r/ethereum). And you can always help the network by [running a full node client](http://github.com/ethereum/mist/releases/latest) or a [Miner](https://github.com/ethereum/webthree-umbrella/releases/latest) and sharing your statistics at [the network stats dashboard](https://ethstats.net).
+
+But the best way to truly help ethereum adoption is to **go out there and build something awesome!**
+
+
+#### HERE’S HOW TO WATCH AND PLAY WITH UNICORNS<a id="watch-the-contract"></a>
 
 You can use the **Ethereum Wallet** to keep an eye on the foundation donation tip box and to keep your unicorns safe. [Download the latest Wallet release](https://github.com/ethereum/mist/releases) and set up a wallet.
 
@@ -33,14 +44,3 @@ If you feel like contributing, click on the **Deposit Ether** button on the top 
 ![First ever Unicorn Token Transaction](/images/tutorial/unicorn-is-born.png)
 
 If you want to send your unicorn to someone else, or maybe even to a wallet for safekeeping, it's very easy: just go to the **Send** tab, select the account you own a unicorn from and your unicorn token will appear under your "ether" and any other currency you own.
-
-### Other cryptocurrencies
-
-The [Ethereum Wallet](https://github.com/ethereum/mist/releases) app uses *shapeshift* to convert between any cryptocurrency and ether to any contract. If you are on the Foundation Tip Jar page, just click the button **deposit using bitcoin**. Unicorns will not be sent back to you, though.  
-
-
-## Other ways to help
-
-There are many other ways to help the Ethereum network. If you like meeting people and organizing events, you can set up a [Meetup near you](http://www.meetup.com/topics/ethereum/). If you prefer staying at home, you can volunteer at answering technical questions at our [Stack Exchange](http://ethereum.stackexchange.com) or helping newcomers at [Reddit forum](https://www.reddit.com/r/ethereum). And you can always help the network by [running a full node client](http://github.com/ethereum/mist/releases/latest) or a [Miner](https://github.com/ethereum/webthree-umbrella/releases/latest) and sharing your statistics at [the network stats dashboard](https://ethstats.net).
-
-But the best way to truly help ethereum adoption is to **go out there and build something awesome!**
