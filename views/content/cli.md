@@ -107,7 +107,7 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 
 #### Other Options
 
-* [Parity](https://ethcore.io/parity.html) a Rust implementation by [Ethcore](https://ethcore.io/)  
+* [Parity](https://parity.io/parity.html) a Rust implementation by [Parity Technologies](https://parity.io/)  
 * A [Haskell](https://github.com/bkirwi/ethereum-haskell) implementation developed by [Blockapps](http://www.blockapps.net)
 * If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
 * If you want to create a small hardware project, look into the implementation for the [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
