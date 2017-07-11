@@ -90,7 +90,7 @@ If you just want to copy paste the code, then use this:
         }
 
         function burnFrom(address _from, uint256 _value) returns (bool success) {
-            require(balanceOf[_from] >= _value);                // Check if the targeted balance has enough
+            require(balanceOf[_from] >= _value);                // Check if the targeted balance is enough
             require(_value <= allowance[_from][msg.sender]);    // Check allowance
             balanceOf[_from] -= _value;                         // Subtract from the targeted balance
             allowance[_from][msg.sender] -= _value;             // Subtract from the sender's allowance
