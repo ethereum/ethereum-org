@@ -289,7 +289,7 @@ On the **"read from contract"** you can see all the functions you can execute fo
 
 On the **"Write to contract"** you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select "newProposal" and it will show all the options for that function.
 
-Before interacting with the contract, you'll need to add new members so they can vote. On the **"select function"** picker, choose **"Change Membership"**. Add the address of the person you want to make a member and check the box **can vote** (to remove a member, do the same but leave the box unticked). On **"execute from"** make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
+Before interacting with the contract, you'll need to add new members so they can vote. On the **"select function"** picker, choose **"Add Member"**. Add the address of the person you want to make a member and check the box **can vote** (to remove a member, do the same but leave the box unticked). On **"execute from"** make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
 
 There's no list of members, but you can check if anyone is a member by putting their address on the **Members** function on the *Read from contract* column.
 
