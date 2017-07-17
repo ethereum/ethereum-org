@@ -322,7 +322,7 @@ In this example, we'll use a token to show that this contract can hold more than
 
 Instead, click "SHOW RAW DATA" link and copy the code displayed on the "RAW DATA" field and save it to a text file or notepad. Cancel the transaction. You'll also need the address of the contract you'll be calling for that operation, in this case the token contract. You can find it on the *Contracts* tab: save that somewhere too.
 
-Now go back to the democracy contract and create a new proposal with these parameters:
+Now go back to the congress contract and create a new proposal with these parameters:
 
 *   As the **beneficiary**, put the address of your token (pay attention if it's the same icon)
 *   Leave **Ether amount** blank
