@@ -128,7 +128,6 @@ The way this particular democracy works is that it has an **Owner** which works 
                members[id] = Member({member: targetMember, memberSince: now, name: memberName});
             } else {
                 id = memberId[targetMember];
-                Member m = members[id];
             }
     
             MembershipChanged(targetMember, true);
@@ -935,7 +934,6 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
                members[id] = Member({member: targetMember, memberSince: now, name: memberName});
             } else {
                 id = memberId[targetMember];
-                Member m = members[id];
             }
 
             MembershipChanged(targetMember, true);
