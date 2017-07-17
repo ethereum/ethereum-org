@@ -292,7 +292,7 @@ Before interacting with the contract, you'll need to add new members so they can
 
 There's no list of members, but you can check if anyone is a member by putting their address on the **Members** function on the *Read from contract* column.
 
-Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you'll have a pretty toothless organization. Press **Deposit** on the top left corner.
+Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you'll have a pretty toothless organization. Press **Transfer Ether & Tokens** on the top right corner.
 
 #### Add a simple proposal: send ether
 
@@ -315,7 +315,7 @@ If the transaction was executed, then after a few seconds you should be able to 
 
 You can use this democracy to execute any transaction on ethereum, as long as you can figure out the bytecode that that transaction generates. Luckily for us, you can use the wallet to do precisely that!
 
-In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token) that belongs to one of your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
+In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token) that belongs to one of your normal accounts. On the contract page, click **Transfer Ether & Tokens** to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
 
 
 ![Select the bytecode](/images/tutorial/select-code.png)
