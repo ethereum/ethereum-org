@@ -123,13 +123,13 @@ The way this particular democracy works is that it has an **Owner** which works 
         function addMember(address targetMember, string memberName) onlyOwner {
             uint id;
             if (memberId[targetMember] == 0) {
-               memberId[targetMember] = members.length;
-               id = members.length++;
-               members[id] = Member({member: targetMember, memberSince: now, name: memberName});
+                memberId[targetMember] = members.length;
+                id = members.length++;
             } else {
                 id = memberId[targetMember];
             }
     
+            members[id] = Member({member: targetMember, memberSince: now, name: memberName});
             MembershipChanged(targetMember, true);
         }
     
