@@ -1100,7 +1100,7 @@ You have reached the end of this tutorial, but it's just the beginning of a grea
 
 #### What could happen next?
 
-* The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further develop the first contract and grow the organization.
+* The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further development of the first contract and grow the organization.
 
 * Your DAO could own its own name on the name registrar, and then change where it's redirecting in order to update itself if the token holders approved.
 
