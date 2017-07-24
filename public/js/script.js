@@ -6,6 +6,16 @@ $(document).ready(function() {
     })
   });
 
+  $("#legal").change(function(e) {
+      // this function will get executed every time the #home element is clicked (or tab-spacebar changed)
+      if($(this).is(":checked")) // "this" refers to the element that fired the event
+      {
+        $("#donate_to").css({"display": "block"});
+      }else{
+        $("#donate_to").css({"display": "none"});
+      }
+  });
+
   $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '5' } );
  
   $('.require-legal').click(function(e){

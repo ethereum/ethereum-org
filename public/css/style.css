@@ -1599,6 +1599,10 @@ footer {
 	padding: 0;
 }
 
+#donate_to {
+	display:none;
+}
+
 
 @media (-webkit-min-device-pixel-ratio: 2) {
 	.introduction h1 {
