@@ -89,7 +89,18 @@ module.exports = function(grunt) {
 					},
 					{
 						'dist/devgrants.html': 'views/devgrants.jade'
+					},
+					
+          {
+						'dist/cookie-policy.html': 'views/cookie-policy.jade'
+					},
+					{
+						'dist/privacy-policy.html': 'views/privacy-policy.jade'
+					},
+					{
+						'dist/terms-of-use.html': 'views/terms-of-use.jade'
 					}
+
 				]
 			}
 		},
