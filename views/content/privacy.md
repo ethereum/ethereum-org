@@ -34,7 +34,7 @@ We use information held about you in the following ways:
 	- to allow you to participate in interactive features of our service, when you choose to do so;
 	- as part of our efforts to keep our site safe and secure;
 
-+ **Information we receive from other sources.** We will combine this information with information you give to us and information we collect about you. We will use this information and the combined information for the purposes set out above (depending on the types of information we receive).
++ **Information we receive from other sources.** We will combine this information with information you give to us and information we collect about you. We will use this information and the combined information for the purposes set out above (depending on the types of information we receive). 
 
 **DISCLOSURE OF YOUR INFORMATION**
 

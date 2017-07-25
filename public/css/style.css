@@ -2087,3 +2087,8 @@ button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-colla
 	padding: 0;
 	margin: 0;
 }
+
+.label-black {
+	color: #354049;
+	padding-right: 20px;
+}
