@@ -90,8 +90,7 @@ module.exports = function(grunt) {
 					{
 						'dist/devgrants.html': 'views/devgrants.jade'
 					},
-					
-          {
+					{
 						'dist/cookie-policy.html': 'views/cookie-policy.jade'
 					},
 					{
@@ -100,7 +99,6 @@ module.exports = function(grunt) {
 					{
 						'dist/terms-of-use.html': 'views/terms-of-use.jade'
 					}
-
 				]
 			}
 		},
