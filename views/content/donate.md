@@ -1,5 +1,5 @@
 
-## FOR MONEY DONATIONS: 
+## FOR FIAT (MONEY) DONATIONS: 
 
 If you want to contribute with traditional currency, please contact us at [donate@ethereum.org](mailto:donate@ethereum.org)
 
@@ -15,7 +15,7 @@ There are many other ways to help the Ethereum network. If you like meeting peop
 But the best way to truly help ethereum adoption is to **go out there and build something awesome!**
 
 
-#### HERE’S HOW TO WATCH AND PLAY WITH UNICORNS<a id="watch-the-contract"></a>
+### HERE’S HOW TO WATCH AND PLAY WITH UNICORNS<a id="watch-the-contract"></a>
 
 You can use the **Ethereum Wallet** to keep an eye on the foundation donation tip box and to keep your unicorns safe. [Download the latest Wallet release](https://github.com/ethereum/mist/releases) and set up a wallet.
 
