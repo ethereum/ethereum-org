@@ -250,7 +250,7 @@ All dapps are fully decentralized by default, but that doesn't mean they can't h
 
 For that to happen, you need a central controller of currency. This could be a simple account, but could also be a contract and therefore the decision on creating more tokens will depend on the contract: if it's a democratic organization that can be up to vote, or maybe it can be just a way to limit the power of the token owner.
 
-In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, **before contract MyToken {**.
+In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, before **contract MyToken {**.
 
     contract owned {
         address public owner;
@@ -368,7 +368,7 @@ The next step is making the buy and sell functions:
     }
 
     function sell(uint amount) returns (uint revenue){
-        require(balanceOf[msg.sender] >= amount );        // checks if the sender has enough to sell
+        require(balanceOf[msg.sender] >= amount);        // checks if the sender has enough to sell
         balanceOf[this] += amount;                        // adds the amount to owner's balance
         balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
         revenue = amount * sellPrice;
@@ -407,8 +407,8 @@ Then, add this line to the **transfer** function so that the sender is refunded:
     /* Send coins */
     function transfer(address _to, uint256 _value) {
         ...
-        if(msg.sender.balance<minBalanceForAccounts)
-            sell((minBalanceForAccounts-msg.sender.balance)/sellPrice);
+        if(msg.sender.balance < minBalanceForAccounts)
+            sell((minBalanceForAccounts - msg.sender.balance) / sellPrice);
     }
 
 You can also instead change it so that the fee is paid forward to the receiver by the sender:
@@ -417,7 +417,7 @@ You can also instead change it so that the fee is paid forward to the receiver b
     function transfer(address _to, uint256 _value) {
         ...
         if(_to.balance<minBalanceForAccounts)
-            _to.send(sell((minBalanceForAccounts-_to.balance)/sellPrice));
+            _to.send(sell((minBalanceForAccounts - _to.balance) / sellPrice));
     }
 
 This will ensure that no account receiving the token has less than the necessary ether to pay the fees.
@@ -461,7 +461,7 @@ But if you like Hashing as a form of random issuance of coins, you can still cre
         difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;  // Adjusts the difficulty
 
         timeOfLastProof = now;                              // Reset the counter
-        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number-1));  // Save a hash that will be used as the next proof
+        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number - 1));  // Save a hash that will be used as the next proof
     }
 
 Also change the **Constructor function** (the one that has the same name as the contract, which is called at first upload) to add this line, so the difficulty adjustment will not go crazy:
@@ -470,7 +470,7 @@ Also change the **Constructor function** (the one that has the same name as the 
 
 Once the contract is online, select the function "Proof of work", add your favorite number on the **nonce** field and try to execute it. If the confirmation window gives a red warning saying *"Data can't be execute"* go back and pick another number until you find one that allows the transaction to go forward: this process is random. If you find one you will be awarded 1 token for every minute that has passed since the last reward was given, and then the challenge difficulty will be adjusted up or down to target an average of 10 minutes per reward.
 
-This process of trying to find the number that will give you a reward is what is called *mining*: if difficulty rises it can be very hard to find a lucky number, but it will be always easy to verify that you found one.
+This process of trying to find the number that will give you a reward is what is called *mining*: if difficulty rises it can be very hard to find a lucky number, but it will always be easy to verify that you found one.
 
 
 ### Improved Coin
@@ -643,7 +643,7 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         function sell(uint256 amount) {
-            require(balanceOf[msg.sender] >= amount );        // checks if the sender has enough to sell
+            require(balanceOf[msg.sender] >= amount);        // checks if the sender has enough to sell
             balanceOf[this] += amount;                        // adds the amount to owner's balance
             balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
             if (!msg.sender.send(amount * sellPrice)) {       // sends ether to the seller. It's important
