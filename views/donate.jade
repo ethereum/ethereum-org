@@ -14,7 +14,7 @@ block content
         div.col-md-12
           h2 Thanks for wanting to help!!!
 
-          p The Ethereum Foundation is a non-profit Swiss &ldquo;Stiftung&rdquo; (Foundation) organization registered in Switzerland as &ldquo;Stiftung Ethereum&rdquo; (Foundation Ethereum). You can 
+          p The Ethereum Foundation is a non-profit Swiss &ldquo;Stiftung&rdquo; (Foundation) registered in Switzerland as &ldquo;Stiftung Ethereum&rdquo; (Foundation Ethereum). You can 
 
             a(href='./foundation') read more about it on the foundation page
             | .
@@ -36,11 +36,8 @@ block content
 
             img(src='images/unicorn.png', width='150').float-right
 
-          p Also, donating might get you a unicorn. As a playful way to thank the donors, we created a token on the ethereum blockchain called a &ldquo;Unicorn.&rdquo;. Any donation over 2.014 ethers will trigger the creation of a brand new unicorn that will be automatically sent to the donor. Unicorns are fun tokens with no assigned value and you can watch your Unicorns through your Ethereum Wallet (
-
-            a(href='#watch-the-contract') here&rsquo;s how 
-            | ). They are part of an ethereum contract so they are only generated for donations of ether on the ethereum blockchain as a fun deminimus thank you. 
-
+          p 
+            include:md content/donate-section.md
 
           p 
             strong BEFORE YOU DONATE
@@ -52,8 +49,9 @@ block content
           p
             form(name="illegal", method="post")
               div.input
-                  span.label-black These funds are not illegal &nbsp;
-                  input(type="checkbox", name="not_illegal" id="legal")
+                label
+                  input(type="checkbox" name="not_illegal" id="legal" style="transform: scale(1.5);")
+                  &nbsp;&nbsp;My donation comes from a legal source and is compliant with the tax laws of my jurisdiction.
 
   div#donate_to.main-tutorial.inner-page.even
     div.container  
@@ -73,17 +71,27 @@ block content
             a(href='https://blockchain.info/address/39BaMQCphFXyYAvcoGpeKtnptLJ9v6cdFY') 39BaMQCphFXyYAvcoGpeKtnptLJ9v6cdFY
           p.caption Bitcoin donations are unfortunately not eligible for unicorns.
 
+
+           h4 FOR FIAT (MONEY) DONATIONS: 
+
+           p.caption If you want to contribute with traditional currency, please contact us at 
+             a(href="mailto:donate@ethereum.org") donate@ethereum.org
+
+           h4 FOR OTHER CRYPTOCURRENCIES:
+
+           p.caption The 
+             a(href="https://github.com/ethereum/mist/releases") Ethereum Wallet 
+             | app uses *shapeshift* to convert between any cryptocurrency and ether to any contract. If you are on the Foundation Tip Jar page, just click the button 
+             strong deposit using bitcoin
+             | . Unicorns will not be sent back to you, though.  
+
+
   div.main-tutorial.inner-page.inner-tutorial
     div.container  
       div.row
         div.col-md-12
-          include:md content/donate.md        
-          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/donate.md') Improve this page
-
-        
-
-
-
-
-          
-
+          include:md content/donate.md
+          h3 
+            a(name="watch") HERE’S HOW TO WATCH AND PLAY WITH UNICORNS
+          include:md content/donate2.md      
+a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/donate.md') Improve this page
