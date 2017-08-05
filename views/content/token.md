@@ -6,7 +6,7 @@ We are going to create a digital token. Tokens in the ethereum ecosystem can rep
 
 If you just want to copy paste the code, then use this:
 
-    pragma solidity ^0.4.14;
+    pragma solidity ^0.4.13;
     contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
     contract MyToken {
@@ -479,7 +479,7 @@ If you add all the advanced options, this is how the final code should look like
 ![Advanced Token](/images/tutorial/advanced-token-deploy.png)
 
 
-    pragma solidity ^0.4.14;
+    pragma solidity ^0.4.13;
     contract owned {
         address public owner;
 
