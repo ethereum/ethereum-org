@@ -565,11 +565,6 @@ If you add all the advanced options, this is how the final code should look like
             Transfer(_from, _to, _value);
             return true;
         }
-
-        /* This unnamed function is called whenever someone tries to send ether to it */
-        function () {
-            revert();     // Prevents accidental sending of ether
-        }
     }
 
     contract MyAdvancedToken is owned, token {
