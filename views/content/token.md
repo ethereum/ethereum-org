@@ -175,7 +175,7 @@ Right now you have a functional contract that created balances of tokens but sin
 
 This is a very straightforward function: it has a recipient and a value as the parameter and whenever someone calls it, it will subtract the *_value* from their balance and add it to the *_to* balance. Right away there's an obvious problem: what happens if the person wants to send more than it owns? Since we don't want to handle debt in this particular contract, we are simply going to make a quick check and if the sender doesn't have enough funds the contract execution will simply stop. It's also to check for overflows, to avoid having a number so big that it becomes zero again.
 
-To stop a contract execution mid execution you can either **return** or **throw** The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'throw' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all ether he sent for gas. But since the Wallet can detect that a contract will throw, it always shows an alert, therefore preventing any ether to be spent at all.
+To stop a contract execution mid execution you can either **return** or **burn** The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'burn' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all ether he sent for gas. But since the Wallet can detect that a contract will burn, it always shows an alert, therefore preventing any ether to be spent at all.
 
     function transfer(address _to, uint256 _value) {
         /* Check if sender has balance and for overflows */
@@ -373,7 +373,7 @@ The next step is making the buy and sell functions:
         balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
         revenue = amount * sellPrice;
         if (!msg.sender.send(revenue)) {                  // sends ether to the seller: it's important
-            throw;                                        // to do this last to prevent recursion attacks
+            burn;                                        // to do this last to prevent recursion attacks
         } else {
             Transfer(msg.sender, this, amount);           // executes an event reflecting on the change
             return revenue;                               // ends function and returns
@@ -571,7 +571,7 @@ If you add all the advanced options, this is how the final code should look like
 
         /* This unnamed function is called whenever someone tries to send ether to it */
         function () {
-            throw;     // Prevents accidental sending of ether
+            burn;     // Prevents accidental sending of ether
         }
     }
 
@@ -647,7 +647,7 @@ If you add all the advanced options, this is how the final code should look like
             balanceOf[this] += amount;                        // adds the amount to owner's balance
             balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
             if (!msg.sender.send(amount * sellPrice)) {       // sends ether to the seller. It's important
-                throw;                                        // to do this last to avoid recursion attacks
+                burn;                                        // to do this last to avoid recursion attacks
             } else {
                 Transfer(msg.sender, this, amount);           // executes an event reflecting on the change
             }               
