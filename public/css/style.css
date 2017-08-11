@@ -1018,6 +1018,14 @@ a.button.ethereum-wallet.win64 {
 	overflow: scroll;
 }
 
+input#legal {
+	margin-right:10px;
+}
+
+div#donate_inst {
+	padding-bottom:0;
+}
+
 .bad-robot {
 	margin: 20px auto 40px;
 	text-align: center;

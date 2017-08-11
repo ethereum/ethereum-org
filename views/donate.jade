@@ -10,7 +10,7 @@ block content
 
   div.main-tutorial.inner-page
     div.container  
-      div.row
+      div#donate_inst.row
         div.col-md-12
           h2 Thanks for wanting to help!!!
 
@@ -49,9 +49,8 @@ block content
           p
             form(name="illegal", method="post")
               div.input
-                label
-                  input(type="checkbox" name="not_illegal" id="legal" style="transform: scale(1.5);")
-                  &nbsp;&nbsp;My donation comes from a legal source and is compliant with the tax laws of my jurisdiction.
+                input(type="checkbox" name="not_illegal" id="legal" style="transform: scale(1.5);")      
+                label My donation comes from a legal source and is compliant with the tax laws of my jurisdiction.
 
   div#donate_to.main-tutorial.inner-page.even
     div.container  
@@ -62,7 +61,6 @@ block content
           span.dapp-identicon(style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABgElEQVR4Xu2asQ0CMQxFuRWQKFmCkoqGkSgQNaJgl1uAhopFaKhuABqYAL/iC+U43rWRE9/P97fjpHv2i9es+IbNshoe/dj8ei997ARABhgCaoAiaBb4jMDk0+BjWJUaMPpEHzrYCYAMMATUgFBHftpcEfz7LEDHYeJ360KJzvvkP/YDaAIBaNwxkgHQ8iIGGwKKIPQEiUKK4NRFcH+p++qnbdt7g9Q/FMF0AQqhdDz1TwAoC6QIpztM9ql/MkAGQB2QUowonI6n/hkC1BCh0xZVgmRPDEjnJ3tsidEP0AJkLwCAQAow2csANQCuxiiGiWJkrwaoATUCKcPIHkXwfLiVHlI/gCo1CoF0/t1xXb8TJBEUABlgCKgBFQKpSCmCgEAKsFng22mQECaKp+OUpsm/uBCiBdIfJHsBgDqFNkgGpKUwIUwUTscNAUOgLtWJoWoAXY1RQ4FikCo50gDqJ9AOU0sOb4YEAJ7AyICwYWIIAAJqADzSUgThuGsWgLfEbx19IL+uODI/AAAAAElFTkSuQmCC')")
 
           h2 Foundation Tip Jar 
-<<<<<<< HEAD
           h3 0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359
           p.caption For information about larger donations,   
             a(href='mailto:donate@ethereum.org') contact us
@@ -95,4 +93,4 @@ block content
           h3 
             a(name="watch") HERE’S HOW TO WATCH AND PLAY WITH UNICORNS
           include:md content/donate2.md      
-a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/donate.md') Improve this page
+a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/donate.md') Improve this pagenate.md') Improve this page

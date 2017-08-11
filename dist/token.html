@@ -240,7 +240,7 @@ function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, ui
 
 <p>For that to happen, you need a central controller of currency. This could be a simple account, but could also be a contract and therefore the decision on creating more tokens will depend on the contract: if it&#39;s a democratic organization that can be up to vote, or maybe it can be just a way to limit the power of the token owner.</p>
 
-<p>In order to do that we&#39;ll learn a very useful property of contracts: <strong>inheritance</strong>. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, <strong>before contract MyToken {</strong>.</p>
+<p>In order to do that we&#39;ll learn a very useful property of contracts: <strong>inheritance</strong>. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, before <strong>contract MyToken {</strong>.</p>
 
 <pre><code>contract owned {
     address public owner;
@@ -354,7 +354,7 @@ function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
 }
 
 function sell(uint amount) returns (uint revenue){
-    require(balanceOf[msg.sender] &gt;= amount );        // checks if the sender has enough to sell
+    require(balanceOf[msg.sender] &gt;= amount);        // checks if the sender has enough to sell
     balanceOf[this] += amount;                        // adds the amount to owner&#39;s balance
     balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller&#39;s balance
     revenue = amount * sellPrice;
@@ -391,8 +391,8 @@ function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
 <pre><code>/* Send coins */
 function transfer(address _to, uint256 _value) {
     ...
-    if(msg.sender.balance&lt;minBalanceForAccounts)
-        sell((minBalanceForAccounts-msg.sender.balance)/sellPrice);
+    if(msg.sender.balance &lt; minBalanceForAccounts)
+        sell((minBalanceForAccounts - msg.sender.balance) / sellPrice);
 }</code></pre>
 
 <p>You can also instead change it so that the fee is paid forward to the receiver by the sender:</p>
@@ -401,7 +401,7 @@ function transfer(address _to, uint256 _value) {
 function transfer(address _to, uint256 _value) {
     ...
     if(_to.balance&lt;minBalanceForAccounts)
-        _to.send(sell((minBalanceForAccounts-_to.balance)/sellPrice));
+        _to.send(sell((minBalanceForAccounts - _to.balance) / sellPrice));
 }</code></pre>
 
 <p>This will ensure that no account receiving the token has less than the necessary ether to pay the fees.</p>
@@ -445,7 +445,7 @@ function proofOfWork(uint nonce){
     difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;  // Adjusts the difficulty
 
     timeOfLastProof = now;                              // Reset the counter
-    currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number-1));  // Save a hash that will be used as the next proof
+    currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number - 1));  // Save a hash that will be used as the next proof
 }</code></pre>
 
 <p>Also change the <strong>Constructor function</strong> (the one that has the same name as the contract, which is called at first upload) to add this line, so the difficulty adjustment will not go crazy:</p>
@@ -454,7 +454,7 @@ function proofOfWork(uint nonce){
 
 <p>Once the contract is online, select the function &quot;Proof of work&quot;, add your favorite number on the <strong>nonce</strong> field and try to execute it. If the confirmation window gives a red warning saying <em>&quot;Data can&#39;t be execute&quot;</em> go back and pick another number until you find one that allows the transaction to go forward: this process is random. If you find one you will be awarded 1 token for every minute that has passed since the last reward was given, and then the challenge difficulty will be adjusted up or down to target an average of 10 minutes per reward.</p>
 
-<p>This process of trying to find the number that will give you a reward is what is called <em>mining</em>: if difficulty rises it can be very hard to find a lucky number, but it will be always easy to verify that you found one.</p>
+<p>This process of trying to find the number that will give you a reward is what is called <em>mining</em>: if difficulty rises it can be very hard to find a lucky number, but it will always be easy to verify that you found one.</p>
 
 <h3>Improved Coin</h3>
 
@@ -625,7 +625,7 @@ contract MyAdvancedToken is owned, token {
     }
 
     function sell(uint256 amount) {
-        require(balanceOf[msg.sender] &gt;= amount );        // checks if the sender has enough to sell
+        require(balanceOf[msg.sender] &gt;= amount);        // checks if the sender has enough to sell
         balanceOf[this] += amount;                        // adds the amount to owner&#39;s balance
         balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller&#39;s balance
         if (!msg.sender.send(amount * sellPrice)) {       // sends ether to the seller. It&#39;s important
