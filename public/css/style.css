@@ -1018,6 +1018,14 @@ a.button.ethereum-wallet.win64 {
 	overflow: scroll;
 }
 
+input#legal {
+	margin-right:10px;
+}
+
+div#donate_inst {
+	padding-bottom:0;
+}
+
 .bad-robot {
 	margin: 20px auto 40px;
 	text-align: center;
@@ -1599,6 +1607,10 @@ footer {
 	padding: 0;
 }
 
+#donate_to {
+	display:none;
+}
+
 
 @media (-webkit-min-device-pixel-ratio: 2) {
 	.introduction h1 {
@@ -2082,4 +2094,9 @@ button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-colla
 	position: absolute;
 	padding: 0;
 	margin: 0;
+}
+
+.label-black {
+	color: #354049;
+	padding-right: 20px;
 }
