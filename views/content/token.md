@@ -6,7 +6,7 @@ We are going to create a digital token. Tokens in the ethereum ecosystem can rep
 
 If you just want to copy paste the code, then use this:
 
-    pragma solidity ^0.4.11;
+    pragma solidity ^0.4.13;
     contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
     contract MyToken {
@@ -368,16 +368,13 @@ The next step is making the buy and sell functions:
     }
 
     function sell(uint amount) returns (uint revenue){
-        require(balanceOf[msg.sender] >= amount);        // checks if the sender has enough to sell
+        require(balanceOf[msg.sender] >= amount);         // checks if the sender has enough to sell
         balanceOf[this] += amount;                        // adds the amount to owner's balance
         balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
         revenue = amount * sellPrice;
-        if (!msg.sender.send(revenue)) {                  // sends ether to the seller: it's important
-            throw;                                        // to do this last to prevent recursion attacks
-        } else {
-            Transfer(msg.sender, this, amount);           // executes an event reflecting on the change
-            return revenue;                               // ends function and returns
-        }
+        require(msg.sender.send(revenue));                // sends ether to the seller: it's important to do this last to prevent recursion attacks
+        Transfer(msg.sender, this, amount);               // executes an event reflecting on the change
+        return revenue;                                   // ends function and returns
     }
 
 
@@ -482,7 +479,7 @@ If you add all the advanced options, this is how the final code should look like
 ![Advanced Token](/images/tutorial/advanced-token-deploy.png)
 
 
-    pragma solidity ^0.4.11;
+    pragma solidity ^0.4.13;
     contract owned {
         address public owner;
 
@@ -568,11 +565,6 @@ If you add all the advanced options, this is how the final code should look like
             Transfer(_from, _to, _value);
             return true;
         }
-
-        /* This unnamed function is called whenever someone tries to send ether to it */
-        function () {
-            throw;     // Prevents accidental sending of ether
-        }
     }
 
     contract MyAdvancedToken is owned, token {
@@ -643,14 +635,11 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         function sell(uint256 amount) {
-            require(balanceOf[msg.sender] >= amount);        // checks if the sender has enough to sell
+            require(balanceOf[msg.sender] >= amount);         // checks if the sender has enough to sell
             balanceOf[this] += amount;                        // adds the amount to owner's balance
             balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
-            if (!msg.sender.send(amount * sellPrice)) {       // sends ether to the seller. It's important
-                throw;                                        // to do this last to avoid recursion attacks
-            } else {
-                Transfer(msg.sender, this, amount);           // executes an event reflecting on the change
-            }               
+            require(msg.sender.send(amount * sellPrice));     // sends ether to the seller. It's important to do this last to avoid recursion attacks
+            Transfer(msg.sender, this, amount);               // executes an event reflecting on the change               
         }
     }
 
