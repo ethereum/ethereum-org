@@ -635,7 +635,7 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         function sell(uint256 amount) {
-            require(balanceOf[msg.sender] >= amount);         // checks if the sender has enough to sell
+            require(this.balance >= amount * sellPrice);      // checks if the contract has enough ether to buy
             balanceOf[this] += amount;                        // adds the amount to owner's balance
             balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
             require(msg.sender.send(amount * sellPrice));     // sends ether to the seller. It's important to do this last to avoid recursion attacks
