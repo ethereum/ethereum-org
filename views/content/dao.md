@@ -123,14 +123,13 @@ The way this particular democracy works is that it has an **Owner** which works 
         function addMember(address targetMember, string memberName) onlyOwner {
             uint id;
             if (memberId[targetMember] == 0) {
-               memberId[targetMember] = members.length;
-               id = members.length++;
-               members[id] = Member({member: targetMember, memberSince: now, name: memberName});
+                memberId[targetMember] = members.length;
+                id = members.length++;
             } else {
                 id = memberId[targetMember];
-                Member m = members[id];
             }
     
+            members[id] = Member({member: targetMember, memberSince: now, name: memberName});
             MembershipChanged(targetMember, true);
         }
     
@@ -289,11 +288,11 @@ On the **"read from contract"** you can see all the functions you can execute fo
 
 On the **"Write to contract"** you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select "newProposal" and it will show all the options for that function.
 
-Before interacting with the contract, you'll need to add new members so they can vote. On the **"select function"** picker, choose **"Change Membership"**. Add the address of the person you want to make a member and check the box **can vote** (to remove a member, do the same but leave the box unticked). On **"execute from"** make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
+Before interacting with the contract, you'll need to add new members so they can vote. On the **"select function"** picker, choose **"Add Member"**. Add the address of the person you want to make a member(to remove a member, choose **"Remove Member"**). On **"execute from"** make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
 
 There's no list of members, but you can check if anyone is a member by putting their address on the **Members** function on the *Read from contract* column.
 
-Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you'll have a pretty toothless organization. Press **Deposit** on the top left corner.
+Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you'll have a pretty toothless organization. Press **Transfer Ether & Tokens** on the top right corner.
 
 #### Add a simple proposal: send ether
 
@@ -316,14 +315,14 @@ If the transaction was executed, then after a few seconds you should be able to 
 
 You can use this democracy to execute any transaction on ethereum, as long as you can figure out the bytecode that that transaction generates. Luckily for us, you can use the wallet to do precisely that!
 
-In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token) that belongs to one of your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
+In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, [create a token](./token) that belongs to one of your normal accounts. On the contract page, click **Transfer Ether & Tokens** to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press "send" but when the confirmation screens pops up, **don't type your password**.
 
 
 ![Select the bytecode](/images/tutorial/select-code.png)
 
-Instead, copy the code displayed on the "data" field and save it to a text file or notepad. Cancel the transaction. You'll also need the address of the contract you'll be calling for that operation, in this case the token contract. You can find it on the *Contracts* tab: save that somewhere too.
+Instead, click "SHOW RAW DATA" link and copy the code displayed on the "RAW DATA" field and save it to a text file or notepad. Cancel the transaction. You'll also need the address of the contract you'll be calling for that operation, in this case the token contract. You can find it on the *Contracts* tab: save that somewhere too.
 
-Now go back to the democracy contract and create a new proposal with these parameters:
+Now go back to the congress contract and create a new proposal with these parameters:
 
 *   As the **beneficiary**, put the address of your token (pay attention if it's the same icon)
 *   Leave **Ether amount** blank
@@ -930,14 +929,13 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
         function addMember(address targetMember, string memberName) onlyOwner {
             uint id;
             if (memberId[targetMember] == 0) {
-               memberId[targetMember] = members.length;
-               id = members.length++;
-               members[id] = Member({member: targetMember, memberSince: now, name: memberName});
+                memberId[targetMember] = members.length;
+                id = members.length++;
             } else {
                 id = memberId[targetMember];
-                Member m = members[id];
             }
 
+            members[id] = Member({member: targetMember, memberSince: now, name: memberName});
             MembershipChanged(targetMember, true);
         }
         
