@@ -2,16 +2,41 @@
 
 We are going to create a digital token. Tokens in the ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the ethereum wallet and any other client or contract that uses the same standards.
 
+#### Minimum Viable Token
+
+The standard token contract can be quite complex. But in essence a very basic token boils down to this:
+
+    contract MyToken {
+        /* This creates an array with all balances */
+        mapping (address => uint256) public balanceOf;
+
+        /* Initializes contract with initial supply tokens to the creator of the contract */
+        function MyToken(
+            uint256 initialSupply
+            ) {
+            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
+        }
+
+        /* Send coins */
+        function transfer(address _to, uint256 _value) {
+            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
+            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
+            balanceOf[_to] += _value;                           // Add the same to the recipient
+        }
+    }
+    
 #### The code
 
-If you just want to copy paste the code, then use this:
+But if you just want to copy paste the code, then use this:
+
 
     pragma solidity ^0.4.13;
+
     contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
     contract MyToken {
         /* Public variables of the token */
-        string public standard = 'Token 0.1';
         string public name;
         string public symbol;
         uint8 public decimals;
@@ -41,24 +66,47 @@ If you just want to copy paste the code, then use this:
             decimals = decimalUnits;                            // Amount of decimals for display purposes
         }
 
-        /* Send coins */
+        /* Internal transfer, only can be called by this contract */
+        function _transfer(address _from, address _to, uint _value) internal {
+            require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
+            require (balanceOf[_from] > _value);                // Check if the sender has enough
+            require (balanceOf[_to] + _value > balanceOf[_to]); // Check for overflows
+            balanceOf[_from] -= _value;                         // Subtract from the sender
+            balanceOf[_to] += _value;                            // Add the same to the recipient
+            Transfer(_from, _to, _value);
+        }
+        
+        /// @notice Send `_value` tokens to `_to` from your account
+        /// @param _to The address of the recipient
+        /// @param _value the amount to send
         function transfer(address _to, uint256 _value) {
-            require(_to != 0x0);                                // Prevent transfer to 0x0 address. Use burn() instead
-            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
-            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
-            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
-            balanceOf[_to] += _value;                           // Add the same to the recipient
-            Transfer(msg.sender, _to, _value);                  // Notify anyone listening that this transfer took place
+            _transfer(msg.sender, _to, _value);
         }
 
-        /* Allow another contract to spend some tokens in your behalf */
+        /// @notice Send `_value` tokens to `_to` in behalf of `_from`
+        /// @param _from The address of the sender
+        /// @param _to The address of the recipient
+        /// @param _value the amount to send
+        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+            require (_value < allowance[_from][msg.sender]);     // Check allowance
+            allowance[_from][msg.sender] -= _value;
+            _transfer(_from, _to, _value);
+            return true;
+        }
+        
+        /// @notice Allows `_spender` to spend no more than `_value` tokens in your behalf
+        /// @param _spender The address authorized to spend
+        /// @param _value the max amount they can spend
         function approve(address _spender, uint256 _value)
             returns (bool success) {
             allowance[msg.sender][_spender] = _value;
             return true;
         }
 
-        /* Approve and then communicate the approved contract in a single tx */
+        /// @notice Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+        /// @param _spender The address authorized to spend
+        /// @param _value the max amount they can spend
+        /// @param _extraData some extra information to send to the approved contract
         function approveAndCall(address _spender, uint256 _value, bytes _extraData)
             returns (bool success) {
             tokenRecipient spender = tokenRecipient(_spender);
@@ -68,28 +116,18 @@ If you just want to copy paste the code, then use this:
             }
         }        
 
-        /* A contract attempts to get the coins */
-        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            require(_to != 0x0);                                // Prevent transfer to 0x0 address. Use burn() instead
-            require(balanceOf[_from] >= _value);                // Check if the sender has enough
-            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
-            require(_value <= allowance[_from][msg.sender]);    // Check allowance
-            balanceOf[_from] -= _value;                         // Subtract from the sender
-            balanceOf[_to] += _value;                           // Add the same to the recipient
-            allowance[_from][msg.sender] -= _value;
-            Transfer(_from, _to, _value);
-            return true;
-        }
-    
+        /// @notice Remove `_value` tokens from the system irreversibly
+        /// @param _value the amount of money to burn
         function burn(uint256 _value) returns (bool success) {
-            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
-            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
-            totalSupply -= _value;                              // Updates totalSupply
+            require (balanceOf[msg.sender] > _value);            // Check if the sender has enough
+            balanceOf[msg.sender] -= _value;                      // Subtract from the sender
+            totalSupply -= _value;                                // Updates totalSupply
             Burn(msg.sender, _value);
             return true;
         }
 
         function burnFrom(address _from, uint256 _value) returns (bool success) {
+
             require(balanceOf[_from] >= _value);                // Check if the targeted balance is enough
             require(_value <= allowance[_from][msg.sender]);    // Check allowance
             balanceOf[_from] -= _value;                         // Subtract from the targeted balance
@@ -100,30 +138,6 @@ If you just want to copy paste the code, then use this:
         }
     }
 
-
-#### Minimum Viable Token
-
-The token contract is quite complex. But in essence a very basic token boils down to this:
-
-    contract MyToken {
-        /* This creates an array with all balances */
-        mapping (address => uint256) public balanceOf;
-
-        /* Initializes contract with initial supply tokens to the creator of the contract */
-        function MyToken(
-            uint256 initialSupply
-            ) {
-            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
-        }
-
-        /* Send coins */
-        function transfer(address _to, uint256 _value) {
-            require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
-            require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
-            balanceOf[msg.sender] -= _value;                    // Subtract from the sender
-            balanceOf[_to] += _value;                           // Add the same to the recipient
-        }
-    }
 
 #### Understanding the code
 
