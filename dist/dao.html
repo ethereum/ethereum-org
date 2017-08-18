@@ -13,240 +13,267 @@
 
 <h4>The code</h4>
 
-<pre><code>pragma solidity ^0.4.2;
-contract owned {
-    address public owner;
+<pre><code>  pragma solidity ^0.4.2;
+  contract owned {
+      address public owner;
 
-    function owned() {
-        owner = msg.sender;
-    }
+      function owned() {
+          owner = msg.sender;
+      }
 
-    modifier onlyOwner {
-        if (msg.sender != owner) throw;
-        _;
-    }
+      modifier onlyOwner {
+          require (msg.sender == owner);
+          _;
+      }
 
-    function transferOwnership(address newOwner) onlyOwner {
-        owner = newOwner;
-    }
-}
+      function transferOwnership(address newOwner) onlyOwner {
+          owner = newOwner;
+      }
+  }
 
-contract tokenRecipient { 
-    event receivedEther(address sender, uint amount);
-    event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
+  contract tokenRecipient {
+      event receivedEther(address sender, uint amount);
+      event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
-        Token t = Token(_token);
-        if (!t.transferFrom(_from, this, _value)) throw;
-        receivedTokens(_from, _value, _token, _extraData);
-    }
+      function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
+          Token t = Token(_token);
+          require (!t.transferFrom(_from, this, _value));
+          receivedTokens(_from, _value, _token, _extraData);
+      }
 
-    function () payable {
-        receivedEther(msg.sender, msg.value);
-    }
-}
+      function () payable {
+          receivedEther(msg.sender, msg.value);
+      }
+  }
 
-contract Token {
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
-}
+  contract Token {
+      function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+  }
 
-contract Congress is owned, tokenRecipient {
+  contract Congress is owned, tokenRecipient {
 
-    /* Contract Variables and events */
-    uint public minimumQuorum;
-    uint public debatingPeriodInMinutes;
-    int public majorityMargin;
-    Proposal[] public proposals;
-    uint public numProposals;
-    mapping (address =&gt; uint) public memberId;
-    Member[] public members;
+      /* Contract Variables and events */
+      uint public minimumQuorum;
+      uint public debatingPeriodInMinutes;
+      int public majorityMargin;
+      Proposal[] public proposals;
+      uint public numProposals;
+      mapping (address =&gt; uint) public memberId;
+      Member[] public members;
 
-    event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
-    event Voted(uint proposalID, bool position, address voter, string justification);
-    event ProposalTallied(uint proposalID, int result, uint quorum, bool active);
-    event MembershipChanged(address member, bool isMember);
-    event ChangeOfRules(uint minimumQuorum, uint debatingPeriodInMinutes, int majorityMargin);
+      event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
+      event Voted(uint proposalID, bool position, address voter, string justification);
+      event ProposalTallied(uint proposalID, int result, uint quorum, bool active);
+      event MembershipChanged(address member, bool isMember);
+      event ChangeOfRules(uint newMinimumQuorum, uint newDebatingPeriodInMinutes, int newMajorityMargin);
 
-    struct Proposal {
-        address recipient;
-        uint amount;
-        string description;
-        uint votingDeadline;
-        bool executed;
-        bool proposalPassed;
-        uint numberOfVotes;
-        int currentResult;
-        bytes32 proposalHash;
-        Vote[] votes;
-        mapping (address =&gt; bool) voted;
-    }
+      struct Proposal {
+          address recipient;
+          uint amount;
+          string description;
+          uint votingDeadline;
+          bool executed;
+          bool proposalPassed;
+          uint numberOfVotes;
+          int currentResult;
+          bytes32 proposalHash;
+          Vote[] votes;
+          mapping (address =&gt; bool) voted;
+      }
 
-    struct Member {
-        address member;
-        string name;
-        uint memberSince;
-    }
+      struct Member {
+          address member;
+          string name;
+          uint memberSince;
+      }
 
-    struct Vote {
-        bool inSupport;
-        address voter;
-        string justification;
-    }
+      struct Vote {
+          bool inSupport;
+          address voter;
+          string justification;
+      }
 
-    /* modifier that allows only shareholders to vote and create new proposals */
-    modifier onlyMembers {
-        if (memberId[msg.sender] == 0)
-        throw;
-        _;
-    }
+      /* modifier that allows only shareholders to vote and create new proposals */
+      modifier onlyMembers {
+          require (memberId[msg.sender] != 0);
+          _;
+      }
 
-    /* First time setup */
-    function Congress(
-        uint minimumQuorumForProposals,
-        uint minutesForDebate,
-        int marginOfVotesForMajority, address congressLeader
-    ) payable {
-        changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
-        if (congressLeader != 0) owner = congressLeader;
-        // It’s necessary to add an empty first member
-        addMember(0, &#39;&#39;); 
-        // and let&#39;s add the founder, to save a step later       
-        addMember(owner, &#39;founder&#39;);        
-    }
+      /* First time setup */
+      function Congress (
+          uint minimumQuorumForProposals,
+          uint minutesForDebate,
+          int marginOfVotesForMajority
+      )  payable {
+          changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
+          // It’s necessary to add an empty first member
+          addMember(0, &quot;&quot;);
+          // and let&#39;s add the founder, to save a step later       
+          addMember(owner, &#39;founder&#39;);        
+      }
 
-    /*make member*/
-    function addMember(address targetMember, string memberName) onlyOwner {
-        uint id;
-        if (memberId[targetMember] == 0) {
-           memberId[targetMember] = members.length;
-           id = members.length++;
-           members[id] = Member({member: targetMember, memberSince: now, name: memberName});
-        } else {
-            id = memberId[targetMember];
-            Member m = members[id];
-        }
+      /// @notice Make `targetMember` a member named `memberName`
+      /// @param targetMember ethereum address to be added
+      /// @param memberName public name for that member
+      function addMember(address targetMember, string memberName) onlyOwner {
+          uint id = memberId[targetMember];
+          if (id == 0) {
+              memberId[targetMember] = members.length;
+              id = members.length++;
+          }
 
-        MembershipChanged(targetMember, true);
-    }
+          members[id] = Member({member: targetMember, memberSince: now, name: memberName});
+          MembershipChanged(targetMember, true);
+      }
 
-    function removeMember(address targetMember) onlyOwner {
-        if (memberId[targetMember] == 0) throw;
+      /// @notice Remove membership from `targetMember`
+      /// @param targetMember ethereum address to be removed
+      function removeMember(address targetMember) onlyOwner {
+          require(memberId[targetMember] != 0);
 
-        for (uint i = memberId[targetMember]; i&lt;members.length-1; i++){
-            members[i] = members[i+1];
-        }
-        delete members[members.length-1];
-        members.length--;
-    }
+          for (uint i = memberId[targetMember]; i&lt;members.length-1; i++){
+              members[i] = members[i+1];
+          }
+          delete members[members.length-1];
+          members.length--;
+      }
 
-    /*change rules*/
-    function changeVotingRules(
-        uint minimumQuorumForProposals,
-        uint minutesForDebate,
-        int marginOfVotesForMajority
-    ) onlyOwner {
-        minimumQuorum = minimumQuorumForProposals;
-        debatingPeriodInMinutes = minutesForDebate;
-        majorityMargin = marginOfVotesForMajority;
+      /// @notice Make so that proposals need tobe discussed for at least `minutesForDebate/60` hours, have at least `minimumQuorumForProposals` votes, and have 50% + `marginOfVotesForMajority` votes to be executed
+      /// @param minimumQuorumForProposals how many members must vote on a proposal for it to be executed      
+      /// @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed    
+      /// @param marginOfVotesForMajority the proposal needs to have 50% plus this number      
+      function changeVotingRules(
+          uint minimumQuorumForProposals,
+          uint minutesForDebate,
+          int marginOfVotesForMajority
+      ) onlyOwner {
+          minimumQuorum = minimumQuorumForProposals;
+          debatingPeriodInMinutes = minutesForDebate;
+          majorityMargin = marginOfVotesForMajority;
 
-        ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
-    }
+          ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
+      }
 
-    /* Function to create a new proposal */
-    function newProposal(
-        address beneficiary,
-        uint etherAmount,
-        string JobDescription,
-        bytes transactionBytecode
-    )
-        onlyMembers
-        returns (uint proposalID)
-    {
-        proposalID = proposals.length++;
-        Proposal p = proposals[proposalID];
-        p.recipient = beneficiary;
-        p.amount = etherAmount;
-        p.description = JobDescription;
-        p.proposalHash = sha3(beneficiary, etherAmount, transactionBytecode);
-        p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
-        p.executed = false;
-        p.proposalPassed = false;
-        p.numberOfVotes = 0;
-        ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
-        numProposals = proposalID+1;
+      /// @notice Propose to send `weiAmount / 1E18` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
+      /// @param beneficiary who to send the ether to      
+      /// @param weiAmount amount of ether to send, in wei       
+      /// @param JobDescription Description of job
+      /// @param transactionBytecode bytecode of transaction
+      function newProposal(
+          address beneficiary,
+          uint weiAmount,
+          string JobDescription,
+          bytes transactionBytecode
+      )
+          onlyMembers
+          returns (uint proposalID)
+      {
+          proposalID = proposals.length++;
+          Proposal storage p = proposals[proposalID];
+          p.recipient = beneficiary;
+          p.amount = weiAmount;
+          p.description = JobDescription;
+          p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
+          p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
+          p.executed = false;
+          p.proposalPassed = false;
+          p.numberOfVotes = 0;
+          ProposalAdded(proposalID, beneficiary, weiAmount, JobDescription);
+          numProposals = proposalID+1;
 
-        return proposalID;
-    }
+          return proposalID;
+      }
 
-    /* function to check if a proposal code matches */
-    function checkProposalCode(
-        uint proposalNumber,
-        address beneficiary,
-        uint etherAmount,
-        bytes transactionBytecode
-    )
-        constant
-        returns (bool codeChecksOut)
-    {
-        Proposal p = proposals[proposalNumber];
-        return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
-    }
+      /// @notice Propose to send `etherAmount` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
+      /// @param beneficiary who to send the ether to      
+      /// @param etherAmount amount of ether to send       
+      /// @param JobDescription Description of job
+      /// @param transactionBytecode bytecode of transaction
+      function newProposalInEther(
+          address beneficiary,
+          uint etherAmount,
+          string JobDescription,
+          bytes transactionBytecode
+      )
+          onlyMembers
+          returns (uint proposalID)
+      {
+          return newProposal(beneficiary, etherAmount * 1 ether, JobDescription, transactionBytecode);
+      }        
 
-    function vote(
-        uint proposalNumber,
-        bool supportsProposal,
-        string justificationText
-    )
-        onlyMembers
-        returns (uint voteID)
-    {
-        Proposal p = proposals[proposalNumber];         // Get the proposal
-        if (p.voted[msg.sender] == true) throw;         // If has already voted, cancel
-        p.voted[msg.sender] = true;                     // Set this voter as having voted
-        p.numberOfVotes++;                              // Increase the number of votes
-        if (supportsProposal) {                         // If they support the proposal
-            p.currentResult++;                          // Increase score
-        } else {                                        // If they don&#39;t
-            p.currentResult--;                          // Decrease the score
-        }
-        // Create a log of this event
-        Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
-        return p.numberOfVotes;
-    }
+      /* function to check if a proposal code matches */
+      function checkProposalCode(
+          uint proposalNumber,
+          address beneficiary,
+          uint etherAmount,
+          bytes transactionBytecode
+      )
+          constant
+          returns (bool codeChecksOut)
+      {
+          Proposal storage p = proposals[proposalNumber];
+          return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
+      }
 
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) {
-        Proposal p = proposals[proposalNumber];
-        /* Check if the proposal can be executed:
-           - Has the voting deadline arrived?
-           - Has it been already executed or is it being executed?
-           - Does the transaction code match the proposal?
-           - Has a minimum quorum?
-        */
+      /// @notice Vote `supportsProposal? in support of : against` proposal #`proposalNumber`
+      /// @param proposalNumber number of proposal
+      /// @param supportsProposal either in favor or against it
+      /// @param justificationText optional justification text
+      function vote(
+          uint proposalNumber,
+          bool supportsProposal,
+          string justificationText
+      )
+          onlyMembers
+          returns (uint voteID)
+      {
+          Proposal storage p = proposals[proposalNumber];         // Get the proposal
+          require(!p.voted[msg.sender]);         // If has already voted, cancel
+          p.voted[msg.sender] = true;                     // Set this voter as having voted
+          p.numberOfVotes++;                              // Increase the number of votes
+          if (supportsProposal) {                         // If they support the proposal
+              p.currentResult++;                          // Increase score
+          } else {                                        // If they don&#39;t
+              p.currentResult--;                          // Decrease the score
+          }
+          // Create a log of this event
+          Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+          return p.numberOfVotes;
+      }
 
-        if (now &lt; p.votingDeadline
-            || p.executed
-            || p.proposalHash != sha3(p.recipient, p.amount, transactionBytecode)
-            || p.numberOfVotes &lt; minimumQuorum)
-            throw;
+      /// @notice Count the votes proposal #`proposalNumber` and execute it if approved
+      /// @param proposalNumber proposal number
+      /// @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
+      function executeProposal(uint proposalNumber, bytes transactionBytecode) {
+          Proposal storage p = proposals[proposalNumber];
+          /* Check if the proposal can be executed:
+             - Has the voting deadline arrived?
+             - Has it been already executed or is it being executed?
+             - Does the transaction code match the proposal?
+             - Has a minimum quorum?
+          */
 
-        /* execute result */
-        /* If difference between support and opposition is larger than margin */
-        if (p.currentResult &gt; majorityMargin) {
-            // Avoid recursive calling
+          require (now &gt; p.votingDeadline
+              &amp;&amp; !p.executed
+              &amp;&amp; p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)
+              &amp;&amp; p.numberOfVotes &gt;= minimumQuorum);
 
-            p.executed = true;
-            if (!p.recipient.call.value(p.amount * 1 ether)(transactionBytecode)) {
-                throw;
-            }
+          /* execute result */
+          /* If difference between support and opposition is larger than margin */
+          if (p.currentResult &gt; majorityMargin) {
+              // Avoid recursive calling
 
-            p.proposalPassed = true;
-        } else {
-            p.proposalPassed = false;
-        }
-        // Fire Events
-        ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
-    }
-}</code></pre>
+              p.executed = true;
+              require(p.recipient.call.value(p.amount)(transactionBytecode));
+
+              p.proposalPassed = true;
+          } else {
+              p.proposalPassed = false;
+          }
+          // Fire Events
+          ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
+      }
+  }</code></pre>
 
 <h4>How to deploy</h4>
 
@@ -276,11 +303,11 @@ contract Congress is owned, tokenRecipient {
 
 <p>On the <strong>&quot;Write to contract&quot;</strong> you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select &quot;newProposal&quot; and it will show all the options for that function.</p>
 
-<p>Before interacting with the contract, you&#39;ll need to add new members so they can vote. On the <strong>&quot;select function&quot;</strong> picker, choose <strong>&quot;Change Membership&quot;</strong>. Add the address of the person you want to make a member and check the box <strong>can vote</strong> (to remove a member, do the same but leave the box unticked). On <strong>&quot;execute from&quot;</strong> make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press <strong>execute</strong> and wait a few seconds for the next block to go through with your change.</p>
+<p>Before interacting with the contract, you&#39;ll need to add new members so they can vote. On the <strong>&quot;select function&quot;</strong> picker, choose <strong>&quot;Add Member&quot;</strong>. Add the address of the person you want to make a member(to remove a member, choose <strong>&quot;Remove Member&quot;</strong>). On <strong>&quot;execute from&quot;</strong> make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press <strong>execute</strong> and wait a few seconds for the next block to go through with your change.</p>
 
 <p>There&#39;s no list of members, but you can check if anyone is a member by putting their address on the <strong>Members</strong> function on the <em>Read from contract</em> column.</p>
 
-<p>Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you&#39;ll have a pretty toothless organization. Press <strong>Deposit</strong> on the top left corner.</p>
+<p>Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you&#39;ll have a pretty toothless organization. Press <strong>Transfer Ether &amp; Tokens</strong> on the top right corner.</p>
 
 <h4>Add a simple proposal: send ether</h4>
 
@@ -302,13 +329,13 @@ contract Congress is owned, tokenRecipient {
 
 <p>You can use this democracy to execute any transaction on ethereum, as long as you can figure out the bytecode that that transaction generates. Luckily for us, you can use the wallet to do precisely that!</p>
 
-<p>In this example, we&#39;ll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, <a href="./token">create a token</a> that belongs to one of your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don&#39;t send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you&#39;d do to execute that transaction from an account you own and press &quot;send&quot; but when the confirmation screens pops up, <strong>don&#39;t type your password</strong>.</p>
+<p>In this example, we&#39;ll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, <a href="./token">create a token</a> that belongs to one of your normal accounts. On the contract page, click <strong>Transfer Ether &amp; Tokens</strong> to transfer some of them to your new congress contract (for simplicity, don&#39;t send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you&#39;d do to execute that transaction from an account you own and press &quot;send&quot; but when the confirmation screens pops up, <strong>don&#39;t type your password</strong>.</p>
 
 <p><img alt="Select the bytecode" src="/images/tutorial/select-code.png"/></p>
 
-<p>Instead, copy the code displayed on the &quot;data&quot; field and save it to a text file or notepad. Cancel the transaction. You&#39;ll also need the address of the contract you&#39;ll be calling for that operation, in this case the token contract. You can find it on the <em>Contracts</em> tab: save that somewhere too.</p>
+<p>Instead, click &quot;SHOW RAW DATA&quot; link and copy the code displayed on the &quot;RAW DATA&quot; field and save it to a text file or notepad. Cancel the transaction. You&#39;ll also need the address of the contract you&#39;ll be calling for that operation, in this case the token contract. You can find it on the <em>Contracts</em> tab: save that somewhere too.</p>
 
-<p>Now go back to the democracy contract and create a new proposal with these parameters:</p>
+<p>Now go back to the congress contract and create a new proposal with these parameters:</p>
 
 <ul><li>As the <strong>beneficiary</strong>, put the address of your token (pay attention if it&#39;s the same icon)</li><li>Leave <strong>Ether amount</strong> blank</li><li>On the <strong>Job description</strong> just write a small description on what you want to accomplish</li><li>On the <strong>Transaction Bytecode</strong>, paste the bytecode you saved from the data field on the previous step</li></ul>
 
@@ -339,11 +366,6 @@ contract Congress is owned, tokenRecipient {
 <p>Now to the shareholder code:</p>
 
 <pre><code>pragma solidity ^0.4.2;
-/* The token is used as a voting shares */
-contract token { mapping (address =&gt; uint256) public balanceOf;  }
-
-
-/* define &#39;owned&#39; */
 contract owned {
     address public owner;
 
@@ -352,7 +374,7 @@ contract owned {
     }
 
     modifier onlyOwner {
-        if (msg.sender != owner) throw;
+        require (msg.sender == owner);
         _;
     }
 
@@ -361,13 +383,13 @@ contract owned {
     }
 }
 
-contract tokenRecipient { 
+contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
     function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
         Token t = Token(_token);
-        if (!t.transferFrom(_from, this, _value)) throw;
+        require (!t.transferFrom(_from, this, _value));
         receivedTokens(_from, _value, _token, _extraData);
     }
 
@@ -377,10 +399,11 @@ contract tokenRecipient {
 }
 
 contract Token {
+    mapping (address =&gt; uint256) public balanceOf;
     function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
 }
 
-/* The democracy contract itself */
+/* The shareholder association contract itself */
 contract Association is owned, tokenRecipient {
 
     /* Contract Variables and events */
@@ -388,12 +411,12 @@ contract Association is owned, tokenRecipient {
     uint public debatingPeriodInMinutes;
     Proposal[] public proposals;
     uint public numProposals;
-    token public sharesTokenAddress;
+    Token public sharesTokenAddress;
 
     event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
     event Voted(uint proposalID, bool position, address voter);
     event ProposalTallied(uint proposalID, uint result, uint quorum, bool active);
-    event ChangeOfRules(uint minimumQuorum, uint debatingPeriodInMinutes, address sharesTokenAddress);
+    event ChangeOfRules(uint newMinimumQuorum, uint newDebatingPeriodInMinutes, address newSharesTokenAddress);
 
     struct Proposal {
         address recipient;
@@ -415,26 +438,63 @@ contract Association is owned, tokenRecipient {
 
     /* modifier that allows only shareholders to vote and create new proposals */
     modifier onlyShareholders {
-        if (sharesTokenAddress.balanceOf(msg.sender) == 0) throw;
+        require (sharesTokenAddress.balanceOf(msg.sender) &gt; 0);
         _;
     }
 
     /* First time setup */
-    function Association(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable {
+    function Association(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable {
         changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
     }
 
-    /*change rules*/
-    function changeVotingRules(token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
-        sharesTokenAddress = token(sharesAddress);
+    /// @notice Make so that proposals need tobe discussed for at least `minutesForDebate/60` hours and all voters combined must own more than `minimumSharesToPassAVote` shares of token `sharesAddress` to be executed
+    /// @param sharesAddress token address
+    /// @param minimumSharesToPassAVote proposal can vote only if the sum of shares held by all voters exceed this number      
+    /// @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed    
+    function changeVotingRules(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
+        sharesTokenAddress = Token(sharesAddress);
         if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
         minimumQuorum = minimumSharesToPassAVote;
         debatingPeriodInMinutes = minutesForDebate;
         ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, sharesTokenAddress);
     }
 
-    /* Function to create a new proposal */
+    /// @notice Propose to send `weiAmount / 1E18` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
+    /// @param beneficiary who to send the ether to      
+    /// @param weiAmount amount of ether to send, in wei       
+    /// @param JobDescription Description of job
+    /// @param transactionBytecode bytecode of transaction
     function newProposal(
+        address beneficiary,
+        uint weiAmount,
+        string JobDescription,
+        bytes transactionBytecode
+    )
+        onlyShareholders
+        returns (uint proposalID)
+    {
+        proposalID = proposals.length++;
+        Proposal storage p = proposals[proposalID];
+        p.recipient = beneficiary;
+        p.amount = weiAmount;
+        p.description = JobDescription;
+        p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
+        p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
+        p.executed = false;
+        p.proposalPassed = false;
+        p.numberOfVotes = 0;
+        ProposalAdded(proposalID, beneficiary, weiAmount, JobDescription);
+        numProposals = proposalID+1;
+
+        return proposalID;
+    }
+
+    /// @notice Propose to send `etherAmount` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
+    /// @param beneficiary who to send the ether to      
+    /// @param etherAmount amount of ether to send       
+    /// @param JobDescription Description of job
+    /// @param transactionBytecode bytecode of transaction
+    function newProposalInEther(
         address beneficiary,
         uint etherAmount,
         string JobDescription,
@@ -443,34 +503,21 @@ contract Association is owned, tokenRecipient {
         onlyShareholders
         returns (uint proposalID)
     {
-        proposalID = proposals.length++;
-        Proposal p = proposals[proposalID];
-        p.recipient = beneficiary;
-        p.amount = etherAmount;
-        p.description = JobDescription;
-        p.proposalHash = sha3(beneficiary, etherAmount, transactionBytecode);
-        p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
-        p.executed = false;
-        p.proposalPassed = false;
-        p.numberOfVotes = 0;
-        ProposalAdded(proposalID, beneficiary, etherAmount, JobDescription);
-        numProposals = proposalID+1;
-
-        return proposalID;
+        return newProposal(beneficiary, etherAmount * 1 ether, JobDescription, transactionBytecode);
     }
 
     /* function to check if a proposal code matches */
     function checkProposalCode(
         uint proposalNumber,
         address beneficiary,
-        uint etherAmount,
+        uint weiAmount,
         bytes transactionBytecode
     )
         constant
         returns (bool codeChecksOut)
     {
-        Proposal p = proposals[proposalNumber];
-        return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
+        Proposal storage p = proposals[proposalNumber];
+        return p.proposalHash == sha3(beneficiary, weiAmount, transactionBytecode);
     }
 
     /* */
@@ -485,17 +532,17 @@ contract Association is owned, tokenRecipient {
         p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID +1;
-        Voted(proposalNumber,  supportsProposal, msg.sender); 
+        Voted(proposalNumber,  supportsProposal, msg.sender);
         return voteID;
     }
 
     function executeProposal(uint proposalNumber, bytes transactionBytecode) {
-        Proposal p = proposals[proposalNumber];
+        Proposal storage p = proposals[proposalNumber];
         /* Check if the proposal can be executed */
-        if (now &lt; p.votingDeadline  /* has the voting deadline arrived? */
-            ||  p.executed        /* has it been already executed? */
-            ||  p.proposalHash != sha3(p.recipient, p.amount, transactionBytecode)) /* Does the transaction code match the proposal? */
-            throw;
+        require (now &gt; p.votingDeadline  /* has the voting deadline arrived? */
+            &amp;&amp;  !p.executed        /* has it been already executed? */
+            &amp;&amp;  p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)); /* Does the transaction code match the proposal? */
+
 
         /* tally the votes */
         uint quorum = 0;
@@ -503,7 +550,7 @@ contract Association is owned, tokenRecipient {
         uint nay = 0;
 
         for (uint i = 0; i &lt;  p.votes.length; ++i) {
-            Vote v = p.votes[i];
+            Vote storage v = p.votes[i];
             uint voteWeight = sharesTokenAddress.balanceOf(v.voter);
             quorum += voteWeight;
             if (v.inSupport) {
@@ -514,15 +561,12 @@ contract Association is owned, tokenRecipient {
         }
 
         /* execute result */
-        if (quorum &lt;= minimumQuorum) {
-            /* Not enough significant voters */
-            throw;
-        } else if (yea &gt; nay ) {
+        require (quorum &lt;= minimumQuorum); /* Not enough significant voters */
+
+        if (yea &gt; nay ) {
             /* has quorum and was approved */
             p.executed = true;
-            if (!p.recipient.call.value(p.amount * 1 ether)(transactionBytecode)) {
-                throw;
-            }
+            require (p.recipient.call.value(p.amount)(transactionBytecode));
             p.proposalPassed = true;
         } else {
             p.proposalPassed = false;
@@ -773,7 +817,7 @@ contract LiquidDemocracy {
 
 <h3>Time-Locked Multisig</h3>
 
-<p>Sometimes time can also be used as a great security mechanism. The following code is based on the congress DAO but with a different twist. Instead of every action requiring the approval of an X number of members, instead any transactions can be initiated by a single member, but they all will require a minimum amount of delay before they can be executed, which varies according to the support that transaction has. The more approvals a proposal has, the sooner it can be executed. A member can vote against a transaction, which will mean that it will cancel one of the other approved signatures. </p>
+<p>Sometimes time can also be used as a great security mechanism. The following code is based on the congress DAO but with a different twist. Instead of every action requiring the approval of an X number of members, instead any transactions can be initiated by a single member, but they all will require a minimum amount of delay before they can be executed, which varies according to the support that transaction has. The more approvals a proposal has, the sooner it can be executed. A member can vote against a transaction, which will mean that it will cancel one of the other approved signatures.</p>
 
 <p>This means that if you don&#39;t have urgency, one or two signatures might be all you need to execute any transaction. But if a single key is compromised, other keys can delay that transaction for months or year or even stop it from being executed.</p>
 
@@ -783,7 +827,7 @@ contract LiquidDemocracy {
 
 <p><strong>Number of members approving transaction: Approximate time delay</strong></p>
 
-<ul><li>100% approval:                                10 minutes (minimum default) </li><li>90% approval:                                 40 minutes                         </li><li>80%:                                          2h40                     </li><li>50%:                                          about a week                 </li><li>40%:                                          1 month                     </li><li>30%:                                          4 months                     </li><li>20%:                                          Over a year              </li><li>10% or less:                                  5 years or never                        </li></ul>
+<ul><li>100% approval:                                10 minutes (minimum default)</li><li>90% approval:                                 40 minutes                         </li><li>80%:                                          2h40                     </li><li>50%:                                          about a week                 </li><li>40%:                                          1 month                     </li><li>30%:                                          4 months                     </li><li>20%:                                          Over a year              </li><li>10% or less:                                  5 years or never                        </li></ul>
 
 <p>Once the minimum amount of time has passed, anyone can execute the transaction <a href="dao#add-a-simple-proposal-send-ether">(See &quot;Congress&quot; for a more complete walktrough)</a>. This is intentional, as it allows someone to <a href="crowdsale#scheduling-a-call">schedule a transaction</a> or hire someone else to execute it.</p>
 
@@ -807,7 +851,7 @@ contract owned {
     }
 }
 
-contract tokenRecipient { 
+contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
@@ -876,7 +920,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
         if (founder != 0) owner = founder;
         if (minimumAmountOfMinutes !=0) minimumTime = minimumAmountOfMinutes;
         // It’s necessary to add an empty first member
-        addMember(0, &#39;&#39;); 
+        addMember(0, &#39;&#39;);
         // and let&#39;s add the founder, to save a step later       
         addMember(owner, &#39;founder&#39;);   
         changeMembers(initialMembers, true);     
@@ -886,14 +930,13 @@ contract TimeLockMultisig is owned, tokenRecipient {
     function addMember(address targetMember, string memberName) onlyOwner {
         uint id;
         if (memberId[targetMember] == 0) {
-           memberId[targetMember] = members.length;
-           id = members.length++;
-           members[id] = Member({member: targetMember, memberSince: now, name: memberName});
+            memberId[targetMember] = members.length;
+            id = members.length++;
         } else {
             id = memberId[targetMember];
-            Member m = members[id];
         }
 
+        members[id] = Member({member: targetMember, memberSince: now, name: memberName});
         MembershipChanged(targetMember, true);
     }
 
@@ -911,7 +954,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
         for (uint i = 0; i &lt; newMembers.length; i++) {
             if (canVote)
                 addMember(newMembers[i], &#39;&#39;);
-            else 
+            else
                 removeMember(newMembers[i]);
         }
     }
@@ -1035,7 +1078,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
 <h4>Deployment and usage</h4>
 
-<p>Deploy that code as you have done before on these tutorials. On the deployment parameters, leaving the minimum time blank will default to 30 minutes, if you want faster lock times, then put 1 minute. After uploading, execute the functions &quot;Add Members&quot; to add new members of your group, they can be either other people you know or accounts on different computers or stored offline. </p>
+<p>Deploy that code as you have done before on these tutorials. On the deployment parameters, leaving the minimum time blank will default to 30 minutes, if you want faster lock times, then put 1 minute. After uploading, execute the functions &quot;Add Members&quot; to add new members of your group, they can be either other people you know or accounts on different computers or stored offline.</p>
 
 <p>The account set as &quot;owner&quot; is very powerful as it can add or remove members at will. Therefore, after you added the main members, we recommend that you set the &quot;owner&quot; to another account, by executing the function <strong>Transfer Membership</strong>. Set that to the multisig itself if you want to have all additions or removals of members to be voted, just like any other transaction. Another alternative is to set that to another trusted multisig wallet, or maybe to <em>0x000</em> if you want the number of members to be fixed forever. Remember, the funds on this contract are only as safe as the the &quot;owner&quot; account.</p>
 
@@ -1053,7 +1096,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
 <h4>What could happen next?</h4>
 
-<ul><li><p>The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further develop the first contract and grow the organization.</p></li><li><p>Your DAO could own its own name on the name registrar, and then change where it&#39;s redirecting in order to update itself if the token holders approved.</p></li><li><p>The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar.</p></li><li><p>The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future.
+<ul><li><p>The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further development of the first contract and grow the organization.</p></li><li><p>Your DAO could own its own name on the name registrar, and then change where it&#39;s redirecting in order to update itself if the token holders approved.</p></li><li><p>The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar.</p></li><li><p>The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future.
 It could also own shares of other DAOs, meaning it could vote on larger organization or be a part of a federation of DAOs.</p></li><li><p>The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.</p></li></ul>
 
 <p>This all means that this tiny society you created could grow, get funding from third parties, pay recurrent salaries, own any kind of crypto-assets and even use crowdsales to fund its activities. All with full transparency, complete accountability and complete immunity from any human interference. While the network lives the contracts will execute exactly the code they were created to execute, without any exception, forever.</p>
@@ -1062,7 +1105,6 @@ It could also own shares of other DAOs, meaning it could vote on larger organiza
 
 <p>That&#39;s up to you.</p><a href="https://github.com/ethereum/ethereum-org/edit/master/views/content/dao.md" class="button small">Improve this page</a></div></div></div></div><div class="main-tutorial ethereum-projects even"><div class="container"><div class="row"><div class="col-md-12"><div class="col-md-12 tutorial"><h3>What's next?</h3></div><div class="col-md-12 tutorial"><h2>Build a new kind of decentralized application</h2></div><div class="col-md-6 tutorial"><p>Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper-proof network?</p><p>Check out the <a href="http://dapps.ethercasts.com/">many great projects</a>* already being built on Ethereum. And since you'll be among the first developers in the world that are able to program decentralized applications, some of them might need your help. </p><p> <em>*The above list is maintained by an independent party and the Foundation does not endorse its content or any particular project on that list</em></p></div><div class="col-md-6 tutorial"><figure class="moon scrollme"><div data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="360" data-easing="linear" class="moon-stars animateme"></div><div data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="720" data-easing="linear" class="moon-moon animateme"></div><div data-when="span" data-from="0" data-to="1" data-translatey="-200" data-easing="linear" class="moon-rocket animateme"></div></figure></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/tutorials'
-
  };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div id="developer-resources" class="col-md-6 developers"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div id="about-us" class="col-md-6"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a href="./donate" class="donate-button">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div id="community" class="col-md-6 community"><h2>Community</h2><ul><li><a href="http://blog.ethereum.org">Blog</a></li><li><a href="http://twitter.com/ethereumproject" class="twitter">Twitter</a></li><li><a href="https://www.youtube.com/user/ethereumproject" class="youtube">Youtube</a></li><li><a href="http://www.reddit.com/r/ethereum" class="reddit">Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" class="gitter">Gitter</a></li><li><a href="http://ethereum.stackexchange.com" class="stackexchange">Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" class="facebook">Facebook                </a></li><li><a href="http://ethereum.meetup.com" class="meetups">Meetups</a></li><li><a href="mailto:info@ethereum.org" class="email">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div id="news" class="col-md-6 news"><h2>Tweets</h2><a href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px" class="twitter-timeline">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/frontier.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
