@@ -126,7 +126,6 @@ contract MyToken {
     }
 
     function burnFrom(address _from, uint256 _value) returns (bool success) {
-
         require(balanceOf[_from] &gt;= _value);                // Check if the targeted balance is enough
         require(_value &lt;= allowance[_from][msg.sender]);    // Check allowance
         balanceOf[_from] -= _value;                         // Subtract from the targeted balance
@@ -219,6 +218,10 @@ function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, ui
 
 <p>And now your token is ready!</p>
 
+<h4>Noticed the comments?</h4>
+
+<p>What are those @notice and @param comments, you might ask? That&#39;s <a href="https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format">Natspec</a> an emerging standard for a natural language specification, which allows wallets to show the user a natural language description of what the contract is about to do. While not currently supported by many wallets, this will change in the future, so it&#39;s nice to be prepared.</p>
+
 <h4>How to deploy</h4>
 
 <p>If you aren&#39;t there already, open the Ethereum Wallet, go to the contracts tab and then click &quot;deploy new contract&quot;.</p>
@@ -246,6 +249,26 @@ function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, ui
 <h3>Improve your token</h3>
 
 <p>You can deploy your whole crypto token without ever touching a line of code, but the real magic happens when you start customizing it. The following sections will be suggestions on functions you can add to your token to make it fit your needs more.</p>
+
+<h4>More basic functions</h4>
+
+<p>You&#39;ll notice that there some more functions in your basic token contract, like approve, sendFrom and others. These functions are there for your token to interact with other contracts: if you want, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren&#39;t able to subscribe to <strong>Events</strong> only to <strong>function calls</strong>. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with <strong>approveAndCall</strong>.</p>
+
+<p>Because many of these functions are having to reimplement the transferring of tokens, it makes sense to change them to an internal function, which can only be called by the contract itself:</p>
+
+<pre><code>/* Internal transfer, only can be called by this contract */
+function _transfer(address _from, address _to, uint _value) internal {
+    require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
+    require (balanceOf[_from] &gt; _value);                // Check if the sender has enough
+    require (balanceOf[_to] + _value &gt; balanceOf[_to]); // Check for overflows
+    require(!frozenAccount[_from]);                     // Check if sender is frozen
+    require(!frozenAccount[_to]);                       // Check if recipient is frozen
+    balanceOf[_from] -= _value;                         // Subtract from the sender
+    balanceOf[_to] += _value;                           // Add the same to the recipient
+    Transfer(_from, _to, _value);
+}</code></pre>
+
+<p>Now all your functions that result in the transfer of coins, can do their own checks and then call <strong>transfer</strong> with the correct parameters. Notice that this function will move coins from any account to any other, without requiring anyone&#39;s permission to do so: that&#39;s why it&#39;s an internal function, only called by the contract: if you add any function calling it, make sure it properly verifies if the caller should be have permission to move those.</p>
 
 <h4>Centralized Administrator</h4>
 
@@ -474,169 +497,201 @@ function proofOfWork(uint nonce){
 
 <p><img alt="Advanced Token" src="/images/tutorial/advanced-token-deploy.png"/></p>
 
-<pre><code>pragma solidity ^0.4.13;
-contract owned {
-    address public owner;
+<p>  pragma solidity ^0.4.13;
+  contract owned {
+      address public owner;</p>
 
-    function owned() {
-        owner = msg.sender;
-    }
+<pre><code>  function owned() {
+      owner = msg.sender;
+  }
 
-    modifier onlyOwner {
-        require(msg.sender == owner);
-        _;
-    }
+  modifier onlyOwner {
+      require(msg.sender == owner);
+      _;
+  }
 
-    function transferOwnership(address newOwner) onlyOwner {
-        owner = newOwner;
-    }
-}
+  function transferOwnership(address newOwner) onlyOwner {
+      owner = newOwner;
+  }</code></pre>
 
-contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
+<p>  }</p>
 
-contract token {
-    /* Public variables of the token */
-    string public standard = &#39;Token 0.1&#39;;
-    string public name;
-    string public symbol;
-    uint8 public decimals;
-    uint256 public totalSupply;
+<p>  contract tokenRecipient { function receiveApproval(address <em>from, uint256 </em>value, address <em>token, bytes </em>extraData); }</p>
 
-    /* This creates an array with all balances */
-    mapping (address =&gt; uint256) public balanceOf;
-    mapping (address =&gt; mapping (address =&gt; uint256)) public allowance;
+<p>  contract token {
+      /<em> Public variables of the token </em>/
+      string public name;
+      string public symbol;
+      uint8 public decimals;
+      uint256 public totalSupply;</p>
 
-    /* This generates a public event on the blockchain that will notify clients */
-    event Transfer(address indexed from, address indexed to, uint256 value);
+<pre><code>  /* This creates an array with all balances */
+  mapping (address =&gt; uint256) public balanceOf;
+  mapping (address =&gt; mapping (address =&gt; uint256)) public allowance;
 
-    /* Initializes contract with initial supply tokens to the creator of the contract */
-    function token(
-        uint256 initialSupply,
-        string tokenName,
-        uint8 decimalUnits,
-        string tokenSymbol
-        ) {
-        balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
-        totalSupply = initialSupply;                        // Update total supply
-        name = tokenName;                                   // Set the name for display purposes
-        symbol = tokenSymbol;                               // Set the symbol for display purposes
-        decimals = decimalUnits;                            // Amount of decimals for display purposes
-    }
+  /* This generates a public event on the blockchain that will notify clients */
+  event Transfer(address indexed from, address indexed to, uint256 value);
 
-    /* Send coins */
-    function transfer(address _to, uint256 _value) {
-        require(balanceOf[msg.sender] &gt;= _value);           // Check if the sender has enough
-        require(balanceOf[_to] + _value &gt;= balanceOf[_to]); // Check for overflows
-        balanceOf[msg.sender] -= _value;                    // Subtract from the sender
-        balanceOf[_to] += _value;                           // Add the same to the recipient
-        Transfer(msg.sender, _to, _value);                  // Notify anyone listening that this transfer took place
-    }
+  /* This notifies clients about the amount burnt */
+  event Burn(address indexed from, uint256 value);
 
-    /* Allow another contract to spend some tokens in your behalf */
-    function approve(address _spender, uint256 _value)
-        returns (bool success) {
-        allowance[msg.sender][_spender] = _value;
-        return true;
-    }
+  /* Initializes contract with initial supply tokens to the creator of the contract */
+  function token(
+      uint256 initialSupply,
+      string tokenName,
+      uint8 decimalUnits,
+      string tokenSymbol
+      ) {
+      balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
+      totalSupply = initialSupply;                        // Update total supply
+      name = tokenName;                                   // Set the name for display purposes
+      symbol = tokenSymbol;                               // Set the symbol for display purposes
+      decimals = decimalUnits;                            // Amount of decimals for display purposes
+  }
 
-    /* Approve and then communicate the approved contract in a single tx */
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData)
-        returns (bool success) {    
-        tokenRecipient spender = tokenRecipient(_spender);
-        if (approve(_spender, _value)) {
-            spender.receiveApproval(msg.sender, _value, this, _extraData);
-            return true;
-        }
-    }
+  /* Internal transfer, only can be called by this contract */
+  function _transfer(address _from, address _to, uint _value) internal {
+      require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
+      require (balanceOf[_from] &gt; _value);                // Check if the sender has enough
+      require (balanceOf[_to] + _value &gt; balanceOf[_to]); // Check for overflows
+      balanceOf[_from] -= _value;                         // Subtract from the sender
+      balanceOf[_to] += _value;                            // Add the same to the recipient
+      Transfer(_from, _to, _value);
+  }
 
-    /* A contract attempts to get the coins */
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-        require(balanceOf[_from] &gt;= _value);                // Check if the sender has enough
-        require(balanceOf[_to] + _value &gt;= balanceOf[_to]); // Check for overflows
-        require(_value &lt;= allowance[_from][msg.sender]);    // Check allowance
-        balanceOf[_from] -= _value;                         // Subtract from the sender
-        balanceOf[_to] += _value;                           // Add the same to the recipient
-        allowance[_from][msg.sender] -= _value;
-        Transfer(_from, _to, _value);
-        return true;
-    }
-}
+  /// @notice Send `_value` tokens to `_to` from your account
+  /// @param _to The address of the recipient
+  /// @param _value the amount to send
+  function transfer(address _to, uint256 _value) {
+      _transfer(msg.sender, _to, _value);
+  }
 
-contract MyAdvancedToken is owned, token {
+  /// @notice Send `_value` tokens to `_to` in behalf of `_from`
+  /// @param _from The address of the sender
+  /// @param _to The address of the recipient
+  /// @param _value the amount to send
+  function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+      require (_value &lt; allowance[_from][msg.sender]);     // Check allowance
+      allowance[_from][msg.sender] -= _value;
+      _transfer(_from, _to, _value);
+      return true;
+  }
 
-    uint256 public sellPrice;
-    uint256 public buyPrice;
+  /// @notice Allows `_spender` to spend no more than `_value` tokens in your behalf
+  /// @param _spender The address authorized to spend
+  /// @param _value the max amount they can spend
+  function approve(address _spender, uint256 _value)
+      returns (bool success) {
+      allowance[msg.sender][_spender] = _value;
+      return true;
+  }
 
-    mapping (address =&gt; bool) public frozenAccount;
+  /// @notice Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+  /// @param _spender The address authorized to spend
+  /// @param _value the max amount they can spend
+  /// @param _extraData some extra information to send to the approved contract
+  function approveAndCall(address _spender, uint256 _value, bytes _extraData)
+      returns (bool success) {
+      tokenRecipient spender = tokenRecipient(_spender);
+      if (approve(_spender, _value)) {
+          spender.receiveApproval(msg.sender, _value, this, _extraData);
+          return true;
+      }
+  }        
 
-    /* This generates a public event on the blockchain that will notify clients */
-    event FrozenFunds(address target, bool frozen);
+  /// @notice Remove `_value` tokens from the system irreversibly
+  /// @param _value the amount of money to burn
+  function burn(uint256 _value) returns (bool success) {
+      require (balanceOf[msg.sender] &gt; _value);            // Check if the sender has enough
+      balanceOf[msg.sender] -= _value;                      // Subtract from the sender
+      totalSupply -= _value;                                // Updates totalSupply
+      Burn(msg.sender, _value);
+      return true;
+  }
 
-    /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MyAdvancedToken(
-        uint256 initialSupply,
-        string tokenName,
-        uint8 decimalUnits,
-        string tokenSymbol
-    ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {}
+  function burnFrom(address _from, uint256 _value) returns (bool success) {
+      require(balanceOf[_from] &gt;= _value);                // Check if the targeted balance is enough
+      require(_value &lt;= allowance[_from][msg.sender]);    // Check allowance
+      balanceOf[_from] -= _value;                         // Subtract from the targeted balance
+      allowance[_from][msg.sender] -= _value;             // Subtract from the sender&#39;s allowance
+      totalSupply -= _value;                              // Update totalSupply
+      Burn(_from, _value);
+      return true;
+  }</code></pre>
 
-    /* Send coins */
-    function transfer(address _to, uint256 _value) {
-        require(balanceOf[msg.sender] &gt;= _value);           // Check if the sender has enough
-        require(balanceOf[_to] + _value &gt;= balanceOf[_to]); // Check for overflows
-        require(!frozenAccount[msg.sender]);                // Check if frozen
-        balanceOf[msg.sender] -= _value;                    // Subtract from the sender
-        balanceOf[_to] += _value;                           // Add the same to the recipient
-        Transfer(msg.sender, _to, _value);                  // Notify anyone listening that this transfer took place
-    }
+<p>  }</p>
 
+<p>  contract MyAdvancedToken is owned, token {</p>
 
-    /* A contract attempts to get the coins */
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-        require(!frozenAccount[_from]);                     // Check if frozen            
-        require(balanceOf[_from] &gt;= _value);                // Check if the sender has enough
-        require(balanceOf[_to] + _value &gt;= balanceOf[_to]); // Check for overflows
-        require(_value &lt;= allowance[_from][msg.sender]);    // Check allowance
-        balanceOf[_from] -= _value;                         // Subtract from the sender
-        balanceOf[_to] += _value;                           // Add the same to the recipient
-        allowance[_from][msg.sender] -= _value;
-        Transfer(_from, _to, _value);
-        return true;
-    }
+<pre><code>  uint256 public sellPrice;
+  uint256 public buyPrice;
 
-    function mintToken(address target, uint256 mintedAmount) onlyOwner {
-        balanceOf[target] += mintedAmount;
-        totalSupply += mintedAmount;
-        Transfer(0, this, mintedAmount);
-        Transfer(this, target, mintedAmount);
-    }
+  mapping (address =&gt; bool) public frozenAccount;
 
-    function freezeAccount(address target, bool freeze) onlyOwner {
-        frozenAccount[target] = freeze;
-        FrozenFunds(target, freeze);
-    }
+  /* This generates a public event on the blockchain that will notify clients */
+  event FrozenFunds(address target, bool frozen);
 
-    function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
-        sellPrice = newSellPrice;
-        buyPrice = newBuyPrice;
-    }
+  /* Initializes contract with initial supply tokens to the creator of the contract */
+  function MyAdvancedToken(
+      uint256 initialSupply,
+      string tokenName,
+      uint8 decimalUnits,
+      string tokenSymbol
+  ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {}
 
-    function buy() payable {
-        uint amount = msg.value / buyPrice;               // calculates the amount
-        require(balanceOf[this] &gt;= amount);               // checks if it has enough to sell
-        balanceOf[msg.sender] += amount;                  // adds the amount to buyer&#39;s balance
-        balanceOf[this] -= amount;                        // subtracts amount from seller&#39;s balance
-        Transfer(this, msg.sender, amount);               // execute an event reflecting the change
-    }
+  /* Internal transfer, only can be called by this contract */
+  function _transfer(address _from, address _to, uint _value) internal {
+      require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
+      require (balanceOf[_from] &gt; _value);                // Check if the sender has enough
+      require (balanceOf[_to] + _value &gt; balanceOf[_to]); // Check for overflows
+      require(!frozenAccount[_from]);                     // Check if sender is frozen
+      require(!frozenAccount[_to]);                       // Check if recipient is frozen
+      balanceOf[_from] -= _value;                         // Subtract from the sender
+      balanceOf[_to] += _value;                           // Add the same to the recipient
+      Transfer(_from, _to, _value);
+  }
 
-    function sell(uint256 amount) {
-        require(this.balance &gt;= amount * sellPrice);      // checks if the contract has enough ether to buy
-        balanceOf[this] += amount;                        // adds the amount to owner&#39;s balance
-        balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller&#39;s balance
-        require(msg.sender.send(amount * sellPrice));     // sends ether to the seller. It&#39;s important to do this last to avoid recursion attacks
-        Transfer(msg.sender, this, amount);               // executes an event reflecting on the change               
-    }
-}</code></pre>
+  /// @notice Create `mintedAmount` tokens and send it to `target`
+  /// @param target Address to receive the tokens
+  /// @param mintedAmount the amount of tokens it will receive
+  function mintToken(address target, uint256 mintedAmount) onlyOwner {
+      balanceOf[target] += mintedAmount;
+      totalSupply += mintedAmount;
+      Transfer(0, this, mintedAmount);
+      Transfer(this, target, mintedAmount);
+  }
+
+  /// @notice `freeze? Prevent | Allow` `target` from sending &amp; receiving tokens
+  /// @param target Address to be frozen
+  /// @param freeze either to freeze it or not
+  function freezeAccount(address target, bool freeze) onlyOwner {
+      frozenAccount[target] = freeze;
+      FrozenFunds(target, freeze);
+  }
+
+  /// @notice Allow users to buy tokens for `newBuyPrice` eth and sell tokens for `newSellPrice` eth
+  /// @param newSellPrice Price the users can sell to the contract
+  /// @param newBuyPrice Price users can buy from the contract
+  function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
+      sellPrice = newSellPrice;
+      buyPrice = newBuyPrice;
+  }
+
+  /// @notice Buy tokens from contract by sending ether
+  function buy() payable {
+      uint amount = msg.value / buyPrice;               // calculates the amount
+      _transfer(this, msg.sender, amount);              // makes the transfers
+  }
+
+  /// @notice Sell `amount` tokens to contract
+  /// @param amount amount of tokens to be sold
+  function sell(uint256 amount) {
+      require(this.balance &gt;= amount * sellPrice);      // checks if the contract has enough ether to buy
+      _transfer(msg.sender, this, amount);              // makes the transfers
+      msg.sender.transfer(amount * sellPrice);          // sends ether to the seller. It&#39;s important to do this last to avoid recursion attacks
+  }</code></pre>
+
+<p>  }</p>
 
 <h4>Deploying</h4>
 
