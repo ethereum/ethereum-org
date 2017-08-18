@@ -118,14 +118,13 @@ contract Congress is owned, tokenRecipient {
     function addMember(address targetMember, string memberName) onlyOwner {
         uint id;
         if (memberId[targetMember] == 0) {
-           memberId[targetMember] = members.length;
-           id = members.length++;
-           members[id] = Member({member: targetMember, memberSince: now, name: memberName});
+            memberId[targetMember] = members.length;
+            id = members.length++;
         } else {
             id = memberId[targetMember];
-            Member m = members[id];
         }
 
+        members[id] = Member({member: targetMember, memberSince: now, name: memberName});
         MembershipChanged(targetMember, true);
     }
 
@@ -276,11 +275,11 @@ contract Congress is owned, tokenRecipient {
 
 <p>On the <strong>&quot;Write to contract&quot;</strong> you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select &quot;newProposal&quot; and it will show all the options for that function.</p>
 
-<p>Before interacting with the contract, you&#39;ll need to add new members so they can vote. On the <strong>&quot;select function&quot;</strong> picker, choose <strong>&quot;Change Membership&quot;</strong>. Add the address of the person you want to make a member and check the box <strong>can vote</strong> (to remove a member, do the same but leave the box unticked). On <strong>&quot;execute from&quot;</strong> make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press <strong>execute</strong> and wait a few seconds for the next block to go through with your change.</p>
+<p>Before interacting with the contract, you&#39;ll need to add new members so they can vote. On the <strong>&quot;select function&quot;</strong> picker, choose <strong>&quot;Add Member&quot;</strong>. Add the address of the person you want to make a member(to remove a member, choose <strong>&quot;Remove Member&quot;</strong>). On <strong>&quot;execute from&quot;</strong> make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press <strong>execute</strong> and wait a few seconds for the next block to go through with your change.</p>
 
 <p>There&#39;s no list of members, but you can check if anyone is a member by putting their address on the <strong>Members</strong> function on the <em>Read from contract</em> column.</p>
 
-<p>Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you&#39;ll have a pretty toothless organization. Press <strong>Deposit</strong> on the top left corner.</p>
+<p>Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you&#39;ll have a pretty toothless organization. Press <strong>Transfer Ether &amp; Tokens</strong> on the top right corner.</p>
 
 <h4>Add a simple proposal: send ether</h4>
 
@@ -302,13 +301,13 @@ contract Congress is owned, tokenRecipient {
 
 <p>You can use this democracy to execute any transaction on ethereum, as long as you can figure out the bytecode that that transaction generates. Luckily for us, you can use the wallet to do precisely that!</p>
 
-<p>In this example, we&#39;ll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, <a href="./token">create a token</a> that belongs to one of your normal accounts. On the contract page, click deposit to transfer some of them to your new congress contract (for simplicity, don&#39;t send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you&#39;d do to execute that transaction from an account you own and press &quot;send&quot; but when the confirmation screens pops up, <strong>don&#39;t type your password</strong>.</p>
+<p>In this example, we&#39;ll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, <a href="./token">create a token</a> that belongs to one of your normal accounts. On the contract page, click <strong>Transfer Ether &amp; Tokens</strong> to transfer some of them to your new congress contract (for simplicity, don&#39;t send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you&#39;d do to execute that transaction from an account you own and press &quot;send&quot; but when the confirmation screens pops up, <strong>don&#39;t type your password</strong>.</p>
 
 <p><img alt="Select the bytecode" src="/images/tutorial/select-code.png"/></p>
 
-<p>Instead, copy the code displayed on the &quot;data&quot; field and save it to a text file or notepad. Cancel the transaction. You&#39;ll also need the address of the contract you&#39;ll be calling for that operation, in this case the token contract. You can find it on the <em>Contracts</em> tab: save that somewhere too.</p>
+<p>Instead, click &quot;SHOW RAW DATA&quot; link and copy the code displayed on the &quot;RAW DATA&quot; field and save it to a text file or notepad. Cancel the transaction. You&#39;ll also need the address of the contract you&#39;ll be calling for that operation, in this case the token contract. You can find it on the <em>Contracts</em> tab: save that somewhere too.</p>
 
-<p>Now go back to the democracy contract and create a new proposal with these parameters:</p>
+<p>Now go back to the congress contract and create a new proposal with these parameters:</p>
 
 <ul><li>As the <strong>beneficiary</strong>, put the address of your token (pay attention if it&#39;s the same icon)</li><li>Leave <strong>Ether amount</strong> blank</li><li>On the <strong>Job description</strong> just write a small description on what you want to accomplish</li><li>On the <strong>Transaction Bytecode</strong>, paste the bytecode you saved from the data field on the previous step</li></ul>
 
@@ -886,14 +885,13 @@ contract TimeLockMultisig is owned, tokenRecipient {
     function addMember(address targetMember, string memberName) onlyOwner {
         uint id;
         if (memberId[targetMember] == 0) {
-           memberId[targetMember] = members.length;
-           id = members.length++;
-           members[id] = Member({member: targetMember, memberSince: now, name: memberName});
+            memberId[targetMember] = members.length;
+            id = members.length++;
         } else {
             id = memberId[targetMember];
-            Member m = members[id];
         }
 
+        members[id] = Member({member: targetMember, memberSince: now, name: memberName});
         MembershipChanged(targetMember, true);
     }
 
@@ -1053,7 +1051,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
 <h4>What could happen next?</h4>
 
-<ul><li><p>The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further develop the first contract and grow the organization.</p></li><li><p>Your DAO could own its own name on the name registrar, and then change where it&#39;s redirecting in order to update itself if the token holders approved.</p></li><li><p>The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar.</p></li><li><p>The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future.
+<ul><li><p>The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further development of the first contract and grow the organization.</p></li><li><p>Your DAO could own its own name on the name registrar, and then change where it&#39;s redirecting in order to update itself if the token holders approved.</p></li><li><p>The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar.</p></li><li><p>The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future.
 It could also own shares of other DAOs, meaning it could vote on larger organization or be a part of a federation of DAOs.</p></li><li><p>The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.</p></li></ul>
 
 <p>This all means that this tiny society you created could grow, get funding from third parties, pay recurrent salaries, own any kind of crypto-assets and even use crowdsales to fund its activities. All with full transparency, complete accountability and complete immunity from any human interference. While the network lives the contracts will execute exactly the code they were created to execute, without any exception, forever.</p>
