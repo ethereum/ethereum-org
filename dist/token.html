@@ -497,11 +497,11 @@ function proofOfWork(uint nonce){
 
 <p><img alt="Advanced Token" src="/images/tutorial/advanced-token-deploy.png"/></p>
 
-<p>  pragma solidity ^0.4.13;
+<pre><code>  pragma solidity ^0.4.13;
   contract owned {
-      address public owner;</p>
+      address public owner;
 
-<pre><code>  function owned() {
+  function owned() {
       owner = msg.sender;
   }
 
@@ -512,20 +512,20 @@ function proofOfWork(uint nonce){
 
   function transferOwnership(address newOwner) onlyOwner {
       owner = newOwner;
-  }</code></pre>
+  }
 
-<p>  }</p>
+  }
 
-<p>  contract tokenRecipient { function receiveApproval(address <em>from, uint256 </em>value, address <em>token, bytes </em>extraData); }</p>
+  contract tokenRecipient { function receiveApproval(address from, uint256 value, address token, bytes extraData); }
 
-<p>  contract token {
-      /<em> Public variables of the token </em>/
+  contract token {
+      /* Public variables of the token */
       string public name;
       string public symbol;
       uint8 public decimals;
-      uint256 public totalSupply;</p>
+      uint256 public totalSupply;
 
-<pre><code>  /* This creates an array with all balances */
+  /* This creates an array with all balances */
   mapping (address =&gt; uint256) public balanceOf;
   mapping (address =&gt; mapping (address =&gt; uint256)) public allowance;
 
@@ -617,13 +617,13 @@ function proofOfWork(uint nonce){
       totalSupply -= _value;                              // Update totalSupply
       Burn(_from, _value);
       return true;
-  }</code></pre>
+  }
 
-<p>  }</p>
+  }
 
-<p>  contract MyAdvancedToken is owned, token {</p>
+  contract MyAdvancedToken is owned, token {
 
-<pre><code>  uint256 public sellPrice;
+  uint256 public sellPrice;
   uint256 public buyPrice;
 
   mapping (address =&gt; bool) public frozenAccount;
@@ -689,9 +689,9 @@ function proofOfWork(uint nonce){
       require(this.balance &gt;= amount * sellPrice);      // checks if the contract has enough ether to buy
       _transfer(msg.sender, this, amount);              // makes the transfers
       msg.sender.transfer(amount * sellPrice);          // sends ether to the seller. It&#39;s important to do this last to avoid recursion attacks
-  }</code></pre>
+  }
 
-<p>  }</p>
+  }</code></pre>
 
 <h4>Deploying</h4>
 
