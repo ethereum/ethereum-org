@@ -275,7 +275,6 @@
       }
   }</code></pre>
 
-
 <h4>How to deploy</h4>
 
 <p>Open the wallet (if you are only testing, go to the menu develop &gt; network &gt; testnet), go to the <strong>Contracts</strong> tab and then press <strong>deploy contract</strong>, and on the <strong>solidity code</strong> box, paste the code above. On the contract picker, choose <strong>Congress</strong> and you&#39;ll see the setup variables.</p>
@@ -310,7 +309,6 @@
 
 <p>Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you&#39;ll have a pretty toothless organization. Press <strong>Transfer Ether &amp; Tokens</strong> on the top right corner.</p>
 
-
 <h4>Add a simple proposal: send ether</h4>
 
 <p>Now let&#39;s add the first proposal to the contract. On the function picker, select <strong>New proposal</strong>.</p>
@@ -338,7 +336,6 @@
 <p>Instead, click &quot;SHOW RAW DATA&quot; link and copy the code displayed on the &quot;RAW DATA&quot; field and save it to a text file or notepad. Cancel the transaction. You&#39;ll also need the address of the contract you&#39;ll be calling for that operation, in this case the token contract. You can find it on the <em>Contracts</em> tab: save that somewhere too.</p>
 
 <p>Now go back to the congress contract and create a new proposal with these parameters:</p>
-
 
 <ul><li>As the <strong>beneficiary</strong>, put the address of your token (pay attention if it&#39;s the same icon)</li><li>Leave <strong>Ether amount</strong> blank</li><li>On the <strong>Job description</strong> just write a small description on what you want to accomplish</li><li>On the <strong>Transaction Bytecode</strong>, paste the bytecode you saved from the data field on the previous step</li></ul>
 
@@ -369,7 +366,6 @@
 <p>Now to the shareholder code:</p>
 
 <pre><code>pragma solidity ^0.4.2;
-
 contract owned {
     address public owner;
 
@@ -408,7 +404,6 @@ contract Token {
 }
 
 /* The shareholder association contract itself */
-
 contract Association is owned, tokenRecipient {
 
     /* Contract Variables and events */
@@ -422,7 +417,6 @@ contract Association is owned, tokenRecipient {
     event Voted(uint proposalID, bool position, address voter);
     event ProposalTallied(uint proposalID, uint result, uint quorum, bool active);
     event ChangeOfRules(uint newMinimumQuorum, uint newDebatingPeriodInMinutes, address newSharesTokenAddress);
-
 
     struct Proposal {
         address recipient;
@@ -485,13 +479,11 @@ contract Association is owned, tokenRecipient {
         p.amount = weiAmount;
         p.description = JobDescription;
         p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
-
         p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
         p.executed = false;
         p.proposalPassed = false;
         p.numberOfVotes = 0;
         ProposalAdded(proposalID, beneficiary, weiAmount, JobDescription);
-
         numProposals = proposalID+1;
 
         return proposalID;
@@ -1105,8 +1097,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
 <h4>What could happen next?</h4>
 
 <ul><li><p>The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further development of the first contract and grow the organization.</p></li><li><p>Your DAO could own its own name on the name registrar, and then change where it&#39;s redirecting in order to update itself if the token holders approved.</p></li><li><p>The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar.</p></li><li><p>The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future.
-
-  It could also own shares of other DAOs, meaning it could vote on larger organization or be a part of a federation of DAOs.</p></li><li><p>The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.</p></li></ul>
+It could also own shares of other DAOs, meaning it could vote on larger organization or be a part of a federation of DAOs.</p></li><li><p>The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.</p></li></ul>
 
 <p>This all means that this tiny society you created could grow, get funding from third parties, pay recurrent salaries, own any kind of crypto-assets and even use crowdsales to fund its activities. All with full transparency, complete accountability and complete immunity from any human interference. While the network lives the contracts will execute exactly the code they were created to execute, without any exception, forever.</p>
 

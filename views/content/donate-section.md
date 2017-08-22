@@ -1,5 +1,3 @@
-Also, donating might get you a unicorn. As a playful way to thank the donors, we created a token on the ethereum blockchain called a &ldquo;Unicorn.&rdquo;.
-
 #### About Unicorns
 
 + Any donation over 2.014 ethers will trigger the creation of a brand new unicorn that will be automatically sent to the donation address. 
