@@ -26,16 +26,16 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		http: {
-	   	fetch_mist_releases: {
-	    	options: {
-	    		headers: {
-	    			'User-Agent': 'Ethereum.org-Gruntfile'
-    			},
-	    		url: 'https://api.github.com/repos/ethereum/mist/releases'
-	    	},
-	    	dest: 'data/mist_releases.json'
-	    }
-    },
+			fetch_mist_releases: {
+				options: {
+					headers: {
+						'User-Agent': 'Ethereum.org-Gruntfile'
+					},
+					url: 'https://api.github.com/repos/ethereum/mist/releases'
+				},
+				dest: 'data/mist_releases.json'
+			}
+		},
 		clean: {
 			build: ['dist'],
 			cleanup_js: ['dist/js/*.*', '!dist/js/frontier.*'],
