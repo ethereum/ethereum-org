@@ -25,6 +25,17 @@ var styles = [
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		http: {
+	   	fetch_mist_releases: {
+	    	options: {
+	    		headers: {
+	    			'User-Agent': 'Ethereum.org-Gruntfile'
+    			},
+	    		url: 'https://api.github.com/repos/ethereum/mist/releases'
+	    	},
+	    	dest: 'data/mist_releases.json'
+	    }
+    },
 		clean: {
 			build: ['dist'],
 			cleanup_js: ['dist/js/*.*', '!dist/js/frontier.*'],
@@ -33,12 +44,37 @@ module.exports = function(grunt) {
 		jade: {
 			build: {
 				options: {
-					data: {
-						debug: false,
-						pretty: false,
-						block: {
-							hash: '<%= pkg.hash %>'
+					data: function(dest, src) {
+						var mistReleases = grunt.file.readJSON("data/mist_releases.json")[0]['assets'];
+						var mistReleaseOSX,
+							mistReleaseWin64,
+							mistReleaseWin32;
+
+						for (var i = 0; i < mistReleases.length; i++){
+							var obj = mistReleases[i];
+							for (var key in obj) {
+								if (key === 'name') {
+									if (obj[key].indexOf('macosx') !== -1) {
+										mistReleaseOSX = obj['browser_download_url'];
+									} else if (obj[key].indexOf('win64') !== -1) {
+										mistReleaseWin64 = obj['browser_download_url'];
+									} else if (obj[key].indexOf('win32') !== -1) {
+										mistReleaseWin32 = obj['browser_download_url'];
+									}
+								}
+							}
 						}
+
+						return {
+							debug: false,
+							pretty: false,
+							block: {
+								hash: '<%= pkg.hash %>'
+							},
+							mistReleaseOSX: mistReleaseOSX,
+							mistReleaseWin64: mistReleaseWin64,
+							mistReleaseWin32: mistReleaseWin32
+						};
 					}
 				},
 				files: [
@@ -195,7 +231,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jade');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-http');
 
-	grunt.registerTask('default', ['clean', 'jade', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:frontier', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
+	grunt.registerTask('default', ['http', 'clean', 'jade', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:frontier', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
 	grunt.registerTask('build', 'default');
 };
