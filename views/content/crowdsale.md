@@ -47,7 +47,7 @@ Now copy this code and let's create the crowdsale:
             uint fundingGoalInEthers,
             uint durationInMinutes,
             uint etherCostOfEachToken,
-            token addressOfTokenUsedAsReward
+            address addressOfTokenUsedAsReward
         ) {
             beneficiary = ifSuccessfulSendTo;
             fundingGoal = fundingGoalInEthers * 1 ether;
