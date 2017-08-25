@@ -279,7 +279,7 @@ Because many of these functions are having to reimplement the transferring of to
         Transfer(_from, _to, _value);
     }
 
-Now all your functions that result in the transfer of coins, can do their own checks and then call **transfer** with the correct parameters. Notice that this function will move coins from any account to any other, without requiring anyone's permission to do so: that's why it's an internal function, only called by the contract: if you add any function calling it, make sure it properly verifies if the caller should be have permission to move those.
+Now all your functions that result in the transfer of coins, can do their own checks and then call **transfer** with the correct parameters. Notice that this function will move coins from any account to any other, without requiring anyone's permission to do so: that's why it's an internal function, only called by the contract: if you add any function calling it, make sure it properly verifies if the caller should have permission to move those.
 
 #### Centralized Administrator
 
