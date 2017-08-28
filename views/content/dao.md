@@ -587,7 +587,7 @@ Now to the shareholder code:
             }
 
             /* execute result */
-            require (quorum <= minimumQuorum); /* Not enough significant voters */
+            require (quorum >= minimumQuorum); /* Continue only if the quorum reached is at least equal to the minimum quorum */
 
             if (yea > nay ) {
                 /* has quorum and was approved */
