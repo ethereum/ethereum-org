@@ -18,7 +18,7 @@
 
 <p>Now copy this code and let&#39;s create the crowdsale:</p>
 
-<pre><code>pragma solidity ^0.4.2;
+<pre><code>pragma solidity ^0.4.16;
 contract token { function transfer(address receiver, uint amount); }
 
 contract Crowdsale {
@@ -39,7 +39,7 @@ contract Crowdsale {
         uint fundingGoalInEthers,
         uint durationInMinutes,
         uint etherCostOfEachToken,
-        token addressOfTokenUsedAsReward
+        address addressOfTokenUsedAsReward
     ) {
         beneficiary = ifSuccessfulSendTo;
         fundingGoal = fundingGoalInEthers * 1 ether;
@@ -51,7 +51,7 @@ contract Crowdsale {
     /* The function without name is the default function that is called whenever anyone sends funds to a contract */
     function () payable {
         require (!crowdsaleClosed);
-        uint amount += msg.value;
+        uint amount = msg.value;
         balanceOf[msg.sender] += amount;
         amountRaised += amount;
         tokenReward.transfer(msg.sender, amount / price);
@@ -134,7 +134,7 @@ price = etherCostOfEachToken * 1 ether;</code></pre>
 
 <pre><code>function () {
     if (crowdsaleClosed) throw;
-    uint amount = msg.value;  
+    uint amount = msg.value;
     ...</code></pre>
 
 <p>The <a href="https://solidity.readthedocs.org/en/latest/contracts.html#fallback-function">unnamed function</a> is the default function executed whenever a contract receives ether. This function will automatically check if the crowdsale is active, calculate how many tokens the caller bought and send the equivalent. If the crowdsale has ended or if the contract is out of tokens the contract will <strong>throw</strong> meaning the execution will be stopped and the ether sent will be returned (but all the gas will be spent).</p>
