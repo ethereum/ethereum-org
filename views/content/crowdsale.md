@@ -26,7 +26,7 @@ Also, generally those who are funding can't have any say on how the money is spe
 
 Now copy this code and let's create the crowdsale:
 
-    pragma solidity ^0.4.2;
+    pragma solidity ^0.4.16;
     contract token { function transfer(address receiver, uint amount); }
 
     contract Crowdsale {
@@ -123,7 +123,7 @@ Notice that the contract understands what a *token* is because we defined it ear
 This doesn't fully describe how the contract works or all the functions it has, but describes only the ones this contract needs: a token is a contract with a *transfer* function, and we have one at this address.
 
 
-#### How to use            
+#### How to use
 
 Go to **contracts** and then **deploy contract**:
 
@@ -151,7 +151,7 @@ Once the crowdsale has all the necessary tokens, contributing to it is easy and 
 
     function () {
         if (crowdsaleClosed) throw;
-        uint amount = msg.value;  
+        uint amount = msg.value;
         ...
 
 The [unnamed function](https://solidity.readthedocs.org/en/latest/contracts.html#fallback-function) is the default function executed whenever a contract receives ether. This function will automatically check if the crowdsale is active, calculate how many tokens the caller bought and send the equivalent. If the crowdsale has ended or if the contract is out of tokens the contract will **throw** meaning the execution will be stopped and the ether sent will be returned (but all the gas will be spent).

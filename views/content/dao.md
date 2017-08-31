@@ -19,7 +19,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 #### The code
 
 
-      pragma solidity ^0.4.2;
+      pragma solidity ^0.4.16;
       contract owned {
           address public owner;
 
@@ -114,8 +114,8 @@ The way this particular democracy works is that it has an **Owner** which works 
               changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
               // It’s necessary to add an empty first member
               addMember(0, "");
-              // and let's add the founder, to save a step later       
-              addMember(owner, 'founder');        
+              // and let's add the founder, to save a step later
+              addMember(owner, 'founder');
           }
 
           /// @notice Make `targetMember` a member named `memberName`
@@ -145,9 +145,9 @@ The way this particular democracy works is that it has an **Owner** which works 
           }
 
           /// @notice Make so that proposals need tobe discussed for at least `minutesForDebate/60` hours, have at least `minimumQuorumForProposals` votes, and have 50% + `marginOfVotesForMajority` votes to be executed
-          /// @param minimumQuorumForProposals how many members must vote on a proposal for it to be executed      
-          /// @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed    
-          /// @param marginOfVotesForMajority the proposal needs to have 50% plus this number      
+          /// @param minimumQuorumForProposals how many members must vote on a proposal for it to be executed
+          /// @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed
+          /// @param marginOfVotesForMajority the proposal needs to have 50% plus this number
           function changeVotingRules(
               uint minimumQuorumForProposals,
               uint minutesForDebate,
@@ -161,8 +161,8 @@ The way this particular democracy works is that it has an **Owner** which works 
           }
 
           /// @notice Propose to send `weiAmount / 1E18` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
-          /// @param beneficiary who to send the ether to      
-          /// @param weiAmount amount of ether to send, in wei       
+          /// @param beneficiary who to send the ether to
+          /// @param weiAmount amount of ether to send, in wei
           /// @param JobDescription Description of job
           /// @param transactionBytecode bytecode of transaction
           function newProposal(
@@ -191,8 +191,8 @@ The way this particular democracy works is that it has an **Owner** which works 
           }
 
           /// @notice Propose to send `etherAmount` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
-          /// @param beneficiary who to send the ether to      
-          /// @param etherAmount amount of ether to send       
+          /// @param beneficiary who to send the ether to
+          /// @param etherAmount amount of ether to send
           /// @param JobDescription Description of job
           /// @param transactionBytecode bytecode of transaction
           function newProposalInEther(
@@ -205,7 +205,7 @@ The way this particular democracy works is that it has an **Owner** which works 
               returns (uint proposalID)
           {
               return newProposal(beneficiary, etherAmount * 1 ether, JobDescription, transactionBytecode);
-          }        
+          }
 
           /* function to check if a proposal code matches */
           function checkProposalCode(
@@ -391,7 +391,7 @@ Now to the shareholder code:
 
 
 
-    pragma solidity ^0.4.2;
+    pragma solidity ^0.4.16;
     contract owned {
         address public owner;
 
@@ -475,8 +475,8 @@ Now to the shareholder code:
 
         /// @notice Make so that proposals need tobe discussed for at least `minutesForDebate/60` hours and all voters combined must own more than `minimumSharesToPassAVote` shares of token `sharesAddress` to be executed
         /// @param sharesAddress token address
-        /// @param minimumSharesToPassAVote proposal can vote only if the sum of shares held by all voters exceed this number      
-        /// @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed    
+        /// @param minimumSharesToPassAVote proposal can vote only if the sum of shares held by all voters exceed this number
+        /// @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed
         function changeVotingRules(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
             sharesTokenAddress = Token(sharesAddress);
             if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
@@ -486,8 +486,8 @@ Now to the shareholder code:
         }
 
         /// @notice Propose to send `weiAmount / 1E18` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
-        /// @param beneficiary who to send the ether to      
-        /// @param weiAmount amount of ether to send, in wei       
+        /// @param beneficiary who to send the ether to
+        /// @param weiAmount amount of ether to send, in wei
         /// @param JobDescription Description of job
         /// @param transactionBytecode bytecode of transaction
         function newProposal(
@@ -516,8 +516,8 @@ Now to the shareholder code:
         }
 
         /// @notice Propose to send `etherAmount` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
-        /// @param beneficiary who to send the ether to      
-        /// @param etherAmount amount of ether to send       
+        /// @param beneficiary who to send the ether to
+        /// @param etherAmount amount of ether to send
         /// @param JobDescription Description of job
         /// @param transactionBytecode bytecode of transaction
         function newProposalInEther(
@@ -551,8 +551,8 @@ Now to the shareholder code:
             onlyShareholders
             returns (uint voteID)
         {
-            Proposal p = proposals[proposalNumber];
-            if (p.voted[msg.sender] == true) throw;
+            Proposal storage p = proposals[proposalNumber];
+            require(p.voted[msg.sender] != true);
 
             voteID = p.votes.length++;
             p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
@@ -671,7 +671,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 
 #### The code
 
-    pragma solidity ^0.4.2;
+    pragma solidity ^0.4.16;
     contract token {
         mapping (address => uint256) public balanceOf;
     }
@@ -728,27 +728,21 @@ We are going to implement a version of what's usually called **Liquid Democracy*
         }
 
         function execute(address target, uint valueInEther, bytes32 bytecode) {
-            if (msg.sender != appointee                                 // If caller is the current appointee,
-                || underExecution //                                    // if the call is being executed,
-                || bytes4(bytecode) == bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
-                || numberOfDelegationRounds < 4 )                       // and delegation has been calculated enough
-                throw;
+            require(msg.sender == appointee                             // If caller is the current appointee,
+                && !underExecution //                                   // if the call is being executed,
+                && bytes4(bytecode) != bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
+                && numberOfDelegationRounds >= 4 );                     // and delegation has been calculated enough
 
             underExecution = true;
-
-            if (!target.call.value(valueInEther * 1 ether)(bytecode)) { // Then execute the command.
-                throw;
-            }
-            else {
-              underExecution = false;
-            }
+            assert(target.call.value(valueInEther * 1 ether)(bytecode)); // Then execute the command.
+            underExecution = false;
         }
 
         function calculateVotes() returns (address winner) {
             address currentWinner = appointee;
             uint currentMax = 0;
             uint weight = 0;
-            DelegatedVote v = delegatedVotes[0];
+            DelegatedVote storage v = delegatedVotes[0];
 
             if (now > lastWeightCalculation + 90 minutes) {
                 numberOfDelegationRounds = 0;
@@ -871,20 +865,20 @@ A transaction that has been approved by all keys can be executed after ten minut
 **Number of members approving transaction: Approximate time delay**
 
 * 100% approval:                                10 minutes (minimum default)
-* 90% approval:                                 40 minutes                         
-* 80%:                                          2h40                     
-* 50%:                                          about a week                 
-* 40%:                                          1 month                     
-* 30%:                                          4 months                     
-* 20%:                                          Over a year              
-* 10% or less:                                  5 years or never                        
+* 90% approval:                                 40 minutes
+* 80%:                                          2h40
+* 50%:                                          about a week
+* 40%:                                          1 month
+* 30%:                                          4 months
+* 20%:                                          Over a year
+* 10% or less:                                  5 years or never
 
 
 Once the minimum amount of time has passed, anyone can execute the transaction [(See "Congress" for a more complete walktrough)](dao#add-a-simple-proposal-send-ether). This is intentional, as it allows someone to [schedule a transaction](crowdsale#scheduling-a-call) or hire someone else to execute it.
 
 #### The code
 
-    pragma solidity ^0.4.2;
+    pragma solidity ^0.4.16;
     contract owned {
         address public owner;
 
@@ -893,7 +887,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
         }
 
         modifier onlyOwner {
-            if (msg.sender != owner) throw;
+            require(msg.sender == owner);
             _;
         }
 
@@ -908,7 +902,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 
         function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
             Token t = Token(_token);
-            if (!t.transferFrom(_from, this, _value)) throw;
+            require(t.transferFrom(_from, this, _value));
             receivedTokens(_from, _value, _token, _extraData);
         }
 
@@ -961,8 +955,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 
         /* modifier that allows only shareholders to vote and create new proposals */
         modifier onlyMembers {
-            if (memberId[msg.sender] == 0)
-            throw;
+            require(memberId[msg.sender] != 0);
             _;
         }
 
@@ -972,9 +965,9 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             if (minimumAmountOfMinutes !=0) minimumTime = minimumAmountOfMinutes;
             // It’s necessary to add an empty first member
             addMember(0, '');
-            // and let's add the founder, to save a step later       
-            addMember(owner, 'founder');   
-            changeMembers(initialMembers, true);     
+            // and let's add the founder, to save a step later
+            addMember(owner, 'founder');
+            changeMembers(initialMembers, true);
         }
 
         /*make member*/
@@ -992,7 +985,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
         }
 
         function removeMember(address targetMember) onlyOwner {
-            if (memberId[targetMember] == 0) throw;
+            require(memberId[targetMember] != 0);
 
             for (uint i = memberId[targetMember]; i<members.length-1; i++){
                 members[i] = members[i+1];
@@ -1021,7 +1014,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             returns (uint proposalID)
         {
             proposalID = proposals.length++;
-            Proposal p = proposals[proposalID];
+            Proposal storage p = proposals[proposalID];
             p.recipient = beneficiary;
             p.amount = weiAmount;
             p.description = jobDescription;
@@ -1058,7 +1051,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             constant
             returns (bool codeChecksOut)
         {
-            Proposal p = proposals[proposalNumber];
+            Proposal storage p = proposals[proposalNumber];
             return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
         }
 
@@ -1068,10 +1061,9 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             string justificationText
         )
             onlyMembers
-            returns (uint voteID)
         {
-            Proposal p = proposals[proposalNumber];         // Get the proposal
-            if (p.voted[msg.sender] == true) throw;         // If has already voted, cancel
+            Proposal storage p = proposals[proposalNumber]; // Get the proposal
+            require(p.voted[msg.sender] != true);           // If has already voted, cancel
             p.voted[msg.sender] = true;                     // Set this voter as having voted
             if (supportsProposal) {                         // If they support the proposal
                 p.currentResult++;                          // Increase score
@@ -1092,7 +1084,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
         }
 
         function proposalDeadline(uint proposalNumber) constant returns(uint deadline) {
-            Proposal p = proposals[proposalNumber];
+            Proposal storage p = proposals[proposalNumber];
             uint factor = calculateFactor(uint(p.currentResult), (members.length - 1));
             return p.creationDate + uint(factor * minimumTime *  1 minutes);
         }
@@ -1101,8 +1093,8 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             return 2**(20 - (20 * a)/b);
         }
 
-        function executeProposal(uint proposalNumber, bytes transactionBytecode) returns (int result) {
-            Proposal p = proposals[proposalNumber];
+        function executeProposal(uint proposalNumber, bytes transactionBytecode) {
+            Proposal storage p = proposals[proposalNumber];
             /* Check if the proposal can be executed:
                - Has the voting deadline arrived?
                - Has it been already executed or is it being executed?
@@ -1110,17 +1102,14 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
                - Has a minimum quorum?
             */
 
-            if (now < proposalDeadline(proposalNumber)
-                || p.currentResult <= 0
-                || p.executed
-                || !checkProposalCode(proposalNumber, p.recipient, p.amount, transactionBytecode))
-                throw;
+            require(now >= proposalDeadline(proposalNumber)
+                && p.currentResult > 0
+                && !p.executed
+                && checkProposalCode(proposalNumber, p.recipient, p.amount, transactionBytecode));
 
 
             p.executed = true;
-            if (!p.recipient.call.value(p.amount)(transactionBytecode)) {
-                throw;
-            }
+            assert(p.recipient.call.value(p.amount)(transactionBytecode));
 
             // Fire Events
             ProposalExecuted(proposalNumber, p.currentResult, proposalDeadline(proposalNumber));

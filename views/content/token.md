@@ -31,7 +31,7 @@ The standard token contract can be quite complex. But in essence a very basic to
 But if you just want to copy paste the code, then use this:
 
 
-    pragma solidity ^0.4.13;
+    pragma solidity ^0.4.16;
 
     contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
@@ -114,7 +114,7 @@ But if you just want to copy paste the code, then use this:
                 spender.receiveApproval(msg.sender, _value, this, _extraData);
                 return true;
             }
-        }        
+        }
 
         /// @notice Remove `_value` tokens from the system irreversibly
         /// @param _value the amount of money to burn
@@ -615,7 +615,7 @@ If you add all the advanced options, this is how the final code should look like
                   spender.receiveApproval(msg.sender, _value, this, _extraData);
                   return true;
               }
-          }        
+          }
 
           /// @notice Remove `_value` tokens from the system irreversibly
           /// @param _value the amount of money to burn
