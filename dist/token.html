@@ -6,7 +6,9 @@
 
 <p>The standard token contract can be quite complex. But in essence a very basic token boils down to this:</p>
 
-<pre><code>contract MyToken {
+<pre><code>pragma solidity ^0.4.16;
+
+contract MyToken {
     /* This creates an array with all balances */
     mapping (address =&gt; uint256) public balanceOf;
 

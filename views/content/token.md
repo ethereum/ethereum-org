@@ -6,6 +6,8 @@ We are going to create a digital token. Tokens in the ethereum ecosystem can rep
 
 The standard token contract can be quite complex. But in essence a very basic token boils down to this:
 
+    pragma solidity ^0.4.16;
+
     contract MyToken {
         /* This creates an array with all balances */
         mapping (address => uint256) public balanceOf;
