@@ -28,21 +28,29 @@ Now copy this code and let's create the crowdsale:
 
     pragma solidity ^0.4.16;
 
-    interface token { function transfer(address receiver, uint amount); }
+    interface token {
+        function transfer(address receiver, uint amount);
+    }
 
     contract Crowdsale {
         address public beneficiary;
-        uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
+        uint public fundingGoal;
+        uint public amountRaised;
+        uint public deadline;
+        uint public price;
         token public tokenReward;
         mapping(address => uint256) public balanceOf;
         bool fundingGoalReached = false;
-        event GoalReached(address beneficiary, uint amountRaised);
-        event FundTransfer(address backer, uint amount, bool isContribution);
         bool crowdsaleClosed = false;
 
-        /* data structure to hold information about campaign contributors */
+        event GoalReached(address beneficiary, uint amountRaised);
+        event FundTransfer(address backer, uint amount, bool isContribution);
 
-        /*  at initialization, setup the owner */
+        /**
+         * Constrctor function
+         *
+         * Setup the owner
+         */
         function Crowdsale(
             address ifSuccessfulSendTo,
             uint fundingGoalInEthers,
@@ -57,7 +65,11 @@ Now copy this code and let's create the crowdsale:
             tokenReward = token(addressOfTokenUsedAsReward);
         }
 
-        /* The function without name is the default function that is called whenever anyone sends funds to a contract */
+        /**
+         * Fallback function
+         *
+         * The function without name is the default function that is called whenever anyone sends funds to a contract
+         */
         function () payable {
             require (!crowdsaleClosed);
             uint amount = msg.value;
@@ -69,7 +81,11 @@ Now copy this code and let's create the crowdsale:
 
         modifier afterDeadline() { if (now >= deadline) _; }
 
-        /* checks if the goal or time limit has been reached and ends the campaign */
+        /**
+         * Check if goal was reached
+         *
+         * Checks if the goal or time limit has been reached and ends the campaign
+         */
         function checkGoalReached() afterDeadline {
             if (amountRaised >= fundingGoal){
                 fundingGoalReached = true;
@@ -79,6 +95,13 @@ Now copy this code and let's create the crowdsale:
         }
 
 
+        /**
+         * Withdraw the funds
+         *
+         * Checks to see if goal or time limit has been reached, and if so, and the funding goal was reached,
+         * sends the entire amount to the beneficiary. If goal was not reached, each contributor can withdraw
+         * the amount they contributed.
+         */
         function safeWithdrawal() afterDeadline {
             if (!fundingGoalReached) {
                 uint amount = balanceOf[msg.sender];
@@ -153,7 +176,7 @@ Once the crowdsale has all the necessary tokens, contributing to it is easy and 
     function () {
         if (crowdsaleClosed) throw;
         uint amount = msg.value;
-        ...
+        // ...
 
 The [unnamed function](https://solidity.readthedocs.org/en/latest/contracts.html#fallback-function) is the default function executed whenever a contract receives ether. This function will automatically check if the crowdsale is active, calculate how many tokens the caller bought and send the equivalent. If the crowdsale has ended or if the contract is out of tokens the contract will **throw** meaning the execution will be stopped and the ether sent will be returned (but all the gas will be spent).
 
@@ -180,11 +203,11 @@ Then modify the crowdsale to rename all mentions of **transfer** to **mintToken*
 
 
     contract token { function mintToken(address receiver, uint amount){  } }
-    ...
+    // ...
         function () {
-            ...
+            // ...
             tokenReward.mintToken(msg.sender, amount / price);
-            ...
+            // ...
         }
 
 Once you published the crowdsale contract, get its address and go into your **Token Contract** to execute a **Change Ownership** function. This will allow your crowdsale to call the **Mint Token** function as much as it wants.
