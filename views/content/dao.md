@@ -52,7 +52,7 @@ The way this particular democracy works is that it has an **Owner** which works 
           }
       }
 
-      contract Token {
+      interface Token {
           function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
       }
 
@@ -392,6 +392,7 @@ Now to the shareholder code:
 
 
     pragma solidity ^0.4.16;
+
     contract owned {
         address public owner;
 
@@ -672,6 +673,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 #### The code
 
     pragma solidity ^0.4.16;
+
     contract token {
         mapping (address => uint256) public balanceOf;
     }
@@ -879,6 +881,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 #### The code
 
     pragma solidity ^0.4.16;
+
     contract owned {
         address public owner;
 
@@ -911,7 +914,7 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
         }
     }
 
-    contract Token {
+    interface Token {
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
     }
 

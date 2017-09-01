@@ -19,7 +19,8 @@
 <p>Now copy this code and let&#39;s create the crowdsale:</p>
 
 <pre><code>pragma solidity ^0.4.16;
-contract token { function transfer(address receiver, uint amount); }
+
+interface token { function transfer(address receiver, uint amount); }
 
 contract Crowdsale {
     address public beneficiary;

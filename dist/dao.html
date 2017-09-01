@@ -46,7 +46,7 @@
       }
   }
 
-  contract Token {
+  interface Token {
       function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
   }
 
@@ -366,6 +366,7 @@
 <p>Now to the shareholder code:</p>
 
 <pre><code>pragma solidity ^0.4.16;
+
 contract owned {
     address public owner;
 
@@ -635,6 +636,7 @@ for (uint i = 0; i &lt;  p.votes.length; ++i) {
 <h4>The code</h4>
 
 <pre><code>pragma solidity ^0.4.16;
+
 contract token {
     mapping (address =&gt; uint256) public balanceOf;
 }
@@ -828,6 +830,7 @@ contract LiquidDemocracy {
 <h4>The code</h4>
 
 <pre><code>pragma solidity ^0.4.16;
+
 contract owned {
     address public owner;
 
@@ -860,7 +863,7 @@ contract tokenRecipient {
     }
 }
 
-contract Token {
+interface Token {
     function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
 }
 
