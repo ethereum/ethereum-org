@@ -10,7 +10,7 @@ What can you do with contracts? Well, you can do almost anything really, but for
 Before you begin:
 [Install the Ethereum CLI](https://ethereum.org/cli)
 [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
-Please confirm that the GUI is closed before entering the `geth` console.
+
 Run `geth` to begin the sync process (this may take a while on the first run).
 
 So let's start now.
