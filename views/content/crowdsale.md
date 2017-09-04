@@ -27,7 +27,7 @@ Also, generally those who are funding can't have any say on how the money is spe
 Now copy this code and let's create the crowdsale:
 
     pragma solidity ^0.4.2;
-    contract token { function transfer(address receiver, uint amount){  } }
+    contract token { function transfer(address receiver, uint amount); }
 
     contract Crowdsale {
         address public beneficiary;
@@ -47,7 +47,7 @@ Now copy this code and let's create the crowdsale:
             uint fundingGoalInEthers,
             uint durationInMinutes,
             uint etherCostOfEachToken,
-            token addressOfTokenUsedAsReward
+            address addressOfTokenUsedAsReward
         ) {
             beneficiary = ifSuccessfulSendTo;
             fundingGoal = fundingGoalInEthers * 1 ether;
@@ -58,9 +58,9 @@ Now copy this code and let's create the crowdsale:
 
         /* The function without name is the default function that is called whenever anyone sends funds to a contract */
         function () payable {
-            if (crowdsaleClosed) throw;
+            require (!crowdsaleClosed);
             uint amount = msg.value;
-            balanceOf[msg.sender] = amount;
+            balanceOf[msg.sender] += amount;
             amountRaised += amount;
             tokenReward.transfer(msg.sender, amount / price);
             FundTransfer(msg.sender, amount, true);

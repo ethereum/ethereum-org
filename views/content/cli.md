@@ -93,8 +93,6 @@ and on [Building Linux from Source](http://www.ethdocs.org/en/latest/ethereum-cl
 
 #### Install on Windows
 
-There is an [Installer for Windows](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/windows-installer.html).
-
 The [cpp-ethereum documentation](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
 has detailed information on [Building Windows from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/windows.html).
 
@@ -107,7 +105,7 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 
 #### Other Options
 
-* [Parity](https://ethcore.io/parity.html) a Rust implementation by [Ethcore](https://ethcore.io/)  
+* [Parity](https://parity.io/parity.html) a Rust implementation by [Parity Technologies](https://parity.io/)  
 * A [Haskell](https://github.com/bkirwi/ethereum-haskell) implementation developed by [Blockapps](http://www.blockapps.net)
 * If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
 * If you want to create a small hardware project, look into the implementation for the [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)

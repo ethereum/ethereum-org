@@ -1,7 +1,7 @@
 
 ## Mission and Vision Statement
 
-**The Ethereum Foundation’s mission is to promote and support research, development and education to bring decentralized protocols and tools to the world that empower developers to produce next generation decentralized applications (dapps), and together build a more globally accessible, more free and more trustworthy Internet.**
+**The Ethereum Foundation’s mission is to promote and support Ethereum platform and base layer research, development and education to bring decentralized protocols and tools to the world that empower developers to produce next generation decentralized applications (dapps), and together build a more globally accessible, more free and more trustworthy Internet.**
 
 ## Foundation Team
 
@@ -36,6 +36,7 @@
 **Jeff is one of the founders of Ethereum.** He started the first implementation of Ethereum using the Go programming language in 2013 and has been the Go team lead and head developer ever since. The Go client launched successfully on July 30, 2015, marking the release of the genesis block and Ethereum platform. 
 
 [Linkedin](https://www.linkedin.com/in/jeffreywilcke), [Github](https://github.com/obscuren)
+
 
 
 
