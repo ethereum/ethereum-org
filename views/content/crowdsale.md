@@ -26,16 +26,11 @@ Also, generally those who are funding can't have any say on how the money is spe
 
 Now copy this code and let's create the crowdsale:
 
-<<<<<<< HEAD
-    pragma solidity ^0.4.16;
+    pragma solidity ^0.4.2;
 
     interface token {
         function transfer(address receiver, uint amount);
     }
-=======
-    pragma solidity ^0.4.2;
-    contract token { function transfer(address receiver, uint amount); }
->>>>>>> origin/gh-pages
 
     contract Crowdsale {
         address public beneficiary;
@@ -76,13 +71,8 @@ Now copy this code and let's create the crowdsale:
          * The function without name is the default function that is called whenever anyone sends funds to a contract
          */
         function () payable {
-<<<<<<< HEAD
             require(!crowdsaleClosed);
             uint amount = msg.value;
-=======
-            require (!crowdsaleClosed);
-            uint amount += msg.value;
->>>>>>> origin/gh-pages
             balanceOf[msg.sender] += amount;
             amountRaised += amount;
             tokenReward.transfer(msg.sender, amount / price);
