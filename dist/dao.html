@@ -23,7 +23,7 @@ contract owned {
     }
 
     modifier onlyOwner {
-        require (msg.sender == owner);
+        require(msg.sender == owner);
         _;
     }
 
@@ -38,7 +38,7 @@ contract tokenRecipient {
 
     function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
         Token t = Token(_token);
-        require (!t.transferFrom(_from, this, _value));
+        require(!t.transferFrom(_from, this, _value));
         receivedTokens(_from, _value, _token, _extraData);
     }
 
@@ -96,7 +96,7 @@ contract Congress is owned, tokenRecipient {
 
     // Modifier that allows only shareholders to vote and create new proposals
     modifier onlyMembers {
-        require (memberId[msg.sender] != 0);
+        require(memberId[msg.sender] != 0);
         _;
     }
 
@@ -295,7 +295,7 @@ contract Congress is owned, tokenRecipient {
     function executeProposal(uint proposalNumber, bytes transactionBytecode) {
         Proposal storage p = proposals[proposalNumber];
 
-        require (now &gt; p.votingDeadline                                            // If it is past the voting deadline
+        require(now &gt; p.votingDeadline                                            // If it is past the voting deadline
             &amp;&amp; !p.executed                                                         // and it has not already been executed
             &amp;&amp; p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)  // and the supplied code matches the proposal
             &amp;&amp; p.numberOfVotes &gt;= minimumQuorum);                                  // and a minimum quorum has been reached...
@@ -419,7 +419,7 @@ contract owned {
     }
 
     modifier onlyOwner {
-        require (msg.sender == owner);
+        require(msg.sender == owner);
         _;
     }
 
@@ -434,7 +434,7 @@ contract tokenRecipient {
 
     function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
         Token t = Token(_token);
-        require (!t.transferFrom(_from, this, _value));
+        require(!t.transferFrom(_from, this, _value));
         receivedTokens(_from, _value, _token, _extraData);
     }
 
@@ -484,7 +484,7 @@ contract Association is owned, tokenRecipient {
 
     // Modifier that allows only shareholders to vote and create new proposals
     modifier onlyShareholders {
-        require (sharesTokenAddress.balanceOf(msg.sender) &gt; 0);
+        require(sharesTokenAddress.balanceOf(msg.sender) &gt; 0);
         _;
     }
 
@@ -631,7 +631,7 @@ contract Association is owned, tokenRecipient {
     function executeProposal(uint proposalNumber, bytes transactionBytecode) {
         Proposal storage p = proposals[proposalNumber];
 
-        require (now &gt; p.votingDeadline                                             // If it is past the voting deadline
+        require(now &gt; p.votingDeadline                                             // If it is past the voting deadline
             &amp;&amp; !p.executed                                                          // and it has not already been executed
             &amp;&amp; p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
 
@@ -652,13 +652,13 @@ contract Association is owned, tokenRecipient {
             }
         }
 
-        require (quorum &gt;= minimumQuorum); // Check if a minimum quorum has been reached
+        require(quorum &gt;= minimumQuorum); // Check if a minimum quorum has been reached
 
         if (yea &gt; nay ) {
             // Proposal passed; execute the transaction
 
             p.executed = true;
-            require (p.recipient.call.value(p.amount)(transactionBytecode));
+            require(p.recipient.call.value(p.amount)(transactionBytecode));
 
             p.proposalPassed = true;
         } else {
@@ -806,7 +806,7 @@ contract LiquidDemocracy {
         require(msg.sender == appointee                             // If caller is the current appointee,
             &amp;&amp; !underExecution //                                   // if the call is being executed,
             &amp;&amp; bytes4(bytecode) != bytes4(sha3(forbiddenFunction))  // and it&#39;s not trying to do the forbidden function
-            &amp;&amp; numberOfDelegationRounds &gt;= 4 );                     // and delegation has been calculated enough
+            &amp;&amp; numberOfDelegationRounds &gt;= 4);                     // and delegation has been calculated enough
 
         underExecution = true;
         assert(target.call.value(valueInWei)(bytecode)); // Then execute the command.

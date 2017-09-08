@@ -29,7 +29,7 @@ The way this particular democracy works is that it has an **Owner** which works 
         }
 
         modifier onlyOwner {
-            require (msg.sender == owner);
+            require(msg.sender == owner);
             _;
         }
 
@@ -44,7 +44,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
         function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
             Token t = Token(_token);
-            require (!t.transferFrom(_from, this, _value));
+            require(!t.transferFrom(_from, this, _value));
             receivedTokens(_from, _value, _token, _extraData);
         }
 
@@ -102,7 +102,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
         // Modifier that allows only shareholders to vote and create new proposals
         modifier onlyMembers {
-            require (memberId[msg.sender] != 0);
+            require(memberId[msg.sender] != 0);
             _;
         }
 
@@ -301,7 +301,7 @@ The way this particular democracy works is that it has an **Owner** which works 
         function executeProposal(uint proposalNumber, bytes transactionBytecode) {
             Proposal storage p = proposals[proposalNumber];
 
-            require (now > p.votingDeadline                                            // If it is past the voting deadline
+            require(now > p.votingDeadline                                            // If it is past the voting deadline
                 && !p.executed                                                         // and it has not already been executed
                 && p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)  // and the supplied code matches the proposal
                 && p.numberOfVotes >= minimumQuorum);                                  // and a minimum quorum has been reached...
@@ -445,7 +445,7 @@ Now to the shareholder code:
         }
 
         modifier onlyOwner {
-            require (msg.sender == owner);
+            require(msg.sender == owner);
             _;
         }
 
@@ -460,7 +460,7 @@ Now to the shareholder code:
 
         function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
             Token t = Token(_token);
-            require (!t.transferFrom(_from, this, _value));
+            require(!t.transferFrom(_from, this, _value));
             receivedTokens(_from, _value, _token, _extraData);
         }
 
@@ -510,7 +510,7 @@ Now to the shareholder code:
 
         // Modifier that allows only shareholders to vote and create new proposals
         modifier onlyShareholders {
-            require (sharesTokenAddress.balanceOf(msg.sender) > 0);
+            require(sharesTokenAddress.balanceOf(msg.sender) > 0);
             _;
         }
 
@@ -657,7 +657,7 @@ Now to the shareholder code:
         function executeProposal(uint proposalNumber, bytes transactionBytecode) {
             Proposal storage p = proposals[proposalNumber];
 
-            require (now > p.votingDeadline                                             // If it is past the voting deadline
+            require(now > p.votingDeadline                                             // If it is past the voting deadline
                 && !p.executed                                                          // and it has not already been executed
                 && p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
 
@@ -678,13 +678,13 @@ Now to the shareholder code:
                 }
             }
 
-            require (quorum >= minimumQuorum); // Check if a minimum quorum has been reached
+            require(quorum >= minimumQuorum); // Check if a minimum quorum has been reached
 
             if (yea > nay ) {
                 // Proposal passed; execute the transaction
 
                 p.executed = true;
-                require (p.recipient.call.value(p.amount)(transactionBytecode));
+                require(p.recipient.call.value(p.amount)(transactionBytecode));
 
                 p.proposalPassed = true;
             } else {
@@ -839,7 +839,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
             require(msg.sender == appointee                             // If caller is the current appointee,
                 && !underExecution //                                   // if the call is being executed,
                 && bytes4(bytecode) != bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
-                && numberOfDelegationRounds >= 4 );                     // and delegation has been calculated enough
+                && numberOfDelegationRounds >= 4);                     // and delegation has been calculated enough
 
             underExecution = true;
             assert(target.call.value(valueInWei)(bytecode)); // Then execute the command.
