@@ -18,6 +18,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
 #### The code
 
+<<<<<<< HEAD
 
     pragma solidity ^0.4.16;
 
@@ -56,9 +57,273 @@ The way this particular democracy works is that it has an **Owner** which works 
     interface Token {
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
     }
+=======
 
-    contract Congress is owned, tokenRecipient {
+      pragma solidity ^0.4.2;
+      contract owned {
+          address public owner;
 
+          function owned() {
+              owner = msg.sender;
+          }
+
+          modifier onlyOwner {
+              require (msg.sender == owner);
+              _;
+          }
+
+          function transferOwnership(address newOwner) onlyOwner {
+              owner = newOwner;
+          }
+      }
+
+      contract tokenRecipient {
+          event receivedEther(address sender, uint amount);
+          event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
+
+          function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
+              Token t = Token(_token);
+              require (!t.transferFrom(_from, this, _value));
+              receivedTokens(_from, _value, _token, _extraData);
+          }
+
+          function () payable {
+              receivedEther(msg.sender, msg.value);
+          }
+      }
+
+      contract Token {
+          function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+      }
+
+      contract Congress is owned, tokenRecipient {
+
+          /* Contract Variables and events */
+          uint public minimumQuorum;
+          uint public debatingPeriodInMinutes;
+          int public majorityMargin;
+          Proposal[] public proposals;
+          uint public numProposals;
+          mapping (address => uint) public memberId;
+          Member[] public members;
+
+          event ProposalAdded(uint proposalID, address recipient, uint amount, string description);
+          event Voted(uint proposalID, bool position, address voter, string justification);
+          event ProposalTallied(uint proposalID, int result, uint quorum, bool active);
+          event MembershipChanged(address member, bool isMember);
+          event ChangeOfRules(uint newMinimumQuorum, uint newDebatingPeriodInMinutes, int newMajorityMargin);
+
+          struct Proposal {
+              address recipient;
+              uint amount;
+              string description;
+              uint votingDeadline;
+              bool executed;
+              bool proposalPassed;
+              uint numberOfVotes;
+              int currentResult;
+              bytes32 proposalHash;
+              Vote[] votes;
+              mapping (address => bool) voted;
+          }
+
+          struct Member {
+              address member;
+              string name;
+              uint memberSince;
+          }
+
+          struct Vote {
+              bool inSupport;
+              address voter;
+              string justification;
+          }
+
+          /* modifier that allows only shareholders to vote and create new proposals */
+          modifier onlyMembers {
+              require (memberId[msg.sender] != 0);
+              _;
+          }
+
+          /* First time setup */
+          function Congress (
+              uint minimumQuorumForProposals,
+              uint minutesForDebate,
+              int marginOfVotesForMajority
+          )  payable {
+              changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
+              // It’s necessary to add an empty first member
+              addMember(0, "");
+              // and let's add the founder, to save a step later       
+              addMember(owner, 'founder');        
+          }
+
+          /// @notice Make `targetMember` a member named `memberName`
+          /// @param targetMember ethereum address to be added
+          /// @param memberName public name for that member
+          function addMember(address targetMember, string memberName) onlyOwner {
+              uint id = memberId[targetMember];
+              if (id == 0) {
+                  memberId[targetMember] = members.length;
+                  id = members.length++;
+              }
+
+              members[id] = Member({member: targetMember, memberSince: now, name: memberName});
+              MembershipChanged(targetMember, true);
+          }
+
+          /// @notice Remove membership from `targetMember`
+          /// @param targetMember ethereum address to be removed
+          function removeMember(address targetMember) onlyOwner {
+              require(memberId[targetMember] != 0);
+
+              for (uint i = memberId[targetMember]; i<members.length-1; i++){
+                  members[i] = members[i+1];
+              }
+              delete members[members.length-1];
+              members.length--;
+          }
+
+          /// @notice Make so that proposals need tobe discussed for at least `minutesForDebate/60` hours, have at least `minimumQuorumForProposals` votes, and have 50% + `marginOfVotesForMajority` votes to be executed
+          /// @param minimumQuorumForProposals how many members must vote on a proposal for it to be executed      
+          /// @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed    
+          /// @param marginOfVotesForMajority the proposal needs to have 50% plus this number      
+          function changeVotingRules(
+              uint minimumQuorumForProposals,
+              uint minutesForDebate,
+              int marginOfVotesForMajority
+          ) onlyOwner {
+              minimumQuorum = minimumQuorumForProposals;
+              debatingPeriodInMinutes = minutesForDebate;
+              majorityMargin = marginOfVotesForMajority;
+
+              ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
+          }
+
+          /// @notice Propose to send `weiAmount / 1E18` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
+          /// @param beneficiary who to send the ether to      
+          /// @param weiAmount amount of ether to send, in wei       
+          /// @param JobDescription Description of job
+          /// @param transactionBytecode bytecode of transaction
+          function newProposal(
+              address beneficiary,
+              uint weiAmount,
+              string JobDescription,
+              bytes transactionBytecode
+          )
+              onlyMembers
+              returns (uint proposalID)
+          {
+              proposalID = proposals.length++;
+              Proposal storage p = proposals[proposalID];
+              p.recipient = beneficiary;
+              p.amount = weiAmount;
+              p.description = JobDescription;
+              p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
+              p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
+              p.executed = false;
+              p.proposalPassed = false;
+              p.numberOfVotes = 0;
+              ProposalAdded(proposalID, beneficiary, weiAmount, JobDescription);
+              numProposals = proposalID+1;
+
+              return proposalID;
+          }
+
+          /// @notice Propose to send `etherAmount` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
+          /// @param beneficiary who to send the ether to      
+          /// @param etherAmount amount of ether to send       
+          /// @param JobDescription Description of job
+          /// @param transactionBytecode bytecode of transaction
+          function newProposalInEther(
+              address beneficiary,
+              uint etherAmount,
+              string JobDescription,
+              bytes transactionBytecode
+          )
+              onlyMembers
+              returns (uint proposalID)
+          {
+              return newProposal(beneficiary, etherAmount * 1 ether, JobDescription, transactionBytecode);
+          }        
+
+          /* function to check if a proposal code matches */
+          function checkProposalCode(
+              uint proposalNumber,
+              address beneficiary,
+              uint etherAmount,
+              bytes transactionBytecode
+          )
+              constant
+              returns (bool codeChecksOut)
+          {
+              Proposal storage p = proposals[proposalNumber];
+              return p.proposalHash == sha3(beneficiary, etherAmount, transactionBytecode);
+          }
+
+          /// @notice Vote `supportsProposal? in support of : against` proposal #`proposalNumber`
+          /// @param proposalNumber number of proposal
+          /// @param supportsProposal either in favor or against it
+          /// @param justificationText optional justification text
+          function vote(
+              uint proposalNumber,
+              bool supportsProposal,
+              string justificationText
+          )
+              onlyMembers
+              returns (uint voteID)
+          {
+              Proposal storage p = proposals[proposalNumber];         // Get the proposal
+              require(!p.voted[msg.sender]);         // If has already voted, cancel
+              p.voted[msg.sender] = true;                     // Set this voter as having voted
+              p.numberOfVotes++;                              // Increase the number of votes
+              if (supportsProposal) {                         // If they support the proposal
+                  p.currentResult++;                          // Increase score
+              } else {                                        // If they don't
+                  p.currentResult--;                          // Decrease the score
+              }
+              // Create a log of this event
+              Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+              return p.numberOfVotes;
+          }
+
+          /// @notice Count the votes proposal #`proposalNumber` and execute it if approved
+          /// @param proposalNumber proposal number
+          /// @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
+          function executeProposal(uint proposalNumber, bytes transactionBytecode) {
+              Proposal storage p = proposals[proposalNumber];
+              /* Check if the proposal can be executed:
+                 - Has the voting deadline arrived?
+                 - Has it been already executed or is it being executed?
+                 - Does the transaction code match the proposal?
+                 - Has a minimum quorum?
+              */
+
+              require (now > p.votingDeadline
+                  && !p.executed
+                  && p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)
+                  && p.numberOfVotes >= minimumQuorum);
+
+              /* execute result */
+              /* If difference between support and opposition is larger than margin */
+              if (p.currentResult > majorityMargin) {
+                  // Avoid recursive calling
+
+                  p.executed = true;
+                  require(p.recipient.call.value(p.amount)(transactionBytecode));
+
+                  p.proposalPassed = true;
+              } else {
+                  p.proposalPassed = false;
+              }
+              // Fire Events
+              ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
+          }
+      }
+>>>>>>> origin/gh-pages
+
+
+<<<<<<< HEAD
         // Contract Variables and events
         uint public minimumQuorum;
         uint public debatingPeriodInMinutes;
@@ -324,6 +589,8 @@ The way this particular democracy works is that it has an **Owner** which works 
             ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
         }
     }
+=======
+>>>>>>> origin/gh-pages
 
 
 
@@ -435,8 +702,12 @@ Now to the shareholder code:
 
 
 
+<<<<<<< HEAD
     pragma solidity ^0.4.16;
 
+=======
+    pragma solidity ^0.4.2;
+>>>>>>> origin/gh-pages
     contract owned {
         address public owner;
 
@@ -445,7 +716,11 @@ Now to the shareholder code:
         }
 
         modifier onlyOwner {
+<<<<<<< HEAD
             require(msg.sender == owner);
+=======
+            require (msg.sender == owner);
+>>>>>>> origin/gh-pages
             _;
         }
 
@@ -460,7 +735,11 @@ Now to the shareholder code:
 
         function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
             Token t = Token(_token);
+<<<<<<< HEAD
             require(!t.transferFrom(_from, this, _value));
+=======
+            require (!t.transferFrom(_from, this, _value));
+>>>>>>> origin/gh-pages
             receivedTokens(_from, _value, _token, _extraData);
         }
 
@@ -474,9 +753,13 @@ Now to the shareholder code:
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
     }
 
+<<<<<<< HEAD
     /**
      * The shareholder association contract itself
      */
+=======
+    /* The shareholder association contract itself */
+>>>>>>> origin/gh-pages
     contract Association is owned, tokenRecipient {
 
         uint public minimumQuorum;
@@ -510,6 +793,7 @@ Now to the shareholder code:
 
         // Modifier that allows only shareholders to vote and create new proposals
         modifier onlyShareholders {
+<<<<<<< HEAD
             require(sharesTokenAddress.balanceOf(msg.sender) > 0);
             _;
         }
@@ -519,10 +803,18 @@ Now to the shareholder code:
          *
          * First time setup
          */
+=======
+            require (sharesTokenAddress.balanceOf(msg.sender) > 0);
+            _;
+        }
+
+        /* First time setup */
+>>>>>>> origin/gh-pages
         function Association(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable {
             changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
         }
 
+<<<<<<< HEAD
         /**
          * Change voting rules
          *
@@ -533,6 +825,12 @@ Now to the shareholder code:
          * @param minimumSharesToPassAVote proposal can vote only if the sum of shares held by all voters exceed this number
          * @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed
          */
+=======
+        /// @notice Make so that proposals need tobe discussed for at least `minutesForDebate/60` hours and all voters combined must own more than `minimumSharesToPassAVote` shares of token `sharesAddress` to be executed
+        /// @param sharesAddress token address
+        /// @param minimumSharesToPassAVote proposal can vote only if the sum of shares held by all voters exceed this number      
+        /// @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed    
+>>>>>>> origin/gh-pages
         function changeVotingRules(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
             sharesTokenAddress = Token(sharesAddress);
             if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
@@ -541,6 +839,7 @@ Now to the shareholder code:
             ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, sharesTokenAddress);
         }
 
+<<<<<<< HEAD
         /**
          * Add Proposal
          *
@@ -555,6 +854,17 @@ Now to the shareholder code:
             address beneficiary,
             uint weiAmount,
             string jobDescription,
+=======
+        /// @notice Propose to send `weiAmount / 1E18` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
+        /// @param beneficiary who to send the ether to      
+        /// @param weiAmount amount of ether to send, in wei       
+        /// @param JobDescription Description of job
+        /// @param transactionBytecode bytecode of transaction
+        function newProposal(
+            address beneficiary,
+            uint weiAmount,
+            string JobDescription,
+>>>>>>> origin/gh-pages
             bytes transactionBytecode
         )
             onlyShareholders
@@ -564,18 +874,27 @@ Now to the shareholder code:
             Proposal storage p = proposals[proposalID];
             p.recipient = beneficiary;
             p.amount = weiAmount;
+<<<<<<< HEAD
             p.description = jobDescription;
+=======
+            p.description = JobDescription;
+>>>>>>> origin/gh-pages
             p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
             p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
             p.executed = false;
             p.proposalPassed = false;
             p.numberOfVotes = 0;
+<<<<<<< HEAD
             ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
+=======
+            ProposalAdded(proposalID, beneficiary, weiAmount, JobDescription);
+>>>>>>> origin/gh-pages
             numProposals = proposalID+1;
 
             return proposalID;
         }
 
+<<<<<<< HEAD
         /**
          * Add proposal in Ether
          *
@@ -591,11 +910,23 @@ Now to the shareholder code:
             address beneficiary,
             uint etherAmount,
             string jobDescription,
+=======
+        /// @notice Propose to send `etherAmount` ether to `beneficiary` for `JobDescription`. `transactionBytecode ? Contains : Does not contain` code.
+        /// @param beneficiary who to send the ether to      
+        /// @param etherAmount amount of ether to send       
+        /// @param JobDescription Description of job
+        /// @param transactionBytecode bytecode of transaction
+        function newProposalInEther(
+            address beneficiary,
+            uint etherAmount,
+            string JobDescription,
+>>>>>>> origin/gh-pages
             bytes transactionBytecode
         )
             onlyShareholders
             returns (uint proposalID)
         {
+<<<<<<< HEAD
             return newProposal(beneficiary, etherAmount * 1 ether, jobDescription, transactionBytecode);
         }
 
@@ -607,6 +938,12 @@ Now to the shareholder code:
          * @param weiAmount amount of ether to send
          * @param transactionBytecode bytecode of transaction
          */
+=======
+            return newProposal(beneficiary, etherAmount * 1 ether, JobDescription, transactionBytecode);
+        }
+
+        /* function to check if a proposal code matches */
+>>>>>>> origin/gh-pages
         function checkProposalCode(
             uint proposalNumber,
             address beneficiary,
@@ -656,6 +993,7 @@ Now to the shareholder code:
          */
         function executeProposal(uint proposalNumber, bytes transactionBytecode) {
             Proposal storage p = proposals[proposalNumber];
+<<<<<<< HEAD
 
             require(now > p.votingDeadline                                             // If it is past the voting deadline
                 && !p.executed                                                          // and it has not already been executed
@@ -663,6 +1001,15 @@ Now to the shareholder code:
 
 
             // ...then tally the results
+=======
+            /* Check if the proposal can be executed */
+            require (now > p.votingDeadline  /* has the voting deadline arrived? */
+                &&  !p.executed        /* has it been already executed? */
+                &&  p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)); /* Does the transaction code match the proposal? */
+
+
+            /* tally the votes */
+>>>>>>> origin/gh-pages
             uint quorum = 0;
             uint yea = 0;
             uint nay = 0;
@@ -678,6 +1025,7 @@ Now to the shareholder code:
                 }
             }
 
+<<<<<<< HEAD
             require(quorum >= minimumQuorum); // Check if a minimum quorum has been reached
 
             if (yea > nay ) {
@@ -686,6 +1034,15 @@ Now to the shareholder code:
                 p.executed = true;
                 require(p.recipient.call.value(p.amount)(transactionBytecode));
 
+=======
+            /* execute result */
+            require (quorum <= minimumQuorum); /* Not enough significant voters */
+
+            if (yea > nay ) {
+                /* has quorum and was approved */
+                p.executed = true;
+                require (p.recipient.call.value(p.amount)(transactionBytecode));
+>>>>>>> origin/gh-pages
                 p.proposalPassed = true;
             } else {
                 // Proposal failed
@@ -978,6 +1335,7 @@ A transaction that has been approved by all keys can be executed after ten minut
 **Number of members approving transaction: Approximate time delay**
 
 * 100% approval:                                10 minutes (minimum default)
+<<<<<<< HEAD
 * 90% approval:                                 40 minutes
 * 80%:                                          2h40
 * 50%:                                          about a week
@@ -985,6 +1343,15 @@ A transaction that has been approved by all keys can be executed after ten minut
 * 30%:                                          4 months
 * 20%:                                          Over a year
 * 10% or less:                                  5 years or never
+=======
+* 90% approval:                                 40 minutes                         
+* 80%:                                          2h40                     
+* 50%:                                          about a week                 
+* 40%:                                          1 month                     
+* 30%:                                          4 months                     
+* 20%:                                          Over a year              
+* 10% or less:                                  5 years or never                        
+>>>>>>> origin/gh-pages
 
 
 Once the minimum amount of time has passed, anyone can execute the transaction [(See "Congress" for a more complete walktrough)](dao#add-a-simple-proposal-send-ether). This is intentional, as it allows someone to [schedule a transaction](crowdsale#scheduling-a-call) or hire someone else to execute it.
@@ -1082,9 +1449,15 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             if (minimumAmountOfMinutes !=0) minimumTime = minimumAmountOfMinutes;
             // It’s necessary to add an empty first member
             addMember(0, '');
+<<<<<<< HEAD
             // and let's add the founder, to save a step later
             addMember(owner, 'founder');
             changeMembers(initialMembers, true);
+=======
+            // and let's add the founder, to save a step later       
+            addMember(owner, 'founder');   
+            changeMembers(initialMembers, true);     
+>>>>>>> origin/gh-pages
         }
 
         /**
@@ -1106,11 +1479,14 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
             MembershipChanged(targetMember, true);
         }
 
+<<<<<<< HEAD
         /**
          * Remove member
          *
          * @param targetMember the member to remove
          */
+=======
+>>>>>>> origin/gh-pages
         function removeMember(address targetMember) onlyOwner {
             require(memberId[targetMember] != 0);
 
