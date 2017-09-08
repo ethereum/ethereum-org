@@ -657,8 +657,7 @@ Now to the shareholder code:
         function executeProposal(uint proposalNumber, bytes transactionBytecode) {
             Proposal storage p = proposals[proposalNumber];
 
-            require (
-                && now > p.votingDeadline                                               // If it is past the voting deadline
+            require (now > p.votingDeadline                                             // If it is past the voting deadline
                 && !p.executed                                                          // and it has not already been executed
                 && p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
 
