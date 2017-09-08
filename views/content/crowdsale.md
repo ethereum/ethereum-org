@@ -71,7 +71,7 @@ Now copy this code and let's create the crowdsale:
          * The function without name is the default function that is called whenever anyone sends funds to a contract
          */
         function () payable {
-            require (!crowdsaleClosed);
+            require(!crowdsaleClosed);
             uint amount = msg.value;
             balanceOf[msg.sender] += amount;
             amountRaised += amount;
@@ -174,7 +174,7 @@ This is a very important point. The crowdsale we are building will be completely
 Once the crowdsale has all the necessary tokens, contributing to it is easy and you can do it from any ethereum wallet: just send funds to it. You can see the relevant code bit here:
 
     function () {
-        if (crowdsaleClosed) throw;
+        require(!crowdsaleClosed);
         uint amount = msg.value;
         // ...
 
