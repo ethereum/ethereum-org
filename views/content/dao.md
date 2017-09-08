@@ -678,7 +678,7 @@ Now to the shareholder code:
                 }
             }
 
-            require (quorum <= minimumQuorum); // Check if a minimum quorum has been reached
+            require (quorum >= minimumQuorum); // Check if a minimum quorum has been reached
 
             if (yea > nay ) {
                 // Proposal passed; execute the transaction
