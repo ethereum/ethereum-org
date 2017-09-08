@@ -1,4 +1,3 @@
-Also, donating might get you a unicorn. As a playful way to thank the donors, we created a token on the ethereum blockchain called a “Unicorn”.
 
 #### About Unicorns
 

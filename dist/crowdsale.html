@@ -18,28 +18,37 @@
 
 <p>Now copy this code and let&#39;s create the crowdsale:</p>
 
-<pre><code>pragma solidity ^0.4.2;
-contract token { function transfer(address receiver, uint amount); }
+<pre><code>pragma solidity ^0.4.16;
+
+interface token {
+    function transfer(address receiver, uint amount);
+}
 
 contract Crowdsale {
     address public beneficiary;
-    uint public fundingGoal; uint public amountRaised; uint public deadline; uint public price;
+    uint public fundingGoal;
+    uint public amountRaised;
+    uint public deadline;
+    uint public price;
     token public tokenReward;
     mapping(address =&gt; uint256) public balanceOf;
     bool fundingGoalReached = false;
-    event GoalReached(address beneficiary, uint amountRaised);
-    event FundTransfer(address backer, uint amount, bool isContribution);
     bool crowdsaleClosed = false;
 
-    /* data structure to hold information about campaign contributors */
+    event GoalReached(address beneficiary, uint amountRaised);
+    event FundTransfer(address backer, uint amount, bool isContribution);
 
-    /*  at initialization, setup the owner */
+    /**
+     * Constrctor function
+     *
+     * Setup the owner
+     */
     function Crowdsale(
         address ifSuccessfulSendTo,
         uint fundingGoalInEthers,
         uint durationInMinutes,
         uint etherCostOfEachToken,
-        token addressOfTokenUsedAsReward
+        address addressOfTokenUsedAsReward
     ) {
         beneficiary = ifSuccessfulSendTo;
         fundingGoal = fundingGoalInEthers * 1 ether;
@@ -48,10 +57,14 @@ contract Crowdsale {
         tokenReward = token(addressOfTokenUsedAsReward);
     }
 
-    /* The function without name is the default function that is called whenever anyone sends funds to a contract */
+    /**
+     * Fallback function
+     *
+     * The function without name is the default function that is called whenever anyone sends funds to a contract
+     */
     function () payable {
-        require (!crowdsaleClosed);
-        uint amount += msg.value;
+        require(!crowdsaleClosed);
+        uint amount = msg.value;
         balanceOf[msg.sender] += amount;
         amountRaised += amount;
         tokenReward.transfer(msg.sender, amount / price);
@@ -60,7 +73,11 @@ contract Crowdsale {
 
     modifier afterDeadline() { if (now &gt;= deadline) _; }
 
-    /* checks if the goal or time limit has been reached and ends the campaign */
+    /**
+     * Check if goal was reached
+     *
+     * Checks if the goal or time limit has been reached and ends the campaign
+     */
     function checkGoalReached() afterDeadline {
         if (amountRaised &gt;= fundingGoal){
             fundingGoalReached = true;
@@ -70,6 +87,13 @@ contract Crowdsale {
     }
 
 
+    /**
+     * Withdraw the funds
+     *
+     * Checks to see if goal or time limit has been reached, and if so, and the funding goal was reached,
+     * sends the entire amount to the beneficiary. If goal was not reached, each contributor can withdraw
+     * the amount they contributed.
+     */
     function safeWithdrawal() afterDeadline {
         if (!fundingGoalReached) {
             uint amount = balanceOf[msg.sender];
@@ -133,9 +157,9 @@ price = etherCostOfEachToken * 1 ether;</code></pre>
 <p>Once the crowdsale has all the necessary tokens, contributing to it is easy and you can do it from any ethereum wallet: just send funds to it. You can see the relevant code bit here:</p>
 
 <pre><code>function () {
-    if (crowdsaleClosed) throw;
-    uint amount = msg.value;  
-    ...</code></pre>
+    require(!crowdsaleClosed);
+    uint amount = msg.value;
+    // ...</code></pre>
 
 <p>The <a href="https://solidity.readthedocs.org/en/latest/contracts.html#fallback-function">unnamed function</a> is the default function executed whenever a contract receives ether. This function will automatically check if the crowdsale is active, calculate how many tokens the caller bought and send the equivalent. If the crowdsale has ended or if the contract is out of tokens the contract will <strong>throw</strong> meaning the execution will be stopped and the ether sent will be returned (but all the gas will be spent).</p>
 
@@ -160,11 +184,11 @@ price = etherCostOfEachToken * 1 ether;</code></pre>
 <p>Then modify the crowdsale to rename all mentions of <strong>transfer</strong> to <strong>mintToken</strong>:</p>
 
 <pre><code>contract token { function mintToken(address receiver, uint amount){  } }
-...
+// ...
     function () {
-        ...
+        // ...
         tokenReward.mintToken(msg.sender, amount / price);
-        ...
+        // ...
     }</code></pre>
 
 <p>Once you published the crowdsale contract, get its address and go into your <strong>Token Contract</strong> to execute a <strong>Change Ownership</strong> function. This will allow your crowdsale to call the <strong>Mint Token</strong> function as much as it wants.</p>
@@ -199,7 +223,7 @@ price = etherCostOfEachToken * 1 ether;</code></pre>
 
 <p>After that, just press execute and your call will be scheduled. There are no guarantees that someone will actually execute it, so you should check back after the deadline has passed to be sure.</p><a href="https://github.com/ethereum/ethereum-org/edit/master/views/content/crowdsale.md" class="button small">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><div class="col-md-12 tutorial"><h2>What's next?</h2></div><div class="col-md-6 tutorial"><figure class="dao scrollme"><div data-when="enter" data-from="0.65" data-to="0.45" data-opacity="0" data-translatey="200" data-rotatez="-90" class="dao-robot animateme"></div><div data-when="enter" data-from="0.7" data-to="0.5" data-opacity="0" data-translatey="200" class="dao-money animateme"></div><div data-when="enter" data-from="0.95" data-to="0.8" data-opacity="0" data-scale="1.5" class="dao-arrows animateme"></div><div data-when="enter" data-from="0.45" data-to="0" data-opacity="0" data-translatey="-250" data-translatex="10" data-rotatez="0" data-scale="1.1" data-easing="linear" class="dao-crowd animateme"></div><div data-when="enter" data-from="0.8" data-to="0.7" data-opacity="0" data-translatey="-40" class="dao-ideas animateme"></div></figure></div><div class="col-md-6 tutorial"><h3>Create a democratic autonomous organization</h3><p>Now that you have developed your idea and secured funds, what’s next? You have to hire managers, find a trustworthy CFO to handle the accounts, run board meetings and do a bunch of paperwork. </p><p>Or you can simply leave all that to an Ethereum contract. It will collect proposals from your backers and submit them through a completely transparent voting process.</p><p>One of the many advantages of having a robot run your organization is that it is immune to any outside influence as it’s guaranteed to execute only what it was programmed to. And because the Ethereum network is decentralized, you'll be able to provide services with a 100% uptime guarantee. </p></div><div class="clearfix"></div><div class="col-md-6 tutorial"><a href="/dao" class="button">Start your organization </a></div><div class="col-md-6 tutorial"><div class="recipe"><h4>You can build:</h4><ul><li>A virtual organization where members vote on issues</li><li>A transparent association based on shareholder voting</li><li>Your own country with an unchangeable constitution</li><li>A better delegative democracy</li></ul></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/tutorials'
- };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div id="developer-resources" class="col-md-6 developers"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div id="about-us" class="col-md-6"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a href="./donate" class="donate-button">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div id="community" class="col-md-6 community"><h2>Community</h2><ul><li><a href="http://blog.ethereum.org">Blog</a></li><li><a href="http://twitter.com/ethereumproject" class="twitter">Twitter</a></li><li><a href="https://www.youtube.com/user/ethereumproject" class="youtube">Youtube</a></li><li><a href="http://www.reddit.com/r/ethereum" class="reddit">Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" class="gitter">Gitter</a></li><li><a href="http://ethereum.stackexchange.com" class="stackexchange">Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" class="facebook">Facebook                </a></li><li><a href="http://ethereum.meetup.com" class="meetups">Meetups</a></li><li><a href="mailto:info@ethereum.org" class="email">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div id="news" class="col-md-6 news"><h2>Tweets</h2><a href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px" class="twitter-timeline">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/frontier.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div id="developer-resources" class="col-md-6 developers"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div id="about-us" class="col-md-6"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a href="./donate" class="donate-button">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div id="community" class="col-md-6 community"><h2>Community</h2><ul><li><a href="https://blog.ethereum.org" target="_blank" class="blog">Blog</a></li><li><a href="https://twitter.com/ethereumproject" target="_blank" class="twitter">Twitter</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank" class="youtube">YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank" class="reddit">Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank" class="gitter">Gitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank" class="stackexchange">Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank" class="facebook">Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank" class="meetups">Meetups</a></li><li><a href="mailto:info@ethereum.org" class="email">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div id="news" class="col-md-6 news"><h2>Tweets</h2><a href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px" class="twitter-timeline">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/frontier.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
       {
