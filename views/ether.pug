@@ -6,7 +6,7 @@ block vars
   - var image='ether'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
 
   div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
     a(href="/").index Ethereum 
@@ -53,7 +53,7 @@ block content
     div.container
       div.row
         div.col-md-12
-          include:md content/ether.md
+          include:markdown-it content/ether.md
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/ether.md') Improve this page
 
   div.main-tutorial.even

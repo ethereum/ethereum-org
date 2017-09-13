@@ -6,7 +6,7 @@ block vars
   - var image='cli'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
 
   div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
     a(href="/").index Ethereum 
@@ -29,7 +29,7 @@ block content
       div.row
         +toc
         div.col-md-12
-          include:md content/cli.md
+          include:markdown-it content/cli.md
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/cli.md') Improve this page
 
   div.main-tutorial.even
