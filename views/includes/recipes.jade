@@ -1,0 +1,27 @@
+include ../mixins/recipes.jade
+
+div.main-tutorial.inner-header.token-tutorial#crypto-currency
+  div.container  
+    div.row.solidity.scrollme
+      h2.animateme(data-when="span", data-from="1", data-to="0", data-opacity="0", data-translatey="400") Learn 
+          strong Solidity
+          | , a new language for smart contracts:
+    div.row
+      +tokenRecipe
+
+div.main-tutorial.even.inner-header.crowdsale-tutorial#crowdsale
+  div.container   
+    div.row
+      +crowdsaleRecipe
+
+div.main-tutorial.dao-tutorial.inner-header
+  div.container   
+    div.row
+      +daoRecipe
+
+div.main-tutorial.even.ethereum-projects 
+  div.container   
+    div.row
+      +futureRecipe
+
+

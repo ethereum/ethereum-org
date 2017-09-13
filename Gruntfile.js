@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 			cleanup_js: ['dist/js/*.*', '!dist/js/app.*'],
 			cleanup_css: ['dist/css/*.css', '!dist/css/app.*.css']
 		},
-		pug: {
+		jade: {
 			build: {
 				options: {
 					data: function(dest, src) {
@@ -79,61 +79,61 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						'dist/index.html': 'views/index.pug'
+						'dist/index.html': 'views/index.jade'
 					},
 					{
-						'dist/agreement.html': 'views/agreement.pug'
+						'dist/agreement.html': 'views/agreement.jade'
 					},
 					{
-						'dist/crowdsale.html': 'views/crowdsale.pug'
+						'dist/crowdsale.html': 'views/crowdsale.jade'
 					},
 					{
-						'dist/dao.html': 'views/dao.pug'
+						'dist/dao.html': 'views/dao.jade'
 					},
 					{
-						'dist/ether.html': 'views/ether.pug'
+						'dist/ether.html': 'views/ether.jade'
 					},
 					{
-						'dist/cli.html': 'views/cli.pug'
+						'dist/cli.html': 'views/cli.jade'
 					},
 					{
-						'dist/greeter.html': 'views/greeter.pug'
+						'dist/greeter.html': 'views/greeter.jade'
 					},
 					{
-						'dist/assets.html': 'views/assets.pug'
+						'dist/assets.html': 'views/assets.jade'
 					},
 					{
-						'dist/sale.html': 'views/sale.pug'
+						'dist/sale.html': 'views/sale.jade'
 					},
 					{
-						'dist/token.html': 'views/token.pug'
+						'dist/token.html': 'views/token.jade'
 					},
 					{
-						'dist/brand.html': 'views/brand.pug'
+						'dist/brand.html': 'views/brand.jade'
 					},
 					{
-						'dist/foundation.html': 'views/foundation.pug'
+						'dist/foundation.html': 'views/foundation.jade'
 					},
 					{
-						'dist/donate.html': 'views/donate.pug'
+						'dist/donate.html': 'views/donate.jade'
 					},
 					// {
-					// 	'dist/swarm.html': 'views/swarm.pug'
+					// 	'dist/swarm.html': 'views/swarm.jade'
 					// },
 					{
-						'dist/4b24096abefbcbb08cb2b482eef4e36.html': 'views/devcon2.pug'
+						'dist/4b24096abefbcbb08cb2b482eef4e36.html': 'views/devcon2.jade'
 					},
 					{
-						'dist/devgrants.html': 'views/devgrants.pug'
+						'dist/devgrants.html': 'views/devgrants.jade'
 					},
 					{
-						'dist/privacy-policy.html': 'views/privacy-policy.pug'
+						'dist/privacy-policy.html': 'views/privacy-policy.jade'
 					},
 					{
-						'dist/cookie-policy.html': 'views/cookie-policy.pug'
+						'dist/cookie-policy.html': 'views/cookie-policy.jade'
 					},
 					{
-						'dist/terms-of-use.html': 'views/terms-of-use.pug'
+						'dist/terms-of-use.html': 'views/terms-of-use.jade'
 					}
 				]
 			}
@@ -228,11 +228,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-pug');
+	grunt.loadNpmTasks('grunt-contrib-jade');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-http');
 
-	grunt.registerTask('default', ['http', 'clean', 'pug', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:js', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
+	grunt.registerTask('default', ['http', 'clean', 'jade', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:js', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
 	grunt.registerTask('build', 'default');
 };
