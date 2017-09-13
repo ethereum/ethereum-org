@@ -1637,19 +1637,10 @@ footer {
 	}
 }
 
-@media only screen and (max-width: 600px ) {
-	.row {
-		text-align: center;
-	}
-
-	.row .recipe , code {
-		text-align: left;
-	}
-
+@media only screen and (max-width: 600px) {
 	figure {
 		height: 300px;
 		margin: 0 auto;
-
 	}
 
 	.main-tutorial a.button ,
@@ -2038,10 +2029,10 @@ footer {
 		background-image: url("../images/moon-rocket@2x.png");
 	}
 
-	.community ul li a[href='http://blog.ethereum.org'] {
+	.community ul li a.blog {
 		background-image: url("../images/icons/icon-blog@2x.png");
 	}
-	.community ul li a[href='http://forum.ethereum.org'] {
+	.community ul li a.forum {
 		background-image: url("../images/icons/icon-forum@2x.png");
 	}
 	.community ul li a.reddit {
