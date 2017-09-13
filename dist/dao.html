@@ -1,18 +1,15 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Create a Democracy contract in Ethereum</title><meta name="description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><meta name="twitter:card" value="summary"><meta property="og:title" content="Create a Democracy contract in Ethereum"><meta property="og:type" content="article"><meta property="og:url" content="https://www.ethereum.org/dao"><meta property="og:image" content="https://ethereum.org/images/social-dao.jpg"><meta property="og:image:width" content="500"><meta property="og:image:height" content="500"><meta property="og:description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/css/frontier.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css"></head><body><div data-when="enter" data-from="1" data-to="0.8" data-opacity="0" data-translatey="-20" class="breadcrumb animateme"><a href="/" class="index">Ethereum </a><strong>»  Start a democratic organization</strong><a href="/crowdsale" class="previous">Previous</a></div><div id="tutorial-start" class="main-tutorial dao-tutorial inner-header inner-page even"><div class="container"><div class="row"><div class="col-md-6 tutorial scrollme"><figure class="dao scrollme"><div data-when="exit" data-to="0.65" data-from="0.1" data-opacity="0" data-translatey="400" data-rotatez="-90" class="dao-robot animateme"></div><div data-when="exit" data-to="0.7" data-from="0.0" data-opacity="0" data-translatey="200" class="dao-money animateme"></div><div data-when="exit" data-to="0.1" data-from="0" data-opacity="0" data-scale="0.75" class="dao-arrows animateme"></div><div data-when="exit" data-to="0.45" data-from="0" data-opacity="0" data-translatey="-250" data-translatex="10" data-rotatez="0" data-scale="1.1" data-easing="linear" class="dao-crowd animateme"></div><div data-when="exit" data-to="0.3" data-from="0.1" data-opacity="0" data-scale="2" class="dao-ideas animateme"></div></figure></div><div class="col-md-6 tutorial scrollme"><div class="header-title"><h3 data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear" class="animateme">How to build a </h3><h2 data-when="exit" data-from="0" data-to="1" data-translatey="400" data-easing="linear" class="animateme">Democracy</h2><h3 data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear" class="animateme">on the blockchain</h3></div></div></div></div></div><div class="main-tutorial inner-tutorial"><div class="container"><div class="row scrollme"><ul id="tableOfContents" data-when="enter" data-from="0.4" data-to="0.2" data-translatex="-100" data-opacity="0" data-easing="linear" class="toc animateme"></ul><div class="col-md-12"><h2>Decentralized Autonomous Organization</h2>
-
-<blockquote><p><strong>&quot;On the Blockchain, no one knows you&#39;re a fridge&quot;</strong>
-- Richard Brown</p></blockquote>
-
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Create a Democracy contract in Ethereum</title><meta name="description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><meta name="twitter:card" value="summary"><meta property="og:title" content="Create a Democracy contract in Ethereum"><meta property="og:type" content="article"><meta property="og:url" content="https://www.ethereum.org/dao"><meta property="og:image" content="https://ethereum.org/images/social-dao.jpg"><meta property="og:image:width" content="500"><meta property="og:image:height" content="500"><meta property="og:description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/css/app.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css"></head><body><div class="breadcrumb animateme" data-when="enter" data-from="1" data-to="0.8" data-opacity="0" data-translatey="-20"><a class="index" href="/">Ethereum </a><strong>»  Start a democratic organization</strong><a class="previous" href="/crowdsale">Previous</a></div><div class="main-tutorial dao-tutorial inner-header inner-page even" id="tutorial-start"><div class="container"><div class="row"><div class="col-md-6 tutorial scrollme"><figure class="dao scrollme"><div class="dao-robot animateme" data-when="exit" data-to="0.65" data-from="0.1" data-opacity="0" data-translatey="400" data-rotatez="-90"></div><div class="dao-money animateme" data-when="exit" data-to="0.7" data-from="0.0" data-opacity="0" data-translatey="200"></div><div class="dao-arrows animateme" data-when="exit" data-to="0.1" data-from="0" data-opacity="0" data-scale="0.75"></div><div class="dao-crowd animateme" data-when="exit" data-to="0.45" data-from="0" data-opacity="0" data-translatey="-250" data-translatex="10" data-rotatez="0" data-scale="1.1" data-easing="linear"></div><div class="dao-ideas animateme" data-when="exit" data-to="0.3" data-from="0.1" data-opacity="0" data-scale="2"></div></figure></div><div class="col-md-6 tutorial scrollme"><div class="header-title"><h3 class="animateme" data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear">How to build a </h3><h2 class="animateme" data-when="exit" data-from="0" data-to="1" data-translatey="400" data-easing="linear">Democracy</h2><h3 class="animateme" data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear">on the blockchain</h3></div></div></div></div></div><div class="main-tutorial inner-tutorial"><div class="container"><div class="row scrollme"><ul class="toc animateme" id="tableOfContents" data-when="enter" data-from="0.4" data-to="0.2" data-translatex="-100" data-opacity="0" data-easing="linear"></ul><div class="col-md-12"><h2>Decentralized Autonomous Organization</h2>
+<blockquote>
+<p><strong>&quot;On the Blockchain, no one knows you're a fridge&quot;</strong></p>
+<ul>
+<li>Richard Brown</li>
+</ul>
+</blockquote>
 <p>So far, all contracts we listed were owned and executed by other accounts probably held by humans. But there is no discrimination against robots or humans in the Ethereum ecosystem and contracts can create arbitrary actions like any other account would. Contracts can own tokens, participate in crowdsales, and even be voting members of other contracts.</p>
-
-<p>In this section we are going to build a decentralized and democratic organization that exists solely on the blockchain, but that can do anything that a simple account would be able to. The organization has a central manager that decides who are the members and the voting rules, but as we&#39;ll see, this can also be changed.</p>
-
+<p>In this section we are going to build a decentralized and democratic organization that exists solely on the blockchain, but that can do anything that a simple account would be able to. The organization has a central manager that decides who are the members and the voting rules, but as we'll see, this can also be changed.</p>
 <p>The way this particular democracy works is that it has an <strong>Owner</strong> which works like an administrator, CEO or a President. The <em>Owner</em> can add (or remove) voting members to the organization. Any member can make a proposal, which is in the form of an ethereum transaction to either send ether or execute some contract, and other members can vote in support or against the proposal. Once a predetermined amount of time and a certain number of members has voted, the proposal can be executed: the contract counts the votes and if there are enough votes it will execute the given transaction.</p>
-
 <h3>The Blockchain Congress</h3>
-
 <h4>The code</h4>
-
 <pre><code>pragma solidity ^0.4.16;
 
 contract owned {
@@ -111,8 +108,8 @@ contract Congress is owned, tokenRecipient {
         changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
         // It’s necessary to add an empty first member
         addMember(0, &quot;&quot;);
-        // and let&#39;s add the founder, to save a step later
-        addMember(owner, &#39;founder&#39;);
+        // and let's add the founder, to save a step later
+        addMember(owner, 'founder');
     }
 
     /**
@@ -275,7 +272,7 @@ contract Congress is owned, tokenRecipient {
         p.numberOfVotes++;                              // Increase the number of votes
         if (supportsProposal) {                         // If they support the proposal
             p.currentResult++;                          // Increase score
-        } else {                                        // If they don&#39;t
+        } else {                                        // If they don't
             p.currentResult--;                          // Decrease the score
         }
 
@@ -317,98 +314,66 @@ contract Congress is owned, tokenRecipient {
         // Fire Events
         ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
     }
-}</code></pre>
-
+}
+</code></pre>
 <h4>How to deploy</h4>
-
-<p>Open the wallet (if you are only testing, go to the menu develop &gt; network &gt; testnet), go to the <strong>Contracts</strong> tab and then press <strong>deploy contract</strong>, and on the <strong>solidity code</strong> box, paste the code above. On the contract picker, choose <strong>Congress</strong> and you&#39;ll see the setup variables.</p>
-
-<ul><li><strong>Minimum quorum for proposals</strong> is the minimum amount of votes a proposal needs to have before it can be executed.</li><li><strong>Minutes for debate</strong> is the minimum amount of time (in minutes) that needs to pass before it can be executed</li><li><strong>Margin of votes for majority</strong> A proposal passes if there are more than 50% of the votes plus the margin. Leave at 0 for simple majority, put it at the <em>number of members - 1</em> to require an absolute consensus.</li></ul>
-
-<p><img alt="DAO Setup" src="/images/tutorial/dao-setup.png"/></p>
-
-<p>You can change these parameters later, choose a name, 5 minutes for debate time and leave the remaining of them at 0. A little lower on the page you&#39;ll see an estimate cost of your contract in ether. You can try lowering the price if you want to save, but that might mean having to wait longer for your contract to be created. Click <strong>Deploy</strong>, type your password and wait.</p>
-
-<p>In a few seconds you&#39;ll be taken to the dashboard, scroll down and you&#39;ll be able to see your transaction being created. In under a minute you&#39;ll see the transaction successful and a new unique icon will have been created. Click the contract&#39;s name to see it (you can get to it at any time on the <em>Contracts</em> tab).</p>
-
-<p><img alt="DAO Just created" src="/images/tutorial/dao-just-created.png"/></p>
-
+<p>Open the wallet (if you are only testing, go to the menu develop &gt; network &gt; testnet), go to the <strong>Contracts</strong> tab and then press <strong>deploy contract</strong>, and on the <strong>solidity code</strong> box, paste the code above. On the contract picker, choose <strong>Congress</strong> and you'll see the setup variables.</p>
+<ul>
+<li><strong>Minimum quorum for proposals</strong> is the minimum amount of votes a proposal needs to have before it can be executed.</li>
+<li><strong>Minutes for debate</strong> is the minimum amount of time (in minutes) that needs to pass before it can be executed</li>
+<li><strong>Margin of votes for majority</strong> A proposal passes if there are more than 50% of the votes plus the margin. Leave at 0 for simple majority, put it at the <em>number of members - 1</em> to require an absolute consensus.</li>
+</ul>
+<p><img src="/images/tutorial/dao-setup.png" alt="DAO Setup"></p>
+<p>You can change these parameters later, choose a name, 5 minutes for debate time and leave the remaining of them at 0. A little lower on the page you'll see an estimate cost of your contract in ether. You can try lowering the price if you want to save, but that might mean having to wait longer for your contract to be created. Click <strong>Deploy</strong>, type your password and wait.</p>
+<p>In a few seconds you'll be taken to the dashboard, scroll down and you'll be able to see your transaction being created. In under a minute you'll see the transaction successful and a new unique icon will have been created. Click the contract's name to see it (you can get to it at any time on the <em>Contracts</em> tab).</p>
+<p><img src="/images/tutorial/dao-just-created.png" alt="DAO Just created"></p>
 <h4>Sharing with others</h4>
-
 <p>If you want to share your DAO with others, then they need both the contract address and the interface file, a small text string that works as an instruction manual of the contract. Click <strong>copy address</strong> to get the former and <strong>show interface</strong> to reveal the latter.</p>
-
 <p>On the other computer, go into the <em>Contracts</em> tab and then click on <strong>watch contract</strong>. Add the correct address and interface and press <strong>OK</strong>.</p>
-
-<p><img alt="Add Contract" src="/images/tutorial/add-contract.png"/></p>
-
+<p><img src="/images/tutorial/add-contract.png" alt="Add Contract"></p>
 <h4>Interacting with the contract</h4>
-
 <p>On the <strong>&quot;read from contract&quot;</strong> you can see all the functions you can execute for free on the contract, as they are just reading information from the blockchain. Here you can see, for instance, the current &quot;owner&quot; of the contract (that should be the account that uploaded the contract).</p>
-
 <p>On the <strong>&quot;Write to contract&quot;</strong> you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select &quot;newProposal&quot; and it will show all the options for that function.</p>
-
-<p>Before interacting with the contract, you&#39;ll need to add new members so they can vote. On the <strong>&quot;select function&quot;</strong> picker, choose <strong>&quot;Add Member&quot;</strong>. Add the address of the person you want to make a member(to remove a member, choose <strong>&quot;Remove Member&quot;</strong>). On <strong>&quot;execute from&quot;</strong> make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press <strong>execute</strong> and wait a few seconds for the next block to go through with your change.</p>
-
-<p>There&#39;s no list of members, but you can check if anyone is a member by putting their address on the <strong>Members</strong> function on the <em>Read from contract</em> column.</p>
-
-<p>Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you&#39;ll have a pretty toothless organization. Press <strong>Transfer Ether &amp; Tokens</strong> on the top right corner.</p>
-
+<p>Before interacting with the contract, you'll need to add new members so they can vote. On the <strong>&quot;select function&quot;</strong> picker, choose <strong>&quot;Add Member&quot;</strong>. Add the address of the person you want to make a member(to remove a member, choose <strong>&quot;Remove Member&quot;</strong>). On <strong>&quot;execute from&quot;</strong> make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press <strong>execute</strong> and wait a few seconds for the next block to go through with your change.</p>
+<p>There's no list of members, but you can check if anyone is a member by putting their address on the <strong>Members</strong> function on the <em>Read from contract</em> column.</p>
+<p>Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you'll have a pretty toothless organization. Press <strong>Transfer Ether &amp; Tokens</strong> on the top right corner.</p>
 <h4>Add a simple proposal: send ether</h4>
-
-<p>Now let&#39;s add the first proposal to the contract. On the function picker, select <strong>New proposal</strong>.</p>
-
+<p>Now let's add the first proposal to the contract. On the function picker, select <strong>New proposal</strong>.</p>
 <p>For &quot;beneficiary&quot; add the address of someone you want to send ether to, then put how many ethers you want on the &quot;etherAmount&quot; (must be an integer) and finally some text describing the reason you want to do this. Leave transactionByteCode blank for now. Click execute and type your password. After a few seconds the numProposals will increase to 1 and the first proposal, number 0, will appear on the left column. As you add more proposals, you can see any of them by simply putting the proposal number on the &quot;proposals&quot; field and you can read all about it.</p>
-
 <p>Voting on a proposal is also very simple. Choose &quot;vote&quot; on the function picker. Type the proposal Number on the first box and check the &quot;Yes&quot; box if you agree with it (or leave it blank to vote against it). Click &quot;<strong>execute</strong>&quot; to send your vote.</p>
-
-<p><img alt="Add new proposal" src="/images/tutorial/dao-add-proposal.png"/></p>
-
+<p><img src="/images/tutorial/dao-add-proposal.png" alt="Add new proposal"></p>
 <p>When the voting time has passed, you can select <strong>&quot;executeProposal&quot;</strong>. If the proposal was simply sending ether, then you can also leave the &quot;<strong>transactionBytecode</strong>&quot; field blank. After pressing &quot;execute&quot; but before typing your password, pay attention to the screen that appears.</p>
-
 <p><strong>If there is a warning on the &quot;estimated fee consumption&quot; field, then this means that for some reason the function called will not execute and will be abruptly terminated. It can mean many things, but in the context of this contract this warning will show up whenever you try to execute a contract before its deadline has passed, or if the user is trying to send a different bytecode data than the original proposal had. For security reasons if any of these things happens, the contract execution is abruptly terminated and the user that attempted the illegal transaction will lose all the ethers he sent to pay transaction fees.</strong></p>
-
-<p>If the transaction was executed, then after a few seconds you should be able to see the result: <strong>executed</strong> will turn to true and the correct amount of ether should be subtracted from this contract&#39;s balance and into the recipient address.</p>
-
+<p>If the transaction was executed, then after a few seconds you should be able to see the result: <strong>executed</strong> will turn to true and the correct amount of ether should be subtracted from this contract's balance and into the recipient address.</p>
 <h4>Add a complex proposal: own another token</h4>
-
 <p>You can use this democracy to execute any transaction on ethereum, as long as you can figure out the bytecode that that transaction generates. Luckily for us, you can use the wallet to do precisely that!</p>
-
-<p>In this example, we&#39;ll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, <a href="./token">create a token</a> that belongs to one of your normal accounts. On the contract page, click <strong>Transfer Ether &amp; Tokens</strong> to transfer some of them to your new congress contract (for simplicity, don&#39;t send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you&#39;d do to execute that transaction from an account you own and press &quot;send&quot; but when the confirmation screens pops up, <strong>don&#39;t type your password</strong>.</p>
-
-<p><img alt="Select the bytecode" src="/images/tutorial/select-code.png"/></p>
-
-<p>Instead, click &quot;SHOW RAW DATA&quot; link and copy the code displayed on the &quot;RAW DATA&quot; field and save it to a text file or notepad. Cancel the transaction. You&#39;ll also need the address of the contract you&#39;ll be calling for that operation, in this case the token contract. You can find it on the <em>Contracts</em> tab: save that somewhere too.</p>
-
+<p>In this example, we'll use a token to show that this contract can hold more than ether and can do transactions in any other ethereum-based asset. First, <a href="./token">create a token</a> that belongs to one of your normal accounts. On the contract page, click <strong>Transfer Ether &amp; Tokens</strong> to transfer some of them to your new congress contract (for simplicity, don't send more than half your coins to your DAO). After that, we are going to simulate the action you want to execute. So if you want to propose that the DAO send 500mg of a gold token to a person as a payment, then follow the steps that you'd do to execute that transaction from an account you own and press &quot;send&quot; but when the confirmation screens pops up, <strong>don't type your password</strong>.</p>
+<p><img src="/images/tutorial/select-code.png" alt="Select the bytecode"></p>
+<p>Instead, click &quot;SHOW RAW DATA&quot; link and copy the code displayed on the &quot;RAW DATA&quot; field and save it to a text file or notepad. Cancel the transaction. You'll also need the address of the contract you'll be calling for that operation, in this case the token contract. You can find it on the <em>Contracts</em> tab: save that somewhere too.</p>
 <p>Now go back to the congress contract and create a new proposal with these parameters:</p>
-
-<ul><li>As the <strong>beneficiary</strong>, put the address of your token (pay attention if it&#39;s the same icon)</li><li>Leave <strong>Ether amount</strong> blank</li><li>On the <strong>Job description</strong> just write a small description on what you want to accomplish</li><li>On the <strong>Transaction Bytecode</strong>, paste the bytecode you saved from the data field on the previous step</li></ul>
-
-<p><img alt="New proposal" src="/images/tutorial/new-proposal-token.png"/></p>
-
-<p>In a few seconds you should be able to see the details on the proposal. You&#39;ll notice that the transaction bytecode won&#39;t be shown there and instead there&#39;s only a &quot;transaction hash&quot;. Unlike the other fields, Bytecode can be extremely lengthy and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.</p>
-
-<p>But that, of course, creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That&#39;s where transaction hash comes in. Scroll a bit on the &quot;read from contract&quot; function list and you&#39;ll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don&#39;t get executed unless the hash of the bytecode matches exactly the one on the provided code.</p>
-
-<p><img alt="It&#39;s an older code, but it checks out" src="/images/tutorial/check-code.png"/></p>
-
+<ul>
+<li>As the <strong>beneficiary</strong>, put the address of your token (pay attention if it's the same icon)</li>
+<li>Leave <strong>Ether amount</strong> blank</li>
+<li>On the <strong>Job description</strong> just write a small description on what you want to accomplish</li>
+<li>On the <strong>Transaction Bytecode</strong>, paste the bytecode you saved from the data field on the previous step</li>
+</ul>
+<p><img src="/images/tutorial/new-proposal-token.png" alt="New proposal"></p>
+<p>In a few seconds you should be able to see the details on the proposal. You'll notice that the transaction bytecode won't be shown there and instead there's only a &quot;transaction hash&quot;. Unlike the other fields, Bytecode can be extremely lengthy and therefore expensive to store on the blockchain, so instead of archiving it, the person executing the call later will provide the bytecode.</p>
+<p>But that, of course, creates a security hole: how can a proposal be voted without the actual code being there? And what prevents a user from executing a different code after the proposal has been voted on? That's where transaction hash comes in. Scroll a bit on the &quot;read from contract&quot; function list and you'll see a proposal checker function, where anyone can put all the function parameters and check if they match the one being voted on. This also guarantees that proposals don't get executed unless the hash of the bytecode matches exactly the one on the provided code.</p>
+<p><img src="/images/tutorial/check-code.png" alt="It's an older code, but it checks out"></p>
 <p>Anyone can actually check the proposal very easily by following the same steps to get the correct bytecode and then adding the proposal number and other parameters to the function called <strong>Check proposal code</strong> on the bottom of <strong>Read from contract</strong>.</p>
-
-<p>The rest of the voting process remains the same: all members can vote and after the deadline, someone can execute the proposal. The only difference is that this time you&#39;ll have to provide the same bytecode you&#39;ve submitted before. Pay attention to any warnings on the confirmation window: if it says it won&#39;t execute your code, check to see if the deadline has already passed, if there are enough votes and if your transaction bytecode checks out.</p>
-
+<p>The rest of the voting process remains the same: all members can vote and after the deadline, someone can execute the proposal. The only difference is that this time you'll have to provide the same bytecode you've submitted before. Pay attention to any warnings on the confirmation window: if it says it won't execute your code, check to see if the deadline has already passed, if there are enough votes and if your transaction bytecode checks out.</p>
 <h4>Make it better</h4>
-
 <p>Here are some drawbacks of this current DAO that we leave as an exercise to the reader:</p>
-
-<ul><li>Can you make the member list public and indexed?</li><li>Can you allow members to change their votes (after votes are cast but before the votes are tallied up)?</li><li>Currently the vote message is only visible on logs, can you make a function that will display all votes?</li></ul>
-
+<ul>
+<li>Can you make the member list public and indexed?</li>
+<li>Can you allow members to change their votes (after votes are cast but before the votes are tallied up)?</li>
+<li>Currently the vote message is only visible on logs, can you make a function that will display all votes?</li>
+</ul>
 <h3>The Shareholder Association</h3>
-
 <p>In the previous section we created a contract that works like an invitation-only club, where members are invited or banned by the whim of the president. But this has a few drawbacks: what if someone wants to change his main address? What if some members have more weight than others? What if you actually want to trade or sell memberships or shares on an open market? What if you wanted your organization to have work as a constant decision machine by shareholders?</p>
-
 <p>We are going to modify a bit our contract to connect it to a specific token, which will work as the holding shares of the contract. First we need to create this token: go to the <a href="./token">token tutorial</a> and create a simple token with <strong>initial supply</strong> of 100, <strong>decimals</strong> of 0 and a percentage sign (%) as a <strong>symbol</strong>. If you want to be able to trade in fractions of a percent, then increase the supply by 100x or 1000x and then add the corresponding amount of zeros as the <strong>decimals</strong>. Deploy this contract and save its address on a text file.</p>
-
 <p>Now to the shareholder code:</p>
-
 <pre><code>pragma solidity ^0.4.16;
 
 contract owned {
@@ -669,26 +634,21 @@ contract Association is owned, tokenRecipient {
         // Fire Events
         ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
     }
-}</code></pre>
-
+}
+</code></pre>
 <h4>Deploy and usage</h4>
-
 <p>The code is deployed almost exactly like the previous code, but you need to also put a <strong>shares token address</strong> which is the address of the token that will work as a share with voting rights.</p>
-
 <p>Notice these lines of codes: first we describe the token contract to our new contract. Since it only uses the <strong>balanceOf</strong> function, we only need to add that single line.</p>
-
-<pre><code>contract token { mapping (address =&gt; uint256) public balanceOf; }</code></pre>
-
+<pre><code>contract token { mapping (address =&gt; uint256) public balanceOf; }
+</code></pre>
 <p>Then we define a variable of the <em>type</em> token, meaning that it will inherit all the functions we described earlier. Finally we point the token variable to an address on the blockchain, so it can use that and request live information. This is the simplest way to make one contract understand the other in ethereum.</p>
-
 <pre><code>contract Association {
     token public sharesTokenAddress;
 // ...
 function Association(token sharesAddress, uint minimumSharesForVoting, uint minutesForDebate) {
-        sharesTokenAddress = token(sharesAddress);</code></pre>
-
-<p>This association presents a challenge that the previous congress didn&#39;t have: since anyone with tokens can vote and the balances can change very quickly, the actual score of the proposal can&#39;t be counted when the shareholder votes, otherwise someone would be able to vote multiple times by simply sending his share to different addresses. So in this contract only the vote position is recorded and then the real score is tallied up on the <strong>execute proposal</strong> phase.</p>
-
+        sharesTokenAddress = token(sharesAddress);
+</code></pre>
+<p>This association presents a challenge that the previous congress didn't have: since anyone with tokens can vote and the balances can change very quickly, the actual score of the proposal can't be counted when the shareholder votes, otherwise someone would be able to vote multiple times by simply sending his share to different addresses. So in this contract only the vote position is recorded and then the real score is tallied up on the <strong>execute proposal</strong> phase.</p>
 <pre><code>uint quorum = 0;
 uint yea = 0;
 uint nay = 0;
@@ -702,32 +662,20 @@ for (uint i = 0; i &lt;  p.votes.length; ++i) {
     } else {
         nay += voteWeight;
     }
-}</code></pre>
-
-<p>Another way to achieve the same goal would be to create a single signed integer to keep score of the votes and check if it was positive or negative on the end, but you&#39;d have to convert the <em>unsigned integer</em> balanceOf into a <em>signed integer</em> using <strong>int score = int(voteWeight);</strong></p>
-
+}
+</code></pre>
+<p>Another way to achieve the same goal would be to create a single signed integer to keep score of the votes and check if it was positive or negative on the end, but you'd have to convert the <em>unsigned integer</em> balanceOf into a <em>signed integer</em> using <strong>int score = int(voteWeight);</strong></p>
 <p>Using this DAO is exactly like the previous: members create new proposals, vote on them, wait until the deadline passes and then anyone can count the votes and execute it.</p>
-
-<p><img alt="Association example" src="/images/tutorial/association-dao.png"/></p>
-
-<h4>But how can I limit the owner&#39;s power?</h4>
-
+<p><img src="/images/tutorial/association-dao.png" alt="Association example"></p>
+<h4>But how can I limit the owner's power?</h4>
 <p>On this contract the address set as <strong>owner</strong> has some special powers: they can add or ban members at will, change the margin needed for a win, alter the time required for debate and the quorum necessary for the vote to pass. But this can be solved by using yet another power the owner has: to change ownership.</p>
-
-<p>The owner could change the ownership to no one by pointing the new owner as <em>0x00000...</em>. This would guarantee that the rules will never change, but it&#39;s an irreversible action. The owner can also change the ownership to the contract itself: just click on &quot;copy address&quot; and add it on the &quot;new owner&quot; field. This would make that all the powers of the owner could be executed by creating proposals.</p>
-
+<p>The owner could change the ownership to no one by pointing the new owner as <em>0x00000...</em>. This would guarantee that the rules will never change, but it's an irreversible action. The owner can also change the ownership to the contract itself: just click on &quot;copy address&quot; and add it on the &quot;new owner&quot; field. This would make that all the powers of the owner could be executed by creating proposals.</p>
 <p>If you want, you can also set one contract as the owner of the other: suppose you wanted a corporate structure where you wanted a President for life that had the power to appoint board members, which could then issue more shares and finally these shares voted on how to spend a budget. You could create an <strong>Association</strong> contract, that used a <strong><a href="./token">mintable token</a></strong> owned by a <strong>congress</strong> finally owned by a single account.</p>
-
-<p>But what if you wanted different rules for voting? Maybe to change voting rules you&#39;d need a 80% consensus, or maybe the members are different. In that case, you can create another identical DAO or use some other source code and plug that one as the owner of the first.</p>
-
+<p>But what if you wanted different rules for voting? Maybe to change voting rules you'd need a 80% consensus, or maybe the members are different. In that case, you can create another identical DAO or use some other source code and plug that one as the owner of the first.</p>
 <h3>Liquid democracy</h3>
-
 <p>Voting on all expenses and actions of a contract takes time and requires users to be constantly active, informed and attentive. Another interesting approach is to elect an appointed account that will have control over a contract and then be able to take swift decisions over it.</p>
-
-<p>We are going to implement a version of what&#39;s usually called <strong>Liquid Democracy</strong>, which is a more flexible delegative democracy. In this kind of democracy, any voter can be a potential delegate: instead of voting the candidate you want, you just say which voter you trust to handle this decision for you. Your voting weight is delegated to them and they can in turn delegate it to another voter they trust and so on. The end result should be that the most voted account is one that has trust connections to the largest amount of voters.</p>
-
+<p>We are going to implement a version of what's usually called <strong>Liquid Democracy</strong>, which is a more flexible delegative democracy. In this kind of democracy, any voter can be a potential delegate: instead of voting the candidate you want, you just say which voter you trust to handle this decision for you. Your voting weight is delegated to them and they can in turn delegate it to another voter they trust and so on. The end result should be that the most voted account is one that has trust connections to the largest amount of voters.</p>
 <h4>The code</h4>
-
 <pre><code>pragma solidity ^0.4.16;
 
 contract token {
@@ -777,7 +725,7 @@ contract LiquidDemocracy {
      *
      * Send your vote weight to another address
      *
-     * @param nominatedAddress the destination address receiving the sender&#39;s vote
+     * @param nominatedAddress the destination address receiving the sender's vote
      */
     function vote(address nominatedAddress) returns (uint voteIndex) {
         if (voterId[msg.sender]== 0) {
@@ -805,7 +753,7 @@ contract LiquidDemocracy {
     function execute(address target, uint valueInWei, bytes32 bytecode) {
         require(msg.sender == appointee                             // If caller is the current appointee,
             &amp;&amp; !underExecution //                                   // if the call is being executed,
-            &amp;&amp; bytes4(bytecode) != bytes4(sha3(forbiddenFunction))  // and it&#39;s not trying to do the forbidden function
+            &amp;&amp; bytes4(bytecode) != bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
             &amp;&amp; numberOfDelegationRounds &gt;= 4);                     // and delegation has been calculated enough
 
         underExecution = true;
@@ -816,7 +764,7 @@ contract LiquidDemocracy {
     /**
      * Calculate Votes
      *
-     * Go thruogh all the delegated vote logs and tally up each address&#39;s total rank
+     * Go thruogh all the delegated vote logs and tally up each address's total rank
      */
     function calculateVotes() returns (address winner) {
         address currentWinner = appointee;
@@ -864,32 +812,22 @@ contract LiquidDemocracy {
 
         return currentWinner;
     }
-}</code></pre>
-
+}
+</code></pre>
 <h4>Deployment</h4>
-
 <p>First, you need a token. If you have followed the <strong>Shareholder association</strong> tutorial above, you can use the same token as you had previously, otherwise just <a href="./token/">deploy a new token</a> and distribute it among some accounts. Copy the token address.</p>
-
 <p>Deploy the democracy contract, and put the token address on the <strong>Voting weight token</strong>, put <strong>75</strong> as the <strong>Percent loss in each round</strong> and <strong>transferOwnership(address)</strong> (without any spaces or extra characters!) as the <strong>forbidden function</strong>.</p>
-
 <h4>Selecting a delegate</h4>
-
-<p>Now deploy the Liquid democracy and go to its page. First have any of the shareholders <strong>vote</strong> on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you&#39;d rather have no one representing you on that role.</p>
-
-<p>After enough people have cast their votes, you can execute the function <strong>Calculate Votes</strong> so it will calculate everyone&#39;s voting weight. This function needs to be run multiple times, so the first run it will just set everyone&#39;s weight as their balance in the selected token, in the next round that voting weight will go to the person you voted appointed, in the next it will go to the person voted by the person you chose and so on. To prevent infinite loops of vote delegations, each time a vote is forwarded it loses a bit of power, set by at contract launch at <strong>percentLossInEachRound</strong>. So if the loss is set at 75%, it means that the person you vote gets 100% of your weight, but if they delegate the vote to someone else only 75% of their weight is forwarded. That person can delegate to someone else but they&#39;ll get only 56% of your voting weight and so on. If the ratio is anything lower than 100% there will be a finite moment where recalculating voting delegation won&#39;t change the result anymore, but if it&#39;s a 100% it means that voting weights will simply circulate around any potential loops.</p>
-
+<p>Now deploy the Liquid democracy and go to its page. First have any of the shareholders <strong>vote</strong> on who they would trust to make decisions on behalf of this contract. You can vote on yourself if you want to be the final decision maker, or on the zero address, if you'd rather have no one representing you on that role.</p>
+<p>After enough people have cast their votes, you can execute the function <strong>Calculate Votes</strong> so it will calculate everyone's voting weight. This function needs to be run multiple times, so the first run it will just set everyone's weight as their balance in the selected token, in the next round that voting weight will go to the person you voted appointed, in the next it will go to the person voted by the person you chose and so on. To prevent infinite loops of vote delegations, each time a vote is forwarded it loses a bit of power, set by at contract launch at <strong>percentLossInEachRound</strong>. So if the loss is set at 75%, it means that the person you vote gets 100% of your weight, but if they delegate the vote to someone else only 75% of their weight is forwarded. That person can delegate to someone else but they'll get only 56% of your voting weight and so on. If the ratio is anything lower than 100% there will be a finite moment where recalculating voting delegation won't change the result anymore, but if it's a 100% it means that voting weights will simply circulate around any potential loops.</p>
 <p>If there has been more than one hour and a half since this round of calling <strong>Calculate votes</strong> has started, all weights will reset and will be recalculated based on the original token balance, so if you have recently received more tokens you should execute this function again.</p>
-
 <h4>House of representatives</h4>
-
 <p>What is all that vote delegation good for? For one, you can use it instead of the token weight on an <strong>Association</strong>. First of all, get the code for a <a href="#the-shareholder-association">shareholder association</a> but replace the first lines where it describes the token:</p>
-
 <pre><code>contract token {
     mapping (address =&gt; uint256) public balanceOf;
-}</code></pre>
-
+}
+</code></pre>
 <p>Into this:</p>
-
 <pre><code>contract token {
     mapping (address =&gt; uint256) public voteWeight;
     uint public numberOfDelegationRounds;
@@ -900,50 +838,38 @@ contract LiquidDemocracy {
         else
             return this.voteWeight(member);
     }
-}</code></pre>
-
-<p>When you are writing your contract you can describe multiple other contracts used by your main contract. Some might be functions and variables that are already defined on the target contract, like <strong>voteWeight</strong> and <strong>numberOfDelegationRounds</strong>. But notice that <strong>balanceOf</strong> is a new function, that doesn&#39;t exist neither on the Liquid Democracy or the Association contract, we are defining it now, as a function that will return the <strong>voteWeight</strong> if at least three rounds of delegations have been calculated.</p>
-
+}
+</code></pre>
+<p>When you are writing your contract you can describe multiple other contracts used by your main contract. Some might be functions and variables that are already defined on the target contract, like <strong>voteWeight</strong> and <strong>numberOfDelegationRounds</strong>. But notice that <strong>balanceOf</strong> is a new function, that doesn't exist neither on the Liquid Democracy or the Association contract, we are defining it now, as a function that will return the <strong>voteWeight</strong> if at least three rounds of delegations have been calculated.</p>
 <p>Use the <strong>Liquid democracy</strong> as the <strong>Token Address</strong> instead of the original token and proceed to deploy the shareholder association as usual. Just like before, users can create new proposals on what to do or cast votes on these issues, but now, <strong>instead of using the token balance as the voting power we are using a delegative process</strong>. So if you are a token holder, instead of having to keep yourself constantly informed by all the issues, you can just select someone you trust and appoint them, and then they can choose someone they trust: the result is that your representative, instead of being limited to a given arbitrary <strong>geographical proximity</strong>, will be someone in your <strong>social proximity</strong>.</p>
-
 <p>Also it means that you can switch your vote at any moment: if your representative has voted against your interests in some issue you can, before the proposal votes are tallied up, switch your appointee, or just choose to represent yourself on the issue and cast the vote yourself.</p>
-
 <h4>The Executive Branch</h4>
-
-<p>Delegative democracies are a great way to choose representatives, but voting on individual proposals might be too slow for some important or simpler decisions: that&#39;s why most democratic governments have an executive branch, where an appointed person has the right to represent the state.</p>
-
+<p>Delegative democracies are a great way to choose representatives, but voting on individual proposals might be too slow for some important or simpler decisions: that's why most democratic governments have an executive branch, where an appointed person has the right to represent the state.</p>
 <p>After four rounds of delegations, the address with more weight will be set as the <strong>Appointee</strong>. If there are many delegated votes, then a few more rounds of <strong>Calculate Votes</strong> might be necessary to settle in the final appointed address.</p>
-
 <p>The Appointee is the only address that can call the <strong>Execute</strong> function, which will be able to execute (almost) any function representing the democracy as a whole. If there is any ether or token stored in the Liquid democracy contract, the Appointee will be allowed to move it anywhere.</p>
-
 <p>If you have followed our example and created a <strong>Shareholder association</strong> using this liquid democracy as a token, then you should be able to use the executive branch in an interesting manner: go to the main Association address and execute a <strong>Transfer Ownership</strong> function to the liquid democracy.</p>
-
-<p>Once that transfer is complete, switch the function to <strong>Change Voting Rules</strong>. This allows you to change some essential voting rules, like the minimum quorum needed for a vote to pass or the time a new proposal needs to stay on the floor. Try changing these settings and click <strong>execute</strong>: when the confirmation window pops up it will tell you that the transaction <em>Can&#39;t be executed</em>. This happens, of course, because only the address set as <strong>Owner</strong> can change these settings and the contract will reject this transaction attempt. So <strong>instead of typing your password</strong> copy the code on the <strong>data</strong> field and save it to a text file. Click cancel, scroll to the top and click <strong>copy address</strong> and also save that to a text file.</p>
-
+<p>Once that transfer is complete, switch the function to <strong>Change Voting Rules</strong>. This allows you to change some essential voting rules, like the minimum quorum needed for a vote to pass or the time a new proposal needs to stay on the floor. Try changing these settings and click <strong>execute</strong>: when the confirmation window pops up it will tell you that the transaction <em>Can't be executed</em>. This happens, of course, because only the address set as <strong>Owner</strong> can change these settings and the contract will reject this transaction attempt. So <strong>instead of typing your password</strong> copy the code on the <strong>data</strong> field and save it to a text file. Click cancel, scroll to the top and click <strong>copy address</strong> and also save that to a text file.</p>
 <p>Now go to the Liquid democracy page and choose <strong>execute</strong>. On <strong>target</strong> put the address of the association contract, leave <strong>ether amount</strong> at 0 and paste the code you copied previously into the <strong>bytecode data</strong> field. Make sure you are executing it from the account set as the <strong>appointee</strong> and click <strong>execute</strong>.</p>
-
 <p>Once the transaction has been picked up, the Liquid democracy will pass the order to the association and the new voting rules might apply. The appointee has the absolute power to do anything that the <strong>Liquid democracy</strong> contract can execute. You can use the same technique to create a <a href="./token">Mintable Token</a> owned by the delegative democracy, and then allow the appointee to mint tokens or freeze accounts.</p>
-
-<p>To prevent abuses of powers, you can set one <strong>Forbidden function</strong> that the Appointee cannot ever do. If you followed our example the forbidden function is the <strong>transferOwnership(address)</strong>, to prevent the appointee from transferring the ownership of the association to themselves (in politics, when a president uses his executive power to transfer to themselves something that used to belongs to the presidency, it&#39;s a coup or embezzling).</p>
-
+<p>To prevent abuses of powers, you can set one <strong>Forbidden function</strong> that the Appointee cannot ever do. If you followed our example the forbidden function is the <strong>transferOwnership(address)</strong>, to prevent the appointee from transferring the ownership of the association to themselves (in politics, when a president uses his executive power to transfer to themselves something that used to belongs to the presidency, it's a coup or embezzling).</p>
 <h3>Time-Locked Multisig</h3>
-
 <p>Sometimes time can also be used as a great security mechanism. The following code is based on the congress DAO but with a different twist. Instead of every action requiring the approval of an X number of members, instead any transactions can be initiated by a single member, but they all will require a minimum amount of delay before they can be executed, which varies according to the support that transaction has. The more approvals a proposal has, the sooner it can be executed. A member can vote against a transaction, which will mean that it will cancel one of the other approved signatures.</p>
-
-<p>This means that if you don&#39;t have urgency, one or two signatures might be all you need to execute any transaction. But if a single key is compromised, other keys can delay that transaction for months or year or even stop it from being executed.</p>
-
+<p>This means that if you don't have urgency, one or two signatures might be all you need to execute any transaction. But if a single key is compromised, other keys can delay that transaction for months or year or even stop it from being executed.</p>
 <h4>How it works</h4>
-
-<p>A transaction that has been approved by all keys can be executed after ten minutes (this amount is configurable), and the amount of time it requires doubles every time for every 5% of members who don&#39;t vote (and quadruples if they activelly vote against). If it&#39;s a simple ether transaction, the transaction is executed as soon as a vote of support puts it under the required time, but a more complex transaction will require it to be manually executed with the correct bytecode. These are the default values, but this can be set differently when creating the contract:</p>
-
+<p>A transaction that has been approved by all keys can be executed after ten minutes (this amount is configurable), and the amount of time it requires doubles every time for every 5% of members who don't vote (and quadruples if they activelly vote against). If it's a simple ether transaction, the transaction is executed as soon as a vote of support puts it under the required time, but a more complex transaction will require it to be manually executed with the correct bytecode. These are the default values, but this can be set differently when creating the contract:</p>
 <p><strong>Number of members approving transaction: Approximate time delay</strong></p>
-
-<ul><li>100% approval:                                10 minutes (minimum default)</li><li>90% approval:                                 40 minutes</li><li>80%:                                          2h40</li><li>50%:                                          about a week</li><li>40%:                                          1 month</li><li>30%:                                          4 months</li><li>20%:                                          Over a year</li><li>10% or less:                                  5 years or never</li></ul>
-
+<ul>
+<li>100% approval:                                10 minutes (minimum default)</li>
+<li>90% approval:                                 40 minutes</li>
+<li>80%:                                          2h40</li>
+<li>50%:                                          about a week</li>
+<li>40%:                                          1 month</li>
+<li>30%:                                          4 months</li>
+<li>20%:                                          Over a year</li>
+<li>10% or less:                                  5 years or never</li>
+</ul>
 <p>Once the minimum amount of time has passed, anyone can execute the transaction <a href="dao#add-a-simple-proposal-send-ether">(See &quot;Congress&quot; for a more complete walktrough)</a>. This is intentional, as it allows someone to <a href="crowdsale#scheduling-a-call">schedule a transaction</a> or hire someone else to execute it.</p>
-
 <h4>The code</h4>
-
 <pre><code>pragma solidity ^0.4.16;
 
 contract owned {
@@ -1034,9 +960,9 @@ contract TimeLockMultisig is owned, tokenRecipient {
         if (founder != 0) owner = founder;
         if (minimumAmountOfMinutes !=0) minimumTime = minimumAmountOfMinutes;
         // It’s necessary to add an empty first member
-        addMember(0, &#39;&#39;);
-        // and let&#39;s add the founder, to save a step later
-        addMember(owner, &#39;founder&#39;);
+        addMember(0, '');
+        // and let's add the founder, to save a step later
+        addMember(owner, 'founder');
         changeMembers(initialMembers, true);
     }
 
@@ -1083,7 +1009,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
     function changeMembers(address[] newMembers, bool canVote) {
         for (uint i = 0; i &lt; newMembers.length; i++) {
             if (canVote)
-                addMember(newMembers[i], &#39;&#39;);
+                addMember(newMembers[i], '');
             else
                 removeMember(newMembers[i]);
         }
@@ -1118,7 +1044,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
         p.creationDate = now;
         ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
         numProposals = proposalID+1;
-        vote(proposalID, true, &#39;&#39;);
+        vote(proposalID, true, '');
 
         return proposalID;
     }
@@ -1188,7 +1114,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
         p.voted[msg.sender] = true;                     // Set this voter as having voted
         if (supportsProposal) {                         // If they support the proposal
             p.currentResult++;                          // Increase score
-        } else {                                        // If they don&#39;t
+        } else {                                        // If they don't
             p.currentResult--;                          // Decrease the score
         }
 
@@ -1198,9 +1124,9 @@ contract TimeLockMultisig is owned, tokenRecipient {
         // If you can execute it now, do it
         if ( now &gt; proposalDeadline(proposalNumber)
             &amp;&amp; p.currentResult &gt; 0
-            &amp;&amp; p.proposalHash == sha3(p.recipient, p.amount, &#39;&#39;)
+            &amp;&amp; p.proposalHash == sha3(p.recipient, p.amount, '')
             &amp;&amp; supportsProposal) {
-            executeProposal(proposalNumber, &#39;&#39;);
+            executeProposal(proposalNumber, '');
         }
     }
 
@@ -1237,38 +1163,42 @@ contract TimeLockMultisig is owned, tokenRecipient {
         // Fire Events
         ProposalExecuted(proposalNumber, p.currentResult, proposalDeadline(proposalNumber));
     }
-}</code></pre>
-
+}
+</code></pre>
 <h4>Deployment and usage</h4>
-
 <p>Deploy that code as you have done before on these tutorials. On the deployment parameters, leaving the minimum time blank will default to 30 minutes, if you want faster lock times, then put 1 minute. After uploading, execute the functions &quot;Add Members&quot; to add new members of your group, they can be either other people you know or accounts on different computers or stored offline.</p>
-
 <p>The account set as &quot;owner&quot; is very powerful as it can add or remove members at will. Therefore, after you added the main members, we recommend that you set the &quot;owner&quot; to another account, by executing the function <strong>Transfer Membership</strong>. Set that to the multisig itself if you want to have all additions or removals of members to be voted, just like any other transaction. Another alternative is to set that to another trusted multisig wallet, or maybe to <em>0x000</em> if you want the number of members to be fixed forever. Remember, the funds on this contract are only as safe as the the &quot;owner&quot; account.</p>
-
-<p>As with any of the above DAO&#39;s, this contract can hold ether, any ethereum based tokens and execute any contract. To do that, check how to <a href="dao#add-a-complex-proposal-own-another-token">execute complex proposals</a> on the congress DAO.</p>
-
+<p>As with any of the above DAO's, this contract can hold ether, any ethereum based tokens and execute any contract. To do that, check how to <a href="dao#add-a-complex-proposal-own-another-token">execute complex proposals</a> on the congress DAO.</p>
 <h4>Caveats and improvements</h4>
-
-<p>For simplicity&#39;s sake, a vote against a proposal simply counts as one less vote of support. If you want, you can play around with the idea that negative votes have more weight, but this means that a minority of members could have an effective veto power on any proposed transaction!</p>
-
+<p>For simplicity's sake, a vote against a proposal simply counts as one less vote of support. If you want, you can play around with the idea that negative votes have more weight, but this means that a minority of members could have an effective veto power on any proposed transaction!</p>
 <p>How else could you improve this contract?</p>
-
-<h3>Let&#39;s go exploring!</h3>
-
-<p>You have reached the end of this tutorial, but it&#39;s just the beginning of a great adventure. Look back and see how much you accomplished: you created a living, talking robot, your own cryptocurrency, raised funds through a trustless crowdfunding and used it to kickstart your own personal democratic organization.</p>
-
+<h3>Let's go exploring!</h3>
+<p>You have reached the end of this tutorial, but it's just the beginning of a great adventure. Look back and see how much you accomplished: you created a living, talking robot, your own cryptocurrency, raised funds through a trustless crowdfunding and used it to kickstart your own personal democratic organization.</p>
 <h4>What could happen next?</h4>
-
-<ul><li><p>The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further development of the first contract and grow the organization.</p></li><li><p>Your DAO could own its own name on the name registrar, and then change where it&#39;s redirecting in order to update itself if the token holders approved.</p></li><li><p>The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar.</p></li><li><p>The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future.
-It could also own shares of other DAOs, meaning it could vote on larger organization or be a part of a federation of DAOs.</p></li><li><p>The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.</p></li></ul>
-
+<ul>
+<li>
+<p>The tokens you still control could be sold on a decentralized exchange or traded for goods and services to fund further development of the first contract and grow the organization.</p>
+</li>
+<li>
+<p>Your DAO could own its own name on the name registrar, and then change where it's redirecting in order to update itself if the token holders approved.</p>
+</li>
+<li>
+<p>The organization could hold not only ethers, but any other kind of coin created on ethereum, including assets whose values are tied to the bitcoin or dollar.</p>
+</li>
+<li>
+<p>The DAO could be programmed to allow a proposal with multiple transactions, some scheduled to the future.
+It could also own shares of other DAOs, meaning it could vote on larger organization or be a part of a federation of DAOs.</p>
+</li>
+<li>
+<p>The Token Contract could be reprogrammed to hold ether or to hold other tokens and distribute it to the token holders. This would link the value of the token to the value of other assets, so paying dividends could be accomplished by simply moving funds to the token address.</p>
+</li>
+</ul>
 <p>This all means that this tiny society you created could grow, get funding from third parties, pay recurrent salaries, own any kind of crypto-assets and even use crowdsales to fund its activities. All with full transparency, complete accountability and complete immunity from any human interference. While the network lives the contracts will execute exactly the code they were created to execute, without any exception, forever.</p>
-
 <p>So what will your contract be? Will it be a country, a company, a non-profit group? What will your code do?</p>
-
-<p>That&#39;s up to you.</p><a href="https://github.com/ethereum/ethereum-org/edit/master/views/content/dao.md" class="button small">Improve this page</a></div></div></div></div><div class="main-tutorial ethereum-projects even"><div class="container"><div class="row"><div class="col-md-12"><div class="col-md-12 tutorial"><h3>What's next?</h3></div><div class="col-md-12 tutorial"><h2>Build a new kind of decentralized application</h2></div><div class="col-md-6 tutorial"><p>Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper-proof network?</p><p>Check out the <a href="http://dapps.ethercasts.com/">many great projects</a>* already being built on Ethereum. And since you'll be among the first developers in the world that are able to program decentralized applications, some of them might need your help. </p><p> <em>*The above list is maintained by an independent party and the Foundation does not endorse its content or any particular project on that list</em></p></div><div class="col-md-6 tutorial"><figure class="moon scrollme"><div data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="360" data-easing="linear" class="moon-stars animateme"></div><div data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="720" data-easing="linear" class="moon-moon animateme"></div><div data-when="span" data-from="0" data-to="1" data-translatey="-200" data-easing="linear" class="moon-rocket animateme"></div></figure></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
+<p>That's up to you.</p>
+<a class="button small" href="https://github.com/ethereum/ethereum-org/edit/master/views/content/dao.md">Improve this page</a></div></div></div></div><div class="main-tutorial ethereum-projects even"><div class="container"><div class="row"><div class="col-md-12"><div class="col-md-12 tutorial"><h3>What's next?</h3></div><div class="col-md-12 tutorial"><h2>Build a new kind of decentralized application</h2></div><div class="col-md-6 tutorial"><p>Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper-proof network?</p><p>Check out the <a href="http://dapps.ethercasts.com/">many great projects</a>* already being built on Ethereum. And since you'll be among the first developers in the world that are able to program decentralized applications, some of them might need your help. </p><p> <em>*The above list is maintained by an independent party and the Foundation does not endorse its content or any particular project on that list</em></p></div><div class="col-md-6 tutorial"><figure class="moon scrollme"><div class="moon-stars animateme" data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="360" data-easing="linear"></div><div class="moon-moon animateme" data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="720" data-easing="linear"></div><div class="moon-rocket animateme" data-when="span" data-from="0" data-to="1" data-translatey="-200" data-easing="linear"></div></figure></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/tutorials'
- };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div id="developer-resources" class="col-md-6 developers"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div id="about-us" class="col-md-6"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a href="./donate" class="donate-button">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div id="community" class="col-md-6 community"><h2>Community</h2><ul><li><a href="https://blog.ethereum.org" target="_blank" class="blog">Blog</a></li><li><a href="https://twitter.com/ethereumproject" target="_blank" class="twitter">Twitter</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank" class="youtube">YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank" class="reddit">Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank" class="gitter">Gitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank" class="stackexchange">Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank" class="facebook">Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank" class="meetups">Meetups</a></li><li><a href="mailto:info@ethereum.org" class="email">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div id="news" class="col-md-6 news"><h2>Tweets</h2><a href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px" class="twitter-timeline">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/frontier.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div class="col-md-6 developers" id="developer-resources"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div class="col-md-6" id="about-us"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div class="col-md-6 community" id="community"><h2>Community</h2><ul><li><a class="blog" href="https://blog.ethereum.org" target="_blank">Blog</a></li><li><a class="twitter" href="https://twitter.com/ethereumproject" target="_blank">Twitter</a></li><li><a class="youtube" href="https://www.youtube.com/user/ethereumproject" target="_blank">YouTube</a></li><li><a class="reddit" href="https://www.reddit.com/r/ethereum" target="_blank">Reddit</a></li><li><a class="gitter" href="https://gitter.im/orgs/ethereum/rooms" target="_blank">Gitter</a></li><li><a class="stackexchange" href="https://ethereum.stackexchange.com" target="_blank">Stack Exchange</a></li><li><a class="facebook" href="https://www.facebook.com/ethereumproject" target="_blank">Facebook                </a></li><li><a class="meetups" href="https://ethereum.meetup.com" target="_blank">Meetups</a></li><li><a class="email" href="mailto:info@ethereum.org">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div class="col-md-6 news" id="news"><h2>Tweets</h2><a class="twitter-timeline" href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
       {
