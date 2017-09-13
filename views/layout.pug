@@ -32,16 +32,16 @@ html
     meta(property="og:description", content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference.")
 
     link(href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic' rel='stylesheet' type='text/css')
-    link(rel='stylesheet', href='/css/frontier.min.css')
+    link(rel='stylesheet', href='/css/app.min.css')
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css')
   body
-    include ./includes/head.jade
+    include ./includes/head.pug
 
     block content
 
-    include ./includes/footer.jade
+    include ./includes/footer.pug
 
-    script(src="/js/frontier.min.js")
+    script(src="/js/app.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js")
 
     script
@@ -63,5 +63,3 @@ html
         |    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
         |    ga('create', 'UA-52040685-2', 'auto');
         |    ga('send', 'pageview');
-
-   

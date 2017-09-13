@@ -6,7 +6,7 @@ block vars
 
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
   div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
     a(href="/").index Ethereum 
     strong »  Terms of Use
@@ -16,5 +16,5 @@ block content
       div.row
         div.col-md-12
           h2 Terms of Use
-          include:md content/terms.md
+          include:markdown-it content/terms.md
           

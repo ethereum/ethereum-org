@@ -5,7 +5,7 @@ block vars
   - var url='brand'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
   +inner-header("Branding Guidelines")
 
   div.main-tutorial.inner-page.even
@@ -24,7 +24,7 @@ block content
     div.container
       div.row
         div.col-md-12
-          include:md content/branding.md
+          include:markdown-it content/branding.md
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/branding.md') Improve this page
 
 

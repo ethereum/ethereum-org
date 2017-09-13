@@ -6,7 +6,7 @@ block vars
   - var image='crowdsale'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
 
   div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
     a(href="/").index Ethereum 
@@ -30,7 +30,7 @@ block content
       div.row.scrollme
         +toc
         div.col-md-12
-          include:md content/crowdsale.md
+          include:markdown-it content/crowdsale.md
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/crowdsale.md') Improve this page
 
   div.main-tutorial.even

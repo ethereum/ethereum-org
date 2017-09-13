@@ -25,79 +25,115 @@ var styles = [
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		http: {
+			fetch_mist_releases: {
+				options: {
+					headers: {
+						'User-Agent': 'Ethereum.org-Gruntfile'
+					},
+					url: 'https://api.github.com/repos/ethereum/mist/releases'
+				},
+				dest: 'data/mist_releases.json'
+			}
+		},
 		clean: {
 			build: ['dist'],
-			cleanup_js: ['dist/js/*.*', '!dist/js/frontier.*'],
-			cleanup_css: ['dist/css/*.css', '!dist/css/frontier.*.css']
+			cleanup_js: ['dist/js/*.*', '!dist/js/app.*'],
+			cleanup_css: ['dist/css/*.css', '!dist/css/app.*.css']
 		},
-		jade: {
+		pug: {
 			build: {
 				options: {
-					data: {
-						debug: false,
-						pretty: false,
-						block: {
-							hash: '<%= pkg.hash %>'
+					data: function(dest, src) {
+						var mistReleases = grunt.file.readJSON("data/mist_releases.json")[0]['assets'];
+						var mistReleaseOSX,
+							mistReleaseWin64,
+							mistReleaseWin32;
+
+						for (var i = 0; i < mistReleases.length; i++){
+							var obj = mistReleases[i];
+							for (var key in obj) {
+								if (key === 'name') {
+									if (obj[key].indexOf('macosx') !== -1) {
+										mistReleaseOSX = obj['browser_download_url'];
+									} else if (obj[key].indexOf('win64') !== -1) {
+										mistReleaseWin64 = obj['browser_download_url'];
+									} else if (obj[key].indexOf('win32') !== -1) {
+										mistReleaseWin32 = obj['browser_download_url'];
+									}
+								}
+							}
 						}
+
+						return {
+							debug: false,
+							pretty: false,
+							block: {
+								hash: '<%= pkg.hash %>'
+							},
+							mistReleaseOSX: mistReleaseOSX,
+							mistReleaseWin64: mistReleaseWin64,
+							mistReleaseWin32: mistReleaseWin32
+						};
 					}
 				},
 				files: [
 					{
-						'dist/index.html': 'views/index.jade'
+						'dist/index.html': 'views/index.pug'
 					},
 					{
-						'dist/agreement.html': 'views/agreement.jade'
+						'dist/agreement.html': 'views/agreement.pug'
 					},
 					{
-						'dist/crowdsale.html': 'views/crowdsale.jade'
+						'dist/crowdsale.html': 'views/crowdsale.pug'
 					},
 					{
-						'dist/dao.html': 'views/dao.jade'
+						'dist/dao.html': 'views/dao.pug'
 					},
 					{
-						'dist/ether.html': 'views/ether.jade'
+						'dist/ether.html': 'views/ether.pug'
 					},
 					{
-						'dist/cli.html': 'views/cli.jade'
+						'dist/cli.html': 'views/cli.pug'
 					},
 					{
-						'dist/greeter.html': 'views/greeter.jade'
+						'dist/greeter.html': 'views/greeter.pug'
 					},
 					{
-						'dist/assets.html': 'views/assets.jade'
+						'dist/assets.html': 'views/assets.pug'
 					},
 					{
-						'dist/sale.html': 'views/sale.jade'
+						'dist/sale.html': 'views/sale.pug'
 					},
 					{
-						'dist/token.html': 'views/token.jade'
+						'dist/token.html': 'views/token.pug'
 					},
 					{
-						'dist/brand.html': 'views/brand.jade'
+						'dist/brand.html': 'views/brand.pug'
 					},
 					{
-						'dist/foundation.html': 'views/foundation.jade'
+						'dist/foundation.html': 'views/foundation.pug'
 					},
 					{
-						'dist/donate.html': 'views/donate.jade'
+						'dist/donate.html': 'views/donate.pug'
 					},
 					// {
-					// 	'dist/swarm.html': 'views/swarm.jade'
+					// 	'dist/swarm.html': 'views/swarm.pug'
 					// },
 					{
-						'dist/4b24096abefbcbb08cb2b482eef4e36.html': 'views/devcon2.jade'
+						'dist/4b24096abefbcbb08cb2b482eef4e36.html': 'views/devcon2.pug'
 					},
 					{
-						'dist/devgrants.html': 'views/devgrants.jade'
+						'dist/devgrants.html': 'views/devgrants.pug'
 					},
 					{
-						'dist/privacy-policy.html': 'views/privacy-policy.jade'
+						'dist/privacy-policy.html': 'views/privacy-policy.pug'
 					},
 					{
-						'dist/cookie-policy.html': 'views/cookie-policy.jade'
+						'dist/cookie-policy.html': 'views/cookie-policy.pug'
 					},
 					{
-						'dist/terms-of-use.html': 'views/terms-of-use.jade'
+						'dist/terms-of-use.html': 'views/terms-of-use.pug'
 					}
 				]
 			}
@@ -162,16 +198,16 @@ module.exports = function(grunt) {
 				src: app,
 				dest: 'dist/js/app.js'
 			},
-			frontier: {
+			js: {
 				options: {
 					sourceMap: true
 				},
 				src: ['<%= uglify.vendor.dest %>', '<%= uglify.app.dest %>'],
-				dest: 'dist/js/frontier.min.js'
+				dest: 'dist/js/app.min.js'
 			},
 			css: {
 				src: ['dist/css/*.min.css', 'dist/css/*.css'],
-				dest: 'dist/css/frontier.min.css'
+				dest: 'dist/css/app.min.css'
 			}
 		},
 		uglify: {
@@ -192,10 +228,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-jade');
+	grunt.loadNpmTasks('grunt-contrib-pug');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-http');
 
-	grunt.registerTask('default', ['clean', 'jade', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:frontier', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
+	grunt.registerTask('default', ['http', 'clean', 'pug', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:js', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
 	grunt.registerTask('build', 'default');
 };
