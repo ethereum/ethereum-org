@@ -1,6 +1,7 @@
 include figures.pug
 
-+gethRecipe(header)
+mixin gethRecipe(header)
+
   if header != ""
     div.col-md-12.tutorial
       h2 #{header}
@@ -39,7 +40,7 @@ include figures.pug
           | 1-2Gb free space for the blockchain
 
 
-+etherRecipe(header)
+mixin etherRecipe(header)
  
   if header != ""
     div.col-md-12.tutorial
@@ -76,7 +77,7 @@ include figures.pug
         li Learn how to send transactions using the command line
 
 
-+greeterRecipe(header)
+mixin greeterRecipe(header)
   
   if header != ""
     div.col-md-12.tutorial
@@ -109,7 +110,7 @@ include figures.pug
         li A long living inteligent bot that answer questions
 
 
-+tokenRecipe(header)
+mixin tokenRecipe(header)
 
 
   if header != ""
@@ -143,7 +144,7 @@ include figures.pug
         li A puzzle-based cryptocurrency
 
 
-+crowdsaleRecipe(header)
+mixin crowdsaleRecipe(header)
 
   if header != ""
     div.col-md-12.tutorial
@@ -177,7 +178,9 @@ include figures.pug
         li A crowdsale to sell virtual shares in a blockchain organization
         li An auction of a limited number of items
   
-+daoRecipe(header)
+mixin daoRecipe(header)
+
+
   if header != ""
     div.col-md-12.tutorial
       h2 #{header}
@@ -210,7 +213,9 @@ include figures.pug
         li A better delegative democracy
 
 
-+futureRecipe(header)
+mixin futureRecipe(header)
+  
+
   if header != ""
     div.col-md-12.tutorial
       h3 #{header}
@@ -235,11 +240,12 @@ include figures.pug
     +futureFigure
 
 
-+toc()
+mixin toc()
   ul#tableOfContents.toc.animateme(data-when="enter", data-from="0.4", data-to="0.2", data-translatex="-100", data-opacity="0", data-easing="linear")
 
     
-+inner-header(title)
+
+mixin inner-header(title)
   div.inner-header.default-header.scrollme(class!=attributes.class)
     div.breadcrumb.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
       a(href="/").index Ethereum  
