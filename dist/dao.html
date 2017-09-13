@@ -87,11 +87,10 @@ interface Token {
         uint memberSince;
     }
 
-    struct Vote {
-        bool inSupport;
-        address voter;
-        string justification;
-    }
+      modifier onlyOwner {
+          require (msg.sender == owner);
+          _;
+      }
 
     // Modifier that allows only shareholders to vote and create new proposals
     modifier onlyMembers {
@@ -143,12 +142,11 @@ interface Token {
     function removeMember(address targetMember) onlyOwner {
         require(memberId[targetMember] != 0);
 
-        for (uint i = memberId[targetMember]; i&lt;members.length-1; i++){
-            members[i] = members[i+1];
-        }
-        delete members[members.length-1];
-        members.length--;
-    }
+      struct Vote {
+          bool inSupport;
+          address voter;
+          string justification;
+      }
 
     /**
      * Change voting rules
@@ -169,8 +167,18 @@ interface Token {
         debatingPeriodInMinutes = minutesForDebate;
         majorityMargin = marginOfVotesForMajority;
 
-        ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
-    }
+      /* First time setup */
+      function Congress (
+          uint minimumQuorumForProposals,
+          uint minutesForDebate,
+          int marginOfVotesForMajority
+      )  payable {
+          changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
+          // It’s necessary to add an empty first member
+          addMember(0, &quot;&quot;);
+          // and let&#39;s add the founder, to save a step later       
+          addMember(owner, &#39;founder&#39;);        
+      }
 
     /**
      * Add Proposal
@@ -204,8 +212,10 @@ interface Token {
         ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
         numProposals = proposalID+1;
 
-        return proposalID;
-    }
+      /// @notice Remove membership from `targetMember`
+      /// @param targetMember ethereum address to be removed
+      function removeMember(address targetMember) onlyOwner {
+          require(memberId[targetMember] != 0);
 
     /**
      * Add proposal in Ether
