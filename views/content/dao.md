@@ -44,7 +44,7 @@ The way this particular democracy works is that it has an **Owner** which works 
 
         function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
             Token t = Token(_token);
-            require(!t.transferFrom(_from, this, _value));
+            require(t.transferFrom(_from, this, _value));
             receivedTokens(_from, _value, _token, _extraData);
         }
 
@@ -460,7 +460,7 @@ Now to the shareholder code:
 
         function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
             Token t = Token(_token);
-            require(!t.transferFrom(_from, this, _value));
+            require(t.transferFrom(_from, this, _value));
             receivedTokens(_from, _value, _token, _extraData);
         }
 
