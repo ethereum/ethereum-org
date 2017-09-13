@@ -87,10 +87,11 @@ interface Token {
         uint memberSince;
     }
 
-      modifier onlyOwner {
-          require (msg.sender == owner);
-          _;
-      }
+    struct Vote {
+        bool inSupport;
+        address voter;
+        string justification;
+    }
 
     // Modifier that allows only shareholders to vote and create new proposals
     modifier onlyMembers {
@@ -142,11 +143,12 @@ interface Token {
     function removeMember(address targetMember) onlyOwner {
         require(memberId[targetMember] != 0);
 
-      struct Vote {
-          bool inSupport;
-          address voter;
-          string justification;
-      }
+        for (uint i = memberId[targetMember]; i&lt;members.length-1; i++){
+            members[i] = members[i+1];
+        }
+        delete members[members.length-1];
+        members.length--;
+    }
 
     /**
      * Change voting rules
@@ -167,18 +169,8 @@ interface Token {
         debatingPeriodInMinutes = minutesForDebate;
         majorityMargin = marginOfVotesForMajority;
 
-      /* First time setup */
-      function Congress (
-          uint minimumQuorumForProposals,
-          uint minutesForDebate,
-          int marginOfVotesForMajority
-      )  payable {
-          changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
-          // It’s necessary to add an empty first member
-          addMember(0, &quot;&quot;);
-          // and let&#39;s add the founder, to save a step later       
-          addMember(owner, &#39;founder&#39;);        
-      }
+        ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
+    }
 
     /**
      * Add Proposal
@@ -212,10 +204,8 @@ interface Token {
         ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
         numProposals = proposalID+1;
 
-      /// @notice Remove membership from `targetMember`
-      /// @param targetMember ethereum address to be removed
-      function removeMember(address targetMember) onlyOwner {
-          require(memberId[targetMember] != 0);
+        return proposalID;
+    }
 
     /**
      * Add proposal in Ether
