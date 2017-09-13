@@ -162,8 +162,8 @@ Because many of these functions are having to reimplement the transferring of to
 
     function _transfer(address _from, address _to, uint _value) internal {
         require(_to != 0x0);                                // Prevent transfer to 0x0 address. Use burn() instead
-        require(balanceOf[_from] > _value);                 // Check if the sender has enough
-        require(balanceOf[_to] + _value > balanceOf[_to]);  // Check for overflows
+        require(balanceOf[_from] >= _value);                 // Check if the sender has enough
+        require(balanceOf[_to] + _value >= balanceOf[_to]);  // Check for overflows
         require(!frozenAccount[_from]);                     // Check if sender is frozen
         require(!frozenAccount[_to]);                       // Check if recipient is frozen
         balanceOf[_from] -= _value;                         // Subtract from the sender
@@ -452,7 +452,7 @@ If you add all the advanced options, this is how the final code should look like
          */
         function _transfer(address _from, address _to, uint _value) internal {
             require(_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
-            require(balanceOf[_from] > _value);                // Check if the sender has enough
+            require(balanceOf[_from] >= _value);                // Check if the sender has enough
             require(balanceOf[_to] + _value > balanceOf[_to]); // Check for overflows
             balanceOf[_from] -= _value;                         // Subtract from the sender
             balanceOf[_to] += _value;                           // Add the same to the recipient
@@ -481,7 +481,7 @@ If you add all the advanced options, this is how the final code should look like
          * @param _value the amount to send
          */
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            require(_value < allowance[_from][msg.sender]);     // Check allowance
+            require(_value <= allowance[_from][msg.sender]);     // Check allowance
             allowance[_from][msg.sender] -= _value;
             _transfer(_from, _to, _value);
             return true;
@@ -527,7 +527,7 @@ If you add all the advanced options, this is how the final code should look like
          * @param _value the amount of money to burn
          */
         function burn(uint256 _value) returns (bool success) {
-            require(balanceOf[msg.sender] > _value);   // Check if the sender has enough
+            require(balanceOf[msg.sender] >= _value);   // Check if the sender has enough
             balanceOf[msg.sender] -= _value;            // Subtract from the sender
             totalSupply -= _value;                      // Updates totalSupply
             Burn(msg.sender, _value);
