@@ -1,11 +1,11 @@
-include:markdown-itextends layout
+extends layout
 
 block vars
   - var title='Donate to support development'
   - var url='donate'
 
 block content
-  include mixins/recipes.pug
+  include mixins/recipes.jade
   +inner-header("Donate to support development")
 
   div.main-tutorial.inner-page
@@ -37,12 +37,12 @@ block content
             img(src='images/unicorn.png', width='150').float-right
 
           p
-            include:markdown-it content/donate-section.md
+            include:md content/donate-section.md
 
           p
             strong BEFORE YOU DONATE
             |, we want to make sure you know a few important things.
-            include:markdown-it content/donate-conditions.md
+            include:md content/donate-conditions.md
 
           h4 If you want to donate, the instructions will appear after you certify the legality of the funds.
 
@@ -91,8 +91,14 @@ block content
     div.container
       div.row
         div.col-md-12
-          include:markdown-it content/donate.md
+          include:md content/donate.md
           h3
+<<<<<<< HEAD:views/donate.pug
             a(name="watch") Here's how to watch (and play with) your unicorns
           include:markdown-it content/donate2.md
+          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/donate.md') Improve this pagenate.md') Improve this page
+=======
+            a(name="watch") Here’s how to watch and play with unicorns
+          include:md content/donate2.md
 a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/donate.md') Improve this pagenate.md') Improve this page
+>>>>>>> parent of 5a5de3e... Ryanio upgrade jade to pug (#670):views/donate.jade

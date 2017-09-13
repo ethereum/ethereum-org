@@ -1,0 +1,22 @@
+extends layout
+
+block vars
+  - var title='Legal agreement'
+  - var url='agreement'
+
+block content
+  include mixins/recipes.jade
+  +inner-header("Legal Agreement")
+
+  div.main-tutorial.inner-page.foundation-page
+    div.container
+      div.row
+        div.col-md-12
+          include:md content/agreement.md
+
+
+
+
+
+
+
