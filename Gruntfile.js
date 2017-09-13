@@ -38,8 +38,8 @@ module.exports = function(grunt) {
 		},
 		clean: {
 			build: ['dist'],
-			cleanup_js: ['dist/js/*.*', '!dist/js/frontier.*'],
-			cleanup_css: ['dist/css/*.css', '!dist/css/frontier.*.css']
+			cleanup_js: ['dist/js/*.*', '!dist/js/app.*'],
+			cleanup_css: ['dist/css/*.css', '!dist/css/app.*.css']
 		},
 		jade: {
 			build: {
@@ -198,16 +198,16 @@ module.exports = function(grunt) {
 				src: app,
 				dest: 'dist/js/app.js'
 			},
-			frontier: {
+			app: {
 				options: {
 					sourceMap: true
 				},
 				src: ['<%= uglify.vendor.dest %>', '<%= uglify.app.dest %>'],
-				dest: 'dist/js/frontier.min.js'
+				dest: 'dist/js/app.min.js'
 			},
 			css: {
 				src: ['dist/css/*.min.css', 'dist/css/*.css'],
-				dest: 'dist/css/frontier.min.css'
+				dest: 'dist/css/app.min.css'
 			}
 		},
 		uglify: {
@@ -233,6 +233,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-http');
 
-	grunt.registerTask('default', ['http', 'clean', 'jade', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:frontier', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
+	grunt.registerTask('default', ['http', 'clean', 'jade', 'copy', 'cssmin', 'concat:vendor', 'concat:app', 'uglify', 'concat:app', 'concat:css', 'clean:cleanup_js', 'clean:cleanup_css']);
 	grunt.registerTask('build', 'default');
 };
