@@ -57,7 +57,6 @@ The way this particular democracy works is that it has an **Owner** which works 
         function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
     }
 
-    contract Congress is owned, tokenRecipient {
 
         // Contract Variables and events
         uint public minimumQuorum;
