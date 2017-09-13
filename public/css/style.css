@@ -1637,19 +1637,10 @@ footer {
 	}
 }
 
-@media only screen and (max-width: 600px ) {
-	.row {
-		text-align: center;
-	}
-
-	.row .recipe , code {
-		text-align: left;
-	}
-
+@media only screen and (max-width: 600px) {
 	figure {
 		height: 300px;
 		margin: 0 auto;
-
 	}
 
 	.main-tutorial a.button ,
