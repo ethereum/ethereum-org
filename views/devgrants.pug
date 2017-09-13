@@ -5,7 +5,7 @@ block vars
   - var url='devgrants'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
   +inner-header("DevGrants")
 
   div.main-tutorial.inner-page.inner-tutorial
@@ -13,7 +13,7 @@ block content
       div.row                
         +toc
         div.col-md-12
-          include:md content/devgrants.md        
+          include:markdown-it content/devgrants.md        
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/devgrants.md') Improve this page
 
 

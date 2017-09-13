@@ -5,7 +5,7 @@ block vars
   - var url='foundation'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
   +inner-header("About the Ethereum Foundation")
 
 
@@ -15,14 +15,14 @@ block content
       div.row
         +toc
         div.col-md-12
-          include:md content/foundation.md        
+          include:markdown-it content/foundation.md        
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/foundation.md') Improve this page
 
   div.main-tutorial.inner-page.foundation-page.even
     div.container.scrollme  
       div.row.animateme(data-when="enter", data-from="0.9", data-to="0.1", data-opacity="0", data-scale="0.8")
         div.col-md-12
-          include:md content/timeline.md        
+          include:markdown-it content/timeline.md        
 
         
 

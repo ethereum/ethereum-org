@@ -1,216 +1,156 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Install the Command Line Tools</title><meta name="description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><meta name="twitter:card" value="summary"><meta property="og:title" content="Install the Command Line Tools"><meta property="og:type" content="article"><meta property="og:url" content="https://www.ethereum.org/cli"><meta property="og:image" content="https://ethereum.org/images/social-cli.jpg"><meta property="og:image:width" content="500"><meta property="og:image:height" content="500"><meta property="og:description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/css/app.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css"></head><body><div data-when="enter" data-from="1" data-to="0.8" data-opacity="0" data-translatey="-20" class="breadcrumb animateme"><a href="/" class="index">Ethereum </a><strong>» Command line tools </strong><a href="/greeter" class="next">Next</a></div><div id="tutorial-start" class="main-tutorial cli-tutorial inner-header inner-page even"><div class="container"><div class="row"><div class="col-md-6 tutorial scrollme"><figure class="geth scrollme"><div data-when="exit" data-to="0.5" data-from="0.2" data-opacity="0" data-translatex="100" class="geth-background animateme"></div><div data-when="exit" data-to="0.1" data-from="0.0" data-opacity="0" class="geth-logo animateme"></div></figure></div><div class="col-md-6 tutorial scrollme"><div class="header-title"><h2 data-when="exit" data-from="0" data-to="1" data-translatey="400" data-easing="linear" class="animateme">Geth & Eth</h2><h3 data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear" class="animateme">Command line tools for the Ethereum Network</h3></div></div></div></div></div><div class="main-tutorial inner-tutorial"><div class="container"><div class="row"><ul id="tableOfContents" data-when="enter" data-from="0.4" data-to="0.2" data-translatex="-100" data-opacity="0" data-easing="linear" class="toc animateme"></ul><div class="col-md-12"><h1>Welcome, Blockchain developers!</h1>
-
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Install the Command Line Tools</title><meta name="description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><meta name="twitter:card" value="summary"><meta property="og:title" content="Install the Command Line Tools"><meta property="og:type" content="article"><meta property="og:url" content="https://www.ethereum.org/cli"><meta property="og:image" content="https://ethereum.org/images/social-cli.jpg"><meta property="og:image:width" content="500"><meta property="og:image:height" content="500"><meta property="og:description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/css/app.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css"></head><body><div class="breadcrumb animateme" data-when="enter" data-from="1" data-to="0.8" data-opacity="0" data-translatey="-20"><a class="index" href="/">Ethereum </a><strong>» Command line tools </strong><a class="next" href="/greeter">Next</a></div><div class="main-tutorial cli-tutorial inner-header inner-page even" id="tutorial-start"><div class="container"><div class="row"><div class="col-md-6 tutorial scrollme"><figure class="geth scrollme"><div class="geth-background animateme" data-when="exit" data-to="0.5" data-from="0.2" data-opacity="0" data-translatex="100"></div><div class="geth-logo animateme" data-when="exit" data-to="0.1" data-from="0.0" data-opacity="0"></div></figure></div><div class="col-md-6 tutorial scrollme"><div class="header-title"><h2 class="animateme" data-when="exit" data-from="0" data-to="1" data-translatey="400" data-easing="linear">Geth & Eth</h2><h3 class="animateme" data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear">Command line tools for the Ethereum Network</h3></div></div></div></div></div><div class="main-tutorial inner-tutorial"><div class="container"><div class="row"><ul class="toc animateme" id="tableOfContents" data-when="enter" data-from="0.4" data-to="0.2" data-translatex="-100" data-opacity="0" data-easing="linear"></ul><div class="col-md-12"><h1>Welcome, Blockchain developers!</h1>
 <p>These are tools for blockchain developers. The command line tools will allow you to connect your server to or run your application on the Ethereum blockchain – or your own private blockchain.</p>
-
-<ul><li><strong>Learn More</strong><ul><li><a href="http://ethdocs.org/en/latest/introduction/what-is-ethereum.html#what-is-ethereum">What is Ethereum?</a></li><li><a href="http://ethdocs.org/en/latest/ether.html">What is ether?</a></li></ul></li></ul>
-
+<ul>
+<li><strong>Learn More</strong>
+<ul>
+<li><a href="http://ethdocs.org/en/latest/introduction/what-is-ethereum.html#what-is-ethereum">What is Ethereum?</a></li>
+<li><a href="http://ethdocs.org/en/latest/ether.html">What is ether?</a></li>
+</ul>
+</li>
+</ul>
 <h2>Clients</h2>
-
 <p>For <a href="https://blog.ethereum.org/2015/03/05/ethereum-development-process/">security purposes</a>, three independent implementations were created for Ethereum. The clients have almost identical functionality, so the one you pick is left to personal choice on platform, language and what your planned use is for the network.</p>
-
 <p>If you are building a business that needs to have maximum uptime guarantees to the Ethereum network, we recommend that you run at least one instance of both clients to ensure reliability.</p>
-
 <h3>Geth</h3>
-
-<p><img alt="Logo for Go" src="/images/icons/gopher.png"/></p>
-
+<p><img src="/images/icons/gopher.png" alt="Logo for Go"></p>
 <p>The <strong>Go</strong> implementation is called <strong>Geth</strong>. Geth has been audited for security and will be the future basis for the enduser-facing <strong>Mist Browser</strong>, so if you have experience with web development and are interested in building frontends for dapps, you should experiment with Geth.</p>
-
 <h4>Install on Mac</h4>
-
-<p>Install <a href="http://brew.sh/">Homebrew</a> and make sure it&#39;s up to date:</p>
-
+<p>Install <a href="http://brew.sh/">Homebrew</a> and make sure it's up to date:</p>
 <pre><code>brew update
-brew upgrade</code></pre>
-
+brew upgrade
+</code></pre>
 <p>Then use these commands to install ethereum:</p>
-
 <pre><code>brew tap ethereum/ethereum
-brew install ethereum</code></pre>
-
+brew install ethereum
+</code></pre>
 <p>For more, see the <a href="https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac">full documentation on Mac OSX Geth</a></p>
-
 <h4>Windows</h4>
-
 <p>Download the <a href="https://geth.ethereum.org/downloads/">latest stable binary</a>, extract it, download the zip file, extract geth.exe from zip, open a command terminal and type:</p>
-
 <pre><code>chdir &lt;path to extracted binary&gt;
-open geth.exe</code></pre>
-
+open geth.exe
+</code></pre>
 <p>For more, see the <a href="https://github.com/ethereum/go-ethereum/wiki/Installation-instructions-for-Windows">full documentation on Windows Geth</a></p>
-
 <h4>Install on Linux</h4>
-
 <p>On Ubuntu, execute these commands:</p>
-
 <pre><code>sudo apt-get install software-properties-common
 sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt-get update
-sudo apt-get install ethereum</code></pre>
-
+sudo apt-get install ethereum
+</code></pre>
 <p>For other environments and more instruction, see the <a href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum">full documentation on Geth</a></p>
-
 <h3>Eth</h3>
-
-<p><img alt="Logo for C++" src="/images/icons/cpp.png"/></p>
-
+<p><img src="/images/icons/cpp.png" alt="Logo for C++"></p>
 <p>The <strong>C++</strong> implementation is simply called <strong>Eth</strong>. If you want added security by running two different implementations in parallel or are serious about GPU mining, then the C++ &quot;Eth&quot; client is for you.</p>
-
 <h4>Install: on Mac</h4>
-
-<p>Install <a href="http://brew.sh/">Homebrew</a> and then make sure it&#39;s up to date:</p>
-
+<p>Install <a href="http://brew.sh/">Homebrew</a> and then make sure it's up to date:</p>
 <pre><code>brew update
-brew upgrade</code></pre>
-
+brew upgrade
+</code></pre>
 <p>Then use these commands to install cpp-ethereum:</p>
-
 <pre><code>brew tap ethereum/ethereum
 brew install cpp-ethereum
-brew linkapps cpp-ethereum</code></pre>
-
+brew linkapps cpp-ethereum
+</code></pre>
 <p>The <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html">cpp-ethereum documentation</a>
 has detailed information on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html">OS X Homebrew package</a>
 and on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/osx.html">Building OS X from Source</a>.</p>
-
 <h4>Install on Linux:</h4>
-
 <p>If you use Apt-get, paste this into the terminal:</p>
-
-<pre><code>apt-get install cpp-ethereum</code></pre>
-
+<pre><code>apt-get install cpp-ethereum
+</code></pre>
 <p>The <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html">cpp-ethereum documentation</a>
 has detailed information on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/linux-ubuntu-ppa.html">PPAs for Ubuntu</a>
 and on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/linux.html">Building Linux from Source</a>.</p>
-
 <h4>Install on Windows</h4>
-
 <p>The <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html">cpp-ethereum documentation</a>
 has detailed information on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/windows.html">Building Windows from Source</a>.</p>
-
 <h3>Python</h3>
-
-<p><img alt="Logo for Python" src="/images/icons/python.png"/></p>
-
-<p>The <strong>Python</strong> implementation is called Pyethapp. If you are interested in understanding how Ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or are interested in Ethereum for research or an academic purpose, this is a great client: we invite you to <a href="https://github.com/ethereum/pyethapp">take a look and contribute to it</a>.  </p>
-
+<p><img src="/images/icons/python.png" alt="Logo for Python"></p>
+<p>The <strong>Python</strong> implementation is called Pyethapp. If you are interested in understanding how Ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or are interested in Ethereum for research or an academic purpose, this is a great client: we invite you to <a href="https://github.com/ethereum/pyethapp">take a look and contribute to it</a>.</p>
 <h4>Other Options</h4>
-
-<ul><li><a href="https://parity.io/parity.html">Parity</a> a Rust implementation by <a href="https://parity.io/">Parity Technologies</a>  </li><li>A <a href="https://github.com/bkirwi/ethereum-haskell">Haskell</a> implementation developed by <a href="http://www.blockapps.net">Blockapps</a></li><li>If you are interested in developing a light application that will run entirely in a web browser, then we recommend using <a href="https://github.com/ethereum/ethereumjs-lib">EthereumJS</a> as a basis. </li><li>If you want to create a small hardware project, look into the implementation for the <a href="https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions">Raspberry Pi</a></li><li>If you want to install geth for non-ubuntu linux then we recommend you look into <a href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum">building from source</a></li><li>If you want more flexibility on the Mac, try <a href="https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac">Homebrew</a></li></ul>
-
+<ul>
+<li><a href="https://parity.io/parity.html">Parity</a> a Rust implementation by <a href="https://parity.io/">Parity Technologies</a></li>
+<li>A <a href="https://github.com/bkirwi/ethereum-haskell">Haskell</a> implementation developed by <a href="http://www.blockapps.net">Blockapps</a></li>
+<li>If you are interested in developing a light application that will run entirely in a web browser, then we recommend using <a href="https://github.com/ethereum/ethereumjs-lib">EthereumJS</a> as a basis.</li>
+<li>If you want to create a small hardware project, look into the implementation for the <a href="https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions">Raspberry Pi</a></li>
+<li>If you want to install geth for non-ubuntu linux then we recommend you look into <a href="https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum">building from source</a></li>
+<li>If you want more flexibility on the Mac, try <a href="https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac">Homebrew</a></li>
+</ul>
 <h3>Run it</h3>
-
 <p>Geth and Eth are multipurpose command line tools that run a full Ethereum node. They offer multiple interfaces: the <a href="https://ethereum.gitbooks.io/frontier-guide/content/cli.html">command line</a> subcommands and options, a <a href="https://ethereum.gitbooks.io/frontier-guide/content/rpc.html">JSON-RPC server</a> and an <a href="https://ethereum.gitbooks.io/frontier-guide/content/jsre.html">interactive console</a>.</p>
-
 <p>For the purposes of this guide, we will focus on the console, a JavaScript environment that contains all of the main features that you probably want. Depending on your client, paste either of these commands:</p>
-
 <p><strong>Instructions for Geth:</strong></p>
-
-<pre><code>geth console</code></pre>
-
+<pre><code>geth console
+</code></pre>
 <p><strong>Instructions for Eth:</strong></p>
-
 <p>Eth still has a built-in console, but it will be removed soon. Start it using</p>
-
-<pre><code>eth</code></pre>
-
+<pre><code>eth
+</code></pre>
 <p>and then use either <code>geth attach</code> (if you also have geth) or the following npm console. Eth might take some time to start up.</p>
-
 <pre><code>npm install -g ethereum-console
-ethconsole</code></pre>
-
+ethconsole
+</code></pre>
 <p>The first time you start the command line you will be presented with a license. Before you can use it, you <strong>must</strong> accept this license, please read it carefully.</p>
-
-<p><strong>ATTENTION: If you just want to test the technology and play around, DON&#39;T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.</strong></p>
-
+<p><strong>ATTENTION: If you just want to test the technology and play around, DON'T USE THE MAIN NETWORK. Read further to find out how to deploy a private test network without spending your ether.</strong></p>
 <h4>Connecting to a private test net</h4>
-
-<p>Sometimes you might not want to connect to the live public network; instead you can choose to create your own private testnet. This is very useful if you don&#39;t need to test public contracts and want just to try- or develop on the technology. Since you are the only member of your private network you are responsible for finding all blocks, validating all transactions and executing all smart contracts. This makes development cheaper and easier as you have the ability to flexibly control the inclusion of transactions in your own personal blockchain.</p>
-
+<p>Sometimes you might not want to connect to the live public network; instead you can choose to create your own private testnet. This is very useful if you don't need to test public contracts and want just to try- or develop on the technology. Since you are the only member of your private network you are responsible for finding all blocks, validating all transactions and executing all smart contracts. This makes development cheaper and easier as you have the ability to flexibly control the inclusion of transactions in your own personal blockchain.</p>
 <p><strong>Geth:</strong></p>
-
 <pre><code>geth --datadir ~/.ethereum_private init ~/dev/genesis.json
 
-geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 1234 --datadir ~/.ethereum_private  console </code></pre>
-
+geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 1234 --datadir ~/.ethereum_private  console 
+</code></pre>
 <p><strong>Eth:</strong></p>
-
-<pre><code>eth --private 12345 --genesis-json ~/test/genesis.json --db-path ~/.ethereum_experiment</code></pre>
-
-<p>Replace 12345 with any random number you want to use as the network ID. It&#39;s a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the <em>&quot;real&quot;</em> one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours.</p>
-
+<pre><code>eth --private 12345 --genesis-json ~/test/genesis.json --db-path ~/.ethereum_experiment
+</code></pre>
+<p>Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the <em>&quot;real&quot;</em> one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours.</p>
 <p>If you want to create a private network you should, for security reasons, use a different genesis block (a database that contains all the transactions from the Ether sales). You can <a href="https://blog.ethereum.org/2015/07/27/final-steps/">read our announcement blog post on how to generate your file</a>. In the near future we will provide better ways to get other genesis blocks.</p>
-
-<p>These commands prevent anyone who doesn&#39;t know your chosen — secret — nonce, network id and genesis file, from connecting to you or providing you with unwanted data. If you <em>want</em> to connect to other peers and create a small private network of multiple computers they will all need to use the same networkid and an identical genesis block. You will also have to help each node find the others. To do that, first you need your own Node URL:</p>
-
-<pre><code>admin.nodeInfo.NodeUrl</code></pre>
-
+<p>These commands prevent anyone who doesn't know your chosen — secret — nonce, network id and genesis file, from connecting to you or providing you with unwanted data. If you <em>want</em> to connect to other peers and create a small private network of multiple computers they will all need to use the same networkid and an identical genesis block. You will also have to help each node find the others. To do that, first you need your own Node URL:</p>
+<pre><code>admin.nodeInfo.NodeUrl
+</code></pre>
 <p>Which will return your node url - make a note of it and then on the other clients, tell them to add your peer by executing this command:</p>
-
-<pre><code>admin.addPeer(&quot;YOURNODEURL&quot;)</code></pre>
-
-<p>You don&#39;t need to add every client to one another, as once connected, they will share information about any other peers they are connected to.</p>
-
+<pre><code>admin.addPeer(&quot;YOURNODEURL&quot;)
+</code></pre>
+<p>You don't need to add every client to one another, as once connected, they will share information about any other peers they are connected to.</p>
 <p>If you are using <strong>Eth</strong> then simply <a href="https://www.google.com/search?&amp;q=my+ip">figure out your IP</a> and execute this command:</p>
-
-<pre><code>web3.admin.net.connect(&quot;YOURIP:30303&quot;)</code></pre>
-
+<pre><code>web3.admin.net.connect(&quot;YOURIP:30303&quot;)
+</code></pre>
 <h4>Logs</h4>
-
-<p>If you are running Geth you&#39;ll notice that there are many log entries popping up on your console - sometimes while you type. This is because all warnings and progress information are logged live into your terminal by the client. If you want to save the logs to a file you can view later, use this command:</p>
-
-<pre><code>geth console 2&gt;&gt;geth.log</code></pre>
-
+<p>If you are running Geth you'll notice that there are many log entries popping up on your console - sometimes while you type. This is because all warnings and progress information are logged live into your terminal by the client. If you want to save the logs to a file you can view later, use this command:</p>
+<pre><code>geth console 2&gt;&gt;geth.log
+</code></pre>
 <p>Geth supports multiple terminal windows and you may start a new one with the logs in one and your console in another. This will give you the exact same functionality as the original console, but without the clutter. To do this open a new terminal window and input:</p>
-
-<pre><code>geth attach</code></pre>
-
+<pre><code>geth attach
+</code></pre>
 <p>The console has auto completion and history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.</p>
-
 <h4>Learn More on Running a node</h4>
-
-<ul><li><a href="http://ethdocs.org/en/latest/account-management.html#backup-and-restore-accounts">Backup and restore</a></li><li><a href="http://ethdocs.org/en/latest/network/connecting-to-the-network.html">Connecting to the network</a></li></ul>
-
+<ul>
+<li><a href="http://ethdocs.org/en/latest/account-management.html#backup-and-restore-accounts">Backup and restore</a></li>
+<li><a href="http://ethdocs.org/en/latest/network/connecting-to-the-network.html">Connecting to the network</a></li>
+</ul>
 <h3>Usage examples</h3>
-
 <h4>Creating accounts</h4>
-
 <p>In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are <a href="http://ethdocs.org/en/latest/account-management.html">various ways to go around this</a>, but the simplest one is through the console.</p>
-
 <p><strong>ATTENTION:</strong> If you were running Ethereum during the olympic phase or earlier in the development, <strong>do not reuse keys</strong> generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to <a href="https://en.wikipedia.org/wiki/Replay_attack">replay attacks</a>. Backup those keys, and create new ones using the Frontier release clients.</p>
-
-<pre><code>personal.newAccount(&quot;Write here a good, randomly generated, passphrase!&quot;)</code></pre>
-
+<pre><code>personal.newAccount(&quot;Write here a good, randomly generated, passphrase!&quot;)
+</code></pre>
 <p><strong>Note: Pick up a good passphrase and write it down. If you lose the passphrase you used to encrypt your account, you will not be able to access that account. Repeat: There are no safety nets. It is NOT possible to access your account without a valid passphrase and there is no &quot;forgot my password&quot; option here. See <a href="https://xkcd.com/936/">this XKCD</a> for details.</strong></p>
-
-<p><strong>DO NOT FORGET YOUR PASSPHRASE! </strong></p>
-
+<p>**DO NOT FORGET YOUR PASSPHRASE! **</p>
 <p>You may create as many or as few accounts as you like. By convention we call the first account you create your primary account. You can see all your accounts with the command:</p>
-
-<pre><code>web3.eth.accounts</code></pre>
-
+<pre><code>web3.eth.accounts
+</code></pre>
 <p>The ordering of the accounts reflects the time of their creation. Keyfiles are stored under DATADIR/keystore and can be transferred between clients by copying the files contained within. The files are encrypted with your passphrase and should be backed up if they contain any amount of ether. Note, however, if you transfer individual key files, the order of accounts presented may change and you may not end up the same account on the same position. So be aware that relying on account index is sound only as long as you do not copy external keyfiles to your keystore.</p>
-
 <h4>Get the balance of any account</h4>
-
 <p>All commands on the console are actually in JavaScript, so you can create variables and daisy chain functions. You can also write any “eth” function as “web3.eth” since it’s actually part of the main “web3” object.</p>
-
 <p>Try this for example:</p>
-
-<pre><code>var primaryAccount = web3.eth.accounts[0]</code></pre>
-
+<pre><code>var primaryAccount = web3.eth.accounts[0]
+</code></pre>
 <p>You now have a variable called primaryAccount that you can use in other calls. To get the balance of any account, use the function <em>eth.getBalance</em>, like this:</p>
-
-<pre><code>web3.eth.getBalance(primaryAccount)</code></pre>
-
-<p> Your balance should return 0, since you just created it. In order to do the next steps you need to have some ether in your account so you can pay the gas costs. In the next section you&#39;ll learn what gas is, and how you can interact with the network.</p>
-
+<pre><code>web3.eth.getBalance(primaryAccount)
+</code></pre>
+<p>Your balance should return 0, since you just created it. In order to do the next steps you need to have some ether in your account so you can pay the gas costs. In the next section you'll learn what gas is, and how you can interact with the network.</p>
 <h4>Check All Balances at once</h4>
-
 <p>The command line tools are JavaScript environments, which means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet.</p>
-
 <p>It will iterate over each of your accounts and print their balance in ether, you can use the following code:</p>
-
 <pre><code>function checkAllBalances() {
   web3.eth.getAccounts(function(err, accounts) {
    accounts.forEach(function(id) {
@@ -219,21 +159,24 @@ geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 1234 -
    });
   });
  });
-};</code></pre>
-
+};
+</code></pre>
 <p>Once you executed the line above, all you need to check all of your balances is to call the below function:</p>
-
-<pre><code>checkAllBalances()</code></pre>
-
+<pre><code>checkAllBalances()
+</code></pre>
 <p><strong>Tip: if you have many small handy scripts like this you use frequently, you can save them to a file and then load them all at once using <em>loadScript</em>:</strong></p>
-
-<pre><code>loadScript(&#39;/some/script/here.js&#39;)</code></pre>
-
+<pre><code>loadScript('/some/script/here.js')
+</code></pre>
 <h4>Learn more</h4>
-
-<ul><li><a href="http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html">Account Types, Gas, and Transactions</a></li><li><a href="http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html#writing-a-contract">Developing on Ethereum</a></li><li><a href="http://ethdocs.org/en/latest/contracts-and-transactions/developer-tools.html#developer-tools">Developer tools</a></li><li><a href="https://solidity.readthedocs.org/en/latest/">Solidity Documentation</a></li></ul><a href="https://github.com/ethereum/ethereum-org/edit/master/views/content/cli.md" class="button small">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><div class="col-md-12 tutorial"><h2>What's next?</h2></div><div class="col-md-6 tutorial"><h3>Create the Greeter, your first live contract</h3><p>This tutorial will teach you how to build a contract using the command line</p><p>The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start. </p></div><div class="col-md-6 tutorial"><figure class="greeter scrollme"><div data-when="exit" data-to="0.7" data-from="0.3" data-opacity="0" data-translatex="-200" class="greeter-human animateme"></div><div data-when="exit" data-to="0.8" data-from="0.5" data-opacity="0" data-translatex="200" class="greeter-robot animateme"></div><div data-when="exit" data-to="0.4" data-from="0.2" data-opacity="0" class="greeter-question animateme"></div><div data-when="exit" data-to="0.3" data-from="0.1" data-opacity="0" class="greeter-answer animateme"></div></figure></div><div class="clearfix"></div><div class="col-md-6 tutorial"><a href="/greeter" class="button">Summon the Greeter </a></div><div class="col-md-6 tutorial"><div class="recipe"><h4>You can build:</h4><ul><li>Your first smart contract</li><li>A professional jokster that is paid to tell jokes</li><li>A long living inteligent bot that answer questions</li></ul></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
+<ul>
+<li><a href="http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html">Account Types, Gas, and Transactions</a></li>
+<li><a href="http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html#writing-a-contract">Developing on Ethereum</a></li>
+<li><a href="http://ethdocs.org/en/latest/contracts-and-transactions/developer-tools.html#developer-tools">Developer tools</a></li>
+<li><a href="https://solidity.readthedocs.org/en/latest/">Solidity Documentation</a></li>
+</ul>
+<a class="button small" href="https://github.com/ethereum/ethereum-org/edit/master/views/content/cli.md">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><div class="col-md-12 tutorial"><h2>What's next?</h2></div><div class="col-md-6 tutorial"><h3>Create the Greeter, your first live contract</h3><p>This tutorial will teach you how to build a contract using the command line</p><p>The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start. </p></div><div class="col-md-6 tutorial"><figure class="greeter scrollme"><div class="greeter-human animateme" data-when="exit" data-to="0.7" data-from="0.3" data-opacity="0" data-translatex="-200"></div><div class="greeter-robot animateme" data-when="exit" data-to="0.8" data-from="0.5" data-opacity="0" data-translatex="200"></div><div class="greeter-question animateme" data-when="exit" data-to="0.4" data-from="0.2" data-opacity="0"></div><div class="greeter-answer animateme" data-when="exit" data-to="0.3" data-from="0.1" data-opacity="0"></div></figure></div><div class="clearfix"></div><div class="col-md-6 tutorial"><a class="button" href="/greeter">Summon the Greeter </a></div><div class="col-md-6 tutorial"><div class="recipe"><h4>You can build:</h4><ul><li>Your first smart contract</li><li>A professional jokster that is paid to tell jokes</li><li>A long living inteligent bot that answer questions</li></ul></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/go-ethereum'
- };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div id="developer-resources" class="col-md-6 developers"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div id="about-us" class="col-md-6"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a href="./donate" class="donate-button">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div id="community" class="col-md-6 community"><h2>Community</h2><ul><li><a href="https://blog.ethereum.org" target="_blank" class="blog">Blog</a></li><li><a href="https://twitter.com/ethereumproject" target="_blank" class="twitter">Twitter</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank" class="youtube">YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank" class="reddit">Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank" class="gitter">Gitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank" class="stackexchange">Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank" class="facebook">Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank" class="meetups">Meetups</a></li><li><a href="mailto:info@ethereum.org" class="email">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div id="news" class="col-md-6 news"><h2>Tweets</h2><a href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px" class="twitter-timeline">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div class="col-md-6 developers" id="developer-resources"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div class="col-md-6" id="about-us"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div class="col-md-6 community" id="community"><h2>Community</h2><ul><li><a class="blog" href="https://blog.ethereum.org" target="_blank">Blog</a></li><li><a class="twitter" href="https://twitter.com/ethereumproject" target="_blank">Twitter</a></li><li><a class="youtube" href="https://www.youtube.com/user/ethereumproject" target="_blank">YouTube</a></li><li><a class="reddit" href="https://www.reddit.com/r/ethereum" target="_blank">Reddit</a></li><li><a class="gitter" href="https://gitter.im/orgs/ethereum/rooms" target="_blank">Gitter</a></li><li><a class="stackexchange" href="https://ethereum.stackexchange.com" target="_blank">Stack Exchange</a></li><li><a class="facebook" href="https://www.facebook.com/ethereumproject" target="_blank">Facebook                </a></li><li><a class="meetups" href="https://ethereum.meetup.com" target="_blank">Meetups</a></li><li><a class="email" href="mailto:info@ethereum.org">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div class="col-md-6 news" id="news"><h2>Tweets</h2><a class="twitter-timeline" href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
       {

@@ -1,25 +1,16 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Create a Hello World Contract in ethereum</title><meta name="description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><meta name="twitter:card" value="summary"><meta property="og:title" content="Create a Hello World Contract in ethereum"><meta property="og:type" content="article"><meta property="og:url" content="https://www.ethereum.org/greeter"><meta property="og:image" content="https://ethereum.org/images/social-greeter.jpg"><meta property="og:image:width" content="500"><meta property="og:image:height" content="500"><meta property="og:description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/css/app.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css"></head><body><div data-when="enter" data-from="1" data-to="0.8" data-opacity="0" data-translatey="-20" class="breadcrumb animateme"><a href="/" class="index">Ethereum </a><strong>» Create a digital greeter</strong><a href="/cli" class="previous">Previous</a><a href="/token" class="next">Next</a></div><div id="tutorial-start" class="main-tutorial ether-tutorial inner-header inner-page even"><div class="container"><div class="row"><div class="col-md-6 tutorial scrollme"><figure class="greeter scrollme"><div data-when="exit" data-to="0.7" data-from="0.3" data-opacity="0" data-translatex="-200" class="greeter-human animateme"></div><div data-when="exit" data-to="0.8" data-from="0.5" data-opacity="0" data-translatex="200" class="greeter-robot animateme"></div><div data-when="exit" data-to="0.4" data-from="0.2" data-opacity="0" class="greeter-question animateme"></div><div data-when="exit" data-to="0.3" data-from="0.1" data-opacity="0" class="greeter-answer animateme"></div></figure></div><div class="col-md-6 tutorial scrollme"><div class="header-title"><h2 data-when="exit" data-from="0" data-to="1" data-translatey="400" data-easing="linear" class="animateme">The Greeter</h2><h3 data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear" class="animateme"> Your Digital Pal Who's Fun to Be With</h3></div></div></div></div></div><div class="main-tutorial inner-tutorial"><div class="container"><div class="row"><ul id="tableOfContents" data-when="enter" data-from="0.4" data-to="0.2" data-translatex="-100" data-opacity="0" data-easing="linear" class="toc animateme"></ul><div class="col-md-12"><h2>Building a smart contract using the command line</h2>
-
-<p>This page will help you build a <em>Hello, World</em> contract on the ethereum command line. If you don&#39;t know how to use the command line we recommend you skip this tutorial and instead build a <a href="./token">Custom token using the graphical user interface</a>.</p>
-
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="chrome=1"><title>Create a Hello World Contract in ethereum</title><meta name="description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><meta name="twitter:card" value="summary"><meta property="og:title" content="Create a Hello World Contract in ethereum"><meta property="og:type" content="article"><meta property="og:url" content="https://www.ethereum.org/greeter"><meta property="og:image" content="https://ethereum.org/images/social-greeter.jpg"><meta property="og:image:width" content="500"><meta property="og:image:height" content="500"><meta property="og:description" content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference."><link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,900,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" href="/css/app.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css"></head><body><div class="breadcrumb animateme" data-when="enter" data-from="1" data-to="0.8" data-opacity="0" data-translatey="-20"><a class="index" href="/">Ethereum </a><strong>» Create a digital greeter</strong><a class="previous" href="/cli">Previous</a><a class="next" href="/token">Next</a></div><div class="main-tutorial ether-tutorial inner-header inner-page even" id="tutorial-start"><div class="container"><div class="row"><div class="col-md-6 tutorial scrollme"><figure class="greeter scrollme"><div class="greeter-human animateme" data-when="exit" data-to="0.7" data-from="0.3" data-opacity="0" data-translatex="-200"></div><div class="greeter-robot animateme" data-when="exit" data-to="0.8" data-from="0.5" data-opacity="0" data-translatex="200"></div><div class="greeter-question animateme" data-when="exit" data-to="0.4" data-from="0.2" data-opacity="0"></div><div class="greeter-answer animateme" data-when="exit" data-to="0.3" data-from="0.1" data-opacity="0"></div></figure></div><div class="col-md-6 tutorial scrollme"><div class="header-title"><h2 class="animateme" data-when="exit" data-from="0" data-to="1" data-translatey="400" data-easing="linear">The Greeter</h2><h3 class="animateme" data-when="exit" data-from="0" data-to="0.5" data-translatey="200" data-opacity="0" data-easing="linear"> Your Digital Pal Who's Fun to Be With</h3></div></div></div></div></div><div class="main-tutorial inner-tutorial"><div class="container"><div class="row"><ul class="toc animateme" id="tableOfContents" data-when="enter" data-from="0.4" data-to="0.2" data-translatex="-100" data-opacity="0" data-easing="linear"></ul><div class="col-md-12"><h2>Building a smart contract using the command line</h2>
+<p>This page will help you build a <em>Hello, World</em> contract on the ethereum command line. If you don't know how to use the command line we recommend you skip this tutorial and instead build a <a href="./token">Custom token using the graphical user interface</a>.</p>
 <p>Smart contracts are account holding objects on the ethereum blockchain. They contain code functions and can interact with other contracts, make decisions, store data, and send ether to others. Contracts are defined by their creators, but their execution, and by extension the services they offer, is provided by the ethereum network itself. They will exist and be executable as long as the whole network exists, and will only disappear if they were programmed to self destruct.</p>
-
-<p>What can you do with contracts? Well, you can do almost anything really, but for our getting started guide let&#39;s do some simple things: To start you will create a classic &quot;Hello World&quot; contract, then you can build your own crypto token to send to whomever you like. Once you&#39;ve mastered that then you will raise funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.</p>
-
+<p>What can you do with contracts? Well, you can do almost anything really, but for our getting started guide let's do some simple things: To start you will create a classic &quot;Hello World&quot; contract, then you can build your own crypto token to send to whomever you like. Once you've mastered that then you will raise funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.</p>
 <p>Before you begin:
 <a href="https://ethereum.org/cli">Install the Ethereum CLI</a>
 <a href="https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions">Learn more about contracts</a>
 Please confirm that the GUI is closed before entering the <code>geth</code> console.
 Run <code>geth</code> to begin the sync process (this may take a while on the first run).</p>
-
-<p>So let&#39;s start now.</p>
-
+<p>So let's start now.</p>
 <h3>Your first citizen: the greeter</h3>
-
 <p>Now that you’ve mastered the basics of Ethereum, let’s move into your first serious contract. The Frontier is a big open territory and sometimes you might feel lonely, so our first order of business will be to create a little automatic companion to greet you whenever you feel lonely. We’ll call him the “Greeter”.</p>
-
 <p>The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:</p>
-
 <pre><code>contract mortal {
     /* Define variable owner of the type address */
     address owner;
@@ -34,7 +25,7 @@ Run <code>geth</code> to begin the sync process (this may take a while on the fi
 contract greeter is mortal {
     /* Define variable greeting of the type string */
     string greeting;
-
+    
     /* This runs when the contract is executed */
     function greeter(string _greeting) public {
         greeting = _greeting;
@@ -44,36 +35,26 @@ contract greeter is mortal {
     function greet() constant returns (string) {
         return greeting;
     }
-}</code></pre>
-
-<p>You&#39;ll notice that there are two different contracts in this code: <em>&quot;mortal&quot;</em> and <em>&quot;greeter&quot;</em>.  This is because Solidity (the high level contract language we are using) has <em>inheritance</em>, meaning that one contract can inherit characteristics of another. This is very useful to simplify coding as common traits of contracts don&#39;t need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that <em>greeter is mortal</em> you inherited all characteristics from the &quot;mortal&quot; contract and kept the greeter code simple and easy to read.</p>
-
+}
+</code></pre>
+<p>You'll notice that there are two different contracts in this code: <em>&quot;mortal&quot;</em> and <em>&quot;greeter&quot;</em>.  This is because Solidity (the high level contract language we are using) has <em>inheritance</em>, meaning that one contract can inherit characteristics of another. This is very useful to simplify coding as common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that <em>greeter is mortal</em> you inherited all characteristics from the &quot;mortal&quot; contract and kept the greeter code simple and easy to read.</p>
 <p>The inherited characteristic <em>&quot;mortal&quot;</em> simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.</p>
-
 <h3>The Solc Compiler</h3>
-
-<p>Before you are able to Deploy it though, you&#39;ll need two things: the compiled code, and the Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract.</p>
-
+<p>Before you are able to Deploy it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract.</p>
 <p>The first you can get by using a compiler. You should have a solidity compiler built in on your geth console. To test it, use this command:</p>
-
-<pre><code>eth.getCompilers()</code></pre>
-
+<pre><code>eth.getCompilers()
+</code></pre>
 <p>If you have it installed, it should output something like this:</p>
-
-<pre><code>[&#39;Solidity&#39; ]</code></pre>
-
+<pre><code>['Solidity' ]
+</code></pre>
 <p>If you do not get Solidity above, then you need to install it. You can find <a href="http://solidity.readthedocs.io/en/develop/installing-solidity.html">instructions for installing Solidity here</a>.</p>
-
 <h4>Compiling your contract</h4>
-
 <p>Now you have the compiler installed, you need now reformat your contract by removing line-breaks so it fits into a string variable <a href="http://www.textfixer.com/tools/remove-line-breaks.php">(there are some online tools that will do this)</a>:</p>
+<pre><code>var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
 
-<pre><code>var greeterSource = &#39;contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }&#39;
-
-var greeterCompiled = web3.eth.compile.solidity(greeterSource)</code></pre>
-
+var greeterCompiled = web3.eth.compile.solidity(greeterSource)
+</code></pre>
 <p>You have now compiled your code. Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than &quot;Hello World!&quot; and execute these commands:</p>
-
 <pre><code>var _greeting = &quot;Hello World!&quot;
 var greeterContract = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition);
 
@@ -89,78 +70,56 @@ var greeter = greeterContract.new(_greeting,{from:web3.eth.accounts[0], data: gr
       }
 
     }
-})</code></pre>
-
+})
+</code></pre>
 <h4>Using the online compiler</h4>
-
-<p>If you don&#39;t have solC installed, you can simply use the online compiler. Copy the source code above to the <a href="https://ethereum.github.io/browser-solidity/">online solidity compiler</a> and then your compiled code should appear on the left pane. Copy the code in the box labeled <strong>Web3 deploy</strong> for both the <code>greeter</code> contract and the <code>mortal</code> contract to a single text file. Now, in that file, change the first line to your greeting:</p>
-
-<pre><code>var _greeting = &quot;Hello World!&quot;</code></pre>
-
-<p>Now you can paste the resulting text on your geth window, or import the file with <code>loadScript(&quot;yourFilename.js&quot;)</code>. Wait up to thirty seconds and you&#39;ll see a message like this:</p>
-
-<pre><code>Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e </code></pre>
-
-<p>You may have to &quot;unlock&quot; the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. <code>personal.unlockAccount(web3.eth.accounts[0], &quot;yourPassword&quot;)</code>. </p>
-
-<p>This contract is estimated to need ~180 thousand gas to deploy (according to the <a href="https://ethereum.github.io/browser-solidity/">online solidity compiler</a>), at the time of writing, gas on the test net is priced at 20 gwei (<a href="http://ether.fund/tool/converter#v=20&amp;u=Gwei">equal to( 20000000000 wei, or  0.00000002 ether</a>) per unit of gas. There are many useful stats, including the latest gas prices <a href="https://stats.ethdev.com">at the network stats page</a>. </p>
-
+<p>If you don't have solC installed, you can simply use the online compiler. Copy the source code above to the <a href="https://ethereum.github.io/browser-solidity/">online solidity compiler</a> and then your compiled code should appear on the left pane. Copy the code in the box labeled <strong>Web3 deploy</strong> for both the <code>greeter</code> contract and the <code>mortal</code> contract to a single text file. Now, in that file, change the first line to your greeting:</p>
+<pre><code>var _greeting = &quot;Hello World!&quot;
+</code></pre>
+<p>Now you can paste the resulting text on your geth window, or import the file with <code>loadScript(&quot;yourFilename.js&quot;)</code>. Wait up to thirty seconds and you'll see a message like this:</p>
+<pre><code>Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e 
+</code></pre>
+<p>You may have to &quot;unlock&quot; the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. <code>personal.unlockAccount(web3.eth.accounts[0], &quot;yourPassword&quot;)</code>.</p>
+<p>This contract is estimated to need ~180 thousand gas to deploy (according to the <a href="https://ethereum.github.io/browser-solidity/">online solidity compiler</a>), at the time of writing, gas on the test net is priced at 20 gwei (<a href="http://ether.fund/tool/converter#v=20&amp;u=Gwei">equal to( 20000000000 wei, or  0.00000002 ether</a>) per unit of gas. There are many useful stats, including the latest gas prices <a href="https://stats.ethdev.com">at the network stats page</a>.</p>
 <p><strong>Notice that the cost is not paid to the <a href="../foundation">ethereum developers</a>, instead it goes to the <em>Miners</em>, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.</strong></p>
-
-<p>Within less than a minute, you should have a log with the contract address, this means you&#39;ve successfully deployed your contract. You can verify the deployed code (which will be compiled) by using this command:</p>
-
-<pre><code>eth.getCode(greeter.address)</code></pre>
-
-<p>If it returns anything other than &quot;0x&quot; then congratulations! Your little Greeter is live! If the contract is created again (by performing another eth.sendTransaction), it will be published to a new address. </p>
-
+<p>Within less than a minute, you should have a log with the contract address, this means you've successfully deployed your contract. You can verify the deployed code (which will be compiled) by using this command:</p>
+<pre><code>eth.getCode(greeter.address)
+</code></pre>
+<p>If it returns anything other than &quot;0x&quot; then congratulations! Your little Greeter is live! If the contract is created again (by performing another eth.sendTransaction), it will be published to a new address.</p>
 <h3>Run the Greeter</h3>
-
 <p>In order to call your bot, just type the following command in your terminal:</p>
-
-<pre><code>greeter.greet();</code></pre>
-
+<pre><code>greeter.greet();
+</code></pre>
 <p>Since this call changes nothing on the blockchain, it returns instantly and without any gas cost. You should see it return your greeting:</p>
-
-<pre><code>&#39;Hello World!&#39;</code></pre>
-
+<pre><code>'Hello World!'
+</code></pre>
 <h4>Getting other people to interact with your code</h4>
-
 <p>In order for other people to run your contract they need two things: the address where the contract is located and the ABI (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them to your JavaScript console. In order to get each of them run these commands:</p>
-
 <pre><code>greeterCompiled.greeter.info.abiDefinition;
-greeter.address;</code></pre>
-
+greeter.address;
+</code></pre>
 <p>If you compiled with the <a href="https://ethereum.github.io/browser-solidity/">browser-based tool</a>, you can get the ABI from the fields for the <code>greeter</code> and <code>mortal</code> contracts labeled &quot;Interface&quot;.</p>
-
-<p>Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace &#39;ABI&#39; (an array) and &#39;Address&#39; (a string) to create a contract object in JavaScript:</p>
-
-<pre><code>var greeter = eth.contract(ABI).at(Address);</code></pre>
-
+<p>Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' (an array) and 'Address' (a string) to create a contract object in JavaScript:</p>
+<pre><code>var greeter = eth.contract(ABI).at(Address);
+</code></pre>
 <p>This particular example can be instantiated by anyone by simply calling:</p>
-
-<pre><code>var greeter2 = eth.contract([{constant:false,inputs:[],name:&#39;kill&#39;,outputs:[],type:&#39;function&#39;},{constant:true,inputs:[],name:&#39;greet&#39;,outputs:[{name:&#39;&#39;,type:&#39;string&#39;}],type:&#39;function&#39;},{inputs:[{name:&#39;_greeting&#39;,type:&#39;string&#39;}],type:&#39;constructor&#39;}]).at(&#39;greeterAddress&#39;);</code></pre>
-
-<p>Replace <em>greeterAddress</em> with your contract&#39;s address.</p>
-
-<p><strong>Tip: if the solidity compiler isn&#39;t properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing <em>greeterCompiled.greeter.info.abiDefinition</em>  with the abi from your compiler.</strong></p>
-
+<pre><code>var greeter2 = eth.contract([{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]).at('greeterAddress');
+</code></pre>
+<p>Replace <em>greeterAddress</em> with your contract's address.</p>
+<p><strong>Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing <em>greeterCompiled.greeter.info.abiDefinition</em>  with the abi from your compiler.</strong></p>
 <h4>Cleaning up after yourself:</h4>
-
-<p>You must be very excited to have your first contract live, but this excitement wears off sometimes, when the owners go on to write further contracts, leading to the unpleasant sight of abandoned contracts on the blockchain. In the future, blockchain rent might be implemented in order to increase the scalability of the blockchain but for now, be a good citizen and humanely put down your abandoned bots. </p>
-
+<p>You must be very excited to have your first contract live, but this excitement wears off sometimes, when the owners go on to write further contracts, leading to the unpleasant sight of abandoned contracts on the blockchain. In the future, blockchain rent might be implemented in order to increase the scalability of the blockchain but for now, be a good citizen and humanely put down your abandoned bots.</p>
 <p>A transaction will need to be sent to the network and a fee to be paid for the changes made to the blockchain after the code below is run. The self-destruct is subsidized by the network so it will cost much less than a usual transaction.</p>
-
-<pre><code>greeter.kill.sendTransaction({from:eth.accounts[0]})</code></pre>
-
+<pre><code>greeter.kill.sendTransaction({from:eth.accounts[0]})
+</code></pre>
 <p>This can only be triggered by a transaction sent from the contracts owner. You can verify that the deed is done simply seeing if this returns 0:</p>
-
-<pre><code>eth.getCode(greeter.address)</code></pre>
-
-<p>Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it. </p>
-
-<p>If you don&#39;t add any kill clause it could potentially live forever independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on the civil rights of sentient digital beings. Treat your bots humanely.</p><a href="https://github.com/ethereum/ethereum-org/edit/master/views/content/greeter.md" class="button small">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><div class="col-md-12 tutorial"><h2>What's next?</h2></div><div class="col-md-6 tutorial"><h3>Design and issue your own cryptocurrency</h3><p>Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API, so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. </p><p>The total amount of tokens in circulation can be set to a simple fixed amount or fluctuate based on any programmed ruleset.</p></div><div class="col-md-6 tutorial"><figure class="coin scrollme"><div data-when="enter" data-from="1" data-to="0.5" data-opacity="0" data-translatey="0" class="coin-connection animateme"></div><div data-when="enter" data-from="0.9" data-to="0.8" data-opacity="0" data-translatey="-50" data-translatex="-200" class="coin-send animateme"></div><div data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatey="-100" data-scale="1.5" data-rotate="45" class="coin-users animateme"></div><div data-when="enter" data-from="0.6" data-to="0.4" data-opacity="0" data-scale="0.5" data-translatey="-10" class="coin-coins animateme"></div></figure></div><div class="clearfix"></div><div class="col-md-6 tutorial"><a href="/token" class="button">Issue your token </a></div><div class="col-md-6 tutorial"><div class="recipe"><h4>You can build:</h4><ul><li>A tradeable token with a fixed supply</li><li>A central bank that can issue money</li><li>A puzzle-based cryptocurrency</li></ul></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
+<pre><code>eth.getCode(greeter.address)
+</code></pre>
+<p>Notice that every contract has to implement its own kill clause. In this particular case only the account that created the contract can kill it.</p>
+<p>If you don't add any kill clause it could potentially live forever independently of you and any earthly borders, so before you put it live check what your local laws say about it, including any possible limitation on technology export, restrictions on speech and maybe any legislation on the civil rights of sentient digital beings. Treat your bots humanely.</p>
+<a class="button small" href="https://github.com/ethereum/ethereum-org/edit/master/views/content/greeter.md">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><div class="col-md-12 tutorial"><h2>What's next?</h2></div><div class="col-md-6 tutorial"><h3>Design and issue your own cryptocurrency</h3><p>Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API, so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. </p><p>The total amount of tokens in circulation can be set to a simple fixed amount or fluctuate based on any programmed ruleset.</p></div><div class="col-md-6 tutorial"><figure class="coin scrollme"><div class="coin-connection animateme" data-when="enter" data-from="1" data-to="0.5" data-opacity="0" data-translatey="0"></div><div class="coin-send animateme" data-when="enter" data-from="0.9" data-to="0.8" data-opacity="0" data-translatey="-50" data-translatex="-200"></div><div class="coin-users animateme" data-when="enter" data-from="0.5" data-to="0" data-opacity="0" data-translatey="-100" data-scale="1.5" data-rotate="45"></div><div class="coin-coins animateme" data-when="enter" data-from="0.6" data-to="0.4" data-opacity="0" data-scale="0.5" data-translatey="-10"></div></figure></div><div class="clearfix"></div><div class="col-md-6 tutorial"><a class="button" href="/token">Issue your token </a></div><div class="col-md-6 tutorial"><div class="recipe"><h4>You can build:</h4><ul><li>A tradeable token with a fixed supply</li><li>A central bank that can issue money</li><li>A puzzle-based cryptocurrency</li></ul></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/go-ethereum'
- };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div id="developer-resources" class="col-md-6 developers"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div id="about-us" class="col-md-6"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a href="./donate" class="donate-button">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div id="community" class="col-md-6 community"><h2>Community</h2><ul><li><a href="https://blog.ethereum.org" target="_blank" class="blog">Blog</a></li><li><a href="https://twitter.com/ethereumproject" target="_blank" class="twitter">Twitter</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank" class="youtube">YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank" class="reddit">Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank" class="gitter">Gitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank" class="stackexchange">Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank" class="facebook">Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank" class="meetups">Meetups</a></li><li><a href="mailto:info@ethereum.org" class="email">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div id="news" class="col-md-6 news"><h2>Tweets</h2><a href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px" class="twitter-timeline">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row"><div class="col-md-6 developers" id="developer-resources"><h2>Developer Resources</h2><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Source code on <a href="http://github.com/ethereum/">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/">Homestead Documentation</a></li><li>Learn the  <a href="https://solidity.readthedocs.org/">Solidity Language</a></li><li>Learn more on the Ethereum  <a href="http://ethdocs.org/en/latest/">documentation  </a>and Ethereum  <a href="https://github.com/ethereum/go-ethereum/wiki/">Go  </a>Wiki</li><li>See latest data on <a href="https://ethstats.net">Network Stats</a></li><li>Download our <a href="assets">Logo assets </a></li><li>Want to write about us? <a href="mailto:press@ethereum.org ">Press inquiries</a></li></ul></div><div class="col-md-6" id="about-us"><h2>Ethereum Foundation</h2><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div></div><div class="row"><div class="col-md-6 community" id="community"><h2>Community</h2><ul><li><a class="blog" href="https://blog.ethereum.org" target="_blank">Blog</a></li><li><a class="twitter" href="https://twitter.com/ethereumproject" target="_blank">Twitter</a></li><li><a class="youtube" href="https://www.youtube.com/user/ethereumproject" target="_blank">YouTube</a></li><li><a class="reddit" href="https://www.reddit.com/r/ethereum" target="_blank">Reddit</a></li><li><a class="gitter" href="https://gitter.im/orgs/ethereum/rooms" target="_blank">Gitter</a></li><li><a class="stackexchange" href="https://ethereum.stackexchange.com" target="_blank">Stack Exchange</a></li><li><a class="facebook" href="https://www.facebook.com/ethereumproject" target="_blank">Facebook                </a></li><li><a class="meetups" href="https://ethereum.meetup.com" target="_blank">Meetups</a></li><li><a class="email" href="mailto:info@ethereum.org">Email us</a></li><li class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></li></ul></div><div class="col-md-6 news" id="news"><h2>Tweets</h2><a class="twitter-timeline" href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" height="360px">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div><div class="col-md-12"><p class="copyright">Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland </p><p class="footer_links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p><p class="copyright">Copyright ©2017 Ethereum Foundation. All Rights Reserved. </p></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
       {

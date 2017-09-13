@@ -6,7 +6,7 @@ block vars
   - var image='token'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
   div.breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
     a(href="/").index Ethereum 
     strong »  Create your own crypto-currency
@@ -30,7 +30,7 @@ block content
       div.row.scrollme                
         +toc
         div.col-md-12
-          include:md content/token.md
+          include:markdown-it content/token.md
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/token.md') Improve this page
 
   div.main-tutorial.even
