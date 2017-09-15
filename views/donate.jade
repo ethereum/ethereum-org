@@ -54,7 +54,7 @@ block content
             form(name="illegal", method="post")
               div.input
                 input(type="checkbox" name="not_illegal" id="legal" style="transform: scale(1.5);")
-                label My donation comes from a legal source and is compliant with the tax laws of my jurisdiction.
+                label(for="legal") My donation comes from a legal source and is compliant with the tax laws of my jurisdiction.
 
   div#donate_to.main-tutorial.inner-page.even
     div.container
@@ -98,4 +98,3 @@ block content
           h3
             a(name="watch") Here’s how to watch and play with unicorns
           include:md content/donate2.md
-          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/donate.md') Improve this pagenate.md') Improve this page
