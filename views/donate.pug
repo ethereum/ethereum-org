@@ -5,7 +5,7 @@ block vars
   - var url='donate'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
   +inner-header("Donate to support development")
 
   div.main-tutorial.inner-page
@@ -15,7 +15,7 @@ block content
           h2 Thanks for wanting to help!!!
 
 
-          p The Ethereum Foundation is a non-profit Swiss &ldquo;Stiftung&rdquo; (Foundation) registered in Switzerland as &ldquo;Stiftung Ethereum&rdquo; (Foundation Ethereum). You can 
+          p The Ethereum Foundation is a non-profit Swiss &ldquo;Stiftung&rdquo; (Foundation) registered in Switzerland as &ldquo;Stiftung Ethereum&rdquo; (Foundation Ethereum). You can &nbsp;
 
             a(href='./foundation') read more about it on the foundation page
             | .
@@ -33,20 +33,20 @@ block content
 
           p
             strong Donating is a helpful way to support the Foundation.&nbsp;
-            | We've set up a special contract account to handle all 
-            strong Bitcoin and Ether 
+            | We've set up a special contract account to handle all &nbsp
+            strong Bitcoin and Ether &nbsp
             |  donations. All funds received are visible on the blockchain for anyone to see.
 
             img(src='images/unicorn.png', width='150').float-right
           p
             | Also, donating might get you a unicorn. As a playful way to thank the donors, we created a token on the ethereum blockchain called a &#8220;Unicorn.&#8221;
           p
-            include:md content/donate-section.md
+            include:markdown-it content/donate-section.md
 
           p
             strong BEFORE YOU DONATE
             |, we want to make sure you know a few important things.
-            include:md content/donate-conditions.md
+            include:markdown-it content/donate-conditions.md
 
           h4 If you want to donate, the instructions will appear after you certify the legality of the funds.
 
@@ -55,6 +55,9 @@ block content
               div.input
                 input(type="checkbox" name="not_illegal" id="legal" style="transform: scale(1.5);")
                 label(for="legal") My donation comes from a legal source and is compliant with the tax laws of my jurisdiction.
+
+  div.main-tutorial.inner-page.even
+    h3
 
   div#donate_to.main-tutorial.inner-page.even
     div.container
@@ -89,12 +92,11 @@ block content
              strong deposit using bitcoin
              | . Unicorns will not be sent back to you, though.
 
-
   div.main-tutorial.inner-page.inner-tutorial
     div.container
       div.row
         div.col-md-12
-          include:md content/donate.md
+          include:markdown-it content/donate.md
           h3
             a(name="watch") Here’s how to watch and play with unicorns
-          include:md content/donate2.md
+          include:markdown-it content/donate2.md
