@@ -13,7 +13,7 @@ block content
       div.bad-robot
         img(src='images/bad-robot@2x.png', width='113')
         h3 Please agree to this before downloading
-      include:md content/agreement.md
+      include:markdown-it content/agreement.md
     a(href='#cancel').button-cancel Mmmm nevermind...
     a(href='#proceed').button-proceed Sure I understand and agree
 
@@ -108,7 +108,7 @@ block content
       a(href="#community") Join the Community
       a(href="./donate").donation-button Donate
 
-  include ./includes/recipes.jade
+  include ./includes/recipes.pug
 
   div.command-line
       div.container

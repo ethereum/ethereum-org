@@ -5,14 +5,14 @@ block vars
   - var url='agreement'
 
 block content
-  include mixins/recipes.jade
+  include mixins/recipes.pug
   +inner-header("Legal Agreement")
 
   div.main-tutorial.inner-page.foundation-page
     div.container
       div.row
         div.col-md-12
-          include:md content/agreement.md
+          include:markdown-it content/agreement.md
 
 
 
