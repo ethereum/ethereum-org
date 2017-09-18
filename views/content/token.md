@@ -535,7 +535,7 @@ If you add all the advanced options, this is how the final code should look like
         }
 
         /**
-         * Destroy tokens from other ccount
+         * Destroy tokens from other account
          *
          * Remove `_value` tokens from the system irreversibly on behalf of `_from`.
          *
