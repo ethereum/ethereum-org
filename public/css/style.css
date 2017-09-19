@@ -543,6 +543,7 @@ input.button:hover {
 .breadcrumb strong {
 	-webkit-flex: 1;
 	flex: 1;
+	font-weight: 600;
 }
 
 .breadcrumb a {
