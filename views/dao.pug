@@ -30,7 +30,7 @@ block content
       div.row.scrollme
         +toc
         div.col-md-12
-          include:markdown-it content/dao.md
+          include:markdown-it(plugins=['markdown-it-include']) content/dao.md
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/dao.md') Improve this page
 
 

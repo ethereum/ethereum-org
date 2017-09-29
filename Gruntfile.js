@@ -18,7 +18,6 @@ var vendor = [
 var styles = [
 	'bootstrap.min.css',
 	'font-awesome.css',
-	'wicked-grit.css',
 	'style.css'
 ];
 
