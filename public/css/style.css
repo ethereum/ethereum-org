@@ -3,7 +3,7 @@ html {
 }
 
 body {
-	-webkit-font-smoothing: antialiased;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
 }
 
 hr {
@@ -11,8 +11,13 @@ hr {
 	clear: both;
 }
 
+code {
+	font-family: "Source Code Pro", "Courier New", monospace;
+	background: #C3CCDB;
+}
+
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Source Sans Pro', Arial, sans-serif serif;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
 	letter-spacing: -1px;
 	margin: 10px 0;
 	font-weight: 400;
@@ -81,8 +86,6 @@ a:hover {
 
 .container {
 	max-width: 970px;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
-	font-weight: 600;
 }
 
 header {
@@ -195,7 +198,6 @@ div.scrollme.row.introduction {
 }
 
 #block-content span {
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-size: 18px;
 	color: #C3CCDB;
 	font-smooth: auto;
@@ -221,8 +223,6 @@ body {
 
 .main-tutorial {
 	overflow: hidden;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
-	font-size: 18px;
 	color: #443A37;
 	position: relative;
 	-webkit-background-blend-mode: multiply;
@@ -258,7 +258,7 @@ body {
 
 .main-tutorial h2 {
 	font-size: 40px;
-	font-weight: 300;
+	font-weight: 400;
 	color: #354049;
 	background: transparent;
 	padding: 80px 20px 20px;
@@ -266,7 +266,6 @@ body {
 }
 
 .main-tutorial h3 {
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	font-size: 30px;
 	font-weight: 400;
 	color: #354049;
@@ -291,7 +290,7 @@ body {
 	padding: 0;
 }
 .inner-header.token-tutorial h2 {
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 45px;
 	text-transform: none;
 	padding: 30px 20px;
@@ -319,7 +318,6 @@ body {
 	border-radius: 28px;
 	color: #E1EFFF;
 	text-align: center;
-	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	font-size: 40px;
 	padding-top: 5px;
 	margin-right: 10px;
@@ -340,7 +338,6 @@ body {
 }
 
 .recipe h4 {
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
 	color: #354049;
 	font-weight: 600;
@@ -350,7 +347,6 @@ body {
 
 .recipe ul {
 	list-style-type: none;
-	font-weight: 600;
 	padding-left: 0;
 }
 
@@ -371,7 +367,6 @@ body {
 .inner-tutorial h4  {
 	color: #354049;
 	padding: 20px 20px 0;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
 	font-weight: 900;
 }
@@ -473,7 +468,6 @@ a.button {
 	font-weight: 600;
 	border-radius: 3px;
 	border: none;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-align: center;
 	text-decoration: none;
 	font-weight: 600;
@@ -537,7 +531,6 @@ input.button:hover {
 	color: #C3CCDB;
 	background: #102026;
 	padding: 10px 40px;
-	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 	font-size: 14px;
 	z-index: 10;
 	background-image: url("../images/diamond-icon.png");
@@ -549,11 +542,11 @@ input.button:hover {
 .breadcrumb strong {
 	-webkit-flex: 1;
 	flex: 1;
+	font-weight: 600;
 }
 
 .breadcrumb a {
 	padding: 0 5px;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 	text-transform: uppercase;
 	color: #E1EFFF;
 }
@@ -563,7 +556,6 @@ a.donation-button {
 }
 
 .breadcrumb a.index {
-	font-family: 'Source Sans Pro', Arial, sans-serif serif;
 }
 
 #tableOfContents {
@@ -1038,7 +1030,6 @@ div#donate_inst {
 	font-weight: 400;
 	text-align: right;
 	text-transform: uppercase;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
 }
 
 .button-proceed {
@@ -1403,19 +1394,12 @@ figure.ethereum-logo {
 
 .main-tutorial code {
 	display: block;
-	font-family: "Source Code pro", "Courier New", monospace;
 	white-space: pre;
-	font-size: 14px;
-	font-weight: 600;
 	padding: 20px;
 	overflow: auto;
 	width: 10000px;
 	max-height: 800px;
 	background: #FFF;
-}
-
-code {
-	background: #C3CCDB;
 }
 
 pre {
@@ -1450,14 +1434,12 @@ footer {
 
 .inner-header h3 {
 	font-size: 40px;
-	font-weight: 300;
+	font-weight: 400;
 	margin: 0;
 	padding: 15px 20px 0;
 	max-width: none;
 	text-align: left;
-	text-transform:  uppercase;
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,  sans-serif;
-	font-weight: 200;
+	text-transform: uppercase;
 	font-size: 200%;
 }
 
