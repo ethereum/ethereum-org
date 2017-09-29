@@ -676,6 +676,7 @@ p.cookie_pol {
 
 .community ul {
 	padding-left: 0;
+	margin-bottom: 0;
 	list-style: none;
 }
 
@@ -687,10 +688,10 @@ p.cookie_pol {
 	background-repeat: no-repeat;
 }
 
-.community ul li a[href='http://blog.ethereum.org'] {
+.community ul li a.blog {
 	background-image: url("../images/icons/icon-blog.png");
 }
-.community ul li a[href='http://forum.ethereum.org'] {
+.community ul li a.forum {
 	background-image: url("../images/icons/icon-forum.png");
 }
 .community ul li a.reddit {
@@ -717,8 +718,11 @@ p.cookie_pol {
 .community ul li a.stackexchange {
 	background-image: url("../images/icons/icon-stackexchange.png");
 }
+.community ul li a.github {
+	background-image: url("../images/icons/icon-github.png");
+}
 
-.community li.canary {
+.community .canary {
 	background-image: url("../images/icons/canary.svg");
 	background-size: 30px 30px;
 	background-position: left top;
@@ -728,15 +732,19 @@ p.cookie_pol {
 	padding-right: 50px;
 }
 
-.community li.canary p {
+.community .canary p {
 	opacity: 0;
 	font-size: 80%;
 	transition: opacity 2s ease-out;
 }
 
-.community li.canary:hover p {
+.community .canary:hover p {
 	opacity: 1;
 	transition: opacity 0.25s ease-out;
+}
+
+#news {
+	margin-bottom: 45px;
 }
 
 .press ul {
@@ -2040,6 +2048,9 @@ footer {
 	}
 	.community ul li a.stackexchange {
 		background-image: url("../images/icons/icon-stackexchange@2x.png");
+	}
+	.community ul li a.github {
+		background-image: url("../images/icons/icon-github@2x.png");
 	}
 }
 
