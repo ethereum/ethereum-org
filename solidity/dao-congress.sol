@@ -3,7 +3,7 @@ pragma solidity ^0.4.16;
 contract owned {
     address public owner;
 
-    function owned() {
+    function owned()  public {
         owner = msg.sender;
     }
 
@@ -12,7 +12,7 @@ contract owned {
         _;
     }
 
-    function transferOwnership(address newOwner) onlyOwner {
+    function transferOwnership(address newOwner) onlyOwner  public {
         owner = newOwner;
     }
 }
@@ -21,22 +21,22 @@ contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
+    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
         Token t = Token(_token);
         require(t.transferFrom(_from, this, _value));
         receivedTokens(_from, _value, _token, _extraData);
     }
 
-    function () payable {
+    function () payable  public {
         receivedEther(msg.sender, msg.value);
     }
 }
 
 interface Token {
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
 }
 
-
+contract Congress is owned, tokenRecipient {
     // Contract Variables and events
     uint public minimumQuorum;
     uint public debatingPeriodInMinutes;
@@ -91,7 +91,7 @@ interface Token {
         uint minimumQuorumForProposals,
         uint minutesForDebate,
         int marginOfVotesForMajority
-    )  payable {
+    )  payable public {
         changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
         // It’s necessary to add an empty first member
         addMember(0, "");
@@ -107,7 +107,7 @@ interface Token {
      * @param targetMember ethereum address to be added
      * @param memberName public name for that member
      */
-    function addMember(address targetMember, string memberName) onlyOwner {
+    function addMember(address targetMember, string memberName) onlyOwner public {
         uint id = memberId[targetMember];
         if (id == 0) {
             memberId[targetMember] = members.length;
@@ -125,7 +125,7 @@ interface Token {
      *
      * @param targetMember ethereum address to be removed
      */
-    function removeMember(address targetMember) onlyOwner {
+    function removeMember(address targetMember) onlyOwner public {
         require(memberId[targetMember] != 0);
 
         for (uint i = memberId[targetMember]; i<members.length-1; i++){
@@ -149,7 +149,7 @@ interface Token {
         uint minimumQuorumForProposals,
         uint minutesForDebate,
         int marginOfVotesForMajority
-    ) onlyOwner {
+    ) onlyOwner public {
         minimumQuorum = minimumQuorumForProposals;
         debatingPeriodInMinutes = minutesForDebate;
         majorityMargin = marginOfVotesForMajority;
@@ -173,7 +173,7 @@ interface Token {
         string jobDescription,
         bytes transactionBytecode
     )
-        onlyMembers
+        onlyMembers public
         returns (uint proposalID)
     {
         proposalID = proposals.length++;
@@ -181,7 +181,7 @@ interface Token {
         p.recipient = beneficiary;
         p.amount = weiAmount;
         p.description = jobDescription;
-        p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
+        p.proposalHash = keccak256(beneficiary, weiAmount, transactionBytecode);
         p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
         p.executed = false;
         p.proposalPassed = false;
@@ -209,7 +209,7 @@ interface Token {
         string jobDescription,
         bytes transactionBytecode
     )
-        onlyMembers
+        onlyMembers public
         returns (uint proposalID)
     {
         return newProposal(beneficiary, etherAmount * 1 ether, jobDescription, transactionBytecode);
@@ -229,11 +229,11 @@ interface Token {
         uint weiAmount,
         bytes transactionBytecode
     )
-        constant
+        constant public
         returns (bool codeChecksOut)
     {
         Proposal storage p = proposals[proposalNumber];
-        return p.proposalHash == sha3(beneficiary, weiAmount, transactionBytecode);
+        return p.proposalHash == keccak256(beneficiary, weiAmount, transactionBytecode);
     }
 
     /**
@@ -250,7 +250,7 @@ interface Token {
         bool supportsProposal,
         string justificationText
     )
-        onlyMembers
+        onlyMembers public
         returns (uint voteID)
     {
         Proposal storage p = proposals[proposalNumber];         // Get the proposal
@@ -276,12 +276,12 @@ interface Token {
      * @param proposalNumber proposal number
      * @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
      */
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) {
+    function executeProposal(uint proposalNumber, bytes transactionBytecode) public {
         Proposal storage p = proposals[proposalNumber];
 
         require(now > p.votingDeadline                                            // If it is past the voting deadline
             && !p.executed                                                         // and it has not already been executed
-            && p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)  // and the supplied code matches the proposal
+            && p.proposalHash == keccak256(p.recipient, p.amount, transactionBytecode)  // and the supplied code matches the proposal
             && p.numberOfVotes >= minimumQuorum);                                  // and a minimum quorum has been reached...
 
         // ...then execute result
