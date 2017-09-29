@@ -10,7 +10,7 @@
 <p>The way this particular democracy works is that it has an <strong>Owner</strong> which works like an administrator, CEO or a President. The <em>Owner</em> can add (or remove) voting members to the organization. Any member can make a proposal, which is in the form of an ethereum transaction to either send ether or execute some contract, and other members can vote in support or against the proposal. Once a predetermined amount of time and a certain number of members has voted, the proposal can be executed: the contract counts the votes and if there are enough votes it will execute the given transaction.</p>
 <h3>The Blockchain Congress</h3>
 <h4>The code</h4>
-<pre><code>pragma solidity ^0.4.16;
+<pre><code class="language-solidity">pragma solidity ^0.4.16;
 
 contract owned {
     address public owner;
@@ -314,6 +314,7 @@ interface Token {
         ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
     }
 }
+
 </code></pre>
 <h4>How to deploy</h4>
 <p>Open the wallet (if you are only testing, go to the menu develop &gt; network &gt; testnet), go to the <strong>Contracts</strong> tab and then press <strong>deploy contract</strong>, and on the <strong>solidity code</strong> box, paste the code above. On the contract picker, choose <strong>Congress</strong> and you'll see the setup variables.</p>
@@ -373,7 +374,7 @@ interface Token {
 <p>In the previous section we created a contract that works like an invitation-only club, where members are invited or banned by the whim of the president. But this has a few drawbacks: what if someone wants to change his main address? What if some members have more weight than others? What if you actually want to trade or sell memberships or shares on an open market? What if you wanted your organization to have work as a constant decision machine by shareholders?</p>
 <p>We are going to modify a bit our contract to connect it to a specific token, which will work as the holding shares of the contract. First we need to create this token: go to the <a href="./token">token tutorial</a> and create a simple token with <strong>initial supply</strong> of 100, <strong>decimals</strong> of 0 and a percentage sign (%) as a <strong>symbol</strong>. If you want to be able to trade in fractions of a percent, then increase the supply by 100x or 1000x and then add the corresponding amount of zeros as the <strong>decimals</strong>. Deploy this contract and save its address on a text file.</p>
 <p>Now to the shareholder code:</p>
-<pre><code>pragma solidity ^0.4.16;
+<pre><code class="language-solidity">pragma solidity ^0.4.16;
 
 contract owned {
     address public owner;
@@ -634,6 +635,7 @@ contract Association is owned, tokenRecipient {
         ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
     }
 }
+
 </code></pre>
 <h4>Deploy and usage</h4>
 <p>The code is deployed almost exactly like the previous code, but you need to also put a <strong>shares token address</strong> which is the address of the token that will work as a share with voting rights.</p>
@@ -675,7 +677,7 @@ for (uint i = 0; i &lt;  p.votes.length; ++i) {
 <p>Voting on all expenses and actions of a contract takes time and requires users to be constantly active, informed and attentive. Another interesting approach is to elect an appointed account that will have control over a contract and then be able to take swift decisions over it.</p>
 <p>We are going to implement a version of what's usually called <strong>Liquid Democracy</strong>, which is a more flexible delegative democracy. In this kind of democracy, any voter can be a potential delegate: instead of voting the candidate you want, you just say which voter you trust to handle this decision for you. Your voting weight is delegated to them and they can in turn delegate it to another voter they trust and so on. The end result should be that the most voted account is one that has trust connections to the largest amount of voters.</p>
 <h4>The code</h4>
-<pre><code>pragma solidity ^0.4.16;
+<pre><code class="language-solidity">pragma solidity ^0.4.16;
 
 contract token {
     mapping (address =&gt; uint256) public balanceOf;
@@ -812,6 +814,7 @@ contract LiquidDemocracy {
         return currentWinner;
     }
 }
+
 </code></pre>
 <h4>Deployment</h4>
 <p>First, you need a token. If you have followed the <strong>Shareholder association</strong> tutorial above, you can use the same token as you had previously, otherwise just <a href="./token/">deploy a new token</a> and distribute it among some accounts. Copy the token address.</p>
@@ -869,7 +872,7 @@ contract LiquidDemocracy {
 </ul>
 <p>Once the minimum amount of time has passed, anyone can execute the transaction <a href="dao#add-a-simple-proposal-send-ether">(See &quot;Congress&quot; for a more complete walktrough)</a>. This is intentional, as it allows someone to <a href="crowdsale#scheduling-a-call">schedule a transaction</a> or hire someone else to execute it.</p>
 <h4>The code</h4>
-<pre><code>pragma solidity ^0.4.16;
+<pre><code class="language-solidity">pragma solidity ^0.4.16;
 
 contract owned {
     address public owner;
@@ -1163,6 +1166,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
         ProposalExecuted(proposalNumber, p.currentResult, proposalDeadline(proposalNumber));
     }
 }
+
 </code></pre>
 <h4>Deployment and usage</h4>
 <p>Deploy that code as you have done before on these tutorials. On the deployment parameters, leaving the minimum time blank will default to 30 minutes, if you want faster lock times, then put 1 minute. After uploading, execute the functions &quot;Add Members&quot; to add new members of your group, they can be either other people you know or accounts on different computers or stored offline.</p>
