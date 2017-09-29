@@ -18,8 +18,8 @@ The way this particular democracy works is that it has an **Owner** which works 
 
 #### The code
 
-```solidity
-!!!include(views/content/dao-congress.sol)!!!
+```
+!!!include(solidity/dao-congress.sol)!!!
 ```
 
 #### How to deploy
@@ -126,8 +126,8 @@ We are going to modify a bit our contract to connect it to a specific token, whi
 
 Now to the shareholder code:
 
-```solidity
-!!!include(views/content/dao-association.sol)!!!
+```
+!!!include(solidity/dao-association.sol)!!!
 ```
 
 #### Deploy and usage
@@ -190,8 +190,8 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 
 #### The code
 
-```solidity
-!!!include(views/content/dao-liquid-democracy.sol)!!!
+```
+!!!include(solidity/dao-liquid-democracy.sol)!!!
 ```
 
 #### Deployment
@@ -283,8 +283,8 @@ Once the minimum amount of time has passed, anyone can execute the transaction [
 
 #### The code
 
-```solidity
-!!!include(views/content/dao-time-lock-multisig.sol)!!!
+```
+!!!include(solidity/dao-time-lock-multisig.sol)!!!
 ```
 
 #### Deployment and usage
