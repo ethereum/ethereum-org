@@ -37,6 +37,7 @@ interface Token {
 }
 
 
+contract Congress {
     // Contract Variables and events
     uint public minimumQuorum;
     uint public debatingPeriodInMinutes;
