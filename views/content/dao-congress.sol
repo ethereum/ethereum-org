@@ -37,7 +37,7 @@ interface Token {
 }
 
 
-contract Congress {
+contract Congress is owned {
     // Contract Variables and events
     uint public minimumQuorum;
     uint public debatingPeriodInMinutes;
