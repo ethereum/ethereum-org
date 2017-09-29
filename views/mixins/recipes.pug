@@ -1,11 +1,9 @@
 include figures.pug
 
 mixin gethRecipe(header)
-
-  if header != ""
+  if header
     div.col-md-12.tutorial
       h2 #{header}
-
 
   div.col-md-6.tutorial
 
@@ -41,11 +39,9 @@ mixin gethRecipe(header)
 
 
 mixin etherRecipe(header)
- 
-  if header != ""
+  if header
     div.col-md-12.tutorial
       h2 #{header}
-
 
   div.col-md-6.tutorial
 
@@ -62,8 +58,6 @@ mixin etherRecipe(header)
   div.col-md-6.tutorial
     +etherFigure
 
-    
-  
   div.clearfix
   div.col-md-6.tutorial
     a(href="/ether").button Learn about ether 
@@ -78,14 +72,11 @@ mixin etherRecipe(header)
 
 
 mixin greeterRecipe(header)
-  
-  if header != ""
+  if header
     div.col-md-12.tutorial
       h2 #{header}
 
-
   div.col-md-6.tutorial
-
     h3 Create the Greeter, your first live contract
 
     p This tutorial will teach you how to build a contract using the command line
@@ -95,8 +86,6 @@ mixin greeterRecipe(header)
   div.col-md-6.tutorial
     +greeterFigure
 
-    
-  
   div.clearfix
   div.col-md-6.tutorial
     a(href="/greeter").button Summon the Greeter 
@@ -111,15 +100,11 @@ mixin greeterRecipe(header)
 
 
 mixin tokenRecipe(header)
-
-
-  if header != ""
+  if header
     div.col-md-12.tutorial
       h2 #{header}
 
-
   div.col-md-6.tutorial
-
     h3 Design and issue your own cryptocurrency
 
     p Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API, so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. 
@@ -129,8 +114,6 @@ mixin tokenRecipe(header)
   div.col-md-6.tutorial
     +tokenFigure
 
-    
-  
   div.clearfix
   div.col-md-6.tutorial
     a(href="/token").button Issue your token 
@@ -145,16 +128,12 @@ mixin tokenRecipe(header)
 
 
 mixin crowdsaleRecipe(header)
-
-  if header != ""
+  if header
     div.col-md-12.tutorial
       h2 #{header}
 
-
   div.col-md-6.tutorial
     +crowdsaleFigure
-
-
   
   div.col-md-6.tutorial    
     h3 Kickstart a project with a trustless crowdsale
@@ -179,15 +158,11 @@ mixin crowdsaleRecipe(header)
         li An auction of a limited number of items
   
 mixin daoRecipe(header)
-
-
-  if header != ""
+  if header
     div.col-md-12.tutorial
       h2 #{header}
 
-
   div.col-md-6.tutorial
-
     +daoFigure
 
   div.col-md-6.tutorial
@@ -214,9 +189,7 @@ mixin daoRecipe(header)
 
 
 mixin futureRecipe(header)
-  
-
-  if header != ""
+  if header
     div.col-md-12.tutorial
       h3 #{header}
 
@@ -234,16 +207,11 @@ mixin futureRecipe(header)
     p  
       em *The above list is maintained by an independent party and the Foundation does not endorse its content or any particular project on that list
 
-
-  
   div.col-md-6.tutorial
     +futureFigure
 
-
 mixin toc()
   ul#tableOfContents.toc.animateme(data-when="enter", data-from="0.4", data-to="0.2", data-translatex="-100", data-opacity="0", data-easing="linear")
-
-    
 
 mixin inner-header(title)
   div.inner-header.default-header.scrollme(class!=attributes.class)
