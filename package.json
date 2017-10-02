@@ -16,6 +16,7 @@
     "express": "^4.11.2",
     "jstransformer-markdown-it": "^2.0.0",
     "markdown": "latest",
+    "markdown-it-include": "0.0.2",
     "pug": "^2.0.0-rc.4",
     "serve-favicon": "^2.2.0"
   },
