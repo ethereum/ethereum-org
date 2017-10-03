@@ -243,10 +243,9 @@ contract Association is owned, tokenRecipient {
 
         require(quorum >= minimumQuorum); // Check if a minimum quorum has been reached
 
+        p.executed = true;
         if (yea > nay ) {
             // Proposal passed; execute the transaction
-
-            p.executed = true;
             require(p.recipient.call.value(p.amount)(transactionBytecode));
 
             p.proposalPassed = true;
