@@ -6,16 +6,15 @@ const bodyParser = require('body-parser');
 // Init the app
 const app = express();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-//app.use(favicon(path.join(__dirname, '/dist/images/favicon.png')));
+app.set('view engine', 'pug');
+app.use(favicon(path.join(__dirname, '/dist/images/favicon.png')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8080);
 
 // Routes
 app.get('/', (request, response) => {
@@ -78,22 +77,22 @@ app.get('/swarm', (request, response) => {
 	response.render('swarm');
 });
 
-// catch 404 and forward to error handler
-app.use((request, response, next) => {
-	let err = new Error('Not Found');
-	err.status = 404;
-	
-	// responsepond with html page
-	if (request.accepts('html')) {
-	    response.render('404', { url: request.url });
-	    return;
-	}
-	
-	next(err);
+app.get('/*', (request,response,next) => {
+		let errStatus = 404;
+
+		// respond with html page
+		if (request.accepts('html')) {
+				response.render('404', { url: request.url });
+				return;
+		}else{
+			 response.status(errStatus).end();
+		}
+
 });
 
 // error handlers
 if (app.get('env') === 'development') {
+	// development error handler(Not needed for now)
 	app.use((err, request, response, next) => {
 		response.status(err.status || 500);
 		response.render('error', {
@@ -102,14 +101,5 @@ if (app.get('env') === 'development') {
 		});
 	});
 }
-
-// production error handler
-app.use((err, request, response, next) => {
-	response.status(err.status || 500);
-	response.render('error', {
-		message: err.message,
-		error: {}
-	});
-});
 
 module.exports = app;
