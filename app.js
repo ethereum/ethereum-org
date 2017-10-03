@@ -21,6 +21,10 @@ app.get('/', (request, response) => {
 	response.render('index');
 });
 
+app.get('/wallet', (request, response) => {
+	response.render('wallet')
+});
+
 app.get('/cli', (request, response) => {
 	response.render('cli');
 });
@@ -75,6 +79,18 @@ app.get('/devcontwo', (request, response) => {
 
 app.get('/swarm', (request, response) => {
 	response.render('swarm');
+});
+
+app.get('/privacy-policy',(request, response) => {
+	response.render('privacy-policy');
+});
+
+app.get('/cookie-policy',(request, response) => {
+	response.render('cookie-policy');
+});
+
+app.get('/terms-of-use', (request, response) => {
+	response.render('terms-of-use');
 });
 
 app.get('/*', (request,response,next) => {
