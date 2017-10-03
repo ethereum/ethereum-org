@@ -6,12 +6,12 @@ block vars
 
 block content
   include mixins/recipes.pug
-  +inner-header("Donate to support development")
+  +inner-header("Donate to Support Development")
 
-  div.main-tutorial.inner-page
-    div.container
+  .main-tutorial.inner-page
+    .container
       div#donate_inst.row
-        div.col-md-12
+        .col-md-12
           h2 Thanks for wanting to help!!!
 
 
@@ -37,7 +37,7 @@ block content
             strong Bitcoin and Ether  
             |  donations. All funds received are visible on the blockchain for anyone to see.
 
-            img(src='images/unicorn.png', width='150').float-right
+            img(src='images/unicorn.png', width='150').pull-right
           p
             | Also, donating might get you a unicorn. As a playful way to thank the donors, we created a token on the ethereum blockchain called a &#8220;Unicorn.&#8221;
           p
@@ -52,19 +52,19 @@ block content
 
           p
             form(name="illegal", method="post")
-              div.input
+              .input
                 input(type="checkbox" name="not_illegal" id="legal" style="transform: scale(1.5);")
                 label(for="legal") My donation comes from a legal source and is compliant with the tax laws of my jurisdiction.
 
-  div.main-tutorial.inner-page.even
+  .main-tutorial.inner-page.even
     h3
 
   div#donate_to.main-tutorial.inner-page.even
-    div.container
-      div.row
-        div.col-md-12.donate
+    .container
+      .row
+        .col-md-12.donate
           h4 FOR ETHER DONATIONS, THE SPECIAL ACCOUNT IS:
-          div.identicon
+          .identicon
           span.dapp-identicon(style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABgElEQVR4Xu2asQ0CMQxFuRWQKFmCkoqGkSgQNaJgl1uAhopFaKhuABqYAL/iC+U43rWRE9/P97fjpHv2i9es+IbNshoe/dj8ei997ARABhgCaoAiaBb4jMDk0+BjWJUaMPpEHzrYCYAMMATUgFBHftpcEfz7LEDHYeJ360KJzvvkP/YDaAIBaNwxkgHQ8iIGGwKKIPQEiUKK4NRFcH+p++qnbdt7g9Q/FMF0AQqhdDz1TwAoC6QIpztM9ql/MkAGQB2QUowonI6n/hkC1BCh0xZVgmRPDEjnJ3tsidEP0AJkLwCAQAow2csANQCuxiiGiWJkrwaoATUCKcPIHkXwfLiVHlI/gCo1CoF0/t1xXb8TJBEUABlgCKgBFQKpSCmCgEAKsFng22mQECaKp+OUpsm/uBCiBdIfJHsBgDqFNkgGpKUwIUwUTscNAUOgLtWJoWoAXY1RQ4FikCo50gDqJ9AOU0sOb4YEAJ7AyICwYWIIAAJqADzSUgThuGsWgLfEbx19IL+uODI/AAAAAElFTkSuQmCC')")
 
           h2 Foundation Tip Jar
@@ -92,10 +92,10 @@ block content
              strong deposit using bitcoin
              | . Unicorns will not be sent back to you, though.
 
-  div.main-tutorial.inner-page.inner-tutorial
-    div.container
-      div.row
-        div.col-md-12
+  .main-tutorial.inner-page.inner-tutorial
+    .container
+      .row
+        .col-md-12
           include:markdown-it content/donate.md
           h3
             a(name="watch") Here’s how to watch and play with unicorns
