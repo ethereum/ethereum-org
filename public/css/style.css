@@ -40,6 +40,23 @@ a:hover {
 	cursor: pointer;
 }
 
+pre {
+	background: transparent;
+	overflow: auto;
+	padding: 0;
+	margin: 20px 0;
+	position: relative;
+}
+
+.caption {
+	text-align: center;
+	font-size: 90%;
+}
+
+.small {
+	font-size: 90%;
+}
+
 input.button,
 button,
 a.button {
@@ -96,23 +113,6 @@ a.button:active {
 
 input.button:hover {
 	color: #FFF;
-}
-
-pre {
-	background: transparent;
-	overflow: auto;
-	padding: 0;
-	margin: 20px 0;
-	position: relative;
-}
-
-.caption {
-	text-align: center;
-	font-size: 90%;
-}
-
-.small {
-	font-size: 90%;
 }
 
 /* ==========================================
@@ -264,6 +264,10 @@ div.scrollme.row.introduction {
 	margin-bottom: 20px;
 }
 
+.main-content.wallet {
+	padding-top: 0;
+}
+
 .main-tutorial {
 	overflow: hidden;
 	color: #443A37;
@@ -354,46 +358,6 @@ div.scrollme.row.introduction {
 	left: 0;
 }
 
-.recipe {
-	background: #FFF url("../images/recipe-bg.png");
-	background-repeat: repeat-y;
-	background-position: 20px;
-	display: block;
-	max-width: 500px;
-	padding: 20px 20px 20px 45px;
-	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
-	text-align: left;
-	margin-top: 20px;
-}
-
-.recipe h4 {
-	text-transform: uppercase;
-	color: #354049;
-	font-weight: 600;
-	text-align: center;
-	font-size: 20px;
-	margin-top: 0;
-}
-
-.recipe ul {
-	list-style-type: circle;
-	padding-left: 0;
-	margin-left: 10px;
-}
-
-.recipe li {
-	padding-left: 0;
-}
-
-.recipe ul ul {
-	padding-left: 30px;
-	font-weight: 400;
-}
-
-.recipe input[type='checkbox'] {
-	margin-right: 10px;
-}
-
 .inner-page h4,
 .inner-tutorial h4 {
 	color: #354049;
@@ -438,9 +402,12 @@ div.scrollme.row.introduction {
 }
 
 .inner-header.token-tutorial h2,
-.inner-header.token-tutorial h3,
-.inner-header.token-tutorial p {
+.inner-header.token-tutorial h3 {
 	color: #fff;
+}
+
+.inner-header.token-tutorial p {
+	color: #f8f8f8;
 }
 
 .inner-header.crowdsale-tutorial {
@@ -465,6 +432,200 @@ div.scrollme.row.introduction {
 
 .main-menu {
 	min-height: 0;
+}
+
+.command-line {
+	background: #000;
+	color: #ccc;
+	padding-top: 40px;
+}
+
+.command-line h3 {
+	color: #eee;
+}
+
+/* ==========================================
+  Main styles
+  ======================================== */
+
+.start-menu {
+	-webkit-perspective: 2000;
+	-moz-perspective: 2000;
+	perspective: 2000;
+}
+
+.start-menu strong {
+	display: block;
+}
+
+.start-menu p {
+	padding: 0;
+	font-size: 80%;
+}
+
+.start-menu p strong {
+	font-size: 125%;
+}
+
+.main-tutorial .row.start-menu {
+	padding-top: 0;
+}
+
+.main-tutorial .note {
+	font-weight: 600;
+}
+
+.main-tutorial code {
+	display: block;
+	white-space: pre;
+	padding: 20px;
+	overflow: auto;
+	width: 100%;
+	background: #FFF;
+}
+
+.inner-header h2 {
+	font-size: 60px;
+	font-weight: 200;
+	margin: 0;
+	padding: 0;
+}
+
+.main-tutorial h3,
+.inner-tutorial h3 {
+	color: #111;
+}
+
+.inner-header.default-header h3 {
+	text-align: center;
+	color: #FFF;
+	margin: 0 0 30px 0;
+}
+
+.inner-header .scrollme {
+	display: flex;
+}
+
+.inner-header .header-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 20px;
+}
+
+.inner-header {
+	background: #102026;
+}
+
+.inner-page.inner-header .row {
+	display: flex;
+}
+
+.main-tutorial img[alt*="Logo"] {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin: 20px 40px 40px 0;
+	clear: both;
+}
+
+.recipe {
+	background: #FFF url("../images/recipe-bg.png");
+	background-repeat: repeat-y;
+	background-position: 20px;
+	display: block;
+	max-width: 500px;
+	padding: 20px 20px 20px 45px;
+	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
+	text-align: left;
+	margin-top: 20px;
+}
+
+.recipe h4 {
+	text-transform: uppercase;
+	color: #354049;
+	font-weight: 600;
+	text-align: center;
+	font-size: 20px;
+	margin-top: 0;
+}
+
+.recipe ul {
+	list-style-type: circle;
+	padding-left: 0;
+	margin-left: 10px;
+}
+
+.recipe li {
+	padding-left: 0;
+}
+
+.recipe ul ul {
+	padding-left: 30px;
+	font-weight: 400;
+}
+
+@media only screen and (max-width: 600px) {
+	figure {
+		height: 300px;
+		margin: 0 auto;
+	}
+
+	.main-tutorial a.button ,
+	.recipe {
+		width: 100%;
+	}
+
+	.breadcrumb.index a {
+		display: none;
+	}
+
+	figure.ethereum-logo {
+		height: 140px;
+	}
+
+	.inner-header {
+		padding: 0;
+	}
+
+	.inner-header.dao-tutorial {
+		background-image: url("../images/dao-bg-mob.jpg");
+	}
+
+	.inner-header.token-tutorial {
+		background-image: url("../images/token-bg-mob.jpg");
+	}
+
+	.inner-header.crowdsale-tutorial {
+		background-image: url("../images/dao-dawn-bg-mob.jpg");
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.main-tutorial h3 {
+		padding-top: 0;
+	}
+
+	.main-tutorial h3 .number {
+		top: 0;
+	}
+
+	.row img,
+	.recipe,
+	.main-tutorial a.button ,
+	.ethereum-network,
+	.main-tutorial figure {
+		float: none;
+		margin: 30px auto;
+	}
+
+	.inner-header .scrollme {
+	    display: block;
+	}
+
+	.inner-header h2, .inner-header h3 {
+	    text-align: center;
+	}
 }
 
 /* ==========================================
@@ -609,7 +770,7 @@ footer .caption {
 	font-style: italic;
 }
    
-#developers ul {
+.developer-resources ul {
 	padding-left: 21px;
 	color: #C3CCDB;
 }
@@ -642,6 +803,19 @@ footer .caption {
 	color: #fff;
 }
 
+.donate-button {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	align-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.donate-button {
+	display: block;
+}
+
 .footer .canary {
 	background-image: url("../images/icons/canary.svg");
 	background-size: 30px 30px;
@@ -663,14 +837,14 @@ footer .caption {
 }
 
 .news .iframe-wrapper {
-	margin: 15px 0;
+	margin: 15px 0 30px 0;
 	padding: 15px 0;
 	border-top: 1px solid rgba(225, 232, 237, 0.15);
 	border-bottom: 1px solid rgba(225, 232, 237, 0.15);
 }
 
 .row-footer-primary .col-md-4 {
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 }
 
 .copyright {
@@ -730,7 +904,6 @@ a.donate-button:hover ,
 	max-width: none;
 }
 
-
 .main-tutorial .donate h4 {
 	text-align: center;
 	padding-top: 50px;
@@ -741,6 +914,10 @@ a.donate-button:hover ,
 	margin: 10px auto;
 	text-align: center;
 	display: block;
+}
+
+#donate_to {
+	display: none;
 }
 
 /* ==========================================
@@ -842,455 +1019,8 @@ a.button.ethereum-wallet.win64 {
 }
 
 /* ==========================================
-  Legal
+  foundation.pug
   ======================================== */
-
-
-.terms,
-.cannot-continue  {
-	color: #E1EFFF;
-	text-align: center;
-	font-weight: 600;
-	display: block;
-	padding-top: 60px;
-}
-
-.warning a.back {
-	color: #E1EFFF;
-	font-size: 80%;
-	padding-top: 15px;
-}
-
-.inner-header a.back {
-	color: #E1EFFF;
-	float: left;
-	position: absolute;
-	top: 10px;
-	left: 60px;
-	opacity: 0.5;
-}
-
-.inner-header a.back:hover {
-	opacity: 1;
-}
-
-.warning a.back,
-.terms:hover {
-	color: #FFF;
-}
-
-.cannot-continue {
-	color: #eb453e;
-}
-
-.legal-modal {
-	display: none;
-	align-items: flex-end;
-	flex-wrap: wrap;
-	align-content: flex-end;
-	position: fixed;
-	top: 10%;
-	left: 10%;
-	bottom: 10%;
-	right: 10%;
-	padding: 32px 64px;
-	z-index: 1000;
-	background: #f9f9f9;
-	box-shadow: #000 0 0 150px;
-	border-radius: 1px;
-}
-
-.legal-modal.visible {
-    display: flex;
-}
-
-.legal-text {
-	position: absolute;
-	top: 20px;
-	bottom: 150px;
-	left: 80px;
-	right: 80px;
-	overflow: scroll;
-}
-
-input#legal {
-	margin-right:10px;
-}
-
-div#donate_inst {
-	padding-bottom:0;
-}
-
-.bad-robot {
-	margin: 20px auto 40px;
-	text-align: center;
-}
-
-.button-cancel ,
-.button-proceed {
-	flex: 1 1 200px;
-	height: 40px;
-	font-weight: 400;
-	text-align: right;
-	text-transform: uppercase;
-}
-
-.button-proceed {
-	font-weight: 600;
-}
-
-/* ==========================================
-  Figures
-  ======================================== */
-
-figure.ethereum-network {
-	display: block;
-	width: 100%;
-	height: 306px;
-	background-image: url("../images/ethereum-network-outline@2x.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
-figure.geth-console {
-	display: block;
-	width: 100%;
-	height: 225px;
-	margin: 10px auto 0 auto;
-	background-image: url("../images/console.gif");
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
-.server-figure {
-	min-height: 275px;
-}
-
-figure.ethereum-explain {
-	width: 100%;
-	height: 275px;
-	position: absolute;
-}
-
-figure.ethereum-explain .explain-01 {
-	background-image: url("../images/explain-01.gif");
-}
-
-figure.ethereum-explain .explain-02 {
-	background-image: url("../images/explain-02.png");
-}
-
-figure.ethereum-explain .explain-02b {
-	background-image: url("../images/explain-02b.gif");
-}
-
-figure.ethereum-explain .explain-03 {
-	background-image: url("../images/explain-03.gif");
-}
-
-.wallet-figure-outer {
-	min-height: 310px;
-}
-
-figure.wallet-figure {
-	width: 100%;
-	height: 310px;
-	position: absolute;
-}
-
-figure.wallet-figure .caption {
-	top: 310px;
-	font-style: italic;
-}
-
-figure.wallet-figure .wallet-01 {
-	background-image: url("../images/wallet-01.gif");
-}
-
-figure.wallet-figure .wallet-02 {
-	background-image: url("../images/wallet-02.gif");
-}
-
-figure.wallet-figure .wallet-03 {
-	background-image: url("../images/wallet-03.gif");
-}
-
-figure.wallet {
-	max-width: 736px;
-	height: 500px;
-}
-
-figure.wallet .wallet-start {
-	background-image: url("../images/wallet-start.png");
-}
-
-figure.wallet .wallet-create {
-	background-image: url("../images/wallet-create.png");
-}
-
-figure.wallet .wallet-confirm {
-	background-image: url("../images/wallet-confirm.png");
-}
-
-.command-line {
-	background: #000;
-	color: #ccc;
-	padding-top: 40px;
-}
-
-.command-line h3 {
-	color: #eee;
-}
-
-figure.geth {
-	max-width: 380px;
-	height: 280px;
-}
-
-figure.geth .geth-background {
-	background-image: url("../images/geth.png");
-}
-
-figure.geth .geth-logo {
-	background-image: url("../images/geth-foreground.png");
-}
-
-figure.ether {
-	max-width: 375px;
-	height: 388px;
-}
-
-figure.ether .ether-screen {
-	background-image: url("../images/ether-screen.gif");
-}
-
-figure.ether .ether-pacman {
-	background-image: url("../images/ether-pacman.gif");
-}
-
-figure.ether .ether-coin {
-	background-image: url("../images/ether-coin.png");
-}
-
-figure.ether .ether-arcade-front {
-	background-image: url("../images/ether-arcade-front.png");
-}
-
-figure.ether .ether-arcade-back {
-	background-image: url("../images/ether-arcade-back.png");
-}
-
-figure.greeter {
-	max-width: 317px;
-	height: 274px;
-}
-
-figure.greeter .greeter-human {
-	background-image: url("../images/greeter-human.png");
-}
-
-figure.greeter .greeter-robot {
-	background-image: url("../images/greeter-robot.png");
-}
-
-figure.greeter .greeter-question {
-	background-image: url("../images/greeter-question.png");
-}
-
-figure.greeter .greeter-answer {
-	background-image: url("../images/greeter-answer.png");
-}
-
-figure.coin {
-	height: 342px;
-}
-
-figure.coin .coin-connection {
-	background-image: url("../images/token-connection.png");
-}
-
-figure.coin .coin-users {
-	background-image: url("../images/token-users.png");
-}
-
-figure.coin .coin-coins {
-	background-image: url("../images/token-coins.png");
-}
-
-figure.coin .coin-send {
-	background-image: url("../images/token-send.png");
-}
-
-figure.crowdsale {
-	height: 384px;
-}
-
-figure.crowdsale .crowdsale-logic {
-	background-image: url("../images/crowdsale-logic.png");
-}
-
-figure.crowdsale .crowdsale-robot {
-	background-image: url("../images/crowdsale-robot.png");
-}
-
-figure.crowdsale .crowdsale-money {
-	background-image: url("../images/crowdsale-money.png");
-}
-
-figure.crowdsale .crowdsale-contributions {
-	background-image: url("../images/crowdsale-contributions.png");
-}
-
-figure.crowdsale .crowdsale-crowd {
-	background-image: url("../images/crowdsale-crowd.png");
-}
-
-figure.dao {
-	height: 424px;
-}
-
-figure.dao .dao-robot {
-	background-image: url("../images/dao-robot.png");
-}
-
-figure.dao .dao-money {
-	background-image: url("../images/dao-money.png");
-}
-
-figure.dao .dao-arrows {
-	background-image: url("../images/dao-arrows.png");
-}
-
-figure.dao .dao-ideas {
-	background-image: url("../images/dao-ideas.png");
-}
-
-figure.dao .dao-crowd {
-	background-image: url("../images/dao-crowd.png");
-}
-
-.future-figure {
-	margin-top: -90px;
-}
-
-figure.moon {
-	max-width: 420px;
-	height: 424px;
-}
-
-figure.moon .moon-stars {
-	background-image: url("../images/moon-stars.png");
-}
-
-figure.moon .moon-moon {
-	background-image: url("../images/moon-moon.png");
-}
-
-figure.moon .moon-rocket {
-	background-image: url("../images/moon-rocket.png");
-	top: 150px;
-	bottom: -150px;
-}
-
-figure.swarm {
-	max-width: 300px;
-	height: 300px;
-}
-
-figure.swarm .swarm-01 {
-	background-image: url("../images/swarm-01.png");
-}
-
-figure.swarm .swarm-02 {
-	background-image: url("../images/swarm-02.png");
-}
-
-figure.swarm .swarm-03 {
-	background-image: url("../images/swarm-03.png");
-}
-
-figure.swarm .swarm-04 {
-	background-image: url("../images/swarm-04.png");
-}
-
-figure.ethereum-logo {
-	display: block;
-	background-image: url("../images/ethereum-logo.png");
-	max-width: 275px;
-	height: 287px;
-	margin: 0 auto;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.start-menu {
-	-webkit-perspective: 2000;
-	-moz-perspective: 2000;
-	perspective: 2000;
-}
-
-.start-menu strong {
-	display: block;
-}
-
-.start-menu p {
-	padding: 0;
-	font-size: 80%;
-}
-
-.start-menu p strong {
-	font-size: 125%;
-}
-
-.main-tutorial .row.start-menu {
-	padding-top: 0;
-}
-
-.main-tutorial .note {
-	font-weight: 600;
-}
-
-.main-tutorial code {
-	display: block;
-	white-space: pre;
-	padding: 20px;
-	overflow: auto;
-	width: 100%;
-	background: #FFF;
-}
-
-.inner-header h2 {
-	font-size: 60px;
-	font-weight: 100;
-	margin: 0;
-	padding: 0;
-}
-
-.inner-header.default-header h3 {
-	text-align: center;
-	color: #FFF;
-	margin: 0 0 30px 0;
-}
-
-.inner-header .scrollme {
-	display: flex;
-}
-
-.inner-header .header-title {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding-left: 20px;
-}
-
-.inner-header {
-	background: #102026;
-}
-
-.inner-page.inner-header .row {
-	display: flex;
-}
 
 .foundation-page img[alt*="Portrait"] {
 	width: 160px;
@@ -1308,145 +1038,6 @@ figure.ethereum-logo {
 .foundation-page.even h2,
 .foundation-page.even p {
 	color: #FFF;
-}
-
-.swarm-page.main-tutorial {
-	background-color: #FFF582;
-}
-
-.main-tutorial img[alt*="Logo"] {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin: 20px 40px 40px 0;
-	clear: both;
-}
-
-.row-brand-images .col-md-3 {
-	text-align: center;
-	margin: 10px 0;
-}
-
-.donate-button {
-	display: -webkit-flex;
-	display: flex;
-	-webkit-justify-content: center;
-	align-content: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-
-.donate-button {
-	display: block;
-}
-
-.ethereum-projects h4 {
-	text-align: center;
-	clear: both;
-	padding: 60px 0 10px;
-	color: #354049;
-}
-
-.ethereum-projects ul {
-	padding-left: 0;
-	-webkit-flex-wrap: wrap;
-	-webkit-justify-content: center;
-	display: flex;
-	display: -webkit-flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	width: 100%;
-}
-
-.ether-checker,
-.ether-checker input,
-.main-tutorial.ether-checker h3 {
-	margin: 0 auto;
-	text-align: center;
-	max-width: none;
-}
-
-.main-tutorial.ether-checker h2,
-.main-tutorial.ether-checker h3,
-.ether-checker input {
-	display: block;
-	margin: 10px auto;
-	padding: 10px;
-	min-width: 300px;
-	width: 100%;
-	max-width: 400px;
-	float: none;
-}
-
-.main-tutorial.ether-checker h2 {
-	padding: 0;
-}
-
-#donate_to {
-	display: none;
-}
-
-@media only screen and (max-width: 600px) {
-	figure {
-		height: 300px;
-		margin: 0 auto;
-	}
-
-	.main-tutorial a.button ,
-	.recipe {
-		width: 100%;
-	}
-
-	.breadcrumb.index a {
-		display: none;
-	}
-
-	figure.ethereum-logo {
-		height: 140px;
-	}
-
-	.inner-header {
-		padding: 0;
-	}
-
-	.inner-header.dao-tutorial {
-		background-image: url("../images/dao-bg-mob.jpg");
-	}
-
-	.inner-header.token-tutorial {
-		background-image: url("../images/token-bg-mob.jpg");
-	}
-
-	.inner-header.crowdsale-tutorial {
-		background-image: url("../images/dao-dawn-bg-mob.jpg");
-	}
-}
-
-@media only screen and (max-width: 800px ) {
-	.main-tutorial h3 {
-		padding-top: 0;
-	}
-
-	.main-tutorial h3 .number {
-		top: 0;
-	}
-
-	.row img,
-	.recipe,
-	.main-tutorial a.button ,
-	.ethereum-network,
-	.main-tutorial figure {
-		float: none;
-		margin: 30px auto;
-	}
-
-	.inner-header .scrollme {
-	    display: block;
-	}
-
-	.inner-header h2, .inner-header h3 {
-	    text-align: center;
-	}
 }
 
 /* ==========================================
@@ -1631,6 +1222,281 @@ button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-colla
 }
 
 /* ==========================================
+  Figures
+  ======================================== */
+
+figure.ethereum-network {
+	display: block;
+	width: 100%;
+	height: 306px;
+	background-image: url("../images/ethereum-network-outline@2x.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+figure.geth-console {
+	display: block;
+	width: 100%;
+	height: 225px;
+	margin: 10px auto 0 auto;
+	background-image: url("../images/console.gif");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.server-figure {
+	min-height: 275px;
+}
+
+figure.ethereum-explain {
+	width: 100%;
+	height: 275px;
+	position: absolute;
+}
+
+figure.ethereum-explain .explain-01 {
+	background-image: url("../images/explain-01.gif");
+}
+
+figure.ethereum-explain .explain-02 {
+	background-image: url("../images/explain-02.png");
+}
+
+figure.ethereum-explain .explain-02b {
+	background-image: url("../images/explain-02b.gif");
+}
+
+figure.ethereum-explain .explain-03 {
+	background-image: url("../images/explain-03.gif");
+}
+
+.wallet-figure-outer {
+	min-height: 310px;
+}
+
+figure.wallet-figure {
+	width: 100%;
+	height: 310px;
+	position: absolute;
+}
+
+figure.wallet-figure .caption {
+	top: 310px;
+	font-style: italic;
+}
+
+figure.wallet-figure .wallet-01 {
+	background-image: url("../images/wallet-01.gif");
+}
+
+figure.wallet-figure .wallet-02 {
+	background-image: url("../images/wallet-02.gif");
+}
+
+figure.wallet-figure .wallet-03 {
+	background-image: url("../images/wallet-03.gif");
+}
+
+figure.wallet {
+	max-width: 736px;
+	height: 500px;
+}
+
+figure.wallet .wallet-start {
+	background-image: url("../images/wallet-start.png");
+}
+
+figure.wallet .wallet-create {
+	background-image: url("../images/wallet-create.png");
+}
+
+figure.wallet .wallet-confirm {
+	background-image: url("../images/wallet-confirm.png");
+}
+
+figure.geth {
+	max-width: 380px;
+	height: 280px;
+}
+
+figure.geth .geth-background {
+	background-image: url("../images/geth.png");
+}
+
+figure.geth .geth-logo {
+	background-image: url("../images/geth-foreground.png");
+}
+
+figure.ether {
+	max-width: 375px;
+	height: 388px;
+}
+
+figure.ether .ether-screen {
+	background-image: url("../images/ether-screen.gif");
+}
+
+figure.ether .ether-pacman {
+	background-image: url("../images/ether-pacman.gif");
+}
+
+figure.ether .ether-coin {
+	background-image: url("../images/ether-coin.png");
+}
+
+figure.ether .ether-arcade-front {
+	background-image: url("../images/ether-arcade-front.png");
+}
+
+figure.ether .ether-arcade-back {
+	background-image: url("../images/ether-arcade-back.png");
+}
+
+figure.greeter {
+	max-width: 317px;
+	height: 274px;
+}
+
+figure.greeter .greeter-human {
+	background-image: url("../images/greeter-human.png");
+}
+
+figure.greeter .greeter-robot {
+	background-image: url("../images/greeter-robot.png");
+}
+
+figure.greeter .greeter-question {
+	background-image: url("../images/greeter-question.png");
+}
+
+figure.greeter .greeter-answer {
+	background-image: url("../images/greeter-answer.png");
+}
+
+figure.coin {
+	height: 342px;
+}
+
+figure.coin .coin-connection {
+	background-image: url("../images/token-connection.png");
+}
+
+figure.coin .coin-users {
+	background-image: url("../images/token-users.png");
+}
+
+figure.coin .coin-coins {
+	background-image: url("../images/token-coins.png");
+}
+
+figure.coin .coin-send {
+	background-image: url("../images/token-send.png");
+}
+
+figure.crowdsale {
+	height: 384px;
+}
+
+figure.crowdsale .crowdsale-logic {
+	background-image: url("../images/crowdsale-logic.png");
+}
+
+figure.crowdsale .crowdsale-robot {
+	background-image: url("../images/crowdsale-robot.png");
+}
+
+figure.crowdsale .crowdsale-money {
+	background-image: url("../images/crowdsale-money.png");
+}
+
+figure.crowdsale .crowdsale-contributions {
+	background-image: url("../images/crowdsale-contributions.png");
+}
+
+figure.crowdsale .crowdsale-crowd {
+	background-image: url("../images/crowdsale-crowd.png");
+}
+
+figure.dao {
+	height: 424px;
+}
+
+figure.dao .dao-robot {
+	background-image: url("../images/dao-robot.png");
+}
+
+figure.dao .dao-money {
+	background-image: url("../images/dao-money.png");
+}
+
+figure.dao .dao-arrows {
+	background-image: url("../images/dao-arrows.png");
+}
+
+figure.dao .dao-ideas {
+	background-image: url("../images/dao-ideas.png");
+}
+
+figure.dao .dao-crowd {
+	background-image: url("../images/dao-crowd.png");
+}
+
+.future-figure {
+	margin-top: -90px;
+}
+
+figure.moon {
+	max-width: 420px;
+	height: 424px;
+}
+
+figure.moon .moon-stars {
+	background-image: url("../images/moon-stars.png");
+}
+
+figure.moon .moon-moon {
+	background-image: url("../images/moon-moon.png");
+}
+
+figure.moon .moon-rocket {
+	background-image: url("../images/moon-rocket.png");
+	top: 150px;
+	bottom: -150px;
+}
+
+figure.swarm {
+	max-width: 300px;
+	height: 300px;
+}
+
+figure.swarm .swarm-01 {
+	background-image: url("../images/swarm-01.png");
+}
+
+figure.swarm .swarm-02 {
+	background-image: url("../images/swarm-02.png");
+}
+
+figure.swarm .swarm-03 {
+	background-image: url("../images/swarm-03.png");
+}
+
+figure.swarm .swarm-04 {
+	background-image: url("../images/swarm-04.png");
+}
+
+figure.ethereum-logo {
+	display: block;
+	background-image: url("../images/ethereum-logo.png");
+	max-width: 275px;
+	height: 287px;
+	margin: 0 auto;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* ==========================================
   cookie-policy.pug 
   ======================================== */
 
@@ -1653,4 +1519,172 @@ div.cookie_table table td {
 
 p.cookie_pol {
 	padding: 20px 0 0 0;
+}
+
+/* ==========================================
+  Legal
+  ======================================== */
+
+.terms,
+.cannot-continue  {
+	color: #E1EFFF;
+	text-align: center;
+	font-weight: 600;
+	display: block;
+	padding-top: 60px;
+}
+
+.warning a.back {
+	color: #E1EFFF;
+	font-size: 80%;
+	padding-top: 15px;
+}
+
+.inner-header a.back {
+	color: #E1EFFF;
+	float: left;
+	position: absolute;
+	top: 10px;
+	left: 60px;
+	opacity: 0.5;
+}
+
+.inner-header a.back:hover {
+	opacity: 1;
+}
+
+.warning a.back,
+.terms:hover {
+	color: #FFF;
+}
+
+.cannot-continue {
+	color: #eb453e;
+}
+
+.legal-modal {
+	display: none;
+	align-items: flex-end;
+	flex-wrap: wrap;
+	align-content: flex-end;
+	position: fixed;
+	top: 10%;
+	left: 10%;
+	bottom: 10%;
+	right: 10%;
+	padding: 32px 64px;
+	z-index: 1000;
+	background: #f9f9f9;
+	box-shadow: #000 0 0 150px;
+	border-radius: 1px;
+}
+
+.legal-modal.visible {
+    display: flex;
+}
+
+.legal-text {
+	position: absolute;
+	top: 20px;
+	bottom: 150px;
+	left: 80px;
+	right: 80px;
+	overflow: scroll;
+}
+
+input#legal {
+	margin-right: 10px;
+}
+
+div#donate_inst {
+	padding-bottom: 0;
+}
+
+.bad-robot {
+	margin: 20px auto 40px;
+	text-align: center;
+}
+
+.button-cancel ,
+.button-proceed {
+	flex: 1 1 200px;
+	height: 40px;
+	font-weight: 400;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+.button-proceed {
+	font-weight: 600;
+}
+
+/* ==========================================
+  ether.pug
+  ======================================== */
+
+.ether-tutorial#tutorial-start {
+	padding: 100px;
+}
+
+.ether-checker,
+.ether-checker input,
+.main-tutorial.ether-checker h3 {
+	margin: 0 auto;
+	text-align: center;
+	max-width: none;
+}
+
+.main-tutorial.ether-checker h2,
+.main-tutorial.ether-checker h3,
+.ether-checker input {
+	display: block;
+	margin: 10px auto;
+	padding: 10px;
+	min-width: 300px;
+	width: 100%;
+	max-width: 400px;
+	float: none;
+}
+
+.main-tutorial.ether-checker h2 {
+	padding: 0;
+}
+
+/* ==========================================
+  brand.pug
+  ======================================== */
+
+.row-brand-images .col-md-3 {
+	text-align: center;
+	margin: 10px 0;
+}
+
+/* ==========================================
+  swarm.pug
+  ======================================== */
+
+.swarm-page.main-tutorial {
+	background-color: #FFF582;
+}
+
+/* ==========================================
+  miscellaneous
+  ======================================== */
+
+.ethereum-projects h4 {
+	text-align: center;
+	clear: both;
+	padding: 60px 0 10px;
+	color: #354049;
+}
+
+.ethereum-projects ul {
+	padding-left: 0;
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: center;
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
 }
