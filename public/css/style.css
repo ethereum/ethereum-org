@@ -282,6 +282,10 @@ div.scrollme.row.introduction {
 	padding: 80px 0;
 }
 
+.row-no-padding {
+	padding: 0;
+}
+
 .inner-tutorial h1 {
 	color: #354049;
 	text-align: center;
@@ -1349,10 +1353,9 @@ figure.ethereum-logo {
 	clear: both;
 }
 
-.brand img {
-	display: block;
-	height: 150px;
-	margin: 30px auto;
+.row-brand-images .col-md-3 {
+	text-align: center;
+	margin: 10px 0;
 }
 
 .donate-button {
@@ -1475,6 +1478,14 @@ figure.ethereum-logo {
 	.inner-header h2, .inner-header h3 {
 	    text-align: center;
 	}
+}
+
+/* ==========================================
+  assets.pug
+  ======================================== */
+
+.page-assets img {
+	width: 100%;
 }
 
 /* ==========================================
