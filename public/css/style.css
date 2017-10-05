@@ -265,7 +265,7 @@ div.scrollme.row.introduction {
 }
 
 .main-content.wallet {
-	padding-top: 0;
+	padding-bottom: 80px;
 }
 
 .main-tutorial {
@@ -326,11 +326,11 @@ div.scrollme.row.introduction {
 }
 
 .inner-header.token-tutorial h2 {
-	font-weight: 400;
-	font-size: 45px;
-	padding-bottom: 40px;
-	text-align: center;
 	width: 100%;
+	padding: 40px 0 80px 0;
+	font-size: 45px;
+	font-weight: 400;
+	text-align: center;
 }
 
 .inner-tutorial h1 + h2 {
