@@ -586,7 +586,13 @@ ul#table-of-contents ul {
 
 .footer {
 	background: #102026;
-	padding: 60px 0 20px 0;
+	padding: 40px 0 0 0;
+}
+
+@media only screen and (max-width: 768px) { /* @screen-sm-min breakpoint */
+	.footer {
+		padding: 20px 0;
+	}
 }
 
 .footer p {
@@ -661,26 +667,28 @@ footer .caption {
 	background-image: url("../images/icons/icon-github.png");
 }
 
-.community .canary {
-	margin-top: 20px;
+.footer .canary {
 	background-image: url("../images/icons/canary.svg");
 	background-size: 30px 30px;
-	background-position: left top;
+	background-position: center center;
 	background-repeat: no-repeat;
-	min-height: 50px;
-	padding-left: 50px;
-	margin-left: 16px;
+	margin: 0 auto;
+	text-align: center;
 }
 
-.community .canary p {
+.footer .canary p {
 	opacity: 0;
 	font-size: 80%;
 	transition: opacity 2s ease-out;
 }
 
-.community .canary:hover p {
-	opacity: 1;
+.footer .canary:hover p {
+	opacity: 0.7;
 	transition: opacity 0.25s ease-out;
+}
+
+.news {
+	margin: 20px 0 40px 0;
 }
 
 .copyright {
