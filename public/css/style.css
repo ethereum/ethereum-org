@@ -925,7 +925,7 @@ a.button.ethereum-wallet.win64 {
 	right: 10%;
 	padding: 32px 64px;
 	z-index: 1000;
-	background: #fff;
+	background: #f9f9f9;
 	box-shadow: #000 0 0 150px;
 	border-radius: 1px;
 }
