@@ -621,55 +621,25 @@ footer .caption {
 }
 
 .community ul li a {
-	background-size: 40px 40px;
-	padding: 10px 40px;
 	display: block;
-	background-position: left center;
-	background-repeat: no-repeat;
+	padding: 5px 0;
 }
 
-.community ul li a.blog {
-	background-image: url("../images/icons/icon-blog.png");
+.community ul li a .fa {
+	font-size: 20px;
+	color: #f5f5f5;
+	width: 30px;
+	text-align: center;
+	vertical-align: middle;
 }
 
-.community ul li a.forum {
-	background-image: url("../images/icons/icon-forum.png");
+.community ul li a:hover,
+.community ul li a:focus {
+	text-decoration: none;
 }
 
-.community ul li a.reddit {
-	background-image: url("../images/icons/icon-reddit.png");
-}
-
-.community ul li a.youtube {
-	background-image: url("../images/icons/icon-youtube.png");
-}
-
-.community ul li a.twitter {
-	background-image: url("../images/icons/icon-twitter.png");
-}
-
-.community ul li a.gitter {
-	background-image: url("../images/icons/icon-gitter.png");
-}
-
-.community ul li a.facebook {
-	background-image: url("../images/icons/icon-facebook.png");
-}
-
-.community ul li a.meetups {
-	background-image: url("../images/icons/icon-meetup.png");
-}
-
-.community ul li a.email {
-	background-image: url("../images/icons/icon-email.png");
-}
-
-.community ul li a.stackexchange {
-	background-image: url("../images/icons/icon-stackexchange.png");
-}
-
-.community ul li a.github {
-	background-image: url("../images/icons/icon-github.png");
+.community ul li a:hover .fa {
+	color: #fff;
 }
 
 .footer .canary {
@@ -1632,51 +1602,6 @@ figure.ethereum-logo {
 	figure.moon .moon-rocket {
 		background-image: url("../images/moon-rocket@2x.png");
 	}
-
-	.community ul li a.blog {
-		background-image: url("../images/icons/icon-blog@2x.png");
-	}
-
-	.community ul li a.forum {
-		background-image: url("../images/icons/icon-forum@2x.png");
-	}
-
-	.community ul li a.reddit {
-		background-image: url("../images/icons/icon-reddit@2x.png");
-	}
-
-	.community ul li a.youtube {
-		background-image: url("../images/icons/icon-youtube@2x.png");
-	}
-
-	.community ul li a.twitter {
-		background-image: url("../images/icons/icon-twitter@2x.png");
-	}
-
-	.community ul li a.gitter {
-		background-image: url("../images/icons/icon-gitter@2x.png");
-	}
-
-	.community ul li a.facebook {
-		background-image: url("../images/icons/icon-facebook@2x.png");
-	}
-
-	.community ul li a.meetups {
-		background-image: url("../images/icons/icon-meetup@2x.png");
-	}
-
-	.community ul li a.email {
-		background-image: url("../images/icons/icon-email@2x.png");
-	}
-
-	.community ul li a.stackexchange {
-		background-image: url("../images/icons/icon-stackexchange@2x.png");
-	}
-
-	.community ul li a.github {
-		background-image: url("../images/icons/icon-github@2x.png");
-	}
-}
 
 /* ==========================================
   gitter
