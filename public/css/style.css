@@ -161,75 +161,12 @@ div.scrollme.row.introduction {
 }
 
 .introduction h1 {
-	position: absolute;
-	top: 0px;
-	left: 50%;
-	width: 250px;
-	height: 0;
-	padding-top: 250px;
-	margin-left: -125px;
-	background: url('../images/homestead-title.png') top center no-repeat;
+  color: transparent;
+	height: 250px;
+	margin: 0 auto;
+	background: url('../images/home-title.png') top center no-repeat;
 	background-size: contain;
 	overflow: hidden;
-}
-
-@media only screen and (min-width: 900px) {
-	.introduction h1 {
-		background-image: url('../images/homestead-title@2x.png');
-	}
-}
-
-@media only screen and (min-width: 800px) {
-	.introduction h1 {
-		width: 350px;
-		padding-top: 350px;
-		top: -10px;
-		margin-left: -175px;
-		background-image: url('../images/homestead-title@3x.png');
-	}
-}
-
-@media only screen and (min-width: 1000px) {
-	.introduction h1 {
-		width: 400px;
-		padding-top: 400px;
-		top: -12px;
-		margin-left: -200px;
-		background-image: url('../images/homestead-title@3x.png');
-	}
-}
-
-@media only screen and (min-width: 1500px) {
-	.introduction h1 {
-		width: 450px;
-		padding-top: 450px;
-		top: -15px;
-		margin-left: -225px;
-	}
-}
-
-@media (-webkit-min-device-pixel-ratio: 2) {
-	.introduction h1 {
-		background-image: url('../images/homestead-title@2x.png');
-	}
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 800px) {
-	.introduction h1 {
-		background-image: url('../images/homestead-title@3x.png');
-	}
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 654px) {
-	header {
-		background-image: url('../images/homestead-dawn-background@2x.jpg');
-	}
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1) and (min-width: 1300px) {
-	header {
-		background-image: url('../images/homestead-dawn-background@2x.jpg');
-	}
 }
 
 .intro:after {
