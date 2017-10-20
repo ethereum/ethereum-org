@@ -7,10 +7,7 @@ html {
 
 body {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
-<<<<<<< HEAD
-=======
 	background: #102026;
->>>>>>> master
 }
 
 hr {
@@ -25,10 +22,6 @@ code {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
-<<<<<<< HEAD
-	letter-spacing: -1px;
-=======
->>>>>>> master
 	margin: 10px 0;
 	font-weight: 400;
 	line-height: unset;
@@ -122,15 +115,9 @@ input.button:hover {
 	color: #FFF;
 }
 
-<<<<<<< HEAD
-.container {
-	max-width: 970px;
-}
-=======
 /* ==========================================
    index.pug
   ======================================== */
->>>>>>> master
 
 header {
 	padding: 20px 0px;
@@ -205,28 +192,8 @@ div.scrollme.row.introduction {
 
 .caption-server-figure p {
 	font-size: 14px;
-<<<<<<< HEAD
-	font-weight: 900;
-	text-transform: uppercase;
-	letter-spacing: 0px;
-	color: #b9a360;
-	margin-bottom: 0px;
-}
-
-#block-content span {
-	font-size: 18px;
-	color: #C3CCDB;
-	font-smooth: auto;
-	-webkit-font-smoothing: subpixel-antialiased;
-	-moz-font-smoothing: subpixel-antialiased;
-}
-
-body {
-	background: #102026;
-=======
 	text-align: left;
 	font-style: italic;
->>>>>>> master
 }
 
 .main-content.build-apps h2,
@@ -273,20 +240,10 @@ body {
 }
 
 .main-tutorial h2 {
-<<<<<<< HEAD
-	font-size: 40px;
-	font-weight: 400;
-=======
->>>>>>> master
 	color: #354049;
 }
 
 .main-tutorial h3 {
-<<<<<<< HEAD
-	font-size: 30px;
-	font-weight: 400;
-=======
->>>>>>> master
 	color: #354049;
 }
 
@@ -306,12 +263,8 @@ body {
 }
 
 .inner-header.token-tutorial h2 {
-<<<<<<< HEAD
-	font-weight: 400;
-=======
 	width: 100%;
 	padding: 40px 0 80px 0;
->>>>>>> master
 	font-size: 45px;
 	font-weight: 400;
 	text-align: center;
@@ -342,53 +295,9 @@ body {
 	left: 0;
 }
 
-<<<<<<< HEAD
-.recipe {
-	background: #FFF url("../images/recipe-bg.png");
-	background-repeat: repeat-y;
-	background-position: 20px;
-	display: block;
-	max-width: 500px;
-	padding: 20px 40px;
-	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
-	text-align: left;
-}
-
-.recipe h4 {
-	text-transform: uppercase;
-	color: #354049;
-	font-weight: 600;
-	text-align: center;
-	font-size: 20px;
-}
-
-.recipe ul {
-	list-style-type: none;
-	padding-left: 0;
-}
-
-.recipe li {
-	padding-left: 0;
-}
-
-.recipe ul ul {
-	padding-left: 30px;
-	font-weight: 400;
-}
-
-.recipe input[type='checkbox'] {
-	margin-right: 10px;
-}
-
-.inner-page h4  ,
-.inner-tutorial h4  {
-	color: #354049;
-	padding: 20px 20px 0;
-=======
 .inner-page h4,
 .inner-tutorial h4 {
 	color: #354049;
->>>>>>> master
 	text-transform: uppercase;
 	font-weight: 900;
 }
@@ -458,34 +367,8 @@ body {
 	background-position: center;
 }
 
-<<<<<<< HEAD
-input.button,
-button,
-a.button {
-	display: block;
-	position: relative;
-	max-width: 400px;
-	padding: 10px;
-	clear: right;
-	margin: 60px auto 30px;
-	background: #4A90E2;
-	color: #F5F5F5;
-	font-weight: 600;
-	border-radius: 3px;
-	border: none;
-	text-align: center;
-	text-decoration: none;
-	font-weight: 600;
-	-webkit-appearance: none;
-	border-bottom: solid 3px #2F6DB5;
-	top: -3px;
-	box-shadow: rgba(0,0,0,0.1) 0 6px 1px;
-	transition: box-shadow 0.6s, border-bottom 0.6s, top 0.6s, margin-bottom 0.6s;
-	transition-timing-function: ease-out;
-=======
 .main-menu {
 	min-height: 0;
->>>>>>> master
 }
 
 .command-line {
@@ -721,14 +604,9 @@ a.donation-button {
 	font-weight: bold;
 }
 
-<<<<<<< HEAD
-.breadcrumb a.index {
-}
-=======
 /* ==========================================
    Table of Contents
   ======================================== */
->>>>>>> master
 
 #table-of-contents {
 	list-style-type: none;
@@ -845,29 +723,12 @@ footer .caption {
 	padding: 5px 0;
 }
 
-<<<<<<< HEAD
-.community ul li a.blog {
-	background-image: url("../images/icons/icon-blog.png");
-}
-.community ul li a.forum {
-	background-image: url("../images/icons/icon-forum.png");
-}
-.community ul li a.reddit {
-	background-image: url("../images/icons/icon-reddit.png");
-}
-.community ul li a.youtube {
-	background-image: url("../images/icons/icon-youtube.png");
-}
-.community ul li a.twitter {
-	background-image: url("../images/icons/icon-twitter.png");
-=======
 .community ul li a .fa {
 	font-size: 20px;
 	color: #f5f5f5;
 	width: 30px;
 	text-align: center;
 	vertical-align: middle;
->>>>>>> master
 }
 
 .community ul li a:hover,
@@ -891,15 +752,8 @@ footer .caption {
 .donate-button {
 	display: block;
 }
-.community ul li a.github {
-	background-image: url("../images/icons/icon-github.png");
-}
 
-<<<<<<< HEAD
-.community .canary {
-=======
 .footer .canary {
->>>>>>> master
 	background-image: url("../images/icons/canary.svg");
 	background-size: 30px 30px;
 	background-position: center center;
@@ -908,33 +762,12 @@ footer .caption {
 	text-align: center;
 }
 
-<<<<<<< HEAD
-.community .canary p {
-=======
 .footer .canary p {
->>>>>>> master
 	opacity: 0;
 	font-size: 80%;
 	transition: opacity 2s ease-out;
 }
 
-<<<<<<< HEAD
-.community .canary:hover p {
-	opacity: 1;
-	transition: opacity 0.25s ease-out;
-}
-
-#news {
-	margin-bottom: 45px;
-}
-
-.press ul {
-	list-style: none;
-	padding-left: 140px;
-	position: relative;
-	max-height: 320px;
-	overflow: auto;
-=======
 .footer .canary:hover p {
 	opacity: 0.7;
 	transition: opacity 0.25s ease-out;
@@ -945,7 +778,6 @@ footer .caption {
 	padding: 15px 0;
 	border-top: 1px solid rgba(225, 232, 237, 0.15);
 	border-bottom: 1px solid rgba(225, 232, 237, 0.15);
->>>>>>> master
 }
 
 .row-footer-primary .col-md-4 {
@@ -1157,21 +989,10 @@ a.button.ethereum-wallet.win64 {
   @2x assets
   ======================================== */
 
-<<<<<<< HEAD
-.button-cancel ,
-.button-proceed {
-	flex: 1 1 200px;
-	height: 40px;
-	font-weight: 400;
-	text-align: right;
-	text-transform: uppercase;
-}
-=======
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.breadcrumb {
 		background-image: url("../images/diamond-icon@2x.png");
 	}
->>>>>>> master
 
 	.recipe {
 		background-image: url("../images/recipe-bg@2x.png");
@@ -1650,24 +1471,6 @@ p.cookie_pol {
 	padding-top: 60px;
 }
 
-<<<<<<< HEAD
-.main-tutorial code {
-	display: block;
-	white-space: pre;
-	padding: 20px;
-	overflow: auto;
-	width: 10000px;
-	max-height: 800px;
-	background: #FFF;
-}
-
-pre {
-	background: transparent;
-	overflow: auto;
-	padding:0;
-	margin: 20px 0;
-	position: relative;
-=======
 .warning a.back {
 	color: #E1EFFF;
 	font-size: 80%;
@@ -1685,7 +1488,6 @@ pre {
 
 .inner-header a.back:hover {
 	opacity: 1;
->>>>>>> master
 }
 
 .warning a.back,
@@ -1718,17 +1520,6 @@ pre {
     display: flex;
 }
 
-<<<<<<< HEAD
-.inner-header h3 {
-	font-size: 40px;
-	font-weight: 400;
-	margin: 0;
-	padding: 15px 20px 0;
-	max-width: none;
-	text-align: left;
-	text-transform: uppercase;
-	font-size: 200%;
-=======
 .legal-text {
 	position: absolute;
 	top: 20px;
@@ -1736,7 +1527,6 @@ pre {
 	left: 80px;
 	right: 80px;
 	overflow: scroll;
->>>>>>> master
 }
 
 input#legal {
@@ -1801,61 +1591,9 @@ div#donate_inst {
   brand.pug
   ======================================== */
 
-<<<<<<< HEAD
-	figure.dao .dao-crowd {
-		background-image: url("../images/dao-crowd@2x.png");
-	}
-
-	figure.moon .moon-stars {
-		background-image: url("../images/moon-stars@2x.png");
-	}
-
-	figure.moon .moon-moon {
-		background-image: url("../images/moon-moon@2x.png");
-	}
-
-	figure.moon .moon-rocket {
-		background-image: url("../images/moon-rocket@2x.png");
-	}
-
-	.community ul li a.blog {
-		background-image: url("../images/icons/icon-blog@2x.png");
-	}
-	.community ul li a.forum {
-		background-image: url("../images/icons/icon-forum@2x.png");
-	}
-	.community ul li a.reddit {
-		background-image: url("../images/icons/icon-reddit@2x.png");
-	}
-	.community ul li a.youtube {
-		background-image: url("../images/icons/icon-youtube@2x.png");
-	}
-	.community ul li a.twitter {
-		background-image: url("../images/icons/icon-twitter@2x.png");
-	}
-	.community ul li a.gitter {
-		background-image: url("../images/icons/icon-gitter@2x.png");
-	}
-	.community ul li a.facebook {
-		background-image: url("../images/icons/icon-facebook@2x.png");
-	}
-	.community ul li a.meetups {
-		background-image: url("../images/icons/icon-meetup@2x.png");
-	}
-	.community ul li a.email {
-		background-image: url("../images/icons/icon-email@2x.png");
-	}
-	.community ul li a.stackexchange {
-		background-image: url("../images/icons/icon-stackexchange@2x.png");
-	}
-	.community ul li a.github {
-		background-image: url("../images/icons/icon-github@2x.png");
-	}
-=======
 .row-brand-images .col-md-3 {
 	text-align: center;
 	margin: 10px 0;
->>>>>>> master
 }
 
 /* ==========================================

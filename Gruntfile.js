@@ -17,11 +17,7 @@ var vendor = [
 
 var styles = [
 	'bootstrap.min.css',
-<<<<<<< HEAD
-	'font-awesome.css',
-=======
 	'font-awesome.min.css',
->>>>>>> master
 	'style.css'
 ];
 

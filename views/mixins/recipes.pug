@@ -2,23 +2,12 @@ include figures.pug
 
 mixin gethRecipe(header)
   if header
-<<<<<<< HEAD
-    div.col-md-12.tutorial
-      h2 #{header}
-
-  div.col-md-6.tutorial
-
-    h3 Install and run the 
-      strong Command Line Interface
-
-=======
     h2 #{header}
 
   .row
     .col-md-6
       h3 Install and run the 
         strong Command Line Interface
->>>>>>> master
       p We've built 
         a(href='https://github.com/ethereum/mist/releases/latest') easy to use graphical tools
         | , but if you are a developer you probably want to install the command line tools.
@@ -43,14 +32,6 @@ mixin gethRecipe(header)
 
 mixin etherRecipe(header)
   if header
-<<<<<<< HEAD
-    div.col-md-12.tutorial
-      h2 #{header}
-
-  div.col-md-6.tutorial
-
-    h3 Learn about the ether, the crypto-fuel of the Ethereum network
-=======
     h2 #{header}
 
   .row
@@ -62,35 +43,12 @@ mixin etherRecipe(header)
       p Alternatively, if you participated in the presale to fund Ethereum's development, or won a reward from the Olympic or 
         a(href="https://bounty.ethdev.com/") Bug Bounty 
         | programs, you will have a wallet file (.json) that can be imported and give you access to your ether.
->>>>>>> master
     
       p You can also get some from a friend or purchase it online.
 
     .col-md-6
       +etherFigure
 
-<<<<<<< HEAD
-  div.clearfix
-  div.col-md-6.tutorial
-    a(href="/ether").button Learn about ether 
-  
-  div.col-md-6.tutorial
-    div.recipe
-      h4 You will:
-      ul
-        li Learn what ether is and how many exist
-        li Import your presale wallet
-        li Learn how to send transactions using the command line
-
-
-mixin greeterRecipe(header)
-  if header
-    div.col-md-12.tutorial
-      h2 #{header}
-
-  div.col-md-6.tutorial
-    h3 Create the Greeter, your first live contract
-=======
   .row
     .col-md-6
       a(href="/ether").button Learn about ether 
@@ -114,35 +72,10 @@ mixin greeterRecipe(header)
       p This tutorial will teach you how to build a contract using the command line
 
       p The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start. 
->>>>>>> master
 
     .col-md-6
       +greeterFigure
 
-<<<<<<< HEAD
-  div.clearfix
-  div.col-md-6.tutorial
-    a(href="/greeter").button Summon the Greeter 
-  
-  div.col-md-6.tutorial
-    div.recipe
-      h4 You can build:
-      ul
-        li Your first smart contract
-        li A professional jokster that is paid to tell jokes
-        li A long living inteligent bot that answer questions
-
-
-mixin tokenRecipe(header)
-  if header
-    div.col-md-12.tutorial
-      h2 #{header}
-
-  div.col-md-6.tutorial
-    h3 Design and issue your own cryptocurrency
-
-    p Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API, so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. 
-=======
   .row
     .col-md-6
       a(href="/greeter").button Summon the Greeter 
@@ -164,26 +97,12 @@ mixin tokenRecipe(header)
       h3 Design and issue your own cryptocurrency
 
       p Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. 
->>>>>>> master
 
       p The total amount of tokens in circulation can be set to a simple fixed amount or fluctuate based on any programmed ruleset.
 
     .col-md-6
       +tokenFigure
 
-<<<<<<< HEAD
-  div.clearfix
-  div.col-md-6.tutorial
-    a(href="/token").button Issue your token 
-  
-  div.col-md-6.tutorial
-    div.recipe
-      h4 You can build:
-      ul
-        li A tradeable token with a fixed supply
-        li A central bank that can issue money
-        li A puzzle-based cryptocurrency
-=======
   .row
     .col-md-6
       a(href="/token").button Issue your token 
@@ -195,23 +114,10 @@ mixin tokenRecipe(header)
           li A tradeable token with a fixed supply
           li A central bank that can issue money
           li A puzzle-based cryptocurrency
->>>>>>> master
 
 
 mixin crowdsaleRecipe(header)
   if header
-<<<<<<< HEAD
-    div.col-md-12.tutorial
-      h2 #{header}
-
-  div.col-md-6.tutorial
-    +crowdsaleFigure
-  
-  div.col-md-6.tutorial    
-    h3 Kickstart a project with a trustless crowdsale
-
-    p Do you already have ideas that you want to develop on Ethereum? Maybe you need help and some funds to bring them to life, but who would lend money to someone they don’t trust?
-=======
     h2 #{header}
 
   .row
@@ -220,7 +126,6 @@ mixin crowdsaleRecipe(header)
     
     .col-md-6    
       h3 Kickstart a project with a trustless crowdsale
->>>>>>> master
 
       p Do you already have ideas that you want to develop on Ethereum? Maybe you need help and some funds to bring them to life, but who would lend money to someone they don’t trust?
 
@@ -242,13 +147,6 @@ mixin crowdsaleRecipe(header)
   
 mixin daoRecipe(header)
   if header
-<<<<<<< HEAD
-    div.col-md-12.tutorial
-      h2 #{header}
-
-  div.col-md-6.tutorial
-    +daoFigure
-=======
     h2 #{header}
 
   .row
@@ -257,7 +155,6 @@ mixin daoRecipe(header)
 
     .col-md-6
       h3 Create a democratic autonomous organization
->>>>>>> master
 
       p Now that you have developed your idea and secured funds, what’s next? You have to hire managers, find a trustworthy CFO to handle the accounts, run board meetings and do a bunch of paperwork. 
 
@@ -280,15 +177,7 @@ mixin daoRecipe(header)
 
 mixin futureRecipe(header)
   if header
-<<<<<<< HEAD
-    div.col-md-12.tutorial
-      h3 #{header}
-
-  div.col-md-12.tutorial
-    h2 Build a new kind of decentralized application
-=======
     h2 #{header}
->>>>>>> master
 
   .row
     .col-md-6
@@ -296,20 +185,6 @@ mixin futureRecipe(header)
 
       p Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper-proof network?
 
-<<<<<<< HEAD
-    p Check out the 
-      a(href="http://dapps.ethercasts.com/") many great projects
-      | * already being built on Ethereum. And since you'll be among the first developers in the world that are able to program decentralized applications, some of them might need your help. 
-    
-    p  
-      em *The above list is maintained by an independent party and the Foundation does not endorse its content or any particular project on that list
-
-  div.col-md-6.tutorial
-    +futureFigure
-
-mixin toc()
-  ul#tableOfContents.toc.animateme(data-when="enter", data-from="0.4", data-to="0.2", data-translatex="-100", data-opacity="0", data-easing="linear")
-=======
       p Check out the 
         a(href="https://www.stateofthedapps.com", target="_blank") many great projects
         | * already being built on Ethereum. And since you'll be among the first developers in the world that are able to program decentralized applications, some of them might need your help. 
@@ -322,7 +197,6 @@ mixin toc()
 
 mixin toc()
   ul#table-of-contents.toc.animateme(data-when="enter", data-from="0.4", data-to="0.2", data-translatex="-100", data-opacity="0", data-easing="linear")
->>>>>>> master
 
 mixin inner-header(title)
   .inner-header.default-header.scrollme(class!=attributes.class)
