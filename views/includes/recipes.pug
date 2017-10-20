@@ -1,27 +1,33 @@
 include ../mixins/recipes.pug
 
-div.main-tutorial.inner-header.token-tutorial#crypto-currency
-  div.container  
-    div.row.solidity.scrollme
-      h2.animateme(data-when="span", data-from="1", data-to="0", data-opacity="0", data-translatey="400") Learn 
-          strong Solidity
-          | , a new language for smart contracts:
-    div.row
-      +tokenRecipe
+.main-tutorial.inner-header.token-tutorial
+  .container  
+    .row
+      .col-md-12
+        .row
+          .col-md-12.scrollme
+            h2.animateme(data-when="span", data-from="0.5", data-to="0", data-opacity="0", data-translatey="200") Learn 
+              strong Solidity
+              | , a new language for smart contracts
+              
+        +tokenRecipe
 
-div.main-tutorial.even.inner-header.crowdsale-tutorial#crowdsale
-  div.container   
-    div.row
-      +crowdsaleRecipe
+.main-tutorial.even.inner-header.crowdsale-tutorial#crowdsale
+  .container   
+    .row
+      .col-md-12
+        +crowdsaleRecipe
 
-div.main-tutorial.dao-tutorial.inner-header
-  div.container   
-    div.row
-      +daoRecipe
+.main-tutorial.dao-tutorial.inner-header
+  .container   
+    .row
+      .col-md-12
+        +daoRecipe
 
-div.main-tutorial.even.ethereum-projects 
-  div.container   
-    div.row
-      +futureRecipe
+.main-tutorial.inner-header.even.ethereum-projects 
+  .container   
+    .row
+      .col-md-12
+        +futureRecipe
 
 
