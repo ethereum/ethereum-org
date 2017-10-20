@@ -47,7 +47,7 @@ If this does not work, please do not hesitate in contacting us on our [forums](h
 
 If you don't feel comfortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our [online balance checker](#balance).
 
-Read [more about accounts](http://guide.ethereum.org/managing_accounts.html).
+Read [more about accounts](http://ethdocs.org/en/latest/account-management.html).
 
 ### How do I mine ether?
 
@@ -111,7 +111,7 @@ There are currently two options for GPU mining in Geth available. You can read a
 
 #### More information on Mining
 
-* Frontier's proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the [Frontier gitBook, mining chapter](http://guide.ethereum.org/mining.html). Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).
+* Frontier's proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the [Frontier gitBook, mining chapter](https://ethereum.gitbooks.io/frontier-guide/content/mining.html). Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).
 
 * The Ethash proof of work algorithm is memory hard, you'll need at least 1+GB of RAM on each GPU. I say 1+ because the DAG, which is the set of data that's being pushed in and out of the GPU to make parallelisation costly, will start at 1GB and will continue growing indefinitely. 2GB should be a good approximation of what's needed to continue mining throughout the year.
 

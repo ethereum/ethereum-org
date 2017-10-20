@@ -7,7 +7,7 @@ SECURITY WARNINGS
 
 * **You are responsible for your own actions.** If you mess something up or break any laws while using this software, it's your fault, and your fault only.
 
-* **You are responsible for your own karma.** Don't be a jerk and respect the rights of others.What goes around comes around.
+* **You are responsible for your own karma.** Don't be a jerk and respect the rights of others. What goes around comes around.
 
 
 LEGAL WARNING
