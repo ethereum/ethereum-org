@@ -4,23 +4,23 @@ block vars
   - var title='Ethereum Project'
 
 block content
-  div.main-tutorial.scrollme.intro
-    div.scrollme.row.introduction.animateme(data-when="span", data-from="0", data-to="1", data-opacity="0.2", data-translatey="300", data-easing="linear")
-      h1.animateme(data-when="span", data-from="0", data-to="1", data-scale="0.75", data-translatey="100", data-easing="linear") Ethereum Homestead: Build unstoppable applications
+  .main-tutorial.scrollme.intro
+    .scrollme.row.introduction.animateme(data-when="span", data-from="0", data-to="1", data-opacity="0.2", data-translatey="300", data-easing="linear")
+      h1.animateme(data-when="span", data-from="0", data-to="1", data-scale="0.75", data-translatey="100", data-easing="linear") Ethereum: Build unstoppable applications
 
-  div.legal-modal
-    div.legal-text
-      div.bad-robot
+  .legal-modal
+    .legal-text
+      .bad-robot
         img(src='images/bad-robot@2x.png', width='113')
         h3 Please agree to this before downloading
       include:markdown-it content/agreement.md
     a(href='#cancel').button-cancel Mmmm nevermind...
     a(href='#proceed').button-proceed Sure I understand and agree
 
-  div.main-content
-    div.container
-      div.row
-        div.col-md-6.whatis
+  .main-content.build-apps
+    .container
+      .row
+        .col-md-6
           h2 Build unstoppable applications
 
           p Ethereum is a  
@@ -29,33 +29,39 @@ block content
 
           p These apps run on a custom built  
             strong blockchain, an enormously powerful shared global infrastructure that can move value around and represent the ownership of property. 
-            | This enables developers to create markets, store registries of debts or promises, move funds in accordance with instructions given long in the past (like a will or a futures contract) and many other things that have not been invented yet, all without a middle man or counterparty risk.
+          
+          p This enables developers to create markets, store registries of debts or promises, move funds in accordance with instructions given long in the past (like a will or a futures contract) and many other things that have not been invented yet, all without a middle man or counterparty risk.
 
-          p The project was bootstrapped via an ether pre-sale during August 2014 by fans all around the world. It is developed by the  
+          p The project was bootstrapped via an ether presale in August 2014 by fans all around the world. It is developed by the  
             a(href='./foundation') Ethereum Foundation
             |, a Swiss nonprofit, with contributions from great minds across the globe.
 
-        div.col-md-6.whatis.server-figure.scrollme
-          figure.ethereum-explain.scrollme.animateme(data-when="span", data-from="0.25", data-to="0.26", data-opacity="0")
-            div.explain-01.animateme(data-when="span", data-from="0.1", data-to="0", data-opacity="0.5", data-scale="0.8")
+        .col-md-6
+          .row
+            .col-md-12
+              .server-figure.scrollme
+                figure.ethereum-explain.scrollme.animateme(data-when="span", data-from="0.25", data-to="0.26", data-opacity="0")
+                  .explain-01.animateme(data-when="span", data-from="0.1", data-to="0", data-opacity="0.5", data-scale="0.8")
 
-          figure.ethereum-explain.scrollme.animateme(data-when="span", data-from="0.35", data-to="0.37", data-opacity="0")
-            div.explain-02.animateme(data-when="span", data-from="0.26", data-to="0.25", data-opacity="0")
+                figure.ethereum-explain.scrollme.animateme(data-when="span", data-from="0.35", data-to="0.37", data-opacity="0")
+                  .explain-02.animateme(data-when="span", data-from="0.26", data-to="0.25", data-opacity="0")
 
-          figure.ethereum-explain.scrollme.scrollme.animateme(data-when="span", data-from="0.5", data-to="0.6", data-opacity="0")
-            div.explain-02b.animateme(data-when="span", data-from="0.37", data-to="0.35", data-opacity="0")
+                figure.ethereum-explain.scrollme.animateme(data-when="span", data-from="0.5", data-to="0.6", data-opacity="0")
+                  .explain-02b.animateme(data-when="span", data-from="0.37", data-to="0.35", data-opacity="0")
 
-          figure.ethereum-explain.scrollme
-            div.explain-03.animateme(data-when="span", data-from="0.6", data-to="0.5", data-opacity="0")
+                figure.ethereum-explain.scrollme
+                  .explain-03.animateme(data-when="span", data-from="0.6", data-to="0.5", data-opacity="0")
 
-          h6.caption(data-when="span", data-from="0.2", data-to="0", data-opacity="0").animateme On traditional server architectures, every application has to set up its own servers that run their own code in isolated silos, making sharing of data hard.
-          h6.caption(data-when="span", data-from="0.4", data-to="0.2", data-opacity="0").animateme If a single app is compromised or goes offline, many users and other apps are affected.
-          h6.caption(data-when="span", data-from="0.6", data-to="0.4", data-opacity="0").animateme On a blockchain, anyone can set up a node that replicates the necessary data for all nodes to reach an agreement and be compensated by users and app developers.
-          h6.caption(data-when="span", data-from="0.6", data-to="0.5", data-opacity="0").animateme This allows user data to remain private and apps to be decentralized like the Internet was supposed to work.
+          .row
+            .col-md-12.caption.caption-server-figure
+              p On traditional server architectures, every application has to set up its own servers that run their own code in isolated silos, making sharing of data hard. If a single app is compromised or goes offline, many users and other apps are affected.
 
-        div.clear.clearfix#download-tools
+              p On a blockchain, anyone can set up a node that replicates the necessary data for all nodes to reach an agreement and be compensated by users and app developers. This allows user data to remain private and apps to be decentralized like the Internet was supposed to work.
 
-        div.col-md-6.whatis
+  .main-content.wallet
+    .container
+      .row
+        .col-md-6
           h2 Smart money, smart wallet
 
           p The  
@@ -84,45 +90,42 @@ block content
 
           a(href="https://github.com/ethereum/mist/releases/latest").allversions.ethereum-wallet.link.require-legal See all versions
 
-        div.col-md-6.whatis.wallet-figure-outer.scrollme
-          figure.wallet-figure.scrollme.animateme(data-when="span", data-from="0.425", data-to="0.475", data-opacity="0", data-translatey="-100")
-            div.wallet-01.animateme(data-when="enter", data-from="0.9", data-to="0", data-opacity="0.5", data-scale="0.8", data-translatey="100")
-            h6.caption.animateme(data-when="enter", data-from="0.9", data-to="0.1", data-opacity="0.5", data-scale="0.8", data-translatey="100") Hold ether or any Ethereum-based token in safe wallets
+        .col-md-6
+          .row
+            .col-md-12
+              .wallet-figure-outer.scrollme
+                figure.wallet-figure.scrollme.animateme(data-when="span", data-from="0.425", data-to="0.475", data-opacity="0", data-translatey="-100")
+                  .wallet-01.animateme(data-when="enter", data-from="0.9", data-to="0", data-opacity="0.5", data-scale="0.8", data-translatey="100")
+                  .caption.animateme(data-when="enter", data-from="0.9", data-to="0.1", data-opacity="0.5", data-scale="0.8", data-translatey="100") Hold ether or any Ethereum-based token in safe wallets
 
-          figure.wallet-figure.scrollme.animateme(data-when="span", data-from="0.67", data-to="0.68", data-opacity="0", data-translatey="-100")
-            div.wallet-02.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0", data-translatey="100")
-            h6.caption.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0", data-translatey="100") Easy template-based contract creation
+                figure.wallet-figure.scrollme.animateme(data-when="span", data-from="0.67", data-to="0.68", data-opacity="0", data-translatey="-100")
+                  .wallet-02.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0", data-translatey="100")
+                  .caption.animateme(data-when="span", data-from="0.5", data-to="0.45", data-opacity="0", data-translatey="100") Easy template-based contract creation
 
-          figure.wallet-figure.scrollme
-            div.wallet-03.animateme(data-when="span", data-from="0.7", data-to="0.675", data-opacity="0", data-translatey="100")
-            h6.caption.animateme(data-when="span", data-from="0.7", data-to="0.65", data-opacity="0", data-translatey="100") Your accessible interface to blockchain applications
+                figure.wallet-figure.scrollme
+                  .wallet-03.animateme(data-when="span", data-from="0.7", data-to="0.675", data-opacity="0", data-translatey="100")
+                  .caption.animateme(data-when="span", data-from="0.7", data-to="0.65", data-opacity="0", data-translatey="100") Your accessible interface to blockchain applications
 
-      div.clearfix
-        br
-        br
-
-
-  div.col-md-12.scrollme.main-menu
-    div.breadcrumb.index.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
+  .col-md-12.scrollme.main-menu
+    .breadcrumb.index.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
       strong Ethereum
       a(href="#community") Join the Community
       a(href="./donate").donation-button Donate
 
   include ./includes/recipes.pug
 
-  div.command-line
-      div.container
-        div.row.scrollme
-          div.col-md-6.whatis
-            h3 Get our command line tools
+  .main-content.command-line
+      .container
+        .row.scrollme
+          .col-md-6
+            h3 Get the command line tools
 
-            p If you feel more comfortable around a terminal, you can download our command line tools. We have different client implementations built in Go, C++, Python, Java and others.
+            p If you feel more comfortable around a terminal, you can download our command line tools. We have different client implementations built in Go, C++, Python, Java and more.
 
-            a(href="/cli").button.require-legal Install the Command line tools
+            a(href="/cli").button.require-legal Install the command line tools
 
-          div.col-md-6.whatis
+          .col-md-6
             figure(data-when="span", data-from="0.8", data-to="0", data-opacity="0", data-translatey="300").geth-console.animateme
-
 
   script
     |  ((window.gitter = {}).chat = {}).options = {

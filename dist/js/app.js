@@ -45,7 +45,7 @@ function showBalance(acc){
       }
   });
 
-  $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '5' } );
+  $("#table-of-contents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '5' } );
  
   $('.require-legal').click(function(e){
     e.preventDefault();
@@ -59,7 +59,7 @@ function showBalance(acc){
     $('.legal-modal').removeClass('visible');
   })
 
-  var toc = document.getElementById('tableOfContents');
+  var toc = document.getElementById('table-of-contents');
   if (toc) {
     window.onscroll = function() {
       var innerTutorial = document.getElementsByClassName('inner-tutorial');

@@ -1,4 +1,3 @@
-
 ## Mission and Vision Statement
 
 **The Ethereum Foundation’s mission is to promote and support Ethereum platform and base layer research, development and education to bring decentralized protocols and tools to the world that empower developers to produce next generation decentralized applications (dapps), and together build a more globally accessible, more free and more trustworthy Internet.**
@@ -23,7 +22,7 @@
 
 **Vitalik is the creator of Ethereum.** He first discovered blockchain and cryptocurrency technologies through Bitcoin in 2011, and was immediately excited by the technology and its potential. He cofounded Bitcoin Magazine in September 2011, and after two and a half years looking at what the existing blockchain technology and applications had to offer, wrote the Ethereum white paper in November 2013. He now leads Ethereum's research team, working on future versions of the Ethereum protocol.
 
-[Website](https://www.vitalik.ca), [Twitter](https://twitter.com/vitalikbuterin), [Github](https://github.com/vbuterin/)
+[Website](https://www.vitalik.ca), [Twitter](https://twitter.com/vitalikbuterin), [GitHub](https://github.com/vbuterin/)
 
 ----
 
@@ -35,7 +34,7 @@
 
 **Jeff is one of the founders of Ethereum.** He started the first implementation of Ethereum using the Go programming language in 2013 and has been the Go team lead and head developer ever since. The Go client launched successfully on July 30, 2015, marking the release of the genesis block and Ethereum platform. 
 
-[Linkedin](https://www.linkedin.com/in/jeffreywilcke), [Github](https://github.com/obscuren)
+[LinkedIn](https://www.linkedin.com/in/jeffreywilcke), [GitHub](https://github.com/obscuren)
 
 
 

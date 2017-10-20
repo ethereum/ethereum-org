@@ -1,4 +1,3 @@
-
 ## FAQ
 
 ### How are ethers created?
@@ -49,10 +48,6 @@ If this does not work, please do not hesitate in contacting us on our [forums](h
 If you don't feel comfortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our [online balance checker](#balance).
 
 Read [more about accounts](http://ethdocs.org/en/latest/account-management.html).
-
-
-
-
 
 ### How do I mine ether?
 
@@ -128,7 +123,6 @@ There are currently two options for GPU mining in Geth available. You can read a
 ### What's the relationship between bitcoin and ether?
 
 ![Bitcoin and Ethereum](/images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png)
-
 
 Ethereum would never be possible without bitcoin—both the technology and the currency—and we see ourselves not as a competing currency but as complementary within the digital ecosystem. Ether is to be treated as "crypto-fuel", a token whose purpose is to pay for computation, and is not intended to be used as or considered a currency, asset, share or anything else.
 
