@@ -1,4 +1,3 @@
-
 ## FAQ
 
 ### How are ethers created?
@@ -36,7 +35,7 @@ If you are still on the console, then quit it by pressing _control+C_ multiple t
 
 Then, if you are using **Geth** execute this:
 
-    geth wallet import /path/to/my/presale.wallet 
+    geth wallet import /path/to/my/presale.wallet
 
 Alternatively, if you are using **Eth** execute this:
 
@@ -50,13 +49,9 @@ If you don't feel comfortable securing your ether right now but just want to che
 
 Read [more about accounts](http://ethdocs.org/en/latest/account-management.html).
 
-
-
-
-
 ### How do I mine ether?
 
-The Ethereum network is kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given to the computer that was able to create the latest block on the chain. Every 12 seconds, on average, a new block is added to the blockchain with the latest transactions processed by the network and the computer that generated this block will be awarded 5 ether. Due to the nature of the algorithm for block generation, this process (generating a proof of work) is guaranteed to be random and rewards are given in proportion to the computational power of each machine. 
+The Ethereum network is kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given to the computer that was able to create the latest block on the chain. Every 12 seconds, on average, a new block is added to the blockchain with the latest transactions processed by the network and the computer that generated this block will be awarded 5 ether. Due to the nature of the algorithm for block generation, this process (generating a proof of work) is guaranteed to be random and rewards are given in proportion to the computational power of each machine.
 
 This process is usually called **_mining_** in the crypto-currency lingo.
 
@@ -68,37 +63,37 @@ Before you do any mining, you need to set which address will receive your earnin
 
 **Geth:**
 
-    miner.setEtherbase(eth.accounts[0]) 
-    miner.start() 
+    miner.setEtherbase(eth.accounts[0])
+    miner.start()
 
 
 **Eth:**
 
-    web3.admin.eth.setMiningBenefactor(web3.eth.accounts[0]) 
+    web3.admin.eth.setMiningBenefactor(web3.eth.accounts[0])
     web3.admin.eth.setMining(true)
 
 
 Before you can find any blocks, however, your computer needs to go through a process called “building a DAG”. This DAG (short for “Directed Acyclic Graph”) is a large data structure (~1GB) required for mining, intended to prevent ASIC machines (“Application Specific Integrated Circuits”) from being mass manufactured for mining ether. Its goal is to protect miners like yourself, so that you will only ever need your home computer to remain competitive. The DAG should take about 10 minutes to generate and as soon as it finishes, Geth will start mining automatically.
 
 If you have successfully mined a block you will see a message like this among the logs:
-  
+
     🔨 Mined block #123456
- 
+
 To check your earnings, you can display your balance with:
- 
+
     web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]), "ether")
 
 #### GPU MINING Using the command line
 
 
-If you are serious about mining on the live ethereum network and getting real ether rewards, then you should use a dedicated computer with very powerful graphic cards in order to run the network. 
+If you are serious about mining on the live ethereum network and getting real ether rewards, then you should use a dedicated computer with very powerful graphic cards in order to run the network.
 
 
-**Instructions for Eth:** 
+**Instructions for Eth:**
 
 If you are using **Eth** then GPU mining comes out of the box. Simply quit the console (press control+C multiple times and then enter) and then start it with the --GPU option turned on:
 
-    eth --frontier -b --genesis path/to/genesis.json -i -m on -G
+    eth -b --genesis path/to/genesis.json -i -m on -G
 
 Once you started, just follow the same instructions as normal CPU mining.
 
@@ -108,7 +103,7 @@ Once you started, just follow the same instructions as normal CPU mining.
 
 There are currently two options for GPU mining in Geth available. You can read a more detailed description on how to install it on this [mining post](https://forum.ethereum.org/discussion/197/mining-faq-live-updates).
 
-* **C++ Etherminer**. This is a version for the pro miners. To install it, follow the guide to [install the whole C++ ethereum code](https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients). 
+* **C++ Etherminer**. This is a version for the pro miners. To install it, follow the guide to [install the whole C++ ethereum code](https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients).
 
 * **Go experimental GPU branch**. It's experimental so you need to build go from source to get it. This version is focused for hobbyists and developers. To install it, [clone geth from source](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu) and then switch to the [GPU Miner branch](https://github.com/ethereum/go-ethereum/tree/gpu_miner).
 
@@ -116,11 +111,11 @@ There are currently two options for GPU mining in Geth available. You can read a
 
 #### More information on Mining
 
-* Frontier's proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the [Frontier gitBook, mining chapter](https://ethereum.gitbooks.io/frontier-guide/content/mining.html). Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).
+* Ethereum's proof of work algorithm does not make use of Scrypt or Sha256, instead, it leverages [EtHash](https://github.com/ethereum/wiki/wiki/Ethash), a Hashimoto / Dagger hybrid. You can read all about the theory behind this and its design in the [Ethereum gitBook, mining chapter](https://ethereum-homestead.readthedocs.io/en/latest/mining.html). Note that for Serenity (a future release, a major milestone on the Ethereum development roadmap) we are planning to switch to Proof of Stake (PoS).
 
 * The Ethash proof of work algorithm is memory hard, you'll need at least 1+GB of RAM on each GPU. I say 1+ because the DAG, which is the set of data that's being pushed in and out of the GPU to make parallelisation costly, will start at 1GB and will continue growing indefinitely. 2GB should be a good approximation of what's needed to continue mining throughout the year.
 
-* Mining prowess roughly scales proportionally to [memory bandwidth](https://en.wikipedia.org/wiki/AMD_Radeon_Rx_200_series#Chipset_table). As our implementation is written in OpenCL, AMD GPUs will be 'faster' than similarly priced NVIDIA GPUs. Empirical evidence has already confirmed this, with R9 290x regularly topping benchmarks. 
+* Mining prowess roughly scales proportionally to [memory bandwidth](https://en.wikipedia.org/wiki/AMD_Radeon_Rx_200_series#Chipset_table). As our implementation is written in OpenCL, AMD GPUs will be 'faster' than similarly priced NVIDIA GPUs. Empirical evidence has already confirmed this, with R9 290x regularly topping benchmarks.
 
 * ASICs and FPGAs are strongly discouraged by being rendered financially inefficient, which was confirmed in [an independent audit](https://github.com/LeastAuthority/ethereum-analyses/blob/master/PoW.md#HardwareFeasibility). Don't expect to see them on the market, and if you do, proceed with extreme caution.
 
@@ -129,14 +124,13 @@ There are currently two options for GPU mining in Geth available. You can read a
 
 ![Bitcoin and Ethereum](/images/bitcoin-and-ethereum-sitting-on-a-tree@2x.png)
 
-
 Ethereum would never be possible without bitcoin—both the technology and the currency—and we see ourselves not as a competing currency but as complementary within the digital ecosystem. Ether is to be treated as "crypto-fuel", a token whose purpose is to pay for computation, and is not intended to be used as or considered a currency, asset, share or anything else.
 
 There are many ways in which you can use Bitcoins within the Ethereum ecosystem:
 
 * **Trade BTC for ETH:** multiple third party companies are working to make the exchanging of ether and bitcoins as easy and seamless as possible. If so desired one could trade bitcoins for ether with the purpose of executing contracts and trade it back immediately in order to keep their value pegged and secured by the bitcoin network. The latest version of the wallet includes an automatic conversion between ether and bitcoin.
 
-* **Use a pegged derivative:** Ethereum is a great tool for creating complex trading between multiple parties. If you have a source for the price of Bitcoin that all parties trust, then it's possible to create an [ethereum based currency](../token) whose value is pegged to the market value of Bitcoin. This means that you could trade bitcoins to a token that is guaranteed to always trade back to the same amount of bitcoins while still being fully compatible with other ethereum contracts. 
+* **Use a pegged derivative:** Ethereum is a great tool for creating complex trading between multiple parties. If you have a source for the price of Bitcoin that all parties trust, then it's possible to create an [ethereum based currency](../token) whose value is pegged to the market value of Bitcoin. This means that you could trade bitcoins to a token that is guaranteed to always trade back to the same amount of bitcoins while still being fully compatible with other ethereum contracts.
 
 * **Use a Bitcoin relay to convert a 2 way peg**: [the bitcoin relay](https://github.com/ethereum/btcrelay/) is a piece of code that allows you to sidechain a bitcoin into ethereum. This means that you can use Bitcoin's native limited scripting capability to lock a bitcoin into a contract that is directly connected to an ethereum contract, which can then issue an ethereum based token that is guaranteed to be backed by bitcoin. The relay is under development and as implementations are tested and proved to be secure, we will list them here.
 
@@ -150,7 +144,7 @@ There are two types of accounts in Ethereum: *normal accounts*, holding ether th
 Similarly, your transactions are also of two types: those sent to normal accounts are *ether transfers*, while the rest are *communication* with smart contracts.
 
 Before you execute your first ether transfer you need a friend to send your ether to. If you don’t have any, you can also create as many new accounts as you want, following the steps discussed previously and simply move your funds between accounts you own. Assuming you created a second account to send the ether to:
-     
+
     var sender    = web3.eth.accounts[0];
     var recipient = web3.eth.accounts[1];
 
@@ -180,4 +174,3 @@ Anytime you create a transaction in Ethereum, the string that is returned is the
 And if the transaction has been picked up already, you can check its receipt with this:
 
     web3.eth.getTransactionReceipt(tx);
-

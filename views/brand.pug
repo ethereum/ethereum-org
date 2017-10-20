@@ -8,25 +8,23 @@ block content
   include mixins/recipes.pug
   +inner-header("Branding Guidelines")
 
-  div.main-tutorial.inner-page.even
-    div.container
-      div.row
-        div.col-md-12.center
-          h2.center Ethereum Visual Identity Guide
-          p If you are a designer using our logo in a work, please download the following PDF: 
-            a(href='/images/logos/Ethereum_Visual_Identity_1.0.0.pdf') Ethereum Visual Identity Guide
-            |:            
-          p.center
-            a(href="/images/logos/Ethereum_Visual_Identity_1.0.0.pdf")
-              img(alt="Ethereum Visual Identity Guide", src="images/logos/Ethereum_Visual_Identity_1.0.0.png", width="400")
+  .main-tutorial.inner-page.even
+    .container
+      .row
+        .col-md-12
+          h2 Visual Identity Guide
+          p If you are a designer using our logo in a work, please follow the  
+            a(href="/images/logos/Ethereum_Visual_Identity_1.0.0.pdf", target="_blank") Ethereum Visual Identity Guide
+            |:
 
-  div.main-tutorial.inner-page.brand
-    div.container
-      div.row
-        div.col-md-12
+          p
+            a(href="/images/logos/Ethereum_Visual_Identity_1.0.0.pdf", target="_blank")
+              img(alt="Ethereum Visual Identity Guide", src="images/logos/Ethereum_Visual_Identity_1.0.0.png", style="max-width: 400px;")
+
+  .main-tutorial.inner-page.brand
+    .container
+      .row
+        .col-md-12
           include:markdown-it content/branding.md
+
           a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/branding.md') Improve this page
-
-
-
-
