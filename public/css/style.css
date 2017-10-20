@@ -127,7 +127,7 @@ header {
 header {
 	height: 60vh;
 	min-height: 440px;
-	background: #f8f6fb url('../images/homestead-dawn-background.jpg') center center no-repeat;
+	background: #f8f6fb url('../images/byzantium-background.jpg') center center no-repeat;
 	background-size: cover;
 	position: relative;
 
@@ -155,7 +155,7 @@ div.scrollme.row.introduction {
 	height: 60vw;
 	min-height: 440px;
 	max-height: 800px;
-	background: #102026 url('../images/homestead-dawn-background.jpg') center center no-repeat;
+	background: #102026 url('../images/byzantium-background.jpg') center center no-repeat;
 	background-size: cover;
 	padding-top: 50px;
 }
@@ -680,7 +680,7 @@ ul#table-of-contents ul {
 }
 
 /* ==========================================
-  footer.pug 
+  footer.pug
   ======================================== */
 
 .footer h3 {
@@ -706,7 +706,7 @@ footer .caption {
 	color:  #C3CCDB;
 	font-style: italic;
 }
-   
+
 .developer-resources ul {
 	padding-left: 21px;
 	color: #C3CCDB;
@@ -800,7 +800,7 @@ footer .caption {
 }
 
 /* ==========================================
-  donate.pug 
+  donate.pug
   ======================================== */
 
 a.donate-button {
@@ -858,7 +858,7 @@ a.donate-button:hover ,
 }
 
 /* ==========================================
-  devgrants.pug 
+  devgrants.pug
   ======================================== */
 
 .devgrants-hof {
@@ -878,7 +878,7 @@ a.donate-button:hover ,
 }
 
 /* ==========================================
-  Ethereum Wallet 
+  Ethereum Wallet
   ======================================== */
 
 a.ethereum-wallet {
@@ -1434,7 +1434,7 @@ figure.ethereum-logo {
 }
 
 /* ==========================================
-  cookie-policy.pug 
+  cookie-policy.pug
   ======================================== */
 
 div.cookie_table table th:first-child {
