@@ -48,7 +48,7 @@ If this does not work, please do not hesitate in contacting us on our [forums](h
 
 If you don't feel comfortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our [online balance checker](#balance).
 
-Read [more about accounts](http://guide.ethereum.org/managing_accounts.html).
+Read [more about accounts](http://ethdocs.org/en/latest/account-management.html).
 
 
 
