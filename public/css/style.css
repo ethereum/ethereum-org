@@ -649,8 +649,8 @@ div.cookie_table table td {
 p.cookie_pol {
 	padding:20px 0 0 0;
 }
-   
-   
+
+
 /* FOOTER */
 
 .footer h2 {
@@ -1401,20 +1401,27 @@ figure.ethereum-logo {
 }
 
 .main-tutorial code {
-	display: block;
+	display: inline;
 	white-space: pre;
-	padding: 20px;
+	padding: 3px;
+	border: 1px solid rgb(204, 204, 204);
 	overflow: auto;
 	width: 10000px;
 	max-height: 800px;
 	background: #FFF;
 }
 
+.main-tutorial pre code {
+	display: block;
+	border: none;
+}
+
 pre {
-	background: transparent;
+	background: #FFF;
 	overflow: auto;
 	padding:0;
 	margin: 20px 0;
+	padding: 20px;
 	position: relative;
 }
 
