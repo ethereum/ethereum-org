@@ -187,7 +187,7 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
         address public owner;
 
         function owned() {
-            owner = msg.se  nder;
+            owner = msg.sender;
         }
 
         modifier onlyOwner {

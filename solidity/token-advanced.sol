@@ -151,7 +151,7 @@ contract TokenERC20 {
     }
 
     /**
-     * Destroy tokens from other ccount
+     * Destroy tokens from other account
      *
      * Remove `_value` tokens from the system irreversibly on behalf of `_from`.
      *

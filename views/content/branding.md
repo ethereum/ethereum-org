@@ -7,5 +7,4 @@ The Ethereum Foundation may be releasing a special seal for use by approved peop
 
 ### Contact Information
 If you have any questions or clarifications pertaining to these guidelines, please email us at 
-[brand@ethereum.org](mailto:brand@ethereum.org)
-
+[brand@ethereum.org](mailto:brand@ethereum.org).

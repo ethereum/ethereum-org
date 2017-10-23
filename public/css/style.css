@@ -1,9 +1,13 @@
+/* ==========================================
+   Global styles
+  ======================================== */
+
 html {
-	overflow: auto;
 }
 
 body {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
+	background: #102026;
 }
 
 hr {
@@ -18,40 +22,13 @@ code {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
-	letter-spacing: -1px;
 	margin: 10px 0;
 	font-weight: 400;
-}
-
-h1 {
-	font-size: 50px;
-	font-weight: 900;
+	line-height: unset;
 }
 
 h2 {
-	font-size: 40px;
 	color: #A9C5E6;
-	padding-bottom: 30px;
-}
-
-h3 {
-	font-size: 24px;
-}
-
-h4 {
-	font-size: 21px;
-}
-
-h5 {
-	font-size: 18px;
-}
-
-h6 {
-	font-size: 16px;
-}
-
-p {
-	margin: 10px 0 15px 0;
 }
 
 a {
@@ -63,395 +40,21 @@ a:hover {
 	cursor: pointer;
 }
 
-.float-right {
-	float:right;
-	margin-left: 30px;
-	padding-bottom: 30px;
-}
-
-.float-left {
-	float: left;
-	margin-right: 30px;
-	padding-bottom: 30px;
-}
-
-.center {
-	text-align: center;
-	max-width: none !important;
-}
-
-.clear {
-	margin-bottom: 120px;
-}
-
-.container {
-	max-width: 970px;
-}
-
-header {
-	padding: 20px 0px;
-	color: #fafafa;
-}
-
-header {
-	height: 60vh;
-	min-height: 440px;
-	background: #f8f6fb url('../images/homestead-dawn-background.jpg') center center no-repeat;
-	background-size: cover;
+pre {
+	background: transparent;
+	overflow: auto;
+	padding: 0;
+	margin: 20px 0;
 	position: relative;
-
-	display: -webkit-flex;
-	-webkit-justify-content: center;
-	-webkit-align-items: center;
-
-	display: -moz-flex;
-	-moz-justify-content: center;
-	-moz-align-items: center;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-div.scrollme.intro {
-	background: #102026;
-	overflow: hidden;
-	position: relative;
-	z-index: 40;
-}
-
-div.scrollme.row.introduction {
-	height: 60vw;
-	min-height: 440px;
-	max-height: 800px;
-	background: #102026 url('../images/homestead-dawn-background.jpg') center center no-repeat;
-	background-size: cover;
-	padding-top: 50px;
-}
-
-.introduction h1 {
-	position: absolute;
-	top: 0px;
-	left: 50%;
-	width: 250px;
-	height: 0;
-	padding-top: 250px;
-	margin-left: -125px;
-	background: url('../images/homestead-title.png') top center no-repeat;
-	background-size: contain;
-	overflow: hidden;
 }
 
 .caption {
 	text-align: center;
-	letter-spacing: 0.04em;
-	font-style: italic;
 	font-size: 90%;
-	padding: 0 40px;
 }
 
-.intro:after {
-	content: " ";
-	background: linear-gradient(transparent, #102026);
-	height: 250px;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-
-.status-bar {
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: flex;
-}
-
-.status-bar > div {
-	overflow: hidden;
-	min-width: 100px;
-}
-
-#block-content .status-bar span.block-hash {
-	color: #eb453e;
-}
-
-#block-content .status-bar span {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	display: block;
-}
-
-#block-content {
-	background: #102026;
-	padding-top: 10px;
-	padding-bottom: 15px;
-}
-
-#block-content h6 {
-	font-size: 14px;
-	font-weight: 900;
-	text-transform: uppercase;
-	letter-spacing: 0px;
-	color: #b9a360;
-	margin-bottom: 0px;
-}
-
-#block-content span {
-	font-size: 18px;
-	color: #C3CCDB;
-	font-smooth: auto;
-	-webkit-font-smoothing: subpixel-antialiased;
-	-moz-font-smoothing: subpixel-antialiased;
-}
-
-body {
-	background: #102026;
-}
-
-.main-content {
-	padding-top: 40px;
-	color: #C3CCDB;
-	position: relative;
-	z-index: 50;
-	overflow: hidden;
-}
-
-.main-content {
-	margin-top: -150px;
-}
-
-.main-tutorial {
-	overflow: hidden;
-	color: #443A37;
-	position: relative;
-	-webkit-background-blend-mode: multiply;
-	background-color: #F5F5F5;
-	min-width: 300px;
-}
-
-.main-tutorial.even {
-	background-color: #EBEBEB;
-}
-
-.main-tutorial p {
-	padding: 0 20px 0;
-	text-align: left;
-}
-
-.center-align {
-	text-align: center;
-}
-
-
-.inner-tutorial h1 {
-	color: #354049;
-	text-align: center;
-	padding-top: 50px;
-	padding-bottom: 40px;
-}
-
-#tutorial-start h2 {
-	padding: 0;
-	text-transform: uppercase;
-}
-
-.main-tutorial h2 {
-	font-size: 40px;
-	font-weight: 400;
-	color: #354049;
-	background: transparent;
-	padding: 80px 20px 20px;
-	text-align: center;
-}
-
-.main-tutorial h3 {
-	font-size: 30px;
-	font-weight: 400;
-	color: #354049;
-	background: transparent;
-	max-width: 400px;
-	padding: 60px 20px 30px;
-	position: relative;
-}
-
-.main-tutorial blockquote {
-    font-style: oblique;
-    font-size: 1.2em;
-}
-
-.tutorial-end h3 {
-	padding: 30px 20px;
-	max-width: none;
-	text-align: center;
-}
-
-.main-tutorial .row.solidity {
-	padding: 0;
-}
-.inner-header.token-tutorial h2 {
-	font-weight: 400;
-	font-size: 45px;
-	text-transform: none;
-	padding: 30px 20px;
-	text-align: center;
-}
-
-.inner-tutorial h1 + h2 {
-	padding-top: 0;
-	margin-top: -40px;
-}
-
-.main-tutorial h2 + h3 .number {
-	top: 0;
-}
-
-.main-tutorial .row {
-	padding: 80px 0;
-}
-
-.number {
-	display: inline-block;
-	background: #354049;
-	width: 56px;
-	height: 56px;
-	border-radius: 28px;
-	color: #E1EFFF;
-	text-align: center;
-	font-size: 40px;
-	padding-top: 5px;
-	margin-right: 10px;
-	position: absolute;
-	top: 60px;
-	left: 0;
-}
-
-.recipe {
-	background: #FFF url("../images/recipe-bg.png");
-	background-repeat: repeat-y;
-	background-position: 20px;
-	display: block;
-	max-width: 500px;
-	padding: 20px 40px;
-	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
-	text-align: left;
-}
-
-.recipe h4 {
-	text-transform: uppercase;
-	color: #354049;
-	font-weight: 600;
-	text-align: center;
-	font-size: 20px;
-}
-
-.recipe ul {
-	list-style-type: none;
-	padding-left: 0;
-}
-
-.recipe li {
-	padding-left: 0;
-}
-
-.recipe ul ul {
-	padding-left: 30px;
-	font-weight: 400;
-}
-
-.recipe input[type='checkbox'] {
-	margin-right: 10px;
-}
-
-.inner-page h4  ,
-.inner-tutorial h4  {
-	color: #354049;
-	padding: 20px 20px 0;
-	text-transform: uppercase;
-	font-weight: 900;
-}
-
-.inner-tutorial h5 {
-	color: rgba(255,255,255,0.6);
-	text-align: center;
-	font-size: 80%;
-	padding-top: 0;
-	background: #354049;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: -10px;
-	padding: 5px;
-}
-
-.inner-tutorial h5 strong {
-	color: #FFF;
-}
-
-
-.inner-tutorial img {
-	max-width: 100%;
-}
-
-/* DAO */
-
-.inner-header.main-tutorial  {
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-}
-
-
-.inner-header.dao-tutorial {
-	background-image: url("../images/dao-bg.jpg");
-}
-
-.inner-header.token-tutorial {
-	background-attachment: initial;
-	background-image: url("../images/token-bg.jpg");
-}
-
-.inner-header.token-tutorial h2 ,
-.inner-header.token-tutorial h3 ,
-.inner-header.token-tutorial p {
-	color: #fff;
-	padding-left: 0;
-}
-
-.inner-header.crowdsale-tutorial {
-	background-image: url("../images/dao-dawn-bg.jpg");
-}
-
-.inner-header .header-title h3,
-.inner-header .header-title h2 ,
-.inner-header .header-title h3 {
-	font-weight: 500;
-	padding-left: 0;
-}
-
-.whatis.server-figure {
-	min-height: 400px;
-}
-
-.whatis.wallet-figure-outer {
-	min-height: 400px;
-}
-
-.whatis figure,
-.main-tutorial figure {
-	width: 100%;
-}
-
-.whatis figure div,
-.main-tutorial figure div {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
+.small {
+	font-size: 90%;
 }
 
 input.button,
@@ -486,7 +89,6 @@ a.button:hover {
 	top: -1px;
 	box-shadow: rgba(0,0,0,0.05) 0 2px 1px;
 	margin-bottom: 32px;
-	cursor: hand;
 	cursor: pointer;
 	transition: box-shadow 0.3s, border-bottom 0.3s, top 0.3s, margin-bottom 0.3s;
 	transition-timing-function: ease-in;
@@ -502,7 +104,7 @@ a.button:active {
 .button.small {
 	top: -1px;
 	max-width: 200px;
-	padding: 3px 5px;
+	padding: 6px;
 	border-bottom: #c1d7ef 1px solid;
 	box-shadow: rgba(0,0,0,0.1) 0 1px 1px;
 	background-color: #e4ebf3;
@@ -513,18 +115,465 @@ input.button:hover {
 	color: #FFF;
 }
 
+/* ==========================================
+   index.pug
+  ======================================== */
+
+header {
+	padding: 20px 0px;
+	color: #fafafa;
+}
+
+header {
+	height: 60vh;
+	min-height: 440px;
+	background: #f8f6fb url('../images/byzantium-background.jpg') center center no-repeat;
+	background-size: cover;
+	position: relative;
+
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+	-webkit-align-items: center;
+
+	display: -moz-flex;
+	-moz-justify-content: center;
+	-moz-align-items: center;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div.scrollme.intro {
+	background: #102026;
+	overflow: hidden;
+	position: relative;
+	z-index: 50;
+}
+
+div.scrollme.row.introduction {
+	height: 60vw;
+	min-height: 440px;
+	max-height: 800px;
+	background: #102026 url('../images/byzantium-background.jpg') center center no-repeat;
+	background-size: cover;
+	padding-top: 50px;
+}
+
+.introduction h1 {
+  color: transparent;
+	height: 250px;
+	margin: 0 auto;
+	background: url('../images/home-title.png') top center no-repeat;
+	background-size: contain;
+	overflow: hidden;
+}
+
+.intro:after {
+	content: " ";
+	background: linear-gradient(transparent, #102026);
+	height: 250px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.main-content {
+	padding: 40px 0;
+	color: #C3CCDB;
+	z-index: 55;
+}
+
+.main-content p,
+.main-tutorial p {
+	font-size: 17px;
+}
+
+.caption-server-figure p {
+	font-size: 14px;
+	text-align: left;
+	font-style: italic;
+}
+
+.main-content.build-apps h2,
+.main-content.wallet h2 {
+	margin-bottom: 20px;
+}
+
+.main-content.wallet {
+	padding-bottom: 80px;
+}
+
+.main-tutorial {
+	overflow: hidden;
+	color: #443A37;
+	position: relative;
+	-webkit-background-blend-mode: multiply;
+	background-color: #F5F5F5;
+	min-width: 300px;
+}
+
+.main-tutorial.even {
+	background-color: #EBEBEB;
+}
+
+.main-tutorial > .row,
+.main-tutorial > .container > .row {
+	padding: 80px 0;
+}
+
+.row-no-padding {
+	padding: 0;
+}
+
+.inner-tutorial h1 {
+	color: #354049;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 40px;
+}
+
+#tutorial-start h2 {
+	padding: 0;
+	text-transform: uppercase;
+}
+
+.main-tutorial h2 {
+	color: #354049;
+}
+
+.main-tutorial h3 {
+	color: #354049;
+}
+
+.main-tutorial blockquote {
+	font-style: oblique;
+	font-size: 1.2em;
+}
+
+.tutorial-end h3 {
+	padding: 30px 20px;
+	max-width: none;
+	text-align: center;
+}
+
+.main-tutorial .row.solidity {
+	padding: 0;
+}
+
+.inner-header.token-tutorial h2 {
+	width: 100%;
+	padding: 40px 0 80px 0;
+	font-size: 45px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.inner-tutorial h1 + h2 {
+	padding-top: 0;
+	margin-top: -40px;
+}
+
+.main-tutorial h2 + h3 .number {
+	top: 0;
+}
+
+.number {
+	display: inline-block;
+	background: #354049;
+	width: 56px;
+	height: 56px;
+	border-radius: 28px;
+	color: #E1EFFF;
+	text-align: center;
+	font-size: 40px;
+	padding-top: 5px;
+	margin-right: 10px;
+	position: absolute;
+	top: 60px;
+	left: 0;
+}
+
+.inner-page h4,
+.inner-tutorial h4 {
+	color: #354049;
+	text-transform: uppercase;
+	font-weight: 900;
+}
+
+.inner-tutorial h5 {
+	color: rgba(255,255,255,0.6);
+	text-align: center;
+	font-size: 80%;
+	padding-top: 0;
+	background: #354049;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -10px;
+	padding: 5px;
+}
+
+.inner-tutorial h5 strong {
+	color: #FFF;
+}
+
+.inner-tutorial img {
+	max-width: 100%;
+}
+
+.inner-header.main-tutorial  {
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.inner-header.dao-tutorial {
+	background-image: url("../images/dao-bg.jpg");
+}
+
+.inner-header.token-tutorial {
+	background-attachment: initial;
+	background-image: url("../images/token-bg.jpg");
+}
+
+.inner-header.token-tutorial h2,
+.inner-header.token-tutorial h3 {
+	color: #fff;
+}
+
+.inner-header.token-tutorial p {
+	color: #f2f2f2;
+}
+
+.inner-header.crowdsale-tutorial {
+	background-image: url("../images/dao-dawn-bg.jpg");
+}
+
+.main-tutorial figure {
+	width: 100%;
+}
+
+.main-content figure div,
+.main-tutorial figure div {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 .main-menu {
 	min-height: 0;
 }
 
-.breadcrumb {
-	display: -webkit-flex;
+.command-line {
+	background: #000;
+	color: #ccc;
+	padding-top: 40px;
+}
+
+.command-line h3 {
+	color: #eee;
+}
+
+/* ==========================================
+  Main styles
+  ======================================== */
+
+.start-menu {
+	-webkit-perspective: 2000;
+	-moz-perspective: 2000;
+	perspective: 2000;
+}
+
+.start-menu strong {
+	display: block;
+}
+
+.start-menu p {
+	padding: 0;
+	font-size: 80%;
+}
+
+.start-menu p strong {
+	font-size: 125%;
+}
+
+.main-tutorial .row.start-menu {
+	padding-top: 0;
+}
+
+.main-tutorial .note {
+	font-weight: 600;
+}
+
+.main-tutorial code {
+	display: block;
+	white-space: pre;
+	padding: 20px;
+	overflow: auto;
+	width: 100%;
+	background: #FFF;
+}
+
+.inner-header h2 {
+	font-size: 60px;
+	font-weight: 200;
+	margin: 0;
+	padding: 0;
+}
+
+.main-tutorial h3,
+.inner-tutorial h3 {
+	color: #111;
+}
+
+.inner-header.default-header h3 {
+	text-align: center;
+	color: #FFF;
+	margin: 0 0 30px 0;
+}
+
+.inner-header .scrollme {
 	display: flex;
-	-webkit-align-items: center;
+}
+
+.inner-header .header-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 20px;
+}
+
+.inner-header {
+	background: #102026;
+}
+
+.inner-page.inner-header .row {
+	display: flex;
+}
+
+.main-tutorial img[alt*="Logo"] {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin: 20px 40px 40px 0;
+	clear: both;
+}
+
+.recipe {
+	background: #FFF url("../images/recipe-bg.png");
+	background-repeat: repeat-y;
+	background-position: 20px;
+	display: block;
+	max-width: 500px;
+	padding: 20px 20px 20px 45px;
+	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
+	text-align: left;
+	margin-top: 20px;
+}
+
+.recipe h4 {
+	text-transform: uppercase;
+	color: #354049;
+	font-weight: 600;
+	text-align: center;
+	font-size: 20px;
+	margin-top: 0;
+}
+
+.recipe ul {
+	list-style-type: circle;
+	padding-left: 0;
+	margin-left: 10px;
+}
+
+.recipe li {
+	padding-left: 0;
+}
+
+.recipe ul ul {
+	padding-left: 30px;
+	font-weight: 400;
+}
+
+@media only screen and (max-width: 600px) {
+	figure {
+		height: 300px;
+		margin: 0 auto;
+	}
+
+	.main-tutorial a.button ,
+	.recipe {
+		width: 100%;
+	}
+
+	.breadcrumb.index a {
+		display: none;
+	}
+
+	figure.ethereum-logo {
+		height: 140px;
+	}
+
+	.inner-header {
+		padding: 0;
+	}
+
+	.inner-header.dao-tutorial {
+		background-image: url("../images/dao-bg-mob.jpg");
+	}
+
+	.inner-header.token-tutorial {
+		background-image: url("../images/token-bg-mob.jpg");
+	}
+
+	.inner-header.crowdsale-tutorial {
+		background-image: url("../images/dao-dawn-bg-mob.jpg");
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.main-tutorial h3 {
+		padding-top: 0;
+	}
+
+	.main-tutorial h3 .number {
+		top: 0;
+	}
+
+	.row img,
+	.recipe,
+	.main-tutorial a.button ,
+	.ethereum-network,
+	.main-tutorial figure {
+		float: none;
+		margin: 30px auto;
+	}
+
+	.inner-header .scrollme {
+	    display: block;
+	}
+
+	.inner-header h2, .inner-header h3 {
+	    text-align: center;
+	}
+}
+
+/* ==========================================
+   Breadcrumbs
+  ======================================== */
+
+.breadcrumb {
+	display: flex;
 	align-items: center;
 	text-align: left;
 	position: fixed;
-	z-index: 99;
 	left: 0;
 	right: 0;
 	top: 0;
@@ -532,7 +581,7 @@ input.button:hover {
 	background: #102026;
 	padding: 10px 40px;
 	font-size: 14px;
-	z-index: 10;
+	z-index: 45;
 	background-image: url("../images/diamond-icon.png");
 	background-size: 19px 30px;
 	background-repeat: no-repeat;
@@ -555,124 +604,113 @@ a.donation-button {
 	font-weight: bold;
 }
 
-.breadcrumb a.index {
-}
+/* ==========================================
+   Table of Contents
+  ======================================== */
 
-#tableOfContents {
-    padding-left: 20px;
-    list-style-type: none;
+#table-of-contents {
+	list-style-type: none;
 	position: absolute;
 	left: 20px;
 	top: 30px;
-	width: 200px;
 	border-left: 4px solid #eee;
 	font-size: 18px;
-    font-weight: 600;
-    list-style-type: none;
-    transition: top 0.25s cubic-bezier(0.67, -0.54, 0.57, 1.21);
+	list-style-type: none;
+	transition: top 0.25s cubic-bezier(0.67, -0.54, 0.57, 1.21);
+	background: #eee;
+	width: 40px !important;
+	z-index: 100;
+	transition: width 0.25s;
+	overflow: hidden;
+	height: 44px;
+	padding-right: 2px;
 }
 
-ul#tableOfContents ul {
-    font-size: 15px;
-    font-weight: 400;
-    padding-bottom: 10px;
-    list-style-type: none;
-    padding-left: 0;
+ul#table-of-contents ul {
+  font-size: 15px;
+  font-weight: 400;
+  padding-bottom: 10px;
+  list-style-type: none;
+  padding-left: 0;
 }
 
-#tableOfContents.fixed {
+#table-of-contents:before {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	display: block;
+	content:'\2630';
+	font-size: 16px;
+	top: 11px;
+	left: 12px;
+	opacity: 0.8;
+	transition: opacity 0.5s;
+}
+
+#table-of-contents:hover {
+	box-shadow: #ccc 0 1px 2px 1px;
+	width: 300px !important;
+	height: auto;
+	padding: 10px;
+}
+
+#table-of-contents:hover:before {
+	opacity: 0;
+}
+
+#table-of-contents a {
+	display: none;
+	opacity: 0;
+	transition: opacity 0.75s;
+	font-weight: bold;
+}
+
+#table-of-contents:hover a {
+	display: block;
+	opacity: 1;
+}
+
+#table-of-contents ul a {
+	font-weight: normal;
+}
+
+#table-of-contents.fixed {
 	position: fixed;
 	top: 60px;
 }
 
-.terms,
-.cannot-continue  {
-	color: #E1EFFF;
-	text-align: center;
-	font-weight: 600;
-	display: block;
-	padding-top: 60px;
+/* ==========================================
+  footer.pug
+  ======================================== */
+
+.footer h3 {
+	color: #A9C5E6;
 }
 
-.warning a.back {
-	color: #E1EFFF;
-	font-size: 80%;
-	padding-top: 15px;
+.footer {
+	background: #102026;
+	padding: 40px 0 0 0;
 }
 
-.inner-header a.back {
-	color: #E1EFFF;
-	float: left;
-	position: absolute;
-	top: 10px;
-	left: 60px;
-	opacity: 0.5;
-}
-.inner-header a.back:hover {
-	opacity: 1;
+@media only screen and (max-width: 768px) { /* @screen-sm-min breakpoint */
+	.footer {
+		padding: 20px 0;
+	}
 }
 
-.warning a.back,
-.terms:hover {
-	color: #FFF;
-}
-
-.cannot-continue {
-	color: #eb453e;
-}
-
-
-.footer_pages {
-	margin-top:50px;
-}
-
-p.footer_links{
-    font-size: 80%;
-    text-align: center;
-}
-
-div.cookie_table table th:first-child {
-	width: 220px;
-}
-div.cookie_table table th:nth-child(2) {
-	width: 160px;
-}
-
-div.cookie_table table th {
-	text-align:left;
-}
-div.cookie_table table td {
-	padding: 0 20px 20px 0;
-    vertical-align: top;
-}
-
-p.cookie_pol {
-	padding:20px 0 0 0;
-}
-   
-   
-/* FOOTER */
-
-.footer h2 {
-	padding-top: 20px;
-	padding-bottom: 0;
-}
-
-.copyright {
-	font-size: 80%;
-	text-align: center;
-	opacity: 0.5;
-}
-
-.copyright:hover {
-	opacity: 1;
-}
-
-.developers ul {
-	padding-left: 10px;
+.footer p {
 	color: #C3CCDB;
 }
 
+footer .caption {
+	color:  #C3CCDB;
+	font-style: italic;
+}
+
+.developer-resources ul {
+	padding-left: 21px;
+	color: #C3CCDB;
+}
 
 .community ul {
 	padding-left: 0;
@@ -681,105 +719,89 @@ p.cookie_pol {
 }
 
 .community ul li a {
-	background-size: 40px 40px;
-	padding: 10px 40px;
 	display: block;
-	background-position: left center;
-	background-repeat: no-repeat;
+	padding: 5px 0;
 }
 
-.community ul li a.blog {
-	background-image: url("../images/icons/icon-blog.png");
-}
-.community ul li a.forum {
-	background-image: url("../images/icons/icon-forum.png");
-}
-.community ul li a.reddit {
-	background-image: url("../images/icons/icon-reddit.png");
-}
-.community ul li a.youtube {
-	background-image: url("../images/icons/icon-youtube.png");
-}
-.community ul li a.twitter {
-	background-image: url("../images/icons/icon-twitter.png");
-}
-.community ul li a.gitter {
-	background-image: url("../images/icons/icon-gitter.png");
-}
-.community ul li a.facebook {
-	background-image: url("../images/icons/icon-facebook.png");
-}
-.community ul li a.meetups {
-	background-image: url("../images/icons/icon-meetup.png");
-}
-.community ul li a.email {
-	background-image: url("../images/icons/icon-email.png");
-}
-.community ul li a.stackexchange {
-	background-image: url("../images/icons/icon-stackexchange.png");
-}
-.community ul li a.github {
-	background-image: url("../images/icons/icon-github.png");
+.community ul li a .fa {
+	font-size: 20px;
+	color: #f5f5f5;
+	width: 30px;
+	text-align: center;
+	vertical-align: middle;
 }
 
-.community .canary {
+.community ul li a:hover,
+.community ul li a:focus {
+	text-decoration: none;
+}
+
+.community ul li a:hover .fa {
+	color: #fff;
+}
+
+.donate-button {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	align-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.donate-button {
+	display: block;
+}
+
+.footer .canary {
 	background-image: url("../images/icons/canary.svg");
 	background-size: 30px 30px;
-	background-position: left top;
+	background-position: center center;
 	background-repeat: no-repeat;
-	min-height: 50px;
-	padding-left: 50px;
-	padding-right: 50px;
+	margin: 0 auto;
+	text-align: center;
 }
 
-.community .canary p {
+.footer .canary p {
 	opacity: 0;
 	font-size: 80%;
 	transition: opacity 2s ease-out;
 }
 
-.community .canary:hover p {
-	opacity: 1;
+.footer .canary:hover p {
+	opacity: 0.7;
 	transition: opacity 0.25s ease-out;
 }
 
-#news {
-	margin-bottom: 45px;
+.news .iframe-wrapper {
+	margin: 15px 0 30px 0;
+	padding: 15px 0;
+	border-top: 1px solid rgba(225, 232, 237, 0.15);
+	border-bottom: 1px solid rgba(225, 232, 237, 0.15);
 }
 
-.press ul {
-	list-style: none;
-	padding-left: 140px;
-	position: relative;
-	max-height: 320px;
-	overflow: auto;
+.row-footer-primary .col-md-4 {
+	margin-bottom: 40px;
 }
 
-.press li {
-	height: 50px;
-	overflow: hidden;
-	margin-bottom: 20px;
-	display: flex;
-	align-items: center;
+.copyright {
+	font-size: 80%;
+	text-align: center;
+	opacity: 0.6;
 }
 
-.press li:last-child {
-	margin-bottom: 100px;
+.footer-links {
+  font-size: 80%;
+  text-align: center;
 }
 
-.press li span {
-	display: block;
-	position: absolute;
-	left: 0px;
-	overflow: hidden;
-	padding-left: 120px;
-	height: 50px;
-	width: 0;
-	background-size: -webkit-contain;
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
+.footer-links a {
+	color: #707f98;
 }
+
+/* ==========================================
+  donate.pug
+  ======================================== */
 
 a.donate-button {
 	position: relative;
@@ -797,7 +819,6 @@ a.donate-button:hover ,
 	background: #255264;
 }
 
-
 .dapp-identicon {
 	position: absolute;
 	display: block;
@@ -808,7 +829,6 @@ a.donate-button:hover ,
 	background-size: cover;
 	border-radius: 50%;
 	box-shadow: rgba(255, 255, 255, 0.4) 0px 4px 8px 0px inset, rgba(0, 0, 0, 0.6) 0px -4px 12px 0px inset;
-
 }
 
 .donate h2 {
@@ -821,12 +841,10 @@ a.donate-button:hover ,
 	max-width: none;
 }
 
-
 .main-tutorial .donate h4 {
 	text-align: center;
 	padding-top: 50px;
 }
-
 
 .main-tutorial .donate .caption {
 	max-width: 600px;
@@ -835,7 +853,13 @@ a.donate-button:hover ,
 	display: block;
 }
 
-/* DevGrants */
+#donate_to {
+	display: none;
+}
+
+/* ==========================================
+  devgrants.pug
+  ======================================== */
 
 .devgrants-hof {
 	text-align: center;
@@ -853,55 +877,9 @@ a.donate-button:hover ,
 	max-width: none;
 }
 
-
-
-footer .caption {
-	color:  #C3CCDB;
-}
-
-.press li span.press-recode {
-	background-image: url("../images/icons/recode_large@2x.png");
-}
-
-.press li span.press-fast-company {
-	background-image: url("../images/icons/fast-company.png");
-}
-.press li span.press-reason {
-	background-image: url("../images/icons/reason.png");
-}
-.press li span.press-forbes {
-	background-image: url("../images/icons/forbes.png");
-}
-.press li span.press-telegraph {
-	background-image: url("../images/icons/the-telegraph.png");
-}
-.press li span.press-wired {
-	background-image: url("../images/icons/wired.png");
-}
-.press li span.press-wsj {
-	background-image: url("../images/icons/wall-street-journal.png");
-}
-.press li span.press-aljazeera {
-	background-image: url("../images/icons/al-jazeera.png");
-}
-.press li span.press-bloomberg {
-	background-image: url("../images/icons/bloomberg.png");
-}
-.press li span.press-new-scientist {
-	background-image: url("../images/icons/new-scientist.png");
-}
-
-.press li span.press-ibtimes {
-	background-image: url("../images/icons/ibtimes.png");
-}
-
-.press li span.press-techcrunch {
-	background-image: url("../images/icons/techcrunch.png");
-}
-
-
-
-
+/* ==========================================
+  Ethereum Wallet
+  ======================================== */
 
 a.ethereum-wallet {
 	display: none;
@@ -943,7 +921,6 @@ a.button.ethereum-wallet strong {
 	display: none;
 }
 
-
 .Win64 a.ethereum-wallet.link,
 .Win64 a.button.ethereum-wallet.win64 {
 	display: block;
@@ -953,8 +930,6 @@ a.button.ethereum-wallet strong {
 	display: none;
 }
 
-
-
 .Linux a.ethereum-wallet.link,
 .Linux a.button.ethereum-wallet.linux {
 	display: block;
@@ -963,7 +938,6 @@ a.button.ethereum-wallet strong {
 .Linux a.button.allversions.ethereum-wallet {
 	display: none;
 }
-
 
 a.button.ethereum-wallet.mac {
 	background-image: url("../images/button-mac.png");
@@ -981,528 +955,9 @@ a.button.ethereum-wallet.win64 {
 	background-image: url("../images/button-win64.png");
 }
 
-.power-tools {
-	background: #A59A9A;
-	background: linear-gradient(#A59A9A,#000);
-	overflow: hidden;
-}
-
-
-.legal-modal {
-	display: none;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    align-content: flex-end;
-	position: fixed;
-    top: 10%;
-    left: 10%;
-    bottom: 10%;
-    right: 10%;
-    padding: 32px 64px;
-    z-index: 1000;
-    background: #fff;
-    box-shadow: #000 0 0 150px;
-    border-radius: 1px;
-}
-
-.legal-modal.visible {
-    display: flex;
-}
-
-.legal-text {
-	position: absolute;
-	top: 20px;
-	bottom: 150px;
-	left: 80px;
-	right: 80px;
-	overflow: scroll;
-}
-
-input#legal {
-	margin-right:10px;
-}
-
-div#donate_inst {
-	padding-bottom:0;
-}
-
-.bad-robot {
-	margin: 20px auto 40px;
-	text-align: center;
-}
-
-.button-cancel ,
-.button-proceed {
-	flex: 1 1 200px;
-	height: 40px;
-	font-weight: 400;
-	text-align: right;
-	text-transform: uppercase;
-}
-
-.button-proceed {
-	font-weight: 600;
-}
-
-.power-tools p,
-.power-tools h2 ,
-.power-tools h3 {
-	color: #FFF;
-}
-
-.power-tools h2 {
-	padding-top: 40px;
-}
-
-.command-line {
-	background: #000;
-	color: #ccc;
-	padding-top: 40px;
-}
-
-.command-line h3 {
-	color: #eee;
-}
-
-/* FIGURES */
-
-figure.ethereum-network {
-	display: block;
-	width: 100%;
-	height: 306px;
-	background-image: url("../images/ethereum-network-outline@2x.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
-
-
-figure.geth-console {
-	display: block;
-	width: 100%;
-	max-width: 450px;
-	height: 281px;
-	background-image: url("../images/console.gif");
-	background-size: contain;
-	background-repeat: no-repeat;
-	margin-bottom: 50px;
-}
-
-
-figure.ethereum-explain {
-	max-width: 360px;
-	height: 400px;
-	position: absolute;
-	left: 50%;
-	margin-left: -180px;
-}
-
-figure.ethereum-explain .explain-01 {
-	background-image: url("../images/explain-01.gif");
-}
-figure.ethereum-explain .explain-02 {
-	background-image: url("../images/explain-02.png");
-}
-figure.ethereum-explain .explain-02b {
-	background-image: url("../images/explain-02b.gif");
-}
-figure.ethereum-explain .explain-03 {
-	background-image: url("../images/explain-03.gif");
-}
-
-
-
-figure.wallet-figure {
-	max-width: 460px;
-	height: 310px;
-	position: absolute;
-	left: 0;
-}
-
-figure.wallet-figure .wallet-01 {
-	background-image: url("../images/wallet-01.gif");
-}
-figure.wallet-figure .wallet-02 {
-	background-image: url("../images/wallet-02.gif");
-}
-figure.wallet-figure .wallet-03 {
-	background-image: url("../images/wallet-03.gif");
-}
-
-.whatis .caption {
-	position: relative;
-	top: 310px;
-}
-
-
-figure.wallet {
-	max-width: 736px;
-	height: 500px;
-}
-
-figure.wallet .wallet-start {
-	background-image: url("../images/wallet-start.png");
-}
-figure.wallet .wallet-create {
-	background-image: url("../images/wallet-create.png");
-}
-figure.wallet .wallet-confirm {
-	background-image: url("../images/wallet-confirm.png");
-}
-
-
-
-figure.aleth-one {
-	max-width: 481px;
-	height: 516px;
-}
-
-figure.aleth-one .aleth-one-1 {
-	background-image: url("../images/aleth-one-1.png");
-}
-figure.aleth-one .aleth-one-2 {
-	background-image: url("../images/aleth-one-2.png");
-}
-figure.aleth-one .aleth-one-3 {
-	background-image: url("../images/aleth-one-3.png");
-}
-figure.aleth-one .aleth-one-4 {
-	background-image: url("../images/aleth-one-4.png");
-}
-figure.aleth-one .aleth-one-5 {
-	background-image: url("../images/aleth-one-5.png");
-}
-
-
-
-figure.turbo {
-	max-width: 544px;
-	height: 434px;
-	margin-right: -100px;
-}
-
-figure.turbo .turbo-01 {
-	background-image: url("../images/turbo-01.png");
-}
-figure.turbo .turbo-02 {
-	background-image: url("../images/turbo-02.png");
-}
-figure.turbo .turbo-03 {
-	background-image: url("../images/turbo-03.png");
-}
-figure.turbo .turbo-04 {
-	background-image: url("../images/turbo-04.png");
-}
-figure.turbo .turbo-05 {
-	background-image: url("../images/turbo-05.png");
-}
-
-figure.geth {
-	max-width: 380px;
-	height: 280px;
-}
-
-figure.geth .geth-background {
-	background-image: url("../images/geth.png");
-}
-
-figure.geth .geth-logo {
-	background-image: url("../images/geth-foreground.png");
-}
-
-figure.ether {
-	max-width: 375px;
-	height: 388px;
-}
-
-figure.ether .ether-screen {
-	background-image: url("../images/ether-screen.gif");
-}
-figure.ether .ether-pacman {
-	background-image: url("../images/ether-pacman.gif");
-}
-figure.ether .ether-coin {
-	background-image: url("../images/ether-coin.png");
-}
-figure.ether .ether-arcade-front {
-	background-image: url("../images/ether-arcade-front.png");
-}
-figure.ether .ether-arcade-back {
-	background-image: url("../images/ether-arcade-back.png");
-}
-
-
-
-figure.greeter {
-	max-width: 317px;
-	height: 274px;
-}
-
-figure.greeter .greeter-human {
-	background-image: url("../images/greeter-human.png");
-}
-
-figure.greeter .greeter-robot {
-	background-image: url("../images/greeter-robot.png");
-}
-
-figure.greeter .greeter-question {
-	background-image: url("../images/greeter-question.png");
-}
-
-figure.greeter .greeter-answer {
-	background-image: url("../images/greeter-answer.png");
-}
-
-figure.coin {
-	height: 342px;
-}
-
-figure.coin .coin-connection {
-	background-image: url("../images/token-connection.png");
-}
-figure.coin .coin-users {
-	background-image: url("../images/token-users.png");
-}
-figure.coin .coin-coins {
-	background-image: url("../images/token-coins.png");
-}
-figure.coin .coin-send {
-	background-image: url("../images/token-send.png");
-}
-
-
-figure.crowdsale {
-	height: 384px;
-}
-
-figure.crowdsale .crowdsale-logic {
-	background-image: url("../images/crowdsale-logic.png");
-}
-
-figure.crowdsale .crowdsale-robot {
-	background-image: url("../images/crowdsale-robot.png");
-}
-figure.crowdsale .crowdsale-money {
-	background-image: url("../images/crowdsale-money.png");
-}
-figure.crowdsale .crowdsale-contributions {
-	background-image: url("../images/crowdsale-contributions.png");
-}
-figure.crowdsale .crowdsale-crowd {
-	background-image: url("../images/crowdsale-crowd.png");
-}
-
-figure.dao {
-	height: 424px;
-}
-
-figure.dao .dao-robot {
-	background-image: url("../images/dao-robot.png");
-}
-
-figure.dao .dao-money {
-	background-image: url("../images/dao-money.png");
-}
-
-figure.dao .dao-arrows {
-	background-image: url("../images/dao-arrows.png");
-}
-
-figure.dao .dao-ideas {
-	background-image: url("../images/dao-ideas.png");
-}
-
-figure.dao .dao-crowd {
-	background-image: url("../images/dao-crowd.png");
-}
-
-
-figure.moon {
-	max-width: 420px;
-	height: 424px;
-}
-
-figure.moon .moon-stars {
-	background-image: url("../images/moon-stars.png");
-}
-
-figure.moon .moon-moon {
-	background-image: url("../images/moon-moon.png");
-}
-
-figure.moon .moon-rocket {
-	background-image: url("../images/moon-rocket.png");
-	top: 150px;
-	bottom: -150px;
-}
-
-
-
-figure.swarm {
-	max-width: 300px;
-	height: 300px;
-}
-
-figure.swarm .swarm-01 {
-	background-image: url("../images/swarm-01.png");
-}
-
-figure.swarm .swarm-02 {
-	background-image: url("../images/swarm-02.png");
-}
-
-figure.swarm .swarm-03 {
-	background-image: url("../images/swarm-03.png");
-}
-
-figure.swarm .swarm-04 {
-	background-image: url("../images/swarm-04.png");
-}
-
-
-figure.ethereum-logo {
-	display: block;
-	background-image: url("../images/ethereum-logo.png");
-	max-width: 301px;
-	height: 287px;
-	margin: 0 auto;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-
-.start-menu {
-	-webkit-perspective: 2000;
-	-moz-perspective: 2000;
-	perspective: 2000;
-}
-
-.start-menu strong {
-	display: block;
-}
-
-.start-menu p {
-	padding: 0;
-	font-size: 80%;
-}
-
-.start-menu p strong {
-	font-size: 125%;
-}
-
-.main-tutorial .row.start-menu {
-	padding-top: 0;
-}
-
-.main-tutorial .note {
-	font-weight: 600;
-}
-
-.main-tutorial code {
-	display: block;
-	white-space: pre;
-	padding: 20px;
-	overflow: auto;
-	width: 10000px;
-	max-height: 800px;
-	background: #FFF;
-}
-
-pre {
-	background: transparent;
-	overflow: auto;
-	padding:0;
-	margin: 20px 0;
-	position: relative;
-}
-
-footer {
-	position: relative;
-  	z-index: 100;
-}
-
-.footer {
-	background: #102026;
-	padding-top: 100px;
-}
-
-.footer p {
-	color: #C3CCDB;
-}
-
-.inner-header h2 {
-	text-align: left;
-	font-size: 60px;
-	font-weight: 100;
-	margin: 0;
-	padding: 0;
-}
-
-.inner-header h3 {
-	font-size: 40px;
-	font-weight: 400;
-	margin: 0;
-	padding: 15px 20px 0;
-	max-width: none;
-	text-align: left;
-	text-transform: uppercase;
-	font-size: 200%;
-}
-
-.inner-header.default-header h3 {
-	text-align: center;
-	color: #FFF;
-}
-
-.inner-header .scrollme {
-	display: flex;
-}
-
-.inner-header .header-title {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding-left: 20px;
-}
-
-.inner-header {
-	padding: 100px;
-	background: #102026;
-}
-
-.inner-header.default-header.devcon2 {
-	background-image: url('../images/special/cityscape-pink.jpg');
-	background-size: cover;
-	background-position: center;
-}
-
-.inner-header.default-header.devcon2 figure.ethereum-logo {
-	background-image: url('../images/special/devcon2.png');
-	max-width: 388px;
-}
-
-.inner-header.default-header.devcon2 a.back {
-	opacity: 1;
-	color: #FFF;
-}
-
-.big-subscribe {
-	width: 100%;
-	padding: 10px;
-	margin: 5px auto;
-}
-
-.inner-page.inner-header .row {
-	display: flex;
-}
-
-.inner-page h3 {
-	padding: 20px 20px 10px;
-	clear: both;
-	max-width: none;
-}
+/* ==========================================
+  foundation.pug
+  ======================================== */
 
 .foundation-page img[alt*="Portrait"] {
 	width: 160px;
@@ -1517,337 +972,24 @@ footer {
 	background-position: center;
 }
 
-
 .foundation-page.even h2,
 .foundation-page.even p {
 	color: #FFF;
 }
 
-.swarm-page.main-tutorial {
-	background-color: #FFF582;
-}
+/* ==========================================
+  assets.pug
+  ======================================== */
 
-.main-tutorial img[alt*="Logo"] {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin: 20px 40px 40px 0;
-	clear: both;
-}
-
-.brand img {
-	display: block;
-	height: 150px;
-	margin: 30px auto;
-}
-
-.donate-button {
-	display: -webkit-flex;
-	display: flex;
-	-webkit-justify-content: center;
-	align-content: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-
-.donate-button {
-	display: block;
-}
-
-.ethereum-projects h4  {
-	text-align: center;
-	clear: both;
-	padding: 60px 0 10px;
-	color: #354049;
-}
-
-.ethereum-projects  ul {
-	padding-left: 0;
-	-webkit-flex-wrap: wrap;
-	-webkit-justify-content: center;
-	display: flex;
-	display: -webkit-flex;
-	flex-wrap: wrap;
-	justify-content: center;
+.page-assets img {
 	width: 100%;
 }
 
+/* ==========================================
+  @2x assets
+  ======================================== */
 
-.ether-checker,
-.ether-checker input,
-.main-tutorial.ether-checker h3 {
-	margin: 0 auto;
-	text-align: center;
-	max-width: none;
-}
-
-.main-tutorial.ether-checker h2 ,
-.main-tutorial.ether-checker h3 ,
-.ether-checker input {
-	display: block;
-	margin: 10px auto;
-	padding: 10px;
-	min-width: 300px;
-	width: 100%;
-	max-width: 400px;
-	float: none;
-}
-
-.main-tutorial.ether-checker h2 {
-	padding: 0;
-}
-
-#donate_to {
-	display:none;
-}
-
-
-@media (-webkit-min-device-pixel-ratio: 2) {
-	.introduction h1 {
-		background-image: url('../images/homestead-title@2x.png');
-	}
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 800px ) {
-	.introduction h1 {
-		background-image: url('../images/homestead-title@3x.png');
-	}
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2 ) and (min-width: 654px ) {
-	header {
-		background-image: url('../images/homestead-dawn-background@2x.jpg');
-	}
-}
-
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1 ) and (min-width: 1300px ) {
-	header {
-		background-image: url('../images/homestead-dawn-background@2x.jpg');
-	}
-}
-
-@media only screen and (max-width: 600px) {
-	figure {
-		height: 300px;
-		margin: 0 auto;
-	}
-
-	.main-tutorial a.button ,
-	.recipe {
-		width: 100%;
-	}
-
-	.breadcrumb.index a {
-		display: none;
-	}
-
-	figure.ethereum-logo {
-		height: 140px;
-	}
-
-	.inner-header {
-		padding: 0;
-	}
-
-	.caption {
-		padding: 0 5px;
-	}
-
-	.whatis.server-figure {
-    	min-height: 500px;
-	}
-
-	.whatis.wallet-figure-outer {
-    	min-height: 500px;
-	}
-
-	figure.wallet {
-		height: 300px;
-	}
-
-	figure.coin,
-	figure.crowdsale,
-	figure.dao ,
-	figure.moon {
-		height: 260px;
-	}
-
-	.inner-header.dao-tutorial {
-		background-image: url("../images/dao-bg-mob.jpg");
-	}
-
-	.inner-header.token-tutorial {
-		background-image: url("../images/token-bg-mob.jpg");
-	}
-
-	.inner-header.crowdsale-tutorial {
-		background-image: url("../images/dao-dawn-bg-mob.jpg");
-	}
-
-	.slides .slide h3, .slides .slide-what h3 {
-	    width: 300px;
-	    margin-left: -150px;
-	}
-
-	.slides .slide-what h5 {
-	    left: 5%;
-	    right: 5%;
-	}
-
-}
-
-@media only screen and (max-width: 800px ) {
-	.main-tutorial h3 {
-		padding-top: 0;
-	}
-
-	.main-tutorial h3 .number {
-		top: 0;
-	}
-
-	.row img,
-	.recipe,
-	.main-tutorial a.button ,
-	.ethereum-network,
-	.main-tutorial figure {
-		float: none;
-		margin: 30px auto;
-	}
-
-
-	.inner-header .scrollme {
-	    display: block;
-	}
-	.inner-header h2, .inner-header h3 {
-	    text-align: center;
-	}
-}
-
-@media only screen and (max-width: 1000px ) {
-	.geth-console,
-	.main-tutorial a.button {
-		float: none;
-	}
-	.geth-console {
-		margin: 30px auto;
-	}
-}
-
-
-@media only screen and (max-width: 1200px){
-	#tableOfContents {
-		background: #eee;
-		width: 40px !important;
-		z-index: 100;
-		transition: width 0.25s;
-		overflow: hidden;
-	}
-
-	#tableOfContents:before {
-		width: 20px;
-		height: 20px;
-		position: absolute;
-		display: block;
-		content:'\2630';
-		font-size: 16px;
-	    top: 11px;
-	    left: 12px;
-	    opacity: 0.8;
-	    transition: opacity 0.5s;
-	}
-
-	#tableOfContents:hover {
-		box-shadow: #ccc 0 1px 2px 1px;
-		width: 200px !important;
-		padding: 10px;
-	}
-
-	#tableOfContents:hover:before {
-		opacity: 0;
-	}
-
-	#tableOfContents a {
-		display: none !important;
-		width: 180px;
-		opacity: 0;
-		transition: opacity 0.75s;
-	}
-
-	#tableOfContents:hover a {
-		display: block !important;
-		opacity: 1;
-	}
-
-}
-
-@media only screen and (max-width: 1350px){
-	#tableOfContents {
-		width: 150px;
-		padding: 0;
-		border: none;
-		left: 10px;
-		font-size: 14px;
-		text-transform: uppercase;
-		line-height: 14px
-	}
-
-	#tableOfContents ul {
-		font-size: 12px;
-		text-transform: none;
-	}
-
-	#tableOfContents a {
-	    padding-bottom: 10px;
-	    display: block;
-	}
-}
-
-@media only screen and (min-width:900px) {
-	.introduction h1 {
-		background-image: url('../images/homestead-title@2x.png');
-	}
-}
-
-
-@media only screen and (min-width: 800px){
-	.introduction h1 {
-		width: 350px;
-		padding-top: 350px;
-		top: -10px;
-		margin-left: -175px;
-		background-image: url('../images/homestead-title@3x.png');
-	}
-}
-
-
-@media only screen and (min-width: 1000px){
-	.introduction h1 {
-		width: 400px;
-		padding-top: 400px;
-		top: -12px;
-		margin-left: -200px;
-		background-image: url('../images/homestead-title@3x.png');
-	}
-}
-
-@media only screen and (min-width: 1500px){
-	.introduction h1 {
-		width: 450px;
-		padding-top: 450px;
-		top: -15px;
-		margin-left: -225px;
-	}
-}
-
-@media only screen and (min-width: 1600px){
-	#tableOfContents {
-		width: 320px;
-	}
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio:2){
-
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.breadcrumb {
 		background-image: url("../images/diamond-icon@2x.png");
 	}
@@ -1857,66 +999,29 @@ footer {
 		background-size: 8px 12px;
 	}
 
-
-
 	figure.ethereum-network {
 		background-image: url("../images/ethereum-network-outline@2x.png");
 	}
 
-
 	figure.wallet .wallet-start {
 		background-image: url("../images/wallet-start@2x.png");
 	}
+
 	figure.wallet .wallet-create {
 		background-image: url("../images/wallet-create@2x.png");
 	}
+
 	figure.wallet .wallet-confirm {
 		background-image: url("../images/wallet-confirm@2x.png");
 	}
-
-	figure.aleth-one .aleth-one-1 {
-		background-image: url("../images/aleth-one-1@2x.png");
-	}
-	figure.aleth-one .aleth-one-2 {
-		background-image: url("../images/aleth-one-2@2x.png");
-	}
-	figure.aleth-one .aleth-one-3 {
-		background-image: url("../images/aleth-one-3@2x.png");
-	}
-	figure.aleth-one .aleth-one-4 {
-		background-image: url("../images/aleth-one-4@2x.png");
-	}
-	figure.aleth-one .aleth-one-5 {
-		background-image: url("../images/aleth-one-5@2x.png");
-	}
-
-
-	figure.turbo .turbo-01 {
-		background-image: url("../images/turbo-01@2x.png");
-	}
-	figure.turbo .turbo-02 {
-		background-image: url("../images/turbo-02@2x.png");
-	}
-	figure.turbo .turbo-03 {
-		background-image: url("../images/turbo-03@2x.png");
-	}
-	figure.turbo .turbo-04 {
-		background-image: url("../images/turbo-04@2x.png");
-	}
-	figure.turbo .turbo-05 {
-		background-image: url("../images/turbo-05@2x.png");
-	}
-
 
 	figure.geth-console {
 		background-image: url("../images/console@2x.gif");
 	}
 
-
 	figure.geth .geth-background {
 		background-image: url("../images/geth@2x.png");
 	}
-
 
 	figure.geth .geth-logo {
 		background-image: url("../images/geth-foreground@2x.gif");
@@ -1925,19 +1030,22 @@ footer {
 	figure.ether .ether-screen {
 		background-image: url("../images/ether-screen@2x.gif");
 	}
+
 	figure.ether .ether-pacman {
 		background-image: url("../images/ether-pacman@2x.gif");
 	}
+
 	figure.ether .ether-coin {
 		background-image: url("../images/ether-coin@2x.png");
 	}
+
 	figure.ether .ether-arcade-front {
 		background-image: url("../images/ether-arcade-front@2x.png");
 	}
+
 	figure.ether .ether-arcade-back {
 		background-image: url("../images/ether-arcade-back@2x.png");
 	}
-
 
 	figure.greeter .greeter-human {
 		background-image: url("../images/greeter-human@2x.png");
@@ -1955,17 +1063,18 @@ footer {
 		background-image: url("../images/greeter-answer@2x.png");
 	}
 
-
-
 	figure.coin .coin-connection {
 		background-image: url("../images/token-connection@2x.png");
 	}
+
 	figure.coin .coin-users {
 		background-image: url("../images/token-users@2x.png");
 	}
+
 	figure.coin .coin-coins {
 		background-image: url("../images/token-coins@2x.png");
 	}
+
 	figure.coin .coin-send {
 		background-image: url("../images/token-send@2x.png");
 	}
@@ -1977,12 +1086,15 @@ footer {
 	figure.crowdsale .crowdsale-robot {
 		background-image: url("../images/crowdsale-robot@2x.png");
 	}
+
 	figure.crowdsale .crowdsale-money {
 		background-image: url("../images/crowdsale-money@2x.png");
 	}
+
 	figure.crowdsale .crowdsale-contributions {
 		background-image: url("../images/crowdsale-contributions@2x.png");
 	}
+
 	figure.crowdsale .crowdsale-crowd {
 		background-image: url("../images/crowdsale-crowd@2x.png");
 	}
@@ -2019,43 +1131,9 @@ footer {
 		background-image: url("../images/moon-rocket@2x.png");
 	}
 
-	.community ul li a.blog {
-		background-image: url("../images/icons/icon-blog@2x.png");
-	}
-	.community ul li a.forum {
-		background-image: url("../images/icons/icon-forum@2x.png");
-	}
-	.community ul li a.reddit {
-		background-image: url("../images/icons/icon-reddit@2x.png");
-	}
-	.community ul li a.youtube {
-		background-image: url("../images/icons/icon-youtube@2x.png");
-	}
-	.community ul li a.twitter {
-		background-image: url("../images/icons/icon-twitter@2x.png");
-	}
-	.community ul li a.gitter {
-		background-image: url("../images/icons/icon-gitter@2x.png");
-	}
-	.community ul li a.facebook {
-		background-image: url("../images/icons/icon-facebook@2x.png");
-	}
-	.community ul li a.meetups {
-		background-image: url("../images/icons/icon-meetup@2x.png");
-	}
-	.community ul li a.email {
-		background-image: url("../images/icons/icon-email@2x.png");
-	}
-	.community ul li a.stackexchange {
-		background-image: url("../images/icons/icon-stackexchange@2x.png");
-	}
-	.community ul li a.github {
-		background-image: url("../images/icons/icon-github@2x.png");
-	}
-}
-
-
-/* GITTER CHAT */
+/* ==========================================
+  gitter
+  ======================================== */
 
 div.gitter-chat-embed-action-bar {
 	max-height: 50px;
@@ -2080,7 +1158,470 @@ button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-colla
 	margin: 0;
 }
 
-.label-black {
+/* ==========================================
+  Figures
+  ======================================== */
+
+figure.ethereum-network {
+	display: block;
+	width: 100%;
+	height: 306px;
+	background-image: url("../images/ethereum-network-outline@2x.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+figure.geth-console {
+	display: block;
+	width: 100%;
+	height: 225px;
+	margin: 10px auto 0 auto;
+	background-image: url("../images/console.gif");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.server-figure {
+	min-height: 275px;
+}
+
+figure.ethereum-explain {
+	width: 100%;
+	height: 275px;
+	position: absolute;
+}
+
+figure.ethereum-explain .explain-01 {
+	background-image: url("../images/explain-01.gif");
+}
+
+figure.ethereum-explain .explain-02 {
+	background-image: url("../images/explain-02.png");
+}
+
+figure.ethereum-explain .explain-02b {
+	background-image: url("../images/explain-02b.gif");
+}
+
+figure.ethereum-explain .explain-03 {
+	background-image: url("../images/explain-03.gif");
+}
+
+.wallet-figure-outer {
+	min-height: 310px;
+}
+
+figure.wallet-figure {
+	width: 100%;
+	height: 310px;
+	position: absolute;
+}
+
+figure.wallet-figure .caption {
+	top: 310px;
+	font-style: italic;
+}
+
+figure.wallet-figure .wallet-01 {
+	background-image: url("../images/wallet-01.gif");
+}
+
+figure.wallet-figure .wallet-02 {
+	background-image: url("../images/wallet-02.gif");
+}
+
+figure.wallet-figure .wallet-03 {
+	background-image: url("../images/wallet-03.gif");
+}
+
+figure.wallet {
+	max-width: 736px;
+	height: 500px;
+}
+
+figure.wallet .wallet-start {
+	background-image: url("../images/wallet-start.png");
+}
+
+figure.wallet .wallet-create {
+	background-image: url("../images/wallet-create.png");
+}
+
+figure.wallet .wallet-confirm {
+	background-image: url("../images/wallet-confirm.png");
+}
+
+figure.geth {
+	max-width: 380px;
+	height: 280px;
+}
+
+figure.geth .geth-background {
+	background-image: url("../images/geth.png");
+}
+
+figure.geth .geth-logo {
+	background-image: url("../images/geth-foreground.png");
+}
+
+figure.ether {
+	max-width: 375px;
+	height: 388px;
+}
+
+figure.ether .ether-screen {
+	background-image: url("../images/ether-screen.gif");
+}
+
+figure.ether .ether-pacman {
+	background-image: url("../images/ether-pacman.gif");
+}
+
+figure.ether .ether-coin {
+	background-image: url("../images/ether-coin.png");
+}
+
+figure.ether .ether-arcade-front {
+	background-image: url("../images/ether-arcade-front.png");
+}
+
+figure.ether .ether-arcade-back {
+	background-image: url("../images/ether-arcade-back.png");
+}
+
+figure.greeter {
+	max-width: 317px;
+	height: 274px;
+}
+
+figure.greeter .greeter-human {
+	background-image: url("../images/greeter-human.png");
+}
+
+figure.greeter .greeter-robot {
+	background-image: url("../images/greeter-robot.png");
+}
+
+figure.greeter .greeter-question {
+	background-image: url("../images/greeter-question.png");
+}
+
+figure.greeter .greeter-answer {
+	background-image: url("../images/greeter-answer.png");
+}
+
+figure.coin {
+	height: 342px;
+}
+
+figure.coin .coin-connection {
+	background-image: url("../images/token-connection.png");
+}
+
+figure.coin .coin-users {
+	background-image: url("../images/token-users.png");
+}
+
+figure.coin .coin-coins {
+	background-image: url("../images/token-coins.png");
+}
+
+figure.coin .coin-send {
+	background-image: url("../images/token-send.png");
+}
+
+figure.crowdsale {
+	height: 384px;
+}
+
+figure.crowdsale .crowdsale-logic {
+	background-image: url("../images/crowdsale-logic.png");
+}
+
+figure.crowdsale .crowdsale-robot {
+	background-image: url("../images/crowdsale-robot.png");
+}
+
+figure.crowdsale .crowdsale-money {
+	background-image: url("../images/crowdsale-money.png");
+}
+
+figure.crowdsale .crowdsale-contributions {
+	background-image: url("../images/crowdsale-contributions.png");
+}
+
+figure.crowdsale .crowdsale-crowd {
+	background-image: url("../images/crowdsale-crowd.png");
+}
+
+figure.dao {
+	height: 424px;
+}
+
+figure.dao .dao-robot {
+	background-image: url("../images/dao-robot.png");
+}
+
+figure.dao .dao-money {
+	background-image: url("../images/dao-money.png");
+}
+
+figure.dao .dao-arrows {
+	background-image: url("../images/dao-arrows.png");
+}
+
+figure.dao .dao-ideas {
+	background-image: url("../images/dao-ideas.png");
+}
+
+figure.dao .dao-crowd {
+	background-image: url("../images/dao-crowd.png");
+}
+
+.future-figure {
+	margin-top: -90px;
+}
+
+figure.moon {
+	max-width: 420px;
+	height: 424px;
+}
+
+figure.moon .moon-stars {
+	background-image: url("../images/moon-stars.png");
+}
+
+figure.moon .moon-moon {
+	background-image: url("../images/moon-moon.png");
+}
+
+figure.moon .moon-rocket {
+	background-image: url("../images/moon-rocket.png");
+	top: 150px;
+	bottom: -150px;
+}
+
+figure.swarm {
+	max-width: 300px;
+	height: 300px;
+}
+
+figure.swarm .swarm-01 {
+	background-image: url("../images/swarm-01.png");
+}
+
+figure.swarm .swarm-02 {
+	background-image: url("../images/swarm-02.png");
+}
+
+figure.swarm .swarm-03 {
+	background-image: url("../images/swarm-03.png");
+}
+
+figure.swarm .swarm-04 {
+	background-image: url("../images/swarm-04.png");
+}
+
+figure.ethereum-logo {
+	display: block;
+	background-image: url("../images/ethereum-logo.png");
+	max-width: 275px;
+	height: 287px;
+	margin: 0 auto;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* ==========================================
+  cookie-policy.pug
+  ======================================== */
+
+div.cookie_table table th:first-child {
+	width: 220px;
+}
+
+div.cookie_table table th:nth-child(2) {
+	width: 160px;
+}
+
+div.cookie_table table th {
+	text-align: left;
+}
+
+div.cookie_table table td {
+	padding: 0 20px 20px 0;
+  vertical-align: top;
+}
+
+p.cookie_pol {
+	padding: 20px 0 0 0;
+}
+
+/* ==========================================
+  Legal
+  ======================================== */
+
+.terms,
+.cannot-continue  {
+	color: #E1EFFF;
+	text-align: center;
+	font-weight: 600;
+	display: block;
+	padding-top: 60px;
+}
+
+.warning a.back {
+	color: #E1EFFF;
+	font-size: 80%;
+	padding-top: 15px;
+}
+
+.inner-header a.back {
+	color: #E1EFFF;
+	float: left;
+	position: absolute;
+	top: 10px;
+	left: 60px;
+	opacity: 0.5;
+}
+
+.inner-header a.back:hover {
+	opacity: 1;
+}
+
+.warning a.back,
+.terms:hover {
+	color: #FFF;
+}
+
+.cannot-continue {
+	color: #eb453e;
+}
+
+.legal-modal {
+	display: none;
+	align-items: flex-end;
+	flex-wrap: wrap;
+	align-content: flex-end;
+	position: fixed;
+	top: 10%;
+	left: 10%;
+	bottom: 10%;
+	right: 10%;
+	padding: 32px 64px;
+	z-index: 1000;
+	background: #f9f9f9;
+	box-shadow: #000 0 0 150px;
+	border-radius: 1px;
+}
+
+.legal-modal.visible {
+    display: flex;
+}
+
+.legal-text {
+	position: absolute;
+	top: 20px;
+	bottom: 150px;
+	left: 80px;
+	right: 80px;
+	overflow: scroll;
+}
+
+input#legal {
+	margin-right: 10px;
+}
+
+div#donate_inst {
+	padding-bottom: 0;
+}
+
+.bad-robot {
+	margin: 20px auto 40px;
+	text-align: center;
+}
+
+.button-cancel ,
+.button-proceed {
+	flex: 1 1 200px;
+	height: 40px;
+	font-weight: 400;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+.button-proceed {
+	font-weight: 600;
+}
+
+/* ==========================================
+  ether.pug
+  ======================================== */
+
+.ether-tutorial#tutorial-start {
+	padding: 100px;
+}
+
+.ether-checker,
+.ether-checker input,
+.main-tutorial.ether-checker h3 {
+	margin: 0 auto;
+	text-align: center;
+	max-width: none;
+}
+
+.main-tutorial.ether-checker h2,
+.main-tutorial.ether-checker h3,
+.ether-checker input {
+	display: block;
+	margin: 10px auto;
+	padding: 10px;
+	min-width: 300px;
+	width: 100%;
+	max-width: 400px;
+	float: none;
+}
+
+.main-tutorial.ether-checker h2 {
+	padding: 0;
+}
+
+/* ==========================================
+  brand.pug
+  ======================================== */
+
+.row-brand-images .col-md-3 {
+	text-align: center;
+	margin: 10px 0;
+}
+
+/* ==========================================
+  swarm.pug
+  ======================================== */
+
+.swarm-page.main-tutorial {
+	background-color: #FFF582;
+}
+
+/* ==========================================
+  miscellaneous
+  ======================================== */
+
+.ethereum-projects h4 {
+	text-align: center;
+	clear: both;
+	padding: 60px 0 10px;
 	color: #354049;
-	padding-right: 20px;
+}
+
+.ethereum-projects ul {
+	padding-left: 0;
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: center;
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
 }

@@ -1,35 +1,64 @@
-
 footer.scrollme
-    div.footer
-        div.container
+    .footer
+        .container
+          .row.row-footer-news
+            .col-md-12.news
+                h3 News
+                .iframe-wrapper
+                  a.twitter-timeline(href="https://twitter.com/ethereumproject", data-widget-id="694952013856112640", data-chrome="nofooter noborders transparent noheader", width="100%", height="370px") Tweets by @ethereumproject
+                  script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
-          div.row
-            div.col-md-6.developers#developer-resources
-              h2 Developer Resources
-              ul
-                li What is Ether? 
-                    a(href='./ether') Read our FAQ
-                li Source code on 
-                    a(href='http://github.com/ethereum/') GitHub
-                li Read the   
-                    a(href='http://www.ethdocs.org/') Homestead Documentation
-                li Learn the  
-                    a(href='https://solidity.readthedocs.org/') Solidity Language
-                li Learn more on the Ethereum  
-                    a(href='http://ethdocs.org/en/latest/') documentation  
-                    | and Ethereum  
-                    a(href='https://github.com/ethereum/go-ethereum/wiki/') Go  
-                    | Wiki
-                li See latest data on 
-                    a(href='https://ethstats.net') Network Stats
-                li Download our 
-                    a(href='assets') Logo assets 
-                li Want to write about us? 
-                    a(href='mailto:press@ethereum.org ') Press inquiries
+          .row.row-footer-primary
+            .col-md-4.community
+              h3 Community
+              .row
+                .col-sm-5
+                  ul
+                    li
+                      a(href='https://blog.ethereum.org', target='_blank')
+                        i.fa.fa-rss
+                        |  Blog
+                    li
+                      a(href='https://github.com/ethereum', target='_blank')
+                        i.fa.fa-github
+                        |  GitHub
+                    li
+                      a(href='https://www.youtube.com/user/ethereumproject', target='_blank')
+                        i.fa.fa-youtube
+                        |  YouTube
+                    li
+                      a(href='https://www.reddit.com/r/ethereum', target='_blank')
+                        i.fa.fa-reddit
+                        |  Reddit
+                    li
+                      a(href='https://gitter.im/orgs/ethereum/rooms', target='_blank')
+                        i.fa.fa-comments-o
+                        |  Gitter
+                .col-sm-7
+                  ul
+                    li
+                      a(href='https://twitter.com/ethereumproject', target='_blank')
+                        i.fa.fa-twitter
+                        |  Twitter
+                    li
+                      a(href='https://ethereum.stackexchange.com', target='_blank')
+                        i.fa.fa-stack-exchange
+                        |  Stack Exchange
+                    li
+                      a(href='https://www.facebook.com/ethereumproject', target='_blank')
+                        i.fa.fa-facebook
+                        |  Facebook                
+                    li
+                      a(href='https://ethereum.meetup.com', target='_blank')
+                        i.fa.fa-meetup
+                        |  Meetups
+                    li
+                      a(href='mailto:info@ethereum.org')
+                        i.fa.fa-envelope-square
+                        |  Email us
 
-
-            div.col-md-6#about-us
-                h2 Ethereum Foundation
+            .col-md-4.about-us
+                h3 Ethereum Foundation
 
                 p Ethereum is developed by a worldwide team of passionate developers for the 
                     a(href='./foundation') Ethereum Foundation
@@ -37,58 +66,38 @@ footer.scrollme
 
                 p 
                     a(href='./donate').donate-button Donate to support development 
-                    div.caption (and you can get a unicorn!)
-                    
+                    .caption (and you can get a unicorn!)
 
-          div.row
-            div.col-md-6.community#community
-              h2 Community
-              div.row
-                div.col-md-6
-                  ul
-                    li
-                        a(href='https://blog.ethereum.org', target='_blank').blog Blog
-                    li
-                        a(href='https://twitter.com/ethereumproject', target='_blank').twitter Twitter
-                    li
-                        a(href='https://www.youtube.com/user/ethereumproject', target='_blank').youtube YouTube
-                    li
-                        a(href='https://www.reddit.com/r/ethereum', target='_blank').reddit Reddit
-                    li
-                        a(href='https://gitter.im/orgs/ethereum/rooms', target='_blank').gitter Gitter
-                div.col-md-6
-                    ul
-                        li
-                            a(href='https://github.com/ethereum', target='_blank').github GitHub
-                        li
-                            a(href='https://ethereum.stackexchange.com', target='_blank').stackexchange Stack Exchange
-                        li
-                            a(href='https://www.facebook.com/ethereumproject', target='_blank').facebook Facebook                
-                        li
-                            a(href='https://ethereum.meetup.com', target='_blank').meetups Meetups
-                        li
-                            a(href='mailto:info@ethereum.org').email Email us
+            .col-md-4.developer-resources
+              h3 Developer Resources
+              ul
+                li What is Ether? 
+                  a(href='./ether') Read our FAQ
+                li Browse our source code on 
+                  a(href='https://github.com/ethereum/', target='_blank') GitHub
+                li Read the   
+                  a(href='http://www.ethdocs.org/', target='_blank') documentation
+                li Learn  
+                  a(href='https://solidity.readthedocs.org/', target='_blank') Solidity
+                li See the latest 
+                  a(href='https://ethstats.net', target='_blank') data and network stats
+                li Download our 
+                  a(href='./assets') logo assets 
+                li Want to write about Ethereum? 
+                  a(href='mailto:press@ethereum.org') Press inquiries
 
-              div.clearfix
-              div.row
-                div.col-md-12
-                    div.canary
-                        p The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.
-                        p Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.
+          .row.row-footer-copyright
+            .col-md-12
+              p.copyright Copyright &copy; 2017 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.
+              p.footer-links 
+                  a(href='./privacy-policy') Privacy Policy 
+                  | &nbsp; &nbsp; 
+                  a(href='./cookie-policy') Cookie Policy
+                  | &nbsp; &nbsp; 
+                  a(href='./terms-of-use') Terms of Use
 
-            div.col-md-6.news#news
-                h2 Tweets
-                a.twitter-timeline(href="https://twitter.com/ethereumproject", data-widget-id="694952013856112640", data-chrome="nofooter noborders transparent noheader", height="360px") Tweets by @ethereumproject
-                script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-
-          div.col-md-12
-            p.copyright Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland 
-            p.footer_links 
-                a(href='./privacy-policy') Privacy Policy 
-                | &nbsp; &nbsp; 
-                a(href='./cookie-policy') Cookie Policy
-                | &nbsp; &nbsp; 
-                a(href='./terms-of-use') Terms of Use
-
-            p.copyright Copyright &copy; 2017 Ethereum Foundation. All Rights Reserved. 
-
+          .row.row-footer-canary
+            .col-md-12
+                .canary
+                    p The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.
+                    p Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.
