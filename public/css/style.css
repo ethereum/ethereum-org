@@ -41,9 +41,9 @@ a:hover {
 }
 
 pre {
-	background: transparent;
+	background: #FFF;
 	overflow: auto;
-	padding: 0;
+	padding: 20px;
 	margin: 20px 0;
 	position: relative;
 }
@@ -385,6 +385,7 @@ div.scrollme.row.introduction {
   Main styles
   ======================================== */
 
+
 .start-menu {
 	-webkit-perspective: 2000;
 	-moz-perspective: 2000;
@@ -413,13 +414,20 @@ div.scrollme.row.introduction {
 }
 
 .main-tutorial code {
-	display: block;
+
+	display: inline;
 	white-space: pre;
-	padding: 20px;
+	padding: 3px;
+	border: 1px solid rgb(204, 204, 204);
 	overflow: auto;
 	width: 100%;
 	background: #FFF;
 }
+
+.main-tutorial pre code {
+ 	display: block;
+ 	border: none;
+ }
 
 .inner-header h2 {
 	font-size: 60px;
@@ -729,6 +737,7 @@ footer .caption {
 	width: 30px;
 	text-align: center;
 	vertical-align: middle;
+
 }
 
 .community ul li a:hover,
@@ -793,6 +802,7 @@ footer .caption {
 .footer-links {
   font-size: 80%;
   text-align: center;
+
 }
 
 .footer-links a {
