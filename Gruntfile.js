@@ -17,7 +17,7 @@ var vendor = [
 
 var styles = [
 	'bootstrap.min.css',
-	'font-awesome.min.css',
+	'font-awesome.css',
 	'style.css'
 ];
 
@@ -119,6 +119,9 @@ module.exports = function(grunt) {
 					// {
 					// 	'dist/swarm.html': 'views/swarm.pug'
 					// },
+					{
+						'dist/4b24096abefbcbb08cb2b482eef4e36.html': 'views/devcon2.pug'
+					},
 					{
 						'dist/devgrants.html': 'views/devgrants.pug'
 					},

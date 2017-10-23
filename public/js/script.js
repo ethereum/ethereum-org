@@ -16,7 +16,7 @@ $(document).ready(function() {
       }
   });
 
-  $("#table-of-contents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '5' } );
+  $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '5' } );
  
   $('.require-legal').click(function(e){
     e.preventDefault();
@@ -30,7 +30,7 @@ $(document).ready(function() {
     $('.legal-modal').removeClass('visible');
   })
 
-  var toc = document.getElementById('table-of-contents');
+  var toc = document.getElementById('tableOfContents');
   if (toc) {
     window.onscroll = function() {
       var innerTutorial = document.getElementsByClassName('inner-tutorial');

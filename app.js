@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 // Init the app
 var app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -71,6 +72,10 @@ app.get('/donate', function(req, res) {
 
 app.get('/devgrants', function(req, res) {
 	res.render('devgrants');
+});
+
+app.get('/devcontwo', function(req, res) {
+	res.render('devcon2');
 });
 
 app.get('/swarm', function(req, res) {
