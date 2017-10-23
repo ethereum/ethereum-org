@@ -6,8 +6,11 @@ The total supply of ether and its rate of issuance was decided by the donations 
 
 * 60 million ether created to contributors of the presale
 * 12 Million (20% of the above) were created to the development fund, most of it going to early contributors and developers and the remaining to the [Ethereum Foundation](./foundation)
-* 5 ethers are created every block (roughly 15-17 seconds) to the miner of the block
+* 5 ethers are created every block (roughly 15 seconds) to the miner of the block
 * 2-3 ethers are sometimes sent to another miner if they were also able to find a solution but his block wasn't included (called uncle/aunt reward)
+
+Note that after the [Byzantium update](https://blog.ethereum.org/2017/10/12/byzantium-hf-announcement/) is implemented, the mining and uncle reward is reduced to 3 ethers and 0.625-2.625 ethers, respectively.
+
 
 ### Is the ether supply infinite?
 
@@ -51,7 +54,7 @@ Read [more about accounts](http://ethdocs.org/en/latest/account-management.html)
 
 ### How do I mine ether?
 
-The Ethereum network is kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given to the computer that was able to create the latest block on the chain. Every 12 seconds, on average, a new block is added to the blockchain with the latest transactions processed by the network and the computer that generated this block will be awarded 5 ether. Due to the nature of the algorithm for block generation, this process (generating a proof of work) is guaranteed to be random and rewards are given in proportion to the computational power of each machine.
+The Ethereum network is kept running by computers all over the world. In order to reward the computational costs of both processing the contracts and securing the network, there is a reward that is given to the computer that was able to create the latest block on the chain. Every 15 seconds, on average, a new block is added to the blockchain with the latest transactions processed by the network and the computer that generated this block will be awarded 3 ether. Due to the nature of the algorithm for block generation, this process (generating a proof of work) is guaranteed to be random and rewards are given in proportion to the computational power of each machine.
 
 This process is usually called **_mining_** in the crypto-currency lingo.
 
