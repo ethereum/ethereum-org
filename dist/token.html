@@ -162,7 +162,7 @@ contract TokenERC20 {
     }
 
     /**
-     * Destroy tokens from other ccount
+     * Destroy tokens from other account
      *
      * Remove `_value` tokens from the system irreversibly on behalf of `_from`.
      *
@@ -285,7 +285,7 @@ uint8 public decimals;
         address public owner;
 
         function owned() {
-            owner = msg.se  nder;
+            owner = msg.sender;
         }
 
         modifier onlyOwner {
@@ -613,7 +613,7 @@ contract TokenERC20 {
     }
 
     /**
-     * Destroy tokens from other ccount
+     * Destroy tokens from other account
      *
      * Remove `_value` tokens from the system irreversibly on behalf of `_from`.
      *

@@ -41,9 +41,9 @@ a:hover {
 }
 
 pre {
-	background: transparent;
+	background: #FFF;
 	overflow: auto;
-	padding: 0;
+	padding: 20px;
 	margin: 20px 0;
 	position: relative;
 }
@@ -413,13 +413,19 @@ div.scrollme.row.introduction {
 }
 
 .main-tutorial code {
-	display: block;
+	display: inline;
 	white-space: pre;
-	padding: 20px;
+	padding: 3px;
+	border: 1px solid rgb(204, 204, 204);
 	overflow: auto;
 	width: 100%;
 	background: #FFF;
 }
+
+.main-tutorial pre code {
+ 	display: block;
+ 	border: none;
+ }
 
 .inner-header h2 {
 	font-size: 60px;
