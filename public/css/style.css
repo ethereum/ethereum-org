@@ -27,7 +27,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-        color: #A9C5E6;
+        color: #65a4ee;
+        text-transform: uppercase;
+        letter-spacing: 1px;
 }
 
 a {
@@ -122,7 +124,7 @@ header {
 header {
         height: 60vh;
         min-height: 440px;
-        background: #f8f6fb url('../images/byzantium-background.jpg') center center no-repeat;
+        background: #f8f6fb url('../images/sergei-akulich-41841.jpg') center center no-repeat;
         background-size: cover;
         position: relative;
         display: -webkit-flex;
@@ -147,7 +149,7 @@ div.scrollme.row.introduction {
         height: 60vw;
         min-height: 440px;
         max-height: 800px;
-        background: #102026 url('../images/byzantium-background.jpg') center center no-repeat;
+        background: #102026 url('../images/sergei-akulich-41841.jpg') center center no-repeat;
         background-size: cover;
         padding-top: 50px;
 }
@@ -226,6 +228,10 @@ div.scrollme.row.introduction {
 #tutorial-start h2 {
         padding: 0;
         text-transform: uppercase;
+}
+
+#tutorial-start .header-title h2 {
+        color: #FFF;
 }
 
 .main-tutorial h2 {
@@ -318,12 +324,17 @@ div.scrollme.row.introduction {
 }
 
 .inner-header.dao-tutorial {
-        background-image: url("../images/dao-bg.jpg");
+        border-top: 5px solid #000;
+        background-image: url("../images/sofya-pestova-208894.jpg");
+}
+
+.inner-header.dao-tutorial p {
+        color: #fff;
 }
 
 .inner-header.token-tutorial {
         background-attachment: initial;
-        background-image: url("../images/token-bg.jpg");
+        background-image: url("../images/tobias-keller-148497.jpg");
 }
 
 .inner-header.token-tutorial h2, .inner-header.token-tutorial h3 {
@@ -331,13 +342,17 @@ div.scrollme.row.introduction {
 }
 
 .inner-header.token-tutorial p {
-        color: #f2f2f2;
+        color: #fff;
 }
 
 .inner-header.crowdsale-tutorial {
-        background-image: url("../images/dao-dawn-bg.jpg");
+        border-top: 5px solid #000;
+        background-image: url("../images/medena-rosa-156412.jpg");
 }
 
+.inner-header.crowdsale-tutorial p {
+    color: #fff;
+}
 .main-tutorial figure {
         width: 100%;
 }
@@ -421,7 +436,11 @@ div.scrollme.row.introduction {
 }
 
 .main-tutorial h3, .inner-tutorial h3 {
-        color: #111;
+        color: #fff;
+}
+
+.main-tutorial h3, .inner-tutorial h3 {
+        color: #fff;
 }
 
 .inner-header.default-header h3 {
@@ -511,13 +530,14 @@ div.scrollme.row.introduction {
                 padding: 0;
         }
         .inner-header.dao-tutorial {
-                background-image: url("../images/dao-bg-mob.jpg");
+                background-image: url("../images/sofya-pestova-208894.jpg");
         }
         .inner-header.token-tutorial {
-                background-image: url("../images/token-bg-mob.jpg");
+                border-top: 5px solid #000;
+                background-image: url("../images/tobias-keller-148497.jpg");
         }
         .inner-header.crowdsale-tutorial {
-                background-image: url("../images/dao-dawn-bg-mob.jpg");
+                background-image: url("../images/medena-rosa-156412.jpg");
         }
 }
 
@@ -659,7 +679,7 @@ ul#table-of-contents ul {
   ======================================== */
 
 .footer h3 {
-        color: #A9C5E6;
+        color: #65a4ee;
 }
 
 .footer {
@@ -1547,6 +1567,15 @@ div#donate_inst {
 /* ==========================================
   miscellaneous
   ======================================== */
+
+.inner-header.ethereum-projects {
+        background-image: url("../images/tommy-liu-97881.jpg");
+        border-top: 5px solid #000;
+}
+
+.inner-header.ethereum-projects p {
+        color: #fff;
+}
 
 .ethereum-projects h4 {
         text-align: center;
