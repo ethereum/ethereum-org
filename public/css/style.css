@@ -122,7 +122,7 @@ header {
 header {
         height: 60vh;
         min-height: 440px;
-        background: #f8f6fb url('../images/byzantium-background.jpg') center center no-repeat;
+        background: #f8f6fb url('../images/sergei-akulich-41841.jpg') center center no-repeat;
         background-size: cover;
         position: relative;
         display: -webkit-flex;
@@ -147,7 +147,7 @@ div.scrollme.row.introduction {
         height: 60vw;
         min-height: 440px;
         max-height: 800px;
-        background: #102026 url('../images/byzantium-background.jpg') center center no-repeat;
+        background: #102026 url('../images/sergei-akulich-41841.jpg') center center no-repeat;
         background-size: cover;
         padding-top: 50px;
 }
