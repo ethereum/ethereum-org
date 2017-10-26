@@ -983,6 +983,106 @@ a.button.ethereum-wallet.win64 {
 	color: #FFF;
 }
 
+
+/* ==========================================
+  Legal
+  ======================================== */
+
+.terms,
+.cannot-continue  {
+	color: #E1EFFF;
+	text-align: center;
+	font-weight: 600;
+	display: block;
+	padding-top: 60px;
+}
+
+.warning a.back {
+	color: #E1EFFF;
+	font-size: 80%;
+	padding-top: 15px;
+}
+
+.inner-header a.back {
+	color: #E1EFFF;
+	float: left;
+	position: absolute;
+	top: 10px;
+	left: 60px;
+	opacity: 0.5;
+}
+
+.inner-header a.back:hover {
+	opacity: 1;
+}
+
+.warning a.back,
+.terms:hover {
+	color: #FFF;
+}
+
+.cannot-continue {
+	color: #eb453e;
+}
+
+.legal-modal {
+	display: none;
+	align-items: flex-end;
+	flex-wrap: wrap;
+	align-content: flex-end;
+	position: fixed;
+	top: 10%;
+	left: 10%;
+	bottom: 10%;
+	right: 10%;
+	padding: 32px 64px;
+	z-index: 1000;
+	background: #f9f9f9;
+	box-shadow: #000 0 0 150px;
+	border-radius: 1px;
+}
+
+.legal-modal.visible {
+    display: flex;
+}
+
+.legal-text {
+	position: absolute;
+	top: 20px;
+	bottom: 150px;
+	left: 80px;
+	right: 80px;
+	overflow: scroll;
+}
+
+input#legal {
+	margin-right: 10px;
+}
+
+div#donate_inst {
+	padding-bottom: 0;
+}
+
+.bad-robot {
+	margin: 20px auto 40px;
+	text-align: center;
+}
+
+.button-cancel ,
+.button-proceed {
+	flex: 1 1 200px;
+	height: 40px;
+	font-weight: 400;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+.button-proceed {
+	font-weight: 600;
+}
+
+
+
 /* ==========================================
   assets.pug
   ======================================== */
@@ -1136,6 +1236,7 @@ a.button.ethereum-wallet.win64 {
 	figure.moon .moon-rocket {
 		background-image: url("../images/moon-rocket@2x.png");
 	}
+}
 
 /* ==========================================
   gitter
@@ -1464,102 +1565,6 @@ p.cookie_pol {
 	padding: 20px 0 0 0;
 }
 
-/* ==========================================
-  Legal
-  ======================================== */
-
-.terms,
-.cannot-continue  {
-	color: #E1EFFF;
-	text-align: center;
-	font-weight: 600;
-	display: block;
-	padding-top: 60px;
-}
-
-.warning a.back {
-	color: #E1EFFF;
-	font-size: 80%;
-	padding-top: 15px;
-}
-
-.inner-header a.back {
-	color: #E1EFFF;
-	float: left;
-	position: absolute;
-	top: 10px;
-	left: 60px;
-	opacity: 0.5;
-}
-
-.inner-header a.back:hover {
-	opacity: 1;
-}
-
-.warning a.back,
-.terms:hover {
-	color: #FFF;
-}
-
-.cannot-continue {
-	color: #eb453e;
-}
-
-.legal-modal {
-	display: none;
-	align-items: flex-end;
-	flex-wrap: wrap;
-	align-content: flex-end;
-	position: fixed;
-	top: 10%;
-	left: 10%;
-	bottom: 10%;
-	right: 10%;
-	padding: 32px 64px;
-	z-index: 1000;
-	background: #f9f9f9;
-	box-shadow: #000 0 0 150px;
-	border-radius: 1px;
-}
-
-.legal-modal.visible {
-    display: flex;
-}
-
-.legal-text {
-	position: absolute;
-	top: 20px;
-	bottom: 150px;
-	left: 80px;
-	right: 80px;
-	overflow: scroll;
-}
-
-input#legal {
-	margin-right: 10px;
-}
-
-div#donate_inst {
-	padding-bottom: 0;
-}
-
-.bad-robot {
-	margin: 20px auto 40px;
-	text-align: center;
-}
-
-.button-cancel ,
-.button-proceed {
-	flex: 1 1 200px;
-	height: 40px;
-	font-weight: 400;
-	text-align: right;
-	text-transform: uppercase;
-}
-
-.button-proceed {
-	font-weight: 600;
-}
 
 /* ==========================================
   ether.pug
