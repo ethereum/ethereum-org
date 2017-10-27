@@ -16,7 +16,7 @@ contract Crowdsale {
     bool fundingGoalReached = false;
     bool crowdsaleClosed = false;
 
-    event GoalReached(address beneficiary, uint amountRaised);
+    event GoalReached(address recipient, uint totalAmountRaised);
     event FundTransfer(address backer, uint amount, bool isContribution);
 
     /**
