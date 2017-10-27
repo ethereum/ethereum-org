@@ -21,7 +21,7 @@ $(document).ready(function() {
   $('.require-legal').click(function(e){
     e.preventDefault();
     $('.legal-modal').addClass('visible');
-    console.log(this, $(this));
+    //console.log(this, $(this));
 
     $('.button-proceed').attr('href', $(this).attr('href') );
   });
