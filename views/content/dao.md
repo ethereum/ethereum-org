@@ -136,7 +136,7 @@ The code is deployed almost exactly like the previous code, but you need to also
 
 Notice these lines of codes: first we describe the token contract to our new contract. Since it only uses the **balanceOf** function, we only need to add that single line.
 
-    contract token { mapping (address => uint256) public balanceOf; }
+    contract Token { mapping (address => uint256) public balanceOf; }
 
 Then we define a variable of the *type* token, meaning that it will inherit all the functions we described earlier. Finally we point the token variable to an address on the blockchain, so it can use that and request live information. This is the simplest way to make one contract understand the other in ethereum.
 
@@ -212,13 +212,14 @@ If there has been more than one hour and a half since this round of calling **Ca
 
 What is all that vote delegation good for? For one, you can use it instead of the token weight on an **Association**. First of all, get the code for a [shareholder association](#the-shareholder-association) but replace the first lines where it describes the token:
 
-    contract token {
+    contract Token {
         mapping (address => uint256) public balanceOf;
+        function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
     }
 
 Into this:
 
-    contract token {
+    contract Token {
         mapping (address => uint256) public voteWeight;
         uint public numberOfDelegationRounds;
 
@@ -228,6 +229,8 @@ Into this:
             else
                 return this.voteWeight(member);
         }
+        
+        function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
     }
 
 When you are writing your contract you can describe multiple other contracts used by your main contract. Some might be functions and variables that are already defined on the target contract, like **voteWeight** and **numberOfDelegationRounds**. But notice that **balanceOf** is a new function, that doesn't exist neither on the Liquid Democracy or the Association contract, we are defining it now, as a function that will return the **voteWeight** if at least three rounds of delegations have been calculated.
