@@ -44,23 +44,20 @@ module.exports = function(grunt) {
 			build: {
 				options: {
 					data: function(dest, src) {
-						var mistReleases = grunt.file.readJSON("data/mist_releases.json")[0]['assets'];
+						var mistReleases = grunt.file.readJSON("data/mist_releases.json")[0]['assets'].filter(e => /Ethereum-Wallet/.test(e.name));
 						var mistReleaseOSX,
 							mistReleaseWin64,
 							mistReleaseWin32;
 
-						for (var i = 0; i < mistReleases.length; i++){
+						for (var i = 0; i < mistReleases.length; i++) {
 							var obj = mistReleases[i];
-							for (var key in obj) {
-								if (key === 'name') {
-									if (obj[key].indexOf('macosx') !== -1) {
-										mistReleaseOSX = obj['browser_download_url'];
-									} else if (obj[key].indexOf('win64') !== -1) {
-										mistReleaseWin64 = obj['browser_download_url'];
-									} else if (obj[key].indexOf('win32') !== -1) {
-										mistReleaseWin32 = obj['browser_download_url'];
-									}
-								}
+
+							if (obj['name'].indexOf('macosx') !== -1) {
+								mistReleaseOSX = obj['browser_download_url'];
+							} else if (obj['name'].indexOf('win64') !== -1) {
+								mistReleaseWin64 = obj['browser_download_url'];
+							} else if (obj['name'].indexOf('win32') !== -1) {
+								mistReleaseWin32 = obj['browser_download_url'];
 							}
 						}
 
