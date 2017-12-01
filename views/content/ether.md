@@ -46,7 +46,7 @@ Alternatively, if you are using **Eth** execute this:
 
 This will prompt for your password and imports your ether presale account. It can be used non-interactively with the _--password_ option taking a password file as argument containing the wallet password in cleartext.
 
-If this does not work, please do not hesitate in contacting us on our [forums](http://forum.ethereum.org), [reddit](http://reddit.com/r/ethereum) or at **info (at) ethereum.org**.
+If this does not work, please do not hesitate in contacting us on our [forums](https://forum.ethereum.org), [reddit](https://www.reddit.com/r/ethereum) or at **info (at) ethereum.org**.
 
 If you don't feel comfortable securing your ether right now but just want to check that your presale wallet is included in the blockchain, then use our [online balance checker](#balance).
 
@@ -133,7 +133,7 @@ There are many ways in which you can use Bitcoins within the Ethereum ecosystem:
 
 * **Trade BTC for ETH:** multiple third party companies are working to make the exchanging of ether and bitcoins as easy and seamless as possible. If so desired one could trade bitcoins for ether with the purpose of executing contracts and trade it back immediately in order to keep their value pegged and secured by the bitcoin network. The latest version of the wallet includes an automatic conversion between ether and bitcoin.
 
-* **Use a pegged derivative:** Ethereum is a great tool for creating complex trading between multiple parties. If you have a source for the price of Bitcoin that all parties trust, then it's possible to create an [ethereum based currency](../token) whose value is pegged to the market value of Bitcoin. This means that you could trade bitcoins to a token that is guaranteed to always trade back to the same amount of bitcoins while still being fully compatible with other ethereum contracts.
+* **Use a pegged derivative:** Ethereum is a great tool for creating complex trading between multiple parties. If you have a source for the price of Bitcoin that all parties trust, then it's possible to create an [ethereum based currency](/token) whose value is pegged to the market value of Bitcoin. This means that you could trade bitcoins to a token that is guaranteed to always trade back to the same amount of bitcoins while still being fully compatible with other ethereum contracts.
 
 * **Use a Bitcoin relay to convert a 2 way peg**: [the bitcoin relay](https://github.com/ethereum/btcrelay/) is a piece of code that allows you to sidechain a bitcoin into ethereum. This means that you can use Bitcoin's native limited scripting capability to lock a bitcoin into a contract that is directly connected to an ethereum contract, which can then issue an ethereum based token that is guaranteed to be backed by bitcoin. The relay is under development and as implementations are tested and proved to be secure, we will list them here.
 
