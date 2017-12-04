@@ -162,7 +162,7 @@ Because many of these functions are having to reimplement the transferring of to
     /* Internal transfer, only can be called by this contract */
     function _transfer(address _from, address _to, uint _value) internal {
         require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
-        require (balanceOf[_from] > _value);                // Check if the sender has enough
+        require (balanceOf[_from] >= _value);                // Check if the sender has enough
         require (balanceOf[_to] + _value > balanceOf[_to]); // Check for overflows
         require(!frozenAccount[_from]);                     // Check if sender is frozen
         require(!frozenAccount[_to]);                       // Check if recipient is frozen
@@ -371,7 +371,7 @@ This will ensure that no account receiving the token has less than the necessary
 
 #### Proof of Work
 
-There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with ether, meaning that anyone who finds a block on ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block.
+There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with ether, meaning that anyone who finds a block on ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block.
 
 ```
     function giveBlockReward() {

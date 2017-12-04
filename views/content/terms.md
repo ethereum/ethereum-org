@@ -4,8 +4,8 @@ Acceptance of the Terms of Use These terms of use are entered into by and betwee
 
 Please read the Terms of Use carefully before you start to use the Website. By using the Website or by clicking to accept or agree to the Terms of Use when this option is made available to you, you accept and agree to be bound and abide by these Terms of Use in addition to
 
-*   our Privacy Policy, found at [https://ethereumfoundation.org/devcon3/privacy-policy](https://ethereumfoundation.org/devcon3/privacy-policy), incorporated herein by reference; and
-*   our Cookie Policy, found at [https://ethereumfoundation.org/devcon3/cookie-policy](https://ethereumfoundation.org/devcon3/cookie-policy), incorporated herein by reference.
+*   our Privacy Policy, found at [https://ethereumfoundation.org/devcon3/privacy-policy/](https://ethereumfoundation.org/devcon3/privacy-policy), incorporated herein by reference; and
+*   our Cookie Policy, found at [https://ethereumfoundation.org/devcon3/cookie-policy/](https://ethereumfoundation.org/devcon3/cookie-policy), incorporated herein by reference.
 
 If you do not to agree to these Terms of Use or the Privacy Policy, you must not access or use the Website. 
 

@@ -23,7 +23,7 @@ The **Go** implementation is called **Geth**. Geth has been audited for security
 
 #### Install on Mac
 
-Install [Homebrew](http://brew.sh/) and make sure it's up to date:
+Install [Homebrew](https://brew.sh/) and make sure it's up to date:
 
     brew update
     brew upgrade
@@ -65,7 +65,7 @@ The **C++** implementation is simply called **Eth**. If you want added security 
 
 #### Install: on Mac
 
-Install [Homebrew](http://brew.sh/) and then make sure it's up to date:
+Install [Homebrew](https://brew.sh/) and then make sure it's up to date:
 
     brew update
     brew upgrade
@@ -106,7 +106,7 @@ The **Python** implementation is called Pyethapp. If you are interested in under
 #### Other Options
 
 * [Parity](https://parity.io/parity.html) a Rust implementation by [Parity Technologies](https://parity.io/)  
-* A [Haskell](https://github.com/bkirwi/ethereum-haskell) implementation developed by [Blockapps](http://www.blockapps.net)
+* A [Haskell](https://github.com/bkirwi/ethereum-haskell) implementation developed by [Blockapps](https://blockapps.net/)
 * If you are interested in developing a light application that will run entirely in a web browser, then we recommend using [EthereumJS](https://github.com/ethereum/ethereumjs-lib) as a basis. 
 * If you want to create a small hardware project, look into the implementation for the [Raspberry Pi](https://github.com/ethereum/wiki/wiki/Raspberry-Pi-instructions)
 * If you want to install geth for non-ubuntu linux then we recommend you look into [building from source](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
@@ -256,4 +256,4 @@ Once you executed the line above, all you need to check all of your balances is 
 * [Account Types, Gas, and Transactions](http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html)
 * [Developing on Ethereum](http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html#writing-a-contract)
 * [Developer tools](http://ethdocs.org/en/latest/contracts-and-transactions/developer-tools.html#developer-tools)
-* [Solidity Documentation](https://solidity.readthedocs.org/en/latest/)
+* [Solidity Documentation](https://solidity.readthedocs.io/en/latest/)

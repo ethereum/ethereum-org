@@ -49,7 +49,7 @@ contract greeter is mortal {
 </code></pre>
 <p>If you do not get Solidity above, then you need to install it. You can find <a href="http://solidity.readthedocs.io/en/develop/installing-solidity.html">instructions for installing Solidity here</a>.</p>
 <h4>Compiling your contract</h4>
-<p>Now you have the compiler installed, you need now reformat your contract by removing line-breaks so it fits into a string variable <a href="http://www.textfixer.com/tools/remove-line-breaks.php">(there are some online tools that will do this)</a>:</p>
+<p>Now you have the compiler installed, you need now reformat your contract by removing line-breaks so it fits into a string variable <a href="https://www.textfixer.com/tools/remove-line-breaks.php">(there are some online tools that will do this)</a>:</p>
 <pre><code>var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
 
 var greeterCompiled = web3.eth.compile.solidity(greeterSource)
