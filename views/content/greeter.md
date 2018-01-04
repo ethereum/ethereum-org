@@ -8,8 +8,10 @@ Smart contracts are account holding objects on the ethereum blockchain. They con
 What can you do with contracts? Well, you can do almost anything really, but for our getting started guide let's do some simple things: To start you will create a classic "Hello World" contract, then you can build your own crypto token to send to whomever you like. Once you've mastered that then you will raise funds through a crowdfunding that, if successful, will supply a radically transparent and democratic organization that will only obey its own citizens, will never swerve away from its constitution and cannot be censored or shut down. And all that in less than 300 lines of code.
 
 Before you begin:
-[Install the Ethereum CLI](https://ethereum.org/cli)
-[Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
+
+* [Install the Ethereum CLI](https://ethereum.org/cli)
+* [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
+
 Please confirm that the GUI is closed before entering the `geth` console.
 Run `geth` to begin the sync process (this may take a while on the first run).
 
@@ -57,33 +59,43 @@ The inherited characteristic _"mortal"_ simply means that the greeter contract c
 
 Before you are able to Deploy it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract.
 
-The first you can get by using a compiler. You should have a solidity compiler built in on your geth console. To test it, use this command:
+Both of these you can get by using a compiler. You could use the solidity compiler for this.
 
-    eth.getCompilers()
-
-If you have it installed, it should output something like this:
-
-    ['Solidity' ]
-
-If you do not get Solidity above, then you need to install it. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
-
-
+If you have not installed a compiler, then you need to install one. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
 
 #### Compiling your contract 
 
+If you do not get Solidity above, then you need to install it. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
 
-Now you have the compiler installed, you need now reformat your contract by removing line-breaks so it fits into a string variable [(there are some online tools that will do this)](https://www.textfixer.com/tools/remove-line-breaks.php):
+Now you have the compiler installed, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 
-    var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
+    solc -o target --bin --abi Greeter.sol
 
-    var greeterCompiled = web3.eth.compile.solidity(greeterSource)
+This will create two files, one file containing the compiled code and one file creating the Application Binary Interface in a directory called target.
 
-You have now compiled your code. Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
+    $tree
+    .
+    ├── Greeter.sol
+    └── target
+       ├── Greeter.abi
+       ├── Greeter.bin
+       ├── Mortal.abi
+       └── Mortal.bin
 
-    var _greeting = "Hello World!"
-    var greeterContract = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition);
+You will see that there are files created for both contracts; but because Greeter includes Mortal you do not need to deploy Mortal to deploy Greeter.
 
-    var greeter = greeterContract.new(_greeting,{from:web3.eth.accounts[0], data: greeterCompiled.greeter.code, gas: 300000}, function(e, contract){
+You can use these two files to create and deploy the contract.
+
+    var greeterFactory = eth.contract(<contents of the file Greeter.abi>)
+
+    var greeterCompiled = "0x" + "<contents of the file Greeter.bin"
+
+You have now compiled your code and made it available to Geth.  Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
+    
+	
+	var _greeting = "Hello World!"
+
+    var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCompiled,gas:47000000}, function(e, contract){
         if(!e) {
 
           if(!contract.address) {
@@ -96,6 +108,7 @@ You have now compiled your code. Now you need to get it ready for deployment, th
 
         }
     })
+
 
 #### Using the online compiler
 
