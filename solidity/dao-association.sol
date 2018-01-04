@@ -89,7 +89,7 @@ contract Association is owned, tokenRecipient {
     /**
      * Change voting rules
      *
-     * Make so that proposals need tobe discussed for at least `minutesForDebate/60` hours
+     * Make so that proposals need to be discussed for at least `minutesForDebate/60` hours
      * and all voters combined must own more than `minimumSharesToPassAVote` shares of token `sharesAddress` to be executed
      *
      * @param sharesAddress token address
