@@ -159,7 +159,7 @@ You'll notice that there some more functions in your basic token contract, like 
 Because many of these functions are having to reimplement the transferring of tokens, it makes sense to change them to an internal function, which can only be called by the contract itself:
 
 ```
-    /* Internal transfer, only can be called by this contract */
+    /* Internal transfer, can only be called by this contract */
     function _transfer(address _from, address _to, uint _value) internal {
         require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
         require (balanceOf[_from] >= _value);                // Check if the sender has enough
