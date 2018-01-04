@@ -14,9 +14,9 @@ Note that after the [Byzantium update](https://blog.ethereum.org/2017/10/12/byza
 
 ### Is the ether supply infinite?
 
-No. According to the terms agreed by all parties on the 2014 presale, issuance of ether is capped at 18 million ether per year (this number equals 25% of the initial supply). This means that while the absolute issuance is fixed, the relative inflation is decreased every year. In theory if this issuance was kept indefinitely then at some point the rate of new tokens created every year would reach the average amount lost yearly (by misuse, accidental key lost, death of holders etc) and there would reach an equilibrium.
+No. According to the terms agreed by all parties on the 2014 presale, issuance of ether is capped at 18 million ether per year (this number equals 25% of the initial supply). This means that while the absolute issuance is fixed, the relative inflation is decreased every year. In theory, if this issuance was kept indefinitely then at some point the rate of new tokens created every year would reach the average amount lost yearly (by misuse, accidental key lost, the death of holders etc) and there would reach an equilibrium.
 
-But the rate is not expected to be kept: sometime in 2017 Ethereum will be switched from Proof of Work to a new consensus algorithm under development, called [Casper](https://blog.ethereum.org/2015/08/01/introducing-casper-friendly-ghost/) that is expected to be more efficient and require less mining subsidy. The exact method of issuance and which function it will serve is an area of active research, but what can be guaranteed now is that (1) the current maximum is considered a ceiling and the new issuance under casper will not exceed it (and is expected to be much less) and (2) whatever method is ultimately picked to issue, it will be a decentralized smart contract that will **not** give preferential treatment to any particular group of people and whose purpose is to benefit the overall health and security of the network.
+But the rate is not expected to be kept: sometime in 2018-2019 Ethereum will be switched from Proof of Work to a new consensus algorithm under development, called [Casper](https://blog.ethereum.org/2015/08/01/introducing-casper-friendly-ghost/) that is expected to be more efficient and require less mining subsidy. The exact method of issuance and which function it will serve is an area of active research, but what can be guaranteed now is that (1) the current maximum is considered a ceiling and the new issuance under casper will not exceed it (and is expected to be much less) and (2) whatever method is ultimately picked to issue, it will be a decentralized smart contract that will **not** give preferential treatment to any particular group of people and whose purpose is to benefit the overall health and security of the network.
 
 
 ### Who needs ether?
@@ -60,7 +60,7 @@ This process is usually called **_mining_** in the crypto-currency lingo.
 
 #### CPU MINING Using the command line
 
-If you are on a [private network](../cli) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is the best choice for small scale network or testing privately, as it's less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to successfully mine a block and receive ether.
+If you are on a [private network](../cli) (and if you just want to test the technology for free, you should) then any normal computer with a normal CPU will be able to run the network and earn test ether (ether that is only redeemable on the test network where it was generated) through mining. This is the best choice for small-scale network or testing privately, as it's less resource intensive. On the real (or live test) network a normal desktop (or laptop) computer might take a very long time to successfully mine a block and receive ether.
 
 Before you do any mining, you need to set which address will receive your earnings (called "etherbase"). You only need to do this once. Here's how to set your etherbase and then start mining:
 
@@ -76,7 +76,7 @@ Before you do any mining, you need to set which address will receive your earnin
     web3.admin.eth.setMining(true)
 
 
-Before you can find any blocks, however, your computer needs to go through a process called “building a DAG”. This DAG (short for “Directed Acyclic Graph”) is a large data structure (~1GB) required for mining, intended to prevent ASIC machines (“Application Specific Integrated Circuits”) from being mass manufactured for mining ether. Its goal is to protect miners like yourself, so that you will only ever need your home computer to remain competitive. The DAG should take about 10 minutes to generate and as soon as it finishes, Geth will start mining automatically.
+Before you can find any blocks, however, your computer needs to go through a process called “building a DAG”. This DAG (short for “Directed Acyclic Graph”) is a large data structure (~1GB) required for mining, intended to prevent ASIC machines (“Application Specific Integrated Circuits”) from being mass manufactured for mining ether. Its goal is to protect miners like yourself so that you will only ever need your home computer to remain competitive. The DAG should take about 10 minutes to generate and as soon as it finishes, Geth will start mining automatically.
 
 If you have successfully mined a block you will see a message like this among the logs:
 
@@ -89,7 +89,7 @@ To check your earnings, you can display your balance with:
 #### GPU MINING Using the command line
 
 
-If you are serious about mining on the live ethereum network and getting real ether rewards, then you should use a dedicated computer with very powerful graphic cards in order to run the network.
+If you are serious about mining on the live ethereum network and getting real ether rewards, then you should use a dedicated computer with very powerful graphics cards in order to run the network.
 
 
 **Instructions for Eth:**
@@ -104,11 +104,11 @@ Once you started, just follow the same instructions as normal CPU mining.
 **Instructions for Geth**
 
 
-There are currently two options for GPU mining in Geth available. You can read a more detailed description on how to install it on this [mining post](https://forum.ethereum.org/discussion/197/mining-faq-live-updates).
+There are currently two options for GPU mining in Geth available. You can read a more detailed description of how to install it on this [mining post](https://forum.ethereum.org/discussion/197/mining-faq-live-updates).
 
 * **C++ Etherminer**. This is a version for the pro miners. To install it, follow the guide to [install the whole C++ ethereum code](https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients).
 
-* **Go experimental GPU branch**. It's experimental so you need to build go from source to get it. This version is focused for hobbyists and developers. To install it, [clone geth from source](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu) and then switch to the [GPU Miner branch](https://github.com/ethereum/go-ethereum/tree/gpu_miner).
+* **Go experimental GPU branch**. It's experimental so you need to build go from source to get it. This version is focused on hobbyists and developers. To install it, [clone geth from source](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu) and then switch to the [GPU Miner branch](https://github.com/ethereum/go-ethereum/tree/gpu_miner).
 
 
 
@@ -131,18 +131,18 @@ Ethereum would never be possible without bitcoin—both the technology and the c
 
 There are many ways in which you can use Bitcoins within the Ethereum ecosystem:
 
-* **Trade BTC for ETH:** multiple third party companies are working to make the exchanging of ether and bitcoins as easy and seamless as possible. If so desired one could trade bitcoins for ether with the purpose of executing contracts and trade it back immediately in order to keep their value pegged and secured by the bitcoin network. The latest version of the wallet includes an automatic conversion between ether and bitcoin.
+* **Trade BTC for ETH:** multiple third-party companies are working to make the exchanging of ether and bitcoins as easy and seamless as possible. If so desired one could trade bitcoins for ether with the purpose of executing contracts and trade it back immediately in order to keep their value pegged and secured by the bitcoin network. The latest version of the wallet includes an automatic conversion between ether and bitcoin.
 
 * **Use a pegged derivative:** Ethereum is a great tool for creating complex trading between multiple parties. If you have a source for the price of Bitcoin that all parties trust, then it's possible to create an [ethereum based currency](/token) whose value is pegged to the market value of Bitcoin. This means that you could trade bitcoins to a token that is guaranteed to always trade back to the same amount of bitcoins while still being fully compatible with other ethereum contracts.
 
-* **Use a Bitcoin relay to convert a 2 way peg**: [the bitcoin relay](https://github.com/ethereum/btcrelay/) is a piece of code that allows you to sidechain a bitcoin into ethereum. This means that you can use Bitcoin's native limited scripting capability to lock a bitcoin into a contract that is directly connected to an ethereum contract, which can then issue an ethereum based token that is guaranteed to be backed by bitcoin. The relay is under development and as implementations are tested and proved to be secure, we will list them here.
+* **Use a Bitcoin relay to convert a 2-way peg**: [the bitcoin relay](https://github.com/ethereum/btcrelay/) is a piece of code that allows you to sidechain a bitcoin into ethereum. This means that you can use Bitcoin's native limited scripting capability to lock a bitcoin into a contract that is directly connected to an ethereum contract, which can then issue an ethereum based token that is guaranteed to be backed by bitcoin. The relay is under development and as implementations are tested and proved to be secure, we will list them here.
 
 
 ## How do I send ether using the command line?
 
 **ATTENTION: Ethereum addresses don't have built-in checks on them yet. That means that if you mistype an address, your ether will be lost forever, without a secondary confirmation window. If you are moving a significant amount, start with smaller quantities that you can afford to lose, until you feel comfortable enough.**
 
-There are two types of accounts in Ethereum: *normal accounts*, holding ether that can only be moved with a private key and *contracts*, which hold ether only controlled by their own internal code. In this section we focus on the former. The remainder of this guide will be dedicated to the latter.
+There are two types of accounts in Ethereum: *normal accounts*, holding ether that can only be moved with a private key and *contracts*, which hold ether only controlled by their own internal code. In this section, we focus on the former. The remainder of this guide will be dedicated to the latter.
 
 Similarly, your transactions are also of two types: those sent to normal accounts are *ether transfers*, while the rest are *communication* with smart contracts.
 

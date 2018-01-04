@@ -46,7 +46,7 @@ The following line will instantiate a contract at a given address:
 
 Notice that the contract understands what a *token* is because we defined it earlier by starting the code with:
 
-    contract token { function transfer(address receiver, uint amount){  } }
+    interface token { function transfer(address receiver, uint amount){  } }
 
 This doesn't fully describe how the contract works or all the functions it has, but describes only the ones this contract needs: a token is a contract with a *transfer* function, and we have one at this address.
 
