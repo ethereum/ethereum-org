@@ -138,7 +138,7 @@ contract Congress is owned, tokenRecipient {
     /**
      * Change voting rules
      *
-     * Make so that proposals need tobe discussed for at least `minutesForDebate/60` hours,
+     * Make so that proposals need to be discussed for at least `minutesForDebate/60` hours,
      * have at least `minimumQuorumForProposals` votes, and have 50% + `marginOfVotesForMajority` votes to be executed
      *
      * @param minimumQuorumForProposals how many members must vote on a proposal for it to be executed
