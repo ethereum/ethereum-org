@@ -33,7 +33,7 @@ Open the wallet (if you are only testing, go to the menu develop > network > tes
 ![DAO Setup](/images/tutorial/dao-setup.png)
 
 
-You can change these parameters later, choose a name, 5 minutes for debate time and leave the remaining of them at 0. A little lower on the page you'll see an estimate cost of your contract in ether. You can try lowering the price if you want to save, but that might mean having to wait longer for your contract to be created. Click **Deploy**, type your password and wait.
+You can change these parameters later. As a start, you can choose 5 minutes for debate time and leave the remaining parameters at 0. A little lower on the page, you'll see an estimate of the cost for deploying your contract in ether. You can try lowering the price if you want to save, but that might mean having to wait longer for your contract to be created. Click **Deploy**, type your password and wait.
 
 In a few seconds you'll be taken to the dashboard, scroll down and you'll be able to see your transaction being created. In under a minute you'll see the transaction successful and a new unique icon will have been created. Click the contract's name to see it (you can get to it at any time on the *Contracts* tab).
 
@@ -52,11 +52,11 @@ On the other computer, go into the *Contracts* tab and then click on **watch con
 #### Interacting with the contract
 
 
-On the **"read from contract"** you can see all the functions you can execute for free on the contract, as they are just reading information from the blockchain. Here you can see, for instance, the current "owner" of the contract (that should be the account that uploaded the contract).
+On the **"Read from contract"** you can see all the functions you can execute for free on the contract, as they are just reading information from the blockchain. Here you can see, for instance, the current "owner" of the contract (that should be the account that uploaded the contract).
 
-On the **"Write to contract"** you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select "newProposal" and it will show all the options for that function.
+On the **"Write to contract"** you have a list of all the functions that will attempt to do some computation that saves data to the blockchain, and therefore will cost ether. Select "New Proposal" and it will show all the options for that function.
 
-Before interacting with the contract, you'll need to add new members so they can vote. On the **"select function"** picker, choose **"Add Member"**. Add the address of the person you want to make a member(to remove a member, choose **"Remove Member"**). On **"execute from"** make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
+Before interacting with the contract, you'll need to add new members so they can vote. On the **"Select function"** picker, choose **"Add Member"**. Add the address of the person you want to make a member(to remove a member, pick the function **"Remove Member"**). On **"execute from"** make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
 
 There's no list of members, but you can check if anyone is a member by putting their address on the **Members** function on the *Read from contract* column.
 
@@ -64,11 +64,11 @@ Also, if you want the contract to have any money of its own, you need to deposit
 
 #### Add a simple proposal: send ether
 
-Now let's add the first proposal to the contract. On the function picker, select **New proposal**.
+Now let's add the first proposal to the contract. On the function picker, select **New Proposal**.
 
-For "beneficiary" add the address of someone you want to send ether to, then put how many ethers you want on the "etherAmount" (must be an integer) and finally some text describing the reason you want to do this. Leave transactionByteCode blank for now. Click execute and type your password. After a few seconds the numProposals will increase to 1 and the first proposal, number 0, will appear on the left column. As you add more proposals, you can see any of them by simply putting the proposal number on the "proposals" field and you can read all about it.
+For "beneficiary" add the address of someone you want to send ether to, and put how much you want to send in the box marked "Wei Amount." Wei is the smallest unit of ether, equal to 10^-18 ether, and must always be given as an integer. For example, if you want to send 1 ether, enter 1000000000000000000 (that's 18 zeroes). Finally, add some text describing the reason you want to do this. Leave "Transaction bytecode" blank for now. Click execute and type your password. After a few seconds the numProposals will increase to 1 and the first proposal, number 0, will appear on the left column. As you add more proposals, you can see any of them by simply putting the proposal number on the "proposals" field and you can read all about it.
 
-Voting on a proposal is also very simple. Choose "vote" on the function picker. Type the proposal Number on the first box and check the "Yes" box if you agree with it (or leave it blank to vote against it). Click "**execute**" to send your vote.
+Voting on a proposal is also very simple. Choose "Vote" on the function picker. Type the proposal Number in the first box and check the "Yes" box if you agree with it (or leave it blank to vote against it). Click "**execute**" to send your vote.
 
 ![Add new proposal](/images/tutorial/dao-add-proposal.png)
 
@@ -130,7 +130,7 @@ Now to the shareholder code:
 !!!include(solidity/dao-association.sol)!!!
 ```
 
-#### Deploy and usage
+#### Deployment and usage
 
 The code is deployed almost exactly like the previous code, but you need to also put a **shares token address** which is the address of the token that will work as a share with voting rights.
 
@@ -163,9 +163,9 @@ This association presents a challenge that the previous congress didn't have: si
         }
     }
 
-Another way to achieve the same goal would be to create a single signed integer to keep score of the votes and check if it was positive or negative on the end, but you'd have to convert the *unsigned integer* balanceOf into a *signed integer* using **int score = int(voteWeight);**
+Another way to count the weighted votes would be to create a single signed integer to keep score of the votes and check if it was positive or negative at the end, but you'd have to convert the *unsigned integer* voteWeight into a *signed integer* using **int score = int(voteWeight);**
 
-Using this DAO is exactly like the previous: members create new proposals, vote on them, wait until the deadline passes and then anyone can count the votes and execute it.
+Using this DAO is exactly like before: members create new proposals, vote on them, wait until the deadline passes and then anyone can count the votes and execute it.
 
 ![Association example](/images/tutorial/association-dao.png)
 
@@ -265,13 +265,13 @@ This means that if you don't have urgency, one or two signatures might be all yo
 
 #### How it works
 
-A transaction that has been approved by all keys can be executed after ten minutes (this amount is configurable), and the amount of time it requires doubles every time for every 5% of members who don't vote (and quadruples if they activelly vote against). If it's a simple ether transaction, the transaction is executed as soon as a vote of support puts it under the required time, but a more complex transaction will require it to be manually executed with the correct bytecode. These are the default values, but this can be set differently when creating the contract:
+A transaction that has been approved by all keys can be executed after ten minutes (this amount is configurable), and the amount of time it requires doubles every time for every 5% of members who don't vote (and quadruples if they actively vote against). If it's a simple ether transaction, the transaction is executed as soon as a vote of support puts it under the required time, but a more complex transaction will require it to be manually executed with the correct bytecode. These are the default values, but this can be set differently when creating the contract:
 
 **Number of members approving transaction: Approximate time delay**
 
 * 100% approval:                                10 minutes (minimum default)
 * 90% approval:                                 40 minutes
-* 80%:                                          2h40
+* 80%:                                          2hr 40min
 * 50%:                                          about a week
 * 40%:                                          1 month
 * 30%:                                          4 months
