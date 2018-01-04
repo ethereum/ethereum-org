@@ -1,0 +1,74 @@
+extends layout
+
+block vars
+  - var title='DevGrants'
+  - var url='devgrants'
+
+block content
+  include mixins/recipes.pug
+  +inner-header("DevGrants")
+
+  .main-tutorial.inner-page.inner-tutorial
+    .container  
+      .row                
+        +toc
+        .col-md-12
+          include:markdown-it content/devgrants.md        
+          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/devgrants.md') Improve this page
+
+
+  .main-tutorial.inner-page.even
+    .container  
+      .row
+        .col-md-12.devgrants-hof
+
+          h3 Hall of Fame
+
+          img(src='images/partners/omise.png')
+          h2 $100,000 USD
+
+
+  .main-tutorial.inner-page.inner-tutorial
+    .container  
+      .row                
+        .col-md-12
+          h3 Contribute
+
+          p Be a contributor to DEVGRANTS and help us help everyone. All contributors (unless anonymity is requested) will have their names added to the Hall of Fame, and will additionally receive a DEVGRANTSHERO token to recognize their commitment to the development of the Ethereum ecosystem.
+
+          p To make a donation to DEVGRANTS, please send your contribution to one of the following and contact us at grants@ethereum.org for both confirmation and to confirm the details of how you would (or would not) like your contribution to be attributed.
+
+        .col-md-6
+          p
+            strong Bank 
+            em 1234567890
+        
+        .col-md-6  
+          p
+            strong Ether 
+            em 1234567890
+        
+        .col-md-6  
+          p
+            strong Bitcoin 
+            em 1234567890
+        
+        .col-md-6          
+          p
+            strong PayPal 
+            em 1234567890
+
+        .col-md-12          
+
+          h4 Contact Devgrants
+          
+          ul
+            li 
+              a(href='mailto:grants@ethereum.org') email
+            li
+              a(href='http://gitter.im/devgrants') Gitter
+
+
+
+          
+

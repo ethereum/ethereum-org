@@ -6,12 +6,22 @@ $(document).ready(function() {
     })
   });
 
-  $("#tableOfContents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '5' } );
+  $("#legal").change(function(e) {
+      // this function will get executed every time the #home element is clicked (or tab-spacebar changed)
+      if($(this).is(":checked")) // "this" refers to the element that fired the event
+      {
+        $("#donate_to").css({"display": "block"});
+      }else{
+        $("#donate_to").css({"display": "none"});
+      }
+  });
+
+  $("#table-of-contents").tableOfContents('.inner-tutorial', { startLevel: '3', depth: '5' } );
  
   $('.require-legal').click(function(e){
     e.preventDefault();
     $('.legal-modal').addClass('visible');
-    console.log(this, $(this));
+    //console.log(this, $(this));
 
     $('.button-proceed').attr('href', $(this).attr('href') );
   });
@@ -20,7 +30,7 @@ $(document).ready(function() {
     $('.legal-modal').removeClass('visible');
   })
 
-  var toc = document.getElementById('tableOfContents');
+  var toc = document.getElementById('table-of-contents');
   if (toc) {
     window.onscroll = function() {
       var innerTutorial = document.getElementsByClassName('inner-tutorial');
@@ -157,11 +167,11 @@ function selectElementContents(el) {
 //     return function () {
 //         /*your code here*/ console.log('visibility: ' + isElementInViewport(el));
 //         for(var i = 0; i <= 3; i++) {
-// 	        if (isElementInViewport($("div.main-tutorial.part" + i))) {
-// 				$("ul#toc > li:nth-child("+(i+1)+") ul").show(400);
-// 			} else {
-// 				$("ul#toc > li:nth-child("+(i+1)+") ul").hide(200);
-// 			}        	
+//          if (isElementInViewport($("div.main-tutorial.part" + i))) {
+//        $("ul#toc > li:nth-child("+(i+1)+") ul").show(400);
+//      } else {
+//        $("ul#toc > li:nth-child("+(i+1)+") ul").hide(200);
+//      }         
 //         }
 //     };
 // }

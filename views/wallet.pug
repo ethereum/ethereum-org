@@ -1,0 +1,28 @@
+extends layout
+
+block vars
+  - var title='Create a cryptocurrency contract in Ethereum'
+  - var url='token'
+  - var image='token'
+
+block content
+  .breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
+    a(href="/").index Ethereum 
+    strong »  Ethereum Wallet
+    a(href="/cli").next Next
+
+  .main-tutorial.inner-tutorial
+    .container
+      .row.scrollme                
+        .col-md-12
+          include:markdown-it content/wallet.md
+          a(href="/" style="display: block;").button.ethereum-wallet Download the wallet from the frontpage
+          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/token.md') Improve this page
+
+  
+  script
+    |  ((window.gitter = {}).chat = {}).options = {
+    |    room: 'ethereum/mist'
+    |  };
+
+  script(src="https://sidecar.gitter.im/dist/sidecar.v1.js", async, defer)

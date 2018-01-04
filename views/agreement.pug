@@ -1,0 +1,22 @@
+extends layout
+
+block vars
+  - var title='Legal agreement'
+  - var url='agreement'
+
+block content
+  include mixins/recipes.pug
+  +inner-header("Legal Agreement")
+
+  .main-tutorial.inner-page.foundation-page
+    .container
+      .row
+        .col-md-12
+          include:markdown-it content/agreement.md
+
+
+
+
+
+
+

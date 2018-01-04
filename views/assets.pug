@@ -1,0 +1,218 @@
+extends layout
+
+block vars
+  - var title='Asset Downloads'
+  - var url='assets'
+
+block content
+  include mixins/recipes.pug
+  +inner-header("Assets For Download")
+
+  .page-assets
+    .main-tutorial.inner-page.press-kit
+      .container
+        .row
+          .col-md-12
+            include:markdown-it content/press-kit.md
+
+            h2 Read this before downloading
+
+            p If you are not writing an article about Ethereum and want to use our logo for other purposes, please read carefully our 
+              a(href="./brand") branding guidelines and legal framework 
+              | before proceeding. 
+
+            p Also please follow the 
+              a(href="/images/logos/Ethereum_Visual_Identity_1.0.0.pdf", target="_blank") Ethereum Visual Identity Guide
+              |:
+
+            p
+              a(href="/images/logos/Ethereum_Visual_Identity_1.0.0.pdf", target="_blank")
+                img(alt="Ethereum Visual Identity Guide", src="images/logos/Ethereum_Visual_Identity_1.0.0.png", style="max-width: 400px;")
+
+    .main-tutorial.inner-page.press-kit.even
+      .container
+        .row
+          .col-md-12
+            h2 Download Assets
+
+            h3 Logos
+            .row.row-no-padding
+              .col-md-3
+                a(href="images/logos/ETHEREUM-ICON_Black.png")
+                img(alt="Ethereum Octaedron", src="images/logos/ETHEREUM-ICON_Black_small.png")
+              .col-md-3
+                a(href="images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png")
+                img(alt="Ethereum Landscape", src="images/logos/ETHEREUM-LOGO_PORTRAIT_Black_small.png")
+              .col-md-3
+                a(href="images/logos/ETHEREUM-LOGO_LANDSCAPE_Black.png")
+                img(alt="Ethereum Portrait", src="images/logos/ETHEREUM-LOGO_LANDSCAPE_Black_small.png")
+
+            h3 Milestone Images
+            .row.row-no-padding
+              .col-md-3
+                a(href="images/wallpaper-homestead-small.jpg")
+                  img(alt="Ethereum Homestead Landscape", src="images/wallpaper-homestead.jpg")
+              .col-md-3
+                a(href="images/wallpaper-frontier.jpg")
+                  img(alt="Ethereum Homestead Landscape", src="images/wallpaper-frontier-small.png")
+
+    .main-tutorial
+      .container
+        .row
+          .col-md-12
+            .row.row-no-padding
+              .col-md-12
+                h3 Brand Images
+                p Public domain images to illustrate your blog, article or even your display.
+
+            .row.row-brand-images
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-1.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-1.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-2.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-2.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-3.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-3.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-4.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-4.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-5.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-5.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-6.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-6.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-7.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-7.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-8.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-8.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-9.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-9.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-10.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-10.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-11.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-11.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-12.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-12.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-13.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-13.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-14.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-14.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-15.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-15.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-16.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-16.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-17.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-17.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-18.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-18.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-19.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-19.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-20.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-20.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-21.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-21.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-22.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-22.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-23.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-23.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-24.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-24.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-25.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-25.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-26.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-26.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-27.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-27.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-28.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-28.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-29.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-29.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-30.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-30.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-31.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-31.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-32.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-32.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-33.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-33.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-34.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-34.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-35.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-35.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-36.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-36.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-37.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-37.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-38.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-38.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-39.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-39.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-40.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-40.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-41.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-41.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-42.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-42.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-43.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-43.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-44.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-44.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-45.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-45.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-46.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-46.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-47.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-47.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-48.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-48.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-49.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-49.jpg")
+              .col-md-3
+                a(href="images/assets/1900/Ethereum-homestead-background-50.jpg")
+                  img(src="images/assets/thumb/Ethereum-homestead-background-50.jpg")

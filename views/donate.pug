@@ -1,0 +1,102 @@
+extends layout
+
+block vars
+  - var title='Donate to support development'
+  - var url='donate'
+
+block content
+  include mixins/recipes.pug
+  +inner-header("Donate to Support Development")
+
+  .main-tutorial.inner-page
+    .container
+      div#donate_inst.row
+        .col-md-12
+          h2 Thanks for wanting to help!!!
+
+
+          p The Ethereum Foundation is a non-profit Swiss &ldquo;Stiftung&rdquo; (Foundation) registered in Switzerland as &ldquo;Stiftung Ethereum&rdquo; (Foundation Ethereum). You can  
+
+            a(href='./foundation') read more about it on the foundation page
+            | .
+
+
+          p
+            strong The Foundation’s mission
+            |  is to promote and support Ethereum platform and base layer research, development and education to bring decentralized protocols and tools to the world that empower developers to produce next generation decentralized applications and together build a more globally accessible, more free and more trustworthy Internet.
+
+
+          p If you want to help us achieve these goals, here are ways you can do so.
+
+          h3 Donate
+
+
+          p
+            strong Donating is a helpful way to support the Foundation. 
+            | We've set up a special contract account to handle all  
+            strong Bitcoin and Ether  
+            |  donations. All funds received are visible on the blockchain for anyone to see.
+
+            img(src='images/unicorn.png', width='150').pull-right
+          p
+            | Also, donating might get you a unicorn. As a playful way to thank the donors, we created a token on the ethereum blockchain called a &#8220;Unicorn.&#8221;
+          p
+            include:markdown-it content/donate-section.md
+
+          p
+            strong BEFORE YOU DONATE
+            |, we want to make sure you know a few important things.
+            include:markdown-it content/donate-conditions.md
+
+          h4 If you want to donate, the instructions will appear after you certify the legality of the funds.
+
+          p
+            form(name="illegal", method="post")
+              .input
+                input(type="checkbox" name="not_illegal" id="legal" style="transform: scale(1.5);")
+                label(for="legal") My donation comes from a legal source and is compliant with the tax laws of my jurisdiction.
+
+  .main-tutorial.inner-page.even
+    h3
+
+  div#donate_to.main-tutorial.inner-page.even
+    .container
+      .row
+        .col-md-12.donate
+          h4 FOR ETHER DONATIONS, THE SPECIAL ACCOUNT IS:
+          .identicon
+          span.dapp-identicon(style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABgElEQVR4Xu2asQ0CMQxFuRWQKFmCkoqGkSgQNaJgl1uAhopFaKhuABqYAL/iC+U43rWRE9/P97fjpHv2i9es+IbNshoe/dj8ei997ARABhgCaoAiaBb4jMDk0+BjWJUaMPpEHzrYCYAMMATUgFBHftpcEfz7LEDHYeJ360KJzvvkP/YDaAIBaNwxkgHQ8iIGGwKKIPQEiUKK4NRFcH+p++qnbdt7g9Q/FMF0AQqhdDz1TwAoC6QIpztM9ql/MkAGQB2QUowonI6n/hkC1BCh0xZVgmRPDEjnJ3tsidEP0AJkLwCAQAow2csANQCuxiiGiWJkrwaoATUCKcPIHkXwfLiVHlI/gCo1CoF0/t1xXb8TJBEUABlgCKgBFQKpSCmCgEAKsFng22mQECaKp+OUpsm/uBCiBdIfJHsBgDqFNkgGpKUwIUwUTscNAUOgLtWJoWoAXY1RQ4FikCo50gDqJ9AOU0sOb4YEAJ7AyICwYWIIAAJqADzSUgThuGsWgLfEbx19IL+uODI/AAAAAElFTkSuQmCC')")
+
+          h2 Foundation Tip Jar
+          h3
+            a(href='https://etherscan.io/address/0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359') 0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359
+          p.caption For information about larger donations, 
+            a(href='mailto:donate@ethereum.org') contact us
+
+          h4 FOR BITCOINS DONATIONS, THE SPECIAL ACCOUNT IS
+          h3
+            a(href='https://blockchain.info/address/39BaMQCphFXyYAvcoGpeKtnptLJ9v6cdFY') 39BaMQCphFXyYAvcoGpeKtnptLJ9v6cdFY
+          p.caption Bitcoin donations are unfortunately not eligible for unicorns.
+
+
+           h4 FOR FIAT (MONEY) DONATIONS:
+
+           p.caption If you want to contribute with traditional currency, please contact us at 
+             a(href="mailto:donate@ethereum.org") donate@ethereum.org 
+
+           h4 FOR OTHER CRYPTOCURRENCIES:
+
+           p.caption The 
+             a(href="https://github.com/ethereum/mist/releases") Ethereum Wallet 
+             | app uses *shapeshift* to convert between any cryptocurrency and ether to any contract. If you are on the Foundation Tip Jar page, just click the button  
+             strong deposit using bitcoin
+             | . Unicorns will not be sent back to you, though.
+
+  .main-tutorial.inner-page.inner-tutorial
+    .container
+      .row
+        .col-md-12
+          include:markdown-it content/donate.md
+          h3
+            a(name="watch") Here’s how to watch and play with unicorns
+          include:markdown-it content/donate2.md

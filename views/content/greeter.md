@@ -12,7 +12,8 @@ Before you begin:
 * [Install the Ethereum CLI](https://ethereum.org/cli)
 * [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
 
-And then run `geth` to begin the sync process (this may take a while on the first run).
+Please confirm that the GUI is closed before entering the `geth` console.
+Run `geth` to begin the sync process (this may take a while on the first run).
 
 So let's start now.
 
@@ -64,6 +65,7 @@ If you have not installed a compiler, then you need to install one. You can find
 
 #### Compiling your contract 
 
+If you do not get Solidity above, then you need to install it. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
 
 Now you have the compiler installed, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 

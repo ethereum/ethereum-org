@@ -1,0 +1,210 @@
+include figures.pug
+
+mixin gethRecipe(header)
+  if header
+    h2 #{header}
+
+  .row
+    .col-md-6
+      h3 Install and run the 
+        strong Command Line Interface
+      p We've built 
+        a(href='https://github.com/ethereum/mist/releases/latest') easy to use graphical tools
+        | , but if you are a developer you probably want to install the command line tools.
+
+    .col-md-6
+      +gethFigure
+
+  .row
+    .col-md-6
+      a(href="/cli").button Install the Command line tools
+    
+    .col-md-6
+      .recipe
+        h4 You'll need:
+        ul
+          li 
+            Basic command line skills 
+          li 
+            Basic coding skills
+          li 
+            1-2 GB free space for the blockchain
+
+mixin etherRecipe(header)
+  if header
+    h2 #{header}
+
+  .row
+    .col-md-6
+      h3 Learn about the ether, the crypto-fuel of the Ethereum network
+      
+      p Ether is the internal 'fuel' of Ethereum. Programs running on Ethereum need to pay the network for the resources they consume. Volunteers earn this ether by validating transactions, securing the network.
+
+      p Alternatively, if you participated in the presale to fund Ethereum's development, or won a reward from the Olympic or 
+        a(href="https://bounty.ethdev.com/") Bug Bounty 
+        | programs, you will have a wallet file (.json) that can be imported and give you access to your ether.
+    
+      p You can also get some from a friend or purchase it online.
+
+    .col-md-6
+      +etherFigure
+
+  .row
+    .col-md-6
+      a(href="/ether").button Learn about ether 
+    
+    .col-md-6
+      .recipe
+        h4 You will:
+        ul
+          li Learn what ether is and how many exist
+          li Import your presale wallet
+          li Learn how to send transactions using the command line
+
+mixin greeterRecipe(header)
+  if header
+    h2 #{header}
+
+  .row
+    .col-md-6
+      h3 Create the Greeter, your first live contract
+
+      p This tutorial will teach you how to build a contract using the command line
+
+      p The greeter is a very simple contract that greets “Hello World” when poked. If you have never created any contracts in Ethereum before, this is where you should start. 
+
+    .col-md-6
+      +greeterFigure
+
+  .row
+    .col-md-6
+      a(href="/greeter").button Summon the Greeter 
+    
+    .col-md-6
+      .recipe
+        h4 You can build:
+        ul
+          li Your first smart contract
+          li A professional jokster that is paid to tell jokes
+          li A long living inteligent bot that answer questions
+
+mixin tokenRecipe(header)
+  if header
+    h2 #{header}
+
+  .row
+    .col-md-6
+      h3 Design and issue your own cryptocurrency
+
+      p Create a tradeable digital token that can be used as a currency, a representation of an asset, a virtual share, a proof of membership or anything at all. These tokens use a standard coin API so your contract will be automatically compatible with any wallet, other contract or exchange also using this standard. 
+
+      p The total amount of tokens in circulation can be set to a simple fixed amount or fluctuate based on any programmed ruleset.
+
+    .col-md-6
+      +tokenFigure
+
+  .row
+    .col-md-6
+      a(href="/token").button Issue your token 
+    
+    .col-md-6
+      .recipe
+        h4 You can build:
+        ul
+          li A tradeable token with a fixed supply
+          li A central bank that can issue money
+          li A puzzle-based cryptocurrency
+
+
+mixin crowdsaleRecipe(header)
+  if header
+    h2 #{header}
+
+  .row
+    .col-md-6
+      +crowdsaleFigure
+    
+    .col-md-6    
+      h3 Kickstart a project with a trustless crowdsale
+
+      p Do you already have ideas that you want to develop on Ethereum? Maybe you need help and some funds to bring them to life, but who would lend money to someone they don’t trust?
+
+      p Using Ethereum, you can create a contract that will hold a contributor's money until any given date or goal is reached. Depending on the outcome, the funds will either be released to the project owners or safely returned back to the contributors. All of this is possible without requiring a centralized arbitrator, clearinghouse or having to trust anyone.
+
+      p You can even use the token you created earlier to keep track of the distribution of rewards.
+
+  .row
+    .col-md-6
+      a(href="/crowdsale").button Kickstart your project 
+
+    .col-md-6
+      .recipe
+        h4 You can build:
+        ul
+          li A crowdfund to pre-sell a product
+          li A crowdsale to sell virtual shares in a blockchain organization
+          li An auction of a limited number of items
+  
+mixin daoRecipe(header)
+  if header
+    h2 #{header}
+
+  .row
+    .col-md-6
+      +daoFigure
+
+    .col-md-6
+      h3 Create a democratic autonomous organization
+
+      p Now that you have developed your idea and secured funds, what’s next? You have to hire managers, find a trustworthy CFO to handle the accounts, run board meetings and do a bunch of paperwork. 
+
+      p Or you can simply leave all that to an Ethereum contract. It will collect proposals from your backers and submit them through a completely transparent voting process.
+
+      p One of the many advantages of having a robot run your organization is that it is immune to any outside influence as it’s guaranteed to execute only what it was programmed to. And because the Ethereum network is decentralized, you'll be able to provide services with a 100% uptime guarantee. 
+    
+  .row
+    .col-md-6
+      a(href="/dao").button Start your organization 
+
+    .col-md-6
+      .recipe
+        h4 You can build:
+        ul
+          li A virtual organization where members vote on issues
+          li A transparent association based on shareholder voting
+          li Your own country with an unchangeable constitution
+          li A better delegative democracy
+
+mixin futureRecipe(header)
+  if header
+    h2 #{header}
+
+  .row
+    .col-md-6
+      h3 Build a new kind of decentralized application
+
+      p Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper-proof network?
+
+      p Check out the 
+        a(href="https://www.stateofthedapps.com", target="_blank") many great projects
+        | * already being built on Ethereum. And since you'll be among the first developers in the world that are able to program decentralized applications, some of them might need your help. 
+      
+      p.small  
+        em *The above list is maintained by an independent party and the Foundation does not endorse its content or any particular project
+
+    .col-md-6.future-figure
+      +futureFigure
+
+mixin toc()
+  ul#table-of-contents.toc.animateme(data-when="enter", data-from="0.4", data-to="0.2", data-translatex="-100", data-opacity="0", data-easing="linear")
+
+mixin inner-header(title)
+  .inner-header.default-header.scrollme(class!=attributes.class)
+    .breadcrumb.animateme(data-when="exit", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20") 
+      a(href="/").index Ethereum  
+      | »  
+      strong #{title} 
+    a(href="/").back « Main page
+    figure.ethereum-logo.animateme(data-when="exit", data-from="0", data-to="1", data-translatey="120", data-opacity="0.5", data-scale="0.6", data-easing="linear")
+
+    h3.text-center.animateme(data-when="exit", data-from="0", data-to="0.5", data-translatey="30", data-opacity="0", data-scale="0.7", data-easing="linear")  #{title} 

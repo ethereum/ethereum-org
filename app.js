@@ -6,10 +6,9 @@ var bodyParser = require('body-parser');
 // Init the app
 var app = express();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.use(favicon(path.join(__dirname, '/dist/images/favicon.png')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,6 +19,10 @@ app.set('port', process.env.PORT || 8080);
 // Routes
 app.get('/', function(req, res) {
 	res.render('index');
+});
+
+app.get('/wallet', function(req, res) {
+	res.render('wallet')
 });
 
 app.get('/cli', function(req, res) {
@@ -70,14 +73,21 @@ app.get('/devgrants', function(req, res) {
 	res.render('devgrants');
 });
 
-app.get('/devcontwo', function(req, res) {
-	res.render('devcon2');
-});
-
 app.get('/swarm', function(req, res) {
 	res.render('swarm');
 });
 
+app.get('/privacy-policy', function(req, res) {
+	res.render('privacy-policy');
+});
+
+app.get('/cookie-policy', function(req, res) {
+	res.render('cookie-policy');
+});
+
+app.get('/terms-of-use', function(req, res) {
+	res.render('terms-of-use');
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');

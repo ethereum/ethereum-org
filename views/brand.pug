@@ -1,0 +1,30 @@
+extends layout
+
+block vars
+  - var title='Branding Guidelines'
+  - var url='brand'
+
+block content
+  include mixins/recipes.pug
+  +inner-header("Branding Guidelines")
+
+  .main-tutorial.inner-page.even
+    .container
+      .row
+        .col-md-12
+          h2 Visual Identity Guide
+          p If you are a designer using our logo in a work, please follow the  
+            a(href="/images/logos/Ethereum_Visual_Identity_1.0.0.pdf", target="_blank") Ethereum Visual Identity Guide
+            |:
+
+          p
+            a(href="/images/logos/Ethereum_Visual_Identity_1.0.0.pdf", target="_blank")
+              img(alt="Ethereum Visual Identity Guide", src="images/logos/Ethereum_Visual_Identity_1.0.0.png", style="max-width: 400px;")
+
+  .main-tutorial.inner-page.brand
+    .container
+      .row
+        .col-md-12
+          include:markdown-it content/branding.md
+
+          a.button.small(href='https://github.com/ethereum/ethereum-org/edit/master/views/content/branding.md') Improve this page

@@ -1,0 +1,93 @@
+mixin gethFigure(center)
+  figure.geth.scrollme
+    .geth-background.animateme(data-when="enter", data-from="0.5", data-to="0", data-opacity="0", data-translatex="100")
+    .geth-logo.animateme(data-when="enter", data-from="0.7", data-to="0.6", data-opacity="0")
+
+mixin gethFigureExit()
+  figure.geth.scrollme
+    .geth-background.animateme(data-when="exit", data-to="0.5", data-from="0.2", data-opacity="0", data-translatex="100")
+    .geth-logo.animateme(data-when="exit", data-to="0.1", data-from="0.0", data-opacity="0")
+
+
+mixin etherFigure()
+  figure.ether.scrollme
+    .ether-screen.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
+    .ether-pacman.animateme(data-when="enter", data-from="0.55", data-to="0.5", data-opacity="0")
+    .ether-arcade-back.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
+    .ether-coin.animateme(data-when="enter", data-from="0.6", data-to="0.4", data-translatey="-300")
+    .ether-arcade-front.animateme(data-when="enter", data-from="0.6", data-to="0", data-translatey="500")
+
+
+mixin greeterFigure()
+  figure.greeter.scrollme
+    .greeter-human.animateme(data-when="exit", data-to="0.7", data-from="0.3", data-opacity="0", data-translatex="-200")
+    .greeter-robot.animateme(data-when="exit", data-to="0.8", data-from="0.5", data-opacity="0", data-translatex="200")
+    .greeter-question.animateme(data-when="exit", data-to="0.4", data-from="0.2", data-opacity="0")
+    .greeter-answer.animateme(data-when="exit", data-to="0.3", data-from="0.1", data-opacity="0")
+
+
+mixin tokenFigure()
+  figure.coin.scrollme
+    .coin-connection.animateme(data-when="enter", data-from="1", data-to="0.5", data-opacity="0", data-translatey="0")
+    .coin-send.animateme(data-when="enter", data-from="0.9", data-to="0.8", data-opacity="0", data-translatey="-50", data-translatex="-200")
+    .coin-users.animateme(data-when="enter", data-from="0.5", data-to="0", data-opacity="0", data-translatey="-100", data-scale="1.5", data-rotate="45")
+    .coin-coins.animateme(data-when="enter", data-from="0.6", data-to="0.4", data-opacity="0", data-scale="0.5", data-translatey="-10")
+
+
+mixin tokenFigureExit()
+  figure.coin.scrollme
+    .coin-connection.animateme(data-when="enter", data-to="1", data-from="0.5", data-opacity="0", data-translatey="0")
+    .coin-send.animateme(data-when="enter", data-to="0.9", data-from="0.8", data-opacity="0", data-translatey="-50", data-translatex="-200")
+    .coin-users.animateme(data-when="enter", data-to="0.5", data-from="0", data-opacity="0", data-translatey="-100", data-scale="1.5", data-rotate="45")
+    .coin-coins.animateme(data-when="enter", data-to="0.6", data-from="0.4", data-opacity="0", data-scale="0.5", data-translatey="-10")
+
+
+mixin crowdsaleFigure()
+  figure.crowdsale.scrollme
+    .crowdsale-logic.animateme(data-when="enter", data-from="0.8", data-to="0.7", data-opacity="0", data-translatey="-100", data-easing="linear")
+    .crowdsale-robot.animateme(data-when="enter", data-from="0.5", data-to="0.3", data-opacity="0", data-translatey="-155", data-translatex="-30", data-scale="1.1", data-rotatez="90", data-easing="linear")
+    .crowdsale-money.animateme(data-when="enter", data-from="0.8", data-to="0.6", data-opacity="0",data-translatey="-20")
+    .crowdsale-contributions.animateme(data-when="enter", data-from="0.7", data-to="0.5", data-opacity="0", data-scale="1.4")
+    .crowdsale-crowd.animateme(data-when="enter", data-from="0.3", data-to="0", data-opacity="0", data-translatey="-100", data-scale="1.1", data-easing="linear")
+
+
+mixin crowdsaleFigureExit()
+  figure.crowdsale.scrollme
+    .crowdsale-logic.animateme(data-when="exit", data-to="0.8", data-from="0.7", data-opacity="0", data-translatey="-100", data-easing="linear")
+    .crowdsale-robot.animateme(data-when="exit", data-to="0.5", data-from="0.3", data-opacity="0", data-translatey="-155", data-translatex="-30", data-scale="1.1", data-rotatez="90", data-easing="linear")
+    .crowdsale-money.animateme(data-when="exit", data-to="0.8", data-from="0.6", data-opacity="0",data-translatey="-20")
+    .crowdsale-contributions.animateme(data-when="exit", data-to="0.7", data-from="0.5", data-opacity="0", data-scale="1.4")
+    .crowdsale-crowd.animateme(data-when="exit", data-to="0.3", data-from="0", data-opacity="0", data-translatey="-100", data-scale="1.1", data-easing="linear")
+
+
+mixin daoFigure()
+  figure.dao.scrollme
+    .dao-robot.animateme(data-when="enter", data-from="0.65", data-to="0.45", data-opacity="0", data-translatey="200", data-rotatez="-90")
+    .dao-money.animateme(data-when="enter", data-from="0.7", data-to="0.5", data-opacity="0", data-translatey="200")
+    .dao-arrows.animateme(data-when="enter", data-from="0.95", data-to="0.8", data-opacity="0", data-scale="1.5")
+    .dao-crowd.animateme(data-when="enter", data-from="0.45", data-to="0", data-opacity="0", data-translatey="-250", data-translatex="10", data-rotatez="0", data-scale="1.1", data-easing="linear")
+    .dao-ideas.animateme(data-when="enter", data-from="0.8", data-to="0.7", data-opacity="0", data-translatey="-40")
+
+mixin daoFigureExit()
+  figure.dao.scrollme
+    .dao-robot.animateme(data-when="exit", data-to="0.65", data-from="0.1", data-opacity="0", data-translatey="400", data-rotatez="-90")
+    .dao-money.animateme(data-when="exit", data-to="0.7", data-from="0.0", data-opacity="0", data-translatey="200")
+    .dao-arrows.animateme(data-when="exit", data-to="0.1", data-from="0", data-opacity="0", data-scale="0.75")
+    .dao-crowd.animateme(data-when="exit", data-to="0.45", data-from="0", data-opacity="0", data-translatey="-250", data-translatex="10", data-rotatez="0", data-scale="1.1", data-easing="linear")
+    .dao-ideas.animateme(data-when="exit", data-to="0.3", data-from="0.1", data-opacity="0", data-scale="2")
+
+
+mixin futureFigure()
+  figure.moon.scrollme
+    .moon-stars.animateme(data-when="span", data-from="0", data-to="1", data-translatey="100", data-rotatez="360", data-easing="linear")
+    .moon-moon.animateme(data-when="span", data-from="0", data-to="1", data-translatey="100", data-rotatez="720", data-easing="linear")
+    .moon-rocket.animateme(data-when="span", data-from="0", data-to="1", data-translatey="-200", data-easing="linear")
+
+
+mixin swarmFigure()
+  figure.swarm.scrollme
+    .swarm-01.animateme(data-when="span", data-to="0.6", data-from="0.3", data-opacity="0", data-translatex="-200")
+    .swarm-02.animateme(data-when="span", data-to="0.3", data-from="0.0", data-opacity="0", data-translatex="288", data-translatey="-180")
+    .swarm-03.animateme(data-when="span", data-to="0.4", data-from="0.1", data-opacity="0", data-translatex="144", data-translatey="90")
+    .swarm-04.animateme(data-when="span", data-to="0.5", data-from="0.2", data-opacity="0", data-translatex="-144", data-translatey="90")
+

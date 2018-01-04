@@ -2,127 +2,22 @@
 
 We are going to create a digital token. Tokens in the ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the ethereum wallet and any other client or contract that uses the same standards.
 
-#### The code
-
-If you just want to copy paste the code, then use this:
-
-    pragma solidity ^0.4.8;
-    contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
-
-    contract MyToken {
-        /* Public variables of the token */
-        string public standard = 'Token 0.1';
-        string public name;
-        string public symbol;
-        uint8 public decimals;
-        uint256 public totalSupply;
-
-        /* This creates an array with all balances */
-        mapping (address => uint256) public balanceOf;
-        mapping (address => mapping (address => uint256)) public allowance;
-
-        /* This generates a public event on the blockchain that will notify clients */
-        event Transfer(address indexed from, address indexed to, uint256 value);
-
-        /* This notifies clients about the amount burnt */
-        event Burn(address indexed from, uint256 value);
-
-        /* Initializes contract with initial supply tokens to the creator of the contract */
-        function MyToken(
-            uint256 initialSupply,
-            string tokenName,
-            uint8 decimalUnits,
-            string tokenSymbol
-            ) {
-            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
-            totalSupply = initialSupply;                        // Update total supply
-            name = tokenName;                                   // Set the name for display purposes
-            symbol = tokenSymbol;                               // Set the symbol for display purposes
-            decimals = decimalUnits;                            // Amount of decimals for display purposes
-        }
-
-        /* Send coins */
-        function transfer(address _to, uint256 _value) {
-            if (_to == 0x0) throw;                               // Prevent transfer to 0x0 address. Use burn() instead
-            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-            Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
-        }
-
-        /* Allow another contract to spend some tokens in your behalf */
-        function approve(address _spender, uint256 _value)
-            returns (bool success) {
-            allowance[msg.sender][_spender] = _value;
-            return true;
-        }
-
-        /* Approve and then communicate the approved contract in a single tx */
-        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
-            returns (bool success) {
-            tokenRecipient spender = tokenRecipient(_spender);
-            if (approve(_spender, _value)) {
-                spender.receiveApproval(msg.sender, _value, this, _extraData);
-                return true;
-            }
-        }        
-
-        /* A contract attempts to get the coins */
-        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            if (_to == 0x0) throw;                                // Prevent transfer to 0x0 address. Use burn() instead
-            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
-            if (_value > allowance[_from][msg.sender]) throw;     // Check allowance
-            balanceOf[_from] -= _value;                           // Subtract from the sender
-            balanceOf[_to] += _value;                             // Add the same to the recipient
-            allowance[_from][msg.sender] -= _value;
-            Transfer(_from, _to, _value);
-            return true;
-        }
-    
-        function burn(uint256 _value) returns (bool success) {
-            if (balanceOf[msg.sender] < _value) throw;            // Check if the sender has enough
-            balanceOf[msg.sender] -= _value;                      // Subtract from the sender
-            totalSupply -= _value;                                // Updates totalSupply
-            Burn(msg.sender, _value);
-            return true;
-        }
-
-        function burnFrom(address _from, uint256 _value) returns (bool success) {
-            if (balanceOf[_from] < _value) throw;                // Check if the sender has enough
-            if (_value > allowance[_from][msg.sender]) throw;    // Check allowance
-            balanceOf[_from] -= _value;                          // Subtract from the sender
-            totalSupply -= _value;                               // Updates totalSupply
-            Burn(_from, _value);
-            return true;
-        }
-    }
-
-
 #### Minimum Viable Token
 
-The token contract is quite complex. But in essence a very basic token boils down to this:
+The standard token contract can be quite complex. But in essence a very basic token boils down to this:
 
-    contract MyToken {
-        /* This creates an array with all balances */
-        mapping (address => uint256) public balanceOf;
+```
+!!!include(solidity/token-minimal.sol)!!!
+```
 
-        /* Initializes contract with initial supply tokens to the creator of the contract */
-        function MyToken(
-            uint256 initialSupply
-            ) {
-            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
-        }
+#### The code
 
-        /* Send coins */
-        function transfer(address _to, uint256 _value) {
-            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-        }
-    }
+But if you just want to copy paste a more complete code, then use this:
+
+
+```
+!!!include(solidity/token-erc20.sol)!!!
+```
 
 #### Understanding the code
 
@@ -131,11 +26,12 @@ The token contract is quite complex. But in essence a very basic token boils dow
 
 So let's start with the basics. Open the **Wallet** app, go to the *Contracts* tab and then *Deploy New Contract*. On the *Solidity Contract Source code* text field, type the code below:
 
-
+```
     contract MyToken {
         /* This creates an array with all balances */
         mapping (address => uint256) public balanceOf;
     }
+```
 
 A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that this variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
 
@@ -143,20 +39,21 @@ A mapping means an associative array, where you associate addresses with balance
 
 If you published your contract right away, it would work but wouldn't be very useful: it would be a contract that could query the balance of your coin for any address–but since you never created a single coin, every one of them would return 0. So we are going to create a few tokens on startup. Add this code *before* the last closing bracket, just under the *mapping..* line.
 
-
+```
     function MyToken() {
         balanceOf[msg.sender] = 21000000;
     }
-
+```
 
 Notice that the *function MyToken* has the same name as the *contract MyToken*. This is very important and if you rename one, you have to rename the other too: this is a special, startup function that runs only once and once only when the contract is first uploaded to the network. This function will set the balance of *msg.sender*, the user which deployed the contract, with a balance of 21 million.
 
 The choice of 21 million was rather arbitrary, and you can change it to anything you want in the code, but there's a better way: instead, supply it as a parameter for the function, like this:
 
-
+```
     function MyToken(uint256 initialSupply) {
         balanceOf[msg.sender] = initialSupply;
     }
+```
 
 Take a look at the right column besides the contract and you'll see a drop down, written *pick a contract*. Select the "MyToken" contract and you'll see that now it shows a section called *Constructor parameters*. These are changeable parameters for your token, so you can reuse the same code and only change these variables in the future.
 
@@ -165,27 +62,29 @@ Take a look at the right column besides the contract and you'll see a drop down,
 
 Right now you have a functional contract that created balances of tokens but since there isn't any function to move it, all it does is stay on the same account. So we are going to implement that now. Write the following code *before the last bracket*.
 
+```
     /* Send coins */
     function transfer(address _to, uint256 _value) {
         /* Add and subtract new balances */
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
     }
+```
 
 This is a very straightforward function: it has a recipient and a value as the parameter and whenever someone calls it, it will subtract the *_value* from their balance and add it to the *_to* balance. Right away there's an obvious problem: what happens if the person wants to send more than it owns? Since we don't want to handle debt in this particular contract, we are simply going to make a quick check and if the sender doesn't have enough funds the contract execution will simply stop. It's also to check for overflows, to avoid having a number so big that it becomes zero again.
 
 To stop a contract execution mid execution you can either **return** or **throw** The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'throw' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all ether he sent for gas. But since the Wallet can detect that a contract will throw, it always shows an alert, therefore preventing any ether to be spent at all.
 
+```
     function transfer(address _to, uint256 _value) {
         /* Check if sender has balance and for overflows */
-        if (balanceOf[msg.sender] < _value || balanceOf[_to] + _value < balanceOf[_to])
-            throw;
+        require(balanceOf[msg.sender] >= _value && balanceOf[_to] + _value >= balanceOf[_to]);
 
         /* Add and subtract new balances */
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
     }
-
+```
 
 Now all that is missing is having some basic information about the contract. In the near future this can be handled by a token registry, but for now we'll add them directly to the contract:
 
@@ -195,25 +94,34 @@ Now all that is missing is having some basic information about the contract. In 
 
 And now we update the **constructor function** to allow all those variables to be set up at the start:
 
+```
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MyToken(uint256 initialSupply, string tokenName, uint8 decimalUnits, string tokenSymbol) {
+    function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) {
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
         decimals = decimalUnits;                            // Amount of decimals for display purposes
     }
-
+```
 
 Finally we now need something called **Events**. These are special, empty functions that you call to help clients like the Ethereum Wallet keep track of activities happening in the contract. Events should start with a capital letter. Add this line at the beginning of the contract to declare the event:
 
+```
     event Transfer(address indexed from, address indexed to, uint256 value);
+```
 
 And then you just need to add these two lines inside the "transfer" function:
 
+```
         /* Notify anyone listening that this transfer took place */
         Transfer(msg.sender, _to, _value);
+```
 
 And now your token is ready!
+
+#### Noticed the comments?
+
+What are those @notice and @param comments, you might ask? That's [Natspec](https://github.com/ethereum/wiki/wiki/Ethereum-Natural-Specification-Format) an emerging standard for a natural language specification, which allows wallets to show the user a natural language description of what the contract is about to do. While not currently supported by many wallets, this will change in the future, so it's nice to be prepared.
 
 #### How to deploy
 
@@ -244,14 +152,37 @@ And now you have your own crypto token! Tokens by themselves can be useful as [v
 
 You can deploy your whole crypto token without ever touching a line of code, but the real magic happens when you start customizing it. The following sections will be suggestions on functions you can add to your token to make it fit your needs more.
 
+#### More basic functions
+
+You'll notice that there some more functions in your basic token contract, like approve, sendFrom and others. These functions are there for your token to interact with other contracts: if you want, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren't able to subscribe to **Events** only to **function calls**. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with **approveAndCall**.
+
+Because many of these functions are having to reimplement the transferring of tokens, it makes sense to change them to an internal function, which can only be called by the contract itself:
+
+```
+    /* Internal transfer, only can be called by this contract */
+    function _transfer(address _from, address _to, uint _value) internal {
+        require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
+        require (balanceOf[_from] >= _value);                // Check if the sender has enough
+        require (balanceOf[_to] + _value > balanceOf[_to]); // Check for overflows
+        require(!frozenAccount[_from]);                     // Check if sender is frozen
+        require(!frozenAccount[_to]);                       // Check if recipient is frozen
+        balanceOf[_from] -= _value;                         // Subtract from the sender
+        balanceOf[_to] += _value;                           // Add the same to the recipient
+        Transfer(_from, _to, _value);
+    }
+```
+
+Now all your functions that result in the transfer of coins, can do their own checks and then call **transfer** with the correct parameters. Notice that this function will move coins from any account to any other, without requiring anyone's permission to do so: that's why it's an internal function, only called by the contract: if you add any function calling it, make sure it properly verifies if the caller should be have permission to move those.
+
 #### Centralized Administrator
 
 All dapps are fully decentralized by default, but that doesn't mean they can't have some sort of central manager, if you want them to. Maybe you want the ability to mint more coins, maybe you want to ban some people from using your currency. You can add any of those features, but the catch is that you can only add them at the beginning, so all the token holders will always know exactly the rules of the game before they decide to own one.
 
 For that to happen, you need a central controller of currency. This could be a simple account, but could also be a contract and therefore the decision on creating more tokens will depend on the contract: if it's a democratic organization that can be up to vote, or maybe it can be just a way to limit the power of the token owner.
 
-In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, **before contract MyToken {**.
+In order to do that we'll learn a very useful property of contracts: **inheritance**. Inheritance allows a contract to acquire properties of a parent contract, without having to redefine all of them. This makes the code cleaner and easier to reuse. Add this code to the first line of your code, before **contract MyToken {**.
 
+```
     contract owned {
         address public owner;
 
@@ -260,7 +191,7 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
         }
 
         modifier onlyOwner {
-            if (msg.sender != owner) throw;
+            require(msg.sender == owner);
             _;
         }
 
@@ -268,16 +199,18 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
             owner = newOwner;
         }
     }
-
+```
 
 This creates a very basic contract that doesn't do anything except define some generic functions about a contract that can be "owned". Now the next step is just add the text *is owned* to your contract:
 
+```
     contract MyToken is owned {
         /* the rest of the contract as usual */
-
+```
 
 This means that all the functions inside **MyToken** now can access the variable *owner* and the modifier *onlyOwner*. The contract also gets a function to transfer ownership. Since it might be interesting to set the owner of the contract at startup, you can also add this to the *constructor function*:
 
+```
     function MyToken(
         uint256 initialSupply,
         string tokenName,
@@ -286,14 +219,16 @@ This means that all the functions inside **MyToken** now can access the variable
         address centralMinter
         ) {
         if(centralMinter != 0 ) owner = centralMinter;
+    }
+```
 
 #### Central Mint
-
 
 Suppose you want the amount of coins in circulation to change. This is the case when your tokens actually represent an off blockchain asset (like gold certificates or government currencies) and you want the virtual inventory to reflect the real one. This might also be the case when the currency holders expect some control of the price of the token, and want to issue or remove tokens from circulation.
 
 First we need to add a variable to store the **totalSupply** and assign it in our constructor function.
 
+```
     contract MyToken {
         uint256 public totalSupply;
 
@@ -303,15 +238,18 @@ First we need to add a variable to store the **totalSupply** and assign it in ou
         }
         ...
     }
+```
 
 Now let's add a new function finally that will enable the owner to create new tokens:
 
+```
     function mintToken(address target, uint256 mintedAmount) onlyOwner {
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
         Transfer(0, owner, mintedAmount);
         Transfer(owner, target, mintedAmount);
     }
+```
 
 Notice the modifier **onlyOwner** on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the **modifier onlyOwner** we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account that is set as the owner. Just add this to a contract with an **owner** modifier and you'll be able to create more coins.
 
@@ -321,6 +259,7 @@ Depending on your use case, you might need to have some regulatory hurdles on wh
 
 Add this variable and function anywhere inside the contract. You can put them anywhere but for good practice we recommend you put the mappings with the other mappings and events with the other events.
 
+```
     mapping (address => bool) public frozenAccount;
     event FrozenFunds(address target, bool frozen);
 
@@ -328,16 +267,20 @@ Add this variable and function anywhere inside the contract. You can put them an
         frozenAccount[target] = freeze;
         FrozenFunds(target, freeze);
     }
+```
 
 With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Unfortunately freezing has no practical effect, because we haven't added anything to the transfer function. We are changing that now:
 
+```
     function transfer(address _to, uint256 _value) {
-        if (frozenAccount[msg.sender]) throw;
+        require(!frozenAccount[msg.sender]);
+```
 
 Now any account that is frozen will still have their funds intact, but won't be able to move them. All accounts are unfrozen by default until you freeze them, but you can easily revert that behavior into a whitelist where you need to manually approve every account. Just rename **frozenAccount** into **approvedAccount** and change the last line to:
 
-        if (!approvedAccount[msg.sender]) throw;
-
+```
+        require(approvedAccount[msg.sender]);
+```
 
 #### Automatic selling and buying
 
@@ -345,6 +288,7 @@ So far, you've relied on utility and trust to value your token. But if you want 
 
 First, let's set the price for buying and selling:
 
+```
     uint256 public sellPrice;
     uint256 public buyPrice;
 
@@ -352,33 +296,32 @@ First, let's set the price for buying and selling:
         sellPrice = newSellPrice;
         buyPrice = newBuyPrice;
     }
+```
 
 This is acceptable for a price that doesn't change very often, as every new price change will require you to execute a transaction and spend a bit of ether. If you want to have a constant floating price we recommend investigating [standard data feeds](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds)
 
 The next step is making the buy and sell functions:
 
+```
     function buy() payable returns (uint amount){
-        amount = msg.value / buyPrice;                     // calculates the amount
-        if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
-        balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
-        balanceOf[this] -= amount;                         // subtracts amount from seller's balance
-        Transfer(this, msg.sender, amount);                // execute an event reflecting the change
-        return amount;                                     // ends function and returns
+        amount = msg.value / buyPrice;                    // calculates the amount
+        require(balanceOf[this] >= amount);               // checks if it has enough to sell
+        balanceOf[msg.sender] += amount;                  // adds the amount to buyer's balance
+        balanceOf[this] -= amount;                        // subtracts amount from seller's balance
+        Transfer(this, msg.sender, amount);               // execute an event reflecting the change
+        return amount;                                    // ends function and returns
     }
 
     function sell(uint amount) returns (uint revenue){
-        if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
-        balanceOf[this] += amount;                         // adds the amount to owner's balance
-        balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
+        require(balanceOf[msg.sender] >= amount);         // checks if the sender has enough to sell
+        balanceOf[this] += amount;                        // adds the amount to owner's balance
+        balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
         revenue = amount * sellPrice;
-        if (!msg.sender.send(revenue)) {                   // sends ether to the seller: it's important
-            throw;                                         // to do this last to prevent recursion attacks
-        } else {
-            Transfer(msg.sender, this, amount);             // executes an event reflecting on the change
-            return revenue;                                 // ends function and returns
-        }
+        msg.sender.transfer(revenue);                     // sends ether to the seller: it's important to do this last to prevent recursion attacks
+        Transfer(msg.sender, this, amount);               // executes an event reflecting on the change
+        return revenue;                                   // ends function and returns
     }
-
+```
 
 Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) it cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
 
@@ -394,50 +337,59 @@ Everytime you make a transaction on ethereum you need to pay a fee to the miner 
 
 In order to do that, first you need to create a variable that will hold the threshold amount and a function to change it. If you don't know any value, set it to **5 finney (0.005 ether)**.
 
-
+```
     uint minBalanceForAccounts;
 
     function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
          minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
     }
+```
 
 Then, add this line to the **transfer** function so that the sender is refunded:
 
+```
     /* Send coins */
     function transfer(address _to, uint256 _value) {
         ...
-        if(msg.sender.balance<minBalanceForAccounts)
-            sell((minBalanceForAccounts-msg.sender.balance)/sellPrice);
+        if(msg.sender.balance < minBalanceForAccounts)
+            sell((minBalanceForAccounts - msg.sender.balance) / sellPrice);
     }
+```
 
 You can also instead change it so that the fee is paid forward to the receiver by the sender:
 
+```
     /* Send coins */
     function transfer(address _to, uint256 _value) {
         ...
         if(_to.balance<minBalanceForAccounts)
-            _to.send(sell((minBalanceForAccounts-_to.balance)/sellPrice));
+            _to.send(sell((minBalanceForAccounts - _to.balance) / sellPrice));
     }
+```
 
 This will ensure that no account receiving the token has less than the necessary ether to pay the fees.
 
 #### Proof of Work
 
-There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with ether, meaning that anyone who finds a block on ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.org/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block.
+There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with ether, meaning that anyone who finds a block on ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block.
 
+```
     function giveBlockReward() {
         balanceOf[block.coinbase] += 1;
     }
+```
 
 It's also possible to add a mathematical formula, so that anyone who can do math can win a reward. On this next example you have to calculate the cubic root of the current challenge gets a point and the right to set the next challenge:
 
+```
     uint currentChallenge = 1; // Can you figure out the cubic root of this number?
 
     function rewardMathGeniuses(uint answerToCurrentReward, uint nextChallenge) {
-        if (answerToCurrentReward**3 != currentChallenge) throw; // If answer is wrong do not continue
+        require(answerToCurrentReward**3 == currentChallenge); // If answer is wrong do not continue
         balanceOf[msg.sender] += 1;         // Reward the player
         currentChallenge = nextChallenge;   // Set the next challenge
     }
+```
 
 Of course while calculating cubic roots can be hard for someone to do on their heads, they are very easy with a calculator, so this game could be easily broken by a computer. Also since the last winner can choose the next challenge, they could pick something they know and therefore would not be a very fair game to other players. There are tasks that are easy for humans but hard for computers but they are usually very hard to code in simple scripts like these. Instead a fairer system should be one that is very hard for a computer to do, but isn't very hard for a computer to verify. A great candidate would be to create a hash challenge where the challenger has to generate hashes from multiple numbers until they find one that is lower than a given difficulty.
 
@@ -445,23 +397,25 @@ This process was first proposed by Adam Back in 1997 as [Hashcash](https://en.wi
 
 But if you like Hashing as a form of random issuance of coins, you can still create your own ethereum based currency that has a proof of work issuance:
 
+```
     bytes32 public currentChallenge;                         // The coin starts with a challenge
     uint public timeOfLastProof;                             // Variable to keep track of when rewards were given
     uint public difficulty = 10**32;                         // Difficulty starts reasonably low
 
     function proofOfWork(uint nonce){
         bytes8 n = bytes8(sha3(nonce, currentChallenge));    // Generate a random hash based on input
-        if (n < bytes8(difficulty)) throw;                   // Check if it's under the difficulty
+        require(n >= bytes8(difficulty));                   // Check if it's under the difficulty
 
         uint timeSinceLastProof = (now - timeOfLastProof);  // Calculate time since last reward was given
-        if (timeSinceLastProof <  5 seconds) throw;         // Rewards cannot be given too quickly
+        require(timeSinceLastProof >=  5 seconds);         // Rewards cannot be given too quickly
         balanceOf[msg.sender] += timeSinceLastProof / 60 seconds;  // The reward to the winner grows by the minute
 
         difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;  // Adjusts the difficulty
 
         timeOfLastProof = now;                              // Reset the counter
-        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number-1));  // Save a hash that will be used as the next proof
+        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number - 1));  // Save a hash that will be used as the next proof
     }
+```
 
 Also change the **Constructor function** (the one that has the same name as the contract, which is called at first upload) to add this line, so the difficulty adjustment will not go crazy:
 
@@ -469,7 +423,7 @@ Also change the **Constructor function** (the one that has the same name as the 
 
 Once the contract is online, select the function "Proof of work", add your favorite number on the **nonce** field and try to execute it. If the confirmation window gives a red warning saying *"Data can't be execute"* go back and pick another number until you find one that allows the transaction to go forward: this process is random. If you find one you will be awarded 1 token for every minute that has passed since the last reward was given, and then the challenge difficulty will be adjusted up or down to target an average of 10 minutes per reward.
 
-This process of trying to find the number that will give you a reward is what is called *mining*: if difficulty rises it can be very hard to find a lucky number, but it will be always easy to verify that you found one.
+This process of trying to find the number that will give you a reward is what is called *mining*: if difficulty rises it can be very hard to find a lucky number, but it will always be easy to verify that you found one.
 
 
 ### Improved Coin
@@ -481,177 +435,9 @@ If you add all the advanced options, this is how the final code should look like
 ![Advanced Token](/images/tutorial/advanced-token-deploy.png)
 
 
-    pragma solidity ^0.4.2;
-    contract owned {
-        address public owner;
-
-        function owned() {
-            owner = msg.sender;
-        }
-
-        modifier onlyOwner {
-            if (msg.sender != owner) throw;
-            _;
-        }
-
-        function transferOwnership(address newOwner) onlyOwner {
-            owner = newOwner;
-        }
-    }
-
-    contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
-
-    contract token {
-        /* Public variables of the token */
-        string public standard = 'Token 0.1';
-        string public name;
-        string public symbol;
-        uint8 public decimals;
-        uint256 public totalSupply;
-
-        /* This creates an array with all balances */
-        mapping (address => uint256) public balanceOf;
-        mapping (address => mapping (address => uint256)) public allowance;
-
-        /* This generates a public event on the blockchain that will notify clients */
-        event Transfer(address indexed from, address indexed to, uint256 value);
-
-        /* Initializes contract with initial supply tokens to the creator of the contract */
-        function token(
-            uint256 initialSupply,
-            string tokenName,
-            uint8 decimalUnits,
-            string tokenSymbol
-            ) {
-            balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
-            totalSupply = initialSupply;                        // Update total supply
-            name = tokenName;                                   // Set the name for display purposes
-            symbol = tokenSymbol;                               // Set the symbol for display purposes
-            decimals = decimalUnits;                            // Amount of decimals for display purposes
-        }
-
-        /* Send coins */
-        function transfer(address _to, uint256 _value) {
-            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-            Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
-        }
-
-        /* Allow another contract to spend some tokens in your behalf */
-        function approve(address _spender, uint256 _value)
-            returns (bool success) {
-            allowance[msg.sender][_spender] = _value;
-            return true;
-        }
-
-        /* Approve and then communicate the approved contract in a single tx */
-        function approveAndCall(address _spender, uint256 _value, bytes _extraData)
-            returns (bool success) {    
-            tokenRecipient spender = tokenRecipient(_spender);
-            if (approve(_spender, _value)) {
-                spender.receiveApproval(msg.sender, _value, this, _extraData);
-                return true;
-            }
-        }
-
-        /* A contract attempts to get the coins */
-        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
-            if (_value > allowance[_from][msg.sender]) throw;   // Check allowance
-            balanceOf[_from] -= _value;                          // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-            allowance[_from][msg.sender] -= _value;
-            Transfer(_from, _to, _value);
-            return true;
-        }
-
-        /* This unnamed function is called whenever someone tries to send ether to it */
-        function () {
-            throw;     // Prevents accidental sending of ether
-        }
-    }
-
-    contract MyAdvancedToken is owned, token {
-
-        uint256 public sellPrice;
-        uint256 public buyPrice;
-
-        mapping (address => bool) public frozenAccount;
-
-        /* This generates a public event on the blockchain that will notify clients */
-        event FrozenFunds(address target, bool frozen);
-
-        /* Initializes contract with initial supply tokens to the creator of the contract */
-        function MyAdvancedToken(
-            uint256 initialSupply,
-            string tokenName,
-            uint8 decimalUnits,
-            string tokenSymbol
-        ) token (initialSupply, tokenName, decimalUnits, tokenSymbol) {}
-
-        /* Send coins */
-        function transfer(address _to, uint256 _value) {
-            if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-            if (frozenAccount[msg.sender]) throw;                // Check if frozen
-            balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-            Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
-        }
-
-
-        /* A contract attempts to get the coins */
-        function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-            if (frozenAccount[_from]) throw;                        // Check if frozen            
-            if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-            if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
-            if (_value > allowance[_from][msg.sender]) throw;   // Check allowance
-            balanceOf[_from] -= _value;                          // Subtract from the sender
-            balanceOf[_to] += _value;                            // Add the same to the recipient
-            allowance[_from][msg.sender] -= _value;
-            Transfer(_from, _to, _value);
-            return true;
-        }
-
-        function mintToken(address target, uint256 mintedAmount) onlyOwner {
-            balanceOf[target] += mintedAmount;
-            totalSupply += mintedAmount;
-            Transfer(0, this, mintedAmount);
-            Transfer(this, target, mintedAmount);
-        }
-
-        function freezeAccount(address target, bool freeze) onlyOwner {
-            frozenAccount[target] = freeze;
-            FrozenFunds(target, freeze);
-        }
-
-        function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
-            sellPrice = newSellPrice;
-            buyPrice = newBuyPrice;
-        }
-
-        function buy() payable {
-            uint amount = msg.value / buyPrice;                // calculates the amount
-            if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
-            balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
-            balanceOf[this] -= amount;                         // subtracts amount from seller's balance
-            Transfer(this, msg.sender, amount);                // execute an event reflecting the change
-        }
-
-        function sell(uint256 amount) {
-            if (balanceOf[msg.sender] < amount ) throw;        // checks if the sender has enough to sell
-            balanceOf[this] += amount;                         // adds the amount to owner's balance
-            balanceOf[msg.sender] -= amount;                   // subtracts the amount from seller's balance
-            if (!msg.sender.send(amount * sellPrice)) {        // sends ether to the seller. It's important
-                throw;                                         // to do this last to avoid recursion attacks
-            } else {
-                Transfer(msg.sender, this, amount);            // executes an event reflecting on the change
-            }               
-        }
-    }
+```
+!!!include(solidity/token-advanced.sol)!!!
+```
 
 #### Deploying
 

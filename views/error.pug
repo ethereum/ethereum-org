@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  include mixins/recipes.pug
+  +inner-header("Error")
+
+  .main-tutorial.inner-page
+    .container  
+      .row
+        .col-md-12
+            h2 An error has occured.
+            h3= message
+            h4= error.status
+            pre #{error.stack}

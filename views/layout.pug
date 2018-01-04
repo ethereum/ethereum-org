@@ -1,0 +1,63 @@
+doctype html
+block vars
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+    meta(http-equiv="X-UA-Compatible",content="chrome=1")
+    title= title
+
+
+    meta(name="description", content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference.")
+
+    //- Twitter Card data
+    meta(name="twitter:card", value="summary")
+
+    //- Open Graph data
+    meta(property="og:title", content=title)
+    meta(property="og:type", content="article")
+    if url
+        meta(property="og:url", content="https://www.ethereum.org/"+url)
+    else
+        meta(property="og:url", content="https://www.ethereum.org/")
+
+    if image
+        meta(property="og:image", content="https://ethereum.org/images/social-"+image+".jpg")
+    else
+        meta(property="og:image", content="https://ethereum.org/images/wallpaper-homestead.jpg")
+
+    meta(property="og:image:width", content="500")
+    meta(property="og:image:height", content="500")
+
+    meta(property="og:description", content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference.")
+
+    link(href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,900,400italic|Source+Code+Pro' rel='stylesheet' type='text/css')
+    link(rel='stylesheet', href='/css/app.min.css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css')
+  body
+    block content
+
+    include ./includes/footer.pug
+
+    script(src="/js/app.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js")
+
+    script
+        | $(document).ready(function(){
+        |     $("#toc").tableOfContents(
+        |       $(".main-tutorial"),      // Scoped to div#wrapper
+        |       {
+        |         startLevel: 2,    // H2 and up
+        |         depth:      3    // H2 through H4,
+        |       }
+        |     );
+        |   });
+
+    script
+        |    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        |    (i[r].q=i[r].q||[]).push(arguments)
+        |    },i[r].l=1*new Date();a=s.createElement(o),
+        |    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        |    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        |    ga('create', 'UA-52040685-2', 'auto');
+        |    ga('send', 'pageview');
