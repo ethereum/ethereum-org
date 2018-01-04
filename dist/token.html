@@ -100,7 +100,7 @@ contract TokenERC20 {
     /**
      * Transfer tokens from other address
      *
-     * Send `_value` tokens to `_to` in behalf of `_from`
+     * Send `_value` tokens to `_to` on behalf of `_from`
      *
      * @param _from The address of the sender
      * @param _to The address of the recipient
@@ -116,7 +116,7 @@ contract TokenERC20 {
     /**
      * Set allowance for other address
      *
-     * Allows `_spender` to spend no more than `_value` tokens in your behalf
+     * Allows `_spender` to spend no more than `_value` tokens on your behalf
      *
      * @param _spender The address authorized to spend
      * @param _value the max amount they can spend
@@ -130,7 +130,7 @@ contract TokenERC20 {
     /**
      * Set allowance for other address and notify
      *
-     * Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+     * Allows `_spender` to spend no more than `_value` tokens on your behalf, and then ping the contract about it
      *
      * @param _spender The address authorized to spend
      * @param _value the max amount they can spend
@@ -264,7 +264,7 @@ uint8 public decimals;
 <h4>More basic functions</h4>
 <p>You'll notice that there some more functions in your basic token contract, like approve, sendFrom and others. These functions are there for your token to interact with other contracts: if you want, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren't able to subscribe to <strong>Events</strong> only to <strong>function calls</strong>. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with <strong>approveAndCall</strong>.</p>
 <p>Because many of these functions are having to reimplement the transferring of tokens, it makes sense to change them to an internal function, which can only be called by the contract itself:</p>
-<pre><code>    /* Internal transfer, only can be called by this contract */
+<pre><code>    /* Internal transfer, can only be called by this contract */
     function _transfer(address _from, address _to, uint _value) internal {
         require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
         require (balanceOf[_from] &gt;= _value);                // Check if the sender has enough
