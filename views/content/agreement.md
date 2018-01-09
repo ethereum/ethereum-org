@@ -1,9 +1,8 @@
-
 SECURITY WARNINGS
 -----------------
 
 
-* **You are responsible for your own computer security.** If your machine is compromised you **will** lose your ether, access to any contracts and possibly more. 
+* **You are responsible for your own computer security.** If your machine is compromised you **will** lose your ether, access to any contracts and possibly more.
 
 * **You are responsible for your own actions.** If you mess something up or break any laws while using this software, it's your fault, and your fault only.
 
@@ -12,29 +11,29 @@ SECURITY WARNINGS
 
 LEGAL WARNING
 -------------
- 
+
 ### SHORT VERSION
 #### Disclaimer of Liabilities and Warranties
 
 
 * **The user expressly knows and agrees that the user is using the Ethereum platform at the user’s sole risk.**
-* **The user acknowledges that the user has an adequate understanding of the risks, usage and intricacies of cryptographic tokens and blockchain-based open source software, eth platform and ethereum** 
-* **The user acknowledges and agrees that, to the fullest extent permitted by any applicable law, the disclaimers of liability contained herein apply to any and all damages or injury whatsoever caused by or related to risks of, use of, or inability to use, ethereum or the Ethereum platform under any cause or action whatsoever of any kind in any jurisdiction, including, without limitation, actions for breach of warranty, breach of contract or tort (including negligence) and that neither Stiftung Ethereum (i.e. Ethereum Foundation) nor Ethereum team shall be liable for any indirect, incidental, special, exemplary or consequential damages, including for loss of profits, goodwill or data that occurs as a result.** 
+* **The user acknowledges that the user has an adequate understanding of the risks, usage and intricacies of cryptographic tokens and blockchain-based open source software, ETH platform and Ethereum**
+* **The user acknowledges and agrees that, to the fullest extent permitted by any applicable law, the disclaimers of liability contained herein apply to any and all damages or injury whatsoever caused by or related to risks of, use of, or inability to use, ethereum or the Ethereum platform under any cause or action whatsoever of any kind in any jurisdiction, including, without limitation, actions for breach of warranty, breach of contract or tort (including negligence) and that neither Stiftung Ethereum (i.e. Ethereum Foundation) nor Ethereum team shall be liable for any indirect, incidental, special, exemplary or consequential damages, including for loss of profits, goodwill or data that occurs as a result.**
 * **Some jurisdictions do not allow the exclusion of certain warranties or the limitation or exclusion of liability for certain types of damages. Therefore, some of the above limitations in this section may not apply to a user. In particular, nothing in these terms shall affect the statutory rights of any user or exclude injury arising from any willful misconduct or fraud of Stiftung Ethereum.**
 
 ### LONG VERSION
- 
+
 The following Terms and Conditions (“Terms”) govern the use of the Ethereum open source software platform (“Ethereum Platform”). Prior to any use of the Ethereum Platform, the User confirms to understand and expressly agrees to all of the Terms. All capitalized terms in this agreement will be given the same effect and meaning as in the Terms. The group of developers and other personnel that is now, or will be, employed by, or contracted with, Stiftung Ethereum (“Stiftung Ethereum”) is termed the “Ethereum Team.” The Platform will be developed by persons and entities who support Ethereum, including both volunteers and developers who are paid by nonprofit entities interested in supporting the Ethereum Platform.
- 
+
 The user acknowledges the following serious risks to any use the Ethereum Platform and ETH and expressly agrees to neither hold Ethereum Stiftung nor the Ethereum Team liable should any of the following risks occur:
 
 #### Risk of Regulatory Actions in One or More Jurisdictions
 
 The Ethereum Platform and ETH could be impacted by one or more regulatory inquiries or regulatory actions, which could impede or limit the ability of Stiftung Ethereum to continue to develop the Ethereum Platform, or which could impede or limit the ability of a User to use Ethereum Platform or ETH.
- 
+
 #### Risk of Alternative, Unofficial Ethereum Networks
 
-It is possible that alternative Ethereum-based networks could be established, which utilize the same open source source code and open source protocol underlying the Ethereum Platform. The Ethereum network may compete with these alternative Ethereum-based networks, which could potentially negatively impact the Ethereum Platform and ETH.
+It is possible that alternative Ethereum-based networks could be established, which utilize the same open source code and open source protocol underlying the Ethereum Platform. The Ethereum network may compete with these alternative Ethereum-based networks, which could potentially negatively impact the Ethereum Platform and ETH.
 
 #### Risk of Insufficient Interest in the Ethereum Platform or Distributed Applications
 
@@ -57,17 +56,17 @@ Cryptography is an art, not a science. And the state of the art can advance over
 As with other cryptocurrencies, the blockchain used for the Ethereum Platform is susceptible to mining attacks, including but not limited to:
 
 * Double-spend attacks
-* Majority mining power attacks, 
+* Majority mining power attacks,
 * “Selfish-mining” attacks
-* Race condition attacks. 
+* Race condition attacks.
 
 Any successful attacks present a risk to the Ethereum Platform, expected proper execution and sequencing of ETH transactions, and expected proper execution and sequencing of contract computations. Despite the efforts of the Ethereum Stiftung and Team, known or novel mining attacks may be successful.
 
 #### Risk of Rapid Adoption and Increased Demand
 
-If the Ethereum Platform is rapidly adopted, the demand for ETH could rise dramatically and at a pace that exceeds the rate with which ETH miners can create new ETH tokens. Under such a scenario, the entire Ethereum Platform could become destabilized, due to the increased cost of running distributed applications. In turn, this could dampen interest in the Ethereum Platform and ETH. Instability in the demand of for ETH may lead to a negative change of the economical parameters of an Ethereum based business which could result in the business being unable to continue to operate economically or to cease operation. 
+If the Ethereum Platform is rapidly adopted, the demand for ETH could rise dramatically and at a pace that exceeds the rate with which ETH miners can create new ETH tokens. Under such a scenario, the entire Ethereum Platform could become destabilized, due to the increased cost of running distributed applications. In turn, this could dampen interest in the Ethereum Platform and ETH. Instability in the demand of for ETH may lead to a negative change of the economical parameters of an Ethereum based business which could result in the business being unable to continue to operate economically or to cease operation.
 
-#### Risk of Rapid Adoption and Insufficiency of Computational Application Processing Power on the Ethereum Platform 
+#### Risk of Rapid Adoption and Insufficiency of Computational Application Processing Power on the Ethereum Platform
 
 If the Ethereum Platform is rapidly adopted, the demand for transaction processing and distributed application computations could rise dramatically and at a pace that exceeds the rate with which ETH miners can bring online additional mining power. Under such a scenario, the entire Ethereum Platform could become destabilized, due to the increased cost of running distributed applications. In turn, this could dampen interest in the Ethereum Platform and ETH. Insufficiency of computational resources and an associated rise in the price of ETH could result in businesses being unable to acquire scarce computational resources to run their distributed applications. This would represent revenue losses to businesses or worst case, cause businesses to cease operations because such operations have become uneconomical due to distortions in the crypto-economy.
 
@@ -93,9 +92,5 @@ All disputes or claims arising out of, relating to, or in connection with the Te
 * Acts of civil or military authorities
 * Lack of energy
 * Any similar unforeseen event that renders performance commercially implausible.
- 
-
 
 -------
-
- 
