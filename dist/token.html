@@ -328,6 +328,7 @@ uint8 public decimals;
 </code></pre>
 <p>Now let's add a new function finally that will enable the owner to create new tokens:</p>
 <pre><code>    function mintToken(address target, uint256 mintedAmount) onlyOwner {
+        require (totalSupply + mintedAmount &gt; totalSupply); // Check for system overflows
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
         Transfer(0, owner, mintedAmount);
