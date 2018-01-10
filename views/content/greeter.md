@@ -106,7 +106,9 @@ You have now compiled your code and made it available to Geth.  Now you need to 
             console.log(contract);
           }
 
-        }
+        } else {
+	  console.error(e); // If something goes wrong, at least we'll know.
+	}
     })
 
 
