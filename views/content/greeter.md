@@ -116,7 +116,7 @@ You have now compiled your code and made it available to Geth.  Now you need to 
 
 If you don't have Solc installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
 
-To access the compiled code, ensure that the dropdown menu on the right pane has `greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** box.
+To access the compiled code, ensure that the dropdown menu on the right pane has `greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** textbox.
 
 Create a temporary text file on your computer and paste that code. Make sure to change the first line to look like the following:
 
@@ -153,12 +153,17 @@ Since this call changes nothing on the blockchain, it returns instantly and with
 
 #### Getting other people to interact with your code
 
-In order for other people to run your contract they need two things: the address where the contract is located and the ABI (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them to your JavaScript console. In order to get each of them run these commands:
+In order for other people to run your contract they need two things: the `Address` where the contract is located and the `ABI` (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them to your JavaScript console.
 
-    greeterCompiled.greeter.info.abiDefinition;
+To get the `Address`, run this command:
+
     greeter.address;
 
-If you compiled with the [browser-based tool](https://ethereum.github.io/browser-solidity/), you can get the ABI from the fields for the `greeter` and `mortal` contracts labeled "Interface".
+To get the `ABI`, run this command:
+
+    greeterCompiled.greeter.info.abiDefinition;
+
+**Tip:** If you compiled the code using [Remix](https://remix.ethereum.org), the last line of code above won't work for you! Instead, you need to copy the `ABI` directly from Remix, similar to how you copied the compiled **WEB3DEPLOY** code. On the right pane, click on the **Details** button and scroll down to the **ABI** textbox. Click on the copy button to copy the entire ABI, then paste it in a temporary text document.
 
 Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' (an array) and 'Address' (a string) to create a contract object in JavaScript:
 
@@ -169,9 +174,6 @@ This particular example can be instantiated by anyone by simply calling:
     var greeter2 = eth.contract([{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]).at('greeterAddress');
 
 Replace _greeterAddress_ with your contract's address.
-
-
-**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing _greeterCompiled.greeter.info.abiDefinition_  with the abi from your compiler.**
 
 
 #### Cleaning up after yourself: 
