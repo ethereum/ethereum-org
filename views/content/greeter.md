@@ -55,19 +55,21 @@ You'll notice that there are two different contracts in this code: _"mortal"_ an
 
 The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
 
-### The Solc Compiler
+### Compiling your contract using the Solc Compiler
 
-Before you are able to Deploy it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract.
+Before you are able to deploy your contract, you'll need two things: 
 
-Both of these you can get by using a compiler. You could use the solidity compiler for this.
+1. The compiled code.
+2. The Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract.
 
-If you have not installed a compiler, then you need to install one. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
+You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either: 
 
-#### Compiling your contract 
+1. Install a compiler on your machine by following the [instructions for installing the Solidity Compiler](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
+2. Use [Remix](https://remix.ethereum.org), a web-based Solidity IDE.
 
-If you do not get Solidity above, then you need to install it. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
+#### Solc on your machine
 
-Now you have the compiler installed, you need to compile the contract to acquire the compiled code and Application Binary Interface.
+If you installed the compiler on your machine, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 
     solc -o target --bin --abi Greeter.sol
 
@@ -110,9 +112,9 @@ You have now compiled your code and made it available to Geth.  Now you need to 
     })
 
 
-#### Using the online compiler
+#### Using Remix
 
-If you don't have solC installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://ethereum.github.io/browser-solidity/) and then your compiled code should appear on the left pane. Copy the code in the box labeled **Web3 deploy** for both the `greeter` contract and the `mortal` contract to a single text file. Now, in that file, change the first line to your greeting:
+If you don't have Solc installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://remix.ethereum.org) and then your compiled code should appear on the left pane. Copy the code in the box labeled **Web3 deploy** for both the `greeter` contract and the `mortal` contract to a single text file. Now, in that file, change the first line to your greeting:
 
     var _greeting = "Hello World!"
  
