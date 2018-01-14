@@ -114,7 +114,11 @@ You have now compiled your code and made it available to Geth.  Now you need to 
 
 #### Using Remix
 
-If you don't have Solc installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://remix.ethereum.org) and then your compiled code should appear on the left pane. Copy the code in the box labeled **Web3 deploy** for both the `greeter` contract and the `mortal` contract to a single text file. Now, in that file, change the first line to your greeting:
+If you don't have Solc installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
+
+To access the compiled code, ensure that the dropdown menu on the right pane has `greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** box.
+
+Create a temporary text file on your computer and paste that code. Make sure to change the first line to look like the following:
 
     var _greeting = "Hello World!"
  
