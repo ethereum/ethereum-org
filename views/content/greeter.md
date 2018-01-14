@@ -59,13 +59,13 @@ The inherited characteristic _"mortal"_ simply means that the greeter contract c
 
 Before you are able to deploy your contract, you'll need two things: 
 
-1. The compiled code.
-2. The Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract.
+1. The compiled code
+2. The Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract
 
 You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either: 
 
-1. Install a compiler on your machine by following the [instructions for installing the Solidity Compiler](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
-2. Use [Remix](https://remix.ethereum.org), a web-based Solidity IDE.
+1. Install a compiler on your machine by following the [instructions for installing the Solidity Compiler](http://solidity.readthedocs.io/en/develop/installing-solidity.html)
+2. Use [Remix](https://remix.ethereum.org), a web-based Solidity IDE
 
 #### Solc on your machine
 
@@ -114,7 +114,7 @@ You have now compiled your code and made it available to Geth.  Now you need to 
 
 #### Using Remix
 
-If you don't have Solc installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
+If you don't have Solc installed, you can simply use the online IDE. Copy the source code (at the top of this page) to [Remix](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
 
 To access the compiled code, ensure that the dropdown menu on the right pane has `greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** textbox.
 
@@ -153,7 +153,10 @@ Since this call changes nothing on the blockchain, it returns instantly and with
 
 #### Getting other people to interact with your code
 
-In order for other people to run your contract they need two things: the `Address` where the contract is located and the `ABI` (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them to your JavaScript console.
+In order for other people to run your contract they need two things:
+
+1. The `Address` where the contract is located 
+2. The `ABI` (Application Binary Interface), which is a sort of user manual describing the name of the contract's functions and how to call them to your JavaScript console
 
 To get the `Address`, run this command:
 
@@ -163,9 +166,9 @@ To get the `ABI`, run this command:
 
     greeterCompiled.greeter.info.abiDefinition;
 
-**Tip:** If you compiled the code using [Remix](https://remix.ethereum.org), the last line of code above won't work for you! Instead, you need to copy the `ABI` directly from Remix, similar to how you copied the compiled **WEB3DEPLOY** code. On the right pane, click on the **Details** button and scroll down to the **ABI** textbox. Click on the copy button to copy the entire ABI, then paste it in a temporary text document.
+**Tip:** If you compiled the code using [Remix](https://remix.ethereum.org), the last line of code above won't work for you! Instead, you need to copy the `ABI` directly from Remix, similar to how you copied the **WEB3DEPLOY** compiled code. On the right pane, click on the **Details** button and scroll down to the **ABI** textbox. Click on the copy button to copy the entire ABI, then paste it in a temporary text document.
 
-Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' (an array) and 'Address' (a string) to create a contract object in JavaScript:
+Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. In the following line, replace `ABI` (an array) and `Address` (a string) to create a contract object in JavaScript:
 
     var greeter = eth.contract(ABI).at(Address);
 
@@ -173,7 +176,7 @@ This particular example can be instantiated by anyone by simply calling:
 
     var greeter2 = eth.contract([{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]).at('greeterAddress');
 
-Replace _greeterAddress_ with your contract's address.
+Of course, `greeterAddress` must be replaced with your contract's _unique_ address.
 
 
 #### Cleaning up after yourself: 
