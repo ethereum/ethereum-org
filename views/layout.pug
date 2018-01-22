@@ -7,6 +7,15 @@ html
     meta(http-equiv="X-UA-Compatible",content="chrome=1")
     title= title
 
+    style(id="antiClickjack")
+        | body{display:none !important;}
+    script
+        | if (self === top) {
+        |     var antiClickjack = document.getElementById('antiClickjack');
+        |     antiClickjack.parentNode.removeChild(antiClickjack);
+        | } else {
+        |     top.location = self.location;
+        | }
 
     meta(name="description", content="Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference.")
 
