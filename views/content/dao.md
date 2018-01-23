@@ -13,6 +13,8 @@ In this section we are going to build a decentralized and democratic organizatio
 
 The way this particular democracy works is that it has an **Owner** which works like an administrator, CEO or a President. The *Owner* can add (or remove) voting members to the organization. Any member can make a proposal, which is in the form of an ethereum transaction to either send ether or execute some contract, and other members can vote in support or against the proposal. Once a predetermined amount of time and a certain number of members has voted, the proposal can be executed: the contract counts the votes and if there are enough votes it will execute the given transaction.
 
+Another system which users can employ is the 'pairwise ranking' vote system, a more advanced system of voting, because sometime things in life are a little more complex then the "winner-looser" dichotemy we so neatly defeat eachother with. Pairwise ranking allows the congress to ideas that the group would like to fund or green light into a table. The users then rank the solutions in order of what they feel are the priorities or what is most worthy of being excecuted for the good of all. The table then ranks the propposals in order of what is chosen most as the best choice, the second, third and so on. Resources can then be directed towards the ranked propposals accordingly. This is particularly useful when electing boards, delegates and other teams.
+
 
 ### The Blockchain Congress
 
