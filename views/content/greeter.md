@@ -88,7 +88,7 @@ You can use these two files to create and deploy the contract.
 
     var greeterFactory = eth.contract(<contents of the file Greeter.abi>)
 
-    var greeterCompiled = "0x" + "<contents of the file Greeter.bin"
+    var greeterCompiled = "0x" + "<contents of the file Greeter.bin>"
 
 You have now compiled your code and made it available to Geth.  Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
     
