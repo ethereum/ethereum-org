@@ -1,6 +1,6 @@
 ### The Coin
 
-We are going to create a digital token. Tokens in the ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the ethereum wallet and any other client or contract that uses the same standards.
+We are going to create a digital token. Tokens in the Ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in-game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the Ethereum wallet and any other client or contract that uses the same standards.
 
 #### Minimum Viable Token
 
@@ -33,7 +33,7 @@ So let's start with the basics. Open the **Wallet** app, go to the *Contracts* t
     }
 ```
 
-A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that this variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
+A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal Ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The *public* keyword, means that this variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).
 
 ![Edit New Contract](/images/tutorial/edit-contract.png)
 
@@ -55,7 +55,7 @@ The choice of 21 million was rather arbitrary, and you can change it to anything
     }
 ```
 
-Take a look at the right column besides the contract and you'll see a drop down, written *pick a contract*. Select the "MyToken" contract and you'll see that now it shows a section called *Constructor parameters*. These are changeable parameters for your token, so you can reuse the same code and only change these variables in the future.
+Take a look at the right column beside the contract and you'll see a drop-down list, written *pick a contract*. Select the "MyToken" contract and you'll see that now it shows a section called *Constructor parameters*. These are changeable parameters for your token, so you can reuse the same code and only change these variables in the future.
 
 ![Edit New Contract](/images/tutorial/function-picker.png)
 
@@ -73,7 +73,7 @@ Right now you have a functional contract that created balances of tokens but sin
 
 This is a very straightforward function: it has a recipient and a value as the parameter and whenever someone calls it, it will subtract the *_value* from their balance and add it to the *_to* balance. Right away there's an obvious problem: what happens if the person wants to send more than it owns? Since we don't want to handle debt in this particular contract, we are simply going to make a quick check and if the sender doesn't have enough funds the contract execution will simply stop. It's also to check for overflows, to avoid having a number so big that it becomes zero again.
 
-To stop a contract execution mid execution you can either **return** or **throw** The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'throw' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all ether he sent for gas. But since the Wallet can detect that a contract will throw, it always shows an alert, therefore preventing any ether to be spent at all.
+To stop a contract execution mid-execution you can either **return** or **throw** The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'throw' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all Ether he sent for gas. But since the Wallet can detect that a contract will throw, it always shows an alert, therefore preventing any Ether to be spent at all.
 
 ```
     function transfer(address _to, uint256 _value) {
@@ -104,7 +104,7 @@ And now we update the **constructor function** to allow all those variables to b
     }
 ```
 
-Finally we now need something called **Events**. These are special, empty functions that you call to help clients like the Ethereum Wallet keep track of activities happening in the contract. Events should start with a capital letter. Add this line at the beginning of the contract to declare the event:
+Finally, we now need something called **Events**. These are special, empty functions that you call to help clients like the Ethereum Wallet keep track of activities happening in the contract. Events should start with a capital letter. Add this line at the beginning of the contract to declare the event:
 
 ```
     event Transfer(address indexed from, address indexed to, uint256 value);
@@ -127,19 +127,19 @@ What are those @notice and @param comments, you might ask? That's [Natspec](http
 
 If you aren't there already, open the Ethereum Wallet, go to the contracts tab and then click "deploy new contract".
 
-Now get the token source from above and paste it into the "Solidity source field". If the code compiles without any error, you should see a "pick a contract" drop down on the right. Get it and select the "MyToken" contract. On the right column you'll see all the parameters you need to personalize your own token. You can tweak them as you please, but for the purpose of this tutorial we recommend you to pick these parameters: 10,000 as the supply, any name you want, "%" for a symbol and 2 decimal places. Your app should be looking like this:
+Now get the token source from above and paste it into the "Solidity source field". If the code compiles without any error, you should see a "pick a contract" drop-down list on the right. Get it and select the "MyToken" contract. On the right column, you'll see all the parameters you need to personalize your own token. You can tweak them as you please, but for the purpose of this tutorial we recommend you to pick these parameters: 10,000 as the supply, any name you want, "%" for a symbol and 2 decimal places. Your app should be looking like this:
 
 [![Ethereum Wallet Screenshot 2015-12-03 at 3.50.36 PM 10](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-10.png)](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-10.png)
 
-Scroll to the end of the page and you'll see an estimate of the computation cost of that contract and you can select a fee on how much ether you are willing to pay for it. **Any excess ether you don't spend will be returned to you** so you can leave the default settings if you wish. Press "deploy", type your account password and wait a few seconds for your transaction to be picked up.
+Scroll to the end of the page and you'll see an estimate of the computation cost of that contract and you can select a fee on how much Ether you are willing to pay for it. **Any excess Ether you don't spend will be returned to you** so you can leave the default settings if you wish. Press "deploy", type your account password and wait a few seconds for your transaction to be picked up.
 
 [![Ethereum Wallet Screenshot 2015-12-03 at 3.50.36 PM 11](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-11.png)](/images/tutorial/Ethereum-Wallet-Screenshot-2015-12-03-at-3.50.36-PM-11.png)
 
-You'll be redirected to the front page where you can see your transaction waiting for confirmations. Click the account named "Etherbase" (your main account) and after no more than a minute you should see that your account will show that you have 100% of the shares you just created.  To send some to a few friends: select "send", and then choose which currency you want to send (ether or your newly created share), paste your friend's address on the "to" field and press "send".
+You'll be redirected to the front page where you can see your transaction waiting for confirmations. Click the account named "Etherbase" (your main account) and after no more than a minute you should see that your account will show that you have 100% of the shares you just created.  To send some to a few friends: select "send", and then choose which currency you want to send (Ether or your newly created share), paste your friend's address on the "to" field and press "send".
 
 ![Screen Shot 2015-12-03 at 9.48.15 AM](/images/tutorial/Screen-Shot-2015-12-03-at-9.48.15-AM.png)
 
-If you send it to a friend, they will not see anything in their wallet yet. This is because the wallet only tracks tokens it knows about, and you have to add these manually. Now go to the "Contracts" tab and you should see a link for your newly created contract. Click on it to go to its page. Since this is a very simple contract page there isn't much to do here, just click "copy address" and paste the contract address on a text editor, you'll need it shortly.
+If you send it to a friend, they will not see anything in their wallet yet. This is because the wallet only tracks tokens it knows about, and you have to add these manually. Now go to the "Contracts" tab and you should see a link to your newly created contract. Click on it to go to its page. Since this is a very simple contract page there isn't much to do here, just click "copy address" and paste the contract address into a text editor, you'll need it shortly.
 
 To add a token to watch, go to the contracts page and then click "Watch Token". A pop-up will appear and you only need to paste the contract address. The token name, symbol and decimal number should be automatically filled but if it's not you can put anything you want (it will only affect how it displays on your wallet). Once you do this, you'll automatically be shown any balance you have of that token and you'll be able to send it to anyone else.
 
@@ -201,7 +201,7 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
     }
 ```
 
-This creates a very basic contract that doesn't do anything except define some generic functions about a contract that can be "owned". Now the next step is just add the text *is owned* to your contract:
+This creates a very basic contract that doesn't do anything except define some generic functions about a contract that can be "owned". Now the next step is just to add the text *is owned* to your contract:
 
 ```
     contract MyToken is owned {
@@ -226,7 +226,7 @@ This means that all the functions inside **MyToken** now can access the variable
 
 Suppose you want the amount of coins in circulation to change. This is the case when your tokens actually represent an off blockchain asset (like gold certificates or government currencies) and you want the virtual inventory to reflect the real one. This might also be the case when the currency holders expect some control of the price of the token, and want to issue or remove tokens from circulation.
 
-First we need to add a variable to store the **totalSupply** and assign it in our constructor function.
+First, we need to add a variable to store the **totalSupply** and assign it to our constructor function.
 
 ```
     contract MyToken {
@@ -269,7 +269,7 @@ Add this variable and function anywhere inside the contract. You can put them an
     }
 ```
 
-With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Unfortunately freezing has no practical effect, because we haven't added anything to the transfer function. We are changing that now:
+With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Unfortunately, freezing has no practical effect because we haven't added anything to the transfer function. We are changing that now:
 
 ```
     function transfer(address _to, uint256 _value) {
@@ -284,7 +284,7 @@ Now any account that is frozen will still have their funds intact, but won't be 
 
 #### Automatic selling and buying
 
-So far, you've relied on utility and trust to value your token. But if you want you can make the token's value be backed by ether (or other tokens) by creating a fund that automatically sells and buys them at market value.
+So far, you've relied on utility and trust to value your token. But if you want you can make the token's value be backed by Ether (or other tokens) by creating a fund that automatically sells and buys them at market value.
 
 First, let's set the price for buying and selling:
 
@@ -298,7 +298,7 @@ First, let's set the price for buying and selling:
     }
 ```
 
-This is acceptable for a price that doesn't change very often, as every new price change will require you to execute a transaction and spend a bit of ether. If you want to have a constant floating price we recommend investigating [standard data feeds](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds)
+This is acceptable for a price that doesn't change very often, as every new price change will require you to execute a transaction and spend a bit of Ether. If you want to have a constant floating price we recommend investigating [standard data feeds](https://github.com/ethereum/wiki/wiki/Standardized_Contract_APIs#data-feeds)
 
 The next step is making the buy and sell functions:
 
@@ -323,19 +323,19 @@ The next step is making the buy and sell functions:
     }
 ```
 
-Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) it cannot touch the bank's tokens or ether. The only way this contract can move funds is by selling and buying them.
+Notice that this will not create new tokens but change the balance the contract owns. The contract can hold both its own tokens and Ether and the owner of the contract, while it can set prices or in some cases create new tokens (if applicable) it cannot touch the bank's tokens or Ether. The only way this contract can move funds is by selling and buying them.
 
-**Note** Buy and sell "prices" are not set in ether, but in *wei* the minimum currency of the system (equivalent to the cent in the Euro and Dollar, or the Satoshi in Bitcoin). One ether is 1000000000000000000 wei. So when setting prices for your token in ether, add 18 zeros at the end.
+**Note** Buy and sell "prices" are not set in Ether, but in *wei* the minimum currency of the system (equivalent to the cent in the Euro and Dollar, or the Satoshi in Bitcoin). One Ether is 1000000000000000000 wei. So when setting prices for your token in Ether, add 18 zeros at the end.
 
-When creating the contract, **send enough ether to it so that it can buy back all the tokens on the market** otherwise your contract will be insolvent and your users won't be able to sell their tokens.
+When creating the contract, **send enough Ether to it so that it can buy back all the tokens on the market** otherwise your contract will be insolvent and your users won't be able to sell their tokens.
 
 The previous examples, of course, describe a contract with a single central buyer and seller, a much more interesting contract would allow a market where anyone can bid different prices, or maybe it would load the prices directly from an external source.
 
 #### Autorefill
 
-Everytime you make a transaction on ethereum you need to pay a fee to the miner of the block that will calculate the result of your smart contract. [While this might change in the future](https://github.com/ethereum/EIPs/issues/28), for the moment fees can only be paid in ether and therefore all users of your tokens need it. Tokens in accounts with a balance smaller than the fee are stuck until the owner can pay for the necessary fee. But in some usecases, you might not want your users to think about ethereum, blockchain or how to obtain ether, so one possible approach would have your coin automatically refill the user balance as soon as it detects the balance is dangerously low.
+Everytime, you make a transaction on Ethereum you need to pay a fee to the miner of the block that will calculate the result of your smart contract. [While this might change in the future](https://github.com/ethereum/EIPs/issues/28), for the moment fees can only be paid in Ether and therefore all users of your tokens need it. Tokens in accounts with a balance smaller than the fee are stuck until the owner can pay for the necessary fee. But in some use cases, you might not want your users to think about Ethereum, blockchain or how to obtain Ether, so one possible approach would have your coin automatically refill the user balance as soon as it detects the balance is dangerously low.
 
-In order to do that, first you need to create a variable that will hold the threshold amount and a function to change it. If you don't know any value, set it to **5 finney (0.005 ether)**.
+In order to do that, first you need to create a variable that will hold the threshold amount and a function to change it. If you don't know any value, set it to **5 finney (0.005 Ether)**.
 
 ```
     uint minBalanceForAccounts;
@@ -367,11 +367,11 @@ You can also instead change it so that the fee is paid forward to the receiver b
     }
 ```
 
-This will ensure that no account receiving the token has less than the necessary ether to pay the fees.
+This will ensure that no account receiving the token has less than the necessary Ether to pay the fees.
 
 #### Proof of Work
 
-There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with ether, meaning that anyone who finds a block on ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block.
+There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with Ether, meaning that anyone who finds a block on Ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block.
 
 ```
     function giveBlockReward() {
@@ -391,11 +391,11 @@ It's also possible to add a mathematical formula, so that anyone who can do math
     }
 ```
 
-Of course while calculating cubic roots can be hard for someone to do on their heads, they are very easy with a calculator, so this game could be easily broken by a computer. Also since the last winner can choose the next challenge, they could pick something they know and therefore would not be a very fair game to other players. There are tasks that are easy for humans but hard for computers but they are usually very hard to code in simple scripts like these. Instead a fairer system should be one that is very hard for a computer to do, but isn't very hard for a computer to verify. A great candidate would be to create a hash challenge where the challenger has to generate hashes from multiple numbers until they find one that is lower than a given difficulty.
+Of course, while calculating cubic roots can be hard for someone to do on their heads, they are very easy with a calculator, so this game could be easily broken by a computer. Also since the last winner can choose the next challenge, they could pick something they know and therefore would not be a very fair game to other players. There are tasks that are easy for humans but hard for computers but they are usually very hard to code in simple scripts like these. Instead, a fairer system should be one that is very hard for a computer to do, but isn't very hard for a computer to verify. A great candidate would be to create a hash challenge where the challenger has to generate hashes from multiple numbers until they find one that is lower than a given difficulty.
 
 This process was first proposed by Adam Back in 1997 as [Hashcash](https://en.wikipedia.org/wiki/Hashcash) and then was implemented in Bitcoin by Satoshi Nakamoto as **Proof of work** in 2008. Ethereum was launched using such system for its security model, but is planning to move from a Proof of Work security model into a [mixed proof of stake and betting system called *Casper*](https://blog.ethereum.org/2015/12/28/understanding-serenity-part-2-casper/).
 
-But if you like Hashing as a form of random issuance of coins, you can still create your own ethereum based currency that has a proof of work issuance:
+But if you like Hashing as a form of random issuance of coins, you can still create your own Ethereum based currency that has a proof of work issuance:
 
 ```
     bytes32 public currentChallenge;                         // The coin starts with a challenge
@@ -447,13 +447,13 @@ Scroll down and you'll see an estimated cost for deployment. If you want you can
 
 Click on the link that says *Admin page* and you'll be taken the simplest central bank dashboard in the world,   where you can do anything you want with your newly created currency.
 
-On the left side under *Read from contract* you have all the options and functions you can use to read information from the contract, for free. If your token has an owner, it will display its address here. Copy that address and paste it on **Balance of** and it will show you the balance of any account (the balance is also automatically shown on any account page that has tokens).
+On the left side under *Read from contract* you have all the options and functions you can use to read information from the contract, for free. If your token has an owner, it will display its address here. Copy that address and paste it into **Balance of** and it will show you the balance of any account (the balance is also automatically shown on any account page that has tokens).
 
 On the right side, under **Write to Contract** you'll see all the functions you can use to alter or change the blockchain in any way. These will cost gas. If you created a contract that allows you to mint new coins, you should have a function called "Mint Token". Select it.
 
 ![Manage central dollar](/images/tutorial/manage-central-dollar.png)
 
-Select the address where those new currencies will be created and then the amount (if you have decimals set at 2, then add 2 zeros after the amount, to create the correct quantity). On **Execute from** select the account that set as owner, leave the ether amount at zero and then press execute.
+Select the address where those new currencies will be created and then the amount (if you have decimals set at 2, then add 2 zeros after the amount, to create the correct quantity). On **Execute from** select the account that set as owner, leave the Ether amount at zero and then press execute.
 
 After a few confirmations, the recipient balance will be updated to reflect the new amount. But your recipient wallet might not show it automatically: in order to be aware of custom tokens, the wallet must add them manually to a watch list. Copy your token address (at the admin page, press *copy address*) and send that to your recipient. If they haven't already they should go to the contracts tab, press **Watch Token** and then add the address there. Name, symbols and decimal amounts displayed can be customized by the end user, especially if they have other tokens with similar (or the same) name. The main icon is not changeable and users should pay attention to them when sending and receiving tokens to ensure they are dealing with the real deal and not some copycat token.
 
@@ -472,4 +472,4 @@ Unicorn tokens are memorabilia created exclusively for those who have donated to
 
 ### Now what?
 
-You just learned how you can use ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to [represent a share in a company](./dao#the-shareholder-association) or you can use a [central committee](./dao#the-code) to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a [crowdsale](./crowdsale). What will you build next?
+You just learned how you can use Ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to [represent a share in a company](./dao#the-shareholder-association) or you can use a [central committee](./dao#the-code) to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a [crowdsale](./crowdsale). What will you build next?
