@@ -425,6 +425,24 @@ Once the contract is online, select the function "Proof of work", add your favor
 
 This process of trying to find the number that will give you a reward is what is called *mining*: if difficulty rises it can be very hard to find a lucky number, but it will always be easy to verify that you found one.
 
+#### Airdrop
+
+Nowadays every company that plans an ICO is doing one or more airdrop. Airdrop means distributing free tokens to some ERC20 addresses. This processes needed to create awareness of the ICO and the token's publicity gets increased. The rules for airdrop eligibilty are defined by the companies that plan the ICO (like join their telegram group, follow and comment twitter, comment in some forumn thread etc., Though it is possible to create a separate contract to disburse the token, it is better to have a function like below in the token contract itself.
+
+```
+/**
+ * @dev function that transers various number of tokens to various number of recipients. This is just basic concept, validation needs to be added
+*/
+  function airDropTokens(address[] dests, uint256[] values) onlyOwner public {
+    uint256 i = 0;
+        while (i < dests.length) {
+            if(dests[i] == address(0)) continue;
+            uint256 toSend = values[i] *10**18;
+            _transfer(owner, dests[i], toSend);
+            i += 1;
+        }
+     }
+```
 
 ### Improved Coin
 
