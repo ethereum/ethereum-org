@@ -21,7 +21,7 @@ contract TokenERC20 {
     event Burn(address indexed from, uint256 value);
 
     /**
-     * Constrctor function
+     * Constructor function
      *
      * Initializes contract with initial supply tokens to the creator of the contract
      */

@@ -24,23 +24,23 @@ Now that you’ve mastered the basics of Ethereum, let’s move into your first 
 The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
 
-    contract mortal {
+    contract Mortal {
         /* Define variable owner of the type address */
         address owner;
 
         /* This function is executed at initialization and sets the owner of the contract */
-        function mortal() { owner = msg.sender; }
+        function Mortal() { owner = msg.sender; }
 
         /* Function to recover the funds on the contract */
         function kill() { if (msg.sender == owner) selfdestruct(owner); }
     }
 
-    contract greeter is mortal {
+    contract Greeter is Mortal {
         /* Define variable greeting of the type string */
         string greeting;
         
         /* This runs when the contract is executed */
-        function greeter(string _greeting) public {
+        function Greeter(string _greeting) public {
             greeting = _greeting;
         }
 
@@ -67,7 +67,10 @@ You can get both of these by using a Solidity compiler. If you have not installe
 1. Install a compiler on your machine by following the [instructions for installing the Solidity Compiler](http://solidity.readthedocs.io/en/develop/installing-solidity.html)
 2. Use [Remix](https://remix.ethereum.org), a web-based Solidity IDE
 
+
 #### Solc on your machine
+=======
+
 
 If you installed the compiler on your machine, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 
@@ -90,7 +93,7 @@ You can use these two files to create and deploy the contract.
 
     var greeterFactory = eth.contract(<contents of the file Greeter.abi>)
 
-    var greeterCompiled = "0x" + "<contents of the file Greeter.bin"
+    var greeterCompiled = "0x" + "<contents of the file Greeter.bin>"
 
 You have now compiled your code and made it available to Geth.  Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
     
