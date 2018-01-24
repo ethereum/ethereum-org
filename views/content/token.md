@@ -50,7 +50,7 @@ Notice that the *function MyToken* has the same name as the *contract MyToken*. 
 The choice of 21 million was rather arbitrary, and you can change it to anything you want in the code, but there's a better way: instead, supply it as a parameter for the function, like this:
 
 ```
-    function MyToken(uint256 initialSupply) {
+    function MyToken(uint256 initialSupply) public {
         balanceOf[msg.sender] = initialSupply;
     }
 ```
