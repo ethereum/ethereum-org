@@ -160,7 +160,7 @@ If you want to create a private network you should, for security reasons, use a 
 
 These commands prevent anyone who doesn't know your chosen — secret — nonce, network id and genesis file, from connecting to you or providing you with unwanted data. If you *want* to connect to other peers and create a small private network of multiple computers they will all need to use the same networkid and an identical genesis block. You will also have to help each node find the others. To do that, first you need your own Node URL:
 
-    admin.nodeInfo.NodeUrl
+    admin.nodeInfo.enode
 
 Which will return your node url - make a note of it and then on the other clients, tell them to add your peer by executing this command:
 
