@@ -4,11 +4,8 @@ const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 
 // Init the app
-<<<<<<< HEAD
-var app = express();
-=======
+
 const app = express();
->>>>>>> bc806d2b7347bee68a38c48c556c312f2b3130cc
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -77,17 +74,12 @@ app.get('/devgrants', (request, response) => {
 	response.render('devgrants');
 });
 
-<<<<<<< HEAD
-app.get('/swarm', function(req, res) {
-	res.render('swarm');
-=======
 app.get('/devcontwo', (request, response) => {
 	response.render('devcon2');
 });
 
 app.get('/swarm', (request, response) => {
 	response.render('swarm');
->>>>>>> bc806d2b7347bee68a38c48c556c312f2b3130cc
 });
 
 app.get('/privacy-policy',(request, response) => {

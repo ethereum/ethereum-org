@@ -105,7 +105,7 @@ geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 1234 -
 <p>Replace 12345 with any random number you want to use as the network ID. It's a good idea to change the content of the genesis block because if someone accidentally connects to your testnet using the real chain, your local copy will be considered a stale fork and updated to the <em>&quot;real&quot;</em> one. Changing the datadir also changes your local copy of the blockchain, otherwise, in order to successfully mine a block, you would need to mine against the difficulty of the last block present in your local copy of the blockchain - which may take several hours.</p>
 <p>If you want to create a private network you should, for security reasons, use a different genesis block (a database that contains all the transactions from the Ether sales). You can <a href="https://blog.ethereum.org/2015/07/27/final-steps/">read our announcement blog post on how to generate your file</a>. In the near future we will provide better ways to get other genesis blocks.</p>
 <p>These commands prevent anyone who doesn't know your chosen — secret — nonce, network id and genesis file, from connecting to you or providing you with unwanted data. If you <em>want</em> to connect to other peers and create a small private network of multiple computers they will all need to use the same networkid and an identical genesis block. You will also have to help each node find the others. To do that, first you need your own Node URL:</p>
-<pre><code>admin.nodeInfo.NodeUrl
+<pre><code>admin.nodeInfo.enode
 </code></pre>
 <p>Which will return your node url - make a note of it and then on the other clients, tell them to add your peer by executing this command:</p>
 <pre><code>admin.addPeer(&quot;YOURNODEURL&quot;)
@@ -121,7 +121,7 @@ geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 1234 -
 <p>Geth supports multiple terminal windows and you may start a new one with the logs in one and your console in another. This will give you the exact same functionality as the original console, but without the clutter. To do this open a new terminal window and input:</p>
 <pre><code>geth attach
 </code></pre>
-<p>The console has auto completion and history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.</p>
+<p>The console has auto completion of commands and command-history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.</p>
 <h4>Learn More on Running a node</h4>
 <ul>
 <li><a href="http://ethdocs.org/en/latest/account-management.html#backup-and-restore-accounts">Backup and restore</a></li>
@@ -129,8 +129,8 @@ geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 1234 -
 </ul>
 <h3>Usage examples</h3>
 <h4>Creating accounts</h4>
-<p>In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are <a href="http://ethdocs.org/en/latest/account-management.html">various ways to go around this</a>, but the simplest one is through the console.</p>
-<p><strong>ATTENTION:</strong> If you were running Ethereum during the olympic phase or earlier in the development, <strong>do not reuse keys</strong> generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to <a href="https://en.wikipedia.org/wiki/Replay_attack">replay attacks</a>. Backup those keys, and create new ones using the Frontier release clients.</p>
+<p>In order to do anything on an Ethereum network you need ether, and to get it, you will need to create an account. There are <a href="http://ethdocs.org/en/latest/account-management.html">various ways to go around this</a>, but the simplest one is through the console.</p>
+<p><strong>CAUTION:</strong> If you were running Ethereum during the olympic phase or earlier in the development, <strong>do not reuse keys</strong> generated before the release of the Frontier client software 1.0, because otherwise they might be <strong>vulnerable to <a href="https://en.wikipedia.org/wiki/Replay_attack">replay attacks</a></strong>. Backup those keys, and create new ones using the Frontier release clients.</p>
 <pre><code>personal.newAccount(&quot;Write here a good, randomly generated, passphrase!&quot;)
 </code></pre>
 <p><strong>Note: Pick up a good passphrase and write it down. If you lose the passphrase you used to encrypt your account, you will not be able to access that account. Repeat: There are no safety nets. It is NOT possible to access your account without a valid passphrase and there is no &quot;forgot my password&quot; option here. See <a href="https://xkcd.com/936/">this XKCD</a> for details.</strong></p>
