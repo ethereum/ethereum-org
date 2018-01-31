@@ -77,16 +77,17 @@ var greeterCompiled = &quot;0x&quot; + &quot;&lt;contents of the file Greeter.bi
 <pre><code>var _greeting = &quot;Hello World!&quot;
 
 var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCompiled,gas:47000000}, function(e, contract){
-    if(!e) {
+    if(e) {
+      console.error(e); // If something goes wrong, at least we'll know.
+      return;
+    }
 
-      if(!contract.address) {
-        console.log(&quot;Contract transaction send: TransactionHash: &quot; + contract.transactionHash + &quot; waiting to be mined...&quot;);
+    if(!contract.address) {
+      console.log(&quot;Contract transaction send: TransactionHash: &quot; + contract.transactionHash + &quot; waiting to be mined...&quot;);
 
-      } else {
-        console.log(&quot;Contract mined! Address: &quot; + contract.address);
-        console.log(contract);
-      }
-
+    } else {
+      console.log(&quot;Contract mined! Address: &quot; + contract.address);
+      console.log(contract);
     }
 })
 </code></pre>
