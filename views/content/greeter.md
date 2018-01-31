@@ -24,23 +24,23 @@ Now that you’ve mastered the basics of Ethereum, let’s move into your first 
 The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
 
-    contract Mortal {
+    contract mortal {
         /* Define variable owner of the type address */
         address owner;
 
         /* This function is executed at initialization and sets the owner of the contract */
-        function Mortal() { owner = msg.sender; }
+        function mortal() { owner = msg.sender; }
 
         /* Function to recover the funds on the contract */
         function kill() { if (msg.sender == owner) selfdestruct(owner); }
     }
 
-    contract Greeter is Mortal {
+    contract greeter is mortal {
         /* Define variable greeting of the type string */
         string greeting;
         
         /* This runs when the contract is executed */
-        function Greeter(string _greeting) public {
+        function greeter(string _greeting) public {
             greeting = _greeting;
         }
 
@@ -55,24 +55,19 @@ You'll notice that there are two different contracts in this code: _"mortal"_ an
 
 The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
 
-### Compiling your contract using the Solc Compiler
+### The Solc Compiler
 
-Before you are able to deploy your contract, you'll need two things: 
+Before you are able to Deploy it though, you'll need two things: the compiled code, and the Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract.
 
-1. The compiled code
-2. The Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract
+Both of these you can get by using a compiler. You could use the solidity compiler for this.
 
-You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either: 
+If you have not installed a compiler, then you need to install one. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
 
-1. Install a compiler on your machine by following the [instructions for installing the Solidity Compiler](http://solidity.readthedocs.io/en/develop/installing-solidity.html)
-2. Use [Remix](https://remix.ethereum.org), a web-based Solidity IDE
+#### Compiling your contract 
 
+If you do not get Solidity above, then you need to install it. You can find [instructions for installing Solidity here](http://solidity.readthedocs.io/en/develop/installing-solidity.html).
 
-#### Solc on your machine
-=======
-
-
-If you installed the compiler on your machine, you need to compile the contract to acquire the compiled code and Application Binary Interface.
+Now you have the compiler installed, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 
     solc -o target --bin --abi Greeter.sol
 
@@ -93,36 +88,31 @@ You can use these two files to create and deploy the contract.
 
     var greeterFactory = eth.contract(<contents of the file Greeter.abi>)
 
-    var greeterCompiled = "0x" + "<contents of the file Greeter.bin>"
+    var greeterCompiled = "0x" + "<contents of the file Greeter.bin"
 
 You have now compiled your code and made it available to Geth.  Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
     
-	
-	var _greeting = "Hello World!"
+    
+    var _greeting = "Hello World!"
 
     var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCompiled,gas:47000000}, function(e, contract){
-        if(e) {
-          console.error(e); // If something goes wrong, at least we'll know.
-          return;
-        }
+        if(!e) {
 
-        if(!contract.address) {
-          console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
+          if(!contract.address) {
+            console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
 
-        } else {
-          console.log("Contract mined! Address: " + contract.address);
-          console.log(contract);
+          } else {
+            console.log("Contract mined! Address: " + contract.address);
+            console.log(contract);
+          }
+
         }
     })
 
 
-#### Using Remix
+#### Using the online compiler
 
-If you don't have Solc installed, you can simply use the online IDE. Copy the source code (at the top of this page) to [Remix](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
-
-To access the compiled code, ensure that the dropdown menu on the right pane has `greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** textbox.
-
-Create a temporary text file on your computer and paste that code. Make sure to change the first line to look like the following:
+If you don't have solC installed, you can simply use the online compiler. Copy the source code above to the [online solidity compiler](https://ethereum.github.io/browser-solidity/) and then your compiled code should appear on the left pane. Copy the code in the box labeled **Web3 deploy** for both the `greeter` contract and the `mortal` contract to a single text file. Now, in that file, change the first line to your greeting:
 
     var _greeting = "Hello World!"
  
@@ -157,22 +147,14 @@ Since this call changes nothing on the blockchain, it returns instantly and with
 
 #### Getting other people to interact with your code
 
-In order for other people to run your contract they need two things:
-
-1. The `Address` where the contract is located 
-2. The `ABI` (Application Binary Interface), which is a sort of user manual describing the name of the contract's functions and how to call them to your JavaScript console
-
-To get the `Address`, run this command:
-
-    greeter.address;
-
-To get the `ABI`, run this command:
+In order for other people to run your contract they need two things: the address where the contract is located and the ABI (Application Binary Interface) which is a sort of user manual, describing the name of its functions and how to call them to your JavaScript console. In order to get each of them run these commands:
 
     greeterCompiled.greeter.info.abiDefinition;
+    greeter.address;
 
-**Tip:** If you compiled the code using [Remix](https://remix.ethereum.org), the last line of code above won't work for you! Instead, you need to copy the `ABI` directly from Remix, similar to how you copied the **WEB3DEPLOY** compiled code. On the right pane, click on the **Details** button and scroll down to the **ABI** textbox. Click on the copy button to copy the entire ABI, then paste it in a temporary text document.
+If you compiled with the [browser-based tool](https://ethereum.github.io/browser-solidity/), you can get the ABI from the fields for the `greeter` and `mortal` contracts labeled "Interface".
 
-Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. In the following line, replace `ABI` (an array) and `Address` (a string) to create a contract object in JavaScript:
+Then you can instantiate a JavaScript object which can be used to call the contract on any machine connected to the network. Replace 'ABI' (an array) and 'Address' (a string) to create a contract object in JavaScript:
 
     var greeter = eth.contract(ABI).at(Address);
 
@@ -180,7 +162,10 @@ This particular example can be instantiated by anyone by simply calling:
 
     var greeter2 = eth.contract([{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]).at('greeterAddress');
 
-Of course, `greeterAddress` must be replaced with your contract's _unique_ address.
+Replace _greeterAddress_ with your contract's address.
+
+
+**Tip: if the solidity compiler isn't properly installed in your machine, you can get the ABI from the online compiler. To do so, use the code below carefully replacing _greeterCompiled.greeter.info.abiDefinition_  with the abi from your compiler.**
 
 
 #### Cleaning up after yourself: 
