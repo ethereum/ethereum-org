@@ -14,7 +14,7 @@
 
 [Website](http://www.vitalik.ca), [Twitter](https://twitter.com/vitalikbuterin), [GitHub](https://github.com/vbuterin/)
 
-#### &nbsp;
+----
 #### Patrick Storchenegger
 
 ![Portrait of Patrick Storchenegger](/images/portraits/patrick-storchenegger.jpg)
