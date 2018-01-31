@@ -122,33 +122,3 @@ Once you published the crowdsale contract, get its address and go into your **To
 * Modify the Organization to create a veto power to some trusted third party that could stop any hostile proposal
 * Modify the token to allow a central trusted party to freeze token accounts, so as to require a verification that there isn't any single entity controlling a majority of them
 
-#### Scheduling a call
-
-Ethereum contracts are passive, in that they can only do something once they have been activated. Fortunately there are some third party community services that provide that service for you: the [Ethereum Alarm Clock](http://www.ethereum-alarm-clock.com/) is an open marketplace where anyone can receive ether to execute scheduled calls or pay ether to schedule them. This tutorial will be using the [0.6.0 version](http://www.ethereum-alarm-clock.com/source/v0.6.0/) of the Alarm service.  Documentation for this version available [here](http://ethereum-alarm-clock-service.readthedocs.org/en/v0.6.0/).
-
-![Add the alarm clock](/images/tutorial/add-alarm-clock.png)
-
-First, you need to add the contract to your watchlist. Go to your *Contracts* tab and then *Watch contract* (**not** *deploy contract*): Give the name "Ethereum Alarm Clock", use **0xe109EcB193841aF9dA3110c80FDd365D1C23Be2a** as address (the icon should look like a green eyed creature) and add this code as the *Json Interface*:
-
-    [{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"},{"name":"suggestedGas","type":"uint256"},{"name":"gracePeriod","type":"uint8"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"getDefaultPayment","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"getDefaultFee","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"},{"name":"suggestedGas","type":"uint256"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[{"name":"callAddress","type":"address"}],"name":"getNextCallSibling","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[{"name":"callAddress","type":"address"}],"name":"isKnownCall","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":true,"inputs":[{"name":"basePayment","type":"uint256"}],"name":"getMinimumCallCost","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"},{"name":"suggestedGas","type":"uint256"},{"name":"gracePeriod","type":"uint8"},{"name":"basePayment","type":"uint256"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"getMinimumCallCost","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":false,"inputs":[{"name":"contractAddress","type":"address"},{"name":"abiSignature","type":"bytes4"},{"name":"targetBlock","type":"uint256"},{"name":"suggestedGas","type":"uint256"},{"name":"gracePeriod","type":"uint8"},{"name":"basePayment","type":"uint256"},{"name":"baseFee","type":"uint256"}],"name":"scheduleCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[{"name":"basePayment","type":"uint256"},{"name":"baseFee","type":"uint256"}],"name":"getMinimumCallCost","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"getMinimumCallGas","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[],"name":"getCallWindowSize","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"constant":true,"inputs":[{"name":"blockNumber","type":"uint256"}],"name":"getNextCall","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":true,"inputs":[],"name":"getMinimumGracePeriod","outputs":[{"name":"","type":"uint256"}],"type":"function"}]
-
-**Tip: if you are on the test net, use the address *0xb8Da699d7FB01289D4EF718A55C3174971092BEf* instead**
-
-Click on the green icon that you just added and then choose a function call under the **Write to contract** title. There will be multiple *Schedule Call* functions, choose the first one, that only has three fields:
-
-* **contractAddress** will be the address of the deployed crowdsale contract.
-* **abiSignature** will be **0x01cb3b20**. You can figure out the signature for any function by trying to execute them but in the confirmation window, instead of typing your password, copy the code in the **Data** field. The function signature is the first 10 characters in bold.
-* **targetBlock** is the block number in which you want the function to be executed, read below to calculate an estimation.
-
-The crowdsale contract specifies a deadline using a timestamp, but the Alarm clock currently schedules calls based on block numbers.  Since ethereum has a block time of approximately 17 seconds, we need to compute a block number that is going to be probabilistically past the deadline.  We can do this with the formula **current\_block\_number + duration\_in\_minutes * 60 / 17 + buffer** where **buffer** is a number of blocks that is sufficiently large that you can rely on it occurring after the crowdsale deadline.  For short crowdsales less than a day in duration a buffer of 200 blocks should be sufficient.  For durations closer to 30 days, you should probably pick a number closer to 5,000.
-
-You can use the following chart for rough estimates for how many blocks to add to the current block to compute the **targetBlock**.
-
-* 1 hour duration (60 minutes): 212 blocks
-* 1 day duration  (1440 minutes):  5082 blocks
-* 1 week duration (10,800 minutes): 38,117 blocks
-* 1 month duration (44,640 minutes): 157,553 blocks
-
-On the **Send** field, you need to send enough ether to pay the transaction fee, plus some more to pay the scheduler. Any extra money sent will be refunded, so sending at least 0.25 ether will probably keep you on the safe side.
-
-After that, just press execute and your call will be scheduled. There are no guarantees that someone will actually execute it, so you should check back after the deadline has passed to be sure.
