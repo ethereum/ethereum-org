@@ -669,6 +669,7 @@ contract MyAdvancedToken is owned, TokenERC20 {
     /// @param target Address to receive the tokens
     /// @param mintedAmount the amount of tokens it will receive
     function mintToken(address target, uint256 mintedAmount) onlyOwner public {
+        require (totalSupply + mintedAmount &gt; totalSupply); // Check for system overflows
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
         Transfer(0, this, mintedAmount);
