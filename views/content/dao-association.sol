@@ -96,7 +96,7 @@ contract Association is owned, tokenRecipient {
      * @param minimumSharesToPassAVote proposal can vote only if the sum of shares held by all voters exceed this number
      * @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed
      */
-    function changeVotingRules(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
+    function changeVotingRules(address sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
         sharesTokenAddress = Token(sharesAddress);
         if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
         minimumQuorum = minimumSharesToPassAVote;
