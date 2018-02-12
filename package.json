@@ -4,8 +4,8 @@
   "version": "2.0.1",
   "private": true,
   "engines": {
-    "node": "0.12.3",
-    "npm": "2.5.0"
+    "node": "6.0.0",
+    "npm": "3.8.6"
   },
   "scripts": {
     "start": "node ./bin/www",
