@@ -160,7 +160,7 @@ If you want to create a private network you should, for security reasons, use a 
 
 These commands prevent anyone who doesn't know your chosen — secret — nonce, network id and genesis file, from connecting to you or providing you with unwanted data. If you *want* to connect to other peers and create a small private network of multiple computers they will all need to use the same networkid and an identical genesis block. You will also have to help each node find the others. To do that, first you need your own Node URL:
 
-    admin.nodeInfo.NodeUrl
+    admin.nodeInfo.enode
 
 Which will return your node url - make a note of it and then on the other clients, tell them to add your peer by executing this command:
 
@@ -183,7 +183,7 @@ Geth supports multiple terminal windows and you may start a new one with the log
 
     geth attach
 
-The console has auto completion and history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.
+The console has auto completion of commands and command-history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.
 
 #### Learn More on Running a node
 
@@ -195,9 +195,9 @@ The console has auto completion and history support that persists between sessio
 
 #### Creating accounts
 
-In order to do anything on an Ethereum network you need ether, and to get it, you will need to generate an account. There are [various ways to go around this](http://ethdocs.org/en/latest/account-management.html), but the simplest one is through the console.
+In order to do anything on an Ethereum network you need ether, and to get it, you will need to create an account. There are [various ways to go around this](http://ethdocs.org/en/latest/account-management.html), but the simplest one is through the console.
 
-**ATTENTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack). Backup those keys, and create new ones using the Frontier release clients.
+**CAUTION:** If you were running Ethereum during the olympic phase or earlier in the development, **do not reuse keys** generated before the release of the Frontier client software 1.0, because otherwise they might be **vulnerable to [replay attacks](https://en.wikipedia.org/wiki/Replay_attack)**. Backup those keys, and create new ones using the Frontier release clients.
 
     personal.newAccount("Write here a good, randomly generated, passphrase!")
 
