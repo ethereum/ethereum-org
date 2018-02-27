@@ -132,7 +132,7 @@ Now you can paste the resulting text on your geth window, or import the file wit
 
 You may have to "unlock" the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. `personal.unlockAccount(web3.eth.accounts[0], "yourPassword")`. 
 
-This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](https://ethereum.github.io/browser-solidity/)), at the time of writing, gas on the test net is priced at 20 gwei ([equal to( 20000000000 wei, or  0.00000002 ether](http://ether.fund/tool/converter#v=20&u=Gwei)) per unit of gas. There are many useful stats, including the latest gas prices [at the network stats page](https://stats.ethdev.com). 
+This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](http://remix.ethereum.org)), at the time of writing, gas on the test net is priced at 20 gwei ([equal to( 20000000000 wei, or  0.00000002 ether](http://ether.fund/tool/converter#v=20&u=Gwei)) per unit of gas. There are many useful stats, including the latest gas prices [at the network stats page](https://stats.ethdev.com). 
 
 **Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
 
