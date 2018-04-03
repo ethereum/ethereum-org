@@ -328,6 +328,7 @@ uint8 public decimals;
 </code></pre>
 <p>Now let's add a new function finally that will enable the owner to create new tokens:</p>
 <pre><code>    function mintToken(address target, uint256 mintedAmount) onlyOwner {
+        require (totalSupply + mintedAmount &gt; totalSupply); // Check for system overflows
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
         Transfer(0, owner, mintedAmount);
@@ -668,6 +669,7 @@ contract MyAdvancedToken is owned, TokenERC20 {
     /// @param target Address to receive the tokens
     /// @param mintedAmount the amount of tokens it will receive
     function mintToken(address target, uint256 mintedAmount) onlyOwner public {
+        require (totalSupply + mintedAmount &gt; totalSupply); // Check for system overflows
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
         Transfer(0, this, mintedAmount);
