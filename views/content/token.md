@@ -338,7 +338,7 @@ Everytime, you make a transaction on Ethereum you need to pay a fee to the miner
 In order to do that, first you need to create a variable that will hold the threshold amount and a function to change it. If you don't know any value, set it to **5 finney (0.005 Ether)**.
 
 ```
-    uint minBalanceForAccounts;
+    uint public minBalanceForAccounts;
 
     function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
          minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
@@ -382,7 +382,7 @@ There are some ways to tie your coin supply to a mathematical formula. One of th
 It's also possible to add a mathematical formula, so that anyone who can do math can win a reward. On this next example you have to calculate the cubic root of the current challenge gets a point and the right to set the next challenge:
 
 ```
-    uint currentChallenge = 1; // Can you figure out the cubic root of this number?
+    uint public currentChallenge = 1; // Can you figure out the cubic root of this number?
 
     function rewardMathGeniuses(uint answerToCurrentReward, uint nextChallenge) {
         require(answerToCurrentReward**3 == currentChallenge); // If answer is wrong do not continue
