@@ -52,7 +52,6 @@ contract LiquidDemocracy {
     function vote(address nominatedAddress) returns (uint voteIndex) {
         if (voterId[msg.sender]== 0) {
             voterId[msg.sender] = delegatedVotes.length;
-            numberOfVotes++;
             voteIndex = delegatedVotes.length++;
             numberOfVotes = voteIndex;
         }

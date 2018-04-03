@@ -2,7 +2,8 @@
 <p>We are going to create a digital token. Tokens in the Ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in-game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the Ethereum wallet and any other client or contract that uses the same standards.</p>
 <h4>Minimum Viable Token</h4>
 <p>The standard token contract can be quite complex. But in essence a very basic token boils down to this:</p>
-<pre><code>
+<pre><code>pragma solidity ^0.4.20;
+
 contract MyToken {
     /* This creates an array with all balances */
     mapping (address =&gt; uint256) public balanceOf;
@@ -10,12 +11,12 @@ contract MyToken {
     /* Initializes contract with initial supply tokens to the creator of the contract */
     function MyToken(
         uint256 initialSupply
-        ) {
+        ) public {
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
     }
 
     /* Send coins */
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) public {
         require(balanceOf[msg.sender] &gt;= _value);           // Check if the sender has enough
         require(balanceOf[_to] + _value &gt;= balanceOf[_to]); // Check for overflows
         balanceOf[msg.sender] -= _value;                    // Subtract from the sender
@@ -28,7 +29,7 @@ contract MyToken {
 <p>But if you just want to copy paste a more complete code, then use this:</p>
 <pre><code>pragma solidity ^0.4.16;
 
-interface tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public; }
+interface tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) external; }
 
 contract TokenERC20 {
     // Public variables of the token
@@ -73,14 +74,14 @@ contract TokenERC20 {
         // Check if the sender has enough
         require(balanceOf[_from] &gt;= _value);
         // Check for overflows
-        require(balanceOf[_to] + _value &gt; balanceOf[_to]);
+        require(balanceOf[_to] + _value &gt;= balanceOf[_to]);
         // Save this for an assertion in the future
         uint previousBalances = balanceOf[_from] + balanceOf[_to];
         // Subtract from the sender
         balanceOf[_from] -= _value;
         // Add the same to the recipient
         balanceOf[_to] += _value;
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
         // Asserts are used to use static analysis to find bugs in your code. They should never fail
         assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
     }
@@ -157,7 +158,7 @@ contract TokenERC20 {
         require(balanceOf[msg.sender] &gt;= _value);   // Check if the sender has enough
         balanceOf[msg.sender] -= _value;            // Subtract from the sender
         totalSupply -= _value;                      // Updates totalSupply
-        Burn(msg.sender, _value);
+        emit Burn(msg.sender, _value);
         return true;
     }
 
@@ -175,7 +176,7 @@ contract TokenERC20 {
         balanceOf[_from] -= _value;                         // Subtract from the targeted balance
         allowance[_from][msg.sender] -= _value;             // Subtract from the sender's allowance
         totalSupply -= _value;                              // Update totalSupply
-        Burn(_from, _value);
+        emit Burn(_from, _value);
         return true;
     }
 }
@@ -268,7 +269,7 @@ uint8 public decimals;
     function _transfer(address _from, address _to, uint _value) internal {
         require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
         require (balanceOf[_from] &gt;= _value);                // Check if the sender has enough
-        require (balanceOf[_to] + _value &gt; balanceOf[_to]); // Check for overflows
+        require (balanceOf[_to] + _value &gt;= balanceOf[_to]); // Check for overflows
         require(!frozenAccount[_from]);                     // Check if sender is frozen
         require(!frozenAccount[_to]);                       // Check if recipient is frozen
         balanceOf[_from] -= _value;                         // Subtract from the sender
@@ -392,7 +393,7 @@ uint8 public decimals;
 <h4>Autorefill</h4>
 <p>Everytime, you make a transaction on Ethereum you need to pay a fee to the miner of the block that will calculate the result of your smart contract. <a href="https://github.com/ethereum/EIPs/issues/28">While this might change in the future</a>, for the moment fees can only be paid in Ether and therefore all users of your tokens need it. Tokens in accounts with a balance smaller than the fee are stuck until the owner can pay for the necessary fee. But in some use cases, you might not want your users to think about Ethereum, blockchain or how to obtain Ether, so one possible approach would have your coin automatically refill the user balance as soon as it detects the balance is dangerously low.</p>
 <p>In order to do that, first you need to create a variable that will hold the threshold amount and a function to change it. If you don't know any value, set it to <strong>5 finney (0.005 Ether)</strong>.</p>
-<pre><code>    uint minBalanceForAccounts;
+<pre><code>    uint public minBalanceForAccounts;
 
     function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
          minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
@@ -422,7 +423,7 @@ uint8 public decimals;
     }
 </code></pre>
 <p>It's also possible to add a mathematical formula, so that anyone who can do math can win a reward. On this next example you have to calculate the cubic root of the current challenge gets a point and the right to set the next challenge:</p>
-<pre><code>    uint currentChallenge = 1; // Can you figure out the cubic root of this number?
+<pre><code>    uint public currentChallenge = 1; // Can you figure out the cubic root of this number?
 
     function rewardMathGeniuses(uint answerToCurrentReward, uint nextChallenge) {
         require(answerToCurrentReward**3 == currentChallenge); // If answer is wrong do not continue
@@ -656,7 +657,7 @@ contract MyAdvancedToken is owned, TokenERC20 {
     function _transfer(address _from, address _to, uint _value) internal {
         require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
         require (balanceOf[_from] &gt;= _value);               // Check if the sender has enough
-        require (balanceOf[_to] + _value &gt; balanceOf[_to]); // Check for overflows
+        require (balanceOf[_to] + _value &gt;= balanceOf[_to]); // Check for overflows
         require(!frozenAccount[_from]);                     // Check if sender is frozen
         require(!frozenAccount[_to]);                       // Check if recipient is frozen
         balanceOf[_from] -= _value;                         // Subtract from the sender
@@ -725,7 +726,7 @@ contract MyAdvancedToken is owned, TokenERC20 {
 <p>You just learned how you can use Ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to <a href="./dao#the-shareholder-association">represent a share in a company</a> or you can use a <a href="./dao#the-code">central committee</a> to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a <a href="./crowdsale">crowdsale</a>. What will you build next?</p>
 <a class="button small" href="https://github.com/ethereum/ethereum-org/edit/master/views/content/token.md">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><h2>What's next?</h2><div class="row"><div class="col-md-6"><figure class="crowdsale scrollme"><div class="crowdsale-logic animateme" data-when="enter" data-from="0.8" data-to="0.7" data-opacity="0" data-translatey="-100" data-easing="linear"></div><div class="crowdsale-robot animateme" data-when="enter" data-from="0.5" data-to="0.3" data-opacity="0" data-translatey="-155" data-translatex="-30" data-scale="1.1" data-rotatez="90" data-easing="linear"></div><div class="crowdsale-money animateme" data-when="enter" data-from="0.8" data-to="0.6" data-opacity="0" data-translatey="-20"></div><div class="crowdsale-contributions animateme" data-when="enter" data-from="0.7" data-to="0.5" data-opacity="0" data-scale="1.4"></div><div class="crowdsale-crowd animateme" data-when="enter" data-from="0.3" data-to="0" data-opacity="0" data-translatey="-100" data-scale="1.1" data-easing="linear"></div></figure></div><div class="col-md-6">   <h3>Kickstart a project with a trustless crowdsale</h3><p>Do you already have ideas that you want to develop on Ethereum? Maybe you need help and some funds to bring them to life, but who would lend money to someone they don’t trust?</p><p>Using Ethereum, you can create a contract that will hold a contributor's money until any given date or goal is reached. Depending on the outcome, the funds will either be released to the project owners or safely returned back to the contributors. All of this is possible without requiring a centralized arbitrator, clearinghouse or having to trust anyone.</p><p>You can even use the token you created earlier to keep track of the distribution of rewards.</p></div></div><div class="row"><div class="col-md-6"><a class="button" href="/crowdsale">Kickstart your project </a></div><div class="col-md-6"><div class="recipe"><h4>You can build:</h4><ul><li>A crowdfund to pre-sell a product</li><li>A crowdsale to sell virtual shares in a blockchain organization</li><li>An auction of a limited number of items</li></ul></div></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/tutorials'
- };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row row-footer-news"><div class="col-md-12 news"><h3>News</h3><div class="iframe-wrapper"><a class="twitter-timeline" href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" width="100%" height="370px">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div></div><div class="row row-footer-primary"><div class="col-md-4 community"><h3>Community</h3><div class="row"><div class="col-sm-5"><ul><li><a href="https://blog.ethereum.org" target="_blank"><i class="fa fa-rss"></i> Blog</a></li><li><a href="https://github.com/ethereum" target="_blank"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank"><i class="fa fa-youtube"></i> YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank"><i class="fa fa-reddit"></i> Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank"><i class="fa fa-comments-o"></i> Gitter</a></li></ul></div><div class="col-sm-7"><ul><li><a href="https://twitter.com/ethereumproject" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank"><i class="fa fa-stack-exchange"></i> Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank"><i class="fa fa-facebook"></i> Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank"><i class="fa fa-meetup"></i> Meetups</a></li><li><a href="mailto:info@ethereum.org"><i class="fa fa-envelope-square"></i> Email us</a></li></ul></div></div></div><div class="col-md-4 about-us"><h3>Ethereum Foundation</h3><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div><div class="col-md-4 developer-resources"><h3>Developer Resources</h3><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Browse our source code on <a href="https://github.com/ethereum/" target="_blank">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/" target="_blank">documentation</a></li><li>Learn  <a href="https://solidity.readthedocs.org/" target="_blank">Solidity</a></li><li>See the latest <a href="https://ethstats.net" target="_blank">data and network stats</a></li><li>Download our <a href="./assets">logo assets </a></li><li>Want to write about Ethereum? <a href="mailto:press@ethereum.org">Press inquiries</a></li></ul></div></div><div class="row row-footer-copyright"><div class="col-md-12"><p class="copyright">Copyright &copy; 2018 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.</p><p class="footer-links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p></div></div><div class="row row-footer-canary"><div class="col-md-12"><div class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></div></div></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row row-footer-news"><div class="col-md-12 news"><h3>News</h3><div class="iframe-wrapper"><a class="twitter-timeline" href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" width="100%" height="370px">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div></div><div class="row row-footer-primary"><div class="col-md-4 community"><h3>Community</h3><div class="row"><div class="col-sm-5"><ul><li><a href="https://blog.ethereum.org" target="_blank"><i class="fa fa-rss"></i> Blog</a></li><li><a href="https://github.com/ethereum" target="_blank"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank"><i class="fa fa-youtube"></i> YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank"><i class="fa fa-reddit"></i> Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank"><i class="fa fa-comments-o"></i> Gitter</a></li></ul></div><div class="col-sm-7"><ul><li><a href="https://twitter.com/ethereumproject" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank"><i class="fa fa-stack-exchange"></i> Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank"><i class="fa fa-facebook"></i> Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank"><i class="fa fa-meetup"></i> Meetups</a></li></ul></div></div></div><div class="col-md-4 about-us"><h3>Ethereum Foundation</h3><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div><div class="col-md-4 developer-resources"><h3>Developer Resources</h3><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Browse our source code on <a href="https://github.com/ethereum/" target="_blank">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/" target="_blank">documentation</a></li><li>Learn  <a href="https://solidity.readthedocs.org/" target="_blank">Solidity</a></li><li>See the latest <a href="https://ethstats.net" target="_blank">data and network stats</a></li><li>Download our <a href="./assets">logo assets </a></li><li>Want to write about Ethereum? <a href="mailto:press@ethereum.org">Press inquiries</a></li></ul></div></div><div class="row row-footer-copyright"><div class="col-md-12"><p class="copyright">Copyright &copy; 2018 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.</p><p class="footer-links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p></div></div><div class="row row-footer-canary"><div class="col-md-12"><div class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></div></div></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
       {

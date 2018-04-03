@@ -379,7 +379,7 @@ contract Congress is owned, tokenRecipient {
 contract owned {
     address public owner;
 
-    function owned() {
+    function owned() public {
         owner = msg.sender;
     }
 
@@ -388,7 +388,7 @@ contract owned {
         _;
     }
 
-    function transferOwnership(address newOwner) onlyOwner {
+    function transferOwnership(address newOwner) onlyOwner public {
         owner = newOwner;
     }
 }
@@ -397,20 +397,20 @@ contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
+    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
         Token t = Token(_token);
         require(t.transferFrom(_from, this, _value));
         receivedTokens(_from, _value, _token, _extraData);
     }
 
-    function () payable {
+    function () payable public {
         receivedEther(msg.sender, msg.value);
     }
 }
 
 contract Token {
     mapping (address =&gt; uint256) public balanceOf;
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
 }
 
 /**
@@ -458,7 +458,7 @@ contract Association is owned, tokenRecipient {
      *
      * First time setup
      */
-    function Association(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable {
+    function Association(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable public {
         changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
     }
 
@@ -472,7 +472,7 @@ contract Association is owned, tokenRecipient {
      * @param minimumSharesToPassAVote proposal can vote only if the sum of shares held by all voters exceed this number
      * @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed
      */
-    function changeVotingRules(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
+    function changeVotingRules(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner public {
         sharesTokenAddress = Token(sharesAddress);
         if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
         minimumQuorum = minimumSharesToPassAVote;
@@ -496,7 +496,7 @@ contract Association is owned, tokenRecipient {
         string jobDescription,
         bytes transactionBytecode
     )
-        onlyShareholders
+        onlyShareholders public
         returns (uint proposalID)
     {
         proposalID = proposals.length++;
@@ -504,7 +504,7 @@ contract Association is owned, tokenRecipient {
         p.recipient = beneficiary;
         p.amount = weiAmount;
         p.description = jobDescription;
-        p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
+        p.proposalHash = keccak256(beneficiary, weiAmount, transactionBytecode);
         p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
         p.executed = false;
         p.proposalPassed = false;
@@ -532,7 +532,7 @@ contract Association is owned, tokenRecipient {
         string jobDescription,
         bytes transactionBytecode
     )
-        onlyShareholders
+        onlyShareholders public
         returns (uint proposalID)
     {
         return newProposal(beneficiary, etherAmount * 1 ether, jobDescription, transactionBytecode);
@@ -552,11 +552,11 @@ contract Association is owned, tokenRecipient {
         uint weiAmount,
         bytes transactionBytecode
     )
-        constant
+        constant public
         returns (bool codeChecksOut)
     {
         Proposal storage p = proposals[proposalNumber];
-        return p.proposalHash == sha3(beneficiary, weiAmount, transactionBytecode);
+        return p.proposalHash == keccak256(beneficiary, weiAmount, transactionBytecode);
     }
 
     /**
@@ -571,7 +571,7 @@ contract Association is owned, tokenRecipient {
         uint proposalNumber,
         bool supportsProposal
     )
-        onlyShareholders
+        onlyShareholders public
         returns (uint voteID)
     {
         Proposal storage p = proposals[proposalNumber];
@@ -593,12 +593,12 @@ contract Association is owned, tokenRecipient {
      * @param proposalNumber proposal number
      * @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
      */
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) {
+    function executeProposal(uint proposalNumber, bytes transactionBytecode) public {
         Proposal storage p = proposals[proposalNumber];
 
         require(now &gt; p.votingDeadline                                             // If it is past the voting deadline
             &amp;&amp; !p.executed                                                          // and it has not already been executed
-            &amp;&amp; p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
+            &amp;&amp; p.proposalHash == keccak256(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
 
 
         // ...then tally the results
@@ -1204,7 +1204,7 @@ It could also own shares of other DAOs, meaning it could vote on larger organiza
 <p>That's up to you.</p>
 <a class="button small" href="https://github.com/ethereum/ethereum-org/edit/master/views/content/dao.md">Improve this page</a></div></div></div></div><div class="main-tutorial ethereum-projects even"><div class="container"><div class="row"><div class="col-md-12"><h2>What's next?</h2><div class="row"><div class="col-md-6"><h3>Build a new kind of decentralized application</h3><p>Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper-proof network?</p><p>Check out the <a href="https://www.stateofthedapps.com" target="_blank">many great projects</a>* already being built on Ethereum. And since you'll be among the first developers in the world that are able to program decentralized applications, some of them might need your help. </p><p class="small"> <em>*The above list is maintained by an independent party and the Foundation does not endorse its content or any particular project</em></p></div><div class="col-md-6 future-figure"><figure class="moon scrollme"><div class="moon-stars animateme" data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="360" data-easing="linear"></div><div class="moon-moon animateme" data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="720" data-easing="linear"></div><div class="moon-rocket animateme" data-when="span" data-from="0" data-to="1" data-translatey="-200" data-easing="linear"></div></figure></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/tutorials'
- };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row row-footer-news"><div class="col-md-12 news"><h3>News</h3><div class="iframe-wrapper"><a class="twitter-timeline" href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" width="100%" height="370px">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div></div><div class="row row-footer-primary"><div class="col-md-4 community"><h3>Community</h3><div class="row"><div class="col-sm-5"><ul><li><a href="https://blog.ethereum.org" target="_blank"><i class="fa fa-rss"></i> Blog</a></li><li><a href="https://github.com/ethereum" target="_blank"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank"><i class="fa fa-youtube"></i> YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank"><i class="fa fa-reddit"></i> Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank"><i class="fa fa-comments-o"></i> Gitter</a></li></ul></div><div class="col-sm-7"><ul><li><a href="https://twitter.com/ethereumproject" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank"><i class="fa fa-stack-exchange"></i> Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank"><i class="fa fa-facebook"></i> Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank"><i class="fa fa-meetup"></i> Meetups</a></li><li><a href="mailto:info@ethereum.org"><i class="fa fa-envelope-square"></i> Email us</a></li></ul></div></div></div><div class="col-md-4 about-us"><h3>Ethereum Foundation</h3><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div><div class="col-md-4 developer-resources"><h3>Developer Resources</h3><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Browse our source code on <a href="https://github.com/ethereum/" target="_blank">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/" target="_blank">documentation</a></li><li>Learn  <a href="https://solidity.readthedocs.org/" target="_blank">Solidity</a></li><li>See the latest <a href="https://ethstats.net" target="_blank">data and network stats</a></li><li>Download our <a href="./assets">logo assets </a></li><li>Want to write about Ethereum? <a href="mailto:press@ethereum.org">Press inquiries</a></li></ul></div></div><div class="row row-footer-copyright"><div class="col-md-12"><p class="copyright">Copyright &copy; 2018 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.</p><p class="footer-links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p></div></div><div class="row row-footer-canary"><div class="col-md-12"><div class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></div></div></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row row-footer-news"><div class="col-md-12 news"><h3>News</h3><div class="iframe-wrapper"><a class="twitter-timeline" href="https://twitter.com/ethereumproject" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" width="100%" height="370px">Tweets by @ethereumproject</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div></div><div class="row row-footer-primary"><div class="col-md-4 community"><h3>Community</h3><div class="row"><div class="col-sm-5"><ul><li><a href="https://blog.ethereum.org" target="_blank"><i class="fa fa-rss"></i> Blog</a></li><li><a href="https://github.com/ethereum" target="_blank"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank"><i class="fa fa-youtube"></i> YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank"><i class="fa fa-reddit"></i> Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank"><i class="fa fa-comments-o"></i> Gitter</a></li></ul></div><div class="col-sm-7"><ul><li><a href="https://twitter.com/ethereumproject" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank"><i class="fa fa-stack-exchange"></i> Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank"><i class="fa fa-facebook"></i> Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank"><i class="fa fa-meetup"></i> Meetups</a></li></ul></div></div></div><div class="col-md-4 about-us"><h3>Ethereum Foundation</h3><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div><div class="col-md-4 developer-resources"><h3>Developer Resources</h3><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Browse our source code on <a href="https://github.com/ethereum/" target="_blank">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/" target="_blank">documentation</a></li><li>Learn  <a href="https://solidity.readthedocs.org/" target="_blank">Solidity</a></li><li>See the latest <a href="https://ethstats.net" target="_blank">data and network stats</a></li><li>Download our <a href="./assets">logo assets </a></li><li>Want to write about Ethereum? <a href="mailto:press@ethereum.org">Press inquiries</a></li></ul></div></div><div class="row row-footer-copyright"><div class="col-md-12"><p class="copyright">Copyright &copy; 2018 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.</p><p class="footer-links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p></div></div><div class="row row-footer-canary"><div class="col-md-12"><div class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></div></div></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
       {
