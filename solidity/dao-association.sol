@@ -3,7 +3,7 @@ pragma solidity ^0.4.16;
 contract owned {
     address public owner;
 
-    function owned() {
+    function owned() public {
         owner = msg.sender;
     }
 
@@ -12,7 +12,7 @@ contract owned {
         _;
     }
 
-    function transferOwnership(address newOwner) onlyOwner {
+    function transferOwnership(address newOwner) onlyOwner public {
         owner = newOwner;
     }
 }
@@ -21,20 +21,20 @@ contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
+    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
         Token t = Token(_token);
         require(t.transferFrom(_from, this, _value));
         receivedTokens(_from, _value, _token, _extraData);
     }
 
-    function () payable {
+    function () payable public {
         receivedEther(msg.sender, msg.value);
     }
 }
 
 contract Token {
     mapping (address => uint256) public balanceOf;
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
 }
 
 /**
@@ -82,7 +82,7 @@ contract Association is owned, tokenRecipient {
      *
      * First time setup
      */
-    function Association(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable {
+    function Association(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable public {
         changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
     }
 
@@ -96,7 +96,7 @@ contract Association is owned, tokenRecipient {
      * @param minimumSharesToPassAVote proposal can vote only if the sum of shares held by all voters exceed this number
      * @param minutesForDebate the minimum amount of delay between when a proposal is made and when it can be executed
      */
-    function changeVotingRules(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner {
+    function changeVotingRules(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) onlyOwner public {
         sharesTokenAddress = Token(sharesAddress);
         if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
         minimumQuorum = minimumSharesToPassAVote;
@@ -120,7 +120,7 @@ contract Association is owned, tokenRecipient {
         string jobDescription,
         bytes transactionBytecode
     )
-        onlyShareholders
+        onlyShareholders public
         returns (uint proposalID)
     {
         proposalID = proposals.length++;
@@ -128,7 +128,7 @@ contract Association is owned, tokenRecipient {
         p.recipient = beneficiary;
         p.amount = weiAmount;
         p.description = jobDescription;
-        p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
+        p.proposalHash = keccak256(beneficiary, weiAmount, transactionBytecode);
         p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
         p.executed = false;
         p.proposalPassed = false;
@@ -156,7 +156,7 @@ contract Association is owned, tokenRecipient {
         string jobDescription,
         bytes transactionBytecode
     )
-        onlyShareholders
+        onlyShareholders public
         returns (uint proposalID)
     {
         return newProposal(beneficiary, etherAmount * 1 ether, jobDescription, transactionBytecode);
@@ -176,11 +176,11 @@ contract Association is owned, tokenRecipient {
         uint weiAmount,
         bytes transactionBytecode
     )
-        constant
+        constant public
         returns (bool codeChecksOut)
     {
         Proposal storage p = proposals[proposalNumber];
-        return p.proposalHash == sha3(beneficiary, weiAmount, transactionBytecode);
+        return p.proposalHash == keccak256(beneficiary, weiAmount, transactionBytecode);
     }
 
     /**
@@ -195,7 +195,7 @@ contract Association is owned, tokenRecipient {
         uint proposalNumber,
         bool supportsProposal
     )
-        onlyShareholders
+        onlyShareholders public
         returns (uint voteID)
     {
         Proposal storage p = proposals[proposalNumber];
@@ -217,12 +217,12 @@ contract Association is owned, tokenRecipient {
      * @param proposalNumber proposal number
      * @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
      */
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) {
+    function executeProposal(uint proposalNumber, bytes transactionBytecode) public {
         Proposal storage p = proposals[proposalNumber];
 
         require(now > p.votingDeadline                                             // If it is past the voting deadline
             && !p.executed                                                          // and it has not already been executed
-            && p.proposalHash == sha3(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
+            && p.proposalHash == keccak256(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
 
 
         // ...then tally the results

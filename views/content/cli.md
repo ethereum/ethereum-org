@@ -11,7 +11,7 @@ These are tools for blockchain developers. The command line tools will allow you
 
 For [security purposes](https://blog.ethereum.org/2015/03/05/ethereum-development-process/), three independent implementations were created for Ethereum. The clients have almost identical functionality, so the one you pick is left to personal choice on platform, language and what your planned use is for the network.
 
-If you are building a business that needs to have maximum uptime guarantees to the Ethereum network, we recommend that you run at least one instance of both clients to ensure reliability.
+If you are building a business that needs to have maximum uptime guarantees to the Ethereum network, we recommend that you run at least one instance of two distinct clients to ensure reliability.
 
 
 ### Geth

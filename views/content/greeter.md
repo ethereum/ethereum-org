@@ -71,7 +71,6 @@ You can get both of these by using a Solidity compiler. If you have not installe
 
 #### Solc on your machine
 
-Now you have the compiler installed, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 
 If you installed the compiler on your machine, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 
@@ -115,7 +114,6 @@ You have now compiled your code and made it available to Geth.  Now you need to 
           console.log(contract);
         }
     })
-
 
 
 #### Using Remix
