@@ -20,7 +20,7 @@ contract Crowdsale {
     event FundTransfer(address backer, uint amount, bool isContribution);
 
     /**
-     * Constrctor function
+     * Constructor function
      *
      * Setup the owner
      */
