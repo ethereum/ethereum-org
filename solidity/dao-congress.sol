@@ -254,7 +254,6 @@ contract Congress is owned, tokenRecipient {
         returns (uint voteID)
     {
         Proposal storage p = proposals[proposalNumber]; // Get the proposal
-        require(now < p.minExecutionDate);              // If time has left before voting deadline
         require(!p.voted[msg.sender]);                  // If has already voted, cancel
         p.voted[msg.sender] = true;                     // Set this voter as having voted
         p.numberOfVotes++;                              // Increase the number of votes
