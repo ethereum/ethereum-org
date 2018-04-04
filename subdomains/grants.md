@@ -1,4 +1,11 @@
-# Applying to Ethereum Foundation's Hackternship program
+# Applying to Ethereum Foundation's Grants program
+
+
+## Grants
+
+Fill me in.
+
+## Hackternships
 
 Ethereum gives out $10,000 for 10 weeks for people who have specific projects in mind. 
 Here are some of the [previous winners](https://blog.ethereum.org/2018/03/07/announcing-beneficiaries-ethereum-foundation-grants/).
