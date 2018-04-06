@@ -564,6 +564,10 @@ div.scrollme.row.introduction {
 		margin: 30px auto;
 	}
 
+	figure {
+		max-width: calc(100% - 30px);
+	}
+
 	.inner-header .scrollme {
 	    display: block;
 	}
