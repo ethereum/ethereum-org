@@ -27,7 +27,7 @@ Run <code>geth</code> to begin the sync process (this may take a while on the fi
 contract Greeter is Mortal {
     /* Define variable greeting of the type string */
     string greeting;
-    
+
     /* This runs when the contract is executed */
     function Greeter(string _greeting) public {
         greeting = _greeting;
@@ -98,7 +98,7 @@ var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCom
 <pre><code>var _greeting = &quot;Hello World!&quot;
 </code></pre>
 <p>Now you can paste the resulting text on your geth window, or import the file with <code>loadScript(&quot;yourFilename.js&quot;)</code>. Wait up to thirty seconds and you'll see a message like this:</p>
-<pre><code>Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e 
+<pre><code>Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e
 </code></pre>
 <p>You may have to &quot;unlock&quot; the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. <code>personal.unlockAccount(web3.eth.accounts[0], &quot;yourPassword&quot;)</code>.</p>
 <p>This contract is estimated to need ~180 thousand gas to deploy (according to the <a href="http://remix.ethereum.org">online solidity compiler</a>), at the time of writing, gas on the test net is priced at 20 gwei (<a href="http://ether.fund/tool/converter#v=20&amp;u=Gwei">equal to( 20000000000 wei, or  0.00000002 ether</a>) per unit of gas. There are many useful stats, including the latest gas prices <a href="https://stats.ethdev.com">at the network stats page</a>.</p>
