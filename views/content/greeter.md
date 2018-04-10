@@ -57,20 +57,19 @@ The inherited characteristic _"mortal"_ simply means that the greeter contract c
 
 ### Compiling your contract using the Solc Compiler
 
-Before you are able to deploy your contract, you'll need two things:
+Before you are able to deploy your contract, you'll need two things: 
 
 1. The compiled code
 2. The Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract
 
-You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either:
+You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either: 
 
 1. Install a compiler on your machine by following the [instructions for installing the Solidity Compiler](http://solidity.readthedocs.io/en/develop/installing-solidity.html)
 2. Use [Remix](https://remix.ethereum.org), a web-based Solidity IDE
 
 
-
 #### Solc on your machine
-
+=======
 
 If you installed the compiler on your machine, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 
@@ -96,8 +95,8 @@ You can use these two files to create and deploy the contract.
     var greeterCompiled = "0x" + "<contents of the file Greeter.bin>"
 
 You have now compiled your code and made it available to Geth.  Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
-
-
+    
+	
 	var _greeting = "Hello World!"
 
     var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCompiled,gas:47000000}, function(e, contract){
@@ -132,7 +131,7 @@ Now you can paste the resulting text on your geth window, or import the file wit
 
 You may have to "unlock" the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. `personal.unlockAccount(web3.eth.accounts[0], "yourPassword")`.
 
-This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](http://remix.ethereum.org)), at the time of writing, gas on the test net is priced at 20 gwei ([equal to( 20000000000 wei, or  0.00000002 ether](http://ether.fund/tool/converter#v=20&u=Gwei)) per unit of gas. There are many useful stats, including the latest gas prices [at the network stats page](https://stats.ethdev.com).
+This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](http://remix.ethereum.org)), at the time of writing, gas on the test net is priced at 20 gwei ([equal to( 20000000000 wei, or  0.00000002 ether](http://ether.fund/tool/converter#v=20&u=Gwei)) per unit of gas. There are many useful stats, including the latest gas prices [at the network stats page](https://stats.ethdev.com). 
 
 **Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
 
@@ -159,7 +158,7 @@ Since this call changes nothing on the blockchain, it returns instantly and with
 
 In order for other people to run your contract they need two things:
 
-1. The `Address` where the contract is located
+1. The `Address` where the contract is located 
 2. The `ABI` (Application Binary Interface), which is a sort of user manual describing the name of the contract's functions and how to call them to your JavaScript console
 
 To get the `Address`, run this command:
@@ -181,7 +180,6 @@ This particular example can be instantiated by anyone by simply calling:
     var greeter2 = eth.contract([{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]).at('greeterAddress');
 
 Of course, `greeterAddress` must be replaced with your contract's _unique_ address.
-
 
 #### Cleaning up after yourself:
 

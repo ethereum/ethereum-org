@@ -57,7 +57,7 @@ contract Association is owned, tokenRecipient {
         address recipient;
         uint amount;
         string description;
-        uint votingDeadline;
+        uint minExecutionDate;
         bool executed;
         bool proposalPassed;
         uint numberOfVotes;
@@ -129,7 +129,7 @@ contract Association is owned, tokenRecipient {
         p.amount = weiAmount;
         p.description = jobDescription;
         p.proposalHash = keccak256(beneficiary, weiAmount, transactionBytecode);
-        p.votingDeadline = now + debatingPeriodInMinutes * 1 minutes;
+        p.minExecutionDate = now + debatingPeriodInMinutes * 1 minutes;
         p.executed = false;
         p.proposalPassed = false;
         p.numberOfVotes = 0;
@@ -220,7 +220,7 @@ contract Association is owned, tokenRecipient {
     function executeProposal(uint proposalNumber, bytes transactionBytecode) public {
         Proposal storage p = proposals[proposalNumber];
 
-        require(now > p.votingDeadline                                             // If it is past the voting deadline
+        require(now > p.minExecutionDate                                             // If it is past the voting deadline
             && !p.executed                                                          // and it has not already been executed
             && p.proposalHash == keccak256(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
 
