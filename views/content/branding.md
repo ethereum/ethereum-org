@@ -1,7 +1,7 @@
 Guidelines for Third Parties Using Ethereum Trademarks
 -------------------
 
-We are revising those guidelines in order to have a more open approach towards the use of the Ethereum logo that is more community-friendly and supports the greater Ethereum and crypto innovation ecosystem. The current branding guidelines will be updated to reflect a policy that all current Ethereum logos are under Creative Commons attribution 3.0.
+We are revising those guidelines in order to have a more open approach towards the use of the Ethereum logo that is more community-friendly and supports the greater Ethereum and crypto innovation ecosystem. 
 
 The Ethereum Foundation may be releasing a special seal for use by approved people or entities for foundation specific advocacy, fundraising, and mission-related efforts; more details will be announced.
 
