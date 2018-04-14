@@ -56,4 +56,5 @@ We accept applications on a rolling basis, and you can [apply here](https://docs
 ## Other sources of funding
 * [Ethereum Community Fund](https://ecf.network/)
 * [The Mozilla Fellowship](https://foundation.mozilla.org/fellowships/apply/) ([more info](https://blog.mozilla.org/blog/2018/03/21/seeking-fellows-better-internet-apply/))
+* [Shuttleworth Foundation Fellowships](https://www.shuttleworthfoundation.org/)
 * Opentech.fund's [funding announcements](https://groups.google.com/a/opentechfund.org/forum/#!forum/otf-announce/join)
