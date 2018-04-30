@@ -154,7 +154,7 @@ You can deploy your whole crypto token without ever touching a line of code, but
 
 #### More basic functions
 
-You'll notice that there some more functions in your basic token contract, like approve, sendFrom and others. These functions are there for your token to interact with other contracts: if you want, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren't able to subscribe to **Events** only to **function calls**. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with **approveAndCall**.
+You'll notice that there some more functions in your basic token contract, like approve, sendFrom and others. These functions are there for your token to interact with other contracts: if you want to, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren't able to subscribe to **Events** only to **function calls**. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with **approveAndCall**.
 
 Because many of these functions are having to reimplement the transferring of tokens, it makes sense to change them to an internal function, which can only be called by the contract itself:
 
