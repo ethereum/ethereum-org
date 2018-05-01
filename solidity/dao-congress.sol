@@ -33,7 +33,7 @@ contract tokenRecipient {
 }
 
 interface Token {
-    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) external returns (bool success);
 }
 
 contract Congress is owned, tokenRecipient {
