@@ -24,16 +24,16 @@ contract tokenRecipient {
     function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
         Token t = Token(_token);
         require(t.transferFrom(_from, this, _value));
-        receivedTokens(_from, _value, _token, _extraData);
+        emit receivedTokens(_from, _value, _token, _extraData);
     }
 
     function () payable  public {
-        receivedEther(msg.sender, msg.value);
+        emit receivedEther(msg.sender, msg.value);
     }
 }
 
 interface Token {
-    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) external returns (bool success);
 }
 
 contract Congress is owned, tokenRecipient {
@@ -115,7 +115,7 @@ contract Congress is owned, tokenRecipient {
         }
 
         members[id] = Member({member: targetMember, memberSince: now, name: memberName});
-        MembershipChanged(targetMember, true);
+        emit MembershipChanged(targetMember, true);
     }
 
     /**
@@ -154,7 +154,7 @@ contract Congress is owned, tokenRecipient {
         debatingPeriodInMinutes = minutesForDebate;
         majorityMargin = marginOfVotesForMajority;
 
-        ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
+        emit ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
     }
 
     /**
@@ -186,7 +186,7 @@ contract Congress is owned, tokenRecipient {
         p.executed = false;
         p.proposalPassed = false;
         p.numberOfVotes = 0;
-        ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
+        emit ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
         numProposals = proposalID+1;
 
         return proposalID;
@@ -264,7 +264,7 @@ contract Congress is owned, tokenRecipient {
         }
 
         // Create a log of this event
-        Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+        emit Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
         return p.numberOfVotes;
     }
 
@@ -299,6 +299,6 @@ contract Congress is owned, tokenRecipient {
         }
 
         // Fire Events
-        ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
+        emit ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
     }
 }

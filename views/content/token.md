@@ -40,7 +40,7 @@ A mapping means an associative array, where you associate addresses with balance
 If you published your contract right away, it would work but wouldn't be very useful: it would be a contract that could query the balance of your coin for any address–but since you never created a single coin, every one of them would return 0. So we are going to create a few tokens on startup. Add this code *before* the last closing bracket, just under the *mapping..* line.
 
 ```
-    function MyToken() {
+    function MyToken() public {
         balanceOf[msg.sender] = 21000000;
     }
 ```
@@ -64,7 +64,7 @@ Right now you have a functional contract that created balances of tokens but sin
 
 ```
     /* Send coins */
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) public {
         /* Add and subtract new balances */
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
@@ -76,7 +76,7 @@ This is a very straightforward function: it has a recipient and a value as the p
 To stop a contract execution mid-execution you can either **return** or **throw** The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'throw' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all Ether he sent for gas. But since the Wallet can detect that a contract will throw, it always shows an alert, therefore preventing any Ether to be spent at all.
 
 ```
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) public {
         /* Check if sender has balance and for overflows */
         require(balanceOf[msg.sender] >= _value && balanceOf[_to] + _value >= balanceOf[_to]);
 
@@ -96,7 +96,7 @@ And now we update the **constructor function** to allow all those variables to b
 
 ```
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) {
+    function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) public {
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
@@ -114,7 +114,7 @@ And then you just need to add these two lines inside the "transfer" function:
 
 ```
         /* Notify anyone listening that this transfer took place */
-        Transfer(msg.sender, _to, _value);
+        emit Transfer(msg.sender, _to, _value);
 ```
 
 And now your token is ready!
@@ -154,7 +154,8 @@ You can deploy your whole crypto token without ever touching a line of code, but
 
 #### More basic functions
 
-You'll notice that there some more functions in your basic token contract, like approve, sendFrom and others. These functions are there for your token to interact with other contracts: if you want to, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren't able to subscribe to **Events** only to **function calls**. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with **approveAndCall**.
+You'll notice that there are some more functions in your basic token contract, like approve, sendFrom and others. 
+These functions are there for your token to interact with other contracts: if you want to, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren't able to subscribe to **Events** only to **function calls**. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with **approveAndCall**.
 
 Because many of these functions are having to reimplement the transferring of tokens, it makes sense to change them to an internal function, which can only be called by the contract itself:
 
