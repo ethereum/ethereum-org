@@ -147,8 +147,9 @@ Sometimes you might not want to connect to the live public network; instead you 
 
     geth --datadir ~/.ethereum_private init ~/dev/genesis.json
 
-    geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 1234 --datadir ~/.ethereum_private  console 
+    geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 12345 --datadir ~/.ethereum_private  console 
 
+The first command is used to seed your network with the genesis block and set the datadir. The second command uses the datadir and starts the network. It also attaches a console to the network via the IPC (interprocess communication) path.
 
 **Eth:**
 
