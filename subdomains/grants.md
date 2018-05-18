@@ -59,7 +59,8 @@ We accept applications on a rolling basis, and you can [apply here](https://docs
 * [Shuttleworth Foundation Fellowships](https://www.shuttleworthfoundation.org/)
 * Opentech.fund's [funding announcements](https://groups.google.com/a/opentechfund.org/forum/#!forum/otf-announce/join)
 * [BayLandsInc.com's summer internship](http://www.baylandsinc.com/2018/01/summer-2018-ethereum-infrastructure.html)
-
+* Coinbase's [OpenSource Fund](https://engineering.coinbase.com/introducing-coinbase-open-source-fund-116617a1f6ec)
+* Coinbase's [Protocol Team](https://blog.coinbase.com/introducing-the-coinbase-protocol-team-3bc1e9a63614)
 
 
 
