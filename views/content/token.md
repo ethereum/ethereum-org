@@ -169,7 +169,7 @@ Because many of these functions are having to reimplement the transferring of to
         require(!frozenAccount[_to]);                       // Check if recipient is frozen
         balanceOf[_from] -= _value;                         // Subtract from the sender
         balanceOf[_to] += _value;                           // Add the same to the recipient
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
     }
 ```
 
@@ -247,8 +247,8 @@ Now let's add a new function finally that will enable the owner to create new to
     function mintToken(address target, uint256 mintedAmount) onlyOwner {
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
-        Transfer(0, owner, mintedAmount);
-        Transfer(owner, target, mintedAmount);
+        emit Transfer(0, owner, mintedAmount);
+        emit Transfer(owner, target, mintedAmount);
     }
 ```
 
@@ -266,7 +266,7 @@ Add this variable and function anywhere inside the contract. You can put them an
 
     function freezeAccount(address target, bool freeze) onlyOwner {
         frozenAccount[target] = freeze;
-        FrozenFunds(target, freeze);
+        emit FrozenFunds(target, freeze);
     }
 ```
 
@@ -306,11 +306,7 @@ The next step is making the buy and sell functions:
 ```
     function buy() payable returns (uint amount){
         amount = msg.value / buyPrice;                    // calculates the amount
-        require(balanceOf[this] >= amount);               // checks if it has enough to sell
-        balanceOf[msg.sender] += amount;                  // adds the amount to buyer's balance
-        balanceOf[this] -= amount;                        // subtracts amount from seller's balance
-        Transfer(this, msg.sender, amount);               // execute an event reflecting the change
-        return amount;                                    // ends function and returns
+        _transfer(this, msg.sender, amount)
     }
 
     function sell(uint amount) returns (uint revenue){
