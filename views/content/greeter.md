@@ -55,25 +55,24 @@ You'll notice that there are two different contracts in this code: _"mortal"_ an
 
 The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
 
-### Compiling your contract using the Solc Compiler
+### Compiling your contract
 
-Before you are able to deploy your contract, you'll need two things: 
+Before you are able to deploy your contract, you'll need two things:
 
 1. The compiled code
 2. The Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract
 
-You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either: 
+You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either:
 
 1. Install a compiler on your machine by following the [instructions for installing the Solidity Compiler](http://solidity.readthedocs.io/en/develop/installing-solidity.html)
 2. Use [Remix](https://remix.ethereum.org), a web-based Solidity IDE
 
 
 #### Solc on your machine
-=======
 
 If you installed the compiler on your machine, you need to compile the contract to acquire the compiled code and Application Binary Interface.
 
-    solc -o target --bin --abi Greeter.sol
+    solcjs -o target --bin --abi Greeter.sol
 
 This will create two files, one file containing the compiled code and one file creating the Application Binary Interface in a directory called target.
 
@@ -90,14 +89,16 @@ You will see that there are files created for both contracts; but because Greete
 
 You can use these two files to create and deploy the contract.
 
+Now create a file named greeter.js with below contents, filled with contents of
+Greeter.abi and Greeter.bin.
+
     var greeterFactory = eth.contract(<contents of the file Greeter.abi>)
 
     var greeterCompiled = "0x" + "<contents of the file Greeter.bin>"
 
-You have now compiled your code and made it available to Geth.  Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
-    
-	
-	var _greeting = "Hello World!"
+And then add below lines to greeter.js.
+
+    var _greeting = "Hello World!"
 
     var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCompiled,gas:47000000}, function(e, contract){
         if(e) {
@@ -114,24 +115,29 @@ You have now compiled your code and made it available to Geth.  Now you need to 
         }
     })
 
+You have now compiled your code and made it available to Geth. Now you need to get it ready for deployment.
 
 #### Using Remix
 
 If you don't have Solc installed, you can simply use the online IDE. Copy the source code (at the top of this page) to [Remix](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
 
-To access the compiled code, ensure that the dropdown menu on the right pane has `greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** textbox.
+To access the compiled code, ensure that the dropdown menu on the right pane has `Greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** textbox.
 
-Create a temporary text file on your computer and paste that code. Make sure to change the first line to look like the following:
+Create greeter.js on your computer and paste that code. Make sure to change the first line to look like the following:
 
-    var _greeting = "Hello World!"
+    var _greeting = "Hello World!";
 
-Now you can paste the resulting text on your geth window, or import the file with `loadScript("yourFilename.js")`. Wait up to thirty seconds and you'll see a message like this:
+And paste the resulting text after the above line.
+
+### Deploy your contract
+
+Now, we have greeter.js ready to deploy, import the file with `loadScript("/path/to/greeter.js")`. Wait up to thirty seconds and you'll see a message like this:
 
     Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e
 
 You may have to "unlock" the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. `personal.unlockAccount(web3.eth.accounts[0], "yourPassword")`.
 
-This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](http://remix.ethereum.org)), at the time of writing, gas on the test net is priced at 20 gwei ([equal to( 20000000000 wei, or  0.00000002 ether](http://ether.fund/tool/converter#v=20&u=Gwei)) per unit of gas. There are many useful stats, including the latest gas prices [at the network stats page](https://stats.ethdev.com). 
+This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](http://remix.ethereum.org)), at the time of writing, gas on the test net is priced at 20 gwei ([equal to( 20000000000 wei, or  0.00000002 ether](http://ether.fund/tool/converter#v=20&u=Gwei)) per unit of gas. There are many useful stats, including the latest gas prices [at the network stats page](https://ethstats.net).
 
 **Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
 
@@ -140,7 +146,7 @@ Within less than a minute, you should have a log with the contract address, this
 
     eth.getCode(greeter.address)
 
-If it returns anything other than "0x" then congratulations! Your little Greeter is live! If the contract is created again (by performing another eth.sendTransaction), it will be published to a new address.
+If it returns anything other than just "0x" then congratulations! Your little Greeter is live! If the contract is created again (by performing another eth.sendTransaction), it will be published to a new address.
 
 
 ### Run the Greeter
@@ -158,7 +164,7 @@ Since this call changes nothing on the blockchain, it returns instantly and with
 
 In order for other people to run your contract they need two things:
 
-1. The `Address` where the contract is located 
+1. The `Address` where the contract is located
 2. The `ABI` (Application Binary Interface), which is a sort of user manual describing the name of the contract's functions and how to call them to your JavaScript console
 
 To get the `Address`, run this command:
