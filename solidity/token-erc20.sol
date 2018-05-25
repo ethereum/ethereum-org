@@ -150,4 +150,11 @@ contract TokenERC20 {
         emit Burn(_from, _value);
         return true;
     }
+    
+    /**
+    * If ether is sent to this address, send it back.
+    */
+    function () public {
+        revert();
+    }
 }
