@@ -306,7 +306,8 @@ The next step is making the buy and sell functions:
 ```
     function buy() payable returns (uint amount){
         amount = msg.value / buyPrice;                    // calculates the amount
-        _transfer(this, msg.sender, amount)
+        _transfer(this, msg.sender, amount);
+        return amount;
     }
 
     function sell(uint amount) returns (uint revenue){
