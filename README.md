@@ -41,7 +41,7 @@ see the interface at http://localhost:3000
 
 ```
 git checkout gh-pages
-git merge develop
+git merge master
 grunt build
 git commit -am "Updated build"
 git push origin gh-pages
