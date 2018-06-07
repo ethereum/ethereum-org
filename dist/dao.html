@@ -36,16 +36,16 @@ contract tokenRecipient {
     function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
         Token t = Token(_token);
         require(t.transferFrom(_from, this, _value));
-        receivedTokens(_from, _value, _token, _extraData);
+        emit receivedTokens(_from, _value, _token, _extraData);
     }
 
     function () payable  public {
-        receivedEther(msg.sender, msg.value);
+        emit receivedEther(msg.sender, msg.value);
     }
 }
 
 interface Token {
-    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) external returns (bool success);
 }
 
 contract Congress is owned, tokenRecipient {
@@ -127,7 +127,7 @@ contract Congress is owned, tokenRecipient {
         }
 
         members[id] = Member({member: targetMember, memberSince: now, name: memberName});
-        MembershipChanged(targetMember, true);
+        emit MembershipChanged(targetMember, true);
     }
 
     /**
@@ -166,7 +166,7 @@ contract Congress is owned, tokenRecipient {
         debatingPeriodInMinutes = minutesForDebate;
         majorityMargin = marginOfVotesForMajority;
 
-        ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
+        emit ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, majorityMargin);
     }
 
     /**
@@ -198,7 +198,7 @@ contract Congress is owned, tokenRecipient {
         p.executed = false;
         p.proposalPassed = false;
         p.numberOfVotes = 0;
-        ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
+        emit ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
         numProposals = proposalID+1;
 
         return proposalID;
@@ -276,7 +276,7 @@ contract Congress is owned, tokenRecipient {
         }
 
         // Create a log of this event
-        Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+        emit Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
         return p.numberOfVotes;
     }
 
@@ -311,7 +311,7 @@ contract Congress is owned, tokenRecipient {
         }
 
         // Fire Events
-        ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
+        emit ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
     }
 }
 
@@ -712,7 +712,7 @@ contract LiquidDemocracy {
         address votingWeightToken,
         string forbiddenFunctionCall,
         uint percentLossInEachRound
-    ) {
+    ) public {
         votingToken = token(votingWeightToken);
         delegatedVotes.length++;
         delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
@@ -728,7 +728,7 @@ contract LiquidDemocracy {
      *
      * @param nominatedAddress the destination address receiving the sender's vote
      */
-    function vote(address nominatedAddress) returns (uint voteIndex) {
+    function vote(address nominatedAddress) public returns (uint voteIndex) {
         if (voterId[msg.sender]== 0) {
             voterId[msg.sender] = delegatedVotes.length;
             numberOfVotes++;
@@ -751,10 +751,10 @@ contract LiquidDemocracy {
      * @param valueInWei the amount of ether to send along with the transaction
      * @param bytecode the data bytecode for the transaction
      */
-    function execute(address target, uint valueInWei, bytes32 bytecode) {
+    function execute(address target, uint valueInWei, bytes32 bytecode) public {
         require(msg.sender == appointee                             // If caller is the current appointee,
             &amp;&amp; !underExecution //                                   // if the call is being executed,
-            &amp;&amp; bytes4(bytecode) != bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
+            &amp;&amp; bytes4(bytecode) != bytes4(keccak256(forbiddenFunction))  // and it's not trying to do the forbidden function
             &amp;&amp; numberOfDelegationRounds &gt;= 4);                     // and delegation has been calculated enough
 
         underExecution = true;
@@ -767,7 +767,7 @@ contract LiquidDemocracy {
      *
      * Go thruogh all the delegated vote logs and tally up each address's total rank
      */
-    function calculateVotes() returns (address winner) {
+    function calculateVotes()  public returns (address winner) {
         address currentWinner = appointee;
         uint currentMax = 0;
         uint weight = 0;
@@ -807,7 +807,7 @@ contract LiquidDemocracy {
         }
 
         if (numberOfDelegationRounds &gt; 3) {
-            NewAppointee(currentWinner, appointee == currentWinner);
+            emit NewAppointee(currentWinner, appointee == currentWinner);
             appointee = currentWinner;
         }
 
@@ -1204,7 +1204,8 @@ It could also own shares of other DAOs, meaning it could vote on larger organiza
 <p>That's up to you.</p>
 <a class="button small" href="https://github.com/ethereum/ethereum-org/edit/master/views/content/dao.md">Improve this page</a></div></div></div></div><div class="main-tutorial ethereum-projects even"><div class="container"><div class="row"><div class="col-md-12"><h2>What's next?</h2><div class="row"><div class="col-md-6"><h3>Build a new kind of decentralized application</h3><p>Now it's your turn: start building what you dream of creating in Ethereum! Could your business be enhanced by operating on a cryptographically secure, decentralized, tamper-proof network?</p><p>Check out the <a href="https://www.stateofthedapps.com" target="_blank">many great projects</a>* already being built on Ethereum. And since you'll be among the first developers in the world that are able to program decentralized applications, some of them might need your help. </p><p class="small"> <em>*The above list is maintained by an independent party and the Foundation does not endorse its content or any particular project</em></p></div><div class="col-md-6 future-figure"><figure class="moon scrollme"><div class="moon-stars animateme" data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="360" data-easing="linear"></div><div class="moon-moon animateme" data-when="span" data-from="0" data-to="1" data-translatey="100" data-rotatez="720" data-easing="linear"></div><div class="moon-rocket animateme" data-when="span" data-from="0" data-to="1" data-translatey="-200" data-easing="linear"></div></figure></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/tutorials'
- };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row row-footer-news"><div class="col-md-12 news"><h3>News</h3><div class="iframe-wrapper"><a class="twitter-timeline" href="https://twitter.com/ethereum" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" width="100%" height="370px">Tweets by @ethereum</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div></div><div class="row row-footer-primary"><div class="col-md-4 community"><h3>Community</h3><div class="row"><div class="col-sm-5"><ul><li><a href="https://blog.ethereum.org" target="_blank"><i class="fa fa-rss"></i> Blog</a></li><li><a href="https://github.com/ethereum" target="_blank"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank"><i class="fa fa-youtube"></i> YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank"><i class="fa fa-reddit"></i> Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank"><i class="fa fa-comments-o"></i> Gitter</a></li></ul></div><div class="col-sm-7"><ul><li><a href="https://twitter.com/ethereum" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank"><i class="fa fa-stack-exchange"></i> Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank"><i class="fa fa-facebook"></i> Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank"><i class="fa fa-meetup"></i> Meetups</a></li></ul></div></div></div><div class="col-md-4 about-us"><h3>Ethereum Foundation</h3><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div><div class="col-md-4 developer-resources"><h3>Developer Resources</h3><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Browse our source code on <a href="https://github.com/ethereum/" target="_blank">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/" target="_blank">documentation</a></li><li>Learn  <a href="https://solidity.readthedocs.org/" target="_blank">Solidity</a></li><li>See the latest <a href="https://ethstats.net" target="_blank">data and network stats</a></li><li>Download our <a href="./assets">logo assets </a></li><li>Want to write about Ethereum? <a href="mailto:press@ethereum.org">Press inquiries</a></li></ul></div></div><div class="row row-footer-copyright"><div class="col-md-12"><p class="copyright">Copyright &copy; 2018 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.</p><p class="footer-links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p></div></div><div class="row row-footer-canary"><div class="col-md-12"><div class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></div></div></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row row-footer-news"><div class="col-md-12 news"><h3>News</h3><div class="iframe-wrapper"><a class="twitter-timeline" href="https://twitter.com/ethereum" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" width="100%" height="370px">Tweets by @ethereum</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div></div><div class="row row-footer-primary"><div class="col-md-4 community"><h3>Community</h3><div class="row"><div class="col-sm-5"><ul><li><a href="https://blog.ethereum.org" target="_blank"><i class="fa fa-rss"></i> Blog</a></li><li><a href="https://github.com/ethereum" target="_blank"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank"><i class="fa fa-youtube"></i> YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank"><i class="fa fa-reddit"></i> Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank"><i class="fa fa-comments-o"></i> Gitter</a></li></ul></div><div class="col-sm-7"><ul><li><a href="https://twitter.com/ethereum" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank"><i class="fa fa-stack-exchange"></i> Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank"><i class="fa fa-facebook"></i> Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank"><i class="fa fa-meetup"></i> Meetups</a></li></ul></div></div></div><div class="col-md-4 about-us"><h3>Ethereum Foundation</h3><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div><div class="col-md-4 developer-resources"><h3>Developer Resources</h3><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Browse our source code on <a href="https://github.com/ethereum/" target="_blank">GitHub</a></li><li>Read the <a href="http://www.ethdocs.org/" target="_blank">documentation</a>
+or <a href="https://github.com/ethereum/wiki/wiki" target="_blank">wiki</a></li><li>Learn <a href="https://solidity.readthedocs.org/" target="_blank">Solidity</a></li><li>See the latest <a href="https://ethstats.net" target="_blank">data and network stats</a></li><li>Download our <a href="./assets">logo assets </a></li><li>Want to write about Ethereum? <a href="mailto:press@ethereum.org">Press inquiries</a></li></ul></div></div><div class="row row-footer-copyright"><div class="col-md-12"><p class="copyright">Copyright &copy; 2018 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.</p><p class="footer-links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p></div></div><div class="row row-footer-canary"><div class="col-md-12"><div class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></div></div></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
       {
