@@ -33,7 +33,7 @@ contract LiquidDemocracy {
         address votingWeightToken,
         string forbiddenFunctionCall,
         uint percentLossInEachRound
-    ) {
+    ) public {
         votingToken = token(votingWeightToken);
         delegatedVotes.length++;
         delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
@@ -49,7 +49,7 @@ contract LiquidDemocracy {
      *
      * @param nominatedAddress the destination address receiving the sender's vote
      */
-    function vote(address nominatedAddress) returns (uint voteIndex) {
+    function vote(address nominatedAddress) public returns (uint voteIndex) {
         if (voterId[msg.sender]== 0) {
             voterId[msg.sender] = delegatedVotes.length;
             numberOfVotes++;
@@ -72,10 +72,10 @@ contract LiquidDemocracy {
      * @param valueInWei the amount of ether to send along with the transaction
      * @param bytecode the data bytecode for the transaction
      */
-    function execute(address target, uint valueInWei, bytes32 bytecode) {
+    function execute(address target, uint valueInWei, bytes32 bytecode) public {
         require(msg.sender == appointee                             // If caller is the current appointee,
             && !underExecution //                                   // if the call is being executed,
-            && bytes4(bytecode) != bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
+            && bytes4(bytecode) != bytes4(keccak256(forbiddenFunction))  // and it's not trying to do the forbidden function
             && numberOfDelegationRounds >= 4);                     // and delegation has been calculated enough
 
         underExecution = true;
@@ -88,7 +88,7 @@ contract LiquidDemocracy {
      *
      * Go thruogh all the delegated vote logs and tally up each address's total rank
      */
-    function calculateVotes() returns (address winner) {
+    function calculateVotes()  public returns (address winner) {
         address currentWinner = appointee;
         uint currentMax = 0;
         uint weight = 0;
@@ -128,7 +128,7 @@ contract LiquidDemocracy {
         }
 
         if (numberOfDelegationRounds > 3) {
-            NewAppointee(currentWinner, appointee == currentWinner);
+            emit NewAppointee(currentWinner, appointee == currentWinner);
             appointee = currentWinner;
         }
 

@@ -193,7 +193,7 @@ contract TokenERC20 {
 <p>A mapping means an associative array, where you associate addresses with balances. The addresses are in the basic hexadecimal Ethereum format, while the balances are integers, ranging from 0 to 115 quattuorvigintillion. If you don't know how much a quattuorvigintillion is, it's many vigintillions more than anything you are planning to use your tokens for. The <em>public</em> keyword, means that this variable will be accessible by anyone on the blockchain, meaning all balances are public (as they need to be, in order for clients to display them).</p>
 <p><img src="/images/tutorial/edit-contract.png" alt="Edit New Contract"></p>
 <p>If you published your contract right away, it would work but wouldn't be very useful: it would be a contract that could query the balance of your coin for any address–but since you never created a single coin, every one of them would return 0. So we are going to create a few tokens on startup. Add this code <em>before</em> the last closing bracket, just under the <em>mapping..</em> line.</p>
-<pre><code>    function MyToken() {
+<pre><code>    function MyToken() public {
         balanceOf[msg.sender] = 21000000;
     }
 </code></pre>
@@ -207,7 +207,7 @@ contract TokenERC20 {
 <p><img src="/images/tutorial/function-picker.png" alt="Edit New Contract"></p>
 <p>Right now you have a functional contract that created balances of tokens but since there isn't any function to move it, all it does is stay on the same account. So we are going to implement that now. Write the following code <em>before the last bracket</em>.</p>
 <pre><code>    /* Send coins */
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) public {
         /* Add and subtract new balances */
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
@@ -215,7 +215,7 @@ contract TokenERC20 {
 </code></pre>
 <p>This is a very straightforward function: it has a recipient and a value as the parameter and whenever someone calls it, it will subtract the <em>_value</em> from their balance and add it to the <em>_to</em> balance. Right away there's an obvious problem: what happens if the person wants to send more than it owns? Since we don't want to handle debt in this particular contract, we are simply going to make a quick check and if the sender doesn't have enough funds the contract execution will simply stop. It's also to check for overflows, to avoid having a number so big that it becomes zero again.</p>
 <p>To stop a contract execution mid-execution you can either <strong>return</strong> or <strong>throw</strong> The former will cost less gas but it can be more headache as any changes you did to the contract so far will be kept. In the other hand, 'throw' will cancel all contract execution, revert any changes that transaction could have made and the sender will lose all Ether he sent for gas. But since the Wallet can detect that a contract will throw, it always shows an alert, therefore preventing any Ether to be spent at all.</p>
-<pre><code>    function transfer(address _to, uint256 _value) {
+<pre><code>    function transfer(address _to, uint256 _value) public {
         /* Check if sender has balance and for overflows */
         require(balanceOf[msg.sender] &gt;= _value &amp;&amp; balanceOf[_to] + _value &gt;= balanceOf[_to]);
 
@@ -231,7 +231,7 @@ uint8 public decimals;
 </code></pre>
 <p>And now we update the <strong>constructor function</strong> to allow all those variables to be set up at the start:</p>
 <pre><code>    /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) {
+    function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) public {
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
@@ -243,7 +243,7 @@ uint8 public decimals;
 </code></pre>
 <p>And then you just need to add these two lines inside the &quot;transfer&quot; function:</p>
 <pre><code>        /* Notify anyone listening that this transfer took place */
-        Transfer(msg.sender, _to, _value);
+        emit Transfer(msg.sender, _to, _value);
 </code></pre>
 <p>And now your token is ready!</p>
 <h4>Noticed the comments?</h4>
@@ -263,7 +263,8 @@ uint8 public decimals;
 <h3>Improve your token</h3>
 <p>You can deploy your whole crypto token without ever touching a line of code, but the real magic happens when you start customizing it. The following sections will be suggestions on functions you can add to your token to make it fit your needs more.</p>
 <h4>More basic functions</h4>
-<p>You'll notice that there some more functions in your basic token contract, like approve, sendFrom and others. These functions are there for your token to interact with other contracts: if you want, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren't able to subscribe to <strong>Events</strong> only to <strong>function calls</strong>. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with <strong>approveAndCall</strong>.</p>
+<p>You'll notice that there are some more functions in your basic token contract, like approve, sendFrom and others.
+These functions are there for your token to interact with other contracts: if you want to, say, sell tokens to a decentralized exchange, just sending them to an address will not be enough as the exchange will not be aware of the new tokens or who sent them, because contracts aren't able to subscribe to <strong>Events</strong> only to <strong>function calls</strong>. So for contracts, you should first approve an amount of tokens they can move from your account and then ping them to let them know they should do their thing - or do the two actions in one, with <strong>approveAndCall</strong>.</p>
 <p>Because many of these functions are having to reimplement the transferring of tokens, it makes sense to change them to an internal function, which can only be called by the contract itself:</p>
 <pre><code>    /* Internal transfer, can only be called by this contract */
     function _transfer(address _from, address _to, uint _value) internal {
@@ -274,7 +275,7 @@ uint8 public decimals;
         require(!frozenAccount[_to]);                       // Check if recipient is frozen
         balanceOf[_from] -= _value;                         // Subtract from the sender
         balanceOf[_to] += _value;                           // Add the same to the recipient
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
     }
 </code></pre>
 <p>Now all your functions that result in the transfer of coins, can do their own checks and then call <strong>transfer</strong> with the correct parameters. Notice that this function will move coins from any account to any other, without requiring anyone's permission to do so: that's why it's an internal function, only called by the contract: if you add any function calling it, make sure it properly verifies if the caller should be have permission to move those.</p>
@@ -331,8 +332,8 @@ uint8 public decimals;
 <pre><code>    function mintToken(address target, uint256 mintedAmount) onlyOwner {
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
-        Transfer(0, owner, mintedAmount);
-        Transfer(owner, target, mintedAmount);
+        emit Transfer(0, owner, mintedAmount);
+        emit Transfer(owner, target, mintedAmount);
     }
 </code></pre>
 <p>Notice the modifier <strong>onlyOwner</strong> on the end of the function name. This means that this function will be rewritten at compilation to inherit the code from the <strong>modifier onlyOwner</strong> we had defined before. This function's code will be inserted where there's an underline on the modifier function, meaning that this particular function can only be called by the account that is set as the owner. Just add this to a contract with an <strong>owner</strong> modifier and you'll be able to create more coins.</p>
@@ -344,7 +345,7 @@ uint8 public decimals;
 
     function freezeAccount(address target, bool freeze) onlyOwner {
         frozenAccount[target] = freeze;
-        FrozenFunds(target, freeze);
+        emit FrozenFunds(target, freeze);
     }
 </code></pre>
 <p>With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling <strong>Freeze Account</strong>. Unfortunately, freezing has no practical effect because we haven't added anything to the transfer function. We are changing that now:</p>
@@ -369,11 +370,8 @@ uint8 public decimals;
 <p>The next step is making the buy and sell functions:</p>
 <pre><code>    function buy() payable returns (uint amount){
         amount = msg.value / buyPrice;                    // calculates the amount
-        require(balanceOf[this] &gt;= amount);               // checks if it has enough to sell
-        balanceOf[msg.sender] += amount;                  // adds the amount to buyer's balance
-        balanceOf[this] -= amount;                        // subtracts amount from seller's balance
-        Transfer(this, msg.sender, amount);               // execute an event reflecting the change
-        return amount;                                    // ends function and returns
+        _transfer(this, msg.sender, amount);
+        return amount;
     }
 
     function sell(uint amount) returns (uint revenue){
@@ -480,7 +478,7 @@ contract owned {
     }
 }
 
-interface tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public; }
+interface tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) external; }
 
 contract TokenERC20 {
     // Public variables of the token
@@ -532,7 +530,7 @@ contract TokenERC20 {
         balanceOf[_from] -= _value;
         // Add the same to the recipient
         balanceOf[_to] += _value;
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
         // Asserts are used to use static analysis to find bugs in your code. They should never fail
         assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
     }
@@ -545,8 +543,9 @@ contract TokenERC20 {
      * @param _to The address of the recipient
      * @param _value the amount to send
      */
-    function transfer(address _to, uint256 _value) public {
+    function transfer(address _to, uint256 _value) public returns (bool success) {
         _transfer(msg.sender, _to, _value);
+        return true;
     }
 
     /**
@@ -609,7 +608,7 @@ contract TokenERC20 {
         require(balanceOf[msg.sender] &gt;= _value);   // Check if the sender has enough
         balanceOf[msg.sender] -= _value;            // Subtract from the sender
         totalSupply -= _value;                      // Updates totalSupply
-        Burn(msg.sender, _value);
+        emit Burn(msg.sender, _value);
         return true;
     }
 
@@ -627,7 +626,7 @@ contract TokenERC20 {
         balanceOf[_from] -= _value;                         // Subtract from the targeted balance
         allowance[_from][msg.sender] -= _value;             // Subtract from the sender's allowance
         totalSupply -= _value;                              // Update totalSupply
-        Burn(_from, _value);
+        emit Burn(_from, _value);
         return true;
     }
 }
@@ -662,7 +661,7 @@ contract MyAdvancedToken is owned, TokenERC20 {
         require(!frozenAccount[_to]);                       // Check if recipient is frozen
         balanceOf[_from] -= _value;                         // Subtract from the sender
         balanceOf[_to] += _value;                           // Add the same to the recipient
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
     }
 
     /// @notice Create `mintedAmount` tokens and send it to `target`
@@ -671,8 +670,8 @@ contract MyAdvancedToken is owned, TokenERC20 {
     function mintToken(address target, uint256 mintedAmount) onlyOwner public {
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
-        Transfer(0, this, mintedAmount);
-        Transfer(this, target, mintedAmount);
+        emit Transfer(0, this, mintedAmount);
+        emit Transfer(this, target, mintedAmount);
     }
 
     /// @notice `freeze? Prevent | Allow` `target` from sending &amp; receiving tokens
@@ -680,7 +679,7 @@ contract MyAdvancedToken is owned, TokenERC20 {
     /// @param freeze either to freeze it or not
     function freezeAccount(address target, bool freeze) onlyOwner public {
         frozenAccount[target] = freeze;
-        FrozenFunds(target, freeze);
+        emit FrozenFunds(target, freeze);
     }
 
     /// @notice Allow users to buy tokens for `newBuyPrice` eth and sell tokens for `newSellPrice` eth
@@ -700,7 +699,8 @@ contract MyAdvancedToken is owned, TokenERC20 {
     /// @notice Sell `amount` tokens to contract
     /// @param amount amount of tokens to be sold
     function sell(uint256 amount) public {
-        require(this.balance &gt;= amount * sellPrice);      // checks if the contract has enough ether to buy
+        address myAddress = this;
+        require(myAddress.balance &gt;= amount * sellPrice);      // checks if the contract has enough ether to buy
         _transfer(msg.sender, this, amount);              // makes the transfers
         msg.sender.transfer(amount * sellPrice);          // sends ether to the seller. It's important to do this last to avoid recursion attacks
     }
@@ -726,7 +726,8 @@ contract MyAdvancedToken is owned, TokenERC20 {
 <p>You just learned how you can use Ethereum to issue a token, that can represent anything you want. But what can you do with the tokens? You can use, for instance, the tokens to <a href="./dao#the-shareholder-association">represent a share in a company</a> or you can use a <a href="./dao#the-code">central committee</a> to vote on when to issue new coins to control inflation. You can also use them to raise money for a cause, via a <a href="./crowdsale">crowdsale</a>. What will you build next?</p>
 <a class="button small" href="https://github.com/ethereum/ethereum-org/edit/master/views/content/token.md">Improve this page</a></div></div></div></div><div class="main-tutorial even"><div class="container"><div class="row"><div class="col-md-12 tutorial"><h2>What's next?</h2><div class="row"><div class="col-md-6"><figure class="crowdsale scrollme"><div class="crowdsale-logic animateme" data-when="enter" data-from="0.8" data-to="0.7" data-opacity="0" data-translatey="-100" data-easing="linear"></div><div class="crowdsale-robot animateme" data-when="enter" data-from="0.5" data-to="0.3" data-opacity="0" data-translatey="-155" data-translatex="-30" data-scale="1.1" data-rotatez="90" data-easing="linear"></div><div class="crowdsale-money animateme" data-when="enter" data-from="0.8" data-to="0.6" data-opacity="0" data-translatey="-20"></div><div class="crowdsale-contributions animateme" data-when="enter" data-from="0.7" data-to="0.5" data-opacity="0" data-scale="1.4"></div><div class="crowdsale-crowd animateme" data-when="enter" data-from="0.3" data-to="0" data-opacity="0" data-translatey="-100" data-scale="1.1" data-easing="linear"></div></figure></div><div class="col-md-6">   <h3>Kickstart a project with a trustless crowdsale</h3><p>Do you already have ideas that you want to develop on Ethereum? Maybe you need help and some funds to bring them to life, but who would lend money to someone they don’t trust?</p><p>Using Ethereum, you can create a contract that will hold a contributor's money until any given date or goal is reached. Depending on the outcome, the funds will either be released to the project owners or safely returned back to the contributors. All of this is possible without requiring a centralized arbitrator, clearinghouse or having to trust anyone.</p><p>You can even use the token you created earlier to keep track of the distribution of rewards.</p></div></div><div class="row"><div class="col-md-6"><a class="button" href="/crowdsale">Kickstart your project </a></div><div class="col-md-6"><div class="recipe"><h4>You can build:</h4><ul><li>A crowdfund to pre-sell a product</li><li>A crowdsale to sell virtual shares in a blockchain organization</li><li>An auction of a limited number of items</li></ul></div></div></div></div></div></div></div><script> ((window.gitter = {}).chat = {}).options = {
    room: 'ethereum/tutorials'
- };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row row-footer-news"><div class="col-md-12 news"><h3>News</h3><div class="iframe-wrapper"><a class="twitter-timeline" href="https://twitter.com/ethereum" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" width="100%" height="370px">Tweets by @ethereum</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div></div><div class="row row-footer-primary"><div class="col-md-4 community"><h3>Community</h3><div class="row"><div class="col-sm-5"><ul><li><a href="https://blog.ethereum.org" target="_blank"><i class="fa fa-rss"></i> Blog</a></li><li><a href="https://github.com/ethereum" target="_blank"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank"><i class="fa fa-youtube"></i> YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank"><i class="fa fa-reddit"></i> Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank"><i class="fa fa-comments-o"></i> Gitter</a></li></ul></div><div class="col-sm-7"><ul><li><a href="https://twitter.com/ethereum" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank"><i class="fa fa-stack-exchange"></i> Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank"><i class="fa fa-facebook"></i> Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank"><i class="fa fa-meetup"></i> Meetups</a></li></ul></div></div></div><div class="col-md-4 about-us"><h3>Ethereum Foundation</h3><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div><div class="col-md-4 developer-resources"><h3>Developer Resources</h3><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Browse our source code on <a href="https://github.com/ethereum/" target="_blank">GitHub</a></li><li>Read the   <a href="http://www.ethdocs.org/" target="_blank">documentation</a></li><li>Learn  <a href="https://solidity.readthedocs.org/" target="_blank">Solidity</a></li><li>See the latest <a href="https://ethstats.net" target="_blank">data and network stats</a></li><li>Download our <a href="./assets">logo assets </a></li><li>Want to write about Ethereum? <a href="mailto:press@ethereum.org">Press inquiries</a></li></ul></div></div><div class="row row-footer-copyright"><div class="col-md-12"><p class="copyright">Copyright &copy; 2018 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.</p><p class="footer-links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p></div></div><div class="row row-footer-canary"><div class="col-md-12"><div class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></div></div></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
+ };</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script><footer class="scrollme"><div class="footer"><div class="container"><div class="row row-footer-news"><div class="col-md-12 news"><h3>News</h3><div class="iframe-wrapper"><a class="twitter-timeline" href="https://twitter.com/ethereum" data-widget-id="694952013856112640" data-chrome="nofooter noborders transparent noheader" width="100%" height="370px">Tweets by @ethereum</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div></div></div><div class="row row-footer-primary"><div class="col-md-4 community"><h3>Community</h3><div class="row"><div class="col-sm-5"><ul><li><a href="https://blog.ethereum.org" target="_blank"><i class="fa fa-rss"></i> Blog</a></li><li><a href="https://github.com/ethereum" target="_blank"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://www.youtube.com/user/ethereumproject" target="_blank"><i class="fa fa-youtube"></i> YouTube</a></li><li><a href="https://www.reddit.com/r/ethereum" target="_blank"><i class="fa fa-reddit"></i> Reddit</a></li><li><a href="https://gitter.im/orgs/ethereum/rooms" target="_blank"><i class="fa fa-comments-o"></i> Gitter</a></li></ul></div><div class="col-sm-7"><ul><li><a href="https://twitter.com/ethereum" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li><li><a href="https://ethereum.stackexchange.com" target="_blank"><i class="fa fa-stack-exchange"></i> Stack Exchange</a></li><li><a href="https://www.facebook.com/ethereumproject" target="_blank"><i class="fa fa-facebook"></i> Facebook                </a></li><li><a href="https://ethereum.meetup.com" target="_blank"><i class="fa fa-meetup"></i> Meetups</a></li></ul></div></div></div><div class="col-md-4 about-us"><h3>Ethereum Foundation</h3><p>Ethereum is developed by a worldwide team of passionate developers for the <a href="./foundation">Ethereum Foundation</a>, a Swiss nonprofit organization. </p><p> <a class="donate-button" href="./donate">Donate to support development </a><div class="caption">(and you can get a unicorn!)</div></p></div><div class="col-md-4 developer-resources"><h3>Developer Resources</h3><ul><li>What is Ether? <a href="./ether">Read our FAQ</a></li><li>Browse our source code on <a href="https://github.com/ethereum/" target="_blank">GitHub</a></li><li>Read the <a href="http://www.ethdocs.org/" target="_blank">documentation</a>
+or <a href="https://github.com/ethereum/wiki/wiki" target="_blank">wiki</a></li><li>Learn <a href="https://solidity.readthedocs.org/" target="_blank">Solidity</a></li><li>See the latest <a href="https://ethstats.net" target="_blank">data and network stats</a></li><li>Download our <a href="./assets">logo assets </a></li><li>Want to write about Ethereum? <a href="mailto:press@ethereum.org">Press inquiries</a></li></ul></div></div><div class="row row-footer-copyright"><div class="col-md-12"><p class="copyright">Copyright &copy; 2018 Ethereum Foundation (Stiftung Ethereum), Zug, Switzerland. All Rights Reserved.</p><p class="footer-links"> <a href="./privacy-policy">Privacy Policy </a>&nbsp; &nbsp; <a href="./cookie-policy">Cookie Policy</a>&nbsp; &nbsp; <a href="./terms-of-use">Terms of Use</a></p></div></div><div class="row row-footer-canary"><div class="col-md-12"><div class="canary"><p>The Ethereum Foundation (Stiftung Ethereum) has never been contacted by any agency anywhere in the world in a way which requires that contact not to be disclosed.</p><p>Stiftung Ethereum will publicly disclose any sort of inquiry from government agencies that falls outside the scope of regular business operations.</p></div></div></div></div></div></footer><script src="/js/app.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script>$(document).ready(function(){
     $("#toc").tableOfContents(
       $(".main-tutorial"),      // Scoped to div#wrapper
       {
