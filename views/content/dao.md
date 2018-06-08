@@ -196,7 +196,7 @@ We are going to implement a version of what's usually called **Liquid Democracy*
 
 #### Deployment
 
-First, you need a token. If you have followed the **Shareholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token/) and distribute it among some accounts. Copy the token address.
+First, you need a token. If you have followed the **Shareholder association** tutorial above, you can use the same token as you had previously, otherwise just [deploy a new token](./token) and distribute it among some accounts. Copy the token address.
 
 Deploy the democracy contract, and put the token address on the **Voting weight token**, put **75** as the **Percent loss in each round** and **transferOwnership(address)** (without any spaces or extra characters!) as the **forbidden function**.
 
