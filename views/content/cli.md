@@ -78,7 +78,7 @@ Then use these commands to install cpp-ethereum:
 
 The [cpp-ethereum documentation](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
 has detailed information on [OS X Homebrew package](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html)
-and on [Building OS X from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/osx.html).
+and on [Building OS X from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/macos.html).
 
 #### Install on Linux:
 
