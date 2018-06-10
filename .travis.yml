@@ -4,6 +4,7 @@ node_js: 8
 before_script: 
 - npm install broken-link-checker -g
 - npm install http-server -g
+- npm install grunt -g
 
 script: 
 # building website
