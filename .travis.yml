@@ -1,3 +1,14 @@
 language: node_js
-node_js:
-  - "0.12"
+node_js: 8
+
+before_script: 
+- npm install broken-link-checker -g
+- npm install http-server -g
+- npm install grunt -g
+
+script: 
+# building website
+- grunt build
+
+# running local server, checking for broken links
+- http-server dist/ --silent & blc http://localhost:8080 -rg

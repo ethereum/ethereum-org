@@ -101,15 +101,7 @@ If you are using **Eth** then GPU mining comes out of the box. Simply quit the c
 Once you started, just follow the same instructions as normal CPU mining.
 
 
-**Instructions for Geth**
-
-
-There are currently two options for GPU mining in Geth available. You can read a more detailed description of how to install it on this [mining post](https://forum.ethereum.org/discussion/197/mining-faq-live-updates).
-
 * **C++ Etherminer**. This is a version for the pro miners. To install it, follow the guide to [install the whole C++ ethereum code](https://github.com/ethereum/cpp-ethereum/wiki/Installing-clients).
-
-* **Go experimental GPU branch**. It's experimental so you need to build go from source to get it. This version is focused on hobbyists and developers. To install it, [clone geth from source](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu) and then switch to the [GPU Miner branch](https://github.com/ethereum/go-ethereum/tree/gpu_miner).
-
 
 
 #### More information on Mining

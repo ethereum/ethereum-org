@@ -5,7 +5,7 @@
 <p>Before you begin:</p>
 <ul>
 <li><a href="https://ethereum.org/cli">Install the Ethereum CLI</a></li>
-<li><a href="https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions">Learn more about contracts</a></li>
+<li><a href="http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html">Learn more about contracts</a></li>
 </ul>
 <p>Please confirm that the GUI is closed before entering the <code>geth</code> console.
 Run <code>geth</code> to begin the sync process (this may take a while on the first run).</p>
@@ -41,58 +41,8 @@ contract Greeter is Mortal {
 </code></pre>
 <p>You'll notice that there are two different contracts in this code: <em>&quot;mortal&quot;</em> and <em>&quot;greeter&quot;</em>.  This is because Solidity (the high level contract language we are using) has <em>inheritance</em>, meaning that one contract can inherit characteristics of another. This is very useful to simplify coding as common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that <em>greeter is mortal</em> you inherited all characteristics from the &quot;mortal&quot; contract and kept the greeter code simple and easy to read.</p>
 <p>The inherited characteristic <em>&quot;mortal&quot;</em> simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.</p>
-<h3>Compiling your contract using the Solc Compiler</h3>
-<p>Before you are able to deploy your contract, you'll need two things:</p>
-<ol>
-<li>The compiled code</li>
-<li>The Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract</li>
-</ol>
-<p>You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either:</p>
-<ol>
-<li>Install a compiler on your machine by following the <a href="http://solidity.readthedocs.io/en/develop/installing-solidity.html">instructions for installing the Solidity Compiler</a></li>
-<li>Use <a href="https://remix.ethereum.org">Remix</a>, a web-based Solidity IDE</li>
-</ol>
-<h4>Solc on your machine</h4>
-<p>=======</p>
-<p>If you installed the compiler on your machine, you need to compile the contract to acquire the compiled code and Application Binary Interface.</p>
-<pre><code>solc -o target --bin --abi Greeter.sol
-</code></pre>
-<p>This will create two files, one file containing the compiled code and one file creating the Application Binary Interface in a directory called target.</p>
-<pre><code>$tree
-.
-├── Greeter.sol
-└── target
-   ├── Greeter.abi
-   ├── Greeter.bin
-   ├── Mortal.abi
-   └── Mortal.bin
-</code></pre>
-<p>You will see that there are files created for both contracts; but because Greeter includes Mortal you do not need to deploy Mortal to deploy Greeter.</p>
-<p>You can use these two files to create and deploy the contract.</p>
-<pre><code>var greeterFactory = eth.contract(&lt;contents of the file Greeter.abi&gt;)
-
-var greeterCompiled = &quot;0x&quot; + &quot;&lt;contents of the file Greeter.bin&gt;&quot;
-</code></pre>
-<p>You have now compiled your code and made it available to Geth.  Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than &quot;Hello World!&quot; and execute these commands:</p>
-<pre><code>var _greeting = &quot;Hello World!&quot;
-
-var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCompiled,gas:47000000}, function(e, contract){
-    if(e) {
-      console.error(e); // If something goes wrong, at least we'll know.
-      return;
-    }
-
-    if(!contract.address) {
-      console.log(&quot;Contract transaction send: TransactionHash: &quot; + contract.transactionHash + &quot; waiting to be mined...&quot;);
-
-    } else {
-      console.log(&quot;Contract mined! Address: &quot; + contract.address);
-      console.log(contract);
-    }
-})
-</code></pre>
 <h4>Using Remix</h4>
-<p>If you don't have Solc installed, you can simply use the online IDE. Copy the source code (at the top of this page) to <a href="https://remix.ethereum.org">Remix</a> and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.</p>
+<p>As of 2018, the most convenient way to develop contracts is using Remix, an online IDE. Copy the source code (at the top of this page) to <a href="https://remix.ethereum.org">Remix</a> and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.</p>
 <p>To access the compiled code, ensure that the dropdown menu on the right pane has <code>greeter</code> selected. Then click on the <strong>Details</strong> button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the <strong>WEB3DEPLOY</strong> textbox.</p>
 <p>Create a temporary text file on your computer and paste that code. Make sure to change the first line to look like the following:</p>
 <pre><code>var _greeting = &quot;Hello World!&quot;
@@ -101,7 +51,7 @@ var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCom
 <pre><code>Contract mined! address: 0xdaa24d02bad7e9d6a80106db164bad9399a0423e
 </code></pre>
 <p>You may have to &quot;unlock&quot; the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. <code>personal.unlockAccount(web3.eth.accounts[0], &quot;yourPassword&quot;)</code>.</p>
-<p>This contract is estimated to need ~180 thousand gas to deploy (according to the <a href="http://remix.ethereum.org">online solidity compiler</a>), at the time of writing, gas on the test net is priced at 20 gwei (<a href="http://ether.fund/tool/converter#v=20&amp;u=Gwei">equal to( 20000000000 wei, or  0.00000002 ether</a>) per unit of gas. There are many useful stats, including the latest gas prices <a href="https://stats.ethdev.com">at the network stats page</a>.</p>
+<p>This contract is estimated to need ~180 thousand gas to deploy (according to the <a href="http://remix.ethereum.org">online solidity compiler</a>), at the time of writing, gas on the main net is priced at 6 gwei, resulting in 0.00108 ETH worth of feed. You can use <a href="https://ethgasstation.info/calculatorTxV.php">ETH Gas Station Transaction Calculator tool</a> for updated information.</p>
 <p><strong>Notice that the cost is not paid to the <a href="../foundation">ethereum developers</a>, instead it goes to the <em>Miners</em>, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.</strong></p>
 <p>Within less than a minute, you should have a log with the contract address, this means you've successfully deployed your contract. You can verify the deployed code (which will be compiled) by using this command:</p>
 <pre><code>eth.getCode(greeter.address)
