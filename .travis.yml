@@ -12,3 +12,5 @@ script:
 
 # running local server, checking for broken links
 - http-server dist/ --silent & blc http://localhost:8080 -rg
+
+- npm run validate-sol-files
