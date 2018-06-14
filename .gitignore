@@ -26,3 +26,4 @@ keys/pgp/*.secret.*
 .lock-wscript
 
 .DS_Store
+e
