@@ -14,6 +14,13 @@ var vendor = [
 
 var styles = ['bootstrap.min.css', 'font-awesome.min.css', 'style.css'];
 
+const mistReleaseURL = () => {
+  const token = process.env.GITHUB_TOKEN_RELEASES;
+  const baseURL = 'https://api.github.com/repos/ethereum/mist/releases/latest';
+  const accessKey = token ? `?access_token=${token}` : '';
+  return `${baseURL}${accessKey}`;
+};
+
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -23,7 +30,7 @@ module.exports = function(grunt) {
           headers: {
             'User-Agent': 'Ethereum.org-Gruntfile'
           },
-          url: 'https://api.github.com/repos/ethereum/mist/releases'
+          url: mistReleaseURL()
         },
         dest: 'data/mist_releases.json'
       }
@@ -37,13 +44,13 @@ module.exports = function(grunt) {
       build: {
         options: {
           data: function(dest, src) {
-            var mistReleases = grunt.file
-              .readJSON('data/mist_releases.json')[0]
+            var mistRelease = grunt.file
+              .readJSON('data/mist_releases.json')
               ['assets'].filter(e => /Ethereum-Wallet/.test(e.name));
             var mistReleaseOSX, mistReleaseWin64, mistReleaseWin32;
 
-            for (var i = 0; i < mistReleases.length; i++) {
-              var obj = mistReleases[i];
+            for (var i = 0; i < mistRelease.length; i++) {
+              var obj = mistRelease[i];
 
               if (obj['name'].indexOf('macosx') !== -1) {
                 mistReleaseOSX = obj['browser_download_url'];
