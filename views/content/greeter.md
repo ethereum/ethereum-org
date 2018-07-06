@@ -56,7 +56,6 @@ You'll notice that there are two different contracts in this code: _"mortal"_ an
 The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
 
 
-
 #### Using Remix
 
 As of 2018, the most convenient way to develop contracts is using Remix, an online IDE. Copy the source code (at the top of this page) to [Remix](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
