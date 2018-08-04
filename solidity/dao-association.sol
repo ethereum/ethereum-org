@@ -3,7 +3,7 @@ pragma solidity ^0.4.16;
 contract owned {
     address public owner;
 
-    function owned() public {
+    constructor() public {
         owner = msg.sender;
     }
 
@@ -24,11 +24,11 @@ contract tokenRecipient {
     function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
         Token t = Token(_token);
         require(t.transferFrom(_from, this, _value));
-        receivedTokens(_from, _value, _token, _extraData);
+        emit receivedTokens(_from, _value, _token, _extraData);
     }
 
     function () payable public {
-        receivedEther(msg.sender, msg.value);
+        emit receivedEther(msg.sender, msg.value);
     }
 }
 
@@ -82,7 +82,7 @@ contract Association is owned, tokenRecipient {
      *
      * First time setup
      */
-    function Association(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable public {
+    constructor(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable public {
         changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
     }
 
@@ -101,7 +101,7 @@ contract Association is owned, tokenRecipient {
         if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
         minimumQuorum = minimumSharesToPassAVote;
         debatingPeriodInMinutes = minutesForDebate;
-        ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, sharesTokenAddress);
+        emit ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, sharesTokenAddress);
     }
 
     /**
@@ -128,12 +128,12 @@ contract Association is owned, tokenRecipient {
         p.recipient = beneficiary;
         p.amount = weiAmount;
         p.description = jobDescription;
-        p.proposalHash = keccak256(beneficiary, weiAmount, transactionBytecode);
+        p.proposalHash = keccak256(abi.encodePacked(beneficiary, weiAmount, transactionBytecode));
         p.minExecutionDate = now + debatingPeriodInMinutes * 1 minutes;
         p.executed = false;
         p.proposalPassed = false;
         p.numberOfVotes = 0;
-        ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
+        emit ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
         numProposals = proposalID+1;
 
         return proposalID;
@@ -180,7 +180,7 @@ contract Association is owned, tokenRecipient {
         returns (bool codeChecksOut)
     {
         Proposal storage p = proposals[proposalNumber];
-        return p.proposalHash == keccak256(beneficiary, weiAmount, transactionBytecode);
+        return p.proposalHash == keccak256(abi.encodePacked(beneficiary, weiAmount, transactionBytecode));
     }
 
     /**
@@ -205,7 +205,7 @@ contract Association is owned, tokenRecipient {
         p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID +1;
-        Voted(proposalNumber,  supportsProposal, msg.sender);
+        emit Voted(proposalNumber,  supportsProposal, msg.sender);
         return voteID;
     }
 
@@ -222,7 +222,7 @@ contract Association is owned, tokenRecipient {
 
         require(now > p.minExecutionDate                                             // If it is past the voting deadline
             && !p.executed                                                          // and it has not already been executed
-            && p.proposalHash == keccak256(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
+            && p.proposalHash == keccak256(abi.encodePacked(p.recipient, p.amount, transactionBytecode))); // and the supplied code matches the proposal...
 
 
         // ...then tally the results
@@ -256,6 +256,6 @@ contract Association is owned, tokenRecipient {
         }
 
         // Fire Events
-        ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
+        emit ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
     }
 }
