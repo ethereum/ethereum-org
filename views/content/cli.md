@@ -47,7 +47,7 @@ For more, see the [full documentation on Windows Geth](https://github.com/ethere
 
 #### Install on Linux
 
-On Ubuntu, execute these commands:
+On Ubuntu 14.04 LTS( Kernel 3.13) or later, execute these commands:
 
     sudo apt-get install software-properties-common
     sudo add-apt-repository -y ppa:ethereum/ethereum
