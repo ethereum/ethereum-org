@@ -58,7 +58,7 @@ On the **"Write to contract"** you have a list of all the functions that will at
 
 Before interacting with the contract, you'll need to add new members so they can vote. On the **"Select function"** picker, choose **"Add Member"**. Add the address of the person you want to make a member(to remove a member, pick the function **"Remove Member"**). On **"execute from"** make sure that you have the same account that is set as the owner as this is an action only the main administrator can execute. Press **execute** and wait a few seconds for the next block to go through with your change.
 
-There's no list of members, but you can check if anyone is a member by putting their address on the **Members** function on the *Read from contract* column.
+There's no list of members, but you can check if anyone is a member by putting their address on the **Members** function on the *Read from contract* column.14
 
 Also, if you want the contract to have any money of its own, you need to deposit some ether (or other token) into it, otherwise you'll have a pretty toothless organization. Press **Transfer Ether & Tokens** on the top right corner.
 
