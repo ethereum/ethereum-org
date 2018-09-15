@@ -26,3 +26,6 @@ keys/pgp/*.secret.*
 .lock-wscript
 
 .DS_Store
+views/content/greeter.md
+*.md
+views/content/greeter.md
