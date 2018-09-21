@@ -55,6 +55,71 @@ You'll notice that there are two different contracts in this code: _"mortal"_ an
 
 The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
 
+<<<<<<< HEAD
+=======
+### Compiling your contract using the Solc Compiler
+
+Before you are able to deploy your contract, you'll need two things: 
+
+
+1. The compiled code
+2. The Application Binary Interface, which is a JavaScript Object that defines how to interact with the contract
+
+You can get both of these by using a Solidity compiler. If you have not installed a compiler, you can either: 
+
+1. Install a compiler on your machine by following the [instructions for installing the Solidity Compiler](http://solidity.readthedocs.io/en/develop/installing-solidity.html)
+2. Use [Remix](https://remix.ethereum.org), a web-based Solidity IDE
+
+
+#### Solc on your machine
+=======
+
+Now you have the compiler installed, you need to compile the contract to acquire the compiled code and Application Binary Interface.
+
+If you installed the compiler on your machine, you need to compile the contract to acquire the compiled code and Application Binary Interface.
+
+    solc -o target --bin --abi Greeter.sol
+
+This will create two files, one file containing the compiled code and one file creating the Application Binary Interface in a directory called target.
+
+    $tree
+    .
+    ├── Greeter.sol
+    └── target
+       ├── Greeter.abi
+       ├── Greeter.bin
+       ├── Mortal.abi
+       └── Mortal.bin
+
+You will see that there are files created for both contracts; but because Greeter includes Mortal you do not need to deploy Mortal to deploy Greeter.
+
+You can use these two files to create and deploy the contract.
+
+    var greeterFactory = eth.contract(<contents of the file Greeter.abi>)
+
+    var greeterCompiled = "0x" + "<contents of the file Greeter.bin>"
+
+You have now compiled your code and made it available to Geth.  Now you need to get it ready for deployment, this includes setting some variables up, like what greeting you want to use. Edit the first line below to something more interesting than "Hello World!" and execute these commands:
+    
+	
+	var _greeting = "Hello World!"
+
+    var greeter = greeterFactory.new(_greeting,{from:eth.accounts[0],data:greeterCompiled,gas:47000000}, function(e, contract){
+        if(e) {
+          console.error(e); // If something goes wrong, at least we'll know.
+          return;
+        }
+
+        if(!contract.address) {
+          console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
+
+        } else {
+          console.log("Contract mined! Address: " + contract.address);
+          console.log(contract);
+        }
+    })
+>>>>>>> origin/develop
+
 
 
 #### Using Remix
