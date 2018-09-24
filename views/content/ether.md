@@ -6,10 +6,8 @@ The total supply of ether and its rate of issuance was decided by the donations 
 
 * 60 million ether created to contributors of the presale
 * 12 Million (20% of the above) were created to the development fund, most of it going to early contributors and developers and the remaining to the [Ethereum Foundation](./foundation)
-* 5 ethers are created every block (roughly 15 seconds) to the miner of the block
-* 2-3 ethers are sometimes sent to another miner if they were also able to find a solution but his block wasn't included (called uncle/aunt reward)
-
-Note that after the [Byzantium update](https://blog.ethereum.org/2017/10/12/byzantium-hf-announcement/) is implemented, the mining and uncle reward is reduced to 3 ethers and 0.625-2.625 ethers, respectively.
+* 3 ethers are created every block (roughly 15 seconds) to the miner of the block
+* 0.625-2.625 ethers are sometimes sent to another miner if they were also able to find a solution but his block wasn't included (called uncle/aunt reward)
 
 
 ### Is the ether supply infinite?
