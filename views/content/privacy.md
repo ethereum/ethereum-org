@@ -111,7 +111,7 @@ provided in accordance with Art. 6 Par. 1 lit. a GDPR.
 
 **3.5 Contact possibility via the website**
 
-You may contact us via our websites contact page or by e-mail to the following e-mail address: [support@ethereum.org](support@ethereum.org). For this, we require the following information: Name, Subject, E-Mail address, message.
+You may contact us via our websites contact page or by e-mail to the following e-mail address: [support@ethereum.org](mailto:support@ethereum.org). For this, we require the following information: Name, Subject, E-Mail address, message.
 
 We use this data, which you may give voluntarily, only in order to answer your
 contact question or to reply to your e-mail in the best possible manner. Therefore,
