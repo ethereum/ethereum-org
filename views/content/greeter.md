@@ -9,7 +9,7 @@ What can you do with contracts? Well, you can do almost anything really, but for
 
 Before you begin:
 
-* [Install the Ethereum CLI](https://ethereum.org/cli)
+* [Install the Ethereum CLI](/cli)
 * [Learn more about contracts](http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html)
 
 Please confirm that the GUI is closed before entering the `geth` console.
