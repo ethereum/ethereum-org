@@ -169,6 +169,52 @@ div.scrollme.row.introduction {
 	overflow: hidden;
 }
 
+@-webkit-keyframes GradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes GradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes GradientAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.devcon-badge {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 45px;
+  z-index: 100;
+  background: linear-gradient(90deg, #fca09a, #fcccd3, #ffcc9d, #98ddad, #81d7ec, #a0aaed);
+  background-size: 200%;
+  text-align: center;
+  -webkit-animation: AnimationName 5s ease infinite;
+  -moz-animation: GradientAnimation 5s ease infinite;
+  animation: GradientAnimation 5s ease infinite;
+}
+.devcon-badge:hover {
+ -webkit-animation-duration: 2s; 
+ -moz-animation-duration: 2s; 
+ animation-duration: 2s; 
+}
+
+.devcon-badge a {
+  color: #222;
+  font-family: monospace;
+  text-decoration: none;
+  display: block;
+  padding: 10px 0;
+}
+body { /* set of rules to accomodate devcon badge */
+  padding-top: 45px;
+}
+
 .intro:after {
 	content: " ";
 	background: linear-gradient(transparent, #102026);
