@@ -4,8 +4,8 @@ Acceptance of the Terms of Use These terms of use are entered into by and betwee
 
 Please read the Terms of Use carefully before you start to use the Websites. By using the Websites or by clicking to accept or agree to the Terms of Use when this option is made available to you, you accept and agree to be bound and abide by these Terms of Use in addition to
 
-*   our Privacy Policy, found at [https://ethereum.org/privacy-policy/](https://ethereum.org/privacy-policy), incorporated herein by reference; and
-*   our Cookie Policy, found at [https://ethereum.org/cookie-policy/](https://ethereum.org/cookie-policy), incorporated herein by reference.
+*   our [Privacy Policy](/privacy-policy), incorporated herein by reference; and
+*   our [Cookie Policy](/cookie-policy), incorporated herein by reference.
 
 If you do not to agree to these Terms of Use or the Privacy Policy, you must not access or use the Websites. 
 
@@ -92,7 +92,7 @@ We may update the content on this Websites from time to time, but its content is
 
 **Information About You and Your Visits to the Websites** 
 
-All information we collect on this Websites is subject to our [https://ethereum.org/privacy-policy](https://ethereum.org/privacy-policy). By using the Website, you consent to all actions taken by us with respect to your information in compliance with the Privacy Policy. 
+All information we collect on this Websites is subject to our [Privacy Policy](/privacy-policy). By using the Website, you consent to all actions taken by us with respect to your information in compliance with the Privacy Policy. 
 
 **Online Purchases and Other Terms and Conditions** 
 
@@ -146,6 +146,6 @@ The Terms of Use, our Privacy Policy and terms of conditions for the registratio
 
 **Your Comments and Concerns** 
 
-This Websites is operated by the Foundation. All other feedback, comments, requests for technical support and other communications relating to the Websites should be directed to: [support@ethereum.org](support@ethereum.org). 
+This Websites is operated by the Foundation. All other feedback, comments, requests for technical support and other communications relating to the Websites should be directed to: [support@ethereum.org](mailto:support@ethereum.org). 
 
 Last modified: July 2018
