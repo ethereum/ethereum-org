@@ -2,7 +2,7 @@
 
 
 
-## Decentralized Autonomous Organization
+## Decentralized Autonomous Organization 
 
 > **"On the Blockchain, no one knows you're a fridge"**
 > - Richard Brown
