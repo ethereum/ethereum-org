@@ -22,7 +22,7 @@
 **Patrick Storchenegger is an attorney at law and notary public in Canton Zug, the so-called "Crypto-Valley" in Switzerland.** He has many years of experience in international tax and business consultancy, company and capital market law. He advises several international concerns, including those engaged in trading, re-insurance, transportation and blockchain technology as well as donating pro bono services to charitable organisations.
 
 ----
-
+### Pattarapong Raungram€$$$$$
 ### Technical Steering Group
 
 #### Jeffrey Wilcke
