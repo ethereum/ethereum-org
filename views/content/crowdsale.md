@@ -77,7 +77,7 @@ This is a very important point. The crowdsale we are building will be completely
 
 Once the crowdsale has all the necessary tokens, contributing to it is easy and you can do it from any ethereum wallet: just send funds to it. You can see the relevant code bit here:
 
-    function () {
+    function () payable external {
         require(!crowdsaleClosed);
         uint amount = msg.value;
         // ...
@@ -108,7 +108,7 @@ Then modify the crowdsale to rename all mentions of **transfer** to **mintToken*
 
     contract token { function mintToken(address receiver, uint amount){  } }
     // ...
-        function () {
+        function () public {
             // ...
             tokenReward.mintToken(msg.sender, amount / price);
             // ...
