@@ -1,9 +1,9 @@
-pragma solidity ^0.4.16;
+pragma solidity >=0.4.22 <0.6.0;
 
 contract owned {
     address public owner;
 
-    function owned() {
+    constructor() public {
         owner = msg.sender;
     }
 
@@ -12,7 +12,7 @@ contract owned {
         _;
     }
 
-    function transferOwnership(address newOwner) onlyOwner {
+    function transferOwnership(address newOwner) onlyOwner public {
         owner = newOwner;
     }
 }
@@ -21,19 +21,19 @@ contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData){
+    function receiveApproval(address _from, uint256 _value, address _token, bytes memory _extraData) public {
         Token t = Token(_token);
-        require(t.transferFrom(_from, this, _value));
-        receivedTokens(_from, _value, _token, _extraData);
+        require(t.transferFrom(_from, address(this), _value));
+        emit receivedTokens(_from, _value, _token, _extraData);
     }
 
-    function () payable {
-        receivedEther(msg.sender, msg.value);
+    function () payable external {
+        emit receivedEther(msg.sender, msg.value);
     }
 }
 
 interface Token {
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) external returns (bool success);
 }
 
 contract TimeLockMultisig is owned, tokenRecipient {
@@ -80,15 +80,19 @@ contract TimeLockMultisig is owned, tokenRecipient {
     }
 
     /**
-     * Constructor function
+     * Constructor
      *
      * First time setup
      */
-    function TimeLockMultisig(address founder, address[] initialMembers, uint minimumAmountOfMinutes) payable {
-        if (founder != 0) owner = founder;
+    constructor(
+        address founder, 
+        address[] memory initialMembers, 
+        uint minimumAmountOfMinutes
+    ) payable public {
+        if (founder != address(0)) owner = founder;
         if (minimumAmountOfMinutes !=0) minimumTime = minimumAmountOfMinutes;
         // It’s necessary to add an empty first member
-        addMember(0, '');
+        addMember(address(0), '');
         // and let's add the founder, to save a step later
         addMember(owner, 'founder');
         changeMembers(initialMembers, true);
@@ -100,7 +104,8 @@ contract TimeLockMultisig is owned, tokenRecipient {
      * @param targetMember address to add as a member
      * @param memberName label to give this member address
      */
-    function addMember(address targetMember, string memberName) onlyOwner {
+    function addMember(address targetMember, string memory memberName) onlyOwner public
+    {
         uint id;
         if (memberId[targetMember] == 0) {
             memberId[targetMember] = members.length;
@@ -110,7 +115,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
         }
 
         members[id] = Member({member: targetMember, memberSince: now, name: memberName});
-        MembershipChanged(targetMember, true);
+        emit MembershipChanged(targetMember, true);
     }
 
     /**
@@ -118,7 +123,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
      *
      * @param targetMember the member to remove
      */
-    function removeMember(address targetMember) onlyOwner {
+    function removeMember(address targetMember) onlyOwner public {
         require(memberId[targetMember] != 0);
 
         for (uint i = memberId[targetMember]; i<members.length-1; i++){
@@ -134,7 +139,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
      * @param newMembers array of addresses to update
      * @param canVote new voting value that all the values should be set to
      */
-    function changeMembers(address[] newMembers, bool canVote) {
+    function changeMembers(address[] memory newMembers, bool canVote) public {
         for (uint i = 0; i < newMembers.length; i++) {
             if (canVote)
                 addMember(newMembers[i], '');
@@ -156,10 +161,10 @@ contract TimeLockMultisig is owned, tokenRecipient {
     function newProposal(
         address beneficiary,
         uint weiAmount,
-        string jobDescription,
-        bytes transactionBytecode
+        string memory jobDescription,
+        bytes memory transactionBytecode
     )
-        onlyMembers
+        onlyMembers public
         returns (uint proposalID)
     {
         proposalID = proposals.length++;
@@ -167,10 +172,10 @@ contract TimeLockMultisig is owned, tokenRecipient {
         p.recipient = beneficiary;
         p.amount = weiAmount;
         p.description = jobDescription;
-        p.proposalHash = sha3(beneficiary, weiAmount, transactionBytecode);
+        p.proposalHash = keccak256(abi.encodePacked(beneficiary, weiAmount, transactionBytecode));
         p.executed = false;
         p.creationDate = now;
-        ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
+        emit ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
         numProposals = proposalID+1;
         vote(proposalID, true, '');
 
@@ -191,10 +196,10 @@ contract TimeLockMultisig is owned, tokenRecipient {
     function newProposalInEther(
         address beneficiary,
         uint etherAmount,
-        string jobDescription,
-        bytes transactionBytecode
+        string memory jobDescription,
+        bytes memory transactionBytecode
     )
-        onlyMembers
+        onlyMembers public
         returns (uint proposalID)
     {
         return newProposal(beneficiary, etherAmount * 1 ether, jobDescription, transactionBytecode);
@@ -212,13 +217,13 @@ contract TimeLockMultisig is owned, tokenRecipient {
         uint proposalNumber,
         address beneficiary,
         uint weiAmount,
-        bytes transactionBytecode
+        bytes memory transactionBytecode
     )
-        constant
+        view public
         returns (bool codeChecksOut)
     {
         Proposal storage p = proposals[proposalNumber];
-        return p.proposalHash == sha3(beneficiary, weiAmount, transactionBytecode);
+        return p.proposalHash == keccak256(abi.encodePacked(beneficiary, weiAmount, transactionBytecode));
     }
 
     /**
@@ -233,9 +238,9 @@ contract TimeLockMultisig is owned, tokenRecipient {
     function vote(
         uint proposalNumber,
         bool supportsProposal,
-        string justificationText
+        string memory justificationText
     )
-        onlyMembers
+        onlyMembers public
     {
         Proposal storage p = proposals[proposalNumber]; // Get the proposal
         require(p.voted[msg.sender] != true);           // If has already voted, cancel
@@ -247,24 +252,24 @@ contract TimeLockMultisig is owned, tokenRecipient {
         }
 
         // Create a log of this event
-        Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
+        emit Voted(proposalNumber,  supportsProposal, msg.sender, justificationText);
 
         // If you can execute it now, do it
         if ( now > proposalDeadline(proposalNumber)
             && p.currentResult > 0
-            && p.proposalHash == sha3(p.recipient, p.amount, '')
+            && p.proposalHash == keccak256(abi.encodePacked(p.recipient, p.amount, ''))
             && supportsProposal) {
             executeProposal(proposalNumber, '');
         }
     }
 
-    function proposalDeadline(uint proposalNumber) constant returns(uint deadline) {
+    function proposalDeadline(uint proposalNumber) public view returns(uint deadline) {
         Proposal storage p = proposals[proposalNumber];
         uint factor = calculateFactor(uint(p.currentResult), (members.length - 1));
         return p.creationDate + uint(factor * minimumTime *  1 minutes);
     }
 
-    function calculateFactor(uint a, uint b) constant returns (uint factor) {
+    function calculateFactor(uint a, uint b) public pure returns (uint factor) {
         return 2**(20 - (20 * a)/b);
     }
 
@@ -276,7 +281,7 @@ contract TimeLockMultisig is owned, tokenRecipient {
      * @param proposalNumber proposal number
      * @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
      */
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) {
+    function executeProposal(uint proposalNumber, bytes memory transactionBytecode) public {
         Proposal storage p = proposals[proposalNumber];
 
         require(now >= proposalDeadline(proposalNumber)                                         // If it is past the voting deadline
@@ -286,9 +291,10 @@ contract TimeLockMultisig is owned, tokenRecipient {
 
 
         p.executed = true;
-        assert(p.recipient.call.value(p.amount)(transactionBytecode));
+        (bool success, ) = p.recipient.call.value(p.amount)(transactionBytecode);
+        require(success);
 
         // Fire Events
-        ProposalExecuted(proposalNumber, p.currentResult, proposalDeadline(proposalNumber));
+        emit ProposalExecuted(proposalNumber, p.currentResult, proposalDeadline(proposalNumber));
     }
 }
