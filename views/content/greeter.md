@@ -23,6 +23,7 @@ Now that you’ve mastered the basics of Ethereum, let’s move into your first 
 
 The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
+    pragma solidity >=0.4.22 <0.6.0;
 
     contract Mortal {
         /* Define variable owner of the type address */
