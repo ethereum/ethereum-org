@@ -130,7 +130,9 @@ contract Congress is owned, tokenRecipient {
 
         for (uint i = memberId[targetMember]; i<members.length-1; i++){
             members[i] = members[i+1];
+            memberId[members[i].member] = i;
         }
+        memberId[targetMember] = 0;
         delete members[members.length-1];
         members.length--;
     }
