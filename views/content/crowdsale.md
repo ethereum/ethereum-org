@@ -88,7 +88,7 @@ The [unnamed function](https://solidity.readthedocs.io/en/latest/contracts.html#
 
 This has the advantage that the contract prevents falling into a situation that someone will be left without their ether or tokens. In a previous version of this contract we would also [**self destruct**](https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#contract-related) the contract after the crowdsale ended: this would mean that any transaction sent after that moment would lose their funds. By creating a fallback function that throws when the sale is over, we prevent anyone losing money.
 
-The contract has a safeWithdrawl() function, without any parameters, that can be executed by the beneficiary to access the amount raised or by the funders to get back their funds in the case of a failed fundraise.
+The contract has a safeWithdrawal() function, without any parameters, that can be executed by the beneficiary to access the amount raised or by the funders to get back their funds in the case of a failed fundraise.
 
 ![Crowdsale execution](/images/tutorial/crowdsale-execute.png)
 
