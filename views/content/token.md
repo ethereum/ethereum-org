@@ -270,14 +270,14 @@ Add this variable and function anywhere inside the contract. You can put them an
     }
 ```
 
-With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Unfortunately, freezing has no practical effect because we haven't added anything to the transfer function. We are changing that now:
+With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Freezing does not yet have a practical effect because we haven't added anything to the transfer function. We are changing that now:
 
 ```
     function transfer(address _to, uint256 _value) public {
         require(!frozenAccount[msg.sender]);
 ```
 
-Now any account that is frozen will still have their funds intact, but won't be able to move them. All accounts are unfrozen by default until you freeze them, but you can easily revert that behavior into a whitelist where you need to manually approve every account. Just rename **frozenAccount** into **approvedAccount** and change the last line to:
+Now any account that is frozen will still have their funds intact, but won't be able to move them. Alternatively, you can also create a whitelist where all accounts are frozen by default and each account needs to be manually approved. Just rename **frozenAccount** into **approvedAccount** and change the last line to:
 
 ```
         require(approvedAccount[msg.sender]);
