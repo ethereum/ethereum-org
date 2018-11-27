@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity >=0.4.22 <0.6.0;
 
 contract owned {
     address public owner;
@@ -21,13 +21,14 @@ contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
+    function receiveApproval(address _from, uint256 _value, address _token, bytes memory _extraData) public {
         Token t = Token(_token);
-        require(t.transferFrom(_from, this, _value));
+
+        require(t.transferFrom(_from, address(this), _value));
         emit receivedTokens(_from, _value, _token, _extraData);
     }
 
-    function () payable public {
+    function () payable external {
         emit receivedEther(msg.sender, msg.value);
     }
 }
@@ -78,7 +79,7 @@ contract Association is owned, tokenRecipient {
     }
 
     /**
-     * Constructor function
+     * Constructor
      *
      * First time setup
      */
@@ -101,7 +102,7 @@ contract Association is owned, tokenRecipient {
         if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
         minimumQuorum = minimumSharesToPassAVote;
         debatingPeriodInMinutes = minutesForDebate;
-        emit ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, sharesTokenAddress);
+        emit ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, address(sharesTokenAddress));
     }
 
     /**
@@ -117,8 +118,8 @@ contract Association is owned, tokenRecipient {
     function newProposal(
         address beneficiary,
         uint weiAmount,
-        string jobDescription,
-        bytes transactionBytecode
+        string memory jobDescription,
+        bytes memory transactionBytecode
     )
         onlyShareholders public
         returns (uint proposalID)
@@ -153,8 +154,8 @@ contract Association is owned, tokenRecipient {
     function newProposalInEther(
         address beneficiary,
         uint etherAmount,
-        string jobDescription,
-        bytes transactionBytecode
+        string memory jobDescription,
+        bytes memory transactionBytecode
     )
         onlyShareholders public
         returns (uint proposalID)
@@ -174,9 +175,9 @@ contract Association is owned, tokenRecipient {
         uint proposalNumber,
         address beneficiary,
         uint weiAmount,
-        bytes transactionBytecode
+        bytes memory transactionBytecode
     )
-        constant public
+        view public
         returns (bool codeChecksOut)
     {
         Proposal storage p = proposals[proposalNumber];
@@ -217,7 +218,7 @@ contract Association is owned, tokenRecipient {
      * @param proposalNumber proposal number
      * @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
      */
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) public {
+    function executeProposal(uint proposalNumber, bytes memory transactionBytecode) public {
         Proposal storage p = proposals[proposalNumber];
 
         require(now > p.minExecutionDate                                             // If it is past the voting deadline
@@ -247,7 +248,9 @@ contract Association is owned, tokenRecipient {
             // Proposal passed; execute the transaction
 
             p.executed = true;
-            require(p.recipient.call.value(p.amount)(transactionBytecode));
+            
+            (bool success, ) = p.recipient.call.value(p.amount)(transactionBytecode);
+            require(success);
 
             p.proposalPassed = true;
         } else {
