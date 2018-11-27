@@ -23,16 +23,17 @@ Now that you’ve mastered the basics of Ethereum, let’s move into your first 
 
 The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
+    pragma solidity >=0.4.22 <0.6.0;
 
     contract Mortal {
         /* Define variable owner of the type address */
         address owner;
 
         /* This function is executed at initialization and sets the owner of the contract */
-        function Mortal() { owner = msg.sender; }
+        constructor() public { owner = msg.sender; }
 
         /* Function to recover the funds on the contract */
-        function kill() { if (msg.sender == owner) selfdestruct(owner); }
+        function kill() public { if (msg.sender == owner) selfdestruct(msg.sender); }
     }
 
     contract Greeter is Mortal {
@@ -40,12 +41,12 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         string greeting;
 
         /* This runs when the contract is executed */
-        function Greeter(string _greeting) public {
+        constructor(string memory _greeting) public {
             greeting = _greeting;
         }
 
         /* Main function */
-        function greet() constant returns (string) {
+        function greet() public view returns (string memory) {
             return greeting;
         }
     }
