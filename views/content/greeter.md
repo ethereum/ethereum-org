@@ -29,7 +29,7 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         /* Define variable owner of the type address */
         address owner;
 
-        /* This function is executed at initialization and sets the owner of the contract */
+        /* This constructor is executed at initialization and sets the owner of the contract */
         constructor() public { owner = msg.sender; }
 
         /* Function to recover the funds on the contract */
@@ -51,17 +51,16 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         }
     }
 
+You'll notice that there are two different contracts in this code: _"Mortal"_ and _"Greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit characteristics of another. This is very useful to simplify coding as common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _Greeter is Mortal_ you inherited all characteristics from the _"Mortal"_ contract and kept the _"Greeter"_ code simple and easy to read.
 
-You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit characteristics of another. This is very useful to simplify coding as common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter code simple and easy to read.
-
-The inherited characteristic _"mortal"_ simply means that the greeter contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
+The inherited characteristic _"Mortal"_ simply means that the _"Greeter"_ contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
 
 
 #### Using Remix
 
 As of 2018, the most convenient way to develop contracts is using Remix, an online IDE. Copy the source code (at the top of this page) to [Remix](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
 
-To access the compiled code, ensure that the dropdown menu on the right pane has `greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** textbox.
+To access the compiled code, ensure that the dropdown menu on the right pane has `Greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** textbox.
 
 Create a temporary text file on your computer and paste that code. Make sure to change the first line to look like the following:
 
