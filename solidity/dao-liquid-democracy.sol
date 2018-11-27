@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity >=0.4.22 <0.6.0;
 
 contract token {
     mapping (address => uint256) public balanceOf;
@@ -27,16 +27,16 @@ contract LiquidDemocracy {
     }
 
     /**
-     * Constructor function
+     * Constructor
      */
-    function LiquidDemocracy(
+    constructor(
         address votingWeightToken,
-        string forbiddenFunctionCall,
+        string memory forbiddenFunctionCall,
         uint percentLossInEachRound
     ) public {
         votingToken = token(votingWeightToken);
         delegatedVotes.length++;
-        delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
+        delegatedVotes[0] = DelegatedVote({nominee: address(0), voter: address(0)});
         forbiddenFunction = forbiddenFunctionCall;
         delegatedPercent = 100 - percentLossInEachRound;
         if (delegatedPercent > 100) delegatedPercent = 100;
@@ -74,12 +74,13 @@ contract LiquidDemocracy {
      */
     function execute(address target, uint valueInWei, bytes32 bytecode) public {
         require(msg.sender == appointee                             // If caller is the current appointee,
-            && !underExecution //                                   // if the call is being executed,
-            && bytes4(bytecode) != bytes4(keccak256(forbiddenFunction))  // and it's not trying to do the forbidden function
-            && numberOfDelegationRounds >= 4);                     // and delegation has been calculated enough
+            && !underExecution                                      // if the call is being executed,
+            && bytes4(bytecode) != bytes4(keccak256(abi.encodePacked(forbiddenFunction)))  // and it's not trying to do the forbidden function
+            && numberOfDelegationRounds >= 4);                      // and delegation has been calculated enough
 
         underExecution = true;
-        assert(target.call.value(valueInWei)(bytecode)); // Then execute the command.
+        (bool success, ) = target.call.value(valueInWei)(abi.encode(bytecode)); // Then execute the command.
+        require(success); 
         underExecution = false;
     }
 
@@ -102,7 +103,7 @@ contract LiquidDemocracy {
             for (uint i=1; i< delegatedVotes.length; i++) {
                 voteWeight[delegatedVotes[i].nominee] = 0;
             }
-            for (i=1; i< delegatedVotes.length; i++) {
+            for (uint i=1; i< delegatedVotes.length; i++) {
                 voteWeight[delegatedVotes[i].voter] = votingToken.balanceOf(delegatedVotes[i].voter);
             }
         }
@@ -110,7 +111,7 @@ contract LiquidDemocracy {
             numberOfDelegationRounds++;
             uint lossRatio = 100 * delegatedPercent ** numberOfDelegationRounds / 100 ** numberOfDelegationRounds;
             if (lossRatio > 0) {
-                for (i=1; i< delegatedVotes.length; i++){
+                for (uint i=1; i< delegatedVotes.length; i++){
                     v = delegatedVotes[i];
 
                     if (v.nominee != v.voter && voteWeight[v.voter] > 0) {
@@ -135,3 +136,4 @@ contract LiquidDemocracy {
         return currentWinner;
     }
 }
+

@@ -9,8 +9,8 @@ What can you do with contracts? Well, you can do almost anything really, but for
 
 Before you begin:
 
-* [Install the Ethereum CLI](https://ethereum.org/cli)
-* [Learn more about contracts](https://github.com/ethereum/go-ethereum/wiki/Contracts-and-Transactions)
+* [Install the Ethereum CLI](/cli)
+* [Learn more about contracts](http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html)
 
 Please confirm that the GUI is closed before entering the `geth` console.
 Run `geth` to begin the sync process (this may take a while on the first run).
@@ -23,16 +23,17 @@ Now that you’ve mastered the basics of Ethereum, let’s move into your first 
 
 The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
+    pragma solidity >=0.4.22 <0.6.0;
 
     contract Mortal {
         /* Define variable owner of the type address */
         address owner;
 
-        /* This function is executed at initialization and sets the owner of the contract */
-        function Mortal() { owner = msg.sender; }
+        /* This constructor is executed at initialization and sets the owner of the contract */
+        constructor() public { owner = msg.sender; }
 
         /* Function to recover the funds on the contract */
-        function kill() { if (msg.sender == owner) selfdestruct(owner); }
+        function kill() public { if (msg.sender == owner) selfdestruct(msg.sender); }
     }
 
     contract Greeter is Mortal {
@@ -40,16 +41,17 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         string greeting;
 
         /* This runs when the contract is executed */
-        function Greeter(string _greeting) public {
+        constructor(string memory _greeting) public {
             greeting = _greeting;
         }
 
         /* Main function */
-        function greet() constant returns (string) {
+        function greet() public view returns (string memory) {
             return greeting;
         }
     }
 
+You'll notice that there are two different contracts in this code: _"Mortal"_ and _"Greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit characteristics of another. This is very useful to simplify coding as common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _Greeter is Mortal_ you inherited all characteristics from the _"Mortal"_ contract and kept the _"Greeter"_ code simple and easy to read.
 
 You'll notice that there are two different contracts in this code: _"mortal"_ and _"greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit characteristics of another. This is very useful to simplify coding as common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _greeter is mortal_ you inherited all characteristics from the "mortal" contract and kept the greeter code simple and easy to read.
 
@@ -115,11 +117,14 @@ And then add below lines to greeter.js.
         }
     })
 
+
+The inherited characteristic _"Mortal"_ simply means that the _"Greeter"_ contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
+
 You have now compiled your code and made it available to Geth. Now you need to get it ready for deployment.
 
 #### Using Remix
 
-If you don't have Solc installed, you can simply use the online IDE. Copy the source code (at the top of this page) to [Remix](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
+As of 2018, the most convenient way to develop contracts is using Remix, an online IDE. Copy the source code (at the top of this page) to [Remix](https://remix.ethereum.org) and it should automatically compile your code. You can safely ignore any yellow warning boxes on the right plane.
 
 To access the compiled code, ensure that the dropdown menu on the right pane has `Greeter` selected. Then click on the **Details** button directly to the right of the dropdown. In the popup, scroll down and copy all the code in the **WEB3DEPLOY** textbox.
 
@@ -137,7 +142,7 @@ Now, we have greeter.js ready to deploy, import the file with `loadScript("/path
 
 You may have to "unlock" the account that is sending the transaction using the password you picked in the beginning, because you need to pay for the gas costs to deploying your contract: e.g. `personal.unlockAccount(web3.eth.accounts[0], "yourPassword")`.
 
-This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](http://remix.ethereum.org)), at the time of writing, gas on the test net is priced at 20 gwei ([equal to( 20000000000 wei, or  0.00000002 ether](http://ether.fund/tool/converter#v=20&u=Gwei)) per unit of gas. There are many useful stats, including the latest gas prices [at the network stats page](https://ethstats.net).
+This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](http://remix.ethereum.org)), at the time of writing, gas on the main net is priced at 6 gwei, resulting in 0.00108 ETH worth of feed. You can use [ETH Gas Station Transaction Calculator tool](https://ethgasstation.info/calculatorTxV.php) for updated information.
 
 **Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
 

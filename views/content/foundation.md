@@ -31,7 +31,7 @@
 
 **Jeff is one of the founders of Ethereum.** He started the first implementation of Ethereum using the Go programming language in 2013 and has been the Go team lead and head developer ever since. The Go client launched successfully on July 30, 2015, marking the release of the genesis block and Ethereum platform. 
 
-[LinkedIn](https://www.linkedin.com/in/jeffreywilcke), [GitHub](https://github.com/obscuren)
+[GitHub](https://github.com/obscuren)
 
 
 
