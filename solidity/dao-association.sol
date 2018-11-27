@@ -1,9 +1,9 @@
-pragma solidity ^0.4.16;
+pragma solidity >=0.4.22 <0.6.0;
 
 contract owned {
     address public owner;
 
-    function owned() public {
+    constructor() public {
         owner = msg.sender;
     }
 
@@ -21,14 +21,14 @@ contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
+    function receiveApproval(address _from, uint256 _value, address _token, bytes memory _extraData) public {
         Token t = Token(_token);
-        require(t.transferFrom(_from, this, _value));
-        receivedTokens(_from, _value, _token, _extraData);
+        require(t.transferFrom(_from, address(this), _value));
+        emit receivedTokens(_from, _value, _token, _extraData);
     }
 
-    function () payable public {
-        receivedEther(msg.sender, msg.value);
+    function () payable external {
+        emit receivedEther(msg.sender, msg.value);
     }
 }
 
@@ -78,11 +78,11 @@ contract Association is owned, tokenRecipient {
     }
 
     /**
-     * Constructor function
+     * Constructor
      *
      * First time setup
      */
-    function Association(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable public {
+    constructor(Token sharesAddress, uint minimumSharesToPassAVote, uint minutesForDebate) payable public {
         changeVotingRules(sharesAddress, minimumSharesToPassAVote, minutesForDebate);
     }
 
@@ -101,7 +101,7 @@ contract Association is owned, tokenRecipient {
         if (minimumSharesToPassAVote == 0 ) minimumSharesToPassAVote = 1;
         minimumQuorum = minimumSharesToPassAVote;
         debatingPeriodInMinutes = minutesForDebate;
-        ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, sharesTokenAddress);
+        emit ChangeOfRules(minimumQuorum, debatingPeriodInMinutes, address(sharesTokenAddress));
     }
 
     /**
@@ -117,8 +117,8 @@ contract Association is owned, tokenRecipient {
     function newProposal(
         address beneficiary,
         uint weiAmount,
-        string jobDescription,
-        bytes transactionBytecode
+        string memory jobDescription,
+        bytes memory transactionBytecode
     )
         onlyShareholders public
         returns (uint proposalID)
@@ -128,12 +128,12 @@ contract Association is owned, tokenRecipient {
         p.recipient = beneficiary;
         p.amount = weiAmount;
         p.description = jobDescription;
-        p.proposalHash = keccak256(beneficiary, weiAmount, transactionBytecode);
+        p.proposalHash = keccak256(abi.encodePacked(beneficiary, weiAmount, transactionBytecode));
         p.minExecutionDate = now + debatingPeriodInMinutes * 1 minutes;
         p.executed = false;
         p.proposalPassed = false;
         p.numberOfVotes = 0;
-        ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
+        emit ProposalAdded(proposalID, beneficiary, weiAmount, jobDescription);
         numProposals = proposalID+1;
 
         return proposalID;
@@ -153,8 +153,8 @@ contract Association is owned, tokenRecipient {
     function newProposalInEther(
         address beneficiary,
         uint etherAmount,
-        string jobDescription,
-        bytes transactionBytecode
+        string memory jobDescription,
+        bytes memory transactionBytecode
     )
         onlyShareholders public
         returns (uint proposalID)
@@ -174,13 +174,13 @@ contract Association is owned, tokenRecipient {
         uint proposalNumber,
         address beneficiary,
         uint weiAmount,
-        bytes transactionBytecode
+        bytes memory transactionBytecode
     )
-        constant public
+        view public
         returns (bool codeChecksOut)
     {
         Proposal storage p = proposals[proposalNumber];
-        return p.proposalHash == keccak256(beneficiary, weiAmount, transactionBytecode);
+        return p.proposalHash == keccak256(abi.encodePacked(beneficiary, weiAmount, transactionBytecode));
     }
 
     /**
@@ -205,7 +205,7 @@ contract Association is owned, tokenRecipient {
         p.votes[voteID] = Vote({inSupport: supportsProposal, voter: msg.sender});
         p.voted[msg.sender] = true;
         p.numberOfVotes = voteID +1;
-        Voted(proposalNumber,  supportsProposal, msg.sender);
+        emit Voted(proposalNumber,  supportsProposal, msg.sender);
         return voteID;
     }
 
@@ -217,12 +217,12 @@ contract Association is owned, tokenRecipient {
      * @param proposalNumber proposal number
      * @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
      */
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) public {
+    function executeProposal(uint proposalNumber, bytes memory transactionBytecode) public {
         Proposal storage p = proposals[proposalNumber];
 
         require(now > p.minExecutionDate                                             // If it is past the voting deadline
             && !p.executed                                                          // and it has not already been executed
-            && p.proposalHash == keccak256(p.recipient, p.amount, transactionBytecode)); // and the supplied code matches the proposal...
+            && p.proposalHash == keccak256(abi.encodePacked(p.recipient, p.amount, transactionBytecode))); // and the supplied code matches the proposal...
 
 
         // ...then tally the results
@@ -247,7 +247,9 @@ contract Association is owned, tokenRecipient {
             // Proposal passed; execute the transaction
 
             p.executed = true;
-            require(p.recipient.call.value(p.amount)(transactionBytecode));
+            
+            (bool success, ) = p.recipient.call.value(p.amount)(transactionBytecode);
+            require(success);
 
             p.proposalPassed = true;
         } else {
@@ -256,6 +258,6 @@ contract Association is owned, tokenRecipient {
         }
 
         // Fire Events
-        ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
+        emit ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
     }
 }
