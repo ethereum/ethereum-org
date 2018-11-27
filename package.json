@@ -8,8 +8,9 @@
     "npm": "3.8.6"
   },
   "scripts": {
-    "start": "node ./bin/www",
     "build": "grunt",
+    "start": "node ./bin/www",
+    "start:dist": "http-server dist/",
     "check-links": "http-server dist/ --silent & blc http://localhost:8080 -rg"
   },
   "dependencies": {
