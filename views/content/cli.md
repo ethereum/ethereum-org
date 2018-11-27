@@ -21,7 +21,7 @@ If you are building a business that needs to have maximum uptime guarantees to t
 The **Go** implementation is called **Geth**. Geth has been audited for security and will be the future basis for the enduser-facing **Mist Browser**, so if you have experience with web development and are interested in building frontends for dapps, you should experiment with Geth.
 
 
-#### Install on Mac
+#### Install on macOS
 
 Install [Homebrew](https://brew.sh/) and make sure it's up to date:
 
@@ -35,7 +35,8 @@ Then use these commands to install ethereum:
 
 For more, see the [full documentation on Mac OSX Geth](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac)
 
-#### Windows
+
+#### Use on Windows
 
 Download the [latest stable binary](https://geth.ethereum.org/downloads/), extract it, download the zip file, extract geth.exe from zip, open a command terminal and type:
 
@@ -44,6 +45,7 @@ Download the [latest stable binary](https://geth.ethereum.org/downloads/), extra
 
 
 For more, see the [full documentation on Windows Geth](https://github.com/ethereum/go-ethereum/wiki/Installation-instructions-for-Windows)
+
 
 #### Install on Linux
 
@@ -63,7 +65,8 @@ For other environments and more instruction, see the [full documentation on Geth
 
 The **C++** implementation is simply called **Eth**. If you want added security by running two different implementations in parallel or are serious about GPU mining, then the C++ "Eth" client is for you.
 
-#### Install: on Mac
+
+#### Install on macOS
 
 Install [Homebrew](https://brew.sh/) and then make sure it's up to date:
 
@@ -80,9 +83,10 @@ The [cpp-ethereum documentation](http://www.ethdocs.org/en/latest/ethereum-clien
 has detailed information on [OS X Homebrew package](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html)
 and on [Building OS X from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/macos.html).
 
-#### Install on Linux:
 
-If you use Apt-get, paste this into the terminal:
+#### Install on Linux
+
+If you use `apt-get`, paste this into the terminal:
 
     apt-get install cpp-ethereum
 
@@ -91,7 +95,7 @@ has detailed information on [PPAs for Ubuntu](http://www.ethdocs.org/en/latest/e
 and on [Building Linux from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/linux.html).
 
 
-#### Install on Windows
+#### Use on Windows
 
 The [cpp-ethereum documentation](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html)
 has detailed information on [Building Windows from Source](http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/windows.html).
@@ -101,9 +105,10 @@ has detailed information on [Building Windows from Source](http://www.ethdocs.or
 
 ![Logo for Python](/images/icons/python.png)
 
-The **Python** implementation is called Pyethapp. If you are interested in understanding how Ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or are interested in Ethereum for research or an academic purpose, this is a great client: we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethapp).  
+The **Python** implementation is called **Pyethapp**. If you are interested in understanding how Ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or are interested in Ethereum for research or an academic purpose, this is a great client: we invite you to [take a look and contribute to it](https://github.com/ethereum/pyethapp).  
 
-#### Other Options
+
+### Other options
 
 * [Parity Ethereum](https://www.parity.io/) a Rust implementation by [Parity Technologies](http://paritytech.io/)  
 * A [Haskell](https://github.com/bkirwi/ethereum-haskell) implementation developed by [Blockapps](https://blockapps.net/)
@@ -186,13 +191,15 @@ Geth supports multiple terminal windows and you may start a new one with the log
 
 The console has auto completion of commands and command-history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.
 
-#### Learn More on Running a node
+
+#### Learn more on running a node
 
 * [Backup and restore](http://ethdocs.org/en/latest/account-management.html#backup-and-restore-accounts)
 * [Connecting to the network](http://ethdocs.org/en/latest/network/connecting-to-the-network.html)
 
 
 ### Usage examples
+
 
 #### Creating accounts
 
@@ -212,6 +219,7 @@ You may create as many or as few accounts as you like. By convention we call the
 
 The ordering of the accounts reflects the time of their creation. Keyfiles are stored under DATADIR/keystore and can be transferred between clients by copying the files contained within. The files are encrypted with your passphrase and should be backed up if they contain any amount of ether. Note, however, if you transfer individual key files, the order of accounts presented may change and you may not end up the same account on the same position. So be aware that relying on account index is sound only as long as you do not copy external keyfiles to your keystore.
 
+
 #### Get the balance of any account
 
 All commands on the console are actually in JavaScript, so you can create variables and daisy chain functions. You can also write any “eth” function as “web3.eth” since it’s actually part of the main “web3” object.
@@ -227,7 +235,7 @@ You now have a variable called primaryAccount that you can use in other calls. T
  Your balance should return 0, since you just created it. In order to do the next steps you need to have some ether in your account so you can pay the gas costs. In the next section you'll learn what gas is, and how you can interact with the network.
 
 
-#### Check All Balances at once
+#### Check all balances at once
 
 The command line tools are JavaScript environments, which means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet.
 
@@ -251,6 +259,7 @@ Once you executed the line above, all you need to check all of your balances is 
 **Tip: if you have many small handy scripts like this you use frequently, you can save them to a file and then load them all at once using _loadScript_:**
 
     loadScript('/some/script/here.js')
+
 
 #### Learn more
 
