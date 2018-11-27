@@ -40,7 +40,7 @@ A mapping means an associative array, where you associate addresses with balance
 If you published your contract right away, it would work but wouldn't be very useful: it would be a contract that could query the balance of your coin for any address–but since you never created a single coin, every one of them would return 0. So we are going to create a few tokens on startup. Add this code *before* the last closing bracket, just under the *mapping..* line.
 
 ```
-    function MyToken() public {
+    constructor() public {
         balanceOf[msg.sender] = 21000000;
     }
 ```
@@ -50,7 +50,7 @@ Notice that the *function MyToken* has the same name as the *contract MyToken*. 
 The choice of 21 million was rather arbitrary, and you can change it to anything you want in the code, but there's a better way: instead, supply it as a parameter for the function, like this:
 
 ```
-    function MyToken(uint256 initialSupply) public {
+    constructor(uint256 initialSupply) public {
         balanceOf[msg.sender] = initialSupply;
     }
 ```
@@ -96,7 +96,7 @@ And now we update the **constructor function** to allow all those variables to b
 
 ```
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MyToken(uint256 initialSupply, string tokenName, string tokenSymbol, uint8 decimalUnits) public {
+    constructor(uint256 initialSupply, string memory tokenName, string memory tokenSymbol, uint8 decimalUnits) public {
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
@@ -162,13 +162,13 @@ Because many of these functions are having to reimplement the transferring of to
 ```
     /* Internal transfer, can only be called by this contract */
     function _transfer(address _from, address _to, uint _value) internal {
-        require (_to != 0x0);                               // Prevent transfer to 0x0 address. Use burn() instead
-        require (balanceOf[_from] >= _value);                // Check if the sender has enough
-        require (balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
-        require(!frozenAccount[_from]);                     // Check if sender is frozen
-        require(!frozenAccount[_to]);                       // Check if recipient is frozen
-        balanceOf[_from] -= _value;                         // Subtract from the sender
-        balanceOf[_to] += _value;                           // Add the same to the recipient
+        require (_to != address(0x0));                          // Prevent transfer to 0x0 address. Use burn() instead
+        require (balanceOf[_from] >= _value);                   // Check if the sender has enough
+        require (balanceOf[_to] + _value >= balanceOf[_to]);    // Check for overflows
+        require(!frozenAccount[_from]);                         // Check if sender is frozen
+        require(!frozenAccount[_to]);                           // Check if recipient is frozen
+        balanceOf[_from] -= _value;                             // Subtract from the sender
+        balanceOf[_to] += _value;                               // Add the same to the recipient
         emit Transfer(_from, _to, _value);
     }
 ```
@@ -187,7 +187,7 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
     contract owned {
         address public owner;
 
-        function owned() {
+        constructor() {
             owner = msg.sender;
         }
 
@@ -196,7 +196,7 @@ In order to do that we'll learn a very useful property of contracts: **inheritan
             _;
         }
 
-        function transferOwnership(address newOwner) onlyOwner {
+        function transferOwnership(address newOwner) onlyOwner public {
             owner = newOwner;
         }
     }
@@ -212,13 +212,13 @@ This creates a very basic contract that doesn't do anything except define some g
 This means that all the functions inside **MyToken** now can access the variable *owner* and the modifier *onlyOwner*. The contract also gets a function to transfer ownership. Since it might be interesting to set the owner of the contract at startup, you can also add this to the *constructor function*:
 
 ```
-    function MyToken(
+    constructor(
         uint256 initialSupply,
-        string tokenName,
+        string memory tokenName,
         uint8 decimalUnits,
-        string tokenSymbol,
+        string memory tokenSymbol,
         address centralMinter
-        ) {
+        ) public {
         if(centralMinter != 0 ) owner = centralMinter;
     }
 ```
@@ -233,7 +233,7 @@ First, we need to add a variable to store the **totalSupply** and assign it to o
     contract MyToken {
         uint256 public totalSupply;
 
-        function MyToken(...) {
+        constructor(...) public {
             totalSupply = initialSupply;
             ...
         }
@@ -244,7 +244,7 @@ First, we need to add a variable to store the **totalSupply** and assign it to o
 Now let's add a new function finally that will enable the owner to create new tokens:
 
 ```
-    function mintToken(address target, uint256 mintedAmount) onlyOwner {
+    function mintToken(address target, uint256 mintedAmount) onlyOwner public {
         balanceOf[target] += mintedAmount;
         totalSupply += mintedAmount;
         emit Transfer(0, owner, mintedAmount);
@@ -264,20 +264,20 @@ Add this variable and function anywhere inside the contract. You can put them an
     mapping (address => bool) public frozenAccount;
     event FrozenFunds(address target, bool frozen);
 
-    function freezeAccount(address target, bool freeze) onlyOwner {
+    function freezeAccount(address target, bool freeze) onlyOwner public {
         frozenAccount[target] = freeze;
         emit FrozenFunds(target, freeze);
     }
 ```
 
-With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Unfortunately, freezing has no practical effect because we haven't added anything to the transfer function. We are changing that now:
+With this code, all accounts are unfrozen by default but the owner can set any of them into a freeze state by calling **Freeze Account**. Freezing does not yet have a practical effect because we haven't added anything to the transfer function. We are changing that now:
 
 ```
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) public {
         require(!frozenAccount[msg.sender]);
 ```
 
-Now any account that is frozen will still have their funds intact, but won't be able to move them. All accounts are unfrozen by default until you freeze them, but you can easily revert that behavior into a whitelist where you need to manually approve every account. Just rename **frozenAccount** into **approvedAccount** and change the last line to:
+Now any account that is frozen will still have their funds intact, but won't be able to move them. Alternatively, you can also create a whitelist where all accounts are frozen by default and each account needs to be manually approved. Just rename **frozenAccount** into **approvedAccount** and change the last line to:
 
 ```
         require(approvedAccount[msg.sender]);
@@ -293,7 +293,7 @@ First, let's set the price for buying and selling:
     uint256 public sellPrice;
     uint256 public buyPrice;
 
-    function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner {
+    function setPrices(uint256 newSellPrice, uint256 newBuyPrice) onlyOwner public {
         sellPrice = newSellPrice;
         buyPrice = newBuyPrice;
     }
@@ -304,19 +304,19 @@ This is acceptable for a price that doesn't change very often, as every new pric
 The next step is making the buy and sell functions:
 
 ```
-    function buy() payable returns (uint amount){
+    function buy() public payable returns (uint amount) {
         amount = msg.value / buyPrice;                    // calculates the amount
-        _transfer(this, msg.sender, amount);
+        _transfer(address(this), msg.sender, amount);
         return amount;
     }
 
-    function sell(uint amount) returns (uint revenue){
+    function sell(uint amount) public returns (uint revenue) {
         require(balanceOf[msg.sender] >= amount);         // checks if the sender has enough to sell
-        balanceOf[this] += amount;                        // adds the amount to owner's balance
+        balanceOf[address(this)] += amount;               // adds the amount to owner's balance
         balanceOf[msg.sender] -= amount;                  // subtracts the amount from seller's balance
         revenue = amount * sellPrice;
         msg.sender.transfer(revenue);                     // sends ether to the seller: it's important to do this last to prevent recursion attacks
-        Transfer(msg.sender, this, amount);               // executes an event reflecting on the change
+        emit Transfer(msg.sender, address(this), amount); // executes an event reflecting on the change
         return revenue;                                   // ends function and returns
     }
 ```
@@ -338,7 +338,7 @@ In order to do that, first you need to create a variable that will hold the thre
 ```
     uint public minBalanceForAccounts;
 
-    function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
+    function setMinBalance(uint minimumBalanceInFinney) onlyOwner public {
          minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
     }
 ```
@@ -347,7 +347,7 @@ Then, add this line to the **transfer** function so that the sender is refunded:
 
 ```
     /* Send coins */
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) public {
         ...
         if(msg.sender.balance < minBalanceForAccounts)
             sell((minBalanceForAccounts - msg.sender.balance) / sellPrice);
@@ -358,7 +358,7 @@ You can also instead change it so that the fee is paid forward to the receiver b
 
 ```
     /* Send coins */
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) public {
         ...
         if(_to.balance<minBalanceForAccounts)
             _to.send(sell((minBalanceForAccounts - _to.balance) / sellPrice));
@@ -372,7 +372,7 @@ This will ensure that no account receiving the token has less than the necessary
 There are some ways to tie your coin supply to a mathematical formula. One of the simplest ways would be to make it a "merged mining" with Ether, meaning that anyone who finds a block on Ethereum would also get a reward from your coin, given that anyone calls the reward function on that block. You can do it using the [special keyword coinbase](https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#block-and-transaction-properties) that refers to the miner who finds the block.
 
 ```
-    function giveBlockReward() {
+    function giveBlockReward() public {
         balanceOf[block.coinbase] += 1;
     }
 ```
@@ -382,10 +382,10 @@ It's also possible to add a mathematical formula, so that anyone who can do math
 ```
     uint public currentChallenge = 1; // Can you figure out the cubic root of this number?
 
-    function rewardMathGeniuses(uint answerToCurrentReward, uint nextChallenge) {
-        require(answerToCurrentReward**3 == currentChallenge); // If answer is wrong do not continue
-        balanceOf[msg.sender] += 1;         // Reward the player
-        currentChallenge = nextChallenge;   // Set the next challenge
+    function rewardMathGeniuses(uint answerToCurrentReward, uint nextChallenge) public {
+        require(answerToCurrentReward**3 == currentChallenge);  // If answer is wrong do not continue
+        balanceOf[msg.sender] += 1;                             // Reward the player
+        currentChallenge = nextChallenge;                       // Set the next challenge
     }
 ```
 
@@ -396,22 +396,24 @@ This process was first proposed by Adam Back in 1997 as [Hashcash](https://en.wi
 But if you like Hashing as a form of random issuance of coins, you can still create your own Ethereum based currency that has a proof of work issuance:
 
 ```
-    bytes32 public currentChallenge;                         // The coin starts with a challenge
-    uint public timeOfLastProof;                             // Variable to keep track of when rewards were given
-    uint public difficulty = 10**32;                         // Difficulty starts reasonably low
+    bytes32 public currentChallenge;    // The coin starts with a challenge
+    uint public timeOfLastProof;        // Variable to keep track of when rewards were given
+    uint public difficulty = 10**32;    // Difficulty starts reasonably low
 
-    function proofOfWork(uint nonce){
-        bytes8 n = bytes8(sha3(nonce, currentChallenge));    // Generate a random hash based on input
-        require(n >= bytes8(difficulty));                   // Check if it's under the difficulty
+    function proofOfWork(uint nonce) public {
+        // Generate a random hash based on input
+        bytes32 n = bytes32(keccak256(abi.encodePacked(nonce, currentChallenge)));
+        require(n >= bytes32(difficulty));                                  // Check if it's under the difficulty
 
-        uint timeSinceLastProof = (now - timeOfLastProof);  // Calculate time since last reward was given
-        require(timeSinceLastProof >=  5 seconds);         // Rewards cannot be given too quickly
-        balanceOf[msg.sender] += timeSinceLastProof / 60 seconds;  // The reward to the winner grows by the minute
+        uint timeSinceLastProof = (now - timeOfLastProof);                  // Calculate time since last reward was given
+        require(timeSinceLastProof >=  5 seconds);                          // Rewards cannot be given too quickly
+        balanceOf[msg.sender] += timeSinceLastProof / 60 seconds;           // The reward to the winner grows by the minute
 
-        difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;  // Adjusts the difficulty
-
-        timeOfLastProof = now;                              // Reset the counter
-        currentChallenge = sha3(nonce, currentChallenge, block.blockhash(block.number - 1));  // Save a hash that will be used as the next proof
+        difficulty = difficulty * 10 minutes / timeSinceLastProof + 1;      // Adjusts the difficulty
+        timeOfLastProof = now;                                              // Reset the counter
+        
+        // Save a hash that will be used as the next proof
+        currentChallenge = keccak256(abi.encodePacked(nonce, currentChallenge, blockhash(block.number - 1)));
     }
 ```
 

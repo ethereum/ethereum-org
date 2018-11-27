@@ -9,7 +9,7 @@ What can you do with contracts? Well, you can do almost anything really, but for
 
 Before you begin:
 
-* [Install the Ethereum CLI](https://ethereum.org/cli)
+* [Install the Ethereum CLI](/cli)
 * [Learn more about contracts](http://ethdocs.org/en/latest/contracts-and-transactions/contracts.html)
 
 Please confirm that the GUI is closed before entering the `geth` console.
@@ -23,6 +23,7 @@ Now that you’ve mastered the basics of Ethereum, let’s move into your first 
 
 The Greeter is an intelligent digital entity that lives on the blockchain and is able to have conversations with anyone who interacts with it, based on its input. It might not be a talker, but it’s a great listener. Here is its code:
 
+    pragma solidity >=0.4.22 <0.6.0;
 
     contract Mortal {
         /* Define variable owner of the type address */
@@ -32,7 +33,7 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         constructor() public { owner = msg.sender; }
 
         /* Function to recover the funds on the contract */
-        function kill() public { if (msg.sender == owner) selfdestruct(owner); }
+        function kill() public { if (msg.sender == owner) selfdestruct(msg.sender); }
     }
 
     contract Greeter is Mortal {
@@ -40,12 +41,12 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
         string greeting;
 
         /* This runs when the contract is executed */
-        constructor (string _greeting) public {
+        constructor(string memory _greeting) public {
             greeting = _greeting;
         }
 
         /* Main function */
-        function greet() public constant returns (string) {
+        function greet() public view returns (string memory) {
             return greeting;
         }
     }
@@ -53,7 +54,6 @@ The Greeter is an intelligent digital entity that lives on the blockchain and is
 You'll notice that there are two different contracts in this code: _"Mortal"_ and _"Greeter"_.  This is because Solidity (the high level contract language we are using) has *inheritance*, meaning that one contract can inherit characteristics of another. This is very useful to simplify coding as common traits of contracts don't need to be rewritten every time, and all contracts can be written in smaller, more readable chunks. So by just declaring that _Greeter is Mortal_ you inherited all characteristics from the _"Mortal"_ contract and kept the _"Greeter"_ code simple and easy to read.
 
 The inherited characteristic _"Mortal"_ simply means that the _"Greeter"_ contract can be killed by its owner, to clean up the blockchain and recover funds locked into it when the contract is no longer needed. Contracts in ethereum are, by default, immortal and have no owner, meaning that once deployed the author has no special privileges anymore. Consider this before deploying.
-
 
 
 #### Using Remix
