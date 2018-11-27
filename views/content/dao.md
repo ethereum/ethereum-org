@@ -143,7 +143,7 @@ Then we define a variable of the *type* token, meaning that it will inherit all 
     contract Association {
         token public sharesTokenAddress;
     // ...
-    function Association(token sharesAddress, uint minimumSharesForVoting, uint minutesForDebate) {
+    constructor(token sharesAddress, uint minimumSharesForVoting, uint minutesForDebate) {
             sharesTokenAddress = token(sharesAddress);
 
 This association presents a challenge that the previous congress didn't have: since anyone with tokens can vote and the balances can change very quickly, the actual score of the proposal can't be counted when the shareholder votes, otherwise someone would be able to vote multiple times by simply sending his share to different addresses. So in this contract only the vote position is recorded and then the real score is tallied up on the **execute proposal** phase.
@@ -214,7 +214,7 @@ What is all that vote delegation good for? For one, you can use it instead of th
 
     contract Token {
         mapping (address => uint256) public balanceOf;
-        function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+        function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
     }
 
 Into this:
@@ -223,14 +223,14 @@ Into this:
         mapping (address => uint256) public voteWeight;
         uint public numberOfDelegationRounds;
 
-        function balanceOf(address member) constant returns (uint256 balance) {
+        function balanceOf(address member) public view returns (uint256 balance) {
             if (numberOfDelegationRounds < 3)
                 return 0;
             else
                 return this.voteWeight(member);
         }
         
-        function transferFrom(address _from, address _to, uint256 _value) returns (bool success);
+        function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
     }
 
 When you are writing your contract you can describe multiple other contracts used by your main contract. Some might be functions and variables that are already defined on the target contract, like **voteWeight** and **numberOfDelegationRounds**. But notice that **balanceOf** is a new function, that doesn't exist neither on the Liquid Democracy or the Association contract, we are defining it now, as a function that will return the **voteWeight** if at least three rounds of delegations have been calculated.

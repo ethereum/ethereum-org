@@ -1,9 +1,9 @@
-pragma solidity ^0.4.16;
+pragma solidity >=0.4.22 <0.6.0;
 
 contract owned {
     address public owner;
 
-    function owned()  public {
+    constructor() public {
         owner = msg.sender;
     }
 
@@ -21,13 +21,13 @@ contract tokenRecipient {
     event receivedEther(address sender, uint amount);
     event receivedTokens(address _from, uint256 _value, address _token, bytes _extraData);
 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public {
+    function receiveApproval(address _from, uint256 _value, address _token, bytes memory _extraData) public {
         Token t = Token(_token);
-        require(t.transferFrom(_from, this, _value));
+        require(t.transferFrom(_from, address(this), _value));
         emit receivedTokens(_from, _value, _token, _extraData);
     }
 
-    function () payable  public {
+    function () payable external {
         emit receivedEther(msg.sender, msg.value);
     }
 }
@@ -85,16 +85,16 @@ contract Congress is owned, tokenRecipient {
     }
 
     /**
-     * Constructor function
+     * Constructor
      */
-    function Congress (
+    constructor (
         uint minimumQuorumForProposals,
         uint minutesForDebate,
         int marginOfVotesForMajority
     )  payable public {
         changeVotingRules(minimumQuorumForProposals, minutesForDebate, marginOfVotesForMajority);
         // It’s necessary to add an empty first member
-        addMember(0, "");
+        addMember(address(0), "");
         // and let's add the founder, to save a step later
         addMember(owner, 'founder');
     }
@@ -107,7 +107,7 @@ contract Congress is owned, tokenRecipient {
      * @param targetMember ethereum address to be added
      * @param memberName public name for that member
      */
-    function addMember(address targetMember, string memberName) onlyOwner public {
+    function addMember(address targetMember, string memory memberName) onlyOwner public {
         uint id = memberId[targetMember];
         if (id == 0) {
             memberId[targetMember] = members.length;
@@ -170,8 +170,8 @@ contract Congress is owned, tokenRecipient {
     function newProposal(
         address beneficiary,
         uint weiAmount,
-        string jobDescription,
-        bytes transactionBytecode
+        string memory jobDescription,
+        bytes memory transactionBytecode
     )
         onlyMembers public
         returns (uint proposalID)
@@ -181,7 +181,7 @@ contract Congress is owned, tokenRecipient {
         p.recipient = beneficiary;
         p.amount = weiAmount;
         p.description = jobDescription;
-        p.proposalHash = keccak256(beneficiary, weiAmount, transactionBytecode);
+        p.proposalHash = keccak256(abi.encodePacked(beneficiary, weiAmount, transactionBytecode));
         p.minExecutionDate = now + debatingPeriodInMinutes * 1 minutes;
         p.executed = false;
         p.proposalPassed = false;
@@ -206,8 +206,8 @@ contract Congress is owned, tokenRecipient {
     function newProposalInEther(
         address beneficiary,
         uint etherAmount,
-        string jobDescription,
-        bytes transactionBytecode
+        string memory jobDescription,
+        bytes memory transactionBytecode
     )
         onlyMembers public
         returns (uint proposalID)
@@ -227,13 +227,13 @@ contract Congress is owned, tokenRecipient {
         uint proposalNumber,
         address beneficiary,
         uint weiAmount,
-        bytes transactionBytecode
+        bytes memory transactionBytecode
     )
-        constant public
+        view public
         returns (bool codeChecksOut)
     {
         Proposal storage p = proposals[proposalNumber];
-        return p.proposalHash == keccak256(beneficiary, weiAmount, transactionBytecode);
+        return p.proposalHash == keccak256(abi.encodePacked(beneficiary, weiAmount, transactionBytecode));
     }
 
     /**
@@ -248,7 +248,7 @@ contract Congress is owned, tokenRecipient {
     function vote(
         uint proposalNumber,
         bool supportsProposal,
-        string justificationText
+        string memory justificationText
     )
         onlyMembers public
         returns (uint voteID)
@@ -276,12 +276,12 @@ contract Congress is owned, tokenRecipient {
      * @param proposalNumber proposal number
      * @param transactionBytecode optional: if the transaction contained a bytecode, you need to send it
      */
-    function executeProposal(uint proposalNumber, bytes transactionBytecode) public {
+    function executeProposal(uint proposalNumber, bytes memory transactionBytecode) public {
         Proposal storage p = proposals[proposalNumber];
 
         require(now > p.minExecutionDate                                            // If it is past the voting deadline
             && !p.executed                                                         // and it has not already been executed
-            && p.proposalHash == keccak256(p.recipient, p.amount, transactionBytecode)  // and the supplied code matches the proposal
+            && p.proposalHash == keccak256(abi.encodePacked(p.recipient, p.amount, transactionBytecode))  // and the supplied code matches the proposal
             && p.numberOfVotes >= minimumQuorum);                                  // and a minimum quorum has been reached...
 
         // ...then execute result
@@ -290,7 +290,9 @@ contract Congress is owned, tokenRecipient {
             // Proposal passed; execute the transaction
 
             p.executed = true; // Avoid recursive calling
-            require(p.recipient.call.value(p.amount)(transactionBytecode));
+            
+            (bool success, ) = p.recipient.call.value(p.amount)(transactionBytecode);
+            require(success);
 
             p.proposalPassed = true;
         } else {
@@ -302,3 +304,5 @@ contract Congress is owned, tokenRecipient {
         emit ProposalTallied(proposalNumber, p.currentResult, p.numberOfVotes, p.proposalPassed);
     }
 }
+
+
