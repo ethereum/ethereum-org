@@ -14,7 +14,7 @@
 <h3>Geth</h3>
 <p><img src="/images/icons/gopher.png" alt="Logo for Go"></p>
 <p>The <strong>Go</strong> implementation is called <strong>Geth</strong>. Geth has been audited for security and will be the future basis for the enduser-facing <strong>Mist Browser</strong>, so if you have experience with web development and are interested in building frontends for dapps, you should experiment with Geth.</p>
-<h4>Install on Mac</h4>
+<h4>Install on macOS</h4>
 <p>Install <a href="https://brew.sh/">Homebrew</a> and make sure it's up to date:</p>
 <pre><code>brew update
 brew upgrade
@@ -24,7 +24,7 @@ brew upgrade
 brew install ethereum
 </code></pre>
 <p>For more, see the <a href="https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac">full documentation on Mac OSX Geth</a></p>
-<h4>Windows</h4>
+<h4>Use on Windows</h4>
 <p>Download the <a href="https://geth.ethereum.org/downloads/">latest stable binary</a>, extract it, download the zip file, extract geth.exe from zip, open a command terminal and type:</p>
 <pre><code>chdir &lt;path to extracted binary&gt;
 open geth.exe
@@ -41,7 +41,7 @@ sudo apt-get install ethereum
 <h3>Eth</h3>
 <p><img src="/images/icons/cpp.png" alt="Logo for C++"></p>
 <p>The <strong>C++</strong> implementation is simply called <strong>Eth</strong>. If you want added security by running two different implementations in parallel or are serious about GPU mining, then the C++ &quot;Eth&quot; client is for you.</p>
-<h4>Install: on Mac</h4>
+<h4>Install on macOS</h4>
 <p>Install <a href="https://brew.sh/">Homebrew</a> and then make sure it's up to date:</p>
 <pre><code>brew update
 brew upgrade
@@ -54,20 +54,20 @@ brew linkapps cpp-ethereum
 <p>The <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html">cpp-ethereum documentation</a>
 has detailed information on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/osx-homebrew.html">OS X Homebrew package</a>
 and on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/macos.html">Building OS X from Source</a>.</p>
-<h4>Install on Linux:</h4>
-<p>If you use Apt-get, paste this into the terminal:</p>
+<h4>Install on Linux</h4>
+<p>If you use <code>apt-get</code>, paste this into the terminal:</p>
 <pre><code>apt-get install cpp-ethereum
 </code></pre>
 <p>The <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html">cpp-ethereum documentation</a>
 has detailed information on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/installing-binaries/linux-ubuntu-ppa.html">PPAs for Ubuntu</a>
 and on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/linux.html">Building Linux from Source</a>.</p>
-<h4>Install on Windows</h4>
+<h4>Use on Windows</h4>
 <p>The <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/index.html">cpp-ethereum documentation</a>
 has detailed information on <a href="http://www.ethdocs.org/en/latest/ethereum-clients/cpp-ethereum/building-from-source/windows.html">Building Windows from Source</a>.</p>
 <h3>Python</h3>
 <p><img src="/images/icons/python.png" alt="Logo for Python"></p>
-<p>The <strong>Python</strong> implementation is called Pyethapp. If you are interested in understanding how Ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or are interested in Ethereum for research or an academic purpose, this is a great client: we invite you to <a href="https://github.com/ethereum/pyethapp">take a look and contribute to it</a>.</p>
-<h4>Other Options</h4>
+<p>The <strong>Python</strong> implementation is called <strong>Pyethapp</strong>. If you are interested in understanding how Ethereum works and how to extend it, the code base of this client is probably the most readable and has a great contract tester library with fast development cycles. It is not meant for high-end usage as performance in this client is not as high priority as clarity and reliability. If you are a Python developer that wants to build decentralized apps or are interested in Ethereum for research or an academic purpose, this is a great client: we invite you to <a href="https://github.com/ethereum/pyethapp">take a look and contribute to it</a>.</p>
+<h3>Other options</h3>
 <ul>
 <li><a href="https://www.parity.io/">Parity Ethereum</a> a Rust implementation by <a href="http://paritytech.io/">Parity Technologies</a></li>
 <li>A <a href="https://github.com/bkirwi/ethereum-haskell">Haskell</a> implementation developed by <a href="https://blockapps.net/">Blockapps</a></li>
@@ -123,7 +123,7 @@ geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 12345 
 <pre><code>geth attach
 </code></pre>
 <p>The console has auto completion of commands and command-history support that persists between sessions. You can complete a command by pressing the tab key, geth will then auto complete the current statement or show a list of available completions when multiple completions are possible. You can navigate your command history by using the up and down arrow keys.</p>
-<h4>Learn More on Running a node</h4>
+<h4>Learn more on running a node</h4>
 <ul>
 <li><a href="http://ethdocs.org/en/latest/account-management.html#backup-and-restore-accounts">Backup and restore</a></li>
 <li><a href="http://ethdocs.org/en/latest/network/connecting-to-the-network.html">Connecting to the network</a></li>
@@ -149,7 +149,7 @@ geth --fast --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 12345 
 <pre><code>web3.eth.getBalance(primaryAccount)
 </code></pre>
 <p>Your balance should return 0, since you just created it. In order to do the next steps you need to have some ether in your account so you can pay the gas costs. In the next section you'll learn what gas is, and how you can interact with the network.</p>
-<h4>Check All Balances at once</h4>
+<h4>Check all balances at once</h4>
 <p>The command line tools are JavaScript environments, which means you can create functions just like you would in JavaScript. For example, if you want to check the balance of all your accounts at once, use this JavaScript code snippet.</p>
 <p>It will iterate over each of your accounts and print their balance in ether, you can use the following code:</p>
 <pre><code>function checkAllBalances() {
