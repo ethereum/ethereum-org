@@ -6,113 +6,120 @@ html {
 }
 
 body {
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
-	background: #102026;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,
+    sans-serif;
+  background: #102026;
 }
 
 hr {
-	border-color: #f8ead1;
-	clear: both;
+  border-color: #f8ead1;
+  clear: both;
 }
 
 code {
-	font-family: "Source Code Pro", "Courier New", monospace;
-	background: #C3CCDB;
+  font-family: 'Source Code Pro', 'Courier New', monospace;
+  background: #c3ccdb;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
-	margin: 10px 0;
-	font-weight: 400;
-	line-height: unset;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', arial,
+    sans-serif;
+  margin: 10px 0;
+  font-weight: 400;
+  line-height: unset;
 }
 
 h2 {
-	color: #A9C5E6;
+  color: #a9c5e6;
 }
 
 a {
-	color: #4A90E2;
+  color: #4a90e2;
 }
 
 a:hover {
-	color: #61A7F8;
-	cursor: pointer;
+  color: #61a7f8;
+  cursor: pointer;
 }
 
 pre {
-	background: #FFF;
-	overflow: auto;
-	padding: 20px;
-	margin: 20px 0;
-	position: relative;
+  background: #fff;
+  overflow: auto;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
 }
 
 .caption {
-	text-align: center;
-	font-size: 90%;
+  text-align: center;
+  font-size: 90%;
 }
 
 .small {
-	font-size: 90%;
+  font-size: 90%;
 }
 
 input.button,
 button,
 a.button {
-	display: block;
-	position: relative;
-	max-width: 400px;
-	padding: 10px;
-	clear: right;
-	margin: 60px auto 30px;
-	background: #4A90E2;
-	color: #F5F5F5;
-	font-weight: 600;
-	border-radius: 3px;
-	border: none;
-	text-align: center;
-	text-decoration: none;
-	font-weight: 600;
-	-webkit-appearance: none;
-	border-bottom: solid 3px #2F6DB5;
-	top: -3px;
-	box-shadow: rgba(0,0,0,0.1) 0 6px 1px;
-	transition: box-shadow 0.6s, border-bottom 0.6s, top 0.6s, margin-bottom 0.6s;
-	transition-timing-function: ease-out;
+  display: block;
+  position: relative;
+  max-width: 400px;
+  padding: 10px;
+  clear: right;
+  margin: 60px auto 30px;
+  background: #4a90e2;
+  color: #f5f5f5;
+  font-weight: 600;
+  border-radius: 3px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  -webkit-appearance: none;
+  border-bottom: solid 3px #2f6db5;
+  top: -3px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 6px 1px;
+  transition: box-shadow 0.6s, border-bottom 0.6s, top 0.6s, margin-bottom 0.6s;
+  transition-timing-function: ease-out;
 }
 
 input.button:hover,
 button:hover,
 a.button:hover {
-	border-bottom: solid 1px #2F6DB5;
-	top: -1px;
-	box-shadow: rgba(0,0,0,0.05) 0 2px 1px;
-	margin-bottom: 32px;
-	cursor: pointer;
-	transition: box-shadow 0.3s, border-bottom 0.3s, top 0.3s, margin-bottom 0.3s;
-	transition-timing-function: ease-in;
+  border-bottom: solid 1px #2f6db5;
+  top: -1px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 2px 1px;
+  margin-bottom: 32px;
+  cursor: pointer;
+  transition: box-shadow 0.3s, border-bottom 0.3s, top 0.3s, margin-bottom 0.3s;
+  transition-timing-function: ease-in;
 }
 
 input.button:active,
 button:active,
 a.button:active {
-	border-bottom: solid 1px #2F6DB5;
-	top: -1px;
+  border-bottom: solid 1px #2f6db5;
+  top: -1px;
 }
 
 .button.small {
-	top: -1px;
-	max-width: 200px;
-	padding: 6px;
-	border-bottom: #c1d7ef 1px solid;
-	box-shadow: rgba(0,0,0,0.1) 0 1px 1px;
-	background-color: #e4ebf3;
-	color: #4a90e2;
+  top: -1px;
+  max-width: 200px;
+  padding: 6px;
+  border-bottom: #c1d7ef 1px solid;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
+  background-color: #e4ebf3;
+  color: #4a90e2;
 }
 
 input.button:hover {
-	color: #FFF;
+  color: #fff;
 }
 
 /* ==========================================
@@ -120,507 +127,462 @@ input.button:hover {
   ======================================== */
 
 header {
-	padding: 20px 0px;
-	color: #fafafa;
+  padding: 20px 0px;
+  color: #fafafa;
 }
 
 header {
-	height: 60vh;
-	min-height: 440px;
-	background: #f8f6fb url('../images/byzantium-background.jpg') center center no-repeat;
-	background-size: cover;
-	position: relative;
+  height: 60vh;
+  min-height: 440px;
+  background: #f8f6fb url('../images/byzantium-background.jpg') center center
+    no-repeat;
+  background-size: cover;
+  position: relative;
 
-	display: -webkit-flex;
-	-webkit-justify-content: center;
-	-webkit-align-items: center;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
 
-	display: -moz-flex;
-	-moz-justify-content: center;
-	-moz-align-items: center;
+  display: -moz-flex;
+  -moz-justify-content: center;
+  -moz-align-items: center;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 div.scrollme.intro {
-	background: #102026;
-	overflow: hidden;
-	position: relative;
-	z-index: 50;
+  background: #102026;
+  overflow: hidden;
+  position: relative;
+  z-index: 50;
 }
 
 div.scrollme.row.introduction {
-	height: 60vw;
-	min-height: 440px;
-	max-height: 800px;
-	background: #102026 url('../images/byzantium-background.jpg') center center no-repeat;
-	background-size: cover;
-	padding-top: 50px;
+  height: 60vw;
+  min-height: 440px;
+  max-height: 800px;
+  background: #102026 url('../images/byzantium-background.jpg') center center
+    no-repeat;
+  background-size: cover;
+  padding-top: 50px;
 }
 
 .introduction h1 {
   color: transparent;
-	height: 250px;
-	margin: 0 auto;
-	background: url('../images/home-title.png') top center no-repeat;
-	background-size: contain;
-	overflow: hidden;
-}
-
-@-webkit-keyframes GradientAnimation {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes GradientAnimation {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes GradientAnimation {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-
-.devcon-badge {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  height: 45px;
-  z-index: 100;
-  background: linear-gradient(90deg, #fca09a, #fcccd3, #ffcc9d, #98ddad, #81d7ec, #a0aaed);
-  background-size: 200%;
-  text-align: center;
-  -webkit-animation: AnimationName 5s ease infinite;
-  -moz-animation: GradientAnimation 5s ease infinite;
-  animation: GradientAnimation 5s ease infinite;
-}
-.devcon-badge:hover {
- -webkit-animation-duration: 2s; 
- -moz-animation-duration: 2s; 
- animation-duration: 2s; 
-}
-
-.devcon-badge a {
-  color: #222;
-  font-family: monospace;
-  text-decoration: none;
-  display: block;
-  padding: 10px 0;
-}
-body { /* set of rules to accomodate devcon badge */
-  padding-top: 45px;
+  height: 250px;
+  margin: 0 auto;
+  background: url('../images/home-title.png') top center no-repeat;
+  background-size: contain;
+  overflow: hidden;
 }
 
 .intro:after {
-	content: " ";
-	background: linear-gradient(transparent, #102026);
-	height: 250px;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
+  content: ' ';
+  background: linear-gradient(transparent, #102026);
+  height: 250px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .main-content {
-	padding: 40px 0;
-	color: #C3CCDB;
-	z-index: 55;
+  padding: 40px 0;
+  color: #c3ccdb;
+  z-index: 55;
 }
 
 .main-content p,
 .main-tutorial p {
-	font-size: 17px;
+  font-size: 17px;
 }
 
 .caption-server-figure p {
-	font-size: 14px;
-	text-align: left;
-	font-style: italic;
+  font-size: 14px;
+  text-align: left;
+  font-style: italic;
 }
 
 .main-content.build-apps h2,
 .main-content.wallet h2 {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .main-content.wallet {
-	padding-bottom: 80px;
+  padding-bottom: 80px;
 }
 
 .main-tutorial {
-	overflow: hidden;
-	color: #443A37;
-	position: relative;
-	-webkit-background-blend-mode: multiply;
-	background-color: #F5F5F5;
-	min-width: 300px;
+  overflow: hidden;
+  color: #443a37;
+  position: relative;
+  -webkit-background-blend-mode: multiply;
+  background-color: #f5f5f5;
+  min-width: 300px;
 }
 
 .main-tutorial.even {
-	background-color: #EBEBEB;
+  background-color: #ebebeb;
 }
 
 .main-tutorial > .row,
 .main-tutorial > .container > .row {
-	padding: 80px 0;
+  padding: 80px 0;
 }
 
 .row-no-padding {
-	padding: 0;
+  padding: 0;
 }
 
 .inner-tutorial h1 {
-	color: #354049;
-	text-align: center;
-	padding-top: 50px;
-	padding-bottom: 40px;
+  color: #354049;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 40px;
 }
 
 #tutorial-start h2 {
-	padding: 0;
-	text-transform: uppercase;
+  padding: 0;
+  text-transform: uppercase;
 }
 
 .main-tutorial h2 {
-	color: #354049;
+  color: #354049;
 }
 
 .main-tutorial h3 {
-	color: #354049;
+  color: #354049;
 }
 
 .main-tutorial blockquote {
-	font-style: oblique;
-	font-size: 1.2em;
+  font-style: oblique;
+  font-size: 1.2em;
 }
 
 .tutorial-end h3 {
-	padding: 30px 20px;
-	max-width: none;
-	text-align: center;
+  padding: 30px 20px;
+  max-width: none;
+  text-align: center;
 }
 
 .main-tutorial .row.solidity {
-	padding: 0;
+  padding: 0;
 }
 
 .inner-header.token-tutorial h2 {
-	width: 100%;
-	padding: 40px 0 80px 0;
-	font-size: 45px;
-	font-weight: 400;
-	text-align: center;
+  width: 100%;
+  padding: 40px 0 80px 0;
+  font-size: 45px;
+  font-weight: 400;
+  text-align: center;
 }
 
 .inner-tutorial h1 + h2 {
-	padding-top: 0;
-	margin-top: -40px;
+  padding-top: 0;
+  margin-top: -40px;
 }
 
 .main-tutorial h2 + h3 .number {
-	top: 0;
+  top: 0;
 }
 
 .number {
-	display: inline-block;
-	background: #354049;
-	width: 56px;
-	height: 56px;
-	border-radius: 28px;
-	color: #E1EFFF;
-	text-align: center;
-	font-size: 40px;
-	padding-top: 5px;
-	margin-right: 10px;
-	position: absolute;
-	top: 60px;
-	left: 0;
+  display: inline-block;
+  background: #354049;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  color: #e1efff;
+  text-align: center;
+  font-size: 40px;
+  padding-top: 5px;
+  margin-right: 10px;
+  position: absolute;
+  top: 60px;
+  left: 0;
 }
 
 .inner-page h4,
 .inner-tutorial h4 {
-	color: #354049;
-	text-transform: uppercase;
-	font-weight: 900;
+  color: #354049;
+  text-transform: uppercase;
+  font-weight: 900;
 }
 
 .inner-tutorial h5 {
-	color: rgba(255,255,255,0.6);
-	text-align: center;
-	font-size: 80%;
-	padding-top: 0;
-	background: #354049;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: -10px;
-	padding: 5px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-size: 80%;
+  padding-top: 0;
+  background: #354049;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10px;
+  padding: 5px;
 }
 
 .inner-tutorial h5 strong {
-	color: #FFF;
+  color: #fff;
 }
 
 .inner-tutorial img {
-	max-width: 100%;
+  max-width: 100%;
 }
 
-.inner-header.main-tutorial  {
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
+.inner-header.main-tutorial {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .inner-header.dao-tutorial {
-	background-image: url("../images/dao-bg.jpg");
+  background-image: url('../images/dao-bg.jpg');
 }
 
 .inner-header.token-tutorial {
-	background-attachment: initial;
-	background-image: url("../images/token-bg.jpg");
+  background-attachment: initial;
+  background-image: url('../images/token-bg.jpg');
 }
 
 .inner-header.token-tutorial h2,
 .inner-header.token-tutorial h3 {
-	color: #fff;
+  color: #fff;
 }
 
 .inner-header.token-tutorial p {
-	color: #f2f2f2;
+  color: #f2f2f2;
 }
 
 .inner-header.crowdsale-tutorial {
-	background-image: url("../images/dao-dawn-bg.jpg");
+  background-image: url('../images/dao-dawn-bg.jpg');
 }
 
 .main-tutorial figure {
-	width: 100%;
+  width: 100%;
 }
 
 .main-content figure div,
 .main-tutorial figure div {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .main-menu {
-	min-height: 0;
+  min-height: 0;
 }
 
 .command-line {
-	background: #000;
-	color: #ccc;
-	padding-top: 40px;
+  background: #000;
+  color: #ccc;
+  padding-top: 40px;
 }
 
 .command-line h3 {
-	color: #eee;
+  color: #eee;
 }
 
 /* ==========================================
   Main styles
   ======================================== */
 
-
 .start-menu {
-	-webkit-perspective: 2000;
-	-moz-perspective: 2000;
-	perspective: 2000;
+  -webkit-perspective: 2000;
+  -moz-perspective: 2000;
+  perspective: 2000;
 }
 
 .start-menu strong {
-	display: block;
+  display: block;
 }
 
 .start-menu p {
-	padding: 0;
-	font-size: 80%;
+  padding: 0;
+  font-size: 80%;
 }
 
 .start-menu p strong {
-	font-size: 125%;
+  font-size: 125%;
 }
 
 .main-tutorial .row.start-menu {
-	padding-top: 0;
+  padding-top: 0;
 }
 
 .main-tutorial .note {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 .main-tutorial code {
-
-	display: inline;
-	white-space: pre;
-	padding: 3px;
-	border: 1px solid rgb(204, 204, 204);
-	overflow: auto;
-	width: 100%;
-	background: #FFF;
+  display: inline;
+  white-space: pre;
+  padding: 3px;
+  border: 1px solid rgb(204, 204, 204);
+  overflow: auto;
+  width: 100%;
+  background: #fff;
 }
 
 .main-tutorial pre code {
- 	display: block;
- 	border: none;
- }
+  display: block;
+  border: none;
+}
 
 .inner-header h2 {
-	font-size: 60px;
-	font-weight: 200;
-	margin: 0;
-	padding: 0;
+  font-size: 60px;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
 }
 
 .main-tutorial h3,
 .inner-tutorial h3 {
-	color: #111;
+  color: #111;
 }
 
 .inner-header.default-header h3 {
-	text-align: center;
-	color: #FFF;
-	margin: 0 0 30px 0;
+  text-align: center;
+  color: #fff;
+  margin: 0 0 30px 0;
 }
 
 .inner-header .scrollme {
-	display: flex;
+  display: flex;
 }
 
 .inner-header .header-title {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
 }
 
 .inner-header {
-	background: #102026;
+  background: #102026;
 }
 
 .inner-page.inner-header .row {
-	display: flex;
+  display: flex;
 }
 
-.main-tutorial img[alt*="Logo"] {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin: 20px 40px 40px 0;
-	clear: both;
+.main-tutorial img[alt*='Logo'] {
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin: 20px 40px 40px 0;
+  clear: both;
 }
 
 .recipe {
-	background: #FFF url("../images/recipe-bg.png");
-	background-repeat: repeat-y;
-	background-position: 20px;
-	display: block;
-	max-width: 500px;
-	padding: 20px 20px 20px 45px;
-	box-shadow: rgba(0,0,0,0.2) 0 1px 4px;
-	text-align: left;
-	margin-top: 20px;
+  background: #fff url('../images/recipe-bg.png');
+  background-repeat: repeat-y;
+  background-position: 20px;
+  display: block;
+  max-width: 500px;
+  padding: 20px 20px 20px 45px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 4px;
+  text-align: left;
+  margin-top: 20px;
 }
 
 .recipe h4 {
-	text-transform: uppercase;
-	color: #354049;
-	font-weight: 600;
-	text-align: center;
-	font-size: 20px;
-	margin-top: 0;
+  text-transform: uppercase;
+  color: #354049;
+  font-weight: 600;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 0;
 }
 
 .recipe ul {
-	list-style-type: circle;
-	padding-left: 0;
-	margin-left: 10px;
+  list-style-type: circle;
+  padding-left: 0;
+  margin-left: 10px;
 }
 
 .recipe li {
-	padding-left: 0;
+  padding-left: 0;
 }
 
 .recipe ul ul {
-	padding-left: 30px;
-	font-weight: 400;
+  padding-left: 30px;
+  font-weight: 400;
 }
 
 @media only screen and (max-width: 600px) {
-	figure {
-		height: 300px;
-		margin: 0 auto;
-	}
+  figure {
+    height: 300px;
+    margin: 0 auto;
+  }
 
-	.main-tutorial a.button ,
-	.recipe {
-		width: 100%;
-	}
+  .main-tutorial a.button,
+  .recipe {
+    width: 100%;
+  }
 
-	.breadcrumb.index a {
-		display: none;
-	}
+  .breadcrumb.index a {
+    display: none;
+  }
 
-	figure.ethereum-logo {
-		height: 140px;
-	}
+  figure.ethereum-logo {
+    height: 140px;
+  }
 
-	.inner-header {
-		padding: 0;
-	}
+  .inner-header {
+    padding: 0;
+  }
 
-	.inner-header.dao-tutorial {
-		background-image: url("../images/dao-bg-mob.jpg");
-	}
+  .inner-header.dao-tutorial {
+    background-image: url('../images/dao-bg-mob.jpg');
+  }
 
-	.inner-header.token-tutorial {
-		background-image: url("../images/token-bg-mob.jpg");
-	}
+  .inner-header.token-tutorial {
+    background-image: url('../images/token-bg-mob.jpg');
+  }
 
-	.inner-header.crowdsale-tutorial {
-		background-image: url("../images/dao-dawn-bg-mob.jpg");
-	}
+  .inner-header.crowdsale-tutorial {
+    background-image: url('../images/dao-dawn-bg-mob.jpg');
+  }
 }
 
 @media only screen and (max-width: 800px) {
-	.main-tutorial h3 {
-		padding-top: 0;
-	}
+  .main-tutorial h3 {
+    padding-top: 0;
+  }
 
-	.main-tutorial h3 .number {
-		top: 0;
-	}
+  .main-tutorial h3 .number {
+    top: 0;
+  }
 
-	.row img,
-	.recipe,
-	.main-tutorial a.button ,
-	.ethereum-network,
-	.main-tutorial figure {
-		float: none;
-		margin: 30px auto;
-	}
+  .row img,
+  .recipe,
+  .main-tutorial a.button,
+  .ethereum-network,
+  .main-tutorial figure {
+    float: none;
+    margin: 30px auto;
+  }
 
-	figure {
-		max-width: calc(100% - 30px);
-	}
+  figure {
+    max-width: calc(100% - 30px);
+  }
 
-	.inner-header .scrollme {
-	    display: block;
-	}
+  .inner-header .scrollme {
+    display: block;
+  }
 
-	.inner-header h2, .inner-header h3 {
-	    text-align: center;
-	}
+  .inner-header h2,
+  .inner-header h3 {
+    text-align: center;
+  }
 }
 
 /* ==========================================
@@ -628,38 +590,38 @@ body { /* set of rules to accomodate devcon badge */
   ======================================== */
 
 .breadcrumb {
-	display: flex;
-	align-items: center;
-	text-align: left;
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	color: #C3CCDB;
-	background: #102026;
-	padding: 10px 40px;
-	font-size: 14px;
-	z-index: 45;
-	background-image: url("../images/diamond-icon.png");
-	background-size: 19px 30px;
-	background-repeat: no-repeat;
-	background-position: 10px center;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  color: #c3ccdb;
+  background: #102026;
+  padding: 10px 40px;
+  font-size: 14px;
+  z-index: 45;
+  background-image: url('../images/diamond-icon.png');
+  background-size: 19px 30px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
 }
 
 .breadcrumb strong {
-	-webkit-flex: 1;
-	flex: 1;
-	font-weight: 600;
+  -webkit-flex: 1;
+  flex: 1;
+  font-weight: 600;
 }
 
 .breadcrumb a {
-	padding: 0 5px;
-	text-transform: uppercase;
-	color: #E1EFFF;
+  padding: 0 5px;
+  text-transform: uppercase;
+  color: #e1efff;
 }
 
 a.donation-button {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /* ==========================================
@@ -667,21 +629,21 @@ a.donation-button {
   ======================================== */
 
 #table-of-contents {
-	list-style-type: none;
-	position: absolute;
-	left: 20px;
-	top: 30px;
-	border-left: 4px solid #eee;
-	font-size: 18px;
-	list-style-type: none;
-	transition: top 0.25s cubic-bezier(0.67, -0.54, 0.57, 1.21);
-	background: #eee;
-	width: 40px !important;
-	z-index: 100;
-	transition: width 0.25s;
-	overflow: hidden;
-	height: 44px;
-	padding-right: 2px;
+  list-style-type: none;
+  position: absolute;
+  left: 20px;
+  top: 30px;
+  border-left: 4px solid #eee;
+  font-size: 18px;
+  list-style-type: none;
+  transition: top 0.25s cubic-bezier(0.67, -0.54, 0.57, 1.21);
+  background: #eee;
+  width: 40px !important;
+  z-index: 100;
+  transition: width 0.25s;
+  overflow: hidden;
+  height: 44px;
+  padding-right: 2px;
 }
 
 ul#table-of-contents ul {
@@ -693,48 +655,48 @@ ul#table-of-contents ul {
 }
 
 #table-of-contents:before {
-	width: 20px;
-	height: 20px;
-	position: absolute;
-	display: block;
-	content:'\2630';
-	font-size: 16px;
-	top: 11px;
-	left: 12px;
-	opacity: 0.8;
-	transition: opacity 0.5s;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  display: block;
+  content: '\2630';
+  font-size: 16px;
+  top: 11px;
+  left: 12px;
+  opacity: 0.8;
+  transition: opacity 0.5s;
 }
 
 #table-of-contents:hover {
-	box-shadow: #ccc 0 1px 2px 1px;
-	width: 300px !important;
-	height: auto;
-	padding: 10px;
+  box-shadow: #ccc 0 1px 2px 1px;
+  width: 300px !important;
+  height: auto;
+  padding: 10px;
 }
 
 #table-of-contents:hover:before {
-	opacity: 0;
+  opacity: 0;
 }
 
 #table-of-contents a {
-	display: none;
-	opacity: 0;
-	transition: opacity 0.75s;
-	font-weight: bold;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.75s;
+  font-weight: bold;
 }
 
 #table-of-contents:hover a {
-	display: block;
-	opacity: 1;
+  display: block;
+  opacity: 1;
 }
 
 #table-of-contents ul a {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 #table-of-contents.fixed {
-	position: fixed;
-	top: 60px;
+  position: fixed;
+  top: 60px;
 }
 
 /* ==========================================
@@ -742,121 +704,120 @@ ul#table-of-contents ul {
   ======================================== */
 
 .footer h3 {
-	color: #A9C5E6;
+  color: #a9c5e6;
 }
 
 .footer {
-	background: #102026;
-	padding: 40px 0 0 0;
+  background: #102026;
+  padding: 40px 0 0 0;
 }
 
-@media only screen and (max-width: 768px) { /* @screen-sm-min breakpoint */
-	.footer {
-		padding: 20px 0;
-	}
+@media only screen and (max-width: 768px) {
+  /* @screen-sm-min breakpoint */
+  .footer {
+    padding: 20px 0;
+  }
 }
 
 .footer p {
-	color: #C3CCDB;
+  color: #c3ccdb;
 }
 
 footer .caption {
-	color:  #C3CCDB;
-	font-style: italic;
+  color: #c3ccdb;
+  font-style: italic;
 }
 
 .developer-resources ul {
-	padding-left: 21px;
-	color: #C3CCDB;
+  padding-left: 21px;
+  color: #c3ccdb;
 }
 
 .community ul {
-	padding-left: 0;
-	margin-bottom: 0;
-	list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
 }
 
 .community ul li a {
-	display: block;
-	padding: 5px 0;
+  display: block;
+  padding: 5px 0;
 }
 
 .community ul li a .fa {
-	font-size: 20px;
-	color: #f5f5f5;
-	width: 30px;
-	text-align: center;
-	vertical-align: middle;
-
+  font-size: 20px;
+  color: #f5f5f5;
+  width: 30px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .community ul li a:hover,
 .community ul li a:focus {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .community ul li a:hover .fa {
-	color: #fff;
+  color: #fff;
 }
 
 .donate-button {
-	display: -webkit-flex;
-	display: flex;
-	-webkit-justify-content: center;
-	align-content: center;
-	-webkit-align-items: center;
-	align-items: center;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  align-content: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 
 .donate-button {
-	display: block;
+  display: block;
 }
 
 .footer .canary {
-	background-image: url("../images/icons/canary.svg");
-	background-size: 30px 30px;
-	background-position: center center;
-	background-repeat: no-repeat;
-	margin: 0 auto;
-	text-align: center;
+  background-image: url('../images/icons/canary.svg');
+  background-size: 30px 30px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .footer .canary p {
-	opacity: 0;
-	font-size: 80%;
-	transition: opacity 2s ease-out;
+  opacity: 0;
+  font-size: 80%;
+  transition: opacity 2s ease-out;
 }
 
 .footer .canary:hover p {
-	opacity: 0.7;
-	transition: opacity 0.25s ease-out;
+  opacity: 0.7;
+  transition: opacity 0.25s ease-out;
 }
 
 .news .iframe-wrapper {
-	margin: 15px 0 30px 0;
-	padding: 15px 0;
-	border-top: 1px solid rgba(225, 232, 237, 0.15);
-	border-bottom: 1px solid rgba(225, 232, 237, 0.15);
+  margin: 15px 0 30px 0;
+  padding: 15px 0;
+  border-top: 1px solid rgba(225, 232, 237, 0.15);
+  border-bottom: 1px solid rgba(225, 232, 237, 0.15);
 }
 
 .row-footer-primary .col-md-4 {
-	margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .copyright {
-	font-size: 80%;
-	text-align: center;
-	opacity: 0.6;
+  font-size: 80%;
+  text-align: center;
+  opacity: 0.6;
 }
 
 .footer-links {
   font-size: 80%;
   text-align: center;
-
 }
 
 .footer-links a {
-	color: #707f98;
+  color: #707f98;
 }
 
 /* ==========================================
@@ -864,57 +825,58 @@ footer .caption {
   ======================================== */
 
 a.donate-button {
-	position: relative;
-	text-align: center;
-	background: #1C3944;
-	border-radius: 4px;
-	display: block;
-	padding: 10px;
-	margin: 20px 5% 20px 0;
+  position: relative;
+  text-align: center;
+  background: #1c3944;
+  border-radius: 4px;
+  display: block;
+  padding: 10px;
+  margin: 20px 5% 20px 0;
 }
 
-a.donate-button:hover ,
+a.donate-button:hover,
 .press > a:hover {
-	text-decoration: none;
-	background: #255264;
+  text-decoration: none;
+  background: #255264;
 }
 
 .dapp-identicon {
-	position: absolute;
-	display: block;
-	left: 50%;
-	margin-left: -32px;
-	height: 64px;
-	width: 64px;
-	background-size: cover;
-	border-radius: 50%;
-	box-shadow: rgba(255, 255, 255, 0.4) 0px 4px 8px 0px inset, rgba(0, 0, 0, 0.6) 0px -4px 12px 0px inset;
+  position: absolute;
+  display: block;
+  left: 50%;
+  margin-left: -32px;
+  height: 64px;
+  width: 64px;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: rgba(255, 255, 255, 0.4) 0px 4px 8px 0px inset,
+    rgba(0, 0, 0, 0.6) 0px -4px 12px 0px inset;
 }
 
 .donate h2 {
-	padding-bottom: 0;
+  padding-bottom: 0;
 }
 
 .main-tutorial .donate h3 {
-	padding-top: 0;
-	text-align: center;
-	max-width: none;
+  padding-top: 0;
+  text-align: center;
+  max-width: none;
 }
 
 .main-tutorial .donate h4 {
-	text-align: center;
-	padding-top: 50px;
+  text-align: center;
+  padding-top: 50px;
 }
 
 .main-tutorial .donate .caption {
-	max-width: 600px;
-	margin: 10px auto;
-	text-align: center;
-	display: block;
+  max-width: 600px;
+  margin: 10px auto;
+  text-align: center;
+  display: block;
 }
 
 #donate_to {
-	display: none;
+  display: none;
 }
 
 /* ==========================================
@@ -922,19 +884,19 @@ a.donate-button:hover ,
   ======================================== */
 
 .devgrants-hof {
-	text-align: center;
+  text-align: center;
 }
 
 .devgrants-hof img {
-	max-width: 40%;
+  max-width: 40%;
 }
 
 .main-tutorial .devgrants-hof h2 {
-	padding-top: 0;
+  padding-top: 0;
 }
 
 .main-tutorial .devgrants-hof h3 {
-	max-width: none;
+  max-width: none;
 }
 
 /* ==========================================
@@ -942,69 +904,69 @@ a.donate-button:hover ,
   ======================================== */
 
 a.ethereum-wallet {
-	display: none;
-	text-align: center;
+  display: none;
+  text-align: center;
 }
 
 a.button.allversions.ethereum-wallet {
-	display: block;
+  display: block;
 }
 
 a.button.ethereum-wallet {
-	background-size: 23px 23px;
-	background-repeat: no-repeat;
-	background-position: 25px center;
-	font-weight: 400;
+  background-size: 23px 23px;
+  background-repeat: no-repeat;
+  background-position: 25px center;
+  font-weight: 400;
 }
 
 a.button.ethereum-wallet strong {
-	display: block;
-	text-transform: uppercase;
-	font-size: 20px;
+  display: block;
+  text-transform: uppercase;
+  font-size: 20px;
 }
 
 .MacIn a.ethereum-wallet.link,
 .MacIn a.button.ethereum-wallet.mac {
-	display: block;
+  display: block;
 }
 
 .MacIn a.button.allversions.ethereum-wallet {
-	display: none;
+  display: none;
 }
 
 .Win32 a.ethereum-wallet.link,
 .Win32 a.button.ethereum-wallet.win32 {
-	display: block;
+  display: block;
 }
 
 .Win32 a.button.allversions.ethereum-wallet {
-	display: none;
+  display: none;
 }
 
 .Win64 a.ethereum-wallet.link,
 .Win64 a.button.ethereum-wallet.win64 {
-	display: block;
+  display: block;
 }
 
 .Win64 a.button.allversions.ethereum-wallet {
-	display: none;
+  display: none;
 }
 
 .Linux a.ethereum-wallet.link,
 .Linux a.button.ethereum-wallet.linux {
-	display: block;
+  display: block;
 }
 
 .Linux a.button.allversions.ethereum-wallet {
-	display: none;
+  display: none;
 }
 
 a.button.ethereum-wallet.mac {
-	background-image: url("../images/button-mac.png");
+  background-image: url('../images/button-mac.png');
 }
 
 a.button.ethereum-wallet.linux {
-	background-image: url("../images/button-linux.png");
+  background-image: url('../images/button-linux.png');
 }
 
 /*a.button.ethereum-wallet.win32 {
@@ -1012,137 +974,134 @@ a.button.ethereum-wallet.linux {
 }*/
 
 a.button.ethereum-wallet.win64 {
-	background-image: url("../images/button-win64.png");
+  background-image: url('../images/button-win64.png');
 }
 
 /* ==========================================
   foundation.pug
   ======================================== */
 
-.foundation-page img[alt*="Portrait"] {
-	width: 160px;
-	float: right;
-	margin: 0 0 40px 40px;
-	clear: both;
+.foundation-page img[alt*='Portrait'] {
+  width: 160px;
+  float: right;
+  margin: 0 0 40px 40px;
+  clear: both;
 }
 
 .foundation-page.even {
-	background-image: url('../images/foundation-collage.jpg');
-	background-size: cover;
-	background-position: center;
+  background-image: url('../images/foundation-collage.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .foundation-page.even h2,
 .foundation-page.even p {
-	color: #FFF;
+  color: #fff;
 }
-
 
 /* ==========================================
   Legal
   ======================================== */
 
 .terms,
-.cannot-continue  {
-	color: #E1EFFF;
-	text-align: center;
-	font-weight: 600;
-	display: block;
-	padding-top: 60px;
+.cannot-continue {
+  color: #e1efff;
+  text-align: center;
+  font-weight: 600;
+  display: block;
+  padding-top: 60px;
 }
 
 .warning a.back {
-	color: #E1EFFF;
-	font-size: 80%;
-	padding-top: 15px;
+  color: #e1efff;
+  font-size: 80%;
+  padding-top: 15px;
 }
 
 .inner-header a.back {
-	color: #E1EFFF;
-	float: left;
-	position: absolute;
-	top: 10px;
-	left: 60px;
-	opacity: 0.5;
+  color: #e1efff;
+  float: left;
+  position: absolute;
+  top: 10px;
+  left: 60px;
+  opacity: 0.5;
 }
 
 .inner-header a.back:hover {
-	opacity: 1;
+  opacity: 1;
 }
 
 .warning a.back,
 .terms:hover {
-	color: #FFF;
+  color: #fff;
 }
 
 .cannot-continue {
-	color: #eb453e;
+  color: #eb453e;
 }
 
 .legal-modal {
-	display: none;
-	align-items: flex-end;
-	flex-wrap: wrap;
-	align-content: flex-end;
-	position: fixed;
-	top: 10%;
-	left: 10%;
-	bottom: 10%;
-	right: 10%;
-	padding: 32px 64px;
-	z-index: 1000;
-	background: #f9f9f9;
-	box-shadow: #000 0 0 150px;
-	border-radius: 1px;
+  display: none;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  bottom: 10%;
+  right: 10%;
+  padding: 32px 64px;
+  z-index: 1000;
+  background: #f9f9f9;
+  box-shadow: #000 0 0 150px;
+  border-radius: 1px;
 }
 
 .legal-modal.visible {
-    display: flex;
+  display: flex;
 }
 
 .legal-text {
-	position: absolute;
-	top: 20px;
-	bottom: 150px;
-	left: 80px;
-	right: 80px;
-	overflow: scroll;
+  position: absolute;
+  top: 20px;
+  bottom: 150px;
+  left: 80px;
+  right: 80px;
+  overflow: scroll;
 }
 
 input#legal {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 div#donate_inst {
-	padding-bottom: 0;
+  padding-bottom: 0;
 }
 
 .bad-robot {
-	margin: 20px auto 40px;
-	text-align: center;
+  margin: 20px auto 40px;
+  text-align: center;
 }
 
-.button-cancel ,
+.button-cancel,
 .button-proceed {
-	flex: 1 1 200px;
-	height: 40px;
-	font-weight: 400;
-	text-align: right;
-	text-transform: uppercase;
+  flex: 1 1 200px;
+  height: 40px;
+  font-weight: 400;
+  text-align: right;
+  text-transform: uppercase;
 }
 
 .button-proceed {
-	font-weight: 600;
+  font-weight: 600;
 }
-
-
 
 /* ==========================================
   assets.pug
   ======================================== */
 
 .page-assets img {
-	width: 100%;
+  width: 100%;
 }
 
 /* ==========================================
@@ -1150,146 +1109,146 @@ div#donate_inst {
   ======================================== */
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-	.breadcrumb {
-		background-image: url("../images/diamond-icon@2x.png");
-	}
+  .breadcrumb {
+    background-image: url('../images/diamond-icon@2x.png');
+  }
 
-	.recipe {
-		background-image: url("../images/recipe-bg@2x.png");
-		background-size: 8px 12px;
-	}
+  .recipe {
+    background-image: url('../images/recipe-bg@2x.png');
+    background-size: 8px 12px;
+  }
 
-	figure.ethereum-network {
-		background-image: url("../images/ethereum-network-outline@2x.png");
-	}
+  figure.ethereum-network {
+    background-image: url('../images/ethereum-network-outline@2x.png');
+  }
 
-	figure.wallet .wallet-start {
-		background-image: url("../images/wallet-start@2x.png");
-	}
+  figure.wallet .wallet-start {
+    background-image: url('../images/wallet-start@2x.png');
+  }
 
-	figure.wallet .wallet-create {
-		background-image: url("../images/wallet-create@2x.png");
-	}
+  figure.wallet .wallet-create {
+    background-image: url('../images/wallet-create@2x.png');
+  }
 
-	figure.wallet .wallet-confirm {
-		background-image: url("../images/wallet-confirm@2x.png");
-	}
+  figure.wallet .wallet-confirm {
+    background-image: url('../images/wallet-confirm@2x.png');
+  }
 
-	figure.geth-console {
-		background-image: url("../images/console@2x.gif");
-	}
+  figure.geth-console {
+    background-image: url('../images/console@2x.gif');
+  }
 
-	figure.geth .geth-background {
-		background-image: url("../images/geth@2x.png");
-	}
+  figure.geth .geth-background {
+    background-image: url('../images/geth@2x.png');
+  }
 
-	figure.geth .geth-logo {
-		background-image: url("../images/geth-foreground@2x.gif");
-	}
+  figure.geth .geth-logo {
+    background-image: url('../images/geth-foreground@2x.gif');
+  }
 
-	figure.ether .ether-screen {
-		background-image: url("../images/ether-screen@2x.gif");
-	}
+  figure.ether .ether-screen {
+    background-image: url('../images/ether-screen@2x.gif');
+  }
 
-	figure.ether .ether-pacman {
-		background-image: url("../images/ether-pacman@2x.gif");
-	}
+  figure.ether .ether-pacman {
+    background-image: url('../images/ether-pacman@2x.gif');
+  }
 
-	figure.ether .ether-coin {
-		background-image: url("../images/ether-coin@2x.png");
-	}
+  figure.ether .ether-coin {
+    background-image: url('../images/ether-coin@2x.png');
+  }
 
-	figure.ether .ether-arcade-front {
-		background-image: url("../images/ether-arcade-front@2x.png");
-	}
+  figure.ether .ether-arcade-front {
+    background-image: url('../images/ether-arcade-front@2x.png');
+  }
 
-	figure.ether .ether-arcade-back {
-		background-image: url("../images/ether-arcade-back@2x.png");
-	}
+  figure.ether .ether-arcade-back {
+    background-image: url('../images/ether-arcade-back@2x.png');
+  }
 
-	figure.greeter .greeter-human {
-		background-image: url("../images/greeter-human@2x.png");
-	}
+  figure.greeter .greeter-human {
+    background-image: url('../images/greeter-human@2x.png');
+  }
 
-	figure.greeter .greeter-robot {
-		background-image: url("../images/greeter-robot@2x.png");
-	}
+  figure.greeter .greeter-robot {
+    background-image: url('../images/greeter-robot@2x.png');
+  }
 
-	figure.greeter .greeter-question {
-		background-image: url("../images/greeter-question@2x.png");
-	}
+  figure.greeter .greeter-question {
+    background-image: url('../images/greeter-question@2x.png');
+  }
 
-	figure.greeter .greeter-answer {
-		background-image: url("../images/greeter-answer@2x.png");
-	}
+  figure.greeter .greeter-answer {
+    background-image: url('../images/greeter-answer@2x.png');
+  }
 
-	figure.coin .coin-connection {
-		background-image: url("../images/token-connection@2x.png");
-	}
+  figure.coin .coin-connection {
+    background-image: url('../images/token-connection@2x.png');
+  }
 
-	figure.coin .coin-users {
-		background-image: url("../images/token-users@2x.png");
-	}
+  figure.coin .coin-users {
+    background-image: url('../images/token-users@2x.png');
+  }
 
-	figure.coin .coin-coins {
-		background-image: url("../images/token-coins@2x.png");
-	}
+  figure.coin .coin-coins {
+    background-image: url('../images/token-coins@2x.png');
+  }
 
-	figure.coin .coin-send {
-		background-image: url("../images/token-send@2x.png");
-	}
+  figure.coin .coin-send {
+    background-image: url('../images/token-send@2x.png');
+  }
 
-	figure.crowdsale .crowdsale-logic {
-		background-image: url("../images/crowdsale-logic@2x.png");
-	}
+  figure.crowdsale .crowdsale-logic {
+    background-image: url('../images/crowdsale-logic@2x.png');
+  }
 
-	figure.crowdsale .crowdsale-robot {
-		background-image: url("../images/crowdsale-robot@2x.png");
-	}
+  figure.crowdsale .crowdsale-robot {
+    background-image: url('../images/crowdsale-robot@2x.png');
+  }
 
-	figure.crowdsale .crowdsale-money {
-		background-image: url("../images/crowdsale-money@2x.png");
-	}
+  figure.crowdsale .crowdsale-money {
+    background-image: url('../images/crowdsale-money@2x.png');
+  }
 
-	figure.crowdsale .crowdsale-contributions {
-		background-image: url("../images/crowdsale-contributions@2x.png");
-	}
+  figure.crowdsale .crowdsale-contributions {
+    background-image: url('../images/crowdsale-contributions@2x.png');
+  }
 
-	figure.crowdsale .crowdsale-crowd {
-		background-image: url("../images/crowdsale-crowd@2x.png");
-	}
+  figure.crowdsale .crowdsale-crowd {
+    background-image: url('../images/crowdsale-crowd@2x.png');
+  }
 
-	figure.dao .dao-robot {
-		background-image: url("../images/dao-robot@2x.png");
-	}
+  figure.dao .dao-robot {
+    background-image: url('../images/dao-robot@2x.png');
+  }
 
-	figure.dao .dao-money {
-		background-image: url("../images/dao-money@2x.png");
-	}
+  figure.dao .dao-money {
+    background-image: url('../images/dao-money@2x.png');
+  }
 
-	figure.dao .dao-arrows {
-		background-image: url("../images/dao-arrows@2x.png");
-	}
+  figure.dao .dao-arrows {
+    background-image: url('../images/dao-arrows@2x.png');
+  }
 
-	figure.dao .dao-ideas {
-		background-image: url("../images/dao-ideas@2x.png");
-	}
+  figure.dao .dao-ideas {
+    background-image: url('../images/dao-ideas@2x.png');
+  }
 
-	figure.dao .dao-crowd {
-		background-image: url("../images/dao-crowd@2x.png");
-	}
+  figure.dao .dao-crowd {
+    background-image: url('../images/dao-crowd@2x.png');
+  }
 
-	figure.moon .moon-stars {
-		background-image: url("../images/moon-stars@2x.png");
-	}
+  figure.moon .moon-stars {
+    background-image: url('../images/moon-stars@2x.png');
+  }
 
-	figure.moon .moon-moon {
-		background-image: url("../images/moon-moon@2x.png");
-	}
+  figure.moon .moon-moon {
+    background-image: url('../images/moon-moon@2x.png');
+  }
 
-	figure.moon .moon-rocket {
-		background-image: url("../images/moon-rocket@2x.png");
-	}
+  figure.moon .moon-rocket {
+    background-image: url('../images/moon-rocket@2x.png');
+  }
 }
 
 /* ==========================================
@@ -1297,26 +1256,26 @@ div#donate_inst {
   ======================================== */
 
 div.gitter-chat-embed-action-bar {
-	max-height: 50px;
-	display: block;
-	height: 50px;
-	position: absolute
+  max-height: 50px;
+  display: block;
+  height: 50px;
+  position: absolute;
 }
 
 a.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-pop-out {
-	position: absolute;
-	top: 0;
-	left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-collapse-chat {
-	width: 50px;
-	height: 50px;
-	top: 0;
-	right: 0;
-	position: absolute;
-	padding: 0;
-	margin: 0;
+  width: 50px;
+  height: 50px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  padding: 0;
+  margin: 0;
 }
 
 /* ==========================================
@@ -1324,274 +1283,274 @@ button.gitter-chat-embed-action-bar-item.gitter-chat-embed-action-bar-item-colla
   ======================================== */
 
 figure.ethereum-network {
-	display: block;
-	width: 100%;
-	height: 306px;
-	background-image: url("../images/ethereum-network-outline@2x.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+  display: block;
+  width: 100%;
+  height: 306px;
+  background-image: url('../images/ethereum-network-outline@2x.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 figure.geth-console {
-	display: block;
-	width: 100%;
-	height: 225px;
-	margin: 10px auto 0 auto;
-	background-image: url("../images/console.gif");
-	background-size: contain;
-	background-repeat: no-repeat;
+  display: block;
+  width: 100%;
+  height: 225px;
+  margin: 10px auto 0 auto;
+  background-image: url('../images/console.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .server-figure {
-	min-height: 275px;
+  min-height: 275px;
 }
 
 figure.ethereum-explain {
-	width: 100%;
-	height: 275px;
-	position: absolute;
+  width: 100%;
+  height: 275px;
+  position: absolute;
 }
 
 figure.ethereum-explain .explain-01 {
-	background-image: url("../images/explain-01.gif");
+  background-image: url('../images/explain-01.gif');
 }
 
 figure.ethereum-explain .explain-02 {
-	background-image: url("../images/explain-02.png");
+  background-image: url('../images/explain-02.png');
 }
 
 figure.ethereum-explain .explain-02b {
-	background-image: url("../images/explain-02b.gif");
+  background-image: url('../images/explain-02b.gif');
 }
 
 figure.ethereum-explain .explain-03 {
-	background-image: url("../images/explain-03.gif");
+  background-image: url('../images/explain-03.gif');
 }
 
 .wallet-figure-outer {
-	min-height: 310px;
+  min-height: 310px;
 }
 
 figure.wallet-figure {
-	width: 100%;
-	height: 310px;
-	position: absolute;
+  width: 100%;
+  height: 310px;
+  position: absolute;
 }
 
 figure.wallet-figure .caption {
-	top: 310px;
-	font-style: italic;
+  top: 310px;
+  font-style: italic;
 }
 
 figure.wallet-figure .wallet-01 {
-	background-image: url("../images/wallet-01.gif");
+  background-image: url('../images/wallet-01.gif');
 }
 
 figure.wallet-figure .wallet-02 {
-	background-image: url("../images/wallet-02.gif");
+  background-image: url('../images/wallet-02.gif');
 }
 
 figure.wallet-figure .wallet-03 {
-	background-image: url("../images/wallet-03.gif");
+  background-image: url('../images/wallet-03.gif');
 }
 
 figure.wallet {
-	max-width: 736px;
-	height: 500px;
+  max-width: 736px;
+  height: 500px;
 }
 
 figure.wallet .wallet-start {
-	background-image: url("../images/wallet-start.png");
+  background-image: url('../images/wallet-start.png');
 }
 
 figure.wallet .wallet-create {
-	background-image: url("../images/wallet-create.png");
+  background-image: url('../images/wallet-create.png');
 }
 
 figure.wallet .wallet-confirm {
-	background-image: url("../images/wallet-confirm.png");
+  background-image: url('../images/wallet-confirm.png');
 }
 
 figure.geth {
-	max-width: 380px;
-	height: 280px;
+  max-width: 380px;
+  height: 280px;
 }
 
 figure.geth .geth-background {
-	background-image: url("../images/geth.png");
+  background-image: url('../images/geth.png');
 }
 
 figure.geth .geth-logo {
-	background-image: url("../images/geth-foreground.png");
+  background-image: url('../images/geth-foreground.png');
 }
 
 figure.ether {
-	max-width: 375px;
-	height: 388px;
+  max-width: 375px;
+  height: 388px;
 }
 
 figure.ether .ether-screen {
-	background-image: url("../images/ether-screen.gif");
+  background-image: url('../images/ether-screen.gif');
 }
 
 figure.ether .ether-pacman {
-	background-image: url("../images/ether-pacman.gif");
+  background-image: url('../images/ether-pacman.gif');
 }
 
 figure.ether .ether-coin {
-	background-image: url("../images/ether-coin.png");
+  background-image: url('../images/ether-coin.png');
 }
 
 figure.ether .ether-arcade-front {
-	background-image: url("../images/ether-arcade-front.png");
+  background-image: url('../images/ether-arcade-front.png');
 }
 
 figure.ether .ether-arcade-back {
-	background-image: url("../images/ether-arcade-back.png");
+  background-image: url('../images/ether-arcade-back.png');
 }
 
 figure.greeter {
-	max-width: 317px;
-	height: 274px;
+  max-width: 317px;
+  height: 274px;
 }
 
 figure.greeter .greeter-human {
-	background-image: url("../images/greeter-human.png");
+  background-image: url('../images/greeter-human.png');
 }
 
 figure.greeter .greeter-robot {
-	background-image: url("../images/greeter-robot.png");
+  background-image: url('../images/greeter-robot.png');
 }
 
 figure.greeter .greeter-question {
-	background-image: url("../images/greeter-question.png");
+  background-image: url('../images/greeter-question.png');
 }
 
 figure.greeter .greeter-answer {
-	background-image: url("../images/greeter-answer.png");
+  background-image: url('../images/greeter-answer.png');
 }
 
 figure.coin {
-	height: 342px;
+  height: 342px;
 }
 
 figure.coin .coin-connection {
-	background-image: url("../images/token-connection.png");
+  background-image: url('../images/token-connection.png');
 }
 
 figure.coin .coin-users {
-	background-image: url("../images/token-users.png");
+  background-image: url('../images/token-users.png');
 }
 
 figure.coin .coin-coins {
-	background-image: url("../images/token-coins.png");
+  background-image: url('../images/token-coins.png');
 }
 
 figure.coin .coin-send {
-	background-image: url("../images/token-send.png");
+  background-image: url('../images/token-send.png');
 }
 
 figure.crowdsale {
-	height: 384px;
+  height: 384px;
 }
 
 figure.crowdsale .crowdsale-logic {
-	background-image: url("../images/crowdsale-logic.png");
+  background-image: url('../images/crowdsale-logic.png');
 }
 
 figure.crowdsale .crowdsale-robot {
-	background-image: url("../images/crowdsale-robot.png");
+  background-image: url('../images/crowdsale-robot.png');
 }
 
 figure.crowdsale .crowdsale-money {
-	background-image: url("../images/crowdsale-money.png");
+  background-image: url('../images/crowdsale-money.png');
 }
 
 figure.crowdsale .crowdsale-contributions {
-	background-image: url("../images/crowdsale-contributions.png");
+  background-image: url('../images/crowdsale-contributions.png');
 }
 
 figure.crowdsale .crowdsale-crowd {
-	background-image: url("../images/crowdsale-crowd.png");
+  background-image: url('../images/crowdsale-crowd.png');
 }
 
 figure.dao {
-	height: 424px;
+  height: 424px;
 }
 
 figure.dao .dao-robot {
-	background-image: url("../images/dao-robot.png");
+  background-image: url('../images/dao-robot.png');
 }
 
 figure.dao .dao-money {
-	background-image: url("../images/dao-money.png");
+  background-image: url('../images/dao-money.png');
 }
 
 figure.dao .dao-arrows {
-	background-image: url("../images/dao-arrows.png");
+  background-image: url('../images/dao-arrows.png');
 }
 
 figure.dao .dao-ideas {
-	background-image: url("../images/dao-ideas.png");
+  background-image: url('../images/dao-ideas.png');
 }
 
 figure.dao .dao-crowd {
-	background-image: url("../images/dao-crowd.png");
+  background-image: url('../images/dao-crowd.png');
 }
 
 .future-figure {
-	margin-top: -90px;
+  margin-top: -90px;
 }
 
 figure.moon {
-	max-width: 420px;
-	height: 424px;
+  max-width: 420px;
+  height: 424px;
 }
 
 figure.moon .moon-stars {
-	background-image: url("../images/moon-stars.png");
+  background-image: url('../images/moon-stars.png');
 }
 
 figure.moon .moon-moon {
-	background-image: url("../images/moon-moon.png");
+  background-image: url('../images/moon-moon.png');
 }
 
 figure.moon .moon-rocket {
-	background-image: url("../images/moon-rocket.png");
-	top: 150px;
-	bottom: -150px;
+  background-image: url('../images/moon-rocket.png');
+  top: 150px;
+  bottom: -150px;
 }
 
 figure.swarm {
-	max-width: 300px;
-	height: 300px;
+  max-width: 300px;
+  height: 300px;
 }
 
 figure.swarm .swarm-01 {
-	background-image: url("../images/swarm-01.png");
+  background-image: url('../images/swarm-01.png');
 }
 
 figure.swarm .swarm-02 {
-	background-image: url("../images/swarm-02.png");
+  background-image: url('../images/swarm-02.png');
 }
 
 figure.swarm .swarm-03 {
-	background-image: url("../images/swarm-03.png");
+  background-image: url('../images/swarm-03.png');
 }
 
 figure.swarm .swarm-04 {
-	background-image: url("../images/swarm-04.png");
+  background-image: url('../images/swarm-04.png');
 }
 
 figure.ethereum-logo {
-	display: block;
-	background-image: url("../images/ethereum-logo.png");
-	max-width: 275px;
-	height: 287px;
-	margin: 0 auto;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
+  display: block;
+  background-image: url('../images/ethereum-logo.png');
+  max-width: 275px;
+  height: 287px;
+  margin: 0 auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* ==========================================
@@ -1599,57 +1558,56 @@ figure.ethereum-logo {
   ======================================== */
 
 div.cookie_table table th:first-child {
-	width: 220px;
+  width: 220px;
 }
 
 div.cookie_table table th:nth-child(2) {
-	width: 160px;
+  width: 160px;
 }
 
 div.cookie_table table th {
-	text-align: left;
+  text-align: left;
 }
 
 div.cookie_table table td {
-	padding: 0 20px 20px 0;
+  padding: 0 20px 20px 0;
   vertical-align: top;
 }
 
 p.cookie_pol {
-	padding: 20px 0 0 0;
+  padding: 20px 0 0 0;
 }
-
 
 /* ==========================================
   ether.pug
   ======================================== */
 
 .ether-tutorial#tutorial-start {
-	padding: 100px;
+  padding: 100px;
 }
 
 .ether-checker,
 .ether-checker input,
 .main-tutorial.ether-checker h3 {
-	margin: 0 auto;
-	text-align: center;
-	max-width: none;
+  margin: 0 auto;
+  text-align: center;
+  max-width: none;
 }
 
 .main-tutorial.ether-checker h2,
 .main-tutorial.ether-checker h3,
 .ether-checker input {
-	display: block;
-	margin: 10px auto;
-	padding: 10px;
-	min-width: 300px;
-	width: 100%;
-	max-width: 400px;
-	float: none;
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  min-width: 300px;
+  width: 100%;
+  max-width: 400px;
+  float: none;
 }
 
 .main-tutorial.ether-checker h2 {
-	padding: 0;
+  padding: 0;
 }
 
 /* ==========================================
@@ -1657,8 +1615,8 @@ p.cookie_pol {
   ======================================== */
 
 .row-brand-images .col-md-3 {
-	text-align: center;
-	margin: 10px 0;
+  text-align: center;
+  margin: 10px 0;
 }
 
 /* ==========================================
@@ -1666,7 +1624,7 @@ p.cookie_pol {
   ======================================== */
 
 .swarm-page.main-tutorial {
-	background-color: #FFF582;
+  background-color: #fff582;
 }
 
 /* ==========================================
@@ -1674,19 +1632,19 @@ p.cookie_pol {
   ======================================== */
 
 .ethereum-projects h4 {
-	text-align: center;
-	clear: both;
-	padding: 60px 0 10px;
-	color: #354049;
+  text-align: center;
+  clear: both;
+  padding: 60px 0 10px;
+  color: #354049;
 }
 
 .ethereum-projects ul {
-	padding-left: 0;
-	-webkit-flex-wrap: wrap;
-	-webkit-justify-content: center;
-	display: flex;
-	display: -webkit-flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	width: 100%;
+  padding-left: 0;
+  -webkit-flex-wrap: wrap;
+  -webkit-justify-content: center;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }

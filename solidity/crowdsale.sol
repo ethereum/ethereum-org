@@ -1,5 +1,4 @@
-
-pragma solidity ^0.4.18;
+pragma solidity >=0.4.22 <0.6.0;
 
 interface token {
     function transfer(address receiver, uint amount) external;
@@ -20,11 +19,11 @@ contract Crowdsale {
     event FundTransfer(address backer, uint amount, bool isContribution);
 
     /**
-     * Constructor function
+     * Constructor
      *
      * Setup the owner
      */
-    function Crowdsale(
+    constructor(
         address ifSuccessfulSendTo,
         uint fundingGoalInEthers,
         uint durationInMinutes,
@@ -43,7 +42,7 @@ contract Crowdsale {
      *
      * The function without name is the default function that is called whenever anyone sends funds to a contract
      */
-    function () payable public {
+    function () payable external {
         require(!crowdsaleClosed);
         uint amount = msg.value;
         balanceOf[msg.sender] += amount;
@@ -89,7 +88,7 @@ contract Crowdsale {
         }
 
         if (fundingGoalReached && beneficiary == msg.sender) {
-            if (beneficiary.send(amountRaised)) {
+            if (msg.sender.send(amountRaised)) {
                emit FundTransfer(beneficiary, amountRaised, false);
             } else {
                 //If we fail to send the funds to beneficiary, unlock funders balance
@@ -98,3 +97,4 @@ contract Crowdsale {
         }
     }
 }
+

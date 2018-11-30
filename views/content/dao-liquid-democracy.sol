@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity >=0.4.22 <0.6.0;
 
 contract token {
     mapping (address => uint256) public balanceOf;
@@ -27,16 +27,16 @@ contract LiquidDemocracy {
     }
 
     /**
-     * Constructor function
+     * Constructor
      */
-    function LiquidDemocracy(
+    constructor(
         address votingWeightToken,
-        string forbiddenFunctionCall,
+        string memory forbiddenFunctionCall,
         uint percentLossInEachRound
-    ) {
+    ) public {
         votingToken = token(votingWeightToken);
         delegatedVotes.length++;
-        delegatedVotes[0] = DelegatedVote({nominee: 0, voter: 0});
+        delegatedVotes[0] = DelegatedVote({nominee: address(0), voter: address(0)});
         forbiddenFunction = forbiddenFunctionCall;
         delegatedPercent = 100 - percentLossInEachRound;
         if (delegatedPercent > 100) delegatedPercent = 100;
@@ -49,7 +49,7 @@ contract LiquidDemocracy {
      *
      * @param nominatedAddress the destination address receiving the sender's vote
      */
-    function vote(address nominatedAddress) returns (uint voteIndex) {
+    function vote(address nominatedAddress) public returns (uint voteIndex) {
         if (voterId[msg.sender]== 0) {
             voterId[msg.sender] = delegatedVotes.length;
             voteIndex = delegatedVotes.length++;
@@ -71,14 +71,16 @@ contract LiquidDemocracy {
      * @param valueInWei the amount of ether to send along with the transaction
      * @param bytecode the data bytecode for the transaction
      */
-    function execute(address target, uint valueInWei, bytes32 bytecode) {
+    function execute(address target, uint valueInWei, bytes32 bytecode) public {
         require(msg.sender == appointee                             // If caller is the current appointee,
             && !underExecution //                                   // if the call is being executed,
-            && bytes4(bytecode) != bytes4(sha3(forbiddenFunction))  // and it's not trying to do the forbidden function
+            && bytes4(bytecode) != bytes4(keccak256(abi.encodePacked(forbiddenFunction)))  // and it's not trying to do the forbidden function
             && numberOfDelegationRounds >= 4);                     // and delegation has been calculated enough
 
         underExecution = true;
-        assert(target.call.value(valueInWei)(bytecode)); // Then execute the command.
+        // Then execute the command.
+        (bool success, ) = target.call.value(valueInWei)(abi.encode(bytecode));
+        require(success); 
         underExecution = false;
     }
 
@@ -87,7 +89,7 @@ contract LiquidDemocracy {
      *
      * Go thruogh all the delegated vote logs and tally up each address's total rank
      */
-    function calculateVotes() returns (address winner) {
+    function calculateVotes() public returns (address winner) {
         address currentWinner = appointee;
         uint currentMax = 0;
         uint weight = 0;
@@ -101,7 +103,7 @@ contract LiquidDemocracy {
             for (uint i=1; i< delegatedVotes.length; i++) {
                 voteWeight[delegatedVotes[i].nominee] = 0;
             }
-            for (i=1; i< delegatedVotes.length; i++) {
+            for (uint i=1; i< delegatedVotes.length; i++) {
                 voteWeight[delegatedVotes[i].voter] = votingToken.balanceOf(delegatedVotes[i].voter);
             }
         }
@@ -109,7 +111,7 @@ contract LiquidDemocracy {
             numberOfDelegationRounds++;
             uint lossRatio = 100 * delegatedPercent ** numberOfDelegationRounds / 100 ** numberOfDelegationRounds;
             if (lossRatio > 0) {
-                for (i=1; i< delegatedVotes.length; i++){
+                for (uint i=1; i< delegatedVotes.length; i++){
                     v = delegatedVotes[i];
 
                     if (v.nominee != v.voter && voteWeight[v.voter] > 0) {
@@ -127,7 +129,7 @@ contract LiquidDemocracy {
         }
 
         if (numberOfDelegationRounds > 3) {
-            NewAppointee(currentWinner, appointee == currentWinner);
+            emit NewAppointee(currentWinner, appointee == currentWinner);
             appointee = currentWinner;
         }
 
