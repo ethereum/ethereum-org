@@ -18,8 +18,7 @@
 </ul>
 <h4>The code</h4>
 <p>Now copy this code and let's create the crowdsale:</p>
-<pre><code>
-pragma solidity ^0.4.18;
+<pre><code>pragma solidity &gt;=0.4.22 &lt;0.6.0;
 
 interface token {
     function transfer(address receiver, uint amount) external;
@@ -40,11 +39,11 @@ contract Crowdsale {
     event FundTransfer(address backer, uint amount, bool isContribution);
 
     /**
-     * Constructor function
+     * Constructor
      *
      * Setup the owner
      */
-    function Crowdsale(
+    constructor(
         address ifSuccessfulSendTo,
         uint fundingGoalInEthers,
         uint durationInMinutes,
@@ -63,7 +62,7 @@ contract Crowdsale {
      *
      * The function without name is the default function that is called whenever anyone sends funds to a contract
      */
-    function () payable public {
+    function () payable external {
         require(!crowdsaleClosed);
         uint amount = msg.value;
         balanceOf[msg.sender] += amount;
@@ -109,7 +108,7 @@ contract Crowdsale {
         }
 
         if (fundingGoalReached &amp;&amp; beneficiary == msg.sender) {
-            if (beneficiary.send(amountRaised)) {
+            if (msg.sender.send(amountRaised)) {
                emit FundTransfer(beneficiary, amountRaised, false);
             } else {
                 //If we fail to send the funds to beneficiary, unlock funders balance
@@ -118,6 +117,7 @@ contract Crowdsale {
         }
     }
 }
+
 
 </code></pre>
 <h4>Code highlights</h4>
@@ -159,7 +159,7 @@ price = etherCostOfEachToken * 1 ether;
 <p>This is a very important point. The crowdsale we are building will be completely controlled by the token holders. This creates the danger that someone controlling 50%+1 of all the tokens will be able to send all the funds to themselves. You can try to create special code on the association contract to prevent these hostile takeovers, or you can instead have all the funds sent to a simple address. To simplify we are simply selling off half of all the gadgets: if you want to further decentralize this, split the remaining half between trusted organizations.</p>
 <h4>Raise funds</h4>
 <p>Once the crowdsale has all the necessary tokens, contributing to it is easy and you can do it from any ethereum wallet: just send funds to it. You can see the relevant code bit here:</p>
-<pre><code>function () {
+<pre><code>function () payable external {
     require(!crowdsaleClosed);
     uint amount = msg.value;
     // ...
@@ -167,7 +167,7 @@ price = etherCostOfEachToken * 1 ether;
 <p>The <a href="https://solidity.readthedocs.io/en/latest/contracts.html#fallback-function">unnamed function</a> is the default function executed whenever a contract receives ether. This function will automatically check if the crowdsale is active, calculate how many tokens the caller bought and send the equivalent. If the crowdsale has ended or if the contract is out of tokens the contract will <strong>throw</strong> meaning the execution will be stopped and the ether sent will be returned (but all the gas will be spent).</p>
 <p><img src="/images/tutorial/crowdsale-error.png" alt="Crowdsale error"></p>
 <p>This has the advantage that the contract prevents falling into a situation that someone will be left without their ether or tokens. In a previous version of this contract we would also <a href="https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#contract-related"><strong>self destruct</strong></a> the contract after the crowdsale ended: this would mean that any transaction sent after that moment would lose their funds. By creating a fallback function that throws when the sale is over, we prevent anyone losing money.</p>
-<p>The contract has a safeWithdrawl() function, without any parameters, that can be executed by the beneficiary to access the amount raised or by the funders to get back their funds in the case of a failed fundraise.</p>
+<p>The contract has a safeWithdrawal() function, without any parameters, that can be executed by the beneficiary to access the amount raised or by the funders to get back their funds in the case of a failed fundraise.</p>
 <p><img src="/images/tutorial/crowdsale-execute.png" alt="Crowdsale execution"></p>
 <h3>Extending the crowdsale</h3>
 <h4>What if the crowdsale overshoots its target?</h4>
@@ -177,7 +177,7 @@ price = etherCostOfEachToken * 1 ether;
 <p>Then modify the crowdsale to rename all mentions of <strong>transfer</strong> to <strong>mintToken</strong>:</p>
 <pre><code>contract token { function mintToken(address receiver, uint amount){  } }
 // ...
-    function () {
+    function () public {
         // ...
         tokenReward.mintToken(msg.sender, amount / price);
         // ...
