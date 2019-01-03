@@ -19,7 +19,8 @@ But the rate is not expected to be kept: sometime in 2018-2019 Ethereum will be 
 
 ### Who needs ether?
 
-Developers who intend to build apps that will use the ethereum blockchain. Users who want to access and interact with smart contracts on the ethereum blockchain.
++ Developers who intend to build apps that will use the ethereum blockchain. 
++ Users who want to access and interact with smart contracts on the ethereum blockchain.
 
 
 ### I bought ether during the 2014 presale. How do I access it?
