@@ -9,8 +9,8 @@ block content
   include mixins/recipes.pug
 
   .breadcrumb.animateme(data-when="enter", data-from="1", data-to="0.8", data-opacity="0", data-translatey="-20")
-    a(href="/").index Ethereum 
-    strong » Command line tools 
+    a(href="/").index Ethereum
+    strong » Command line tools
     a(href="/greeter").next Next
 
   div#tutorial-start.main-tutorial.cli-tutorial.inner-header.inner-page.even
@@ -37,11 +37,3 @@ block content
       .row
         .col-md-12.tutorial
           +greeterRecipe("What's next?")
-
-
-  script
-    |  ((window.gitter = {}).chat = {}).options = {
-    |    room: 'ethereum/go-ethereum'
-    |  };
-
-  script(src="https://sidecar.gitter.im/dist/sidecar.v1.js", async, defer)
