@@ -44,8 +44,7 @@ If you published your contract right away, it would work but wouldn't be very us
         balanceOf[msg.sender] = 21000000;
     }
 ```
-
-Notice that the *function MyToken* has the same name as the *contract MyToken*. This is very important and if you rename one, you have to rename the other too: this is a special, startup function that runs only once and once only when the contract is first uploaded to the network. This function will set the balance of *msg.sender*, the user which deployed the contract, with a balance of 21 million.
+The constructor is a special startup function that runs only once and once only when the contract is first uploaded to the network. This function will set the balance of *msg.sender*, the user which deployed the contract, with a balance of 21 million.
 
 The choice of 21 million was rather arbitrary, and you can change it to anything you want in the code, but there's a better way: instead, supply it as a parameter for the function, like this:
 
