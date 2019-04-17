@@ -147,6 +147,7 @@ The first time you start the command line you will be presented with a license. 
 #### Connecting to a private test net
 
 Sometimes you might not want to connect to the live public network; instead you can choose to create your own private testnet. This is very useful if you don't need to test public contracts and want just to try- or develop on the technology. Since you are the only member of your private network you are responsible for finding all blocks, validating all transactions and executing all smart contracts. This makes development cheaper and easier as you have the ability to flexibly control the inclusion of transactions in your own personal blockchain.
+You will first need to create a genesis block, in the example below at `~/dev/genesis.json`.  See the [Ethereum Wiki](https://github.com/ethereum/go-ethereum/wiki/Private-network#creating-the-genesis-block) for an example.
 
 **Geth:**
 
