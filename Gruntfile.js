@@ -108,9 +108,6 @@ module.exports = function(grunt) {
             'dist/brand.html': 'views/brand.pug'
           },
           {
-            'dist/foundation.html': 'views/foundation.pug'
-          },
-          {
             'dist/donate.html': 'views/donate.pug'
           },
           {
