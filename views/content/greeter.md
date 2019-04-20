@@ -74,7 +74,7 @@ You may have to "unlock" the account that is sending the transaction using the p
 
 This contract is estimated to need ~180 thousand gas to deploy (according to the [online solidity compiler](http://remix.ethereum.org)), at the time of writing, gas on the main net is priced at 6 gwei, resulting in 0.00108 ETH worth of feed. You can use [ETH Gas Station Transaction Calculator tool](https://ethgasstation.info/calculatorTxV.php) for updated information.
 
-**Notice that the cost is not paid to the [ethereum developers](../foundation), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
+**Notice that the cost is not paid to the [ethereum developers](http://ethereum.foundation/), instead it goes to the _Miners_, those peers whose computers are working to find new blocks and keep the network secure. Gas price is set by the market of the current supply and demand of computation. If the gas prices are too high, you can become a miner and lower your asking price.**
 
 
 Within less than a minute, you should have a log with the contract address, this means you've successfully deployed your contract. You can verify the deployed code (which will be compiled) by using this command:
