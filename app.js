@@ -62,10 +62,6 @@ app.get('/brand', (request, response) => {
   response.render('brand');
 });
 
-app.get('/foundation', (request, response) => {
-  response.render('foundation');
-});
-
 app.get('/donate', (request, response) => {
   response.render('donate');
 });
