@@ -5,7 +5,7 @@
 The total supply of ether and its rate of issuance was decided by the donations gathered on the 2014 presale. The results were roughly:
 
 * 60 million ether created to contributors of the presale
-* 12 Million (20% of the above) were created to the development fund, most of it going to early contributors and developers and the remaining to the [Ethereum Foundation](./foundation)
+* 12 Million (20% of the above) were created to the development fund, most of it going to early contributors and developers and the remaining to the [Ethereum Foundation](http://ethereum.foundation/)
 * 3 ethers are created every block (roughly 15 seconds) to the miner of the block
 * 0.625-2.625 ethers are sometimes sent to another miner if they were also able to find a solution but his block wasn't included (called uncle/aunt reward)
 
