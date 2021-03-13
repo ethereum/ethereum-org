@@ -1,3 +1,16 @@
+
+Integer Overflow
+There may be an integer Overflow error
+
+55、uint previousBalances = balanceOf[_from] + balanceOf[_to];
+62、assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+38、    totalSupply = initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
+138、  totalSupply -= _value;     // Updates totalSupply
+
+
+
+
+
 pragma solidity >=0.4.22 <0.6.0;
 
 interface tokenRecipient { 
